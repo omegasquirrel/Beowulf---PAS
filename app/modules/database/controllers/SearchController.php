@@ -1,7 +1,7 @@
 <?php
 /** Controller for searching for finds on database
  * @todo finish module's functions and replace with solr functionality. Scripts suck the big one.
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -9,7 +9,7 @@
 * @license    GNU General Public License
 */
 class Database_SearchController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_contexts = array(
 	'xml', 'rss', 'json',
 	'atom', 'kml', 'georss',
@@ -41,7 +41,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addActionContext('results', array('csv'));
 	}
 	}
-		
+
 	if($role){
 	$user = $role->role;
 	if(in_array($user,$herroles)) {
@@ -52,15 +52,15 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	$this->_helper->contextSwitch()->initContext();
-      
+
 	if(!in_array($this->_helper->contextSwitch()->getCurrentContext(),$this->_contexts )) {
-	$this->view->googleapikey = $this->_config->webservicegooglemaps->apikey; 
+	$this->view->googleapikey = $this->_config->webservicegooglemaps->apikey;
 	}
 	}
-      
-	
+
+
 	/** Display the basic what/where/when page.
-	*/	
+	*/
 	public function indexAction() {
 	$form = new WhatWhereWhenForm();
 	$this->view->form = $form;
@@ -75,8 +75,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
-	
+
+
 	function array_cleanup( $array ) {
     $todelete = array('submit','action','controller','module','page','csrf');
 		foreach( $array as $key => $value ) {
@@ -84,13 +84,13 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
     	if($key == $match){
     		unset($array[$key]);
     	}
-    } 
+    }
     }
     return $array;
 }
-		
+
 	/** Generate the advanced search page
-	*/	
+	*/
 	public function advancedAction(){
 	$form = new AdvancedSearchForm(array('disableLoadDefaultDecorators' => true));
 	$this->view->form = $form;
@@ -106,7 +106,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display the byzantine search form
-	*/	
+	*/
 	public function byzantinenumismaticsAction() {
 	$form = new ByzantineNumismaticSearchForm();
 	$this->view->byzantineform = $form;
@@ -122,7 +122,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display the early medieval numismatics form
-	*/	
+	*/
 	public function earlymednumismaticsAction() {
 	$form = new EarlyMedNumismaticSearchForm();
 	$this->view->earlymedform = $form;
@@ -138,7 +138,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display the medieval numismatics page
-	*/		
+	*/
 	public function mednumismaticsAction() {
 	$form = new MedNumismaticSearchForm();
 	$this->view->earlymedform = $form;
@@ -154,7 +154,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display the post medieval numismatics pages
-	*/		
+	*/
 	public function postmednumismaticsAction() {
 	$form = new PostMedNumismaticSearchForm();
 	$this->view->earlymedform = $form;
@@ -169,9 +169,9 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
 	/** Display the roman numismatics pages
-	*/		
+	*/
 	public function romannumismaticsAction() {
 	$form = new RomanNumismaticSearchForm();
 	$this->view->formRoman = $form;
@@ -187,7 +187,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display the iron age numismatics pages
-	*/	
+	*/
 	public function ironagenumismaticsAction() {
 	$form = new IronAgeNumismaticSearchForm();
 	$this->view->formIronAge = $form;
@@ -203,7 +203,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display the greek and roman provincial pages
-	*/	
+	*/
 	public function greekromanAction() {
 	$form = new GreekRomanSearchForm();
 	$this->view->form = $form;
@@ -219,12 +219,12 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 
-	
+
 	/** Remove multiple values
-	 * 
+	 *
 	 * @param array $array
 	 * @param string $sub_key
-	*/		
+	*/
 	private function unique_multi_array($array, $sub_key) {
 	$target = array();
 	$existing_sub_key_values = array();
@@ -237,7 +237,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	return $target;
 	}
 	/** Display the map of results
-	*/	
+	*/
 	public function mapAction() {
 	$data = $this->_getAllParams();
 	$params = array_filter($data);
@@ -285,8 +285,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$insertData['description'] = $form->getValue('description');
 	$insertData['searchString'] = $lastsearch->searchString;
 	$insertData['public'] = $form->getValue('public');
-	
-	
+
+
 	$saved = new SavedSearches();
 	$insert = $saved->insert($insertData);
 	$this->_redirect(self::REDIRECT.$query);
@@ -297,7 +297,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Email a search result
-	*/		
+	*/
 	public function emailAction() {
 	$user = $this->getAccount();
 	$this->view->headTitle('Email this search to another person');
@@ -312,7 +312,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$params[$key] = $value;
 	}
 	$this->view->params = $params;
-	
+
 	$form = new EmailSearchForm();
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
@@ -330,16 +330,16 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$mail->setBodyHtml('<p>Dear '.$recipient.'</p>'.$message.'<p>Located at this url:  '.$url.'</p><p>From '.$sender.'</p>');
 	$mail->setFrom('info@finds.org.uk', 'The Portable Antiquities Scheme');
 	$mail->setBodyText('Dear '.$recipient.','.
-	$message 
+	$message
 	.' '.
 	$url
 	.'From,'.
-	
+
 	$sender);
 	$mail->addTo($recipientemail, $recipient);
 	$mail->addCC($senderemail,$sender);
 	$mail->setSubject('I thought you might be interested in this search on the PAS Database.');
-	$mail->send();	
+	$mail->send();
 	$this->_flashMessenger->addMessage('Your email has been sent to '.$recipient
 	.'. Thank you for sending them some of our records.');
 	$this->_redirect('/database/search/results/'.$query);
@@ -350,11 +350,11 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	} else {
 	$this->_flashMessenger->addMessage('You haven\'t ever searched, so you have nothing to email!');
 	$this->_redirect('/database/search/');
-	
+
 	}
 	}
 	/** Display saved searches
-	*/		
+	*/
 	public function savedsearchesAction() {
 	$allowed = array('fa','flos','admin');
 	if(in_array($this->getRole(),$allowed)) {
@@ -362,7 +362,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	} else {
 	$private = NULL;
 	}
-	$searches = new SavedSearches(); 
+	$searches = new SavedSearches();
 
 	if($this->_getParam('by') == 'me'){
 	$data = $searches->getSavedSearches($this->getIdentityForForms(),$this->_getParam('page'),$private);
@@ -372,7 +372,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$this->view->data = $data;
 	}
 	/** Display the solr form
-	*/		
+	*/
 	public function solrAction(){
  	if (  !$this->_solr->ping() ) {
  	echo '<h2>Search engine system error</h2>';
@@ -389,134 +389,24 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$form->populate($q);
 	}
 	}
-	}	
+	}
 	}
 	/** Display the index page.
-	*/		
+	*/
 	public function resultsAction(){
-	$params = array_slice($this->_getAllParams(),3);
-	if(sizeof($params) > 0){
-	$limit = 20;
-	$page = $this->_getParam('page');
-	if(!isset($page)){
-		$start = 0;
-		
-	} else {
-		unset($params['page']);
-		$start = ($page - 1) * 20;
-	}	
-	$q = '';
-	if(array_key_exists('q',$params)){
-	$q .= $params['q'] . ' ';
-	unset($params['q']); 
-	}
-	if(array_key_exists('images',$params)){
-	$images = (int)1;
-	unset($params['images']);
-	}
-	
-	if(array_key_exists('radius',$params)){
-	$d = (int)$params['radius'];
-	unset($params['radius']);
-	}
-	if(array_key_exists('lat',$params)){
-	$lat = (float)$params['lat'];
-	unset($params['lat']);
-	}
-	if(array_key_exists('lon',$params)){
-	$lon = (float)$params['lon'];
-	unset($params['lon']);
-	}
-	$params = array_filter($params);
-	
-	foreach($params as $k => $v){
-	$q .= $k . ':"' . $v . '" ';
-	}
-	$config = array(
-    'adapteroptions' => array(
-    'host' => '127.0.0.1',
-    'port' => 8983,
-    'path' => '/solr/',
-	'core' => 'beowulf'
-    )
-	);
-	
-	$select = array(
-    'query'         => $q,
-    'start'         => $start,
-    'rows'          => $limit,
-    'fields'        => array('*'),
-    'sort'          => array('created' => 'desc'),
-	'filterquery' => array(),
-    );
-	$allowed = array('fa','flos','admin','treasure');
-	if(!in_array($this->getRole(),$allowed)) {
-	$select['filterquery']['workflow'] = array(
-            'query' => 'workflow:[3 TO *]'
-        );
-	if(array_key_exists('parish',$params)){
-	$select['filterquery']['knownas'] = array(
-            'query' => 'knownas:["" TO *]'
-        );
-	}
-	}
-	
-	if(!is_null($images)){
-	$select['filterquery']['images'] = array(
-            'query' => 'thumbnail:[1 TO *]'
-        );
-	}
-	
-	// create a client instance
-	$client = new Solarium_Client($config);
-	// get a select query instance based on the config
-	$query = $client->createSelect($select);
-	if(!is_null($d) && !is_null($lon) && !is_null($lat)){
-	$helper = $query->getHelper();
-	$query->createFilterQuery('geo')->setQuery($helper->geofilt($lat,$lon, 'coordinates', $d));
-	}
-	$facetSet = $query->getFacetSet();
-
-	$facetSet->createFacetField('period')->setField('broadperiod');
-	$facetSet->createFacetField('county')->setField('county');
-	$facetSet->createFacetField('objectType')->setField('objectType');
-	$resultset = $client->select($query);
-	$pagination = array(    
-	'page'          => $page, 
-	'per_page'      => $limit, 
-    'total_results' => $resultset->getNumFound()
-	);
-	
-	$data = NULL;
-	foreach($resultset as $doc){
-		$fields = array();
-	    foreach($doc as $key => $value){
-	    	$fields[$key] = $value;
-	    }
-	    $data[] = $fields;
-	}
-//	Zend_Debug::dump($data);
-//	$periodFacet = $resultset->getFacetSet()->getFacet('period');
-//	foreach($periodFacet as $value => $count) {
-//    echo $value . ' [' . $count . ']<br/>';
-//	}
-//	$objectFacet = $resultset->getFacetSet()->getFacet('objectType');
-//	foreach($objectFacet as $value => $count) {
-//    echo $value . ' [' . $count . ']<br/>';
-//	}
-//	$countyFacet = $resultset->getFacetSet()->getFacet('county');
-//	foreach($countyFacet as $value => $count) {
-//    echo $value . ' [' . $count . ']<br/>';
-//	}
-	$paginator = Zend_Paginator::factory($resultset->getNumFound());
-    $paginator->setCurrentPageNumber($page)
-              ->setItemCountPerPage($limit)
-              ->setPageRange(20);
-    $this->view->paginator = $paginator;
-	$this->view->results = $data;
-	} else {
-		throw new Pas_Exception_Param('Your search has no parameters!',500);	
-	}
+	$params = $this->_getAllParams();
+        $search = new Pas_Solr_Handler('beowulf');
+        $search->setFields(array('id','identifier','objecttype',
+            'title','broadperiod','description','old_findID','thumbnail',
+            'county','imagedir','filename'));
+//        $search->setFacets(array('broadperiod','county',));
+    //    $search->setHighlights(array('broadperiod'));
+        $search->setParams($params);
+        $search->execute();
+  //    $search->_processFacets();
+    //    $search->getHighlights();
+        $this->view->paginator = $search->_createPagination();
+        $this->view->results = $search->_processResults();
 	}
 //EOS
 }
