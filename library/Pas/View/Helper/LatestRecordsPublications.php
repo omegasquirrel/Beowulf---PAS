@@ -2,7 +2,7 @@
 /**
  *
  * @author dpett
- * @version 
+ * @version
  */
 
 /**
@@ -11,17 +11,17 @@
  * @uses viewHelper Pas_View_Helper
  */
 class Pas_View_Helper_LatestRecordsPublications extends Zend_View_Helper_Abstract{
-	
+
 	protected $_solr;
-	
+
 	protected $_solrConfig;
-	
+
 	protected $_config;
-	
+
 	protected $_cache;
-	
+
 	protected $_allowed =  array('fa','flos','admin','treasure');
-	
+
 	public function __construct(){
 		$this->_cache = Zend_Registry::get('rulercache');
 		$this->_config = Zend_Registry::get('config');
@@ -29,24 +29,24 @@ class Pas_View_Helper_LatestRecordsPublications extends Zend_View_Helper_Abstrac
 		$this->_solrConfig['core'] = 'beobiblio';
    		$this->_solr = new Solarium_Client(array('adapteroptions' => ($this->_solrConfig)));
 	}
-	
+
 	public function getRole(){
 	$user = new Pas_UserDetails();
-	return $user->role;
+	return $user->getPerson()->role;
 	}
 	/**
-	 * 
+	 *
 	 */
-	public function latestRecordsPublications( $q = '*:*', $fields = 'id,old_findID,objecttype,imagedir,filename,thumbnail,broadperiod', $start = 0, $limit = 4,  
+	public function latestRecordsPublications( $q = '*:*', $fields = 'id,old_findID,objecttype,imagedir,filename,thumbnail,broadperiod', $start = 0, $limit = 4,
 		$sort = 'id', $direction = 'desc') {
 	$select = array(
-    'query'         => $q,
-    'start'         => $start,
-    'rows'          => $limit,
-    'fields'        => array($fields),
-    'sort'          => array($sort => $direction),
+        'query'         => $q,
+        'start'         => $start,
+        'rows'          => $limit,
+        'fields'        => array($fields),
+        'sort'          => array($sort => $direction),
 	'filterquery' => array(),
-    );
+        );
 	if(!in_array($this->getRole(),$this->_allowed)) {
 	$select['filterquery']['workflow'] = array(
             'query' => 'workflow:[3 TO 4]'
@@ -74,8 +74,8 @@ class Pas_View_Helper_LatestRecordsPublications extends Zend_View_Helper_Abstrac
 	}
 	return $this->buildHtml($data);
 	}
-	
-	
+
+
 	public function buildHtml($data){
 	if($data['images']) {
 	$html = '<h3>Referenced finds recorded with images</h3>';
@@ -88,6 +88,6 @@ class Pas_View_Helper_LatestRecordsPublications extends Zend_View_Helper_Abstrac
 		return false;
 	}
 	}
-	
+
 }
 

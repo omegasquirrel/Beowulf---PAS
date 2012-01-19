@@ -2,7 +2,7 @@
 /**
  *
  * @author dpett
- * @version 
+ * @version
  */
 
 /**
@@ -11,41 +11,42 @@
  * @uses viewHelper Pas_View_Helper
  */
 class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
-	
+
 	protected $_solr;
-	
+
 	protected $_solrConfig;
-	
+
 	protected $_config;
-	
+
 	protected $_cache;
-	
+
 	protected $_allowed =  array('fa','flos','admin','treasure');
-	
+
 	public function __construct(){
-		$this->_cache = Zend_Registry::get('rulercache');
-		$this->_config = Zend_Registry::get('config');
-		$this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
-   		$this->_solr = new Solarium_Client($this->_solrConfig);
+        $this->_cache = Zend_Registry::get('cache');
+        $this->_config = Zend_Registry::get('config');
+        $this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
+        $this->_solr = new Solarium_Client($this->_solrConfig);
 	}
-	
+
 	public function getRole(){
 	$user = new Pas_UserDetails();
-	return $user->role;
+	return $user->getPerson()->role;
 	}
 	/**
-	 * 
+	 *
 	 */
-	public function latestRecords( $q = '*:*', $fields = 'id,old_findID,objecttype,imagedir,filename,thumbnail,broadperiod', $start = 0, $limit = 4,  
+	public function latestRecords( $q = '*:*', $fields = 'id,old_findID,
+            objecttype,imagedir,filename,thumbnail,broadperiod', $start = 0, $limit = 4,
 		$sort = 'created', $direction = 'desc') {
 	$select = array(
-    'query'         => $q,
-    'start'         => $start,
-    'rows'          => $limit,
-    'fields'        => array($fields),
-    'sort'          => array($sort => $direction),
+        'query'         => $q,
+        'start'         => $start,
+        'rows'          => $limit,
+        'fields'        => array($fields),
+        'sort'          => array($sort => $direction),
 	'filterquery' => array(),
-    );
+        );
 	if(!in_array($this->getRole(),$this->_allowed)) {
 	$select['filterquery']['workflow'] = array(
             'query' => 'workflow:[3 TO 4]'
@@ -73,20 +74,22 @@ class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
 	}
 	return $this->buildHtml($data);
 	}
-	
-	
+
+
 	public function buildHtml($data){
 	if($data['images']) {
 	$html = '<h3>Latest examples recorded with images</h3>';
-	$html .= '<p>We have recorded ' . $data['numberFound'] . ' examples.</p>';
+	$html .= '<p>We have recorded ' . number_format($data['numberFound'])
+                . ' examples.</p>';
 	$html .= '<div id="latest">';
-	$html .= $this->view->partialLoop('partials/database/imagesPaged.phtml', $data['images']);
+	$html .= $this->view->partialLoop('partials/database/imagesPaged.phtml',
+                $data['images']);
 	$html .= '</div>';
 	return $html;
 	} else {
 		return false;
 	}
 	}
-	
+
 }
 

@@ -32,8 +32,7 @@ class Pas_Solr_Handler {
 
     protected $_allowed =  array('fa','flos','admin','treasure');
 
-    protected $_formats = array(
-    	'json', 'csv', 'xml',
+    protected $_formats = array('json', 'csv', 'xml',
         'midas', 'rdf', 'n3',
         'rss', 'atom');
 
@@ -44,7 +43,7 @@ class Pas_Solr_Handler {
     protected $_params;
 
     public function __construct($core){
-    $this->_cache = Zend_Registry::get('cache');
+    $this->_cache = Zend_Registry::get('rulercache');
     $this->_config = Zend_Registry::get('config');
     $this->_core = $core;
     $this->_solrConfig = $this->_setSolrConfig($this->_core);
@@ -214,8 +213,8 @@ class Pas_Solr_Handler {
     }
 
     public function _processFacets(){
-    if($this->_facets){
-	$facetData = array();
+        if($this->_facets){
+        $facetData = array();
         foreach($this->_facets as $k){
             $facetData[$k] = array();
             $f = $this->_resultset->getFacetSet()->getFacet($k);
