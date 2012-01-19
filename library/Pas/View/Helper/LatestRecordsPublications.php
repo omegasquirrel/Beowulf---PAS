@@ -31,7 +31,7 @@ class Pas_View_Helper_LatestRecordsPublications extends Zend_View_Helper_Abstrac
 	}
 
 	public function getRole(){
-	$user = new Pas_UserDetails();
+	$user = new Pas_User_Details();
 	return $user->getPerson()->role;
 	}
 	/**

@@ -8,27 +8,27 @@
  * @author Daniel Pett
  * @version 1
  * @since September 29 2011
- */  
+ */
 class Pas_View_Helper_ChangesFindSpot
 	extends Zend_View_Helper_Abstract {
-	
+
 	protected function _getRole(){
-	$role = new Pas_UserDetails();
+	$role = new Pas_User_Details();
 	return $role->getPerson()->role;
 	}
-	
+
 	protected $_allowed = array('treasure', 'flos', 'fa','admin');
-		
+
 	/** Build the html from data array
 	* @param array $a
 	* @return string $html
-	*/	
+	*/
 	public function buildHtml($a) {
 	$html = '';
 	$html .= '<li><a href="';
 	$html .= $this->view->url(array(
-		'module' => 'database', 
-		'controller' => 'ajax', 
+		'module' => 'database',
+		'controller' => 'ajax',
 		'action' => 'fsaudit',
 		'id' => $a['editID']),
 	NULL,true);

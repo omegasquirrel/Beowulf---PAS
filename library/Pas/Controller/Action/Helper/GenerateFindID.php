@@ -2,18 +2,18 @@
 /**
  *
  * @author dpett
- * @version 
+ * @version
  */
 
 /**
- * GenerateFindID Action Helper 
- * 
+ * GenerateFindID Action Helper
+ *
  */
-class Pas_Controller_Action_Helper_GenerateFindID 
+class Pas_Controller_Action_Helper_GenerateFindID
 	extends Zend_Controller_Action_Helper_Abstract {
-	
+
 	protected function _getAccount(){
-		$user = new Pas_UserDetails();
+		$user = new Pas_User_Details();
 		return $user->getPerson()->institution;
 	}
 	/**

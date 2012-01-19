@@ -13,32 +13,32 @@
 class Pas_Solr_MoreLikeThis {
 
     protected $_solr;
-    
+
     protected $_index;
-    
+
     protected $_limit;
-    
+
     protected $_cache;
-    
+
     protected $_config;
-    
+
     protected $_solrConfig;
-    
+
     public function __construct(){
     $this->_cache = Zend_Registry::get('rulercache');
     $this->_config = Zend_Registry::get('config');
     $this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
     $this->_solr = new Solarium_Client($this->_solrConfig);
-  
+
     }
 
 	public function getRole(){
-	$user = new Pas_UserDetails();
+	$user = new Pas_User_Details();
 	return $user->getPerson()->role;
 	}
-    
+
 	protected $_allowed =  array('fa','flos','admin','treasure');
-    
+
     public function setFields($fields){
     if(is_array($fields)){
         $this->_fields = implode($fields,',');
@@ -46,7 +46,7 @@ class Pas_Solr_MoreLikeThis {
         throw new Pas_Solr_Exception('The field list is not an array');
     }
     }
-    
+
     public function setQuery($query){
     if(is_string($query)){
         $this->_query = (string)$query;
@@ -54,7 +54,7 @@ class Pas_Solr_MoreLikeThis {
         throw new Pas_Solr_Exception('query must be a string');
     }
     }
-    
+
     public function executeQuery( $minDocFreq = 1, $minTermFreq = 1, $count = 4){
     $client = $this->_solr;
     $query = $client->createSelect();
@@ -70,7 +70,7 @@ class Pas_Solr_MoreLikeThis {
     $resultset = $client->select($query);
     $mlt = $resultset->getMoreLikeThis();
     foreach($resultset as $result){
-       
+
     $mltResult = $mlt->getResult($result->findIdentifier);
     $mltArray = array();
     if($mltResult){
@@ -82,9 +82,9 @@ class Pas_Solr_MoreLikeThis {
     }
     }
     }
-    
+
     return $mltArray;
     }
-      
+
 }
 

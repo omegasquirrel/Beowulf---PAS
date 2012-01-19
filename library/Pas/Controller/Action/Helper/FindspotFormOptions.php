@@ -12,36 +12,36 @@
  */
 class Pas_Controller_Action_Helper_FindspotFormOptions
     extends Zend_Controller_Action_Helper_Abstract {
-    
+
   	protected $_view;
 
     public function preDispatch()
     {
-	
+
 	$this->_view = $this->_actionController->view;
     }
-    
+
     public function __construct() {
     }
-    
+
     public function direct(){
-     
+
     return $this->optionsAddClone();
     }
-    
-    
+
+
     protected function _getIdentity(){
-    	$user = new Pas_UserDetails();
+    	$user = new Pas_User_Details();
     	return $user->getPerson()->id;
     }
-    
-    
-    
+
+
+
     public function optionsAddClone(){
   	$findspots = new Findspots();
     $findspot = $findspots->getLastRecord($this->_getIdentity());
     $data = $findspot[0];
-    $this->_view->form->populate($data);    	
+    $this->_view->form->populate($data);
     Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')
     	->addMessage('Your last record data has been cloned');
     if(!is_null($data['county'])) {
@@ -76,8 +76,8 @@ class Pas_Controller_Action_Helper_FindspotFormOptions
     $form->landownername->setValue($finder['term']);
     }
     }
-    } 
-    
+    }
+
 }
 
 

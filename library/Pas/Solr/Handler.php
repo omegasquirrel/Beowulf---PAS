@@ -109,7 +109,7 @@ class Pas_Solr_Handler {
     }
 
     protected function _getRole(){
-    $user = new Pas_UserDetails();
+    $user = new Pas_User_Details();
     return $user->getPerson()->role;
     }
 

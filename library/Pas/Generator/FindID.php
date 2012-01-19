@@ -2,17 +2,17 @@
 /**
  *
  * @author dpett
- * @version 
+ * @version
  */
 
 /**
- * GenerateFindID Action Helper 
- * 
+ * GenerateFindID Action Helper
+ *
  */
 class Pas_Generator_FindID {
-	
+
 	protected function _getAccount(){
-		$user = new Pas_UserDetails();
+		$user = new Pas_User_Details();
 		return $user->getPerson()->institution;
 	}
 	/**
