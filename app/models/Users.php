@@ -390,7 +390,7 @@ class Users extends Pas_Db_Table_Abstract {
 	if (!$accounts = $this->_cache->load('owneroffind'.$findID)) {
 	$users = $this->getAdapter();
 	$select = $users->select()
-	->from($this->_name,array('fullname','email'))
+	->from($this->_name,array('name' => 'fullname','email'))
 	->joinLeft('finds','finds.createdBy = users.id')
 	->where('finds.id = ?',(int)$findID);
 	$accounts = $users->fetchAll($select);

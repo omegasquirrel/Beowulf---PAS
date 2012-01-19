@@ -11,6 +11,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 
     const REDIRECT = '/database/artefacts/';
 
+    protected $_user;
     /**
      * @var array restricted access roles
      */
@@ -23,8 +24,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     */
     protected $_coinarray = array(
         'Coin','COIN','coin',
-	'token','jetton','coin weight',
-	'COIN HOARD'
+		'token','jetton','coin weight',
+		'COIN HOARD', 'TOKEN', 'JETTON'
         );
 
     /** An array of Roman and Iron Age periods
@@ -93,6 +94,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');
+    $this->_user = $this->_helper->identity->getPerson();
     }
 
     /** Display a list of objects recorded with pagination
@@ -407,7 +409,6 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $findID);
     $this->_flashMessenger->addMessage('Record deleted!');
     $findspots->delete($whereFindspots);
-
     $this->_helper->solrUpdater->deleteById('beowulf', $id);
     $this->_redirect(self::REDIRECT);
     }
@@ -430,17 +431,17 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $finds = $this->_finds->getRelevantAdviserFind($this->_getParam('id',0));
     $this->view->form = $form;
     $this->view->finds = $finds;
-    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
     $data = $form->getValues();
-    if ($this->_helper->getAkismet->isSpam($data)) {
-    $data['comment_approved'] = 'spam';
-    }  else  {
-    $data['comment_approved'] =  '1';
-    }
+//    if ($this->_helper->akismet->isSpam($data)) {
+//    $data['comment_approved'] = 'spam';
+//    }  else  {
+//    $data['comment_approved'] =  '1';
+//    }
     $errors = new ErrorReports();
     $mail = $this->notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$data);
-    $insert = $errors->addReport($data);
+    $insert = $errors->add($data);
     $this->_flashMessenger->addMessage('Your error report has been submitted. Thank you!');
     $this->_redirect(self::REDIRECT.'record/id/' . $this->_getParam('id'));
     } else {
@@ -454,37 +455,14 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 
     /** Provide a notification for an object
     */
-    protected function notify($objecttype,$broadperiod,$data) {
-    $findData = (object)$data;
+    protected function notify($objecttype, $broadperiod, $data) {
     $finds = new Users();
-    $owner = $finds->getOwner($findData->comment_findID);
-    $advisers = $this->getAdviser($objecttype,$broadperiod);
-    $mail = new Zend_Mail('UTF-8');
-    $mail->setFrom('info@finds.org.uk','The Portable Antiquities Scheme error reporter');
-    $mail->setSubject('Error report submitted on record id number : ' . $owner['0']['old_findID']);
-    foreach($advisers as $k => $v){
-    $mail->addCC($v, $k);
-    }
-    $message = '';
-    $message .= $findData->comment_author;
-    $message .= ' submitted an error report type: ' . $findData->comment_type;
-    $message .= "\n";
-    $message .= 'Copied to Finds Adviser(s) in case action is required.';
-    $message .= "\n";
-    $message .= strip_tags(nl2br($findData->comment_content));
-    $message .= "\n";
-    $message .= 'Error report on http://www.finds.org.uk/database/artefacts/record/id/'
-    . $findData->comment_findID;
-    $message .= "\n";
-    $message .= 'Object type: ' . $owner['0']['objecttype'];
-    $message .= "\n";
-    $message .= 'Broadperiod: ' . $owner['0']['broadperiod'];
-    $message .= "\n";
-    $message .= 'Thank you for taking the time to submit an error to us. We appreciate that you have taken the time to improve our database';
-    $mail->addCC($findData->comment_author_email,$findData->comment_author);
-    $mail->addTo($owner['0']['email'],$owner['0']['fullname']);
-    $mail->setBodyText($message);
-    $mail->send();
+    $to = $finds->getOwner($data['comment_findID']);
+    $cc = $this->getAdviser($objecttype,$broadperiod);
+    $from[] = array('email' => $this->_user->email, 'name' => $this->_user->fullname);
+    $assignData = array_merge($to['0'],$data);
+  	$this->_helper->mailer($assignData,'errorSubmission', $to, $cc, $from);
+    
     }
     /** Function to combine an array
     */
@@ -528,6 +506,10 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $adviserdetails = $this->_medievalcoinsadviser;
             $adviseremail = $this->_medievalcoinsadviseremail;
             break;
+	case (in_array($objecttype,$this->_coinarray) && in_array($broadperiod,$this->_postMed)):
+            $adviserdetails = $this->_medievalcoinsadviser;
+            $adviseremail = $this->_medievalcoinsadviseremail;
+            break;
     case (!in_array($objecttype,$this->_coinarray) && in_array($broadperiod,$this->_periodRomPrehist)):
             $adviserdetails = $this->_romanobjects;
             $adviseremail = $this->_romanobjectsemail;
@@ -549,7 +531,15 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $adviseremail = $this->_catchallemail;
             break;
     }
-    return $mails = $this->_combine($adviserdetails->toArray(),$adviseremail->toArray());
+   $names = $adviserdetails->toArray();
+   $email = $adviseremail->toArray();
+   
+   $people = $this->_combine($adviserdetails->toArray(),$adviseremail->toArray());
+   $sendto = array();
+   foreach($people as $k => $v){
+   $sendto[] = array ('email' => $v, 'name' => $k);
+   }
+   return $sendto;
     }
 
 }

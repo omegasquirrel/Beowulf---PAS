@@ -56,6 +56,12 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $params = $this->_getAllParams();
     $params['createdBy'] =  $this->_getDetails()->id;
     $search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county')
+    );
     $search->setParams($params);
     $search->execute();
     $this->view->paginator = $search->_createPagination();
@@ -69,6 +75,12 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $params = $this->_getAllParams();
     $params['institution'] =  $this->_getDetails()->institution;
     $search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county')
+    );
     $search->setParams($params);
     $search->execute();
     $this->view->paginator = $search->_createPagination();
@@ -82,14 +94,16 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $params = $this->_getAllParams();
     $params['createdBy'] = $this->_getDetails()->id;
     $search = new Pas_Solr_Handler('beoimages');
-    $search->setFields(array('id','identifier','objecttype','title',
-        'broadperiod','imagedir','filename'));
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod', 'imagedir',
+    	'filename', 'thumbnail', 'old_findID',
+    	'county')
+    );
     $search->setFacets(array('broadperiod','county'));
-//    $search->setHighlights(array('broadperiod'));
     $search->setParams($params);
     $search->execute();
-//    $search->_processFacets();
-//    $search->getHighlights();
+    $search->_processFacets();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
     }

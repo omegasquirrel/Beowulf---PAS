@@ -2,7 +2,9 @@
 <?php if ($this->results): ?>
 <?php echo $this->form;?>
 <p><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search'),'default',true);?>">Back to simple search</a> 
-| <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'advanced'),'default',true);?>">Back to advanced search</a></p>
+| <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'advanced'),'default',true);?>">Back to advanced search</a>
+ | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'email'),'default',true);?>">Email Search</a> | 
+ <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'save'),'default',true);?>">Save search</a></p>
 
 
 

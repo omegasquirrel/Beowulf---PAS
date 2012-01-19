@@ -43,7 +43,7 @@ class Pas_Solr_Handler {
     protected $_params;
 
     public function __construct($core){
-    $this->_cache = Zend_Registry::get('rulercache');
+    $this->_cache = Zend_Registry::get('cache');
     $this->_config = Zend_Registry::get('config');
     $this->_core = $core;
     $this->_solrConfig = $this->_setSolrConfig($this->_core);
@@ -153,8 +153,6 @@ class Pas_Solr_Handler {
 
     protected function _createFilters(array $params){
         if(is_array($params)){
-
-
         if(!is_null($params['d']) && !is_null($params['lon']) && !is_null($params['lat'])){
         $helper = $this->_query->getHelper();
         $this->_query->createFilterQuery('geo')->setQuery(
@@ -164,15 +162,17 @@ class Pas_Solr_Handler {
                 'coordinates',
                 $params['d'])
                 );
-        unset($params['d']);
-        unset($params['lon']);
-        unset($params['lat']);
         }
-          foreach($params as $key => $value){
+
+		foreach($params as $key => $value){
             if(!in_array($key, $this->_schemaFields))   {
                 unset($params[$key]);
             }
         }
+		if(isset($params['thumbnail'])){
+			 $this->_query->createFilterQuery('thumbnails')->setQuery('thumbnail:[1 TO *]');
+			 unset($params['thumbnail']);
+		}
         $this->_checkFieldList($this->_core, array_keys($params));
         foreach($params as $key => $value){
             $this->_query->createFilterQuery($key)->setQuery($key . ':"'
@@ -335,7 +335,7 @@ class Pas_Solr_Handler {
 
 
 
-    Zend_Debug::dump($this->_query, 'The Query!');
+//    Zend_Debug::dump($this->_query, 'The Query!');
 
     $this->_resultset = $this->_solr->select($this->_query);
     return $this->_resultset;

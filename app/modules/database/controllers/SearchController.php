@@ -10,6 +10,8 @@
 */
 class Database_SearchController extends Pas_Controller_Action_Admin {
 
+	protected $_searches;
+	
 	protected $_contexts = array(
 	'xml', 'rss', 'json',
 	'atom', 'kml', 'georss',
@@ -19,6 +21,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	/** Setup the contexts by action and the ACL.
 	*/
 	public function init() {
+	$this->_searches = new Searches();
 	$this->_helper->_acl->allow('public',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_config         = Zend_Registry::get('config');
@@ -64,14 +67,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function indexAction() {
 	$form = new WhatWhereWhenForm();
 	$this->view->form = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -94,14 +97,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function advancedAction(){
 	$form = new AdvancedSearchForm(array('disableLoadDefaultDecorators' => true));
 	$this->view->form = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -110,14 +113,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function byzantinenumismaticsAction() {
 	$form = new ByzantineNumismaticSearchForm();
 	$this->view->byzantineform = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -126,14 +129,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function earlymednumismaticsAction() {
 	$form = new EarlyMedNumismaticSearchForm();
 	$this->view->earlymedform = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -142,14 +145,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function mednumismaticsAction() {
 	$form = new MedNumismaticSearchForm();
 	$this->view->earlymedform = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -158,14 +161,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function postmednumismaticsAction() {
 	$form = new PostMedNumismaticSearchForm();
 	$this->view->earlymedform = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -175,14 +178,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function romannumismaticsAction() {
 	$form = new RomanNumismaticSearchForm();
 	$this->view->formRoman = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -191,14 +194,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function ironagenumismaticsAction() {
 	$form = new IronAgeNumismaticSearchForm();
 	$this->view->formIronAge = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -207,14 +210,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function greekromanAction() {
 	$form = new GreekRomanSearchForm();
 	$this->view->form = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($this->_getAllParams());
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -263,95 +266,63 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$form = new SaveSearchForm();
 	$form->submit->setLabel('Save search');
 	$this->view->form = $form;
-	$searches = new Searches();
-	$lastsearch = $searches->fetchRow($searches->select()->where('userid = ?',
+	$lastsearch = $this->_searches->fetchRow($this->_searches->select()->where('userid = ?',
 	$this->getIdentityForForms())->order('id DESC'));
 	$querystring = unserialize($lastsearch->searchString);
 	$params = array();
-	$query = '';
 	foreach($querystring as $key => $value) {
-	$query .= $key.'/'.$value.'/';
 	$params[$key] = $value;
 	}
 	$this->view->params = $params;
-	if ($this->_request->isPost()) {
-	$data = $this->_getAllParams();
-	if ($form->isValid($data)) {
-
-	$insertData = array();
-	$insertData['created'] = $this->getTimeForForms();
-	$insertData['createdBy'] = $this->getIdentityForForms();
-	$insertData['title'] = $form->getValue('title');
-	$insertData['description'] = $form->getValue('description');
+	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if ($form->isValid($form->getValues())) {
+	$insertData = $form->getValues();
 	$insertData['searchString'] = $lastsearch->searchString;
-	$insertData['public'] = $form->getValue('public');
-
-
 	$saved = new SavedSearches();
-	$insert = $saved->insert($insertData);
-	$this->_redirect(self::REDIRECT.$query);
+	$insert = $saved->add($insertData);
+	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else  {
 	$this->_flashMessenger->addMessage('There are problems with your submission.');
-	$form->populate($data);
+	$form->populate($form->getValues());
 	}
 	}
 	}
 	/** Email a search result
 	*/
 	public function emailAction() {
-	$user = $this->getAccount();
-	$this->view->headTitle('Email this search to another person');
-	$searches = new Searches();
-	$lastsearch = $searches->fetchRow($searches->select()->where('userid = ?',$this->getIdentityForForms())->order('id DESC'));
-	if(count($lastsearch)) {
+	$user = $this->_helper->identity->getPerson();
+	$lastsearch = $this->_searches->fetchRow($searches->select()->where('userid = ?', 
+	$user->id)->order('id DESC'));
+	if($lastsearch) {
 	$querystring = unserialize($lastsearch->searchString);
 	$params = array();
-	$query = '';
 	foreach($querystring as $key => $value) {
-	$query .= $key.'/'.$value.'/';
 	$params[$key] = $value;
 	}
 	$this->view->params = $params;
-
 	$form = new EmailSearchForm();
 	$this->view->form = $form;
-	if ($this->_request->isPost()) {
-	$data = $this->_getAllParams();
-	if ($form->isValid($data)) {
-	$sender = $user->fullname;
-	$senderemail = $user->email;
-	$recipient = $form->getValue('fullname');
-	$recipientemail = $form->getValue('email');
-	$message = $form->getValue('messageToUser');
-	$strippedmessage = strip_tags($message);
-	$url = 'http://'.$_SERVER['SERVER_NAME'].'/database/search/results/'.$query;
-	$mail = new Zend_Mail();
-	$mail->addHeader('X-MailGenerator', 'The Portable Antiquities Scheme\'s awesome database');
-	$mail->setBodyHtml('<p>Dear '.$recipient.'</p>'.$message.'<p>Located at this url:  '.$url.'</p><p>From '.$sender.'</p>');
-	$mail->setFrom('info@finds.org.uk', 'The Portable Antiquities Scheme');
-	$mail->setBodyText('Dear '.$recipient.','.
-	$message
-	.' '.
-	$url
-	.'From,'.
-
-	$sender);
-	$mail->addTo($recipientemail, $recipient);
-	$mail->addCC($senderemail,$sender);
-	$mail->setSubject('I thought you might be interested in this search on the PAS Database.');
-	$mail->send();
-	$this->_flashMessenger->addMessage('Your email has been sent to '.$recipient
-	.'. Thank you for sending them some of our records.');
-	$this->_redirect('/database/search/results/'.$query);
+	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if ($form->isValid($form->getValues())) {
+	$to[] = array(
+	'email' => $form->getValue('email'), 
+	'name' => $form->getValue('fullname')
+	);
+	$from[] = array(
+	'email' => $user->email,
+	'name' => $user->fullname
+	);
+	$url = array('url' => $params);
+	$assignData = array_merge($form->getValues(), $from[0], $url);
+	$this->_helper->mailer($assignData,'sendSearch', $to, null, $from);
+	$this->_flashMessenger->addMessage('Your email has been sent to ' . $form->getValue('fullname')
+	. '. Thank you for sending them some of our records.');
+	$this->_helper->Redirector->gotoSimple('results','search','database',$querystring);
 	}  else {
-	$form->populate($data);
+	$form->populate($form->getValues());
 	}
 	}
-	} else {
-	$this->_flashMessenger->addMessage('You haven\'t ever searched, so you have nothing to email!');
-	$this->_redirect('/database/search/');
-
-	}
+	} 
 	}
 	/** Display saved searches
 	*/
@@ -362,14 +333,12 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	} else {
 	$private = NULL;
 	}
-	$searches = new SavedSearches();
-
 	if($this->_getParam('by') == 'me'){
-	$data = $searches->getSavedSearches($this->getIdentityForForms(),$this->_getParam('page'),$private);
+	$this->view->data = $this->_searches->getSavedSearches($this->_helper->identity->getPerson()->id,
+		$this->_getParam('page'),$private);
 	} else {
-	$data = $searches->getSavedSearches(NULL,$this->_getParam('page'), $private);
+	$this->view->data = $this->_searches->getSavedSearches(NULL,$this->_getParam('page'), $private);
 	}
-	$this->view->data = $data;
 	}
 	/** Display the solr form
 	*/
@@ -380,11 +349,10 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	} else {
 	$form = new SolrForm();
 	$this->view->form = $form;
-	if ($this->_request->isPost()) {
-	$data = $this->_getAllParams();
-	if ($form->isValid($data)) {
+	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if ($form->isValid($form->getValues())) {
 	$this->_redirect($this->view->url(array('module' => 'database',
-	'controller' => 'search','action' => 'results','q' => $data['q'])));
+	'controller' => 'search','action' => 'results','q' => $form->getValue('q'))));
 	} else {
 	$form->populate($q);
 	}
@@ -395,18 +363,16 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	*/
 	public function resultsAction(){
 	$params = $this->_getAllParams();
-        $search = new Pas_Solr_Handler('beowulf');
-        $search->setFields(array('id','identifier','objecttype',
-            'title','broadperiod','description','old_findID','thumbnail',
-            'county','imagedir','filename'));
-//        $search->setFacets(array('broadperiod','county',));
-    //    $search->setHighlights(array('broadperiod'));
-        $search->setParams($params);
-        $search->execute();
-  //    $search->_processFacets();
-    //    $search->getHighlights();
-        $this->view->paginator = $search->_createPagination();
-        $this->view->results = $search->_processResults();
+	$search = new Pas_Solr_Handler('beowulf');
+	$search->setFields(array(
+		'id','identifier','objecttype',
+        'title','broadperiod','description',
+        'old_findID','thumbnail', 'county',
+        'imagedir','filename'));
+	$search->setParams($params);
+	$search->execute();
+	$this->view->paginator = $search->_createPagination();
+	$this->view->results = $search->_processResults();
 	}
 //EOS
 }
