@@ -29,6 +29,8 @@ echo $this->partialLoop('partials/database/zoterorecord.phtml',$this->finds);
 echo $this->partial('partials/database/recordh2section.phtml',$this->finds['0']);
 ?>
 
+<?php echo $this->notifyFloPublic($this->finds['0']['institution'],
+ $this->finds['0']['id'], $this->finds['0']['secwfstage'] );?>
 
 <div id="workflowstatus"></div>
 

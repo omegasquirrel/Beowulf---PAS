@@ -382,21 +382,5 @@ class Users extends Pas_Db_Table_Abstract {
 	return $accounts; 	
 	}
 	
-	/** Retrieve the owner of a find record
-	* @param integer $findID the find record ID number 
-	* @return array
-	*/
-	public function getOwner($findID) {
-	if (!$accounts = $this->_cache->load('owneroffind'.$findID)) {
-	$users = $this->getAdapter();
-	$select = $users->select()
-	->from($this->_name,array('name' => 'fullname','email'))
-	->joinLeft('finds','finds.createdBy = users.id')
-	->where('finds.id = ?',(int)$findID);
-	$accounts = $users->fetchAll($select);
-	$this->_cache->save($accounts, 'owneroffind'.$findID);
-	}
-	return $accounts; 	
-	}
 	
 }

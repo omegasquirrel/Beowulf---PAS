@@ -2311,7 +2311,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		'updated', 'treasureID', 'secwfstage',
 		'secuid', 'findofnote', 'objecttypecert',
 		'datefound1', 'datefound2', 'createdBy',
-		'curr_loc', 'inscription'))
+		'curr_loc', 'inscription','institution'))
 		->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id', array('reason' => 'term'))
 		->joinLeft('subsequentActions','finds.subs_action = subsequentActions.id', array('subsequentAction' => 'action'))
 		->where('finds.id= ?',(int)$findID);

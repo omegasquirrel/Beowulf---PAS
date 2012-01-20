@@ -69,14 +69,14 @@ class Pas_Controller_Action_Helper_Mailer extends Zend_Controller_Action_Helper_
 	public function direct(array $assignData = NULL, $type, array $to = NULL, array $cc = NULL,
 			 array $from = NULL, array $bcc = NULL, array $attachments = NULL ){
 	$script = $this->_getTemplate($type);
-        $message = $this->_view->setScriptPath($this->_templates);
-        $this->_view->addHelperPath('Pas/View/Helper/', 'Pas_View_Helper');
-        $message->assign($assignData);
-        $html = $message->render($script);
-        $text = $this->_stripper($html);
+	$message = $this->_view->setScriptPath($this->_templates);
+	$this->_view->addHelperPath('Pas/View/Helper/', 'Pas_View_Helper');
+	$message->assign($assignData);
+	$html = $message->render($script);
+	$text = $this->_stripper($html);
 	$this->_mail->addHeader('X-MailGenerator', 'Portable Antiquities Scheme');
-        $this->_mail->setBodyHtml($html);
-        $this->_mail->setBodyText($text);
+	$this->_mail->setBodyHtml($html);
+	$this->_mail->setBodyText($text);
 	$this->_setUpSending($to, $cc, $from, $bcc);
 	if(!is_null($attachments)){
 	$this->_addAttachments($attachments);

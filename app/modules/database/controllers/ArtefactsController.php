@@ -76,8 +76,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
      */
     public function init()  {
     $this->_config = $this->_helper->config();
-    $this->_helper->_acl->deny('public',array('add','edit'));
-    $this->_helper->_acl->allow('public',array('index','record','errorreport'));
+    $this->_helper->_acl->deny('public',array('add', 'edit'));
+    $this->_helper->_acl->allow('public',array('index', 'record', 'errorreport', 'notifyflo'));
     $this->_helper->_acl->allow('member',NULL);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     $this->_cs = $this->_helper->contextSwitch();
@@ -365,7 +365,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $where[] = $this->_finds->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
     $this->_finds->update($updateData, $where);
     $solr = new Pas_Solr_Updater();
-    $solr->add($this->_getParam('id'),'beowulf');
+    $solr->add($this->_getParam('id'), 'beowulf');
     $this->_helper->audit($updateData, $oldData, 'FindsAudit',  $this->_getParam('id'), 
     	$this->_getParam('id'));
     $this->_helper->solrUpdater->update('beowulf', $this->_getParam('id'));
@@ -421,8 +421,37 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }
     }
     }
+
+    /** Notify an FLO that a find needs checking
+     * 
+     */
+    public function notifyfloAction(){
+	if($this->_getParam('id',false)) {	
+    $form = new NotifyFloForm();
+    $this->view->form = $form;
+    $find = $this->_finds->fetchRow($this->_finds->select()->where('id = ?', $this->_getParam('id')));
+    $this->view->find = $find->toArray();
+	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
+    if ($form->isValid($form->getValues())) {
+    	$contacts = new Contacts();
+    	$to = $contacts->getNameEmail($form->getValue('flo')); 
+    	$cc = $this->_getAdviser($find->objecttype,$find->broadperiod);
+		$from[] = array('email' => $this->_user->email, 'name' => $this->_user->fullname);
+		$cc = array_merge($cc,$from);
+		$assignData = array_merge($find->toArray(),$form->getValues(),$to['0'],$from['0']);
+    	$this->_helper->mailer($assignData, 'publicFindToFlo', $to, $cc, $from);
+		$this->_flashMessenger->addMessage('Your message has been sent');
+		$this->_redirect('database/artefacts/record/id/' . $find->id);
+    } else {
+    	$form->populate($form->getValues());
+    }
+	}
+	} else {
+		throw new Pas_Exception_Param($this->_missingParameter);
+	}
+	}
+    
     /** Enter an error report
-     * @todo move insert logic to model
     */
     public function errorreportAction() {
     if($this->_getParam('id',false)) {
@@ -440,10 +469,10 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 //    $data['comment_approved'] =  '1';
 //    }
     $errors = new ErrorReports();
-    $mail = $this->notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$data);
+    $mail = $this->_notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$data);
     $insert = $errors->add($data);
     $this->_flashMessenger->addMessage('Your error report has been submitted. Thank you!');
-    $this->_redirect(self::REDIRECT.'record/id/' . $this->_getParam('id'));
+    $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     } else {
     $form->populate($formData);
     }
@@ -455,10 +484,11 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 
     /** Provide a notification for an object
     */
-    protected function notify($objecttype, $broadperiod, $data) {
-    $finds = new Users();
-    $to = $finds->getOwner($data['comment_findID']);
-    $cc = $this->getAdviser($objecttype,$broadperiod);
+    protected function _notify($objecttype, $broadperiod, $data) {
+
+   	$contacts = new Contacts();
+    $to = $contacts->getOwner($data['comment_findID']);
+    $cc = $this->_getAdviser($objecttype,$broadperiod);
     $from[] = array('email' => $this->_user->email, 'name' => $this->_user->fullname);
     $assignData = array_merge($to['0'],$data);
   	$this->_helper->mailer($assignData,'errorSubmission', $to, $cc, $from);
@@ -469,9 +499,10 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     private function _combine($array1,$array2) {
             return array_combine($array1,$array2);
     }
+    
     /** Determine adviser to email
     */
-    private function getAdviser($objecttype,$broadperiod) {
+    private function _getAdviser($objecttype, $broadperiod) {
     $this->_romancoinsadviser = $this->_config->findsadviser->romancoins;
     $this->_romancoinsadviseremail = $this->_config->findsadviser->romcoins->email;
 
@@ -530,16 +561,16 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $adviserdetails = $this->_catchall;
             $adviseremail = $this->_catchallemail;
             break;
-    }
-   $names = $adviserdetails->toArray();
-   $email = $adviseremail->toArray();
+	}
+	$names = $adviserdetails->toArray();
+	$email = $adviseremail->toArray();
    
-   $people = $this->_combine($adviserdetails->toArray(),$adviseremail->toArray());
-   $sendto = array();
-   foreach($people as $k => $v){
-   $sendto[] = array ('email' => $v, 'name' => $k);
-   }
-   return $sendto;
-    }
+	$people = $this->_combine($adviserdetails->toArray(),$adviseremail->toArray());
+	$sendto = array();
+	foreach($people as $k => $v){
+		$sendto[] = array ('email' => $v, 'name' => $k);
+	}
+	return $sendto;
+	}
 
 }

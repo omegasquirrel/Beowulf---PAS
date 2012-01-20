@@ -257,6 +257,39 @@ class Contacts extends Pas_Db_Table_Abstract {
     return $data;
 	}
 
+	
+	/** Get a list of all current staff
+    * @return array
+	*/
+	public function getFloEmailsForForm() {
+	if (!$data = $this->_cache->load('currentstaffpairs')) {
+	$persons = $this->getAdapter();
+	$select = $persons->select()
+		->from($this->_name,array(
+			'id' => 'dbaseID', 'name' => 'CONCAT(firstname," ",lastname,": ",county)'))
+		->order($this->_name . '.id')
+		->where('alumni = ?',(int)1)
+		->where('role IN (7,10)');
+		$data =  $persons->fetchPairs($select);
+	$this->_cache->save($data, 'currentstaffpairs');
+	}
+    return $data;
+	}
+	
+	public function getNameEmail($id){
+	if (!$data = $this->_cache->load('staffemail' . $id)) {
+	$persons = $this->getAdapter();
+	$select = $persons->select()
+		->from($this->_name,array(
+			'email' => 'email_one', 'name' => 'CONCAT(firstname," ",lastname)'))
+		->where('alumni = ?',(int)1)
+		->where('dbaseID = ?', (int)$id);
+	$data =  $persons->fetchAll($select);
+	$this->_cache->save($data, 'staffemail' . $id);
+	}
+    return $data;	
+	}
+	
 	/** Get a dropdown list of attending staff
 	* @return array
 	*/
@@ -268,4 +301,23 @@ class Contacts extends Pas_Db_Table_Abstract {
 	return $persons->fetchPairs($select);
 	}
 
+	
+	/** Retrieve the owner of a find record
+	* @param integer $findID the find record ID number 
+	* @return array
+	*/
+	public function getOwner($findID) {
+	if (!$accounts = $this->_cache->load('owneroffind'.$findID)) {
+	$users = $this->getAdapter();
+	$select = $users->select()
+	->from($this->_name,array('name' => 'CONCAT(firstname," ", lastname)',
+		'email' => 'email_one'))
+	->joinLeft('finds','finds.institution = ' . $this->_name . '.identifier',array())
+	->where('finds.id = ?', (int)$findID)
+	->where($this->_name . '.alumni = ?', 1);
+	$accounts = $users->fetchAll($select);
+	$this->_cache->save($accounts, 'owneroffind'.$findID);
+	}
+	return $accounts; 	
+	}
 }
