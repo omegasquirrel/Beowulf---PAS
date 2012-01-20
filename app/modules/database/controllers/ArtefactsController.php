@@ -438,7 +438,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     	$cc = $this->_getAdviser($find->objecttype,$find->broadperiod);
 		$from[] = array('email' => $this->_user->email, 'name' => $this->_user->fullname);
 		$cc = array_merge($cc,$from);
-		$assignData = array_merge($find->toArray(),$form->getValues(),$to['0'],$from['0']);
+		$assignData = array_merge($find->toArray(),$form->getValues(),$to['0']);
     	$this->_helper->mailer($assignData, 'publicFindToFlo', $to, $cc, $from);
 		$this->_flashMessenger->addMessage('Your message has been sent');
 		$this->_redirect('database/artefacts/record/id/' . $find->id);
