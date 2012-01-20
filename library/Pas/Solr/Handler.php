@@ -233,6 +233,7 @@ class Pas_Solr_Handler {
     if(!is_null($fields)){
 
         $this->_schemaFields[] = '*';
+        $this->_schemaFields[] = 'q';
 
 	foreach($fields as $f){
 		if(!in_array($f,$this->_schemaFields)){
@@ -308,11 +309,11 @@ class Pas_Solr_Handler {
 //    Zend_Debug::dump($select, 'The sort');
     $select['rows'] = $this->_getRows($this->_params);
     $select['start'] = $this->_getStart($this->_params);
-
+    	if(array_key_exists('q',$this->_params)){
+		$select['query'] = $this->_params['q'];
+	}
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
-
-    $this->_query->setFields($this->_fields);
 
 
     if(!in_array($this->_getRole(),$this->_allowed)) {

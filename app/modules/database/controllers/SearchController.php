@@ -291,7 +291,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	*/
 	public function emailAction() {
 	$user = $this->_helper->identity->getPerson();
-	$lastsearch = $this->_searches->fetchRow($searches->select()->where('userid = ?', 
+	$lastsearch = $this->_searches->fetchRow($this->_searches->select()->where('userid = ?', 
 	$user->id)->order('id DESC'));
 	if($lastsearch) {
 	$querystring = unserialize($lastsearch->searchString);
@@ -351,10 +351,11 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
 	if ($form->isValid($form->getValues())) {
-	$this->_redirect($this->view->url(array('module' => 'database',
-	'controller' => 'search','action' => 'results','q' => $form->getValue('q'))));
+	$params = $this->array_cleanup($form->getValues());
+	$this->_flashMessenger->addMessage('Your search is complete');
+	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-	$form->populate($q);
+	$form->populate($form->getValues());
 	}
 	}
 	}
