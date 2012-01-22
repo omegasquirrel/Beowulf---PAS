@@ -12,7 +12,7 @@
  * @subpackage Handler
  * @uses Pas_Solr_Exception
  * @uses Solarium_Client
- * 
+ *
  *
  * @author Daniel Pett
  */
@@ -330,7 +330,7 @@ class Pas_Solr_Handler {
      * @throws Pas_Solr_Exception
      */
     protected function _getSort($core, $params){
-    if(is_array($params)){
+
     if(array_key_exists('sort',$params)){
             $this->_checkFieldList($core, array($params['sort']));
             $field = $params['sort'];
@@ -347,10 +347,7 @@ class Pas_Solr_Handler {
     } else {
             $direction = 'desc';
     }
-    } else {
-        $field = 'created';
-        $direction = 'desc';
-    }
+
 
     return array($field => $direction);
     }
@@ -416,16 +413,20 @@ class Pas_Solr_Handler {
     $select['rows'] = $this->_getRows($this->_params);
     $select['start'] = $this->_getStart($this->_params);
 
+
+
         if(array_key_exists('q',$this->_params)){
 		$select['query'] = $this->_params['q'];
 	}
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
 
+    if(!in_array($this->_getRole(), $this->_allowed) || is_null($this->_getRole()) ) {
 
-    if(!in_array($this->_getRole(),$this->_allowed)) {
+    if(array_key_exists('workflow', array_flip($this->_schemaFields))){
     $this->_query->createFilterQuery('workflow')->setQuery('workflow:[3 TO 4]');
-    if(array_key_exists('parish',$this->_params) && ($this->_core === 'beowulf')){
+    }
+    if(array_key_exists('parish', $this->_params) && ($this->_core === 'beowulf')){
     $this->_query->createFilterQuery('knownas')->setQuery('knownas:["" TO *]');
 	}
     }
@@ -434,12 +435,11 @@ class Pas_Solr_Handler {
     	$this->_createFacets($this->_facets);
     }
 
-    if(!is_null($this->_params)){
     	$this->_createFilters($this->_params);
         if(array_key_exists('format', $this->_params)){
         $this->_processFormats($this->_params);
     }
-    }
+     
 
 
 //    Zend_Debug::dump($this->_params,'The params sent');
@@ -448,7 +448,8 @@ class Pas_Solr_Handler {
 
     $this->_resultset = $this->_solr->select($this->_query);
     return $this->_resultset;
-//    Zend_Debug::dump($resultset, 'The Resultset');
+//    Zend_Debug::dump($this->_resultset, 'The Resultset');
+//    exit;
 //    Zend_Debug::dump($this->_createPagination($resultset), 'The pagination');
 //    Zend_Debug::dump($this->_processResults($resultset), 'The processed results');
 //    Zend_Debug::dump($this->_processFacets($resultset, $this->_facets),'The facet set');

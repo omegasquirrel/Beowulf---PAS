@@ -50,7 +50,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $finds = new Finds();
     $this->view->finds = $finds->getFindsToPerson($this->_getAllParams());
     } else {
-            throw new Exception($this->_missingParameter);
+        throw new Exception($this->_missingParameter);
     }
     }
 
