@@ -247,6 +247,7 @@ class Pas_Solr_Handler {
     }
 
     protected function _getSort($core, $params){
+        if(is_array($params)){
     	if(array_key_exists('sort',$params)){
     		$this->_checkFieldList($core, array($params['sort']));
     		$field = $params['sort'];
@@ -263,6 +264,10 @@ class Pas_Solr_Handler {
     	} else {
     		$direction = 'desc';
     	}
+        } else {
+            $field = 'created';
+            $direction = 'desc';
+        }
 
     	return array($field => $direction);
     }
@@ -335,8 +340,9 @@ class Pas_Solr_Handler {
     }
 
 
-
+//    Zend_Debug::dump($this->_params,'The params sent');
 //    Zend_Debug::dump($this->_query, 'The Query!');
+//    Zend_Debug::dump($this->_fields, 'The field list');
 
     $this->_resultset = $this->_solr->select($this->_query);
     return $this->_resultset;

@@ -2,74 +2,87 @@
 class AjaxController extends Pas_Controller_Action_Ajax
 {
 	protected $_cache;
-	protected $_auth;
-	
-	public function init(){		
+
+	protected $_user;
+
+        protected $_places;
+
+	public function init(){
 	$this->_helper->acl->allow('public',null);
-	$this->_helper->layout->disableLayout();    
-	$this->_helper->viewRenderer->setNoRender(); 
+	$this->_helper->layout->disableLayout();
+	$this->_helper->viewRenderer->setNoRender();
 	$this->_cache = Zend_Registry::get('rulercache');
-	$this->_auth = Zend_Auth::getInstance();
+        $this->_user = $this->_helper->identity->getPerson();
+        $this->_places = new Places();
    	}
 
-	public function getAccount() {
-	if($this->_auth->hasIdentity()){
-	$user = $this->_auth->getIdentity();
-	return $user;
-	} else {
-	return false;
-	}	
-	}
-	public function indexAction()
-	{}
-	
+	/** No access to the root page
+         *
+         */
+	public function indexAction(){
+        throw new Exception('No access to index action', 500);
+        }
+
+        /** Get an ajax list of available counties
+         *
+         */
 	public function countiesAction() {
 	$counties = new Counties;
 	$countiesjson = $counties->getCountyName2();
 	echo Zend_Json::encode($countiesjson);
 	}
 
+        /** Get a list of districts
+         *
+         */
 	public function placesAction() {
 	if($this->_getParam('term',false)){
-	$districts = new Places;
-	$response = $districts->getDistrict($this->_getParam('term'));
+	$districts = $this->_places->getDistrict($this->_getParam('term'));
 	} else {
-	$response = array('id' => NULL,'term' => 'No county specified');
+	$districts = array('id' => NULL,'term' => 'No county specified');
 	}
-	echo  Zend_Json::encode($response);
+	echo Zend_Json::encode($districts);
 	}
 
+        /** Get a list of parishes
+         *
+         */
 	public function parishesAction() {
 	if($this->_getParam('term',false)) {
-	$parishes = new Places;
-	$response = $parishes->getParish($this->_getParam('term'));
+	$parishes = $this->_places->getParish($this->_getParam('term'));
 	} else {
-	$response = array('id' => NULL,'term' => 'No district specified');
+	$parishes = array('id' => NULL,'term' => 'No district specified');
 	}
-	echo  Zend_Json::encode($response);
+	echo Zend_Json::encode($parishes);
 	}
 
+        /** Get parishes by county
+         *
+         */
 	public function parishesbycountyAction() {
 	if($this->_getParam('term',false)){
-	$parishes = new Places;
-	$response = $parishes->getParishByCounty($this->_getParam('term'));
+	$parishes = $this->_places->getParishByCounty($this->_getParam('term'));
 	} else {
-	$response = array('id' => NULL,'term' => 'No county specified');
+	$parishes = array('id' => NULL,'term' => 'No county specified');
 	}
-	echo  Zend_Json::encode($response);
+	echo Zend_Json::encode($parishes);
 	}
 
+        /** Get district associated with a parish
+         *
+         */
 	public function districtbyparishAction() {
 	if($this->_getParam('term',false)){
-	$parishes = new Places;
-	$response = $parishes->getDistrictByParish($this->_getParam('term'));
+	$parishes = $this->_places->getDistrictByParish($this->_getParam('term'));
 	} else {
-	$response = array('id' => NULL,'term' => 'No parish specified');
+	$parishes = array('id' => NULL,'term' => 'No parish specified');
 	}
-	echo  Zend_Json::encode($response);
+	echo Zend_Json::encode($parishes);
 	}
-	
 
+        /** Get the regions list
+         *
+         */
 	public function regionsAction() {
 	if($this->_getParam('term',false)){
 	$regions = new Counties;
@@ -79,7 +92,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 	echo  Zend_Json::encode($response);
 	}
-	
+
 	public function landusecodesAction(){
 	if($this->_getParam('term',false)){
 	$landcodes = new Landuses();
@@ -114,7 +127,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$macktypesjson = $macktypes->getTypes($this->_getParam('q'));
 	echo  Zend_Json::encode($macktypesjson);
 	}
-	
+
 	public function allentypesAction(){
 	$allentypes = new AllenTypes;
 	$allentypesjson = $allentypes->getTypes($this->_getParam('q'));
@@ -152,7 +165,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$people_options = $peoples->getNamesSearch($this->_getParam('q'));
 	echo  Zend_Json::encode($people_options);
 	}
-	
+
 	public function rulerdenomAction() {
 	if($this->_getParam('term',false)){
 	$denominations = new Denominations();
@@ -161,9 +174,9 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$response = $data;
 	} else {
 	$response = array(array('id' => NULL, 'term' => 'No options available'));
-	}	
+	}
 	}  else {
-	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));	
+	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));
 	}
         $data = Zend_Json::encode($response);
 	echo Zend_Json::prettyPrint($data, array("indent" => " ", 'format' => 'html'));
@@ -180,8 +193,8 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	echo Zend_Json::encode($data);
 	}
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));	
-	echo  Zend_Json::encode($response);	
+	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));
+	echo  Zend_Json::encode($response);
 	}
 	}
 
@@ -196,8 +209,8 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	echo Zend_Json::encode($data);
 	}
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));	
-	echo  Zend_Json::encode($response);	
+	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));
+	echo  Zend_Json::encode($response);
 	}
 	}
 
@@ -213,7 +226,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 	} else {
 	$data = array(array('id' => NULL, 'term' => 'No ruler specified'));
-	echo Zend_Json::encode($data);	
+	echo Zend_Json::encode($data);
 	}
 	}
 
@@ -230,7 +243,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	echo Zend_Json::encode($data);
 	}
 	}
-	
+
 	public function medmintrulerAction(){
 	if($this->_getParam('term',false)){
 	$ruler = $this->_getParam('term');
@@ -247,7 +260,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 	} else {
 	$error = array(array('id' => '', 'term' => 'No ruler specified'));
-	echo Zend_Json::encode($error);		
+	echo Zend_Json::encode($error);
 	}
 	}
 
@@ -263,7 +276,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 	} else {
 	$error = array(array('id' => NULL, 'term' => 'No ruler specified'));
-	echo Zend_Json::encode($error);	
+	echo Zend_Json::encode($error);
 	}
 	}
 
@@ -279,7 +292,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 	} else {
 	$data = array(array('id' => NULL, 'term' => 'No ruler specified'));
-	echo Zend_Json::encode($data);	
+	echo Zend_Json::encode($data);
 	}
 	}
 
@@ -288,7 +301,6 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	if($this->_getParam('term',false)){
 	$reeces = new Reeces();
 	$reece_options = $reeces->getRulerReece($this->_getParam('term'));
-	$reeces2 = new Reeces();
 	$reece2_options = $reeces->getReeceUnassigned();
 	if ($reece_options) {
 	echo  Zend_Json::encode($reece_options);
@@ -306,17 +318,17 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$geographies= new Geography();
 	$response = $geographies->getIronAgeGeography($this->_getParam('term'));
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));	
+	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));
 	}
 	echo  Zend_Json::encode($response);
 	}
-	
+
 	public function iarulerregionAction(){
 	if($this->_getParam('term',false)){
 	$rulers = new Rulers();
 	$response = $rulers->getIronAgeRulerRegion($this->_getParam('term'));
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));	
+	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));
 	}
 	echo  Zend_Json::encode($response);
 	}
@@ -327,17 +339,17 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$cats = new CategoriesCoins();
 	$response = $cats->getCategoriesPeriod($this->_getParam('term'));
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No period specified'));	
+	$response = array(array('id' => NULL, 'term' => 'No period specified'));
 	}
 	echo  Zend_Json::encode($response);
 	}
-	
+
 	public function rulersperiodAction(){
 	if($this->_getParam('term',false)){
 	$rulers = new Rulers();
 	$response = $rulers->getAllRulers($this->_getParam('term'));
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No period specified.'));	
+	$response = array(array('id' => NULL, 'term' => 'No period specified.'));
 	}
 	echo  Zend_Json::encode($response);
 	}
@@ -348,7 +360,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$tribes = new Tribes();
 	$response = $tribes->getIronAgeTribeRegion($this->_getParam('term'));
 	} else {
-	$response  = array(array('id' => NULL, 'term' => 'No region specified'));	
+	$response  = array(array('id' => NULL, 'term' => 'No region specified'));
 	}
 	echo Zend_Json::encode($response);
 	}
@@ -363,7 +375,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$response = array(array('id' => NULL, 'term' => 'No options available'));
 	}
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));	
+	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));
 	}
 	echo Zend_Json::encode($response);
 	}
@@ -378,11 +390,11 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$response = array(array('id' => '', 'term' => 'No options available'));
 	}
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));	
+	$response = array(array('id' => NULL, 'term' => 'No ruler specified'));
 	}
 	echo Zend_Json::encode($response);
 	}
-		
+
 	public function postmedcatrulerAction() {
 	if($this->_getParam('term',false)){
 	$rulers = new Rulers();
@@ -393,10 +405,10 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$response = array(array('id' => '', 'term' => 'No options available'));
 	}
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No category specified'));		
+	$response = array(array('id' => NULL, 'term' => 'No category specified'));
 	}
 	echo Zend_Json::encode($response);
-	}	
+	}
 
 	public function medcatrulerAction() {
 	if($this->_getParam('term',false)){
@@ -408,10 +420,10 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$response = array(array('id' => '', 'term' => 'No options available'));
 	}
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No category specified'));		
+	$response = array(array('id' => NULL, 'term' => 'No category specified'));
 	}
 	echo Zend_Json::encode($response);
-	}	
+	}
 
 
 	public function moneyersAction() {
@@ -425,10 +437,10 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$response = array(array('id' => '', 'term' => 'No options available'));
 	}
 	} else {
-	$response = array(array('id' => NULL, 'term' => 'No options available'));		
+	$response = array(array('id' => NULL, 'term' => 'No options available'));
 	}
 	echo Zend_Json::encode($response);
-	}	
+	}
 
 	public function relatedfindAction() {
 	$finds = new Finds;
@@ -442,21 +454,20 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$findsjson = $finds->getOldFindID($this->_getParam('q'));
 	echo  Zend_Json::encode($findsjson);
 	}
-	
+
 	public function organisationAction() {
 	$orgs = new Organisations;
 	$orgsjson = $orgs->getOrgNames($this->_getParam('q'));
 	echo  Zend_Json::encode($orgsjson);
 	}
-	
+
 	public function usernameAction() {
 	$users = new Users;
 	$usersjson = $users->findUserAccountAjax($this->_getParam('q'));
 	echo Zend_Json::encode($usersjson);
 	}
-	
-	public function mappingdataAction()
-	{
+
+	public function mappingdataAction(){
 	$id = $this->_getParam('id');
 	$limit = $this->_getParam('limit');
 	$mapdata = new Findspots();
@@ -465,41 +476,39 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$time  = Zend_Date::now()->toString('HH:mm');
 	$dom = new DOMDocument("1.0");
 	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node); 
-	foreach($mapdatas as $mapdata)
-	{
-	  $node = $dom->createElement("marker");  
-	  $newnode = $parnode->appendChild($node);  
-	  $newnode->setAttribute("name", $mapdata['old_findID']);  
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);  
-	  $newnode->setAttribute("lat", $mapdata['declat']);  
-	  $newnode->setAttribute("lng", $mapdata['declong']); 
-	  $newnode->setAttribute("type", $mapdata['objecttype']);  
+	$parnode = $dom->appendChild($node);
+	foreach($mapdatas as $mapdata){
+	  $node = $dom->createElement("marker");
+	  $newnode = $parnode->appendChild($node);
+	  $newnode->setAttribute("name", $mapdata['old_findID']);
+	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
+	  $newnode->setAttribute("lat", $mapdata['declat']);
+	  $newnode->setAttribute("lng", $mapdata['declong']);
+	  $newnode->setAttribute("type", $mapdata['objecttype']);
 	  $newnode->setAttribute("workflow",
 	  str_replace(array('1','2','3','4'),
 	  array('quarantine','review','published','validation'),
 	  $mapdata['secwfstage']))
 	  ;
-	} 
+	}
 	echo $dom->saveXML();
 	}
-	
-	
-		
-	
-	
-	public function usermapAction()
-	{
+
+
+
+
+
+	public function usermapAction() {
 	$dom = new DOMDocument("1.0");
 	$node = $dom->createElement("markers");
 	$parnode = $dom->appendChild($node);
-	if($this->getAccount() == true) {  
+	if($this->getAccount() == true) {
 	$mapdata = new Finds();
 	$mapdatas = $mapdata->getUserMap($this->getAccount()->peopleID,2000);
 	if(count($mapdatas)) {
 	foreach($mapdatas as $mapdata){
 	$lat = $mapdata['declat'];
-	$long = $mapdata['declong']; 
+	$long = $mapdata['declong'];
 	$html = '';
 	  if(isset($mapdata['i'])) {
 	  $html .=  '<div id="tmb">'
@@ -509,79 +518,71 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	  . $mapdata['i']
 	  .'.jpg"/></div>';
 	  }
-	
+
 	  $html .= '<div id="detailsmap"><p>'
 	  . ucwords(strtolower($mapdata['county']))
 	  . ' - <a href="http://'
 	  . $_SERVER['SERVER_NAME']
 	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
 	  . '" title="View record\'s details">'
-	  . $mapdata['old_findID'] 
-	  . '</a><br />' 
+	  . $mapdata['old_findID']
+	  . '</a><br />'
 	  . $mapdata['objecttype']
 	  .'<br />'
 	  .$mapdata['broadperiod']
 	  .'</p></div>';
-	 
-	  $node = $dom->createElement("marker");  
-	  $newnode = $parnode->appendChild($node);  
+
+	  $node = $dom->createElement("marker");
+	  $newnode = $parnode->appendChild($node);
 	  $newnode->setAttribute("name", $html);
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);  
-	  $newnode->setAttribute("lat", $lat);  
-	  $newnode->setAttribute("lng", $long); 
-	  $newnode->setAttribute("type", $mapdata['objecttype']); 
+	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
+	  $newnode->setAttribute("lat", $lat);
+	  $newnode->setAttribute("lng", $long);
+	  $newnode->setAttribute("type", $mapdata['objecttype']);
 	  $newnode->setAttribute("workflow",
 	  str_replace(array('1','2','3','4'),
 	  array('quarantine','review','published','validation'),
 	  $mapdata['secwfstage']))
-	  ; 
+	  ;
 	}
-	} 
+	}
 	}
 	header('Content-Type: text/xml');
 	echo $dom->saveXML();
 	}
-	
+
 	public function mapdataAction()	{
 	$params = $this->_getAllParams();
 	$mapdata = new Finds();
 	$mapdatas = $mapdata->getMapSearchResultsExport($params,2000);
 	$dom = new DOMDocument("1.0");
 	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node); 
+	$parnode = $dom->appendChild($node);
 	foreach($mapdatas as $mapdata){
 	$restricted = array('public','member');
 	if(!is_null($mapdata['fourFigure'])) {
-	if($this->_auth->hasIdentity())
-	{
-	$user = $this->_auth->getIdentity();
-	{
-	if(!in_array($user->role,$restricted)) 
-	{
+
+
+	if(!in_array($this->_user->role,$restricted)){
 	$lat = $mapdata['declat'];
-	$long = $mapdata['declong']; 
+	$long = $mapdata['declong'];
 	} else {
 	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
 	$lat = $results['Latitude'];
-	$long = $results['Longitude']; 
-	} 
-	} 
-	} else {
-	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
-	
-	$lat = $results['Latitude'];
-	$long = $results['Longitude']; 
+	$long = $results['Longitude'];
 	}
-	
-	 $html = '';
-	  if(isset($mapdata['i'])) {
-	  $html .=  '<div id="tmb">'
-	  .'<img src="http://'
-	  . $_SERVER['SERVER_NAME']
-	  . '/images/thumbnails/'
-	  . $mapdata['i']
-	  .'.jpg"/></div>';
-	  }
+	} else {
+	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
+
+	$lat = $results['Latitude'];
+	$long = $results['Longitude'];
+	}
+        $html = '';
+        if(isset($mapdata['i'])) {
+	$html .=  '<div id="tmb"><img src="';
+        $html .= 'http://' . $_SERVER['SERVER_NAME'] . '/images/thumbnails/';
+	$html .=  $mapdata['i'] .'.jpg"/></div>';
+	}
 	}
 	  $html .= '<div id="detailsmap"><p>'
 	  . ucwords(strtolower($mapdata['county']))
@@ -589,54 +590,48 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	  . $_SERVER['SERVER_NAME']
 	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
 	  . '" title="View record\'s details">'
-	  . $mapdata['old_findID'] 
-	  . '</a><br />' 
+	  . $mapdata['old_findID']
+	  . '</a><br />'
 	  . $mapdata['objecttype']
 	  .'<br />'
 	  .$mapdata['broadperiod']
 	  .'</p></div>';
-	 
-	  $node = $dom->createElement("marker");  
-	  $newnode = $parnode->appendChild($node);  
+
+	  $node = $dom->createElement("marker");
+	  $newnode = $parnode->appendChild($node);
 	  $newnode->setAttribute("name", $html);
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);  
-	  $newnode->setAttribute("lat", $lat);  
-	  $newnode->setAttribute("lng", $long); 
-	  $newnode->setAttribute("type", $mapdata['objecttype']); 
+	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
+	  $newnode->setAttribute("lat", $lat);
+	  $newnode->setAttribute("lng", $long);
+	  $newnode->setAttribute("type", $mapdata['objecttype']);
 	  $newnode->setAttribute("workflow",
 	  str_replace(array('1','2','3','4'),
 	  array('quarantine','review','published','validation'),
 	  $mapdata['secwfstage']))
-	  ; 
-	 
-	} 
+	  ;
+
 	header('Content-Type: text/xml');
 	echo $dom->saveXML();
 	}
 
 
 
-	public function findofnotemapdataAction()
-	{
+	public function findofnotemapdataAction() {
 	$params = $this->_getAllParams();
-	$this->_helper->layout->disableLayout();    
+	$this->_helper->layout->disableLayout();
 	$mapdata = new Findspots();
 	$mapdatas = $mapdata->getFindsofNoteMap();
-	
+
 	$dom = new DOMDocument("1.0");
 	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node); 
-	
+	$parnode = $dom->appendChild($node);
+
 	foreach($mapdatas as $mapdata){
 	$allowed = array('fa','admin','hero','research','flos','treasure');
-	if($this->_auth->hasIdentity()) {
-	$user = $this->_auth->getIdentity();
-	{
-	if(in_array($user->role,$allowed)) {	
+	if(in_array($this->_user->role,$allowed)) {
 	$lat = $mapdata['declat'];
-	$long = $mapdata['declong']; }
-	}
-	} else	 {
+	$long = $mapdata['declong'];
+        } else	 {
 	$lat = Substr($mapdata['declat'],0,4);
 	$long = SUBSTR($mapdata['declong'],0,4);
  	}
@@ -650,34 +645,34 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	  . $mapdata['i']
 	  .'.jpg"/></div>';
 	  }
-	
+
 	  $html .= '<div id="detailsmap"><p>'
 	  . ucwords(strtolower($mapdata['county']))
 	  . ' <br /> <a href="http://'
 	  . $_SERVER['SERVER_NAME']
 	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
 	  . '" title="View record\'s details">'
-	  . $mapdata['old_findID'] 
-	  . '</a><br />' 
+	  . $mapdata['old_findID']
+	  . '</a><br />'
 	  . $mapdata['objecttype']
 	  .'<br />'
 	  .$mapdata['broadperiod']
 	  .'</p></div>';
-	 
-	  $node = $dom->createElement("marker");  
-	  $newnode = $parnode->appendChild($node);  
+
+	  $node = $dom->createElement("marker");
+	  $newnode = $parnode->appendChild($node);
 	  $newnode->setAttribute("name",$html);
-	  
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);  
-	  $newnode->setAttribute("lat", $lat);  
-	  $newnode->setAttribute("lng", $long); 
-	  $newnode->setAttribute("type", $mapdata['objecttype']); 
+
+	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
+	  $newnode->setAttribute("lat", $lat);
+	  $newnode->setAttribute("lng", $long);
+	  $newnode->setAttribute("type", $mapdata['objecttype']);
 	$newnode->setAttribute("workflow",
 	  str_replace(array('1','2','3','4'),
 	  array('quarantine','review','published','validation'),
 	  $mapdata['secwfstage']))
-	  ;  
-	} 
+	  ;
+	}
 	header('Content-Type: text/xml');
 	echo $dom->saveXML();
 	}
@@ -693,33 +688,30 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$mapdatas = $mapdata->getFindspotDataMappingObjects($period,$objecttype,$limit);
 	$dom = new DOMDocument("1.0");
 	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node); 
+	$parnode = $dom->appendChild($node);
 	foreach($mapdatas as $mapdata) {
-	  $node = $dom->createElement("marker");  
-	  $newnode = $parnode->appendChild($node);  
-	  $newnode->setAttribute("name", $mapdata['old_findID']);  
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);  
-	  $newnode->setAttribute("lat", $mapdata['declat']);  
-	  $newnode->setAttribute("lng", $mapdata['declong']); 
-	    $newnode->setAttribute("type", $mapdata['objecttype']);  
-	 
-	} 
+	  $node = $dom->createElement("marker");
+	  $newnode = $parnode->appendChild($node);
+	  $newnode->setAttribute("name", $mapdata['old_findID']);
+	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
+	  $newnode->setAttribute("lat", $mapdata['declat']);
+	  $newnode->setAttribute("lng", $mapdata['declong']);
+	    $newnode->setAttribute("type", $mapdata['objecttype']);
+
+	}
 	echo $dom->saveXML();
 	}
 
 	public function workflowchangeAction(){
 	$finds = new Finds();
-	$updatedata = array('secwfstage' => $this->_getParam('wfstage'),'updated' => $this->getTimeForForms(),'updatedBy' => $this->getIdentityForForms());
+	$updatedata = array('secwfstage' => $this->_getParam('wfstage'));
 	$where = array();
 	$where[] = $finds->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-	$finds->update($updatedata,$where);
+	$finds->updateWorkflow($updatedata, $where);
+
 	}
 
-	public function addmyresearchAction() {
-	$research = new Find2research();
-	$updatedata = array('findID' => $this->_getParam('findID'),'researchID' => $this->_getParam('researchtitle'),'created' => $this->getTimeForForms(),'createdBy' => $this->getIdentityForForms());
-	$research->insert($updatedata);
-	}
+
 
 	public function deleteimagelinkAction() {
 	if($this->_getParam('id',false)) {
@@ -732,7 +724,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 
 	public function staffdataAction(){
-		$this->_helper->viewRenderer->setNoRender(false); 
+        $this->_helper->viewRenderer->setNoRender(false);
 	$contacts = new Contacts();
 	$this->view->contacts = $contacts->getContactsForMap();
 	}
@@ -744,19 +736,20 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$where = $projects->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
 	$projects->delete($where);
 	} else {
-		throw new Exception ('There is no research project ID specified',500);
+            throw new Exception ('There is no research project ID specified',500);
 	}
 	}
-	
+
 	public function deleteimagerulerAction(){
 	$images = new RulerImages();
 	$deletefiles = $images->getFilename($this->_getParam('id'));
 	foreach($deletefiles as $files) {
 	$filename = $files['filename'];
-	}
-	$where = $images->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
+        $where = $images->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
 	$images->delete($where);
-	unlink('./images/rulers/'.$filename);
+	unlink('./images/rulers/' . $filename);
+	}
+
 	}
 
 	public function deleteprofileimageAction() {
@@ -773,7 +766,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 
 	$where = $stafflist->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
 	$stafflist->update($updateData,$where);
-	$name = substr($filename, 0, strrpos($filename, '.')); 
+	$name = substr($filename, 0, strrpos($filename, '.'));
 	$ext = '.jpg';
 	$converted = $name.$ext;
 	unlink('./images/staffphotos/'.$filename);
@@ -786,13 +779,13 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$where = $mints->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
 	$mints->delete($where);
 	}
-	
+
 	public function deletedenomrulerAction() {
 	$denoms = new DenomRulers();
 	$where = $denoms->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
 	$denoms->delete($where);
 	}
-	
+
 	public function deletereverserulerAction(){
 	$reverses = new RulerRevType();
 	$where = $reverses->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
@@ -802,7 +795,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 
 	public function linkimageAction() {
 	if($this->_getParam('secuid',false)){
-	$this->_helper->layout->disableLayout();  
+	$this->_helper->layout->disableLayout();
 	$form = new ImageLinkForm();
 	$this->view->form = $form;
 	$images = new Slides();
@@ -811,13 +804,13 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	throw new Exception('No image id has been specified on the url string');
 	}
 	}
-	
+
 	public function samsAction(){
 	$monuments = new ScheduledMonuments();
 	$monjson = $monuments->samLookup($this->_getParam('q'));
 	echo  Zend_Json::encode($monjson);
 	}
-	
+
 	public function deletecommentAction(){
 	if($this->_getParam('id',false)){
 	$comments = new Comments();
@@ -827,4 +820,5 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	throw new Exception('No comment ID has been specified',500);
 	}
 	}
+
 }

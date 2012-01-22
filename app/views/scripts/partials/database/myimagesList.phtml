@@ -1,25 +1,28 @@
 <div class="thumbnail" id="thumbnail-<?php echo $this->old_find;?>">
 <a href="/<?php echo $this->imagedir. 'medium/' . $this->filename;?>" rel="lightbox" title="Thumbnail of <?php echo $this->old_findID;?>">
-<?php 
+<?php
 
-$thumb = './images/thumbnails/'.$this->thumbnail.'.jpg';
-$location = './' . $this->imagedir . $this->filename;
+$thumb = './images/thumbnails/'.$this->id.'.jpg';
+$location = './' . $this->imagedir . $this->id;
 if(file_exists($thumb)) { ?>
 
-<img src="<?php echo $this->baseUrl().'/images/thumbnails/'.$this->thumbnail;?>.jpg"  alt="Thumbnail image of <?php echo $this->old_find;?>"/>
+<img src="<?php echo $this->baseUrl().'/images/thumbnails/'.$this->id;?>.jpg"  alt="Thumbnail image of <?php echo $this->old_find;?>"/>
 <?php } else {
-$phMagick = new phMagick($location, $thumb);
-$phMagick->resize(100,0);
-$phMagick->convert();
+//$phMagick = new phMagick($location, $thumb);
+//$phMagick->resize(100,0);
+//$phMagick->convert();
 //Zend_Debug::dump($phMagick);
 ?>
 <img src="<?php echo $this->baseUrl();?>/images/thumbnails/<?php echo $this->id;?>.jpg" alt="A resized image of <?php echo $this->title;?>"/>
-<?php 
+<?php
 
 }
 ?>
-</a><br>
-<?php if(!is_null($this->objecttype)) {echo ucfirst(strtolower($this->objecttype)).'<br />';}?>
+</a><br/>
+<?php if(!is_null($this->objecttype)) {
+    echo ucfirst(strtolower($this->objecttype)) . '<br />';
+
+}?>
 <?php if(!is_null($this->old_findID)) { ?>
 <a href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts', 'action' => 'record','id' => $this->findID),null,true);?>" title="View this image's record"><?php echo $this->old_findID;?></a><br />
 <?php } ?>
@@ -36,18 +39,18 @@ License terms: <?php echo $this->licenseAcronym;?><br />
 'controller' => 'ajax',
 'action' => 'download','id' => $this->id),null,true);?>" title="Download image">Download</a></span> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'image','id' => $this->id),null,true);?>" title="View image and meta data">View</a><br>
 
-<?php 
+<?php
 $auth = Zend_Auth::getInstance();
 if($auth->hasIdentity())
 {
 $user = $auth->getIdentity();
 {
 $allowed = array('flos','fa','admin');
-if(in_array($user->role,$allowed)) 
+if(in_array($user->role,$allowed))
 {
 ?>
 <div class="image-controls">
-<a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'edit','id' => $this->thumbnail),null,true);?>">Edit</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'delete','id' => $this->thumbnail),null,true);?>" class="delete">Delete</a> 
+<a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'edit','id' => $this->id),null,true);?>">Edit</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'delete','id' => $this->id),null,true);?>" class="delete">Delete</a>
 </div>
 <?php
 }

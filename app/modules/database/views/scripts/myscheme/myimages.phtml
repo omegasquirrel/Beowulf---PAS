@@ -1,12 +1,10 @@
 <?php
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');  
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 ?>
-
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 jQuery(document).ready(function($) {
-
- $('a[rel*=lightbox]').lightBox() 
-    })
+$('a[rel*=lightbox]').lightBox()
+});
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
 
 
@@ -14,10 +12,12 @@ jQuery(document).ready(function($) {
 <?php if (count($this->results)): ?>
 <table><tr><?php echo $this->form;?></tr></table>
 <div id="gallery">
-<?php echo $this->partialLoop('partials/database/myimagesList.phtml',$this->results);?>
+<?php echo $this->partialLoop('partials/database/myimagesList.phtml',
+        $this->results);?>
 </div>
 <div style="clear:both;">
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->paginator, 'Elastic',
+        'structure/pagination.phtml'); ?>
 </div>
 <?php else:?>
 <p>You have added no images to our database.</p>

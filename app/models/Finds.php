@@ -1,6 +1,6 @@
 <?php
-/** Access, manipulate and delete finds data. I wrote this when I was 
-* a naive new php programmer (still am really!). It sucks in a massive way.  
+/** Access, manipulate and delete finds data. I wrote this when I was
+* a naive new php programmer (still am really!). It sucks in a massive way.
 * @category Pas
 * @package Pas_Db_Table
 * @subpackage Abstract
@@ -12,19 +12,19 @@
 * @todo needs a complete overhaul. Lots of duplication.
 */
 class Finds extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'finds';
 
 	protected $_primary = 'id';
-	
-	protected $_higherlevel = array('admin','flos','fa','hero','treasure'); 
-	
-	protected $_parishStop = array('admin','flos','fa','hero','treasure','research'); 
-	
+
+	protected $_higherlevel = array('admin','flos','fa','hero','treasure');
+
+	protected $_parishStop = array('admin','flos','fa','hero','treasure','research');
+
 	protected $_restricted = array('public','member','research');
-	
+
 	protected $_edittest = array('flos','member');
-	
+
 	protected $config;
 
 	/** Construct the config object
@@ -67,7 +67,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	$user = $this->_auth->getIdentity();
 	$institution = $user->institution;
 	} else {
-	$institution = 'public';	
+	$institution = 'public';
 	}
 	return $institution;
 	}
@@ -125,15 +125,15 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getFindsByYear() {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('q' => 'SUM(quantity)' , 'y' => 'EXTRACT(YEAR FROM created)')) 
+		->from($this->_name, array('q' => 'SUM(quantity)' , 'y' => 'EXTRACT(YEAR FROM created)'))
 		->where('created IS NOT NULL')
 		->where('created != ?', '0000-00-00')
 		->order('y')
 		->group('y');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get a count of all the finds on the database 
+
+	/** Get a count of all the finds on the database
 	* @return array
 	*/
 	public function getCount($id) {
@@ -220,8 +220,8 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getRelatedFinds($findID) {
 	$relatedfinds = $this->getAdapter();
 	$select = $relatedfinds->select()
-		->from($this->_name, array('i' => 'id' , 'b' => 'broadperiod', 'otype' => 'objecttype', 
-		'oldfind' => 'old_findID')) 
+		->from($this->_name, array('i' => 'id' , 'b' => 'broadperiod', 'otype' => 'objecttype',
+		'oldfind' => 'old_findID'))
 		->joinLeft('findxfind','finds.secuid = findxfind.find2_id',array())
 		->where('finds.id = ?', (int)$findID);
 	return $relatedfinds->fetchAll($select);
@@ -269,8 +269,8 @@ class Finds extends Pas_Db_Table_Abstract {
 	$findsdata = $this->getAdapter();
 	$select = $findsdata->select()
 		->from($this->_name, array('id', 'old_findID', 'uniqueID' => 'secuid',
-		'objecttype', 'classification', 'subclass', 
-		'length', 'height', 'width', 
+		'objecttype', 'classification', 'subclass',
+		'length', 'height', 'width',
 		'thickness', 'diameter', 'quantity',
 		'other_ref', 'treasureID', 'broadperiod',
 		'numdate1', 'numdate2', 'description',
@@ -280,11 +280,11 @@ class Finds extends Pas_Db_Table_Abstract {
 		'datefound1', 'datefound2', 'inscription',
 		'disccircum', 'museumAccession' => 'musaccno', 'subsequentAction' => 'subs_action',
 		'objectCertainty' => 'objecttypecert', 'dateFromCertainty' => 'numdate1qual', 'dateToCertainty' => 'numdate2qual',
-		'dateFoundFromCertainty' => 'datefound1qual', 'dateFoundToCertainty' => 'datefound2qual', 
+		'dateFoundFromCertainty' => 'datefound1qual', 'dateFoundToCertainty' => 'datefound2qual',
 		'subPeriodFrom' => 'objdate1subperiod', 'subPeriodTo' => 'objdate2subperiod'))
 		->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id', array('reason' => 'term'))
 		->joinLeft('users','users.id = finds.createdBy', array('username','fullname','institution'))
-		->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy', 
+		->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy',
 		array('usernameUpdate' => 'username','fullnameUpdate' => 'fullname'))
 		->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('primaryMaterial' =>'term'))
 		->joinLeft(array('mat2' =>'materials'),'finds.material2 = mat2.id', array('secondaryMaterial' => 'term'))
@@ -300,19 +300,19 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('cultures','finds.culture = cultures.id', array('culture' => 'term'))
 		->joinLeft('discmethods','discmethods.id = finds.discmethod', array('discmethod' => 'method'))
 		->joinLeft('people','finds.finderID = people.secuid', array('finder' => 'CONCAT(people.title," ",people.forename," ",people.surname)'))
-		->joinLeft(array('ident1' => 'people'),'finds.identifier1ID = ident1.secuid', 
+		->joinLeft(array('ident1' => 'people'),'finds.identifier1ID = ident1.secuid',
 		array('identifier' => 'CONCAT(ident1.title," ",ident1.forename," ",ident1.surname)'))
-		->joinLeft(array('ident2' => 'people'),'finds.identifier2ID = ident2.secuid', 
+		->joinLeft(array('ident2' => 'people'),'finds.identifier2ID = ident2.secuid',
 		array('secondaryIdentifier' => 'CONCAT(ident2.title," ",ident2.forename," ",ident2.surname)'))
-		->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid', 
+		->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid',
 		array('recorder' => 'CONCAT(record.title," ",record.forename," ",record.surname)'))
 		->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'parish', 'district',
-		'easting', 'northing', 'gridref', 
-		'fourFigure', 'map25k', 'map10k', 
+		'easting', 'northing', 'gridref',
+		'fourFigure', 'map25k', 'map10k',
 		'address', 'postcode', 'findspotdescription' => 'description',
 		'lat' => 'declat', 'lon' => 'declong', 'knownas'))
 		->joinLeft('gridrefsources','gridrefsources.ID = findspots.gridrefsrc',array('source' => 'term'))
-		->joinLeft('coins','finds.secuid = coins.findID',array('obverse_description', 'obverse_inscription', 
+		->joinLeft('coins','finds.secuid = coins.findID',array('obverse_description', 'obverse_inscription',
 		'reverse_description', 'reverse_inscription', 'denomination',
 		'degree_of_wear', 'allen_type', 'va_type',
 		'mack' => 'mack_type', 'reeceID', 'die' => 'die_axis_measurement',
@@ -338,7 +338,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('revtypes','coins.revtypeID = revtypes.id', array('reverseType' => 'type'))
 		->joinLeft('statuses','coins.status = statuses.id', array('status' => 'term'))
 		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename')) 
+		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename'))
 		->joinLeft(array('u' => 'users'),'slides.createdBy = u.id', array('imagedir'))
 		->where('finds.id = ?', (int)$findID)
 		->group('finds.id')
@@ -354,8 +354,8 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getFindData($findID){
 	$findsdata = $this->getAdapter();
 	$select = $findsdata->select()
-		->from($this->_name, array('length', 'height', 'width', 
-		'thickness', 'diameter', 'quantity', 
+		->from($this->_name, array('length', 'height', 'width',
+		'thickness', 'diameter', 'quantity',
 		'weight'))
 		->where('finds.id = ?', (int)$findID);
 	return $findsdata->fetchAll($select);
@@ -405,13 +405,13 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getFindTemporalData($findID) {
 	$temporals = $this->getAdapter();
 	$select = $temporals->select()
-		->from($this->_name, array('broadperiod','numdate1','numdate2','period1' => 'objdate1period', 
-		'period2' => 'objdate2period','culture', 'subPeriodFrom' => 'objdate1subperiod', 
+		->from($this->_name, array('broadperiod','numdate1','numdate2','period1' => 'objdate1period',
+		'period2' => 'objdate2period','culture', 'subPeriodFrom' => 'objdate1subperiod',
 		'subPeriodTo' => 'objdate2subperiod'))
 		->joinLeft('periods','finds.objdate1period = periods.id', array('term'))
 		->joinLeft(array('p' => 'periods'),'finds.objdate2period = p.id', array('t2' => 'term'))
 		->joinLeft('cultures','finds.culture = cultures.id', array('cult' => 'term'))
-		->joinLeft(array('sub1' => 'subperiods'),$this->_name . '.objdate1subperiod = sub1.id', 
+		->joinLeft(array('sub1' => 'subperiods'),$this->_name . '.objdate1subperiod = sub1.id',
 		array('subPeriodFrom' => 'term'))
 		->joinLeft(array('sub2' => 'subperiods'),$this->_name . '.objdate2subperiod = sub2.id',
 		array('subPeriodTo' => 'term'))
@@ -435,11 +435,11 @@ class Finds extends Pas_Db_Table_Abstract {
 		->from($this->_name, array('finderID', 'recorderID','identifier1ID','identifier2ID'))
 		->joinLeft('people','finds.finderID = people.secuid', array('tit1' => 'title', 'fore' => 'forename',
 		'sur' => 'surname','secuid'))
-		->joinLeft(array('ident1' => 'people'),'finds.identifier1ID = ident1.secuid', array('tit2' => 'title', 
+		->joinLeft(array('ident1' => 'people'),'finds.identifier1ID = ident1.secuid', array('tit2' => 'title',
 		'fore2' => 'forename','sur2' => 'surname'))
-		->joinLeft(array('ident2' => 'people'),'finds.identifier2ID = ident2.secuid', array('tit5' => 'title', 
+		->joinLeft(array('ident2' => 'people'),'finds.identifier2ID = ident2.secuid', array('tit5' => 'title',
 		'fore5' => 'forename','sur5' => 'surname'))
-		->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid', array('tit3' => 'title', 
+		->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid', array('tit3' => 'title',
 		'fore3' => 'forename','sur3' => 'surname'))
 		->where('finds.id = ?',$findID)
 		->group('finds.id')
@@ -484,17 +484,17 @@ class Finds extends Pas_Db_Table_Abstract {
 	$nearbys = $this->getAdapter();
 	$select = $nearbys->select()
 		->from($this->_name,array('oldfindID','objecttype','broadperiod'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('distance' => 'acos(SIN( PI()* 40.7383040 /180 )*SIN( PI()*' 
-		. $declat . '/180))+(cos(PI()* 40.7383040 /180)*COS( PI()*' . $declat . '/180) *COS(PI()*' . $declong 
+		->joinLeft('findspots','finds.secuid = findspots.findID', array('distance' => 'acos(SIN( PI()* 40.7383040 /180 )*SIN( PI()*'
+		. $declat . '/180))+(cos(PI()* 40.7383040 /180)*COS( PI()*' . $declat . '/180) *COS(PI()*' . $declong
 		. '/180-PI()* -73.99319 /180))* 3963.191'))
 		->where('1=1')
-		->where('3963.191 * ACOS( (SIN(PI()* 40.7383040 /180)*SIN(PI() * ' . $declat 
-		. '/180)) +(COS(PI()* 40.7383040 /180)*cos(PI()*' . $declat . '/180)*COS(PI() *' 
+		->where('3963.191 * ACOS( (SIN(PI()* 40.7383040 /180)*SIN(PI() * ' . $declat
+		. '/180)) +(COS(PI()* 40.7383040 /180)*cos(PI()*' . $declat . '/180)*COS(PI() *'
 		. $declong . '/180-PI()* -73.99319 /180))) <= 2')
 		->order('distance')
-		->order('3963.191 * ACOS((SIN(PI()* 40.7383040 /180)*SIN(PI()*' . $declat 
-		. '/180)) +(COS(PI()* 40.7383040 /180)*cos(PI()*' . $declat . '/180)*COS(PI() *' 
-		. $declong . '/180-PI()* -73.99319 /180))'); 
+		->order('3963.191 * ACOS((SIN(PI()* 40.7383040 /180)*SIN(PI()*' . $declat
+		. '/180)) +(COS(PI()* 40.7383040 /180)*cos(PI()*' . $declat . '/180)*COS(PI() *'
+		. $declong . '/180-PI()* -73.99319 /180))');
 	return $nearbys->fetchAll($select);
 	}
 
@@ -511,10 +511,10 @@ class Finds extends Pas_Db_Table_Abstract {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
 		->from($this->_name,array('id', 'old_findID', 'objecttype', 'broadperiod',
-		'dateFrom' => 'numdate1', 'dateTo' => 'numdate2', 
+		'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
 		'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
 		'secwfstage','updated'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'declat', 'declong', 
+		->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'declat', 'declong',
 		'easting', 'northing', 'fourFigure'))
 		->joinLeft('coins','finds.secuid = coins.findID',array())
 //		->joinLeft('regions','findspots.regionID = regions.id',array('region'))
@@ -534,7 +534,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		$select->where('old_findID = ?', $old_findID);
 		}
 		//Objecttype
-		if(isset($params['objecttype']) && ($params['objecttype'] != ""))  
+		if(isset($params['objecttype']) && ($params['objecttype'] != ""))
 		{
 		$objecttype = $params['objecttype'];
 		$select->where('objecttype = ?', $objecttype);
@@ -542,215 +542,215 @@ class Finds extends Pas_Db_Table_Abstract {
 		//wear for coins
 		//Created on exactly
 		//Created on exactly
-		if(isset($params['created']) && ($params['created'] != "")) 
+		if(isset($params['created']) && ($params['created'] != ""))
 		{
 		$created = $params['created'];
 		$select->where('DATE(finds.created) = ?', $created);
 		}
-		if(isset($params['wear']) && ($params['wear'] != ""))  
+		if(isset($params['wear']) && ($params['wear'] != ""))
 		{
 		$wear = $params['wear'];
 		$select->where('degree_of_wear = ?', $wear);
 		}
 		//Description
-		if(isset($params['description']) && ($params['description'] != ""))  
+		if(isset($params['description']) && ($params['description'] != ""))
 		{
 		$description = $params['description'];
 		$select->where('finds.description LIKE ?', '%'.$description.'%');
 		}
 		//Notes
-		if(isset($params['notes']) && ($params['notes'] != ""))  
+		if(isset($params['notes']) && ($params['notes'] != ""))
 		{
 		$notes = $params['notes'];
 		$select->where('finds.notes LIKE ?', '%'.$notes.'%');
 		}
 		//Broadperiod
-		if(isset($params['broadperiod']) && ($params['broadperiod'] != ""))  
+		if(isset($params['broadperiod']) && ($params['broadperiod'] != ""))
 		{
 		$broadperiod = $params['broadperiod'];
 		$select->where('broadperiod = ?', $broadperiod);
 		}
 		//Period From date
-		if(isset($params['periodfrom']) && ($params['periodfrom'] != ""))  
+		if(isset($params['periodfrom']) && ($params['periodfrom'] != ""))
 		{
 		$periodfrom = $params['periodfrom'];
 		$select->where('finds.objdate1period = ?', $periodfrom);
 		}
-		
+
 		//From date
-		if(isset($params['from']) && ($params['from'] != ""))  
+		if(isset($params['from']) && ($params['from'] != ""))
 		{
 		$from = $params['from'];
 		$select->where('finds.numdate1 >= ?', $from)
 		->where('finds.numdate1 IS NOT NULL');
 		}
-		if(isset($params['fromend']) && ($params['fromend'] != ""))  
+		if(isset($params['fromend']) && ($params['fromend'] != ""))
 		{
 		$fromend = $params['fromend'];
 		$select->where('finds.numdate1 <= ?', $fromend)
 		->where('finds.numdate1 IS NOT NULL');
 		}
 		//Early mid late
-		if(isset($params['tosubperiod']) && ($params['tosubperiod'] != ""))  
+		if(isset($params['tosubperiod']) && ($params['tosubperiod'] != ""))
 		{
 		$tosubperiod = $params['tosubperiod'];
 		$select->where('finds.objdate2subperiod = ?', $tosubperiod);
 		}
-		
+
 		//Period to date
-		if(isset($params['periodto']) && ($params['periodto'] != ""))  
+		if(isset($params['periodto']) && ($params['periodto'] != ""))
 		{
 		$periodto = $params['periodto'];
 		$select->where('finds.objdate2period = ?', $periodto);
 		}
 		//Early Mid/late
-		if(isset($params['fromsubperiod']) && ($params['fromsubperiod'] != ""))  
+		if(isset($params['fromsubperiod']) && ($params['fromsubperiod'] != ""))
 		{
 		$fromsubperiod = $params['fromsubperiod'];
 		$select->where('finds.objdate1subperiod = ?', $fromsubperiod);
 		}
 		//To date
-		if(isset($params['to']) && ($params['to'] != ""))  
+		if(isset($params['to']) && ($params['to'] != ""))
 		{
 		$to = $params['to'];
 		$select->where('finds.numdate2 <= ?', $to);
 		}
-		
+
 		//Primary material
-		if(isset($params['material']) && ($params['material'] != "")) 
+		if(isset($params['material']) && ($params['material'] != ""))
 		{
 		$material = $params['material'];
 		$select->where('finds.material1 = ?', $material);
 		}
 		//Finder
-		if(isset($params['finderID']) && ($params['finderID'] != "")) 
+		if(isset($params['finderID']) && ($params['finderID'] != ""))
 		{
 		$finder = $params['finderID'];
 		$select->joinLeft('people','finds.finderID = people.secuid',array())
 				->where('finds.finderID = ?', $finder);
 		}
-		
+
 		//Identifier
-		if(isset($params['idby']) && ($params['idby'] != "")) 
+		if(isset($params['idby']) && ($params['idby'] != ""))
 		{
 		$idby = $params['idby'];
 		$select->joinLeft(array('ident1' => 'people'),'finds.identifier1ID = ident1.secuid',array())
 				->where('finds.identifier1ID = ?', $idby);
 		}
 		//Recorded by
-		if(isset($params['recorderID']) && ($params['recorderID'] != "")) 
+		if(isset($params['recorderID']) && ($params['recorderID'] != ""))
 		{
 		$recordby = $params['recorderID'];
 		$select->where('finds.recorderID = ?', $recordby);
 		}
 		//Created on
-		if(isset($params['createdAfter']) && ($params['createdAfter'] != "")) 
+		if(isset($params['createdAfter']) && ($params['createdAfter'] != ""))
 		{
 		$createdAfter = $params['createdAfter'];
 		$select->where('finds.created >= ?', $createdAfter);
 		}
 		//Created before
-		if(isset($params['createdBefore']) && ($params['createdBefore'] != "")) 
+		if(isset($params['createdBefore']) && ($params['createdBefore'] != ""))
 		{
 		$createdBefore = $params['createdBefore'];
 		$select->where('finds.created <= ?', $createdBefore);
 		}
-		
+
 		//Workflow
-		if(isset($params['workflow']) && ($params['workflow'] != "")) 
+		if(isset($params['workflow']) && ($params['workflow'] != ""))
 		{
 		$workflow = $params['workflow'];
 		$select->where('finds.secwfstage = ?', $workflow);
 		}
 		//Decoration method
-		if(isset($params['decoration']) && ($params['decoration'] != "")) 
+		if(isset($params['decoration']) && ($params['decoration'] != ""))
 		{
 		$decoration = $params['decoration'];
 		$select->joinLeft('decmethods','finds.decmethod = decmethods.id',array('decoration' => 'term'))
 		->where('finds.decmethod = ?', $decoration);
 		}
 		//Manufacture method
-		if(isset($params['manufacture']) && ($params['manufacture'] != "")) 
+		if(isset($params['manufacture']) && ($params['manufacture'] != ""))
 		{
 		$manufacture = $params['manufacture'];
 		$select->where('finds.manmethod = ?', $manufacture);
 		}
 		//Surface treatment
-		if(isset($params['surface']) && ($params['surface'] != "")) 
+		if(isset($params['surface']) && ($params['surface'] != ""))
 		{
 		$surface = $params['surface'];
 		$select->where('finds.surftreat = ?', $surface);
 		}
-		
+
 		//Classification
-		if(isset($params['class']) && ($params['class'] != "")) 
+		if(isset($params['class']) && ($params['class'] != ""))
 		{
 		$class = $params['class'];
 		$select->where('finds.classification LIKE ?', '%'.$class.'%');
 		}
 		//Subclassification
-		if(isset($params['subclass']) && ($params['subclass'] != "")) 
+		if(isset($params['subclass']) && ($params['subclass'] != ""))
 		{
 		$subclass = $params['subclass'];
 		$select->where('finds.subclass LIKE ?', '%'.$subclass.'%');
 		}
 		//Treasure
-		if(isset($params['treasure']) && ($params['treasure'] != "")) 
+		if(isset($params['treasure']) && ($params['treasure'] != ""))
 		{
 		$treasure = $params['treasure'];
 		$select->where('finds.treasure = ?', $treasure);
 		}
 		//Treasure number
-		if(isset($params['TID']) && ($params['TID'] != "")) 
+		if(isset($params['TID']) && ($params['TID'] != ""))
 		{
 		$treasureID = $params['TID'];
 		$select->where('finds.treasureID = ?', $treasureID);
 		}
 		//Hoard
-		if(isset($params['hoard']) && ($params['hoard'] != "")) 
+		if(isset($params['hoard']) && ($params['hoard'] != ""))
 		{
 		$hoard = $params['hoard'];
 		$select->where('finds.hoard = ?', $hoard);
 		}
 		//Hoard name
-		if(isset($params['hID']) && ($params['hID'] != "")) 
+		if(isset($params['hID']) && ($params['hID'] != ""))
 		{
 		$hoard = $params['hID'];
 		$select->where('finds.hoardID = ?', $hoard);
 		}
 		//Rally
-		if(isset($params['rally']) && ($params['rally'] != "")) 
+		if(isset($params['rally']) && ($params['rally'] != ""))
 		{
 		$rally = $params['rally'];
 		$select->where('finds.rally = ?', $rally);
 		}
 		//Rally name
-		if(isset($params['rallyID']) && ($params['rallyID'] != "")) 
+		if(isset($params['rallyID']) && ($params['rallyID'] != ""))
 		{
 		$rallyID = $params['rallyID'];
 		$select->joinLeft('rallies','finds.rallyID = rallies.id',array('rally_name'))
 		->where('finds.rallyID = ?', $rallyID);
 		}
 		//find of note
-		if(isset($params['note']) && ($params['note'] != "")) 
+		if(isset($params['note']) && ($params['note'] != ""))
 		{
 		$note = $params['note'];
 		$select->where('finds.findofnote = ?', $note);
 		}
 		//find of note reason
-		if(isset($params['reason']) && ($params['reason'] != "")) 
+		if(isset($params['reason']) && ($params['reason'] != ""))
 		{
 		$reason = $params['reason'];
 		$select->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id',array('term'))
 		->where('finds.findofnotereason = ?', $reason);
 		}
 		//Other reference
-		if(isset($params['otherref']) && ($params['otherref'] != "")) 
+		if(isset($params['otherref']) && ($params['otherref'] != ""))
 		{
 		$otherref = $params['otherref'];
 		$select->where('finds.other_ref = ?', $otherref);
 		}
-		
+
 	##Coin specific query formation
 	//Primary ruler
 	if(isset($params['ruler']) && ($params['ruler'] != "")) {
@@ -759,95 +759,95 @@ class Finds extends Pas_Db_Table_Abstract {
 		->where('coins.ruler_id = ?', $ruler);
 	}
 		//Secondary ruler
-		if(isset($params['ruler2']) && ($params['ruler2'] != "")) 
+		if(isset($params['ruler2']) && ($params['ruler2'] != ""))
 		{
 		$ruler2 = $params['ruler2'];
 		$select->joinLeft('rulers','rulers.id = coins.ruler2_id',array('issuer'))
 ->where('coins.ruler2_id = ?', $ruler2);
 		}
 		//Denomination
-		if(isset($params['denomination']) && ($params['denomination'] != "")) 
+		if(isset($params['denomination']) && ($params['denomination'] != ""))
 		{
 		$denomname = $params['denomination'];
 		$select->joinLeft('denominations','denominations.id = coins.denomination',array('denomination'))->where('coins.denomination = ?', $denomname);
 		}
 		//Mint
-		if(isset($params['mint']) && ($params['mint'] != "")) 
+		if(isset($params['mint']) && ($params['mint'] != ""))
 		{
 		$mint = $params['mint'];
 		$select->joinLeft('mints','mints.id = coins.mint_id',array('mint_name'))->where('coins.mint_id = ?', $mint);
 		}
 		//Die axis
-		if(isset($params['axis']) && ($params['axis'] != "")) 
+		if(isset($params['axis']) && ($params['axis'] != ""))
 		{
 		$axis = $params['axis'];
 		$select->joinLeft('dieaxes','dieaxes.id = coins.die_axis_measurement',array('die_axis_name'))
 		->where('coins.die_axis_measurement = ?', $axis);
 		}
 		//Moneyer
-		if(isset($params['moneyer']) && ($params['moneyer'] != "")) 
+		if(isset($params['moneyer']) && ($params['moneyer'] != ""))
 		{
 		$moneyer = $params['moneyer'];
 		$select->where('coins.moneyer = ?', $moneyer);
 		}
 		//Obverse inscription
-		if(isset($params['obinsc']) && ($params['obinsc'] != "")) 
+		if(isset($params['obinsc']) && ($params['obinsc'] != ""))
 		{
 		$obinsc = $params['obinsc'];
 		$select->where('coins.obverse_inscription LIKE ?', '%'.$obinsc.'%');
 		}
 		//Obverse description
-		if(isset($params['obdesc']) && ($params['obdesc'] != "")) 
+		if(isset($params['obdesc']) && ($params['obdesc'] != ""))
 		{
 		$obdesc = $params['obdesc'];
 		$select->where('coins.obverse_description LIKE ?', '%'.$obdesc.'%');
 		}
 		//Reverse inscription
-		if(isset($params['revinsc']) && ($params['revinsc'] != "")) 
+		if(isset($params['revinsc']) && ($params['revinsc'] != ""))
 		{
 		$revinsc = $params['revinsc'];
 		$select->where('coins.reverse_inscription LIKE ?', '%'.$revinsc.'%');
 		}
 		//Reverse description
-		if(isset($params['revdesc']) && ($params['revdesc'] != "")) 
+		if(isset($params['revdesc']) && ($params['revdesc'] != ""))
 		{
 		$revdesc = $params['revdesc'];
 		$select->where('coins.reverse_description LIKE ?', '%'.$revdesc.'%');
 		}
 		##Iron age specific
 		//Mack type
-		if(isset($params['mack']) && ($params['mack'] != "")) 
+		if(isset($params['mack']) && ($params['mack'] != ""))
 
 		{
 		$mack = $params['mack'];
 		$select->where('coins.mack_type = ?', $mack);
 		}
 		//Allen type
-		if(isset($params['allen']) && ($params['allen'] != "")) 
+		if(isset($params['allen']) && ($params['allen'] != ""))
 		{
 		$allen = $params['allen'];
 		$select->where('coins.allen_type = ?', $allen);
 		}
 		//Rudd type
-		if(isset($params['rudd']) && ($params['rudd'] != "")) 
+		if(isset($params['rudd']) && ($params['rudd'] != ""))
 		{
 		$rudd = $params['rudd'];
 		$select->where('coins.rudd_type = ?', $rudd);
 		}
 		//Van Arsdell type
-		if(isset($params['va']) && ($params['va'] != "")) 
+		if(isset($params['va']) && ($params['va'] != ""))
 		{
 		$va = $params['va'];
 		$select->where('coins.va_type = ?', $va);
 		}
 		//Geographical region
-		if(isset($params['geoIA']) && ($params['geoIA'] != "")) 
+		if(isset($params['geoIA']) && ($params['geoIA'] != ""))
 		{
 		$geography = $params['geoIA'];
 		$select->where('coins.geographyID = ?', $geography);
 		}
 		//Tribe
-		if(isset($params['tribe']) && ($params['tribe'] != "")) 
+		if(isset($params['tribe']) && ($params['tribe'] != ""))
 		{
 		$tribe = $params['tribe'];
 		$select->where('coins.tribe = ?', $tribe);
@@ -855,15 +855,15 @@ class Finds extends Pas_Db_Table_Abstract {
 		#####
 		##Roman specific
 		#####
-		
-		
+
+
 		//ReeceID
 		if(isset($params['reeceID']) && ($params['reeceID'] != "")) {
 		$reeceID = $params['reeceID'];
 		$select->where('coins.reeceID = ?', $reeceID);
 		}
 		//Reverse type
-		if(isset($params['reverse']) && ($params['reverse'] != "")) 
+		if(isset($params['reverse']) && ($params['reverse'] != ""))
 		{
 		$reverse = $params['reverse'];
 		$select->where('coins.revtypeID = ?', $reverse);
@@ -876,13 +876,13 @@ class Finds extends Pas_Db_Table_Abstract {
 		##Medieval specific
 		####
 		//Medieval type
-		if(isset($params['medtype']) && ($params['medtype'] != "")) 
+		if(isset($params['medtype']) && ($params['medtype'] != ""))
 		{
 		$typeID = $params['medtype'];
 		$select->where('coins.typeID = ?', $typeID);
 		}
 		//Medieval category
-		if(isset($params['category']) && ($params['category'] != "")) 
+		if(isset($params['category']) && ($params['category'] != ""))
 		{
 		$categoryID = $params['category'];
 		$select->where('coins.categoryID = ?', $categoryID);
@@ -891,69 +891,69 @@ class Finds extends Pas_Db_Table_Abstract {
 		##Greek and roman prov specific
 		####
 		//Greek state ID
-		if(isset($params['greekID']) && ($params['greekID'] != "")) 
+		if(isset($params['greekID']) && ($params['greekID'] != ""))
 		{
 		$greekstateID = $params['greekID'];
 		$select->where('coins.greekstateID = ?', $greekstateID);
 		}
-		
+
 		##Spatial specific query formation
-			
+
 		//County
-		if(isset($params['county']) && ($params['county'] != "")) 
+		if(isset($params['county']) && ($params['county'] != ""))
 		{
 		$county = $params['county'];
 		$select->where('findspots.county = ?', $county)
 		->where('findspots.declong IS NOT NULL');
 		}
 		//District
-		if(isset($params['district']) && ($params['district'] != "")) 
+		if(isset($params['district']) && ($params['district'] != ""))
 		{
 		$district = $params['district'];
 		$select->where('findspots.district = ?', $district);
 		}
 		//Parish
-		if(isset($params['parish']) && ($params['parish'] != "")) 
+		if(isset($params['parish']) && ($params['parish'] != ""))
 		{
 		$parish = $params['parish'];
 		$select->where('findspots.parish = ?', $parish);
 		}
 		//Region
-		if(isset($params['regionID']) && ($params['regionID'] != "")) 
+		if(isset($params['regionID']) && ($params['regionID'] != ""))
 		{
 		$region = $params['regionID'];
 		$select->where('findspots.regionID = ?', $region);
 		}
 		//Landuse
-		if(isset($params['landuse']) && ($params['landuse'] != "")) 
+		if(isset($params['landuse']) && ($params['landuse'] != ""))
 		{
 		$landuse = $params['landuse'];
 		$select->where('findspots.landusecode = ?', $landuse);
 		}
 		//Secondary landuse
-		if(isset($params['value']) && ($params['value'] != "")) 
+		if(isset($params['value']) && ($params['value'] != ""))
 		{
 		$value = $params['value'];
 		$select->where('findspots.landusevalue = ?', $value);
 		}
 		//Comments
-		if(isset($params['fourfigure']) && ($params['fourfigure'] != "")) 
+		if(isset($params['fourfigure']) && ($params['fourfigure'] != ""))
 		{
 		$fourfigure = $params['fourfigure'];
 		$select->where('findspots.fourFigure = ?', $fourfigure);
 		}
 		//Known as
-		if(isset($params['knownas']) && ($params['knownas'] != "")) 
+		if(isset($params['knownas']) && ($params['knownas'] != ""))
 		{
 		$knownas = $params['knownas'];
 		$select->where('findspots.knownas = ?', $knownas);
 		}
 		if(isset($params['preservation']) && ($params['preservation'] != "")){
 		$preservation = $params['preservation'];
-		$select->where('finds.preservation = ?', $preservation);	
+		$select->where('finds.preservation = ?', $preservation);
 		}
 		//Known as
-		if(isset($params['discovered']) && ($params['discovered'] != "")) 
+		if(isset($params['discovered']) && ($params['discovered'] != ""))
 		{
 		$discovered = $params['discovered'];
 		$select->where('finds.datefound1 >= ?',$discovered.'-01-01')
@@ -965,23 +965,23 @@ class Finds extends Pas_Db_Table_Abstract {
 			->order('finds.created DESC')
 			->group('finds.id')
 			->limit($limit);
-			
-			
+
+
 		if(in_array($this->getRole(),$this->restricted))
 		{
 		$select->where('finds.secwfstage > 2 ')
 				->where('findspots.knownas IS NULL');
 		}
        return $finds->fetchAll($select);
-		  
+
 }
 
 
-		  
+
 	/** Get finds entered by user per quarter as a count and sum
 	* @param integer $staffID The user's ID
 	* @return array
-	*/	  
+	*/
 	public function getFindsFloQuarter($staffID){
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -992,13 +992,13 @@ class Finds extends Pas_Db_Table_Abstract {
 		->order(array('year','quarter'))
 		->group('quarter')
 		->group('year');
-	return $finds->fetchAll($select); 
+	return $finds->fetchAll($select);
 	}
 
 	/** Get finds entered by user per broadperiod as a count and sum
 	* @param integer $staffID The user's ID
 	* @return array
-	*/	  
+	*/
 	public function getFindsFloPeriod($staffID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1009,11 +1009,11 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('broadperiod');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get finds entered by user where broadperiod is set
 	* @param integer $staffID The user's ID
 	* @return array
-	*/	  
+	*/
 	public function getFindsRecorded($userID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1024,10 +1024,10 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get finds entered by user 
+	/** Get finds entered by user
 	* @param integer $userID The user's ID
 	* @return array
-	*/	
+	*/
 	public function getTotalFindsRecorded($userID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1036,10 +1036,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->where('createdBy = ?',(int)$userID);
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get all cases where treasure status is set 
+
+	/** Get all cases where treasure status is set
 	* @return array
-	*/	
+	*/
 	public function getTreasureCases() {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1049,10 +1049,10 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get all finds by a day 
+	/** Get all finds by a day
 	* @return array
 	* @todo this will die soon!
-	*/	
+	*/
 	public function getFindsByDay() {
  	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1063,10 +1063,10 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get total for reports by date
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getReportTotals($datefrom, $dateto){
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1078,10 +1078,10 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get finds officer totals by fullname for reports by date
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getOfficerTotals($datefrom, $dateto){
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1096,10 +1096,10 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get institutional totals for reports by date
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getInstitutionTotals($datefrom, $dateto) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1111,13 +1111,13 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('institution');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get broadperiod totals for reports by date
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getPeriodTotals($datefrom, $dateto) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1130,10 +1130,10 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get distinct finder totals for reports by date
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getFindersTotals($datefrom,$dateto) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1146,13 +1146,13 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('institution');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get monthly count of finds found
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getAverageMonth($datefrom,$dateto) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1167,10 +1167,10 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get discovery year for finds found between certain dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getYearFound($datefrom,$dateto) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1185,10 +1185,10 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get discovery method counts for finds found between certain dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 	public function getDiscoveryMethod($datefrom,$dateto) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1200,13 +1200,13 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('discmethod');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get landuse counts for finds found between certain dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	* @todo this could be refactored for a cleaner query
-	*/	
+	*/
 
 	public function getLandUse($datefrom,$dateto) {
 	$finds = $this->getAdapter();
@@ -1223,9 +1223,9 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get landuse counts for finds found between certain dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
-	*/	
+	*/
 	public function getPrecision($datefrom,$dateto) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
@@ -1237,12 +1237,12 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('precision');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get landuse counts for finds found between certain dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
-	*/	
+	*/
 
 	public function getCounties($datefrom, $dateto) {
 	$finds = $this->getAdapter();
@@ -1258,7 +1258,7 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get counts for finds found between certain dates for counties
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1277,7 +1277,7 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get counts for finds found between certain dates for counties by specific user
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1297,7 +1297,7 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get counts for finds found between certain dates for periods and county
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1315,7 +1315,7 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get counts for finders by county
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1333,17 +1333,17 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('institution');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get finds per month by county
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
 	public function getAverageMonthCounty($datefrom,$dateto,$county) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod', 
+		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod',
 		'month' => 'EXTRACT(MONTH FROM '.$this->_name.'.created)'))
 		->joinLeft('findspots',$this->_name . '.secuid = findspots.findID',array())
 		->where($this->_name . '.created >= ?', $datefrom)
@@ -1356,7 +1356,7 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get finds per year by county
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1372,10 +1372,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('year');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get discovery method totals by county
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1392,10 +1392,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('discmethod');
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get landuse totals by county
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1415,7 +1415,7 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get precision of findspot by county
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $county The specific county to query
 	* @return array
 	*/
@@ -1432,9 +1432,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get recording institutions between dates	
+	/** Get recording institutions between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	*/
 	public function getInstitutions($datefrom,$dateto) {
@@ -1448,10 +1448,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('institution');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get  institution's recording stats between dates	
+
+	/** Get  institution's recording stats between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
@@ -1467,11 +1467,11 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('institution');
 	return $finds->fetchAll($select);
 	}
-	
-	
-	/** Get institution's recording user stats between dates	
+
+
+	/** Get institution's recording user stats between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
@@ -1487,10 +1487,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('fullname');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get institution's recording period totals between dates	
+
+	/** Get institution's recording period totals between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
@@ -1507,9 +1507,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get institution's number of finders between dates	
+	/** Get institution's number of finders between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
@@ -1526,17 +1526,17 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('institution');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get institution's year of discovery range between dates	
+
+	/** Get institution's year of discovery range between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
 	public function getYearFoundInst($datefrom,$dateto,$institution) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod', 
+		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod',
 		'year' => 'EXTRACT(YEAR FROM datefound1)'))
 		->joinLeft('users','users.id = finds.createdBy', array('institution'))
 		->where($this->_name . '.created >= ?', $datefrom)
@@ -1546,10 +1546,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('year');
        return $finds->fetchAll($select);
 	}
-	
-	/** Get institution's method of discovery range between dates	
+
+	/** Get institution's method of discovery range between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
@@ -1566,10 +1566,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('discmethod');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get institution's land uses range between dates	
+
+	/** Get institution's land uses range between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
@@ -1588,9 +1588,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get institution's land uses range between dates	
+	/** Get institution's land uses range between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
@@ -1608,16 +1608,16 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get institution's monthly records and sum recorded between dates	
+	/** Get institution's monthly records and sum recorded between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param string $institution The specific institution
 	* @return array
 	*/
 	public function getAverageMonthInst($datefrom,$dateto,$institution) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod', 
+		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod',
 		'month' => 'EXTRACT(MONTH FROM finds.created)'))
 		->joinLeft('users','finds.createdBy = users.id', array('fullname'))
 		->where($this->_name . '.created >= ?', $datefrom)
@@ -1628,9 +1628,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get recording regions between dates	
+	/** Get recording regions between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @return array
 	*/
 	public function getRegions($datefrom,$dateto) {
@@ -1646,9 +1646,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get regions' figures between dates	
+	/** Get regions' figures between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID
 	* @return array
 	*/
@@ -1665,10 +1665,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('county');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get users recording by a region between dates	
+
+	/** Get users recording by a region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
@@ -1687,9 +1687,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get broadperiods by a region between dates	
+	/** Get broadperiods by a region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
@@ -1707,9 +1707,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get finder totals by a region between dates	
+	/** Get finder totals by a region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
@@ -1728,17 +1728,17 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('institution');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get year of discovery by a region between dates	
+
+	/** Get year of discovery by a region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
 	public function getYearFoundRegion($datefrom,$dateto,$regionID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod', 
+		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod',
 		'year' => 'EXTRACT(YEAR FROM datefound1)'))
 		->joinLeft('findspots',$this->_name.'.secuid = findspots.findID', array('county'))
 		->joinLeft('regions','findspots.regionID = regions.id', array('region','id'))
@@ -1749,10 +1749,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('year');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get finder totals by a region between dates	
+
+	/** Get finder totals by a region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
@@ -1770,10 +1770,10 @@ class Finds extends Pas_Db_Table_Abstract {
 		->group('discmethod');
 	return $finds->fetchAll($select);
 	}
-	
-	/** Get landuse totals by a region between dates	
+
+	/** Get landuse totals by a region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
@@ -1792,9 +1792,9 @@ class Finds extends Pas_Db_Table_Abstract {
        return $finds->fetchAll($select);
 	}
 
-	/** Get findspot precision by a region between dates	
+	/** Get findspot precision by a region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
@@ -1812,16 +1812,16 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get monthly totals by region between dates	
+	/** Get monthly totals by region between dates
 	* @param string $datefrom The first date
-	* @param string $dateto The second date 
+	* @param string $dateto The second date
 	* @param integer $regionID The recording region
 	* @return array
 	*/
 	public function getAverageMonthRegion($datefrom,$dateto,$regionID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod', 
+		->from($this->_name, array('records' => 'COUNT(*)', 'finds' => 'SUM(quantity)','broadperiod',
 		'month' => 'EXTRACT(MONTH FROM finds.created)'))
 		->joinLeft('findspots',$this->_name . '.secuid = findspots.findID', array('county'))
 		->joinLeft('regions','findspots.regionID = regions.id', array('region'))
@@ -1835,74 +1835,74 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	/** Get all finds paginated for the lister
 	* @param string $sort The sort method
-	* @param array $params 
+	* @param array $params
 	* @param string $role The user's role
 	* @return array
 	*/
 	public function getAllFinds($sort,$params,$role) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array( 'id', 'old_findID', 'uniqueID' => 'secuid',
-		'objecttype', 'classification', 'subclass',
-		'length', 'height', 'width',
-		'thickness', 'diameter', 'quantity',
-		'other_ref', 'treasureID', 'broadperiod',
-		'numdate1', 'numdate2', 'culture',
-		'description', 'notes', 'reuse',
-		'created' =>'finds.created', 'updated',
-		'treasureID', 'secwfstage', 'findofnote',
-		'objecttypecert', 'datefound1', 'datefound2',
-		'inscription', 'disccircum', 'museumAccession' => 'musaccno',
-		'subsequentAction' => 'subs_action', 'objectCertainty' => 'objecttypecert',
-		'dateFromCertainty' => 'numdate1qual', 'dateToCertainty' => 'numdate2qual',
-		'dateFoundFromCertainty' => 'datefound1qual', 'dateFoundToCertainty' => 'datefound2qual',
-		'subPeriodFrom' => 'objdate1subperiod', 'subPeriodTo' => 'objdate2subperiod',
-		'createdBy'))
-		->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id', array('reason' => 'term'))
-		->joinLeft('users','users.id = finds.createdBy', array('username','fullname','institution'))
-		->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy', array('usernameUpdate' => 'username',
-		'fullnameUpdate' => 'fullname'))
-		->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('primaryMaterial' =>'term'))
-		->joinLeft(array('mat2' =>'materials'),'finds.material2 = mat2.id', array('secondaryMaterial' => 'term'))
-		->joinLeft('decmethods','finds.decmethod = decmethods.id', array('decoration' => 'term'))
-		->joinLeft('decstyles','finds.decstyle = decstyles.id', array('style' => 'term'))
-		->joinLeft('manufactures','finds.manmethod = manufactures.id', array('manufacture' => 'term'))
-		->joinLeft('surftreatments','finds.surftreat = surftreatments.id', array('surfaceTreatment' => 'term'))
-		->joinLeft('completeness','finds.completeness = completeness.id', array('completeness' => 'term'))
-		->joinLeft('preservations','finds.preservation = preservations.id', array('preservation' => 'term'))
-		->joinLeft('certaintytypes','certaintytypes.id = finds.objecttypecert', array('cert' => 'term'))
-		->joinLeft('periods','finds.objdate1period = periods.id', array('periodFrom' => 'term'))
-		->joinLeft(array('p' => 'periods'),'finds.objdate2period = p.id', array('periodTo' => 'term'))
-		->joinLeft('cultures','finds.culture = cultures.id', array('culture' => 'term'))
-		->joinLeft('discmethods','discmethods.id = finds.discmethod', array('discmethod' => 'method'))
-		->joinLeft('coins','finds.secuid = coins.findID', array('obverse_description', 'obverse_inscription', 
-		'reverse_description', 'reverse_inscription', 'denomination',
-		'degree_of_wear', 'allen_type', 'va_type',
-		'mack' => 'mack_type', 'reeceID', 'die' => 'die_axis_measurement',
-		'wearID'=> 'degree_of_wear', 'moneyer', 
-		'revtypeID', 'categoryID', 'typeID',
-		'tribeID' => 'tribe', 'status', 'rulerQualifier' => 'ruler_qualifier',
-		'denominationQualifier' => 'denomination_qualifier', 'mintQualifier' => 'mint_qualifier',
-		'dieAxisCertainty' => 'die_axis_certainty', 'initialMark' => 'initial_mark', 
-		'reverseMintMark' => 'reverse_mintmark', 'statusQualifier' => 'status_qualifier'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID', 'f' => 'filename')) 
-		->joinLeft('ironagetribes','coins.tribe = ironagetribes.id', array('tribe'))
-		->joinLeft('geographyironage','geographyironage.id = coins.geographyID', array('region','area'))
-		->joinLeft('denominations','denominations.id = coins.denomination', array('denomination'))
-		->joinLeft('rulers','rulers.id = coins.ruler_id', array('ruler1' => 'issuer'))
-		->joinLeft('revtypes','coins.revtypeID = revtypes.id', array('reverseType' => 'type'))
-		->joinLeft('statuses','coins.status = statuses.id', array('status' => 'term'))
-		->joinLeft('reeceperiods','coins.reeceID = reeceperiods.id', array('period_name','date_range'))
-		->joinLeft('mints','mints.id = coins.mint_ID', array('mint_name'))
-		->joinLeft('weartypes','coins.degree_of_wear = weartypes.id', array('wear' => 'term'))
-		->joinLeft('medievalcategories','medievalcategories.id = coins.categoryID', array('category'))
-		->joinLeft('medievaltypes','medievaltypes.id = coins.typeID', array('type'))
-		->group('finds.id')
-		->order('finds.id DESC');
+            ->from($this->_name, array( 'id', 'old_findID', 'uniqueID' => 'secuid',
+            'objecttype', 'classification', 'subclass',
+            'length', 'height', 'width',
+            'thickness', 'diameter', 'quantity',
+            'other_ref', 'treasureID', 'broadperiod',
+            'numdate1', 'numdate2', 'culture',
+            'description', 'notes', 'reuse',
+            'created' =>'finds.created', 'updated',
+            'treasureID', 'secwfstage', 'findofnote',
+            'objecttypecert', 'datefound1', 'datefound2',
+            'inscription', 'disccircum', 'museumAccession' => 'musaccno',
+            'subsequentAction' => 'subs_action', 'objectCertainty' => 'objecttypecert',
+            'dateFromCertainty' => 'numdate1qual', 'dateToCertainty' => 'numdate2qual',
+            'dateFoundFromCertainty' => 'datefound1qual', 'dateFoundToCertainty' => 'datefound2qual',
+            'subPeriodFrom' => 'objdate1subperiod', 'subPeriodTo' => 'objdate2subperiod',
+            'createdBy'))
+            ->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id', array('reason' => 'term'))
+            ->joinLeft('users','users.id = finds.createdBy', array('username','fullname','institution'))
+            ->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy', array('usernameUpdate' => 'username',
+            'fullnameUpdate' => 'fullname'))
+            ->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('primaryMaterial' =>'term'))
+            ->joinLeft(array('mat2' =>'materials'),'finds.material2 = mat2.id', array('secondaryMaterial' => 'term'))
+            ->joinLeft('decmethods','finds.decmethod = decmethods.id', array('decoration' => 'term'))
+            ->joinLeft('decstyles','finds.decstyle = decstyles.id', array('style' => 'term'))
+            ->joinLeft('manufactures','finds.manmethod = manufactures.id', array('manufacture' => 'term'))
+            ->joinLeft('surftreatments','finds.surftreat = surftreatments.id', array('surfaceTreatment' => 'term'))
+            ->joinLeft('completeness','finds.completeness = completeness.id', array('completeness' => 'term'))
+            ->joinLeft('preservations','finds.preservation = preservations.id', array('preservation' => 'term'))
+            ->joinLeft('certaintytypes','certaintytypes.id = finds.objecttypecert', array('cert' => 'term'))
+            ->joinLeft('periods','finds.objdate1period = periods.id', array('periodFrom' => 'term'))
+            ->joinLeft(array('p' => 'periods'),'finds.objdate2period = p.id', array('periodTo' => 'term'))
+            ->joinLeft('cultures','finds.culture = cultures.id', array('culture' => 'term'))
+            ->joinLeft('discmethods','discmethods.id = finds.discmethod', array('discmethod' => 'method'))
+            ->joinLeft('coins','finds.secuid = coins.findID', array('obverse_description', 'obverse_inscription',
+            'reverse_description', 'reverse_inscription', 'denomination',
+            'degree_of_wear', 'allen_type', 'va_type',
+            'mack' => 'mack_type', 'reeceID', 'die' => 'die_axis_measurement',
+            'wearID'=> 'degree_of_wear', 'moneyer',
+            'revtypeID', 'categoryID', 'typeID',
+            'tribeID' => 'tribe', 'status', 'rulerQualifier' => 'ruler_qualifier',
+            'denominationQualifier' => 'denomination_qualifier', 'mintQualifier' => 'mint_qualifier',
+            'dieAxisCertainty' => 'die_axis_certainty', 'initialMark' => 'initial_mark',
+            'reverseMintMark' => 'reverse_mintmark', 'statusQualifier' => 'status_qualifier'))
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID', 'f' => 'filename'))
+            ->joinLeft('ironagetribes','coins.tribe = ironagetribes.id', array('tribe'))
+            ->joinLeft('geographyironage','geographyironage.id = coins.geographyID', array('region','area'))
+            ->joinLeft('denominations','denominations.id = coins.denomination', array('denomination'))
+            ->joinLeft('rulers','rulers.id = coins.ruler_id', array('ruler1' => 'issuer'))
+            ->joinLeft('revtypes','coins.revtypeID = revtypes.id', array('reverseType' => 'type'))
+            ->joinLeft('statuses','coins.status = statuses.id', array('status' => 'term'))
+            ->joinLeft('reeceperiods','coins.reeceID = reeceperiods.id', array('period_name','date_range'))
+            ->joinLeft('mints','mints.id = coins.mint_ID', array('mint_name'))
+            ->joinLeft('weartypes','coins.degree_of_wear = weartypes.id', array('wear' => 'term'))
+            ->joinLeft('medievalcategories','medievalcategories.id = coins.categoryID', array('category'))
+            ->joinLeft('medievaltypes','medievaltypes.id = coins.typeID', array('type'))
+            ->group('finds.id')
+            ->order('finds.id DESC');
 	$paginator = Zend_Paginator::factory($select);
 	##Rowcount for pagination query
-	$rowCount = $finds->select()->from($this->_name);		
+	$rowCount = $finds->select()->from($this->_name);
 	$rowCount->reset( Zend_Db_Select::COLUMNS )
 		->columns( new Zend_Db_Expr( 'COUNT(*) AS ' . Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN ));
 	if(in_array($role,$this->_restricted)) {
@@ -1943,10 +1943,10 @@ class Finds extends Pas_Db_Table_Abstract {
 	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->getAdapter()->setRowCount($rowCount);
-	$paginator->setItemCountPerPage(30) 
+	$paginator->setItemCountPerPage(30)
 		->setPageRange(20);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']); 
+	$paginator->setCurrentPageNumber((int)$params['page']);
 	}
 	return $paginator;
 	}
@@ -1957,51 +1957,51 @@ class Finds extends Pas_Db_Table_Abstract {
 	* @param integer $distance The radial distance from the point
 	* @return array
 	*/
-	public function getByLatLong($lat,$long,$distance) {		
+	public function getByLatLong($lat,$long,$distance) {
 	$pi = '3.141592653589793';
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('broadperiod', 'i' => 'id', 'objecttype', 'old_findID'))
-		->joinLeft('findspots','finds.secuid = findspots.findID',array('id', 'declat', 'declong', 
-		'distance' => 'acos((SIN(' . $pi . '*' . $lat . '/180 ) * SIN(' . $pi 
-		. '* declat /180)) + (cos(' 
-		. $pi . '*' . $lat . '/180) * COS(' . $pi . '* declat/180) * COS(' . $pi . '* declong/180 - ' 
-		. $pi . '* (' . $long . ') /180))) *6378.137'))
-		->where('6378.137 * ACOS((SIN(' . $pi .'*' . $lat . '/180) * SIN('
-		. $pi . '* declat/180)) + (COS(' . $pi . '*' . $lat . '/180) * cos('
-		. $pi . '* declat /180 ) * COS(' . $pi . '* declong /180 - ' . $pi
-		. '* ( ' . $long . ')/180))) <=' . $distance)
-		->where('1=1')
+            ->from($this->_name, array('broadperiod', 'i' => 'id', 'objecttype', 'old_findID'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID',array('id', 'declat', 'declong',
+            'distance' => 'acos((SIN(' . $pi . '*' . $lat . '/180 ) * SIN(' . $pi
+            . '* declat /180)) + (cos('
+            . $pi . '*' . $lat . '/180) * COS(' . $pi . '* declat/180) * COS(' . $pi . '* declong/180 - '
+            . $pi . '* (' . $long . ') /180))) *6378.137'))
+            ->where('6378.137 * ACOS((SIN(' . $pi .'*' . $lat . '/180) * SIN('
+            . $pi . '* declat/180)) + (COS(' . $pi . '*' . $lat . '/180) * cos('
+            . $pi . '* declat /180 ) * COS(' . $pi . '* declong /180 - ' . $pi
+            . '* ( ' . $long . ')/180))) <=' . $distance)
+            ->where('1=1')
 //		->order('distance');
-		->order('6378.137 * ACOS((SIN(' . $pi . '*' . $lat . '/180 ) * SIN(' 
-		. $pi . '* declat/180)) + (COS(' . $pi . '*' . $lat . '/180) * cos(' 
-		. $pi . ' * declat /180 ) * COS(' . $pi . '* declong /180 - ' . $pi 
-		. '*  (' . $long . ' )/180))) ASC');
+            ->order('6378.137 * ACOS((SIN(' . $pi . '*' . $lat . '/180 ) * SIN('
+            . $pi . '* declat/180)) + (COS(' . $pi . '*' . $lat . '/180) * cos('
+            . $pi . ' * declat /180 ) * COS(' . $pi . '* declong /180 - ' . $pi
+            . '*  (' . $long . ' )/180))) ASC');
 	return $finds->fetchAll($select);
 	}
 
 	/** Get a paginated list of user's finds
 	* @param integer $id The user's id
-	* @param array $params 
+	* @param array $params
 	* @return array
 	*/
 	public function getMyFindsUser($id,$params) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from('finds',array('id', 'objecttype', 'broadperiod', 'old_findID', 
-		'description', 'createdBy', 'secwfstage',
-		'uniqueID' => 'secuid'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array()) 
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID', 'f' => 'filename')) 
-		->joinLeft('users','users.id = finds.createdBy', array('username'))
-		->where('finds.createdBy = ?', (int)$id)
-		->order('finds.id DESC')
-		->group('finds.id');
+            ->from('finds',array('id', 'objecttype', 'broadperiod', 'old_findID',
+            'description', 'createdBy', 'secwfstage',
+            'uniqueID' => 'secuid'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID', 'f' => 'filename'))
+            ->joinLeft('users','users.id = finds.createdBy', array('username'))
+            ->where('finds.createdBy = ?', (int)$id)
+            ->order('finds.id DESC')
+            ->group('finds.id');
 	$rowCount = $finds->select()->from( 'finds' )
-		->where('finds.createdBy = ?', (int)$id)
-		->reset( Zend_Db_Select::COLUMNS )
-		->columns( new Zend_Db_Expr( 'COUNT(*) AS '. Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN ));
+            ->where('finds.createdBy = ?', (int)$id)
+            ->reset( Zend_Db_Select::COLUMNS )
+            ->columns( new Zend_Db_Expr( 'COUNT(*) AS '. Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN ));
 	if(isset($params['old_findID']) && ($params['old_findID'] != "")) {
 	$findID = strip_tags($params['old_findID']);
 	$select->where('old_findID LIKE ?', (string)'%' . $findID . '%');
@@ -2026,17 +2026,17 @@ class Finds extends Pas_Db_Table_Abstract {
 	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->getAdapter()->setRowCount($rowCount);
-	$paginator->setItemCountPerPage(30) 
+	$paginator->setItemCountPerPage(30)
 		->setPageRange(20);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}
 
 	/** Get a paginated list of institution's finds
 	* @param string $inst The institution chosen
-	* @param array $params 
+	* @param array $params
 	* @return array
 	*/
 	public function getMyFindsInstitution($inst,$params) {
@@ -2046,8 +2046,8 @@ class Finds extends Pas_Db_Table_Abstract {
 		'old_findID', 'description', 'createdBy',
 		'uniqueID' => 'secuid', 'secwfstage'))
 		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array()) 
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename')) 
+		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename'))
 		->joinLeft('users','users.id = finds.createdBy', array('username'))
 		->where('finds.old_findID LIKE ?', (string)$inst . '%')
 		->order('finds.id DESC')
@@ -2061,7 +2061,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	. (int)$this->getIdentityForForms()));
 	$rowCount->where(new Zend_Db_Expr('finds.secwfstage IN ( 3, 4) OR finds.createdBy = '
 	. (int)$this->getIdentityForForms()));
-	}			
+	}
 	if(isset($params['old_findID']) && ($params['old_findID'] != ""))  {
 	$findID = strip_tags($params['old_findID']);
 	$select->where('old_findID LIKE ?', (string)'%' . $findID . '%');
@@ -2086,10 +2086,10 @@ class Finds extends Pas_Db_Table_Abstract {
 	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->getAdapter()->setRowCount($rowCount);
-	$paginator->setItemCountPerPage(30) 
+	$paginator->setItemCountPerPage(30)
 		->setPageRange(20);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}
@@ -2101,11 +2101,11 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getTreasureID($q) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('id' => 'treasureID','term' => 'treasureID'))
-		->where('treasureID LIKE ?', (string)'%' . $q . '%')
-		->order('treasureID ASC')
-		->group('treasureID')
-		->limit(10);
+            ->from($this->_name, array('id' => 'treasureID','term' => 'treasureID'))
+            ->where('treasureID LIKE ?', (string)'%' . $q . '%')
+            ->order('treasureID ASC')
+            ->group('treasureID')
+            ->limit(10);
 	if(in_array($this->getRole(),$this->_restricted)){
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
@@ -2119,43 +2119,43 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getOtherRef($q) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('id' => 'other_ref','term' => 'other_ref'))
-		->where('other_ref LIKE ?', (string)$q . '%')
-		->limit(10);
+            ->from($this->_name, array('id' => 'other_ref','term' => 'other_ref'))
+            ->where('other_ref LIKE ?', (string)$q . '%')
+            ->limit(10);
 	if(in_array($this->getRole(),$this->_restricted)){
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
 	return $finds->fetchAll($select);
 	}
 
-	/** Get a person's finds 
+	/** Get a person's finds
 	* @param array $params
 	* @return array
 	*/
 	public function getFindsToPerson($params) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('uniqueID' => 'secuid', 'objecttype', 'broadperiod',
-		'id', 'old_findID', 'description', 'secwfstage'))
-		->joinLeft('people','finds.finderID = people.secuid', array())
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array()) 
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename')) 
-		->joinLeft('users','users.id = finds.createdBy', array('username'))	
-		->joinLeft('findspots','findspots.findID = finds.secuid', array('county'))
-		->where('people.id = ?', (int)$params['id'])
-		->group('finds.id');
+            ->from($this->_name,array('uniqueID' => 'secuid', 'objecttype', 'broadperiod',
+            'id', 'old_findID', 'description', 'secwfstage'))
+            ->joinLeft('people','finds.finderID = people.secuid', array())
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename'))
+            ->joinLeft('users','users.id = finds.createdBy', array('username'))
+            ->joinLeft('findspots','findspots.findID = finds.secuid', array('county'))
+            ->where('people.id = ?', (int)$params['id'])
+            ->group('finds.id');
 	if(in_array($this->getRole(),$this->_restricted)) {
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(10) 
+	$paginator->setItemCountPerPage(10)
 		->setPageRange(20);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']); 
+	$paginator->setCurrentPageNumber((int)$params['page']);
 	}
-	return $paginator;		 
+	return $paginator;
 	}
-	
+
 	/** Check if a findspot exists
 	* @param integer $findspotID The findspot ID
 	* @return array
@@ -2163,9 +2163,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getFindtoFindspots($findspotID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name)
-		->joinLeft('findspots','finds.secuid = findspots.findID',array())
-		->where('findspots.id = ?' ,(int)$findspotID);
+            ->from($this->_name)
+            ->joinLeft('findspots','finds.secuid = findspots.findID',array())
+            ->where('findspots.id = ?' ,(int)$findspotID);
 	return $finds->fetchAll($select);
 	}
 
@@ -2177,11 +2177,11 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getFindtoPublication($findID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('f' => 'old_findID', 'objecttype','broadperiod','id'))
-		->joinLeft('bibliography','finds.secuid = bibliography.findID', array())
-		->joinLeft('publications','publications.secuid = bibliography.pubID', array())
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
-		->where('publications.id = ?',(int)$findID);
+            ->from($this->_name,array('f' => 'old_findID', 'objecttype','broadperiod','id'))
+            ->joinLeft('bibliography','finds.secuid = bibliography.findID', array())
+            ->joinLeft('publications','publications.secuid = bibliography.pubID', array())
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
+            ->where('publications.id = ?',(int)$findID);
 	if(in_array($this->getRole(),$this->_restricted)) {
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
@@ -2195,14 +2195,14 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getEmbedFind($findID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('broadperiod','id','objecttype','old_findID'))
-		->joinLeft('periods','finds.objdate1period = periods.id', array('t' => 'term'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('gridref', 'easting', 'northing',
-		'parish', 'county', 'regionID', 
-		'district', 'declat', 'declong',
-		'smrref', 'map25k', 'map10k',
-		'knownas'))
-		->where('finds.id= ?',(int)$findID);
+            ->from($this->_name, array('broadperiod','id','objecttype','old_findID'))
+            ->joinLeft('periods','finds.objdate1period = periods.id', array('t' => 'term'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('gridref', 'easting', 'northing',
+            'parish', 'county', 'regionID',
+            'district', 'declat', 'declong',
+            'smrref', 'map25k', 'map10k',
+            'knownas'))
+            ->where('finds.id= ?',(int)$findID);
 	return $finds->fetchAll($select);
 	}
 
@@ -2213,11 +2213,11 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getWebCiteFind($findID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('broadperiod','id','objecttype','old_findID', 'c' => 'DATE_FORMAT(finds.created,"%Y")'))
-		->joinLeft('periods','finds.objdate1period = periods.id', array('t' => 'term'))
-		->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid', array('tit3' => 'title', 
-		'fore3' => 'forename','sur3' => 'surname'))
-		->where('finds.id= ?',(int)$findID);
+            ->from($this->_name,array('broadperiod','id','objecttype','old_findID', 'c' => 'DATE_FORMAT(finds.created,"%Y")'))
+            ->joinLeft('periods','finds.objdate1period = periods.id', array('t' => 'term'))
+            ->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid', array('tit3' => 'title',
+            'fore3' => 'forename','sur3' => 'surname'))
+            ->where('finds.id= ?',(int)$findID);
 	return $finds->fetchAll($select);
 	}
 
@@ -2228,25 +2228,25 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getTreasureFindsList($params){
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from('finds',array('id', 'objecttype', 'broadperiod', 
-		'old_findID', 'snippet' =>'LEFT(finds.description,400)', 'treasureID'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('thumbnail'  => 'slides.imageID',
-		'f' => 'filename')) 
-		->joinLeft('users','users.id = finds.createdBy', array('username'))
-		->where('treasure = ?', (int)1) 
-		->order('finds.treasureID DESC');
+            ->from('finds',array('id', 'objecttype', 'broadperiod',
+            'old_findID', 'snippet' =>'LEFT(finds.description,400)', 'treasureID'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id', array('thumbnail'  => 'slides.imageID',
+            'f' => 'filename'))
+            ->joinLeft('users','users.id = finds.createdBy', array('username'))
+            ->where('treasure = ?', (int)1)
+            ->order('finds.treasureID DESC');
 	if(in_array($this->getRole(),$this->_restricted)) {
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
+	$paginator->setItemCountPerPage(30)
 		->setPageRange(20);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']); 
+	$paginator->setCurrentPageNumber((int)$params['page']);
 	}
-	return $paginator;		 
+	return $paginator;
 	}
 
 	/** Retrieve edit data for a find
@@ -2256,15 +2256,15 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getEditData($findID)  {
 	$personals = $this->getAdapter();
 	$select = $personals->select()
-		->from($this->_name)
-		->joinLeft('people','finds.finderID = people.secuid',array('finder'  => 'fullname'))
-		->joinLeft(array('people2' => 'people'),'finds.finder2ID = people2.secuid',array('secondfinder' => 'fullname'))
-		->joinLeft(array('ident1' => 'people'),'finds.identifier1ID = ident1.secuid',array('idBy' => 'fullname'))
-		->joinLeft(array('ident2' => 'people'),'finds.identifier2ID = ident2.secuid',array('id2by' => 'fullname'))
-		->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid',array('recordername' => 'fullname'))
-		->where('finds.id = ?', (int)$findID)
-		->group('finds.id')
-		->limit(1);
+            ->from($this->_name)
+            ->joinLeft('people','finds.finderID = people.secuid',array('finder'  => 'fullname'))
+            ->joinLeft(array('people2' => 'people'),'finds.finder2ID = people2.secuid',array('secondfinder' => 'fullname'))
+            ->joinLeft(array('ident1' => 'people'),'finds.identifier1ID = ident1.secuid',array('idBy' => 'fullname'))
+            ->joinLeft(array('ident2' => 'people'),'finds.identifier2ID = ident2.secuid',array('id2by' => 'fullname'))
+            ->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid',array('recordername' => 'fullname'))
+            ->where('finds.id = ?', (int)$findID)
+            ->group('finds.id')
+            ->limit(1);
 	$data = $personals->fetchAll($select);
 	return $data;
 	}
@@ -2276,9 +2276,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getFindNumbersEtc($findID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('objecttype','id','broadperiod','old_findID'))
-		->where('finds.id = ?', (int)$findID)
-		->limit(1);
+            ->from($this->_name,array('objecttype','id','broadperiod','old_findID'))
+            ->where('finds.id = ?', (int)$findID)
+            ->limit(1);
 	return $finds->fetchAll($select);
 	}
 
@@ -2287,15 +2287,15 @@ class Finds extends Pas_Db_Table_Abstract {
 	* @return array
 	*/
 	public function getRelevantAdviserFind($findID){
-		$finds = $this->getAdapter();
-		$select = $finds->select()
-			->from($this->_name,array('objecttype','id','broadperiod','old_findID','secuid'))
-			->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
-			->where('finds.id = ?',$findID)
-			->limit(1);
+        $finds = $this->getAdapter();
+        $select = $finds->select()
+            ->from($this->_name,array('objecttype','id','broadperiod','old_findID','secuid'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
+            ->where('finds.id = ?',$findID)
+            ->limit(1);
 	return $finds->fetchAll($select);
 	}
-		
+
 	/** Retrieve find data if allowed access
 	* @param integer $findID The find's ID number
 	* @param string $role The user's role
@@ -2304,6 +2304,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getIndividualFind($findID,$role) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
+<<<<<<< HEAD
 		->from($this->_name, array('created2' => 'DATE_FORMAT(finds.created,"%Y %m %d")', 'description',
 		'notes', 'old_findID', 'id',
 		'objecttype', 'classification', 'subclass',
@@ -2315,13 +2316,26 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id', array('reason' => 'term'))
 		->joinLeft('subsequentActions','finds.subs_action = subsequentActions.id', array('subsequentAction' => 'action'))
 		->where('finds.id= ?',(int)$findID);
+=======
+            ->from($this->_name, array('created2' => 'DATE_FORMAT(finds.created,"%Y %m %d")', 'description',
+            'notes', 'old_findID', 'id',
+            'objecttype', 'classification', 'subclass',
+            'reuse', 'created' =>'finds.created', 'broadperiod',
+            'updated', 'treasureID', 'secwfstage',
+            'secuid', 'findofnote', 'objecttypecert',
+            'datefound1', 'datefound2', 'createdBy',
+            'curr_loc', 'inscription'))
+            ->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id', array('reason' => 'term'))
+            ->joinLeft('subsequentActions','finds.subs_action = subsequentActions.id', array('subsequentAction' => 'action'))
+            ->where('finds.id= ?',(int)$findID);
+>>>>>>> Updated sold images
 	if(in_array($role,$this->_restricted)) {
-	$select->where(new Zend_Db_Expr('finds.secwfstage IN ( 3, 4) OR finds.createdBy = ' 
+	$select->where(new Zend_Db_Expr('finds.secwfstage IN ( 3, 4) OR finds.createdBy = '
 	. (int)$this->getIdentityForForms()));
 	}
 	return  $finds->fetchAll($select);
 	}
-	
+
 	/** Get attached images
 	* @param integer $id The find's ID number
 	* @return array
@@ -2331,19 +2345,21 @@ class Finds extends Pas_Db_Table_Abstract {
 	if (!$data = $cache->load('findtoimage' . $id)) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('old_findID','broadperiod','objecttype'))
-		->joinLeft('users','users.id = finds.createdBy', array('imagedir'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename')) 
-		->where('finds.id= ?',(int)$id)
-		->order('slides.imageID ASC')
-		->limit(1);
+            ->from($this->_name, array('old_findID','broadperiod','objecttype'))
+            ->joinLeft('users','users.id = finds.createdBy', array('imagedir'))
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id',
+                    array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id',
+                    array('i' => 'imageID','f' => 'filename'))
+            ->where('finds.id= ?',(int)$id)
+            ->order('slides.imageID ASC')
+            ->limit(1);
 	$data =  $finds->fetchAll($select);
 	$cache->save($data, 'findtoimage'.$id);
-	} 
-	return $data; 
 	}
-	
+	return $data;
+	}
+
 	/** Get the last record created by a specific user
 	* @param integer $userid The user's ID
 	* @return array
@@ -2351,40 +2367,40 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getLastRecord($userid) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('description', 'finderID', 'other_ref',
-		'datefound1', 'datefound2', 'culture',
-		'discmethod', 'disccircum', 'notes',
-		'objecttype', 'classification', 'subclass',
-		'inscription', 'objdate1period', 'objdate2period',
-		'broadperiod', 'numdate1', 'numdate2',
-		'material1', 'material2', 'manmethod',
-		'decmethod', 'surftreat', 'decstyle',
-		'preservation', 'completeness', 'reuse',
-		'reuse_period', 'length', 'width', 
-		'thickness', 'diameter', 'weight',
-		'height', 'quantity', 'curr_loc',
-		'recorderID', 'finder2ID', 'identifier1ID',
-		'identifier2ID', 'findofnotereason', 'findofnote',
-		'numdate1qual', 'numdate2qual','objdate1cert', 
-		'objdate2cert',	'treasure', 'treasureID',
-		'subs_action', 'musaccno', 'smrrefno',
-		'objdate1subperiod','objdate2subperiod' ))
-		->joinLeft(array('finderOne' => 'people'),'finderOne.secuid = finds.finderID', 
-		array('finder' => 'fullname'))
-		->joinLeft(array('finderTwo' => 'people'),'finderTwo.secuid = finds.finder2ID', 
-		array('secondfinder' => 'fullname')) 	
-		->joinLeft(array('identifier' => 'people'),'identifier.secuid = finds.identifier1ID', 
-		array('idby' => 'fullname')) 	
-		->joinLeft(array('identifierTwo' => 'people'),'identifierTwo.secuid = finds.identifier2ID', 
-		array('id2by' => 'fullname')) 	
-		->joinLeft(array('recorder' => 'people'),'recorder.secuid = finds.finderID', 
-		array('recordername' => 'fullname')) 	
-		->where('finds.createdBy = ?',(int)$userid)
-		->order('finds.id DESC')
-		->limit(1);
+            ->from($this->_name,array('description', 'finderID', 'other_ref',
+            'datefound1', 'datefound2', 'culture',
+            'discmethod', 'disccircum', 'notes',
+            'objecttype', 'classification', 'subclass',
+            'inscription', 'objdate1period', 'objdate2period',
+            'broadperiod', 'numdate1', 'numdate2',
+            'material1', 'material2', 'manmethod',
+            'decmethod', 'surftreat', 'decstyle',
+            'preservation', 'completeness', 'reuse',
+            'reuse_period', 'length', 'width',
+            'thickness', 'diameter', 'weight',
+            'height', 'quantity', 'curr_loc',
+            'recorderID', 'finder2ID', 'identifier1ID',
+            'identifier2ID', 'findofnotereason', 'findofnote',
+            'numdate1qual', 'numdate2qual','objdate1cert',
+            'objdate2cert',	'treasure', 'treasureID',
+            'subs_action', 'musaccno', 'smrrefno',
+            'objdate1subperiod','objdate2subperiod' ))
+            ->joinLeft(array('finderOne' => 'people'),'finderOne.secuid = finds.finderID',
+            array('finder' => 'fullname'))
+            ->joinLeft(array('finderTwo' => 'people'),'finderTwo.secuid = finds.finder2ID',
+            array('secondfinder' => 'fullname'))
+            ->joinLeft(array('identifier' => 'people'),'identifier.secuid = finds.identifier1ID',
+            array('idby' => 'fullname'))
+            ->joinLeft(array('identifierTwo' => 'people'),'identifierTwo.secuid = finds.identifier2ID',
+            array('id2by' => 'fullname'))
+            ->joinLeft(array('recorder' => 'people'),'recorder.secuid = finds.finderID',
+            array('recordername' => 'fullname'))
+            ->where('finds.createdBy = ?',(int)$userid)
+            ->order('finds.id DESC')
+            ->limit(1);
 	return $finds->fetchAll($select);
 	}
-	
+
 	/** Get findID and secuid for linking images
 	* @param string $q The query string for the old find ID
 	* @return array
@@ -2392,9 +2408,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getImageLinkData($q) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('term' => 'old_findID','id' => 'secuid'))
-		->where('old_findID LIKE ?', (string)$q . '%')
-		->limit(10);
+            ->from($this->_name, array('term' => 'old_findID','id' => 'secuid'))
+            ->where('old_findID LIKE ?', (string)$q . '%')
+            ->limit(10);
 	return $finds->fetchAll($select);
 	}
 	/** Get creator of a record by ID number
@@ -2404,9 +2420,9 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getCreator($findID) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('old_findID','objecttype'))
-		->joinLeft('users','users.id = finds.createdBy',array('email','fullname'))
-		->where('finds.id = ?', (int)$findID);
+            ->from($this->_name, array('old_findID','objecttype'))
+            ->joinLeft('users','users.id = finds.createdBy',array('email','fullname'))
+            ->where('finds.id = ?', (int)$findID);
 	return $finds->fetchAll($select);
 	}
 	/** Get records for a specific user
@@ -2417,27 +2433,27 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getRecordsByUserAcct($userid,$page) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('objecttype', 'broadperiod', 'id',
-		'old_findID', 'description', 'secwfstage'))
-		->joinLeft('people','finds.finderID = people.secuid', array())
-		->joinLeft('findspots','findspots.findID = finds.secuid', array('county'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array()) 
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename')) 
-		->joinLeft('users','users.id = finds.createdBy', array('username','imagedir'))			
-		->where('people.dbaseID = ?' , $userid)
-		->group('finds.id');
+            ->from($this->_name, array('objecttype', 'broadperiod', 'id',
+            'old_findID', 'description', 'secwfstage'))
+            ->joinLeft('people','finds.finderID = people.secuid', array())
+            ->joinLeft('findspots','findspots.findID = finds.secuid', array('county'))
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename'))
+            ->joinLeft('users','users.id = finds.createdBy', array('username','imagedir'))
+            ->where('people.dbaseID = ?' , $userid)
+            ->group('finds.id');
 	if(in_array($this->getRole(),$this->_restricted)){
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(10) 
+	$paginator->setItemCountPerPage(10)
 		->setPageRange(20);
 	if(isset($page) && ($page != "")) {
-	$paginator->setCurrentPageNumber((int)$page); 
+	$paginator->setCurrentPageNumber((int)$page);
 	}
-	return $paginator;		 
+	return $paginator;
 	}
-	
+
 	/** Retrieve a finder's objects for mapping in KML feed
 	* @param string $peopleID The finder unique ID
 	* @param integer $limit The limit to return
@@ -2447,32 +2463,32 @@ class Finds extends Pas_Db_Table_Abstract {
 	if(!is_null($peopleID)) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('id', 'old_findID', 'objecttype',
-		'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
-		'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
-		'secwfstage', 'updated'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'declat', 'declong',
-		 'easting', 'northing'))
-		->joinLeft('coins','finds.secuid = coins.findID', array())
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','filename'))
-		->joinLeft('users','users.id = slides.createdBy', array('imagedir'))
-		->where('findspots.declat IS NOT NULL')
-		->where('findspots.declong IS NOT NULL')
-		->where('finds.finderID = ?', (string)$peopleID)
-		->limit((int)$limit);
+            ->from($this->_name, array('id', 'old_findID', 'objecttype',
+            'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
+            'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
+            'secwfstage', 'updated'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'declat', 'declong',
+                'easting', 'northing'))
+            ->joinLeft('coins','finds.secuid = coins.findID', array())
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','filename'))
+            ->joinLeft('users','users.id = slides.createdBy', array('imagedir'))
+            ->where('findspots.declat IS NOT NULL')
+            ->where('findspots.declong IS NOT NULL')
+            ->where('finds.finderID = ?', (string)$peopleID)
+            ->limit((int)$limit);
 	return  $finds->fetchAll($select);
 	}
 	}
-	
+
 	/** Curl function
 	* @return string $output JSON encoded string
 	*/
 	public function get($url){
-	$ch = curl_init(); 
-	curl_setopt($ch, CURLOPT_URL, $url); 
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-	$output = curl_exec($ch); 
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	$output = curl_exec($ch);
 	curl_close($ch);
 	return $output;
 	}
@@ -2494,20 +2510,20 @@ class Finds extends Pas_Db_Table_Abstract {
 	$longmax = $data->max_lon;
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('id', 'old_findID', 'objecttype',
-		'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
-		'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
-		'secwfstage', 'updated'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'knownas', 'fourFigure',
-		'lat' => 'declat', 'lon' => 'declong', 'easting', 
-		'northing'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id',array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id',array('i' => 'imageID','filename'))
-		->where('declat > ?',$latmin)
-		->where('declat < ?',$latmax)
-		->where('declong > ?',$longmin)
-		->where('declong < ?',$longmax)
-		->order('finds.id DESC');
+            ->from($this->_name,array('id', 'old_findID', 'objecttype',
+            'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
+            'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
+            'secwfstage', 'updated'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'knownas', 'fourFigure',
+            'lat' => 'declat', 'lon' => 'declong', 'easting',
+            'northing'))
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id',array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id',array('i' => 'imageID','filename'))
+            ->where('declat > ?',$latmin)
+            ->where('declat < ?',$latmax)
+            ->where('declong > ?',$longmin)
+            ->where('declong < ?',$longmax)
+            ->order('finds.id DESC');
 	if(in_array($this->getRole(),$this->_restricted)){
 	$select->where('finds.secwfstage > 2');
 	}
@@ -2515,7 +2531,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	} else {
 	return NULL;
 	}
-	}	
+	}
 
 	/** Retrieve finds for a constituency map
 	* @param string $constituency
@@ -2533,24 +2549,24 @@ class Finds extends Pas_Db_Table_Abstract {
 	$longmax = $data->max_lon;
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('id', 'old_findID', 'objecttype',
-		'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
-		'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
-		'secwfstage', 'updated'))
-		->joinLeft('findspots','finds.secuid = findspots.findID',array('county', 'declat', 'declong', 
-		'easting', 'northing', 'fourFigure'))
-		->where('declat > ?',$latmin)
-		->where('declat < ?',$latmax)
-		->where('declong > ?',$longmin)
-		->where('declong < ?',$longmax)
-		->where('fourFigure IS NOT NULL')
-		->limit(2000);
+            ->from($this->_name, array('id', 'old_findID', 'objecttype',
+            'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
+            'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
+            'secwfstage', 'updated'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID',array('county', 'declat', 'declong',
+            'easting', 'northing', 'fourFigure'))
+            ->where('declat > ?',$latmin)
+            ->where('declat < ?',$latmax)
+            ->where('declong > ?',$longmin)
+            ->where('declong < ?',$longmax)
+            ->where('fourFigure IS NOT NULL')
+            ->limit(2000);
 	if(in_array($this->getRole(),$this->_restricted)) {
 	$select->where('finds.secwfstage > 2')
 		->where('knownas IS NOT NULL');
 	}
 	return  $finds->fetchAll($select);
-	}	
+	}
 
 	/** Retrieve finds of note for a constituency
 	* @param string $constituency
@@ -2558,7 +2574,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	*/
 	public function getFindsConstituencyNote($constituency) {
 	ini_set("memory_limit","256M");
-	$twfy = 'http://www.theyworkforyou.com/api/getGeometry?name=' 
+	$twfy = 'http://www.theyworkforyou.com/api/getGeometry?name='
 	. urlencode($constituency) . '&output=js&key=CzhqDaDMAgkMEcjdvuGZeRtR';
 	$data = $this->get($twfy);
 	$data = json_decode($data);
@@ -2569,19 +2585,19 @@ class Finds extends Pas_Db_Table_Abstract {
 	$longmax = $data->max_lon;
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('id','old_findID', 'objecttype',
-		'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
-		'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
-		'secwfstage', 'updated'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'knownas', 'fourFigure',
-		'lat' => 'declat', 'lon' => 'declong', 'easting',
-		'northing'))
-		->where('declat > ?',$latmin)
-		->where('declat < ?',$latmax)
-		->where('declong > ?',$longmin)
-		->where('declong < ?',$longmax)
-		->where('finds.findofnote = ?',(int)1)
-		->order('finds.id DESC');
+            ->from($this->_name,array('id','old_findID', 'objecttype',
+            'broadperiod', 'dateFrom' => 'numdate1', 'dateTo' => 'numdate2',
+            'created', 'description' => 'IFNULL(finds.description,"No description recorded")', 'findofnote',
+            'secwfstage', 'updated'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'knownas', 'fourFigure',
+            'lat' => 'declat', 'lon' => 'declong', 'easting',
+            'northing'))
+            ->where('declat > ?',$latmin)
+            ->where('declat < ?',$latmax)
+            ->where('declong > ?',$longmin)
+            ->where('declong < ?',$longmax)
+            ->where('finds.findofnote = ?',(int)1)
+            ->order('finds.id DESC');
 	if(in_array($this->getRole(),$this->_restricted)) {
 	$select->where('finds.secwfstage > 2');
 	}
@@ -2589,8 +2605,8 @@ class Finds extends Pas_Db_Table_Abstract {
 	} else {
 	return NULL;
 	}
-	}	
-	
+	}
+
 	/** Retrieve record data in format for solr schema
 	* @param int $findID
 	* @return array
@@ -2598,134 +2614,139 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getSolrData($findID) {
 	$findsdata = $this->getAdapter();
 	$select = $findsdata->select()
-		->from($this->_name, array(
-		'findIdentifier' => 'CONCAT("finds-",finds.id)',
-		'id',
-		'old_findID', 
-		'objecttype',
-		'broadperiod', 
-		'description', 
-		'notes', 
-		'inscription',
-		'classification', 
-		'periodFrom' => 'objdate1period',
-		'periodTo' => 'objdate2period',
-		'fromsubperiod' => 'objdate1subperiod',
-		'tosubperiod' => 'objdate2subperiod',
-		'fromdate' => 'numdate1',
-		'todate' => 'numdate2',
-		'treasure',
-		'rally',
-		'hoard',
-		'hID' => 'hoardID',
-		'rallyID',
-		'TID' => 'treasureID', 
-		'note' => 'findofnote',
-		'workflow' => 'secwfstage',
-		'institution',
-		'datefound1',
-		'datefound2',
-		'subClassification' => 'subclass',
-		'smrRef' => 'smr_ref',
-		'otherRef' => 'other_ref',
-		'musaccno',
-		'currentLocation' => 'curr_loc',
-		'created',
-		'weight',
-		'height',
-		'secuid',
-		'diameter',
-		'thickness',
-		'width',
-		'length',
-		'quantity',
-		'material' => 'material1',
-		'secondaryMaterial' => 'material2',
-		'subsequentAction' => 'subs_action',
-		'completeness',
-		'decstyle',
-		'manufacture' => 'manmethod',
-		'surface' => 'surftreat',
-		'preservation',
-		'discovery' => 'discmethod',
-		'culture',
-		'finderID',
-		'recorderID',
-		'identifierID' => 'identifier1ID'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array(
-		'regionID',
-		'county', 
-		'district', 
-		'parish', 
-		'knownas',
-		'fourFigure',
-		'gridref',
-		'latitude' => 'declat',
-		'longitude' => 'declong',
-		'elevation',
-		'woeid',
-		'easting',
-		'northing',
-		'coordinates' => 'CONCAT(declat,",",declong)',
-		'createdBy'
-		))
-		->joinLeft('coins', 'finds.secuid = coins.findID',array(
-		'geographyID',
-		'ruler' => 'ruler_id',
-		'mint' => 'mint_id',
-		'denomination',
-		'type' => 'typeID',
-		'category' => 'categoryID',
-		'obverseDescription' => 'obverse_description', 
-		'obverseLegend' => 'obverse_inscription',
-		'reverseDescription' => 'reverse_description',
-		'reverseLegend' => 'reverse_inscription',
-		'reeceID',
-		'tribe',
-		'cciNumber',
-		'mintmark' => 'reverse_mintmark',
-		'allenType' => 'allen_type',
-		'mackType' => 'mack_type',
-		'abcType' => 'rudd_type',
-		'vaType' => 'va_type',
-		'moneyer',
-		'axis' => 'die_axis_measurement'
-		))
-		->joinLeft('mints','mints.id = coins.mint_ID', array ('mintName' => 'mint_name'))
-		->joinLeft('denominations','coins.denomination = denominations.id', array('denominationName' => 'denomination'))
-		->joinLeft('rulers','coins.ruler_id = rulers.id',array('rulerName' => 'issuer'))
-		->joinLeft('users','users.id = finds.createdBy', array('imagedir'))
-		->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy', 
-		array('updatedBy' => 'fullname'))
-		->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('materialTerm' =>'term'))
-		->joinLeft(array('mat2' =>'materials'),'finds.material2 = mat2.id', array('secondaryMaterialTerm' => 'term'))
-		->joinLeft('decmethods','finds.decmethod = decmethods.id', array('decoration' => 'term'))
-		->joinLeft('decstyles','finds.decstyle = decstyles.id', array('decstyleTerm' => 'term'))
-		->joinLeft('manufactures','finds.manmethod = manufactures.id', array('manufactureTerm' => 'term'))
-		->joinLeft('surftreatments','finds.surftreat = surftreatments.id', array('treatment' => 'term'))
-		->joinLeft('completeness','finds.completeness = completeness.id', array('completenessTerm' => 'term'))
-		->joinLeft('preservations','finds.preservation = preservations.id', array('preservationTerm' => 'term'))
-		->joinLeft('periods','finds.objdate1period = periods.id', array('periodFromName' => 'term'))
-		->joinLeft(array('p' => 'periods'),'finds.objdate2period = p.id', array('periodToName' => 'term'))
-		->joinLeft('cultures','finds.culture = cultures.id', array('culturename' => 'term'))
-		->joinLeft('discmethods','discmethods.id = finds.discmethod', array('discoveryMethod' => 'method'))
-		->joinLeft('subsequentActions','finds.subs_action = subsequentActions.id', 
-		array('subsequentActionTerm' => 'action'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('filename','thumbnail' => 'imageID'))
-		->joinLeft('rallies','finds.rallyID = rallies.id',array('rallyName' => 'rally_name')) 
-		->joinLeft('ironagetribes','coins.tribe = ironagetribes.id', array('tribeName' => 'tribe'))
-		->joinLeft('medievalcategories','medievalcategories.id = coins.categoryID', array('categoryTerm' => 'category'))
-		->joinLeft('medievaltypes','medievaltypes.id = coins.typeID', array('typeTerm' => 'type'))
-		->joinLeft('geographyironage','geographyironage.id = coins.geographyID', array('geography' => 'CONCAT(geographyironage.region,",",area)'))
-		->joinLeft('moneyers','coins.moneyer = moneyers.id',array('moneyerName' => 'name'))
-		->joinLeft('regions','findspots.regionID = regions.id',array('regionName' => 'region'))
-		->joinLeft('hoards','hoards.id = finds.hoardID',array('hoardName' => 'term'))
-		->where('finds.id = ?', (int)$findID)
-		->group('finds.id')
-		->limit(1);
+            ->from($this->_name, array(
+            'findIdentifier' => 'CONCAT("finds-",finds.id)',
+            'id',
+            'old_findID',
+            'objecttype',
+            'broadperiod',
+            'description',
+            'notes',
+            'inscription',
+            'classification',
+            'periodFrom' => 'objdate1period',
+            'periodTo' => 'objdate2period',
+            'fromsubperiod' => 'objdate1subperiod',
+            'tosubperiod' => 'objdate2subperiod',
+            'fromdate' => 'numdate1',
+            'todate' => 'numdate2',
+            'treasure',
+            'rally',
+            'hoard',
+            'hID' => 'hoardID',
+            'rallyID',
+            'TID' => 'treasureID',
+            'note' => 'findofnote',
+            'workflow' => 'secwfstage',
+            'institution',
+            'datefound1',
+            'datefound2',
+            'subClassification' => 'subclass',
+            'smrRef' => 'smr_ref',
+            'otherRef' => 'other_ref',
+            'musaccno',
+            'currentLocation' => 'curr_loc',
+            'created',
+            'weight',
+            'height',
+            'secuid',
+            'diameter',
+            'thickness',
+            'width',
+            'length',
+            'quantity',
+            'material' => 'material1',
+            'secondaryMaterial' => 'material2',
+            'subsequentAction' => 'subs_action',
+            'completeness',
+            'decstyle',
+            'manufacture' => 'manmethod',
+            'surface' => 'surftreat',
+            'preservation',
+            'discovery' => 'discmethod',
+            'culture',
+            'finderID',
+            'recorderID',
+            'identifierID' => 'identifier1ID'))
+            ->joinLeft('findspots','finds.secuid = findspots.findID', array(
+            'regionID',
+            'county',
+            'district',
+            'parish',
+            'knownas',
+            'fourFigure',
+            'gridref',
+            'latitude' => 'declat',
+            'longitude' => 'declong',
+            'elevation',
+            'woeid',
+            'easting',
+            'northing',
+            'coordinates' => 'CONCAT(declat,",",declong)',
+            'createdBy'
+            ))
+            ->joinLeft('coins', 'finds.secuid = coins.findID',array(
+            'geographyID',
+            'ruler' => 'ruler_id',
+            'mint' => 'mint_id',
+            'denomination',
+            'type' => 'typeID',
+            'category' => 'categoryID',
+            'obverseDescription' => 'obverse_description',
+            'obverseLegend' => 'obverse_inscription',
+            'reverseDescription' => 'reverse_description',
+            'reverseLegend' => 'reverse_inscription',
+            'reeceID',
+            'tribe',
+            'cciNumber',
+            'mintmark' => 'reverse_mintmark',
+            'allenType' => 'allen_type',
+            'mackType' => 'mack_type',
+            'abcType' => 'rudd_type',
+            'vaType' => 'va_type',
+            'moneyer',
+            'axis' => 'die_axis_measurement'
+            ))
+            ->joinLeft('mints','mints.id = coins.mint_ID', array ('mintName' => 'mint_name'))
+            ->joinLeft('denominations','coins.denomination = denominations.id', array('denominationName' => 'denomination'))
+            ->joinLeft('rulers','coins.ruler_id = rulers.id',array('rulerName' => 'issuer'))
+            ->joinLeft('users','users.id = finds.createdBy', array('imagedir'))
+            ->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy',
+            array('updatedBy' => 'fullname'))
+            ->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('materialTerm' =>'term'))
+            ->joinLeft(array('mat2' =>'materials'),'finds.material2 = mat2.id', array('secondaryMaterialTerm' => 'term'))
+            ->joinLeft('decmethods','finds.decmethod = decmethods.id', array('decoration' => 'term'))
+            ->joinLeft('decstyles','finds.decstyle = decstyles.id', array('decstyleTerm' => 'term'))
+            ->joinLeft('manufactures','finds.manmethod = manufactures.id', array('manufactureTerm' => 'term'))
+            ->joinLeft('surftreatments','finds.surftreat = surftreatments.id', array('treatment' => 'term'))
+            ->joinLeft('completeness','finds.completeness = completeness.id', array('completenessTerm' => 'term'))
+            ->joinLeft('preservations','finds.preservation = preservations.id', array('preservationTerm' => 'term'))
+            ->joinLeft('periods','finds.objdate1period = periods.id', array('periodFromName' => 'term'))
+            ->joinLeft(array('p' => 'periods'),'finds.objdate2period = p.id', array('periodToName' => 'term'))
+            ->joinLeft('cultures','finds.culture = cultures.id', array('culturename' => 'term'))
+            ->joinLeft('discmethods','discmethods.id = finds.discmethod', array('discoveryMethod' => 'method'))
+            ->joinLeft('subsequentActions','finds.subs_action = subsequentActions.id',
+            array('subsequentActionTerm' => 'action'))
+            ->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
+            ->joinLeft('slides','slides.secuid = finds_images.image_id', array('filename','thumbnail' => 'imageID'))
+            ->joinLeft('rallies','finds.rallyID = rallies.id',array('rallyName' => 'rally_name'))
+            ->joinLeft('ironagetribes','coins.tribe = ironagetribes.id', array('tribeName' => 'tribe'))
+            ->joinLeft('medievalcategories','medievalcategories.id = coins.categoryID', array('categoryTerm' => 'category'))
+            ->joinLeft('medievaltypes','medievaltypes.id = coins.typeID', array('typeTerm' => 'type'))
+            ->joinLeft('geographyironage','geographyironage.id = coins.geographyID', array('geography' => 'CONCAT(geographyironage.region,",",area)'))
+            ->joinLeft('moneyers','coins.moneyer = moneyers.id',array('moneyerName' => 'name'))
+            ->joinLeft('regions','findspots.regionID = regions.id',array('regionName' => 'region'))
+            ->joinLeft('hoards','hoards.id = finds.hoardID',array('hoardName' => 'term'))
+            ->where('finds.id = ?', (int)$findID)
+            ->group('finds.id')
+            ->limit(1);
 	return $findsdata->fetchAll($select);
 	}
-	
-	
+
+        public function updateWorkflow($data,$where){
+
+        parent::update($data, $where);
+        }
+
+
 }

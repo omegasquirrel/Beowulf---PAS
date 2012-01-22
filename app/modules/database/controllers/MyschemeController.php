@@ -79,7 +79,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county')
+    	'description', 'county',
+        )
     );
     $search->setParams($params);
     $search->execute();
@@ -98,7 +99,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod', 'imagedir',
     	'filename', 'thumbnail', 'old_findID',
-    	'county')
+    	'county','licenseAcronym','findID')
     );
     $search->setFacets(array('broadperiod','county'));
     $search->setParams($params);

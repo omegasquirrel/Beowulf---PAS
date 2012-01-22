@@ -40,7 +40,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 	'UNKNOWN');
     /** An array of Roman and Prehistoric periods
      * Used for objects
-     * @var array 
+     * @var array
      */
     protected $_periodRomPrehist = array(
 	'Roman', 'ROMAN', 'roman',
@@ -51,7 +51,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 	'NEOLITHIC', 'Neolithic', 'Palaeolithic',
 	'PALAEOLITHIC', 'Bronze Age', 'BRONZE AGE');
 
-    /** An array of Early medieval periods 
+    /** An array of Early medieval periods
      * Used for objects and coins
      * @var array
      */
@@ -70,9 +70,9 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     protected $_postMed = array('Post Medieval','POST MEDIEVAL','Modern', 'MODERN');
 
     protected $_config, $_finds, $_cs, $_auth;
-	
+
     /** Setup the contexts by action and the ACL.
-     * 
+     *
      */
     public function init()  {
     $this->_config = $this->_helper->config();
@@ -100,46 +100,17 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     /** Display a list of objects recorded with pagination
     */
     public function indexAction(){
-    $sort = $this->_getParam('sort') ? $this->_getParam('sort') :
-        'finds.created DESC';
-    $this->view->params = $this->_getAllParams();
-    $findslist = $this->_finds->getAllFinds($sort,$this->_getAllParams(),
-            $this->getRole());
-    $data = array('pageNumber' => $findslist->getCurrentPageNumber(),
-            'total' => number_format($findslist->getTotalItemCount(),0),
-        'itemsReturned' => $findslist->getCurrentItemCount(),
-        'totalPages' => number_format($findslist->getTotalItemCount()/
-                $findslist->getCurrentItemCount(),0));
-    $this->view->data = $data;
-    $findsjson = array();
-    foreach($findslist as $k => $v) {
-    $findsjson[$k] = $v;
-    }
-
-    $this->view->objects = array('object' => $findsjson);
-    $contexts = array('json');
-    if(!in_array($this->_cs->getCurrentContext(),$contexts )) {
-    $this->view->paginator = $findslist;
-
-    $form = new FindFilterForm();
-    $this->view->form = $form;
-    $form->old_findID->setValue($this->_getParam('old_findID'));
-    $form->objecttype->setValue($this->_getParam('objecttype'));
-    $form->broadperiod->setValue($this->_getParam('broadperiod'));
-    $form->county->setValue($this->_getParam('county'));
-
-    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
-    $params = array_filter($form->getValues());
-    $params = $this->array_cleanup($params);
-    $this->_flashMessenger->addMessage('Your search is complete');
-    $this->_helper->Redirector->gotoSimple('index','artefacts','database',
-            $params);
-    } else  {
-    $form->populate($formData);
-    }
-    }
-    }
+    $search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county')
+    );
+    $search->setParams($this->_getAllParams());
+    $search->execute();
+    $this->view->paginator = $search->_createPagination();
+    $this->view->data = $search->_processResults();
     }
     /** Display individual record
      * @todo move comment functionality to a model
@@ -217,21 +188,19 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $data['comment_approved'] =  'moderation';
     }
     $comments = new Comments();
-    $insert = $comments->insert($data);
+    $comments->insert($data);
     $this->_flashMessenger->addMessage('Your comment has been entered and will appear shortly!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     $this->_request->setMethod('GET');
     } else {
     $this->_flashMessenger->addMessage('There are problems with your comment submission');
-    $form->populate($formData);
+    $form->populate($form->getValues());
     }
     }
     } else {
     $this->_helper->layout->disableLayout();    //disable layout
     $record = $this->_finds->getAllData($id);
-    if($this->_auth->hasIdentity()) {
-    $user = $this->_auth->getIdentity();
-    if(in_array($user->role,$this->_restricted)) {
+    if(in_array($this->_user->role,$this->_restricted)) {
     $record['0']['gridref'] = NULL;
     $record['0']['easting'] = NULL;
     $record['0']['northing'] = NULL;
@@ -241,7 +210,6 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $record['0']['address'] = NULL;
     $record['0']['postcode'] = NULL;
     $record['0']['findspotdescription'] = NULL;
-    }
     } else {
     $record['0']['gridref'] = NULL;
     $record['0']['easting'] = NULL;
@@ -314,7 +282,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $insertData['old_findID'] = $findID;
     $insertData['secwfstage'] = (int)2;
     $insertData['institution'] = $this->getInstitution();
-     unset($insertData['recordername']);
+    unset($insertData['recordername']);
     unset($insertData['finder']);
     unset($insertData['idBy']);
     unset($insertData['id2by']);
@@ -325,7 +293,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->_flashMessenger->addMessage('Record created!');
     } else  {
     $this->_flashMessenger->addMessage('Please check and correct errors!');
-    $form->populate($formData);
+    $form->populate($form->getValues());
     }
     }
     }
@@ -365,14 +333,18 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $where[] = $this->_finds->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
     $this->_finds->update($updateData, $where);
     $solr = new Pas_Solr_Updater();
+<<<<<<< HEAD
     $solr->add($this->_getParam('id'), 'beowulf');
     $this->_helper->audit($updateData, $oldData, 'FindsAudit',  $this->_getParam('id'), 
+=======
+    $solr->add($this->_getParam('id'),'beowulf');
+    $this->_helper->audit($updateData, $oldData, 'FindsAudit',  $this->_getParam('id'),
+>>>>>>> Updated sold images
     	$this->_getParam('id'));
     $this->_helper->solrUpdater->update('beowulf', $this->_getParam('id'));
     $this->_flashMessenger->addMessage('Artefact information updated and audited!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     } else {
-    $find = $this->_finds->fetchRow('id=' . $this->_getParam('id'));
     $this->view->find = $this->_finds->fetchRow('id='.$this->_getParam('id'));
     $form->populate($this->_request->getPost());
     }
@@ -469,12 +441,17 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 //    $data['comment_approved'] =  '1';
 //    }
     $errors = new ErrorReports();
+<<<<<<< HEAD
     $mail = $this->_notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$data);
     $insert = $errors->add($data);
+=======
+    $this->notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$data);
+    $errors->add($data);
+>>>>>>> Updated sold images
     $this->_flashMessenger->addMessage('Your error report has been submitted. Thank you!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     } else {
-    $form->populate($formData);
+    $form->populate($form->getValues());
     }
     }
     } else {
@@ -484,15 +461,25 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 
     /** Provide a notification for an object
     */
+<<<<<<< HEAD
     protected function _notify($objecttype, $broadperiod, $data) {
 
    	$contacts = new Contacts();
     $to = $contacts->getOwner($data['comment_findID']);
     $cc = $this->_getAdviser($objecttype,$broadperiod);
     $from[] = array('email' => $this->_user->email, 'name' => $this->_user->fullname);
+=======
+    protected function notify($objecttype, $broadperiod, $data) {
+    $finds = new Users();
+    $to = $finds->getOwner($data['comment_findID']);
+    $cc = $this->getAdviser($objecttype,$broadperiod);
+    $from = array(array(
+        'email' => $this->_user->email,
+        'name' => $this->_user->fullname));
+>>>>>>> Updated sold images
     $assignData = array_merge($to['0'],$data);
   	$this->_helper->mailer($assignData,'errorSubmission', $to, $cc, $from);
-    
+
     }
     /** Function to combine an array
     */
@@ -502,7 +489,11 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     
     /** Determine adviser to email
     */
+<<<<<<< HEAD
     private function _getAdviser($objecttype, $broadperiod) {
+=======
+    private function getAdviser($objecttype, $broadperiod) {
+>>>>>>> Updated sold images
     $this->_romancoinsadviser = $this->_config->findsadviser->romancoins;
     $this->_romancoinsadviseremail = $this->_config->findsadviser->romcoins->email;
 
@@ -561,6 +552,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $adviserdetails = $this->_catchall;
             $adviseremail = $this->_catchallemail;
             break;
+<<<<<<< HEAD
 	}
 	$names = $adviserdetails->toArray();
 	$email = $adviseremail->toArray();
@@ -572,5 +564,16 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 	}
 	return $sendto;
 	}
+=======
+    }
+
+   $people = $this->_combine($adviserdetails->toArray(),$adviseremail->toArray());
+   $sendto = array();
+   foreach($people as $k => $v){
+   $sendto[] = array ('email' => $v, 'name' => $k);
+   }
+   return $sendto;
+    }
+>>>>>>> Updated sold images
 
 }

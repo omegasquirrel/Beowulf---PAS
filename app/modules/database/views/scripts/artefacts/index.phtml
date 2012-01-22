@@ -1,16 +1,19 @@
 <?php $this->jQuery()->javascriptCaptureStart() ?>
-jQuery(document).ready(function($) {
-
- $('a[rel*=lightbox]').lightBox() 
-    })
+jQuery(document).ready(function($){
+$('a[rel*=lightbox]').lightBox()
+});
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php 
-$this->headTitle('All finds');
-$this->headMeta('A list of all finds recorded on the Scheme\'s database. This represents the rural discovery of artefacts by the public in England and Wales.','description');
+<?php
+$this->headTitle('All finds recorded');
+$this->headMeta('A list of all finds recorded on the Scheme\'s database. This
+represents the rural discovery of artefacts by the public in England and Wales.',
+        'description');
 $this->headMeta('list,archaeoligical,artefacts,public,England,Wales,british museum,portable antiquities','dc.keywords');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',
+        $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',
+        $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript');
 $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 ?>
 
@@ -24,11 +27,11 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 <?php endif;?>
 
 <div id="findsList">
-<?php if (count($this->paginator)): ?>
+<?php if ($this->paginator): ?>
 <table class="stripeMe" summary="A complete list of finds and coins recorded">
 <caption>A complete list of all finds recorded</caption>
 <thead>
-<tr> 
+<tr>
 <th>Image</th>
 <th>Object Type</th>
 <th>Find number</th>
@@ -37,9 +40,9 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 <th>Actions</th>
 </tr>
 </thead>
-<tr><td></td><?php echo $this->form;?></tr>  
+<tr><td></td><?php echo $this->form;?></tr>
 <tbody>
-<?php echo $this->partialLoop('partials/database/findsTable.phtml',$this->paginator);?>
+<?php echo $this->partialLoop('partials/database/findsTable2.phtml',$this->data);?>
 </tbody>
 </table>
 <?php endif; ?>
