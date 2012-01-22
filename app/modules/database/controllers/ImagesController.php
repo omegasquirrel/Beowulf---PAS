@@ -1,7 +1,7 @@
 <?php
 /** Controller for displaying images
  * @todo replace some of functions when solr is installed
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -12,7 +12,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 {
 	protected $_auth, $_images, $_cache, $_zoomifyObject;
 	/** Set up the ACL and contexts
-	*/			
+	*/
 	public function init() {
 	$this->_helper->_acl->allow('public',array('image','zoom','index'));
 	$this->_helper->_acl->allow('member',array('add','delete','edit'));
@@ -32,11 +32,11 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$this->_zoomifyObject = new Pas_Zoomify_FileProcessor();
     }
 	const REDIRECT = 'database/images/';
-	
+
 	const PATH = './images/';
-	
+
 	/** Retrieve the user's details
-	*/			
+	*/
 	private function getUserDetails()	{
 	if($this->_auth->hasIdentity()) {
 	$user = $this->_auth->getIdentity();
@@ -44,62 +44,25 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	}
 	}
 	/** Display index page of images
-	*/		
+	*/
 	public function indexAction() {
-	
-	$limit = 20;
-	$page = $this->_getParam('page');
-	if(!isset($page)){
-		$start = 0;
-		
-	} else {
-		unset($params['page']);
-		$start = ($page - 1) * 20;
-	}	
-	
-	$config = array(
-    'adapteroptions' => array(
-    'host' => '127.0.0.1',
-    'port' => 8983,
-    'path' => '/solr/',
-	'core' => 'beoimages'
-    ));
-	
-	$select = array(
-    'query'         => '*:*',
-    'start'         => $start,
-    'rows'          => $limit,
-    'fields'        => array('*'),
-    'sort'          => array('created' => 'desc'),
-	'filterquery' => array(),
-    );
-   
-	$client = new Solarium_Client($config);
-	// get a select query instance based on the config
-	$query = $client->createSelect($select);
-	if(!is_null($d) && !is_null($lon) && !is_null($lat)){
-	$helper = $query->getHelper();
-	$query->createFilterQuery('geo')->setQuery($helper->geofilt($lat,$lon, 'coordinates', $d));
-	}
-    $resultset = $client->select($query);
-	$data = array();
-	foreach($resultset as $doc){
-	    foreach($doc as $key => $value){
-	    	$fields = array();
-	    	$fields[$key] = $value;
-	    }
-	    $data[] = $fields;
-	}
-	$paginator = Zend_Paginator::factory($resultset->getNumFound());
-    $paginator->setCurrentPageNumber($page)
-              ->setItemCountPerPage($limit)
-              ->setPageRange(20);
-    $this->view->paginator = $paginator;
-	$this->view->results = $data;
-	
+        $search = new Pas_Solr_Handler('beoimages');
+        $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod', 'imagedir',
+    	'filename', 'thumbnail', 'old_findID',
+    	'county','licenseAcronym','findID')
+        );
+        $search->setFacets(array('broadperiod','county'));
+        $search->setParams($this->_getAllParams());
+        $search->execute();
+        $search->_processFacets();
+        $this->view->paginator = $search->_createPagination();
+        $this->view->results = $search->_processResults();
+
 	}
 	/** Add a new image
-	*/			
+	*/
 	public function addAction()	 {
 	$form = new ImageForm();
 	$form->submit->setLabel('Submit a new image.');
@@ -111,16 +74,16 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$path = mkdir(self::PATH . $username);
 	$form->image->setDestination($path);
 	}
-	 
+
 	$this->view->form = $form;
-	$savePath = self::PATH . $username . '/medium/'; 
+	$savePath = self::PATH . $username . '/medium/';
 	$thumbPath = self::PATH . 'thumbnails/';
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();	{
-    $upload = new Zend_File_Transfer_Adapter_Http();
-	
-    if ($form->isValid($formData)) {
-    $upload = new Zend_File_Transfer_Adapter_Http();
+        $upload = new Zend_File_Transfer_Adapter_Http();
+
+        if ($form->isValid($formData)) {
+        $upload = new Zend_File_Transfer_Adapter_Http();
    	$upload->addValidator('NotExists', false,array(self::PATH . $username));
 	$filesize = $upload->getFileSize();
 	if($upload->isValid()) 	{
@@ -140,13 +103,13 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$insertData['secuid'] = $secuid;
 	//$insertData['mimetype'] = $mimetype;
 	foreach ($insertData as $key => $value) {
-      if (is_null($value) || $value=="") {
+        if (is_null($value) || $value=="") {
         unset($insertData[$key]);
-      }
-    }	
-	
+        }
+        }
+
 	$upload->receive();
-	
+
 	$location = self::PATH . $username . '/' . $filename;
 	$id = $this->_images->insert($insertData);
 	//Update the solr instance
@@ -156,7 +119,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$smallpath   = self::PATH . $username . '/small/';
 	$displaypath = self::PATH . $username.'/display/';
 	$thumbpath   = self::PATH . 'thumbnails/';
-	$name = substr($filename, 0, strrpos($filename, '.')); 
+	$name = substr($filename, 0, strrpos($filename, '.'));
 	$ext = '.jpg';
 	//create medium size
 	$phMagick = new phMagick($location, $mediumpath.$name.$ext);
@@ -175,7 +138,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$phMagick = new phMagick($location, $thumbpath.$id.$ext);
 	$phMagick->resize(100,100);
 	$phMagick->convert();
- 	
+
 	$linkData = array();
 	$linkData['find_id'] = $this->_getParam('findID');
 	$linkData['image_id'] = $secuid;
@@ -185,12 +148,12 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$this->_cache->remove('findtoimage' . $this->_getParam('id'));
 
 	$this->_flashMessenger->addMessage('The image has been resized and added!');
-	$this->_redirect('/database/artefacts/record/id/' . $this->_getParam('id')); 
+	$this->_redirect('/database/artefacts/record/id/' . $this->_getParam('id'));
 	} else {
 	$this->_flashMessenger->addMessage('There is a problem with your upload. Probably that image exists.');
 	$this->view->errors = $upload->getMessages();
-	} 
-	} else { 
+	}
+	} else {
 	$form->populate($form->getValues());
 	$this->_flashMessenger->addMessage('Check your form for errors dude');
 	}
@@ -199,7 +162,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	}
 
 	/** View details of a specific image
-	*/		
+	*/
 	public function imageAction() {
 	if($this->_getParam('id',false)) {
 	$this->view->images = $this->_images->getImage((int)$this->_getParam('id'));
@@ -208,9 +171,9 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	throw new Exception('No parameter found on the url string');
 	}
 	}
-	
+
 	/** Edit a specific image
-	*/	
+	*/
 	public function editAction() {
 	if($this->_getParam('id',0)) {
 	$form = new ImageEditForm();
@@ -243,10 +206,10 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$displaypath = './'.$imagedir.'display/';
 	$thumbpath = self::PATH . 'thumbnails/';
 	$id = $this->_getParam('id');
-	$name = substr($filename, 0, strrpos($filename, '.')); 
+	$name = substr($filename, 0, strrpos($filename, '.'));
 	$ext = '.jpg';
 	if(isset($rotate)) {
-	//rotate original 
+	//rotate original
 	$phMagickOriginal= new phMagick($largepath.$filename, $largepath.$filename);
 	$phMagickOriginal->rotate($rotate);
 	//rotate image for medium
@@ -301,10 +264,10 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$phMagickRegen = new phMagick($originalpath, $thumbpath.$id.'.jpg');
 	$phMagickRegen->resize(100,0);
 	$phMagickRegen->convert();
-	
+
 	}
 	}
-	
+
 	if(isset($regenerate)) {
 	$thumbpath = self::PATH . 'thumbnails/';
 	$originalpath = $path;
@@ -312,14 +275,14 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$phMagickRegen->resize(100,0);
 	$phMagickRegen->convert();
 	}
-	
+
 	$update = $this->_images->update($updateData, $where);
 		//Update the solr instance
-	$this->_helper->solrUpdater->update('beoimages', $this->_getParam('id'));	
+	$this->_helper->solrUpdater->update('beoimages', $this->_getParam('id'));
 	$this->_helper->cache->remove('findtoimage' . $this->_getParam('id'));
 	$this->_flashMessenger->addMessage('Image and metadata updated!');
 	$this->_redirect(self::REDIRECT . 'image/id/' . $this->_getParam('id'));
-	
+
 	} else {
 	$form->populate($form->getValues());
 	}
@@ -335,7 +298,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	}
 	}
 	/** Delete an image
-	*/		
+	*/
 	public function deleteAction() {
 	$this->_flashMessenger->addMessage('Image and links deleted!');
 	if ($this->_request->isPost()) {
@@ -356,7 +319,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$medium = './'.$imagedir.'medium/'.$filename;
 	$original = './'.$imagedir.$filename;
 	$where = 'imageID = ' . $id;
-	
+
 	$this->_images->delete($where);
 	$linked = new FindsImages();
 	$wherelinks = array();
@@ -374,7 +337,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	unlink(strtolower($medium));
 	unlink($zoom);
 	$this->_helper->cache->remove('findtoimage' . $imagedata['0']['id']);
-	
+
 	}
 	$this->_flashMessenger->addMessage('Image and metadata deleted!');
 	$this->_redirect('/database/myscheme/myimages/');
@@ -386,7 +349,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	}
 	}
 	/** Link an image to a record
-	*/		
+	*/
 	public function linkAction() {
 	if($this->_getParam('imageID',false)) {
 	$form = new ImageLinkForm();
@@ -410,7 +373,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$findID = $form->getValue('findID');
 	$finds = new Finds();
 	$returns = $finds->fetchRow($finds->select()->where('secuid = ?',$findID));
-	
+
 	$returnID = $returns->id;
 	$this->_helper->cache->remove('findtoimage' . $returnID);
 	$this->_flashMessenger->addMessage('You just linked an image to this record');
@@ -422,7 +385,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	}
 	}
 	/** Unlink an image from a record
-	*/		
+	*/
 	public function unlinkAction() {
 	if($this->_getParam('returnID',false)) {
 	$this->view->findID = $this->_getParam('secuid');
@@ -444,14 +407,14 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$linked->delete($where);
 	$this->_flashMessenger->addMessage('Image and links deleted!');
 	$this->_redirect('/database/artefacts/record/id/'.$this->_getParam('returnID'));
-	$this->_helper->cache->remove('findtoimage' . $returnID);	
+	$this->_helper->cache->remove('findtoimage' . $returnID);
 	}
 	} else {
 	$id = (int)$this->_request->getParam('id');
-	
+
 	if ((int)$id > 0) {
 	$this->view->slide = $this->_images->fetchRow($slides->select()->where('imageID = ?', $id));
-	
+
 	$this->view->params = $this->_getAllParams();
 	}
 	}
@@ -459,9 +422,9 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	/** View a zooming image of the file
-	*/	
+	*/
 	public function zoomAction() {
 	if($this->_getParam('id',false)) {
 	$imageID = $this->_getParam('id');
@@ -471,17 +434,17 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$imagepath = $imagedata['0']['imagedir'];
 	$filename = $imagedata['0']['f'];
 	$stripped = explode('.',$filename);
-	$stripped = end($stripped); 
-	$new = str_replace('.', '_', $filename); 
+	$stripped = end($stripped);
+	$new = str_replace('.', '_', $filename);
 	$new[strrpos($new, '_')] = '.';
 	$stripit = explode('.',$new);
 	$zoomedimagepath = $stripit['0'];
-	
+
 	$filepath = './' . $imagepath . $filename;
 	$path = './' . $imagepath . $zoomdir;
 	$ord = $imagepath . $zoomdir;
-	
-	
+
+
 	if(file_exists($filepath)) {
 	if(!file_exists($path)){
 	mkdir($path, 0777);
@@ -494,7 +457,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$this->_zoomifyObject->_dir = $imagepath;
 	$this->_zoomifyObject->_vSaveToLocation = $ord . $zoomedimagepath . '_zdata';
 	$this->_zoomifyObject->ZoomifyProcess($filename, $imagepath);
-	
+
 	$this->view->path = $ord . $zoomedimagepath . '_zdata';
 
 	} else {

@@ -1,11 +1,12 @@
 <?php echo $this->partial('partials/users/publicprofile.phtml',$this->accountdata['0']);?>
-<?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript'); 
+<?php
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 ?>
 <?php $this->jQuery()->javascriptCaptureStart(); ?>
 jQuery(document).ready(function($) {
-$('a[rel*=lightbox]').lightBox() 
+$('a[rel*=lightbox]').lightBox()
 });
 <?php $this->jQuery()->javascriptCaptureEnd(); ?>
 
-<?php echo $this->latestRecords('createdBy:' . $this->accountdata['0']['pasID'']); ?>
+<?php 
+echo $this->latestRecords('createdBy:' . $this->accountdata['0']['id']); ?>

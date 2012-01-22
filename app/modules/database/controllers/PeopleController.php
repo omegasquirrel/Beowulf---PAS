@@ -1,6 +1,6 @@
-<?php 
+<?php
 /** Controller for displaying information about people
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -11,7 +11,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
 
     protected $_peoples, $_geocoder;
     /** Setup the contexts by action and the ACL.
-    */	
+    */
     public function init() {
     $this->_helper->_acl->allow('flos',NULL);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -24,7 +24,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
             ->addActionContext('person', array('xml','json','vcf'))
             ->addActionContext('index', array('xml','json'))
             ->initContext();
-   
+
     $this->_peoples = new Peoples();
     $this->_gmapskey = $this->_helper->config->webservice->googlemaps->apikey;
     $this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
@@ -34,49 +34,13 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     /** Index page of all people on the database
     */
     public function indexAction(){
-    $limit = 20;
-    $page = $this->_getParam('page');
-    if(!isset($page)){
-            $start = 0;
-
-    } else {
-            unset($params['page']);
-            $start = ($page - 1) * 20;
-    }	
-
-    $config = array(
-    'adapteroptions' => array(
-    'host' => '127.0.0.1',
-    'port' => 8983,
-    'path' => '/solr/',
-    'core' => 'beopeople'
-    ));
-
-    $select = array(
-    'query'         => '*:*',
-    'start'         => $start,
-    'rows'          => $limit,
-    'fields'        => array('*'),
-    'sort'          => array('forename' => 'asc'),
-    'filterquery' => array(),
+    $search = new Pas_Solr_Handler('beopeople');
+    $search->setFields(array('*')
     );
-
-    $client = new Solarium_Client($config);
-    $query = $client->createSelect($select);
-    $resultset = $client->select($query);
-    $data = NULL;
-    foreach($resultset as $doc){
-        foreach($doc as $key => $value){
-            $fields[$key] = $value;
-        }
-        $data[] = $fields;
-    }
-    $paginator = Zend_Paginator::factory($resultset->getNumFound());
-    $paginator->setCurrentPageNumber($page)
-          ->setItemCountPerPage($limit)
-          ->setPageRange(20);
-    $this->view->paginator = $paginator;
-    $this->view->results = $data;
+    $search->setParams($this->_getAllParams());
+    $search->execute();
+    $this->view->paginator = $search->_createPagination();
+    $this->view->results = $search->_processResults();
     }
     /** Display details of a person
     */
@@ -99,16 +63,16 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $this->view->form = $form;
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
-    $updateData = $form->getValues(); 
+    $updateData = $form->getValues();
     $address = $form->getValue('address') . ',' . $form->getValue('city') . ','
     . $form->getValue('county') . ',' . $form->getValue('postcode');
-    
+
     $coords = $this->_geocoder->getCoordinates($address);
-    
+
     if($coords){
         $lat = $coords['lat'];
-        $lon = $coords['lon']; 
-    } else { 
+        $lon = $coords['lon'];
+    } else {
         $lat = NULL;
         $lon = NULL;
     }
@@ -116,17 +80,17 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
 
     $updateData['lat'] = $lat;
     $updateData['lon'] = $lon;
-    
+
     if(array_key_exists('dbaseID',$updateData)){
     $users = new Users();
     $user = array('peopleID' => $audit['secuid']);
-    $where =  $users->getAdapter()->quoteInto('id = ?', 
+    $where =  $users->getAdapter()->quoteInto('id = ?',
             $updateData['dbaseID']);
-    $updateUsers = $users->update($user,$where);	
+    $updateUsers = $users->update($user,$where);
     }
-    $insert = $this->_peoples->add($updateData);	
-    
-	$this->_helper->solrUpdater->update('beopeople', $insert);	
+    $insert = $this->_peoples->add($updateData);
+
+	$this->_helper->solrUpdater->update('beopeople', $insert);
     $this->_redirect(self::REDIRECT . 'person/id/' . $insert);
     $this->_flashMessenger->addMessage('Record created!');
     } else {
@@ -143,16 +107,16 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $this->view->form = $form;
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
-    $updateData = $form->getValues(); 
+    $updateData = $form->getValues();
     $address = $form->getValue('address') . ',' . $form->getValue('city') . ','
     . $form->getValue('county') . ',' . $form->getValue('postcode');
-    
+
     $coords = $this->_geocoder->getCoordinates($address);
-    
+
     if($coords){
         $lat = $coords['lat'];
-        $lon = $coords['lon']; 
-    } else { 
+        $lon = $coords['lon'];
+    } else {
         $lat = NULL;
         $lon = NULL;
     }
@@ -161,20 +125,20 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $updateData['lon'] = $lon;
 
     $oldData = $this->_peoples->fetchRow('id=' . $this->_getParam('id'))->toArray();
-   
+
     if(array_key_exists('dbaseID',$updateData)){
     $users = new Users();
     $userdetails = array('peopleID' => $oldData['secuid']);
     $whereUsers =  $users->getAdapter()->quoteInto('id = ?', $updateData['dbaseID']);
-    $updateUsers = $users->update($userdetails, $whereUsers);	
-    } 
+    $updateUsers = $users->update($userdetails, $whereUsers);
+    }
     $where =  $this->_peoples->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
     //Updated the people db table
     $update = $this->_peoples->update($updateData, $where);
     //Update the solr instance
 	$this->_helper->solrUpdater->update('beopeople', $this->_getParam('id'));
 	//Update the audit log
-    $this->_helper->audit($updateData, $oldData, 'PeopleAudit', 
+    $this->_helper->audit($updateData, $oldData, 'PeopleAudit',
             $this->_getParam('id'), $this->_getParam('id'));
     $this->_flashMessenger->addMessage('Person information updated!');
     $this->_redirect(self::REDIRECT . 'person/id/' . $this->_getParam('id'));
@@ -192,7 +156,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     }
     }
     /** Delete a person's data
-    */	
+    */
     public function deleteAction() {
     if ($this->_request->isPost()) {
     $id = (int)$this->_request->getPost('id');
@@ -211,5 +175,5 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     }
     }
     }
-	
+
 }
