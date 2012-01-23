@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying user entered records
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,22 +8,48 @@
 * @license    GNU General Public License
 */
 class Users_RecordsController extends Pas_Controller_Action_Admin {
-	/** Set up the ACL and contexts
-	*/
-	public function init() {	
-	$this->_helper->_acl->deny('public');
-	$this->_helper->_acl->allow('member',NULL);
-	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+    /** Set up the ACL and contexts
+    */
+    public function init() {
+    $this->_helper->_acl->deny('public');
+    $this->_helper->_acl->allow('member',NULL);
+    $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     }
-	/** Set up the index list
-	*/
-	public function indexAction() {
-	$finds = new Finds();
-	$this->view->finds = $finds->getRecordsByUserAcct($this->getAccount()->id,$this->_getParam('page'));
-	}
-	/** Display the map
-	*/	
-	public function mappedAction() {
-	}
+     /** Protected function for personal details
+     *
+     */
+    protected function _getDetails() {
+    $user = new Pas_User_Details();
+    return $user->getPerson();
+    }
+
+    /** Set up the index list
+    */
+    public function indexAction() {
+
+    if(!is_null($this->_getDetails()->peopleID)){
+    $params = $this->_getAllParams();
+    $params['finderID'] = $this->_getDetails()->peopleID;
+
+    $params['-createdBy'] = $this->_getDetails()->id;
+    $search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county')
+    );
+    $search->setParams($params);
+    $search->execute();
+    $this->view->paginator = $search->_createPagination();
+    $this->view->finds = $search->_processResults();
+    } else {
+        throw new Pas_Exception_Param('Your account needs linking to your userid');
+    }
+    }
+    /** Display the map
+    */
+    public function mappedAction() {
+    }
 
 }
