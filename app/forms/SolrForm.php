@@ -27,7 +27,7 @@ parent::__construct($options);
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
-		->addErrorMessage('Please enter a valid string!')
+		->addErrorMessage('Please enter a search term')
 		->setDecorators($decorators);
 
 	$submit = new Zend_Form_Element_Submit('submit');

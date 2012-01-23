@@ -116,20 +116,6 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     public function indexAction(){
     $form = new SolrForm();
     $this->view->form = $form;
-    $params = $this->_getAllParams();
-
-    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
-    $params = $form->getValues();
-    unset($params['csrf']);
-    $this->_helper->Redirector->gotoSimple('index','artefacts','database',$params);
-    } else {
-    $form->populate($form->getValues());
-    }
-    }
-    if(isset($params['q'])){
-    $form->populate($params);
-    }
     $search = new Pas_Solr_Handler('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -137,10 +123,34 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
+    if ($form->isValid($form->getValues())) {
+    $params = $form->getValues();
+    unset($params['csrf']);
+    $this->_helper->Redirector->gotoSimple('index','artefacts','database',$params);
+    } else {
+    $form->populate($form->getValues());
+    $params = $form->getValues();
+    }
+    } else {
+
+    $params = $this->_getAllParams();
+    $form->populate($this->_getAllParams());
+
+
+    }
+
+    if(!isset($params['q']) || $params['q'] == ''){
+        $params['q'] = '*';
+    }
+
     $search->setParams($params);
     $search->execute();
+
+    $search->_processFacets();
     $this->view->paginator = $search->_createPagination();
     $this->view->data = $search->_processResults();
+
     }
     /** Display individual record
      * @todo move comment functionality to a model

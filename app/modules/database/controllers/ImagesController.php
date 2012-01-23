@@ -47,24 +47,10 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	*/
 	public function indexAction() {
         $form = new SolrForm();
+
         $this->view->form = $form;
+
         $params = $this->array_cleanup($this->_getAllParams());
-
-        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-
-        if ($form->isValid($form->getValues()))
-
-        {
-        $params = $this->array_cleanup($form->getValues());
-  
-        $this->_helper->Redirector->gotoSimple('index','images','database',$params);
-        } else {
-        $form->populate($form->getValues());
-        }
-        }
-        if(isset($params['q'])){
-        $form->populate($params);
-        }
         $search = new Pas_Solr_Handler('beoimages');
         $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -74,6 +60,31 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
         );
 
         $search->setFacets(array('broadperiod','county'));
+
+
+        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+        if ($form->isValid($form->getValues())) {
+        $params = $this->array_cleanup($form->getValues());
+
+        $this->_helper->Redirector->gotoSimple('index','images','database',$params);
+        } else {
+        $form->populate($form->getValues());
+        $params = $form->getValues();
+        }
+        } else {
+
+        $params = $this->_getAllParams();
+        $form->populate($this->_getAllParams());
+
+
+        }
+
+        if(!isset($params['q']) || $params['q'] == ''){
+            $params['q'] = '*';
+        }
+
         $search->setParams($params);
         $search->execute();
 
@@ -82,6 +93,8 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
         $this->view->results = $search->_processResults();
 
 	}
+
+
 
 
         private function array_cleanup( $array ) {
