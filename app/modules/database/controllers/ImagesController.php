@@ -46,6 +46,25 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	/** Display index page of images
 	*/
 	public function indexAction() {
+        $form = new SolrForm();
+        $this->view->form = $form;
+        $params = $this->array_cleanup($this->_getAllParams());
+
+        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
+
+        if ($form->isValid($form->getValues()))
+
+        {
+        $params = $this->array_cleanup($form->getValues());
+  
+        $this->_helper->Redirector->gotoSimple('index','images','database',$params);
+        } else {
+        $form->populate($form->getValues());
+        }
+        }
+        if(isset($params['q'])){
+        $form->populate($params);
+        }
         $search = new Pas_Solr_Handler('beoimages');
         $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -53,14 +72,29 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
     	'filename', 'thumbnail', 'old_findID',
     	'county','licenseAcronym','findID')
         );
+
         $search->setFacets(array('broadperiod','county'));
-        $search->setParams($this->_getAllParams());
+        $search->setParams($params);
         $search->execute();
+
         $search->_processFacets();
         $this->view->paginator = $search->_createPagination();
         $this->view->results = $search->_processResults();
 
 	}
+
+
+        private function array_cleanup( $array ) {
+        $todelete = array('submit','action','controller','module','csrf');
+	foreach( $array as $key => $value ) {
+        foreach($todelete as $match){
+    	if($key == $match){
+    		unset($array[$key]);
+    	}
+        }
+        }
+        return $array;
+        }
 	/** Add a new image
 	*/
 	public function addAction()	 {

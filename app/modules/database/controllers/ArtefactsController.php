@@ -100,9 +100,36 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->_user = $this->_helper->identity->getPerson();
     }
 
+
+    private function array_cleanup( $array ) {
+        $todelete = array('submit','action','controller','module','csrf');
+	foreach( $array as $key => $value ) {
+        foreach($todelete as $match){
+    	if($key == $match){
+    		unset($array[$key]);
+    	}
+        }
+        }
+    }
     /** Display a list of objects recorded with pagination
     */
     public function indexAction(){
+    $form = new SolrForm();
+    $this->view->form = $form;
+    $params = $this->_getAllParams();
+
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
+    if ($form->isValid($form->getValues())) {
+    $params = $form->getValues();
+    unset($params['csrf']);
+    $this->_helper->Redirector->gotoSimple('index','artefacts','database',$params);
+    } else {
+    $form->populate($form->getValues());
+    }
+    }
+    if(isset($params['q'])){
+    $form->populate($params);
+    }
     $search = new Pas_Solr_Handler('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -110,7 +137,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
-    $search->setParams($this->_getAllParams());
+    $search->setParams($params);
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->data = $search->_processResults();

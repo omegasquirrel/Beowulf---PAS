@@ -417,6 +417,7 @@ class Pas_Solr_Handler {
 
         if(array_key_exists('q',$this->_params)){
 		$select['query'] = $this->_params['q'];
+                unset($this->_params['q']);
 	}
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
@@ -439,7 +440,7 @@ class Pas_Solr_Handler {
         if(array_key_exists('format', $this->_params)){
         $this->_processFormats($this->_params);
     }
-     
+
 
 
 //    Zend_Debug::dump($this->_params,'The params sent');

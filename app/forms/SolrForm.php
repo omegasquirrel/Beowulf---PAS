@@ -1,6 +1,6 @@
 <?php
 /** Form for solr based single word search
-* 
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -13,7 +13,7 @@ public function __construct($options = null)
 parent::__construct($options);
 
 	$decorators = array(
-            array('ViewHelper'), 
+            array('ViewHelper'),
             array('Description', array('placement' => 'append','class' => 'info')),
             array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
             array('Label'),
@@ -35,22 +35,22 @@ parent::__construct($options);
 		->setAttribs(array('class'=> 'large'))
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag');
-	
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_config->form->salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
 		->setTimeout(4800);
-	
+
 	$this->addElements(array($q, $submit, $hash ));
-	
-	
+
+
 	$this->addDisplayGroup(array('q','submit'), 'Search');
 	$this->Search->removeDecorator('DtDdWrapper');
 	$this->Search->removeDecorator('HtmlTag');
 	$this->Search->addDecorators(array(array('HtmlTag', array('tag' => 'ul','id' => 'www'))))
 	->addDecorator('FieldSet');
-	
+
 	}
 }
