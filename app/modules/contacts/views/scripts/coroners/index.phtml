@@ -8,5 +8,6 @@ $this->metaBase('A list of all coroners known to the Portable Antiquities Scheme
 <?php if (count($this->coroners)): ?>
 <p>The Scheme tries to keep this list as current as possible, however we accept there may be errors and omissions.</p>
 <?php echo $this->partialLoop('partials/contacts/coronervcard.phtml',$this->coroners);?>
-<?php endif;?><?= $this->paginationControl($this->coroners, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php endif;?>
+<?php echo $this->paginationControl($this->coroners, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>

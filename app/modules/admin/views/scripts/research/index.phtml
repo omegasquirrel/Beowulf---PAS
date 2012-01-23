@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->headTitle('Research projects conducted on Scheme data');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/confirm.js',$type = 'javascript');?>
 
@@ -27,7 +27,7 @@ $('a.delete').confirm({
     buttons: {
       wrapper:'<button></button>',
       separator:'  '
-    }  
+    }
   });
  });
 
@@ -55,4 +55,4 @@ $('a.delete').confirm({
 </tbody>
 </table>
 <?php endif; ?>
-<?= $this->paginationControl($this->research, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->research, 'Sliding', 'structure/pagination.phtml'); ?>

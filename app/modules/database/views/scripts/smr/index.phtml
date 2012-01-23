@@ -1,11 +1,11 @@
-<?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
+<?php
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',
 $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',
-$type='text/javascript'); 
+$type='text/javascript');
 $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
 $this->headTitle('List all Scheduled Monuments of the National Monument record');
 ?>
@@ -30,7 +30,7 @@ $this->headTitle('List all Scheduled Monuments of the National Monument record')
 <?php echo $this->partialLoop('partials/database/smr.phtml',$this->smrs);?>
 </tbody>
 </table>
-<?= $this->paginationControl($this->smrs, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->smrs, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
 <?php else:?>
 <p>No Scheduled Monuments are available to you right now.</p>

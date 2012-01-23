@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->headTitle('Early Medieval coin types ');
 $this->headMeta('The Early Medieval period for numismatics is broken down into a series of coin typologies. These
 types are closely aligned to the Fitzwilliam\'s Early Medieval coin corpus',' description')
@@ -24,7 +24,7 @@ types are closely aligned to the Fitzwilliam\'s Early Medieval coin corpus',' de
 <?php echo $this->partialLoop('partials/numismatics/medtypes.phtml',$this->types);?>
 </tbody>
 </table>
-<?= $this->paginationControl($this->types, 'Elastic', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->types, 'Elastic', 'structure/pagination.phtml'); ?>
 
 <?php else:?>
 <p>There are no coin types available.</p>

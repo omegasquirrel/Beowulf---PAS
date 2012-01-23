@@ -22,7 +22,7 @@ if($this->finds) :?>
 <?php echo $this->partialLoop('partials/database/findsTable2.phtml',$this->finds);?>
 </tbody>
 </table>
-<?= $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 
 <?php else:?>
 <h2>My finds recorded by the Scheme</h2>

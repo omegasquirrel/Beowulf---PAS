@@ -1,11 +1,10 @@
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 jQuery(document).ready(function($) {
-
- $('a[rel*=lightbox]').lightBox() 
-    })
+ $('a[rel*=lightbox]').lightBox()
+ });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript'); 
+<?php
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 ?>
 <h2>All finds associated with this tag</h2>
 <p>Using an automatic text extraction service provided by OpenCalais at Thomson Reuters, records have been analysed as people view them.</p>
@@ -14,7 +13,7 @@ $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.
 <table class="stripeMe" summary="All records tagged with this term">
 <caption>All records tagged with this term</caption>
 <thead>
-<tr> 
+<tr>
 <th>Image</th>
 <th>Object Type</th>
 <th>Find number</th>
@@ -28,7 +27,7 @@ $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.
 
 </tbody>
 </table>
-<?= $this->paginationControl($this->tags, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->tags, 'Sliding', 'structure/pagination.phtml'); ?>
 
 <?php else:?>
 <p>No finds have been tagged with this term.</p>

@@ -4,7 +4,7 @@
 <?php echo $this->partialLoop('partials/users/usersList.phtml',$this->users);?>
 <div style="clear:both;"></div>
 
-<?= $this->paginationControl($this->users, 'Elastic', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->users, 'Elastic', 'structure/pagination.phtml'); ?>
 <?php else:?>
 <p>No users are available to your profile</p>
 <?php endif;?>

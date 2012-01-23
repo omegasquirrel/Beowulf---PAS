@@ -1,6 +1,5 @@
-<?php 
-    $this->headTitle('Denominations issued during the Medieval period - Page ' . $this->denominations->getCurrentPageNumber());
-
+<?php
+$this->headTitle('Denominations issued during the Medieval period');
 ?>
 <h2>Post Medieval denominations</h2>
 <p>The following coins were issued during the Post Medieval period.</p>
@@ -8,7 +7,7 @@
 <ul id="related">
 <?php echo $this->partialLoop('partials/numismatics/denominations.phtml',$this->denominations);?>
 </ul>
-<?= $this->paginationControl($this->denominations, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->denominations, 'Sliding', 'structure/pagination.phtml'); ?>
 <?php else:?>
 <p>There are no denominations available to you.</p>
 <?php endif;?>

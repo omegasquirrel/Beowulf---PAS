@@ -16,4 +16,4 @@
 <?php echo $this->partialLoop('partials/admin/coronerlist.phtml',$this->coroners);?>
 </tbody>
 </table>
-<?php endif;?><?= $this->paginationControl($this->coroners, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php endif;?><?php echo $this->paginationControl($this->coroners, 'Sliding', 'structure/pagination.phtml'); ?>

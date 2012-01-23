@@ -15,7 +15,7 @@
 <?php echo $this->partialLoop('partials/numismatics/medtypes.phtml',$this->types);?>
 </tbody>
 </table>
-<?= $this->paginationControl($this->types, 'Elastic', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->types, 'Elastic', 'structure/pagination.phtml'); ?>
 
 <?php else:?>
 <p>There are no coin types available.</p>

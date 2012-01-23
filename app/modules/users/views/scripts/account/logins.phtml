@@ -23,7 +23,7 @@ echo '<li>IP Address: '.$i['ipAddress'].' '.$i['count'].' times</li>';
 <?php echo $this->partialLoop('partials/users/logins.phtml',$this->logins);?>
 </tbody>
 </table>
-<?= $this->paginationControl($this->logins, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->logins, 'Sliding', 'structure/pagination.phtml'); ?>
 
 <?php else:?>
 <p>There is no login history available for you. Which is an error!</p>

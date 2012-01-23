@@ -1,4 +1,4 @@
-<?php 	
+<?php
 $this->headTitle('Emperor biographies');
 ?>
 <h2>List of Emperor's biographies on database</h2>
@@ -22,4 +22,4 @@ $this->headTitle('Emperor biographies');
 </table>
 <?php endif; ?>
 
-<?= $this->paginationControl($this->paginator, 'Elastic', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'structure/pagination.phtml'); ?>
