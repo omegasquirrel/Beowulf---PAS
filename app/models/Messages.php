@@ -1,4 +1,4 @@
-<?php 
+<?php
 /** Get submitted messages on the system
 * @category 	Pas
 * @package 		Pas_Db_Table
@@ -15,31 +15,36 @@ class Messages extends Pas_Db_Table_Abstract {
 	protected $_name = 'messages';
 
 	protected $_primary = 'id';
-	
-	const SPAM = '{SPAM: Akismet checked}';
-	
+
+        protected $_akismetkey;
+
+        protected $_baseUrl;
+
+        const SPAM = '{SPAM: Akismet checked}';
+
 	const NOTSPAM = 'Akismet checked  - clean';
-	
-	
+
+
 	protected $_akismet;
-	
+
 	public function init(){
-	$akismetkey = $this->_config->webservice->akismet->apikey;
-	$this->_akismet = new Zend_Service_Akismet($akismetkey, 'http://www.finds.org.uk');
+        $this->_baseUrl = Zend_Registry::get('siteurl');
+	$this->_akismetkey = $this->_config->webservice->akismet->apikey;
+	$this->_akismet = new Zend_Service_Akismet($akismetkey,$this->_baseUrl);
 	}
-	
+
 	/** get a count of messages
-	* @return array 
+	* @return array
 	*/
 	public function getCount(){
 	$messages = $this->getAdapter();
 	$select = $messages->select()
 		->from($this->_name,array('total' => 'COUNT(id)'))
 		->where('replied != ?',(int)1);
-	return $messages->fetchAll($select);	
+	return $messages->fetchAll($select);
 	}
 
-	/** Get a paginated list of messages 
+	/** Get a paginated list of messages
 	* @return array $paginator
 	*/
 	public function getMessages($params){
@@ -47,15 +52,15 @@ class Messages extends Pas_Db_Table_Abstract {
 	$select = $messages->select()
 		->from($this->_name)
 		->order($this->_primary.' DESC');
-    $paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
+        $paginator = Zend_Paginator::factory($select);
+	$paginator->setItemCountPerPage(30)
 	          ->setPageRange(20);
 	if(isset($params['page']) && ($params['page'] != "")) {
-    $paginator->setCurrentPageNumber($params['page']); 
+        $paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}
-	
+
 	/** Add a new help request message and send email to Scheme in box.
 	*/
 	public function addRequest($data){
@@ -68,7 +73,7 @@ class Messages extends Pas_Db_Table_Abstract {
 	if(empty($data['updatedBy'])){
 		$data['updatedBy'] = $this->userNumber();
 	}
-	if ($this->_akismet->isSpam($data)) { 
+	if ($this->_akismet->isSpam($data)) {
 		$data['comment_approved'] = self::SPAM;
 	} else  {
 		$data['comment_approved'] = self::NOTSPAM;
@@ -79,10 +84,10 @@ class Messages extends Pas_Db_Table_Abstract {
 	$mail->addTo('info@finds.org.uk', 'The Portable Antiquities Scheme');
 	$mail->addCC($data['comment_author_email'], $data['comment_author']);
 	$mail->setSubject('Contact us submission');
-	$mail->send();	
+	$mail->send();
 	return parent::insert($data);
 	}
-	
+
 	public function addComplaint($data){
 	if(!empty($data['csrf'])){
 		unset($data['csrf']);
@@ -104,12 +109,12 @@ class Messages extends Pas_Db_Table_Abstract {
 		$useragent = new Zend_Http_UserAgent();
 		$data['user_agent'] = $useragent->getUserAgent();
 	}
-	if ($this->_akismet->isSpam($data)) { 
+	if ($this->_akismet->isSpam($data)) {
 		$data['comment_approved'] = self::SPAM;
 	} else  {
 		$data['comment_approved'] = self::NOTSPAM;
 	}
-	return parent::insert($data);	
+	return parent::insert($data);
 	}
 
 }

@@ -91,15 +91,14 @@ class Pas_Controller_Action_Helper_Mailer extends Zend_Controller_Action_Helper_
          */
 	protected function _addAttachments(array $attachments){
         if(is_array($attachments)){
-                foreach($attachments as $attach){
-                		$filter = new Zend_Filter_BaseName();
-                        $file = file_get_contents($attach);
-//                        Zend_Debug::dump($file);
-                        $addition = $this->_mail->createAttachment($file);
-                        $addition->disposition = Zend_Mime::DISPOSITION_INLINE;
-                        $addition->encoding    = Zend_Mime::ENCODING_BASE64;
-                        $addition->filename	   = $filter->filter($attach);
-                }
+            foreach($attachments as $attach){
+                $filter = new Zend_Filter_BaseName();
+                $file = file_get_contents($attach);
+                $addition = $this->_mail->createAttachment($file);
+                $addition->disposition = Zend_Mime::DISPOSITION_INLINE;
+                $addition->encoding    = Zend_Mime::ENCODING_BASE64;
+                $addition->filename	   = $filter->filter($attach);
+            }
         } else {
                 throw new Exception('The attachment list is not an array.');
         }

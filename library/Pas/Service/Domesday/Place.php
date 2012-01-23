@@ -1,33 +1,33 @@
 <?php
 
-class Pas_Service_Domesday_Place 
+class Pas_Service_Domesday_Place
 	extends Zend_Rest_Client {
 
 	protected $_params = array();
 
 	protected $_uri = 'http://domesdaymap.co.uk';
-	
+
 	protected $_responseTypes = array('xml', 'json', 'django');
-	
+
 	protected $_responseType = 'json';
-	
-    protected $_methods = array('place', 'placesnear', 'manor', 
+
+    protected $_methods = array('place', 'placesnear', 'manor',
     	'image', 'hundred', 'area',
     	'county' );
-    
+
     protected $_placeNearParams = array(
-	    'lat', 'lng', 'radius', 
-	    's', 'e', 'n', 
+	    'lat', 'lng', 'radius',
+	    's', 'e', 'n',
 	    'w','format');
-    
+
     protected $_apiPath = '/api/1.0/';
-	
+
 	public function __construct(){
 	$this->setUri($this->_uri);
 	$client = self::getHttpClient();
 	$client->setHeaders('Accept-Charset', 'ISO-8859-1,utf-8');
 	}
-	
+
 	public function setParams($params)
     {
         foreach ($params as $key => $value) {
@@ -79,11 +79,12 @@ class Pas_Service_Domesday_Place
     }
 
     /** Set up the response rendering
-     * 
+     *
      * @param string $response
      */
     public function formatResponse(Zend_Http_Response $response)
     {
+   
         if ('json' === $this->getResponseType()) {
             return json_decode($response->getBody());
         }  else {
@@ -92,7 +93,7 @@ class Pas_Service_Domesday_Place
     }
 
     /** Retrieve data from the api
-     * 
+     *
      * @param string $method
      * @param array $params
      */
@@ -107,9 +108,9 @@ class Pas_Service_Domesday_Place
 			}
 		}
     	$this->setParams($params);
-		$path = $this->_apiPath . $method; 
-		
+		$path = $this->_apiPath . $method;
+
         return $this->sendRequest('GET', $path);
     }
-	
+
 }

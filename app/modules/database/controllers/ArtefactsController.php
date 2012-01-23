@@ -77,7 +77,10 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     public function init()  {
     $this->_config = $this->_helper->config();
     $this->_helper->_acl->deny('public',array('add','edit'));
-    $this->_helper->_acl->allow('public',array('index','record','errorreport'));
+    $this->_helper->_acl->allow('public',array(
+        'index','record','errorreport',
+        'notifyflo'
+        ));
     $this->_helper->_acl->allow('member',NULL);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     $this->_cs = $this->_helper->contextSwitch();
@@ -183,14 +186,12 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->view->form = $form;
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {
-    $data = $form->getValues();
-    if ($this->getHelper->getAkismet()->isSpam($data)) {
-    $data['comment_approved'] = 'spam';
-    } else  {
-    $data['comment_approved'] =  'moderation';
-    }
+    $data = $this->_helper->akismet($form->getValues());
+    $data['contentID'] = $this->_getParam('id');
+    $data['comment_type'] = 'findComment';
+    $data['comment_approved'] = 'moderation';
     $comments = new Comments();
-    $comments->insert($data);
+    $comments->add($data);
     $this->_flashMessenger->addMessage('Your comment has been entered and will appear shortly!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     $this->_request->setMethod('GET');
@@ -403,11 +404,12 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
     $data = $form->getValues();
-//    if ($this->_helper->akismet->isSpam($data)) {
-//    $data['comment_approved'] = 'spam';
-//    }  else  {
-//    $data['comment_approved'] =  '1';
-//    }
+    if ($this->_helper->akismet($data)) {
+    $data['comment_approved'] = 'spam';
+    }  else  {
+    $data['comment_approved'] =  '1';
+    }
+
     $errors = new ErrorReports();
     $this->notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$data);
     $errors->add($data);
@@ -418,9 +420,39 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }
     }
     } else {
-            throw new Pas_Exception_Param($this->_missingParameter);
+        throw new Pas_Exception_Param($this->_missingParameter);
     }
     }
+
+
+
+    public function notifyfloAction(){
+    if($this->_getParam('id',false)) {
+    $form = new NotifyFloForm();
+    $this->view->form = $form;
+    $find = $this->_finds->fetchRow($this->_finds->select()->where('id = ?', $this->_getParam('id')));
+    $this->view->find = $find->toArray();
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
+    if ($form->isValid($form->getValues())) {
+    $contacts = new Contacts();
+    $to = $contacts->getNameEmail($form->getValue('flo'));
+    $cc = $this->_getAdviser($find->objecttype,$find->broadperiod);
+    $from[] = array('email' => $this->_user->email, 'name' => $this->_user->fullname);
+    $cc = array_merge($cc,$from);
+    $assignData = array_merge($find->toArray(),$form->getValues(),$to['0']);
+    $this->_helper->mailer($assignData, 'publicFindToFlo', $to, $cc, $from);
+    $this->_flashMessenger->addMessage('Your message has been sent');
+    $this->_redirect('database/artefacts/record/id/' . $find->id);
+    } else {
+        $form->populate($form->getValues());
+    }
+    }
+    } else {
+        throw new Pas_Exception_Param($this->_missingParameter);
+    }
+    }
+
+
 
     /** Provide a notification for an object
     */
@@ -509,6 +541,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
    $sendto[] = array ('email' => $v, 'name' => $k);
    }
    return $sendto;
-    }
+
+   }
 
 }

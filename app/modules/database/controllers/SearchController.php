@@ -11,22 +11,18 @@
 class Database_SearchController extends Pas_Controller_Action_Admin {
 
 	protected $_searches;
-	
+
 	protected $_contexts = array(
 	'xml', 'rss', 'json',
 	'atom', 'kml', 'georss',
 	'ics', 'rdf', 'xcs');
 
-	protected $_config, $_akismetkey, $_googleapikey, $_solr;
 	/** Setup the contexts by action and the ACL.
 	*/
 	public function init() {
 	$this->_searches = new Searches();
 	$this->_helper->_acl->allow('public',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->_config         = Zend_Registry::get('config');
-	$this->_akismetkey     = $config->webservice->akismetkey;
-	$this->_solr           = new Apache_Solr_Service( 'localhost', '8983', '/solr/beowulf' );
 	$this->_helper->contextSwitch()
 		->setAutoDisableLayout(true)
 		->addContext('kml',array('suffix' => 'kml'))
@@ -80,17 +76,17 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 
 
-	function array_cleanup( $array ) {
-    $todelete = array('submit','action','controller','module','page','csrf');
-		foreach( $array as $key => $value ) {
-    foreach($todelete as $match){
+	private function array_cleanup( $array ) {
+        $todelete = array('submit','action','controller','module','page','csrf');
+	foreach( $array as $key => $value ) {
+        foreach($todelete as $match){
     	if($key == $match){
     		unset($array[$key]);
     	}
-    }
-    }
-    return $array;
-}
+        }
+        }
+        return $array;
+        }
 
 	/** Generate the advanced search page
 	*/
@@ -291,7 +287,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	*/
 	public function emailAction() {
 	$user = $this->_helper->identity->getPerson();
-	$lastsearch = $this->_searches->fetchRow($this->_searches->select()->where('userid = ?', 
+	$lastsearch = $this->_searches->fetchRow($this->_searches->select()->where('userid = ?',
 	$user->id)->order('id DESC'));
 	if($lastsearch) {
 	$querystring = unserialize($lastsearch->searchString);
@@ -305,7 +301,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
 	if ($form->isValid($form->getValues())) {
 	$to[] = array(
-	'email' => $form->getValue('email'), 
+	'email' => $form->getValue('email'),
 	'name' => $form->getValue('fullname')
 	);
 	$from[] = array(
@@ -322,7 +318,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$form->populate($form->getValues());
 	}
 	}
-	} 
+	}
 	}
 	/** Display saved searches
 	*/
@@ -343,10 +339,6 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	/** Display the solr form
 	*/
 	public function solrAction(){
- 	if (  !$this->_solr->ping() ) {
- 	echo '<h2>Search engine system error</h2>';
-	echo '<p>Solr service not responding.</p>';
-	} else {
 	$form = new SolrForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
@@ -359,14 +351,14 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	}
+
 	/** Display the index page.
 	*/
 	public function resultsAction(){
 	$params = $this->_getAllParams();
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
-		'id','identifier','objecttype',
+	'id','identifier','objecttype',
         'title','broadperiod','description',
         'old_findID','thumbnail', 'county',
         'imagedir','filename'));

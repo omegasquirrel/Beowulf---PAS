@@ -1,6 +1,6 @@
 <?php
 /** Controller for adding and manipulating research and topics
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,12 +8,12 @@
 * @license    GNU General Public License
 */
 class Admin_ResearchController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_research;
-	
+
 	protected $_suggested;
 	/** Set up the ACL and contexts
-	*/		
+	*/
 	public function init() {
 	$this->_research = new ResearchProjects();
 	$this->_suggested = new Suggested();
@@ -22,16 +22,16 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	}
 	/** Set up the redirect baseurl
-	 * 
+	 *
 	 * @var string REDIRECT
-	*/		
+	*/
 	const REDIRECT = '/admin/research/';
 
 	public function indexAction(){
 	$this->view->research = $this->_research->getAllProjects($this->_getAllParams());
 	}
 	/** Add a new research topic
-	*/		
+	*/
 	public function addAction(){
 	$form = new ResearchForm();
 	$form->submit->setLabel('Add a project');
@@ -47,7 +47,7 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a research project
-	*/	
+	*/
 	public function editAction() {
 	if($this->_getParam('id',false)) {
 	$form = new ResearchForm();
@@ -60,27 +60,24 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger->addMessage('Research project details updated.');
 	$this->_redirect(self::REDIRECT);
 	} else {
-	$form->populate($form->getValues();
+	$form->populate($form->getValues());
 	}
 	} else {
-	// find id is expected in $params['id']
-	$id = (int), 0);
-	if ($id > 0) {
+
 	$form->populate($this->_research->fetchRow('id='.$this->_request->getParam('id'))->toArray());
-	}
 	}
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
-	}	
+	}
 	}
 	/** Add a suggested research topic
-	*/		
+	*/
 	public function addsuggestedAction() {
 	$form = new SuggestedForm();
 	$form->submit->setLabel('Add a project');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
-    if ($form->isValid($form->getValues())) {
+        if ($form->isValid($form->getValues())) {
 	$this->_suggested->add($form->getValues());
 	$this->_flashMessenger->addMessage('A new suggested research project has been entered.');
 	$this->_redirect(self::REDIRECT . 'suggested/');
@@ -90,22 +87,22 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List all suggested topics
-	*/	
+	*/
 	public function suggestedAction(){
 	$this->view->suggested = $this->_suggested->getAll($this->_getAllParams());
 	}
-	
+
 	/** Edit a suggested topic
-	*/		
+	*/
 	public function editsuggestedAction() {
 	if($this->_getParam('id',false)) {
 	$form = new SuggestedForm();
 	$form->submit->setLabel('Submit changes to project');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
-    if ($form->isValid($form->getValues())) {
+        if ($form->isValid($form->getValues())) {
 	$where =  $this->_suggested->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-	$update = $this->_suggested->update($form->getValues(), $where);
+        $this->_suggested->update($form->getValues(), $where);
 	$this->_flashMessenger->addMessage('Suggested research project details updated.');
 	$this->_redirect(self::REDIRECT . 'suggested/');
 	} else {
@@ -120,10 +117,10 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	}
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
-	}	
+	}
 	}
 	/** Delete a suggested topic
-	*/		
+	*/
 	public function deletesuggestedAction() {
 	if ($this->_request->isPost()) {
 	$id = (int)$this->_request->getPost('id');
@@ -143,5 +140,5 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
 }
