@@ -28,7 +28,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addContext('kml',array('suffix' => 'kml'))
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
-		->addActionContext('results', array('xml','kml','json','rss','atom'));
+		->addActionContext('results', array('rss','atom'));
 	$her = array('her');
 	$herroles = array('hero','flos','admin','fa');
 	$role = $this->getAccount();

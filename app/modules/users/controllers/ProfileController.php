@@ -1,6 +1,6 @@
 <?php
 /** Controller for manipulating user profile details
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -10,13 +10,13 @@
 class Users_ProfileController extends Pas_Controller_Action_Admin {
 
 	protected $_config, $_gmapskey, $_gecoder;
-	
+
 	const LOGOPATH = './images/logos/';
-	
+
 	const PROFILEPATH = './images/staffphotos/';
-	
+
 	/** Set up the ACL and contexts
-	*/			
+	*/
 	public function init() {
  		$this->_helper->_acl->allow('flos',null);
 		$this->_helper->_acl->allow('fa',null);
@@ -27,12 +27,12 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
         $this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
     }
 	/** No access to the index page
-	*/		
+	*/
 	public function indexAction() {
 	return $this->_redirect('/users/');
 	}
 	/** Edit staff profile
-	*/		
+	*/
 	public function editAction(){
 	$form = new ContactForm();
 	$form->submit->setLabel('Save');
@@ -45,19 +45,19 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)){
-	$address = $form->getValue('address_1').',' . $form->getValue('address_2') . ',' 
-	. $form->getValue('town') . ',' . $form->getValue('county') 
+	$address = $form->getValue('address_1').',' . $form->getValue('address_2') . ','
+	. $form->getValue('town') . ',' . $form->getValue('county')
 	. ','.$form->getValue('postcode') . ', UK';
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
 	}
 	$woeid = $place->woeid;
-	
+
 	$updateData = array(
 		'firstname' => $form->getValue('firstname'),
 		'lastname' => $form->getValue('lastname'),
@@ -73,7 +73,7 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 		'region' => $form->getValue('region'),
 		'website' => $form->getValue('website'),
 		'profile' => $form->getValue('profile'),
-		'updated' => $this->getTimeForForms(), 
+		'updated' => $this->getTimeForForms(),
 		'updatedBy' => $this->getIdentityForForms(),
 		'latitude' => $lat,
 		'longitude' => $lon,
@@ -107,7 +107,7 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Change your staff profile image
-	*/	
+	*/
 	public function imageAction() {
 	$contacts = new Contacts();
 	$people = $contacts->fetchRow('dbaseID = '.$this->getIdentityForForms());
@@ -116,7 +116,7 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	}
 	$this->view->contacts = $people->toArray();
 	$currentimage = $people->image;
-	$form = new AddStaffPhotoForm();	
+	$form = new AddStaffPhotoForm();
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();	{
@@ -127,7 +127,7 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	$filename = $form->getValue('image');
 	$largepath = self::PROFILEPATH;
 	$original = $largepath . $filename;
-	$name = substr($filename, 0, strrpos($filename, '.')); 
+	$name = substr($filename, 0, strrpos($filename, '.'));
 	$ext = '.jpg';
 	$converted = $name . $ext;
 	$insertData = array();
@@ -138,9 +138,9 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
       if (is_null($value) || $value=="") {
         unset($insertData[$key]);
       }
-    }	
+    }
 	$smallpath = self::PROFILEPATH . 'thumbnails/' . $converted;
-	$mediumpath =  self::PROFILEPATH . 'resized/' . $converted; 
+	$mediumpath =  self::PROFILEPATH . 'resized/' . $converted;
 
 	//create medium size
 	$phMagick = new phMagick($original, $mediumpath);
@@ -152,7 +152,7 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	$phMagick = new phMagick($original, $smallpath);
 	$phMagick->resize(80,0);
 	$phMagick->convert();
-	
+
 	$staffs = new Contacts();
 	$where = array();
 	$where[] = $staffs->getAdapter()->quoteInto('dbaseID  = ?', $this->getIdentityForForms());
@@ -162,21 +162,21 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	unlink( self::PROFILEPATH . $currentimage);
 	unlink( self::PROFILEPATH . 'resized/' . $currentimage);
  	$this->_flashMessenger->addMessage('The image has been resized and added to your profile.');
-	$this->_redirect('/users/account/'); 
+	$this->_redirect('/users/account/');
 	} else {
 	$this->_flashMessenger->addMessage('There is a problem with your upload. Probably that image exists.');
 	$this->view->errors = $upload->getMessages();
-	} 
-	} else { 
+	}
+	} else {
 	$form->populate($formData);
-	$this->_flashMessenger->addMessage('Check your form for errors dude');
+	$this->_flashMessenger->addMessage('Check your form for errors');
 	}
 	}
 	}
 	}
-	
+
 	/** Change staff profile image
-	*/	
+	*/
 	public function logoAction() {
 	$contacts = new Contacts();
 	$people = $contacts->fetchRow('dbaseID = ' . $this->getIdentityForForms());
@@ -185,19 +185,19 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	$logos = new InstLogos();
 	$logoslisted = $logos->getLogosInst($inst);
 	$this->view->logos =$logoslisted;
-	$form = new AddStaffLogoForm();	
+	$form = new AddStaffLogoForm();
 	$form->details->setLegend('Add a logo: ');
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();	{
 	if ($form->isValid($formData)) {
-    $upload = new Zend_File_Transfer_Adapter_Http();
+        $upload = new Zend_File_Transfer_Adapter_Http();
    	$upload->addValidator('NotExists', true, array( self::LOGOPATH ));
 	if($upload->isValid()) {
 	$filename = $form->getValue('logo');
 	$largepath = self::LOGOPATH;
 	$original = $largepath . $filename;
-	$name = substr($filename, 0, strrpos($filename, '.')); 
+	$name = substr($filename, 0, strrpos($filename, '.'));
 	$ext = '.jpg';
 	$converted = $name . $ext;
 	$insertData = array();
@@ -209,7 +209,7 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
       if (is_null($value) || $value=="") {
         unset($insertData[$key]);
       }
-    }	
+    }
 	$replace = $form->getValue('replace');
 	if( $replace == 1) {
 	foreach($logoslisted as $l) {
@@ -219,7 +219,7 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	}
 	}
 	$smallpath = self::LOGOPATH . 'thumbnails/' . $converted;
-	$mediumpath = self::LOGOPATH . 'resized/' . $converted; 
+	$mediumpath = self::LOGOPATH . 'resized/' . $converted;
 
 	//create medium size
 	$phMagick = new phMagick($original, $mediumpath);
@@ -229,21 +229,21 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	$phMagick = new phMagick($original, $smallpath);
 	$phMagick->resize(100,0);
 	$phMagick->convert();
-	
+
 	$logos->insert($insertData);
 	$upload->receive();
  	$this->_flashMessenger->addMessage('The image has been resized and zoomified!');
-	$this->_redirect('/users/account/'); 
+	$this->_redirect('/users/account/');
 	} else {
 	$this->_flashMessenger->addMessage('There is a problem with your upload. Probably that image exists.');
 	$this->view->errors = $upload->getMessages();
-	} 
-	} else { 
+	}
+	} else {
 	$form->populate($formData);
 	$this->_flashMessenger->addMessage('Check your form for errors');
 	}
 	}
 	}
 	}
-	
+
 	}

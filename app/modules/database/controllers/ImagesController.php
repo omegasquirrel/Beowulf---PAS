@@ -202,7 +202,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	}
 	} else {
 	$form->populate($form->getValues());
-	$this->_flashMessenger->addMessage('Check your form for errors dude');
+	$this->_flashMessenger->addMessage('Check your form for errors');
 	}
 	}
 	}

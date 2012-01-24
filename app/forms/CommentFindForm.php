@@ -87,7 +87,7 @@ parent::__construct($options);
 
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(
                         	'captcha' => 'ReCaptcha',
-				'label' => 'Prove you are not a robot you varmint!',
+				'label' => 'Prove you are not a robot/spammer',
                                 'captchaOptions' => array(
                                 'captcha' => 'ReCaptcha',
                                 'privKey' => $privateKey,

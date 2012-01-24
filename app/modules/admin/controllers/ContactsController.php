@@ -1,6 +1,6 @@
 <?php
 /** Controller for setting up and manipulating staff contacts
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -10,12 +10,12 @@
 class Admin_ContactsController extends Pas_Controller_Action_Admin
 {
 	const LOGOPATH = './images/logos/';
-	
+
 	const STAFFPATH = './images/staffphotos/';
-	
+
 	protected $_redirectUrl = 'admin/contacts/';
 	/** Set up the ACL and contexts
-	*/			
+	*/
 	public function init() {
 	$flosActions = array('index',);
 	$this->_helper->_acl->allow('flos',$flosActions);
@@ -24,13 +24,13 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     }
 	/** Display the index page
-	*/		    
+	*/
 	public function indexAction(){
 	$contacts = new Contacts();
 	$this->view->contacts = $contacts->getContacts($this->_getParam('page'));
 	}
 	/** View a contact's details
-	*/			
+	*/
 	public function contactAction() {
 	if($this->_getParam('format') == ('vcf')) {
 	$this->_helper->layout->disableLayout();    //disable layout
@@ -40,9 +40,9 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$staffs = new Contacts();
 	$this->view->staffs = $staffs->getPersonDetails($this->_getParam('id'));
 	}
-	}	
+	}
 	/** Add new staff member
-	*/		
+	*/
  	public function addAction(){
 	$form = new ContactForm();
 	$form->submit->setLabel('Add a new Scheme contact');
@@ -51,12 +51,12 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
 	$address = $form->getValue('address_1') . ',' . $form->getValue('address_2') . ','
-	. $form->getValue('town') . ',' . $form->getValue('county') . ',' 
+	. $form->getValue('town') . ',' . $form->getValue('county') . ','
 	. $form->getValue('postcode') . ', UK';
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 		$pm = new Pas_Service_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
@@ -65,7 +65,7 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 		$lon = NULL;
 		$woeid = NULL;
 	}
-	
+
 	$insertData = array(
 	'firstname' => $form->getValue('firstname'),
 	'lastname' => $form->getValue('lastname'),
@@ -86,7 +86,7 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	'website' => $form->getValue('website'),
 	'profile' => $form->getValue('profile'),
 	'alumni' => $form->getValue('alumni'),
-	'created' => $this->getTimeForForms(), 
+	'created' => $this->getTimeForForms(),
 	'createdBy' => $this->getIdentityForForms(),
 	'latitude' => $lat,
 	'longitude' => $lon,
@@ -107,7 +107,7 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	}
 
 	/** Edit a contact's details
-	*/		
+	*/
 	public function editAction() {
 	$form = new ContactForm();
 	$form->submit->setLabel('Save');
@@ -116,12 +116,12 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
 	$address = $form->getValue('address_1') . ',' . $form->getValue('address_2') . ','
-	. $form->getValue('town') . ',' . $form->getValue('county') . ',' 
+	. $form->getValue('town') . ',' . $form->getValue('county') . ','
 	. $form->getValue('postcode') . ', UK';
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 		$pm = new Pas_Service_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
@@ -150,7 +150,7 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	'website' => $form->getValue('website'),
 	'profile' => $form->getValue('profile'),
 	'alumni' => $form->getValue('alumni'),
-	'updated' => $this->getTimeForForms(), 
+	'updated' => $this->getTimeForForms(),
 	'updatedBy' => $this->getIdentityForForms(),
 	'latitude' => $lat,
 	'longitude' => $lon,
@@ -165,7 +165,7 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$where = array();
 	$where[] = $contacts->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$insert = $contacts->update($updateData,$where);
-	$this->_flashMessenger->addMessage('Contact information for ' . $form->getValue('firstname') . ' ' 
+	$this->_flashMessenger->addMessage('Contact information for ' . $form->getValue('firstname') . ' '
 	. $form->getValue('lastname') . ' updated!');
 	$this->_redirect($this->_redirectUrl . 'contact/id/' . $this->_getParam('id'));
 	} else {
@@ -181,7 +181,7 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	}
 	}
 	/** Delete a contact
-	*/		
+	*/
 	public function deleteAction() {
 	$this->_flashMessenger->addMessage($this->_noChange);
 	if ($this->_request->isPost()) {
@@ -203,9 +203,9 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	}
 	}
 	/** provide an avatar for a contact
-	*/		
+	*/
 	public function avatarAction() {
-	$form = new AddStaffPhotoForm();	
+	$form = new AddStaffPhotoForm();
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();	{
@@ -222,14 +222,14 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
       if (is_null($value) || $value=="") {
         unset($insertData[$key]);
       }
-    }	
+    }
 	$original   = self::STAFFPATH . $filename;
-	$name       = substr($filename, 0, strrpos($filename, '.')); 
+	$name       = substr($filename, 0, strrpos($filename, '.'));
 	$ext        = '.jpg';
 	$converted  = $name . $ext;
 
 	$smallpath  = self::STAFFPATH . 'thumbnails/' . $converted;
-	$mediumpath = self::STAFFPATH . 'resized/' . $converted; 
+	$mediumpath = self::STAFFPATH . 'resized/' . $converted;
 
 	//create medium size
 	$phMagick = new phMagick($original, $mediumpath);
@@ -241,31 +241,31 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$phMagick = new phMagick($original, $smallpath);
 	$phMagick->resize(100,0);
 	$phMagick->convert();
-	
+
 	$staffs = new Contacts();
 	$where = array();
 	$where[] = $staffs->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$staffs->update($insertData,$where);
 	$upload->receive();
  	$this->_flashMessenger->addMessage('The image has been resized and zoomified!');
-	$this->_redirect('/admin/contacts/contact/id/' . $this->_getParam('id')); 
+	$this->_redirect('/admin/contacts/contact/id/' . $this->_getParam('id'));
 	} else {
-	$this->_flashMessenger->addMessage('There is a problem with your upload. 
+	$this->_flashMessenger->addMessage('There is a problem with your upload.
 	Probably that image exists.');
 	$this->view->errors = $upload->getMessages();
-	} 
-	} else { 
+	}
+	} else {
 	$form->populate($formData);
-	$this->_flashMessenger->addMessage('Check your form for errors dude');
+	$this->_flashMessenger->addMessage('Check your form for errors');
 	}
 	}
 	}
 	}
-	
+
 	/** Give them a logo
-	*/		
+	*/
 	public function logoAction() {
-	$form = new AddStaffLogoForm();	
+	$form = new AddStaffLogoForm();
 	$form->details->setLegend('Add a logo: ');
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
@@ -283,14 +283,14 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
       if (is_null($value) || $value=="") {
         unset($insertData[$key]);
       }
-    }	
+    }
 	$original  = self::LOGOPATH . $filename;
-	$name      = substr($filename, 0, strrpos($filename, '.')); 
+	$name      = substr($filename, 0, strrpos($filename, '.'));
 	$ext       = '.jpg';
 	$converted = $name.$ext;
 
 	$smallpath  = self::LOGOPATH . 'thumbnails/' . $converted;
-	$mediumpath = self::LOGOPATH . 'resized/' . $converted; 
+	$mediumpath = self::LOGOPATH . 'resized/' . $converted;
 
 	//create medium size
 	$phMagick = new phMagick($original, $mediumpath);
@@ -302,25 +302,25 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$phMagick = new phMagick($original, $smallpath);
 	$phMagick->resize(100,0);
 	$phMagick->convert();
-	
+
 	$regions = new StaffRegions();
 	$where = array();
 	$where[] = $regions->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$regions->update($insertData,$where);
 	$upload->receive();
  	$this->_flashMessenger->addMessage('The image has been resized and zoomified!');
-	$this->_redirect('/admin/contacts/institution/id/' . $this->_getParam('id')); 
+	$this->_redirect('/admin/contacts/institution/id/' . $this->_getParam('id'));
 	} else {
-	$this->_flashMessenger->addMessage('There is a problem with your upload. 
+	$this->_flashMessenger->addMessage('There is a problem with your upload.
 	Probably that image exists.');
 	$this->view->errors = $upload->getMessages();
-	} 
-	} else { 
+	}
+	} else {
 	$form->populate($formData);
 	$this->_flashMessenger->addMessage('Check your form for errors');
 	}
 	}
 	}
 	}
-	
+
 	}

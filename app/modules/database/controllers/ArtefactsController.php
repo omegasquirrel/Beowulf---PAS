@@ -24,8 +24,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     */
     protected $_coinarray = array(
         'Coin','COIN','coin',
-		'token','jetton','coin weight',
-		'COIN HOARD', 'TOKEN', 'JETTON'
+        'token','jetton','coin weight',
+        'COIN HOARD', 'TOKEN', 'JETTON'
         );
 
     /** An array of Roman and Iron Age periods
@@ -92,8 +92,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('rdf',array('suffix' => 'rdf'))
             ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
-            ->addActionContext('record', array('xml','json','csv','pdf','qrcode'))
-            ->addActionContext('index', array('xml','json','rss','atom'))
+            ->addActionContext('record', array('csv','pdf','qrcode'))
+            ->addActionContext('index', array('rss','atom'))
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');
@@ -102,14 +102,14 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 
 
     private function array_cleanup( $array ) {
-        $todelete = array('submit','action','controller','module','csrf');
-	foreach( $array as $key => $value ) {
-        foreach($todelete as $match){
-    	if($key == $match){
-    		unset($array[$key]);
-    	}
-        }
-        }
+    $todelete = array('submit','action','controller','module','csrf');
+    foreach( $array as $key => $value ) {
+    foreach($todelete as $match){
+    if($key == $match){
+            unset($array[$key]);
+    }
+    }
+    }
     }
     /** Display a list of objects recorded with pagination
     */
@@ -123,6 +123,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
+    $search->setFacets(array('objectType','county','broadperiod'));
+
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
     $params = $form->getValues();
@@ -147,7 +149,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $search->setParams($params);
     $search->execute();
 
-    $search->_processFacets();
+    $this->view->facets = $search->_processFacets();
     $this->view->paginator = $search->_createPagination();
     $this->view->data = $search->_processResults();
 

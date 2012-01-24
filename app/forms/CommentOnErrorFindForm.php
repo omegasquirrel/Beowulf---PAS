@@ -17,21 +17,21 @@ public function __construct($options = null)
 parent::__construct($options);
 
 	$this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-	$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element'); 
-	$this->addPrefixPath('Pas_Form_Decorator', 'Pas/Form/Decorator/', 'decorator'); 
+	$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element');
+	$this->addPrefixPath('Pas_Form_Decorator', 'Pas/Form/Decorator/', 'decorator');
 	$decorator =  array('SimpleInput');
 	$decoratorSelect =  array('SelectInput');
 	$decorators = array(
-	            array('ViewHelper'), 
+	            array('ViewHelper'),
 	    		array('Description', array('tag' => '','placement' => 'append')),
 	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
 	            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
 	            array('HtmlTag', array('tag' => 'li')),
 			    );
-			
+
 
 	$this->setAttrib('accept-charset', 'UTF-8');
-       
+
 
 	$this->setName('comments');
 
@@ -80,7 +80,7 @@ parent::__construct($options);
 	->setRequired(true)
 	->setAttrib('size',40)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->addValidator('EmailAddress')   
+	->addValidator('EmailAddress')
 	->addErrorMessage('Please enter a valid email address!')
 	->setDescription('* This will not be displayed to the public');
 
@@ -116,33 +116,31 @@ parent::__construct($options);
 	->addFilter('StringTrim')
 	->setAttrib('Height',400)
 	->setAttrib('ToolbarSet','Basic')
-	->addFilter('StringTrim')
-	->addFilter('WordChars')
-	->addFilter('HtmlBody')
-	->addFilter('EmptyParagraph')
+	->addFilters(array('StringTrim','WordChars','HtmlBody','EmptyParagraph'))
 	->addErrorMessage('Please enter something in the comments box!');
 
 	$config = Zend_registry::get('config');
 	$privateKey = $config->recaptcha->privatekey;
 	$pubKey = $config->recaptcha->pubkey;
-	
-	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
-	                        		'captcha' => 'ReCaptcha',
-									'label' => 'Prove you are not a robot you varmint!',
-	                                'captchaOptions' => array(  
-	                                'captcha' => 'ReCaptcha',								  
-	                                'privKey' => $privateKey,
-	                                'pubKey' => $pubKey,
-									'theme'=> 'clean')
+
+	$captcha = new Zend_Form_Element_Captcha(
+                'captcha', array(
+                    'captcha' => 'ReCaptcha',
+                    'label' => 'Prove you are not a robot/spammer',
+	            'captchaOptions' => array(
+                        'captcha' => 'ReCaptcha',
+                        'privKey' => $privateKey,
+                        'pubKey' => $pubKey,
+                        'theme'=> 'clean')
 	                        ));
-						
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_config->form->salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-		
+
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')
 	->removeDecorator('HtmlTag')

@@ -28,23 +28,10 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 <?php echo $this->form;?>
 <div id="findsList">
 <?php if ($this->data): ?>
-<table class="stripeMe" summary="A complete list of finds and coins recorded">
-<caption>A complete list of all finds recorded</caption>
-<thead>
-<tr>
-<th>Image</th>
-<th>Object Type</th>
-<th>Find number</th>
-<th>Broadperiod</th>
-<th>County</th>
-<th>Actions</th>
-</tr>
-</thead>
-
-<tbody>
-<?php echo $this->partialLoop('partials/database/findsTable2.phtml',$this->data);?>
-</tbody>
-</table>
+    <div class="stripeMe">
+        <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->data);?>
+    </div>
+    <?php Zend_Debug::dump($this->facets);?>
 <?php else:?>
     <p>No records are available.
 <?php endif; ?>

@@ -463,10 +463,16 @@ class Pas_Solr_Handler {
     protected function _createFacets(){
     $this->_checkFieldList($this->_core, $this->_facets);
     $facetSet = $this->_query->getFacetSet();
+    $facetSet->setMinCount(1);
+    $facetSet->setLimit(-1);
         foreach($this->_facets as $key){
             $facetSet-> createFacetField($key)->setField($key);
+
+
         }
     }
+
+   
 
     /** Process format key
      * @access protected
