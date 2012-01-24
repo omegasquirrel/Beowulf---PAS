@@ -29,6 +29,10 @@ parent::__construct($options);
 		->setAttrib('size', 20)
 		->addErrorMessage('Please enter a search term')
 		->setDecorators($decorators);
+        $thumbnail = new Zend_Form_Element_Checkbox('thumbnail');
+        $thumbnail->setLabel('Only with images?')
+                ->setUnCheckedValue(null)
+                ->setDecorators($decorators);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Search!')
@@ -43,10 +47,10 @@ parent::__construct($options);
 		->removeDecorator('label')
 		->setTimeout(4800);
 
-	$this->addElements(array($q, $submit, $hash ));
+	$this->addElements(array($q, $thumbnail, $submit, $hash ));
 
 
-	$this->addDisplayGroup(array('q','submit'), 'Search');
+	$this->addDisplayGroup(array('q', 'thumbnail', 'submit'), 'Search');
 	$this->Search->removeDecorator('DtDdWrapper');
 	$this->Search->removeDecorator('HtmlTag');
 	$this->Search->addDecorators(array(array('HtmlTag', array('tag' => 'ul','id' => 'www'))))

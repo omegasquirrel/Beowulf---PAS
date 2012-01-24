@@ -1,8 +1,29 @@
 <h2>Hoard name: <?php echo $this->escape($this->term);?></h2>
 <?php
-$string = '<p><a href="'.$this->url(array('module' => 'database','controller'=>'hoards','action'=>'edit','id'=>$this->id),null,true).'" title="Edit this hoard's details">Edit</a>
-<a href="'.$this->url(array('controller'=>'database','action'=>'delete', 'id'=>$this->id),null,true).'" title="Delete this hoard's details">Delete</a></p>';
-echo $this->allowedtest($string);?>
+$edit = $this->Href(array(
+    'module' => 'database',
+    'controller' => 'hoards',
+    'action' => 'edit',
+    'checkAcl' => true,
+    'acl'=>'Zend_Acl',
+    'attribs' => array('title' => 'Edit hoard details'),
+    'params' => array('id'=>$this->id),
+    'content'=> 'Edit')
+    );
+$delete = $this->Href(array(
+    'module' => 'database',
+    'controller' => 'hoards',
+    'action' =>'delete',
+    'checkAcl' => true,
+    'acl' => 'Zend_Acl',
+    'attribs' => array('title' => 'Delete hoard'),
+    'params' => array('id' => $this->id),
+    'content' => 'Delete')
+    );
+
+echo implode(' | ', array($edit, $delete));
+?>
+
 <p>Broadperiod attributed: <?php echo $this->t;?></p>
 <?php echo $this->termdesc;?>
 

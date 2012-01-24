@@ -35,12 +35,20 @@ $this->jQuery()->javascriptCaptureEnd();?>
 
 <h2>Historic Environment Records signup</h2>
 <?php
-$string = '<p><a href="';
-$string .= $this->url(array('module' => 'admin','controller' => 'her','action' => 'add'),null,true);
-$string .= '" title="Add a new signatory">Add a signatory</a></p>';
-echo $this->allowedtest($string);
+
+echo $this->Href(array(
+    'module' => 'admin',
+    'controller' => 'her',
+    'action' => 'add',
+    'checkAcl' => true,
+    'acl'=>'Zend_Acl',
+    'attribs' => array('title' => 'Edit a discovery method'),
+    'params' => array('id' => $this->id),
+    'content'=> 'Edit', 'wrapper' => array('tag' => 'p'))
+    );
+
 ?>
-<?php if (count($this->hers)): ?>
+<?php if ($this->hers): ?>
 
 <table class="stripeMe" summary="This table lists all the HERs that have signed up to our data transfer agreement">
 <caption>Signed up HER offices</caption>

@@ -53,8 +53,11 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
      *
      */
     public function myfindsAction() {
+    $form = new SolrForm();
+    $this->view->form = $form;
+
     $params = $this->_getAllParams();
-    $params['createdBy'] =  $this->_getDetails()->id;
+
     $search = new Pas_Solr_Handler('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -62,18 +65,55 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+    if ($form->isValid($form->getValues())) {
+    $params = $this->array_cleanup($form->getValues());
+
+    $this->_helper->Redirector->gotoSimple('myfinds','myscheme','database',$params);
+    } else {
+    $form->populate($form->getValues());
+    $params = $form->getValues();
+    }
+    } else {
+
+    $params = $this->_getAllParams();
+    $form->populate($this->_getAllParams());
+
+
+    }
+
+    if(!isset($params['q']) || $params['q'] == ''){
+        $params['q'] = '*';
+    }
+    $params['createdBy'] =  $this->_getDetails()->id;
     $search->setParams($params);
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
     }
 
+    private function array_cleanup( $array ) {
+    $todelete = array('submit','action','controller','module','csrf');
+    foreach( $array as $key => $value ) {
+    foreach($todelete as $match){
+    if($key == $match){
+            unset($array[$key]);
+    }
+    }
+    }
+    return $array;
+    }
     /** Finds recorded by an institution assigned to the user
      *
     */
     public function myinstitutionAction() {
+    $form = new SolrForm();
+    $this->view->form = $form;
+
     $params = $this->_getAllParams();
-    $params['institution'] =  $this->_getDetails()->institution;
+
     $search = new Pas_Solr_Handler('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -82,18 +122,45 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'description', 'county',
         )
     );
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+    if ($form->isValid($form->getValues())) {
+    $params = $this->array_cleanup($form->getValues());
+
+    $this->_helper->Redirector->gotoSimple('myinstitution','myscheme','database',$params);
+    } else {
+    $form->populate($form->getValues());
+    $params = $form->getValues();
+    }
+    } else {
+
+    $params = $this->_getAllParams();
+    $form->populate($this->_getAllParams());
+
+
+    }
+
+    if(!isset($params['q']) || $params['q'] == ''){
+        $params['q'] = '*';
+    }
+    $params['institution'] =  $this->_getDetails()->institution;
     $search->setParams($params);
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
-
     }
     /** Display all images that a user has added.
      *
      */
     public function myimagesAction() {
+    $form = new SolrForm();
+    $form->removeElement('thumbnail');
+    $this->view->form = $form;
+
     $params = $this->_getAllParams();
-    $params['createdBy'] = $this->_getDetails()->id;
+    $params = $this->_getAllParams();
+
     $search = new Pas_Solr_Handler('beoimages');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -101,7 +168,30 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'filename', 'thumbnail', 'old_findID',
     	'county','licenseAcronym','findID')
     );
+     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+    if ($form->isValid($form->getValues())) {
+    $params = $this->array_cleanup($form->getValues());
+
+    $this->_helper->Redirector->gotoSimple('myimages','myscheme','database',$params);
+    } else {
+    $form->populate($form->getValues());
+    $params = $form->getValues();
+    }
+    } else {
+
+    $params = $this->_getAllParams();
+    $form->populate($this->_getAllParams());
+
+
+    }
+
+    if(!isset($params['q']) || $params['q'] == ''){
+        $params['q'] = '*';
+    }
     $search->setFacets(array('broadperiod','county'));
+    $params['createdBy'] = $this->_getDetails()->id;
     $search->setParams($params);
     $search->execute();
     $search->_processFacets();

@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying publications information
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -20,61 +20,71 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 		->addActionContext('publication', array('xml','json'))
 		->addActionContext('index', array('xml','json'))
 		->initContext();
-	
+
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     }
-    
+
 	const REDIRECT = 'database/publications/';
-	
+
 	/** Display of publications with filtration
 	*/
 	public function indexAction() {
-	$limit = 20;
-	$page = $this->_getParam('page');
-	if(!isset($page)){
-		$start = 0;
-		
-	} else {
-		unset($params['page']);
-		$start = ($page - 1) * 20;
-	}	
-	
-	$config = array(
-    'adapteroptions' => array(
-    'host' => '127.0.0.1',
-    'port' => 8983,
-    'path' => '/solr/',
-	'core' => 'beopublications'
-    ));
-	
-	$select = array(
-    'query'         => '*:*',
-    'start'         => $start,
-    'rows'          => $limit,
-    'fields'        => array('*'),
-    'sort'          => array('title' => 'asc'),
-	'filterquery' => array(),
-    );
-   
-	$client = new Solarium_Client($config);
-	// get a select query instance based on the config
-	$query = $client->createSelect($select);
-    $resultset = $client->select($query);
-	$data = NULL;
-	foreach($resultset as $doc){
-	    foreach($doc as $key => $value){
-	    	$fields[$key] = $value;
-	    }
-	    $data[] = $fields;
+	$form = new SolrForm();
+        $form->removeElement('thumbnail');
+        $this->view->form = $form;
+
+        $params = $this->array_cleanup($this->_getAllParams());
+        $search = new Pas_Solr_Handler('beopublications');
+        $search->setFields(array(
+    	'*')
+        );
+
+
+        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+        if ($form->isValid($form->getValues())) {
+        $params = $this->array_cleanup($form->getValues());
+
+        $this->_helper->Redirector->gotoSimple('index','publications','database',$params);
+        } else {
+        $form->populate($form->getValues());
+        $params = $form->getValues();
+        }
+        } else {
+
+        $params = $this->_getAllParams();
+        $form->populate($this->_getAllParams());
+
+
+        }
+
+        if(!isset($params['q']) || $params['q'] == ''){
+            $params['q'] = '*';
+        }
+        $params['sort'] = 'title';
+        $search->setParams($params);
+        $search->execute();
+
+        $this->view->paginator = $search->_createPagination();
+        $this->view->results = $search->_processResults();
+
 	}
-	$paginator = Zend_Paginator::factory($resultset->getNumFound());
-    $paginator->setCurrentPageNumber($page)
-              ->setItemCountPerPage($limit)
-              ->setPageRange(20);
-    $this->view->paginator = $paginator;
-	$this->view->results = $data;
-	}
-	
+
+
+
+
+        private function array_cleanup( $array ) {
+        $todelete = array('submit','action','controller','module','csrf');
+	foreach( $array as $key => $value ) {
+        foreach($todelete as $match){
+    	if($key == $match){
+    		unset($array[$key]);
+    	}
+        }
+        }
+        return $array;
+        }
 	/** Display details of publication
 	*/
 	public function publicationAction() {
@@ -106,7 +116,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
 	/** Edit publication details
 	*/
 	public function editAction() {
@@ -136,7 +146,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete publication details
-	*/	
+	*/
 	public function deleteAction() {
 	if($this->_getParam('id',false)) {
 	if ($this->_request->isPost()) {

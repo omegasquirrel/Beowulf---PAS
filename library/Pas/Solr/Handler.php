@@ -183,7 +183,7 @@ class Pas_Solr_Handler {
 
     /** Create highlighting
      *
-     * @return type
+     * @return array
      */
     protected function _createHighlighting(){
     $hl = $this->_query->getHighlighting();

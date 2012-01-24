@@ -34,14 +34,62 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     /** Index page of all people on the database
     */
     public function indexAction(){
-    $search = new Pas_Solr_Handler('beopeople');
-    $search->setFields(array('*')
-    );
-    $search->setParams($this->_getAllParams());
-    $search->execute();
-    $this->view->paginator = $search->_createPagination();
-    $this->view->results = $search->_processResults();
-    }
+    $form = new SolrForm();
+        $form->removeElement('thumbnail');
+        $this->view->form = $form;
+
+        $params = $this->array_cleanup($this->_getAllParams());
+        $search = new Pas_Solr_Handler('beopeople');
+        $search->setFields(array('*')
+        );
+
+
+
+        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+        if ($form->isValid($form->getValues())) {
+        $params = $this->array_cleanup($form->getValues());
+
+        $this->_helper->Redirector->gotoSimple('index','people','database',$params);
+        } else {
+        $form->populate($form->getValues());
+        $params = $form->getValues();
+        }
+        } else {
+
+        $params = $this->_getAllParams();
+        $form->populate($this->_getAllParams());
+
+
+        }
+
+        if(!isset($params['q']) || $params['q'] == ''){
+            $params['q'] = '*';
+        }
+
+        $search->setParams($params);
+        $search->execute();
+
+        $this->view->paginator = $search->_createPagination();
+        $this->view->results = $search->_processResults();
+
+	}
+
+
+
+
+        private function array_cleanup( $array ) {
+        $todelete = array('submit','action','controller','module','csrf');
+	foreach( $array as $key => $value ) {
+        foreach($todelete as $match){
+    	if($key == $match){
+    		unset($array[$key]);
+    	}
+        }
+        }
+        return $array;
+        }
     /** Display details of a person
     */
     public function personAction(){

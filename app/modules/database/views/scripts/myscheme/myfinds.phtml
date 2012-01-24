@@ -20,6 +20,8 @@ $('a[rel*=lightbox]').lightBox()
 <?php echo $this->SearchParams($this->params);?>
 <?php endif;?>
 
+<?php echo $this->form;?>
+
 <div id="findsList">
 <?php if (count($this->results)): ?>
 <table class="stripeMe" summary="A complete list of finds and coins recorded">
@@ -33,7 +35,6 @@ $('a[rel*=lightbox]').lightBox()
 <th>Actions</th>
 </tr>
 </thead>
-<tr><td></td><?php echo $this->form;?></tr>
 <tbody>
 <?php echo $this->partialLoop('partials/database/findsTable2.phtml',$this->results);?>
 </tbody>

@@ -9,8 +9,8 @@ $('a[rel*=lightbox]').lightBox()
 
 
 <h2>All images added by me</h2>
+<?php echo $this->form;?>
 <?php if (count($this->results)): ?>
-<table><tr><?php echo $this->form;?></tr></table>
 <div id="gallery">
 <?php echo $this->partialLoop('partials/database/myimagesList.phtml',
         $this->results);?>

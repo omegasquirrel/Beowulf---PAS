@@ -15,10 +15,22 @@ $('label.overlay').labelOver();
 });
 <?php $this->jQuery()->javascriptcaptureEnd(); ?>
 <h2>All publications</h2>
-<?php 
-echo $this->Href(array('module' => 'database','controller'=>'publications', 'action'=>'add', 'checkAcl'=>true,
-'acl'=>'Zend_Acl',  'params' =>array('id'=>$this->id), 'content'=>'Add publication','wrapper' => array('tag' => 'div','id' => 'action','class' => 'redadd'),'attribs' => array('title' => 'Add publication details')));
-?> 
+<?php
+echo $this->Href(array(
+    'module' => 'database',
+    'controller'=>'publications',
+    'action'=>'add',
+    'checkAcl'=>true,
+    'acl'=>'Zend_Acl',
+    'params' =>array('id'=>$this->id),
+    'content'=>'Add publication',
+    'wrapper' => array(
+        'tag' => 'div',
+        'id' => 'action',
+        'class' => 'redadd'),'
+            attribs' => array(
+                'title' => 'Add publication details')));
+?>
 
 <?php if ($this->results): ?>
 <table class="stripeMe" id="publicationsList" summary="A list of all publications on the Scheme's database">

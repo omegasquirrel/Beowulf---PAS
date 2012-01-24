@@ -37,6 +37,7 @@ class Search_IndexController extends Pas_Controller_Action_Admin {
 	echo '<p>Solr service not responding.</p>';
 	} else {
 	$form = new SolrForm();
+        $form->removeElement('thumbnail');
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
 	$data = $this->_getAllParams();

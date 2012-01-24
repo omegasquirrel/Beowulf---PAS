@@ -47,7 +47,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	*/
 	public function indexAction() {
         $form = new SolrForm();
-
+        $form->removeElement('thumbnail');
         $this->view->form = $form;
 
         $params = $this->array_cleanup($this->_getAllParams());

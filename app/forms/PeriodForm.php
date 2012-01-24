@@ -6,16 +6,16 @@
 * @license    GNU General Public License
 */
 class PeriodForm extends Pas_Form {
-	
+
 public function __construct($options = null) {
-	
+
 	$periods = new Periods();
 	$period_options = $periods->getPeriodFrom();
 
 parent::__construct($options);
 
 	$decorators = array(
-            array('ViewHelper'), 
+            array('ViewHelper'),
             array('Description', array('placement' => 'append','class' => 'info')),
             array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
             array('Label'),
@@ -37,7 +37,7 @@ parent::__construct($options);
 	$fromdate->setLabel('Date period starts: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidators('Digits')
+		->addValidator('Digits')
 		->addErrorMessage('You must enter a start date')
 		->setDecorators($decorators);
 
@@ -45,7 +45,7 @@ parent::__construct($options);
 	$todate->setLabel('Date period ends: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidators('Digits')
+		->addValidator('Digits')
 		->addErrorMessage('You must enter an end date')
 		->setDecorators($decorators);
 
@@ -75,7 +75,7 @@ parent::__construct($options);
 		->addValidator('Int')
 		->setDecorators($decorators);
 
-	//Submit button 
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')
 		->setAttrib('class', 'large')
@@ -89,18 +89,18 @@ parent::__construct($options);
 
 	$this->addDisplayGroup(array(
 		'term', 'fromdate', 'todate',
-		'parent', 'notes', 'valid'), 
+		'parent', 'notes', 'valid'),
 	'details')
 	->removeDecorator('HtmlTag');
-	
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_config->form->salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(4800);
 	$this->addElement($hash);
-	
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', 
+
+	$this->details->addDecorators(array('FormElements',array('HtmlTag',
             array('tag' => 'ul'))));
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->removeDecorator('HtmlTag');
