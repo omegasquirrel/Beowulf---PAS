@@ -78,8 +78,10 @@ class Pas_View_Helper_TwfyImage extends Zend_View_Helper_Abstract {
 	public function buildHtml($data) {
         if(!is_null($data['0']->image)){
 
-	$html = '<img src="http://www.theyworkforyou.com/' . $data['0']->image
-	. '" class="flow" alt="Profile picture for ' . $data['0']->full_name . '" height="' . $data['0']->image_height . '" width="' . $data['0']->image_width . '"/>';
+	$html = '<img src="http://www.theyworkforyou.com/';
+        $html .= $data['0']->image . '" class="flow" alt="Profile picture for ';
+        $html .= $data['0']->full_name . '" height="' . $data['0']->image_height;
+        $html .= '" width="' . $data['0']->image_width . '"/>';
         }
 
 	return $html;

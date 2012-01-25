@@ -139,20 +139,16 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	$arts = $this->_cache->load($key);
 	}
         $arts = Zend_Json_Decoder::decode($arts, Zend_Json::TYPE_OBJECT);
-        $total = $arts->info->total_results;
-//        Zend_Debug::dump($arts);
         $data = array();
         foreach($arts->rows as $row){
             $data[] = get_object_vars($row);
         }
-
-
 	$pagination = array(
 	'page'          => (int)$page,
 	'perpage'      => (int)$arts->info->results_per_page,
         'total_results' => (int)$arts->info->total_results
 	);
-      
+
 	$paginator = Zend_Paginator::factory($pagination['total_results']);
         $paginator->setCurrentPageNumber($pagination['page'])
 		->setItemCountPerPage($pagination['perpage'])
@@ -166,12 +162,17 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	$id = $this->_getParam('id');
 	if($this->_getParam('id',false)) {
 	if (!($this->_cache->test('mpdetails'.$id))) {
-	$query = '&id='.$id;
-	$output = '&output=js';
-	$order = '&order=d';
-	$key = 'getPerson?key='. $this->_apiKey;
-	$twfy = self::TWFYURL.$key.$query;
-	$data = json_decode($this->get($twfy));
+        $service = 'getPerson?';
+        $params = array(
+            'key'       =>  $this->_apiKey,
+            'output'    =>  'js',
+            'order'     =>  'd',
+            'num'       =>  20,
+            'page'      =>  $page,
+            'id'        =>  $this->_getParam('id')
+        );
+	$twfy = http_build_query($params);
+        $data = $this->get(self::TWFYURL . $service . $twfy);
 	$this->_cache->save($data);
 	} else {
 	$data = $this->_cache->load('mpdetails'.$id);
@@ -184,8 +185,7 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	}
 	}
 
-	public function findsAction()
-	{
+	public function findsAction(){
 	if($this->_getParam('constituency',false)){
 	ini_set("memory_limit","256M");
 	$params = $this->_getAllParams();
