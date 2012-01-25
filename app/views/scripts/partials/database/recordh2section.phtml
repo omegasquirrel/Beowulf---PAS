@@ -2,6 +2,7 @@
 <p><strong>Unique ID:</strong> <span class="fourfigure"><?php echo $this->escape($this->old_findID);?></span></p>
 <?php if(!is_null($this->objecttypecert)):?>
 <p>
-Object type certainty: <?php echo $this->certainty($this->escape($this->objecttypecert));?>
+Object type certainty: <?php echo $this->certainty($this->escape($this->objecttypecert));?><br />
+Workflow status: <?php echo $this->workflowStatus($this->secwfstage);?> <?php echo $this->workflow($this->secwfstage);?>
 </p>
 <?php endif;?>

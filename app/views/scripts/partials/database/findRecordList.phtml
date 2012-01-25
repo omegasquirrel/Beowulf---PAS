@@ -14,11 +14,18 @@
 
 
     <ul>
-        <li>Record ID: <?php echo $this->old_findID;?></li>
+    <?php $url = $this->url(array(
+    	'module' => 'database',
+    	'controller' => 'artefacts',
+    	'action' => 'record',
+    	'id' => $this->id),
+    	'default',true);?>
+        <li>Record ID: <a href="<?php echo $url; ?>" title="View details for <?php echo $this->old_findID;?>"><?php echo $this->old_findID;?></a></li>
         <li>Object type: <?php echo $this->escape($this->objecttype);?></li>
         <li>Broad period: <?php echo $this->broadperiod;?></li>
         <li>County: <?php echo $this->county;?></li>
-        <li>Workflow stage: <?php echo $this->workflow($this->workflow);?></li>
+        <li>Workflow stage: <?php echo $this->workflowStatus($this->workflow);?> 
+        <?php echo $this->workflow($this->workflow);?></li>
         <li>Description: <?php echo $this->ellipsisstring($this->description,500);?></li>
         <?php
             $pieces = NULL;

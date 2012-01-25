@@ -59,7 +59,8 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
         $this->_apiKey = $this->_helper->config()->webservice->twfy->apikey;
         }
 
-	private function get($url){
+        
+	private function get($query){
 	$config = array(
         'adapter'   => 'Zend_Http_Client_Adapter_Curl',
         'curloptions' => array(
@@ -70,8 +71,7 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
             CURLOPT_LOW_SPEED_TIME => 1
             ),
 	);
-	$request = $url;
-	$client = new Zend_Http_Client($request, $config);
+	$client = new Zend_Http_Client(self::TWFYURL . $query, $config);
 	$response = $client->request();
 
 	$code = $this->getStatus($response);
@@ -119,7 +119,7 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	$page = $this->getPage();
 	$term = $this->_getParam('term');
         $search = $term ? $term : 'portable antiquities scheme';
-        $service = 'getHansard?';
+        $method = 'getHansard?';
         $params = array(
             'key' => $this->_apiKey,
             'output' => 'js',
@@ -128,118 +128,110 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
             'num' => 20,
             'page' => $page
         );
-	$twfy = http_build_query($params);
+	$twfy = $method . http_build_query($params);
 
-        $key = md5($twfy);
+	$key = md5($twfy);
 
 	if (!($this->_cache->test($key))){
-        $arts = $this->get(self::TWFYURL . $service . $twfy);
+        $arts = $this->get($twfy);
         $this->_cache->save($arts);
 	} else {
 	$arts = $this->_cache->load($key);
 	}
-        $arts = Zend_Json_Decoder::decode($arts, Zend_Json::TYPE_OBJECT);
-        $data = array();
-        foreach($arts->rows as $row){
-            $data[] = get_object_vars($row);
-        }
+    
+	$arts = Zend_Json_Decoder::decode($arts, Zend_Json::TYPE_OBJECT);
+        
+	$data = array();
+        
+	foreach($arts->rows as $row){
+		$data[] = get_object_vars($row);
+	}
+	
 	$pagination = array(
 	'page'          => (int)$page,
 	'perpage'      => (int)$arts->info->results_per_page,
-        'total_results' => (int)$arts->info->total_results
+	'total_results' => (int)$arts->info->total_results
 	);
 
 	$paginator = Zend_Paginator::factory($pagination['total_results']);
-        $paginator->setCurrentPageNumber($pagination['page'])
-		->setItemCountPerPage($pagination['perpage'])
-		->setCache($this->_cache);
+	$paginator->setCurrentPageNumber($pagination['page'])
+			->setItemCountPerPage($pagination['perpage'])
+			->setCache($this->_cache);
 	$this->view->data = $data;
 	$this->view->paginator = $paginator;
-
 	}
 
 	public function mpAction() {
-	$id = $this->_getParam('id');
 	if($this->_getParam('id',false)) {
-	if (!($this->_cache->test('mpdetails'.$id))) {
-        $service = 'getPerson?';
-        $params = array(
-            'key'       =>  $this->_apiKey,
-            'output'    =>  'js',
-            'order'     =>  'd',
-            'num'       =>  20,
-            'page'      =>  $page,
-            'id'        =>  $this->_getParam('id')
-        );
-	$twfy = http_build_query($params);
-        $data = $this->get(self::TWFYURL . $service . $twfy);
+    $method = 'getPerson?';
+    $params = array(
+    'key'       =>  $this->_apiKey,
+    'output'    =>  'js',
+    'id'        =>  $this->_getParam('id')
+    );
+	$twfy = $method . http_build_query($params);
+	if (!($this->_cache->test(md5($twfy)))) {
+	$data = $this->get($twfy);
 	$this->_cache->save($data);
 	} else {
-	$data = $this->_cache->load('mpdetails'.$id);
+	$data = $this->_cache->load(md5($twfy));
 	}
-
-	$this->view->data = $data;
-
+	$this->view->data = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-
+	
 	public function findsAction(){
-	if($this->_getParam('constituency',false)){
-	ini_set("memory_limit","256M");
-	$params = $this->_getAllParams();
+	if($this->_getParam('constituency',false)){	
+	$method = 'getGeometry?';
+	$params = array(
+		'key' => $this->_apiKey,
+		'name' => $this->_getParam('constituency'),
+		'output' => 'js'
+	); 
 	$this->view->constituency = $params['constituency'];
+	$twfy = $method . http_build_query($params);
+	if (!($this->_cache->test(md5($twfy)))) {
+	$data = $this->get($twfy);
+	$this->_cache->save($data);
+	} else {
+	$data = $this->_cache->load(md5($twfy));
+	}
+	Zend_Debug::dump(Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT));
+	exit;
 	$finds = new Finds();
 	$finds = $finds->getFindsConstituency($params['constituency']);
-	$this->cs = $this->_helper->contextSwitch();
-	$kml = array('kml');
-	if(!in_array($this->cs->getCurrentContext(),$kml )) {
-	$paginator = Zend_Paginator::factory($finds);
-	$paginator->setItemCountPerPage(30)
-	          ->setPageRange(20);
-	if(isset($params['page']) && ($params['page'] != "")) {
-    $paginator->setCurrentPageNumber((int)$params['page']);
-	}
-	$data = array(
-	'pageNumber' => $paginator->getCurrentPageNumber(),
-	'total' => number_format($paginator->getTotalItemCount(),0),
-	'itemsReturned' => $paginator->getCurrentItemCount(),
-	'totalPages' => number_format($paginator->getTotalItemCount()/
-	$paginator->getItemCountPerPage(),0)
-	);
-	$this->view->paging = $data;
-	$contexts = array('json');
-	if(in_array($this->cs->getCurrentContext(),$contexts )) {
-	$findsjson = array();
-	foreach($paginator as $k => $v) {
-	$findsjson[$k] = $v;
-	}
-	$this->view->objects = array('object' => $findsjson);
-	} else {
-	$this->view->finds = $paginator;
-	}
-	} else {
-	$this->view->finds = $finds;
-	}
+	
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
  	}
 
 	public function constituenciesAction() {
-	$page = $this->_getParam('page');
-	if (!($this->_cache->test('const'))) {
-	$query = 'getConstituencies?date=2010-05-07';
-	$output = '&output=xml';
-	$key = '&key='.$this->_apiKey;
-	$twfy = self::TWFYURL.$query.$output.$key;
-	$data = Zend_Json::fromXml($this->get($twfy),true);
+	$page = $this->getPage();
+	
+	$params = array(
+		'key' => $this->_apiKey,
+		'output' => 'js',
+		'date'	=> '2010-05-07'
+	);
+	$method = 'getConstituencies?';
+	
+	$twfy = $method . http_build_query($params);
+	
+	if (!($this->_cache->test(md5($twfy)))) {
+	$data = $this->get($twfy);
 	$this->_cache->save($data);
 	} else {
-	$data = $this->_cache->load('const');
+	$data = $this->_cache->load(md5($twfy));
 	}
-	$data = json_decode($data);
+	Zend_Debug::dump($data);
+
+	$data = Zend_Json_Decoder::decode($data);
+	Zend_Debug::dump($data);
+	$data = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
+	exit;
 	$data2 = array();
 	foreach ($data->twfy->match as $a) {
 	if(in_array($a->name,$this->_remove)){
@@ -274,46 +266,35 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	}
 
 	public function membersAction() {
-	$page = $this->_getParam('page');
-	if (!($this->_cache->test('members'))) {
-	$query = 'getMps';
-	$output = '&output=xml';
-	$key = '&key='.$this->_apiKey;
-	$twfy = self::TWFYURL.$query.$output.$key;
-	$data = Zend_Json::fromXml($this->get($twfy),true);
-	$data = json_decode($data);
+	$method = 'getMps?';
+	$params = array(
+		'key' => $this->_apiKey,
+		'output' => 'js',
+	);
+	
+	$twfy = $method . http_build_query($params);
+	if (!($this->_cache->test(md5($twfy)))) {
+	$data = $this->get($twfy);
 	$this->_cache->save($data);
 	} else {
-	$data = $this->_cache->load('members');
+	$data = $this->_cache->load(md5($twfy));
 	}
+	$data = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
 	$data2 = array();
-	foreach ($data->twfy->match as $a){
+	foreach ($data as $a){
 	if(in_array($a->constituency,$this->_remove)){
-	unset($a->name);
-	unset($a->person_id);
-	unset($a->party);
-	unset($a->constituency);
+	unset($a);
 	}
 	if(isset($a->name)){
-	$data2[] = array('name' => $a->name,
-	'person_id' => $a->person_id,
-	'constituency' => $a->constituency,
-	'party' => $a->party
-	);
+	$data2[] = get_object_vars($a);
 	}
 	}
 	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data2));
-	if(isset($page) && ($page != "")) {
-    $paginator->setCurrentPageNumber((int)$page);
-	}
-	$paginator->setItemCountPerPage(40)
-    	      ->setPageRange(10);
-   	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),array('xml','json'))){
-   	$data = array('pageNumber' => $paginator->getCurrentPageNumber(),
-				  'total' => number_format($paginator->getTotalItemCount(),0),
-				  'itemsReturned' => $paginator->getCurrentItemCount(),
-				  'totalPages' => number_format($paginator->getTotalItemCount()/
-   												$paginator->getItemCountPerPage(),0));
+    $paginator->setCurrentPageNumber((int)$this->getPage());
+	$paginator->setItemCountPerPage(30)
+    	      ->setPageRange(10)
+    	      ->setCache($this->_cache);
+   	if(in_array($this->_helper->contextSwitch()->getCurrentContext(), array('xml','json'))){
 	$this->view->data = $data;
    	$members = array();
    	foreach($paginator as $k => $v){
