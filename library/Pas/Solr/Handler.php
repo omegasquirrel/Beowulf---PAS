@@ -220,6 +220,21 @@ class Pas_Solr_Handler {
             $params['d'])
             );
     }
+    
+    if(array_key_exists('bbox',$params)){
+    	$bbox = explode(',',$params['bbox']);
+    	if(count($bbox) < 4){
+    		throw new Pas_Solr_Exception('Not enough lat/lon attributes');
+    	}
+    	$minLat = $bbox['0'];
+    	$minLon = $bbox['1'];
+    	$maxLat = $bbox['2'];
+    	$maxLon = $bbox['3'];
+    	$spatial = 'coordinates:[' . $minLat . ',' .  $minLon . ' TO ' . $maxLat . ',' . $maxLon . ']'; 
+    	$this->_query->createFilterQuery('bbox')->setQuery($spatial);
+    	
+    }
+    
     foreach($params as $key => $value){
         if(!in_array($key, $this->_schemaFields))   {
             unset($params[$key]);
@@ -409,21 +424,17 @@ class Pas_Solr_Handler {
     );
 
     $select['sort'] = $this->_getSort($this->_core, $this->_params);
-//    Zend_Debug::dump($select, 'The sort');
     $select['rows'] = $this->_getRows($this->_params);
     $select['start'] = $this->_getStart($this->_params);
 
-
-
-        if(array_key_exists('q',$this->_params)){
-		$select['query'] = $this->_params['q'];
+	if(array_key_exists('q',$this->_params)){
+	$select['query'] = $this->_params['q'];
                 unset($this->_params['q']);
 	}
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
 
     if(!in_array($this->_getRole(), $this->_allowed) || is_null($this->_getRole()) ) {
-
     if(array_key_exists('workflow', array_flip($this->_schemaFields))){
     $this->_query->createFilterQuery('workflow')->setQuery('workflow:[3 TO 4]');
     }
@@ -444,7 +455,8 @@ class Pas_Solr_Handler {
 
 
 //    Zend_Debug::dump($this->_params,'The params sent');
-//    Zend_Debug::dump($this->_query, 'The Query!');
+    Zend_Debug::dump($this->_query, 'The Query!');
+//    exit;
 //    Zend_Debug::dump($this->_fields, 'The field list');
 
     $this->_resultset = $this->_solr->select($this->_query);

@@ -49,9 +49,9 @@ class Pas_View_Helper_Href extends Zend_View_Helper_Url {
 	  * @return string or bool FALSE if options are incorrect or access denied
 	 */		  		
     public function href(array $options) {
-    $options=array_merge($this->options, $options);
+    $options = array_merge($this->options, $options);
     
-    $url=$this->setUrl($options);
+    $url = $this->setUrl($options);
 		
     $attribs = '';	
 	if (count($options['attribs'])>0) { 	    		
@@ -148,27 +148,40 @@ class Pas_View_Helper_Href extends Zend_View_Helper_Url {
       * @return bool
       */
     private function checkAcl($options) {
-    	if ($options['resource']==null AND $options['controller']!=null) { 
+    	
+    	$options['resource-prefix'] = $options['module'] . ':';
+    		if ($options['resource'] == null AND $options['controller']!= null) { 
     			$resource= //$options['resource-prefix'].
 				$options['controller'];
-    			$privilege=$options['action'];	
+    			$privilege = $options['action'];	
 				
-    		} elseif ($options['resource']!=null AND $options['privilege']!=null) {
-    			$resource=$options['resource'];
+    		} elseif ($options['resource']!= null AND $options['privilege']!= null) {
+    			$resource = $options['resource'];
     			$privilege=$options['privilege'];
-    		} else
+    		} else {
     			return false;	
+    		}
+    		
+	    	$role = $this->getRole();
 			
-	    	$role=$this->getRole();
-			
-	    	if ($role==null)
+	    	if(is_null($options['module'])){
+	    		return false;
+	    	} else {
+	    		$module = $options['module'] . ':';
+	    	}
+	    	if ($role == null){
 	    	return false;
-				$acl = Zend_Registry::get('acl');
-				
+	    	}
+	    				$acl = Zend_Registry::get('acl');
+			$resource = $options['resource-prefix'] . $resource;
+	    	if(!$acl->has($resource)){
+	    		$acl->add(new Zend_Acl_Resource($resource));
+	    	}
+
 	    	if ($acl->isAllowed($role, $resource, $privilege) == true) {	    			    		
 	    		return true;
-			}
-	    	else 
-	    		return false;	
+			} else { 
+	    		return false;
+			}	
     }
 }

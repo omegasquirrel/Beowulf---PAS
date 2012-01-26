@@ -277,7 +277,9 @@ Reason for leaving: <?php echo ucfirst(str_replace('_',' ',$d->left_reason));?><
 Party at election: <?php echo $d->party;?><br />
 <?php endif;?> 
 <?php if($d->constituency != ''):?>
-Constituency: <?php echo $d->constituency;?> <br />
+Constituency: <?php 
+Zend_Debug::dump($d);
+echo $d->constituency;?> <br />
 <?php endif;?>
 <?php if(array_key_exists('office',$d)):?>
 <?php if($d->left_reason != 'general_election_standing'):?>

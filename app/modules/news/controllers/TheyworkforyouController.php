@@ -190,7 +190,7 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 		'name' => $this->_getParam('constituency'),
 		'output' => 'js'
 	); 
-	$this->view->constituency = $params['constituency'];
+	$this->view->constituency = $this->_getParam('constituency');
 	$twfy = $method . http_build_query($params);
 	if (!($this->_cache->test(md5($twfy)))) {
 	$data = $this->get($twfy);
@@ -198,11 +198,22 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	} else {
 	$data = $this->_cache->load(md5($twfy));
 	}
-	Zend_Debug::dump(Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT));
-	exit;
-	$finds = new Finds();
-	$finds = $finds->getFindsConstituency($params['constituency']);
-	
+	$cons = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
+	$bbox = array($cons->min_lat, $cons->min_lon, $cons->max_lat, $cons->max_lon);
+	$search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county')
+    );
+    $search->setFacets(array('objectType','county','broadperiod'));
+	$search->setParams(array('bbox' => implode(',',$bbox)));
+    $search->execute();
+
+    $this->view->facets = $search->_processFacets();
+    $this->view->paginator = $search->_createPagination();
+    $this->view->finds = $search->_processResults();
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
@@ -226,43 +237,24 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	} else {
 	$data = $this->_cache->load(md5($twfy));
 	}
-	Zend_Debug::dump($data);
-
-	$data = Zend_Json_Decoder::decode($data);
-	Zend_Debug::dump($data);
 	$data = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
-	exit;
-	$data2 = array();
-	foreach ($data->twfy->match as $a) {
+	
+	foreach ($data as $a) {
 	if(in_array($a->name,$this->_remove)){
 	unset($a->name);
 	}
+	}
+	$data2 = array();
+	foreach($data as $a){
 	if(isset($a->name)){
 	$data2[] = array('name' => $a->name);
 	}
 	}
 	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data2));
-	if(isset($page) && ($page != "")) {
-    $paginator->setCurrentPageNumber((int)$page);
-	}
-	$paginator->setItemCountPerPage(40)
-    	      ->setPageRange(10);
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),array('xml','json'))){
-   	$data = array('pageNumber' => $paginator->getCurrentPageNumber(),
-				  'total' => number_format($paginator->getTotalItemCount(),0),
-				  'itemsReturned' => $paginator->getCurrentItemCount(),
-				  'totalPages' => number_format($paginator->getTotalItemCount()/
-   				$paginator->getItemCountPerPage(),0));
-	$this->view->data = $data;
-   	$constituencies = array();
-   	foreach($paginator as $k => $v){
-   	$constituencies[]=array();
-	$constituencies[$k] = $v;
-   	}
-   	$this->view->constituencies = $constituencies;
-   	} else {
+	$paginator->setCurrentPageNumber($this->getPage())
+			->setItemCountPerPage(40)
+			->setCache($this->_cache);
 	$this->view->data = $paginator;
-   	}
 	}
 
 	public function membersAction() {
@@ -271,7 +263,6 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 		'key' => $this->_apiKey,
 		'output' => 'js',
 	);
-	
 	$twfy = $method . http_build_query($params);
 	if (!($this->_cache->test(md5($twfy)))) {
 	$data = $this->get($twfy);
