@@ -1,0 +1,84 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of FacetCreator
+ *
+ * @author danielpett
+ */
+class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
+
+
+    public function facetCreator(array $facets){
+
+        if(is_array($facets)){
+        $html = '<div id="facets">';
+        $html .= '<h3>Search facets</h3>';
+        foreach($facets as $facetName => $facet){
+            $html .= $this->_processFacet($facet, $facetName);
+        }
+        $html .= '</div>';
+        return $html;
+        } else {
+            throw new Pas_Exception_BadJuJu('The facets sent are not an array');
+        }
+    }
+
+    protected function _processFacet(array $facet, $facetName){
+        if(is_array($facet)){
+        $html = '<div id="facet-' . $facetName .'" class="thumbnail">';
+        $html .= '<h4>' . $this->_prettyName($facetName) . '</h4>';
+        $html .= '<ul>';
+        $facet = array_slice($facet,0,10);
+
+        foreach($facet as $key => $value){
+        $url = $this->view->url(array('fq' . $facetName => $key),'default',false);
+        $html .= '<li>';
+        $html .= '<a href="' . $url . '" title="Facet query for ' . $key;
+        $html .= '">';
+        $html .= $key . ' ('. number_format($value) .')';
+        $html .= '</a>';
+        $html .= '</li>';
+        }
+
+        $html .= '</ul>';
+        $request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+
+        $facet = $request['fq' . $facetName];
+        if(isset($facet)){
+            unset($request['fq' . $facetName]);
+            $html .= '<p><a href="' . $this->view->url(($request),'default',true)
+                    . '" title="Clear the facet">Clear this facet</a></p>';
+        }
+
+        $html .= '</div>';
+        return $html;
+        } else {
+            throw new Pas_Exception_BadJuJu('The facet is not an array');
+        }
+    }
+
+    protected function _prettyName($name){
+        switch($name){
+            case 'objectType':
+                $clean = 'Object type';
+                break;
+            case 'broadperiod':
+                $clean = 'Broad period';
+                break;
+            case 'county':
+                $clean = 'County of origin';
+                break;
+            default:
+                $clean = ucfirst($name);
+                break;
+        }
+        return $clean;
+    }
+}
+
+?>

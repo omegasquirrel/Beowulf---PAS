@@ -362,10 +362,13 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
         'title','broadperiod','description',
         'old_findID','thumbnail', 'county',
         'imagedir','filename'));
+        $search->setFacets(array('objectType','county','broadperiod','institution'));
 	$search->setParams($params);
 	$search->execute();
+        $this->view->facets = $search->_processFacets();
 	$this->view->paginator = $search->_createPagination();
 	$this->view->results = $search->_processResults();
+
 	}
 //EOS
 }
