@@ -5,11 +5,11 @@
 	$object = (object)$data['0'];
 	?>
 	<rally>
-	<url>http://www.finds.org.uk/database/rallies/rally/id/<?php echo $object->id;?></url>
+	<url><?php echo $this->serverUrl();?>/database/rallies/rally/id/<?php echo $object->id;?></url>
 	<name><?php echo $object->rally_name;?></name>
 	<geo>
 	<county><?php echo $object->county;?></county>
-	<district><?php echo $object->district;?></district> 
+	<district><?php echo $object->district;?></district>
 	<parish><?php echo $object->parish;?></parish>
 	<ngr><?php echo $object->gridref;?></ngr>
 	<fourFigure><?php echo $object->fourFigure;?></fourFigure>
@@ -21,10 +21,10 @@
 	<lon><?php echo $object->longitude;?></lon>
 	</geo>
 	<dates>
-	<datefrom><?php echo $object->df;?></datefrom> 
+	<datefrom><?php echo $object->df;?></datefrom>
 	<dateto><?php echo $object->dt;?></dateto>
 	</dates>
-	<attending> 
+	<attending>
 	<flos>
 	<?php foreach($this->atts as $a):?>
 	<flo>

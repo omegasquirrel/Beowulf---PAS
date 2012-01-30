@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 $vc = new Pas_VCard();
@@ -55,10 +55,10 @@ $vc->data['fax_tel'] = $person['fax'];
 
 $vc->data['email1'] = $person['email_one'];
 #$vc->data['email2'] = $person['email_two'];
-$vc->data['url'] = "http://www.finds.org.uk";
+$vc->data['url'] = "<?php echo $this->serverUrl();?>";
 if(isset($person['image']))
 {
-$vc->data['photo'] = "http://www.finds.org.uk/images/staffphotos/thumbnails/".rawurlencode($person['image']);
+$vc->data['photo'] = "<?php echo $this->serverUrl();?>/images/staffphotos/thumbnails/".rawurlencode($person['image']);
 }
 #$vc->data['birthday'] = "";
 $vc->data['timezone'] = "00:00";

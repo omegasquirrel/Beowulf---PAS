@@ -1,9 +1,9 @@
 <rally>
-	<url>http://www.finds.org.uk/database/rallies/rally/id/<?php echo $this->id;?></url>
+	<url><?php echo $this->serverUrl();?>/database/rallies/rally/id/<?php echo $this->id;?></url>
 	<name><?php echo $this->rally_name;?></name>
 	<geo>
 	<county><?php echo $this->county;?></county>
-	<district><?php echo $this->district;?></district> 
+	<district><?php echo $this->district;?></district>
 	<parish><?php echo $this->parish;?></parish>
 	<ngr><?php echo $this->gridref;?></ngr>
 	<fourFigure><?php echo $this->fourFigure;?></fourFigure>
@@ -15,7 +15,7 @@
 	<lon><?php echo $this->longitude;?></lon>
 	</geo>
 	<dates>
-	<datefrom><?php echo $this->df;?></datefrom> 
+	<datefrom><?php echo $this->df;?></datefrom>
 	<dateto><?php echo $this->dt;?></dateto>
 	</dates>
 	<metadata>

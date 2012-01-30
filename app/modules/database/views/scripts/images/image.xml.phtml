@@ -1,12 +1,12 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>';?>
 <response>
 	<image>
-	<?php 
+	<?php
 	$data = $this->images;
 	$object = (object)$data['0'];
 	$route = $object->imagedir;
 	?>
-	<url>http://www.finds.org.uk/database/images/id/<?php echo $object->id;?></url>
+	<url><?php echo $this->serverUrl();?>/database/images/id/<?php echo $object->id;?></url>
 	<label><?php echo $this->Xmlclean($object->label);?></label>
 	<broadperiod><?php echo $object->broadperiod;?></broadperiod>
 	<county><?php echo $object->county;?></county>
@@ -30,7 +30,7 @@
 		<?php }?>
 	</original>
 	<medium>
-		<?php 
+		<?php
 		if(file_exists($route . 'medium/' . $object->filename)) {
 		$data2 = getimagesize($route . 'medium/' . $object->filename);
 		$width2 = $data2['0'];
@@ -47,9 +47,9 @@
 		<?php }?>
 	</medium>
 	<thumbnail>
-		<path>http://www.finds.org.uk/images/thumbnails/<?php echo $object->id?>.jpg</path>
-		<?php 
-		$data3 = getimagesize('http://www.finds.org.uk/images/thumbnails/' . $object->id . '.jpg');
+		<path><?php echo $this->serverUrl();?>/images/thumbnails/<?php echo $object->id?>.jpg</path>
+		<?php
+		$data3 = getimagesize('<?php echo $this->serverUrl();?>/images/thumbnails/' . $object->id . '.jpg');
 		$width3 = $data3['0'];
 		$height3 = $data3['1'];
 		$mime3 = $data3['mime'];
@@ -94,5 +94,5 @@
 	<linkedFinds>
 	<?php echo $this->partialLoop('partials/xml/linkedfinds.phtml',$this->finds);?>
 	</linkedFinds>
-	</image> 
+	</image>
 </response>

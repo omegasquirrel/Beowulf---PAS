@@ -5,12 +5,12 @@
 <foaf:family_name><?php echo $this->escape($this->lastname);?></foaf:family_name>
 <foaf:mbox_sha1sum><?php echo sha1($this->email_one);?></foaf:mbox_sha1sum>
 <foaf:mbox rdf:resource="mailto:<?php echo $this->email_one;?>"/>
-<foaf:homepage rdf:resource="http://www.finds.org.uk"/>
+<foaf:homepage rdf:resource="<?php echo $this->serverUrl();?>"/>
 <?php if(isset($this->image)) {?>
-<foaf:depiction rdf:resource="http://www.finds.org.uk/<?php echo $this->baseUrl().'/images/staffphotos/thumbnails/'.$this->image;?>"/><?php } ?>
+<foaf:depiction rdf:resource="<?php echo $this->serverUrl();?>/<?php echo $this->baseUrl().'/images/staffphotos/thumbnails/'.$this->image;?>"/><?php } ?>
 <foaf:phone rdf:resource="tel:<?php echo $this->escape($this->telephone);?>"/>
-<foaf:workplaceHomepage rdf:resource="http://www.finds.org.uk"/>
-<foaf:workInfoHomepage rdf:resource="http://www.finds.org.uk/contacts/staff/profile/id/<?php echo $this->id;?>"/>
+<foaf:workplaceHomepage rdf:resource="<?php echo $this->serverUrl();?>"/>
+<foaf:workInfoHomepage rdf:resource="<?php echo $this->serverUrl();?>/contacts/staff/profile/id/<?php echo $this->id;?>"/>
 
 <?php echo $this->onlineAccount($this->id);?>
 

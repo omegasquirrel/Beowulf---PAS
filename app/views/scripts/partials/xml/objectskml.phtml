@@ -1,14 +1,14 @@
-<?php if(!is_null($this->fourFigure) && is_null($this->knownas)):?> 
+<?php if(!is_null($this->fourFigure) && is_null($this->knownas)):?>
 <Placemark>
-<name>PAS record number: <?php echo $this->old_findID;?></name> 
+<name>PAS record number: <?php echo $this->old_findID;?></name>
 <styleUrl>#pushpin</styleUrl>
 <description>
 <![CDATA[
 <?php if(!is_null($this->i)):?>
-<img src="http://www.finds.org.uk/images/thumbnails/<?php echo $this->i;?>.jpg" style="float:right;"/>
+<img src="<?php echo $this->serverUrl();?>/images/thumbnails/<?php echo $this->i;?>.jpg" style="float:right;"/>
 <?php endif;?>
 <?php echo $this->escape(strip_tags($this->description));?><br />
-<?php 
+<?php
 $restricted = array('public','member');
 $auth = Zend_Auth::getInstance();
 
@@ -16,7 +16,7 @@ if($auth->hasIdentity())
 {
 $user = $auth->getIdentity();
 {
-if(!in_array($user->role,$restricted)) 
+if(!in_array($user->role,$restricted))
 {
 echo 'This findspot has been produced from the 4 figure reference. It is not the precise findspot.<br />';
 }
@@ -26,12 +26,12 @@ echo 'This findspot has been produced from the 4 figure reference. It is not the
 }
 ?>
 
-<a href="http://www.finds.org.uk/database/artefacts/record/id/<?php echo $this->id;?>" 
+<a href="<?php echo $this->serverUrl();?>/database/artefacts/record/id/<?php echo $this->id;?>"
 title="View <?php echo $this->old_findID;?>'s full details">Stable url for <?php echo $this->old_findID;?></a>
 
 ]]>
 </description>
-<?php 
+<?php
 $restricted = array('public','member');
 $auth = Zend_Auth::getInstance();
 
@@ -39,20 +39,20 @@ if($auth->hasIdentity())
 {
 $user = $auth->getIdentity();
 {
-if(!in_array($user->role,$restricted)) 
+if(!in_array($user->role,$restricted))
 {
 $lat = $this->lat;
-$long = $this->lon; 
+$long = $this->lon;
 }else {
 $results = $this->GridCalc($this->fourFigure);
 $lat = $results['Latitude'];
-$long = $results['Longitude']; 
-} 
-} 
+$long = $results['Longitude'];
+}
+}
 } else {
 $results = $this->Gridcalculator($this->fourFigure);
 $lat = $results['Latitude'];
-$long = $results['Longitude']; 
+$long = $results['Longitude'];
 }
 echo '<Point>';
 echo '<coordinates>'.$long.','.$lat.'</coordinates>';

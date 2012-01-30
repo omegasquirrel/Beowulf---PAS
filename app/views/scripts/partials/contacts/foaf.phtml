@@ -7,14 +7,14 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
       xmlns:foaf="http://xmlns.com/foaf/0.1/"
       xmlns:admin="http://webns.net/mvcb/"
-	  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+	  xmlns:dc="http://purl.org/dc/elements/1.1/"
 	  xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 	  xmlns:con="http://www.w3.org/2000/10/swap/pim/contact#"
 >
 <foaf:PersonalProfileDocument rdf:about="">
   <foaf:maker rdf:resource="#me"/>
   <foaf:primaryTopic rdf:resource="#me"/>
-  <admin:generatorAgent rdf:resource="http://www.finds.org.uk"/>
+  <admin:generatorAgent rdf:resource="<?php echo $this->serverUrl();?>"/>
   <admin:errorReportsTo rdf:resource="mailto:dpett@thebritishmuseum.org"/>
 </foaf:PersonalProfileDocument>
 <foaf:Person rdf:ID="me">
@@ -23,12 +23,12 @@ echo '<?xml version="1.0" encoding="UTF-8" ?>';
 <foaf:family_name><?php echo $this->escape($this->lastname);?></foaf:family_name>
 <foaf:mbox_sha1sum><?php echo sha1($this->email_one);?></foaf:mbox_sha1sum>
 <foaf:mbox rdf:resource="mailto:<?php echo $this->email_one;?>"/>
-<foaf:homepage rdf:resource="http://www.finds.org.uk"/>
+<foaf:homepage rdf:resource="<?php echo $this->serverUrl();?>"/>
 <?php if(isset($this->image)) {?>
-<foaf:depiction rdf:resource="http://www.finds.org.uk<?php echo '/images/staffphotos/thumbnails/'.$this->image;?>"/><?php } ?>
+<foaf:depiction rdf:resource="<?php echo $this->serverUrl();?><?php echo '/images/staffphotos/thumbnails/'.$this->image;?>"/><?php } ?>
 <foaf:phone rdf:resource="tel:<?php echo $this->escape($this->telephone);?>"/>
-<foaf:workplaceHomepage rdf:resource="http://www.finds.org.uk"/>
-<foaf:workInfoHomepage rdf:resource="http://www.finds.org.uk/contacts/staff/profile/id/<?php echo $this->number;?>"/>
+<foaf:workplaceHomepage rdf:resource="<?php echo $this->serverUrl();?>"/>
+<foaf:workInfoHomepage rdf:resource="<?php echo $this->serverUrl();?>/contacts/staff/profile/id/<?php echo $this->number;?>"/>
 <?php echo $this->onlineAccount($this->number);?>
 
 <foaf:based_near rdf:parseType="Resource">

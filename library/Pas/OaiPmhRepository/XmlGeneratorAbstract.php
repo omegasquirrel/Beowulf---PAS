@@ -16,13 +16,13 @@
 class Pas_OaiPmhRepository_XmlGeneratorAbstract
 {
     const XML_SCHEMA_NAMESPACE_URI = 'http://www.w3.org/2001/XMLSchema-instance';
-    
+
     /**
      * The XML document being generated.
-     * @var DomDocument 
+     * @var DomDocument
      */
-    protected $document;
-    
+    protected $_document;
+
     /**
      * Creates a new XML element with the specified children
      *
@@ -35,9 +35,9 @@ class Pas_OaiPmhRepository_XmlGeneratorAbstract
      * @param array $children Child names and values, as name => value.
      * @return DomElement The new tree of elements.
      */
-    protected function createElementWithChildren($parent, $name, $children)
+    protected function _createElementWithChildren($parent, $name, $children)
     {
-        $document = $this->document;
+        $document = $this->_document;
         $newElement = $document->createElement($name);
         foreach($children as $tag => $value)
         {
@@ -46,9 +46,9 @@ class Pas_OaiPmhRepository_XmlGeneratorAbstract
         $parent->appendChild($newElement);
         return $newElement;
     }
-    
+
     /**
-     * Creates a parent element with the given name, with text as given.  
+     * Creates a parent element with the given name, with text as given.
      *
      * Adds the resulting element as a child of the given parent node.
      *
@@ -59,7 +59,7 @@ class Pas_OaiPmhRepository_XmlGeneratorAbstract
      */
     protected function appendNewElement($parent, $name, $text = null)
     {
-        $document = $this->document;
+        $document = $this->_document;
         $newElement = $document->createElement($name);
         // Use a TextNode, causes escaping of input text
         if($text) {

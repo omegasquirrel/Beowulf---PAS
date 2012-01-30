@@ -1,4 +1,4 @@
-<?php 
+<?php
 $config = Zend_Registry::get('config');
 $apikey = $config->googlemaps->apikey;
 $appid = $config->ydnkeys->placemakerkey;
@@ -6,7 +6,7 @@ $this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text
 $this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='.$apikey,$type='text/javascript')
 ->appendFile('http://gmaps-utility-library.googlecode.com/svn/trunk/mapiconmaker/1.0/src/mapiconmaker.js',$type='text/javascript');
 ?>
-<h4>Spatial data</h4> 
+<h4>Spatial data</h4>
 <?php echo $this->FindSpotEditDeleteLink($this->old_findspotid,$this->id,$this->createdBy);?>
 
 <?php if(isset($this->declong) && isset($this->declat)) : ?>
@@ -16,15 +16,15 @@ $this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.
 <?php echo $this->declat;?>,<?php echo $this->declong;?>&sensor=false" />
 </noscript>
 </div>
-<?php 
+<?php
 $allowed = array('hero','flos','admin','treasure','research','fa');
 $auth = Zend_registry::get('auth');
 $identity = $auth->getIdentity();
 $role = $identity->role;
 if(in_array($role,$allowed)):
 ?>
-<div id="radius"><p><a href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax', 
-'action' => 'nearest', 'lat' => $this->declat, 'long' => $this->declong,'distance' => '2'),null,true);?>" 
+<div id="radius"><p><a href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax',
+'action' => 'nearest', 'lat' => $this->declat, 'long' => $this->declong,'distance' => '2'),null,true);?>"
 rel="facebox" title="Use the Haversine formula to find adjacent objects">Find objects within 2km radius of this artefact</a></p>
 </div>
 <?php endif;?>
@@ -40,11 +40,11 @@ if (GBrowserIsCompatible()) {
 	var bounds = new GLatLngBounds();
 	var woeid = '<?php echo $this->woeid;?>';
 	var colours = ["red", "blue", "green", "purple", "orange", "yellow", "darkred", "darkblue", "darkgreen", "aqua", "magenta", "springgreen"];
-	
+
 	function displayPolygon(woeid) {
 		$.getJSON('http://api.flickr.com/services/rest/?method=flickr.places.getInfo&api_key=' + flickr_api_key + '&woe_id=' + woeid + '&format=json&jsoncallback=?', function(data) {
 			if(data.place.has_shapedata == 1) {
-			
+
 				$.each(data.place.shapedata.polylines.polyline, function(index,polyline) {
 					thepoints = [];
 					$.each(polyline._content.split(/ /), function(pindex, point) {
@@ -52,20 +52,20 @@ if (GBrowserIsCompatible()) {
 						lng = parseFloat(point.split(/,/)[1]);
 						thepoints[pindex] = new GLatLng(lat, lng);
 					});
-					
+
 					var polyOptions = {geodesic:true};
 					var colour = colours.shift();
 					var name = data.place.name.split(',')[0];
-					
+
 					var polygon = new GPolygon(thepoints, colour, 2, 1, colour, 0.1, polyOptions);
 					map.addOverlay(polygon);
 				//$('ul#legend-items').append('<li style="color:' + colour + '"><a href="/database/search/results/woeid/' + woeid + '" title="View all data from adjacent places">' + name + '</a></li>');
-					
+
 					$.each(thepoints, function(pindex, point) {
 						bounds.extend(point);
 					});
 				});
-			
+
 				if(!bounds.isEmpty()) {
 					//map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
 				}
@@ -80,17 +80,17 @@ function displayNeighbours(woeid) {
 			});
 		});
 	}
-	
+
 $('ul#legend-items li a').live('click', function(event) {
-	
+
 	  return true;
 	});
 
 		//displayNeighbours(woeid);
 
-	
+
 	displayPolygon(woeid);
- <?php endif;?> 
+ <?php endif;?>
 	 // -- copy&paste block start
 var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90, -180),new GLatLng(90, 180)), 1,
 	"Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>");
@@ -101,43 +101,43 @@ tilelayer.getTileUrl = NLSTileUrlOS;
 var nlsmap = new GMapType([tilelayer], G_NORMAL_MAP.getProjection(), "Historical");
 // -- copy&paste block end
 var copyOSM = new GCopyrightCollection('<a href="http://www.openstreetmap.org/">OpenStreetMap</a>');
-    copyOSM.addCopyright(new GCopyright(1, 
+    copyOSM.addCopyright(new GCopyright(1,
     new GLatLngBounds(new GLatLng(-90, -180), new GLatLng(90, 180)),
     0, // minimum zoom level
     ' ' // no additional copyright message, but empty string hides entire copyright
     ));
-	
+
 var osmLayer = new GTileLayer(copyOSM, 0, 18, {
 	tileUrlTemplate: 'http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/998/256/{Z}/{X}/{Y}.png',
 	isPng: true,
 	opacity: 1.0
 	});
-	  
+
 var osmMap = new GMapType(
 	[osmLayer], // list of layers
 	G_NORMAL_MAP.getProjection(), // borrow the Mercator projection from the standard map
 	'OSM' // name should be short enough to fit in button
 	);
-	  
-	 
+
+
 var map = new GMap2(document.getElementById("map"));
     map.setUIToDefault();
     map.addControl(new GMapTypeControl());
     map.setCenter(new GLatLng(<?php echo $this->declat.',',$this->declong;?>),11);
     map.addMapType(osmMap);
     map.addMapType(nlsmap);
-    map.addMapType(G_SATELLITE_3D_MAP);		
+    map.addMapType(G_SATELLITE_3D_MAP);
     map.addMapType(G_PHYSICAL_MAP);
     map.setMapType(G_PHYSICAL_MAP);
-    map.disableScrollWheelZoom(); 
+    map.disableScrollWheelZoom();
     map.enableRotation();
-<?php 	
+<?php
 if(!is_null($this->county)) {
-echo 'var geoXml = new GGeoXml("http://www.finds.org.uk/kml/'.str_replace(' ',
+echo 'var geoXml = new GGeoXml("' . $this->serverUrl() .'/kml/'.str_replace(' ',
         '',$this->county).'.kml");';
 echo 'map.addOverlay(geoXml);';
 }
-?>		
+?>
 var tinyIcon = new GIcon();
     tinyIcon.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
     tinyIcon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
@@ -154,13 +154,13 @@ var findIcon = new GIcon();
     findIcon.shadowSize = new GSize(22, 20);
     findIcon.iconAnchor = new GPoint(6, 20);
     findIcon.infoWindowAnchor = new GPoint(5, 1);
-		
+
 findOptions = { icon:findIcon };
 
 var point = new GLatLng(<?php echo $this->declat.',',$this->declong;?>);
-	 	
+
 var marker = new GMarker(point, markerOptions);
-    
+
 GEvent.addListener(marker, "click", function () {
 marker.openInfoWindowHtml("Findspot location");
 });
@@ -184,7 +184,7 @@ map.addOverlay(marker);
 <div id="map">
 <noscript><img src="http://maps.google.com/maps/api/staticmap?center='.$this->declat.','.$this->declong.'&zoom=14&size=640x300&maptype=terrain
 &markers=color:green|label:G|<?php echo $this->declat;?>,<?php echo $this->declong;?>&sensor=false" /></noscript></div>
-<?php $string = $this->parish . ' ' . $this->district . ' ' . $this->county . ' United Kingdom'; 
+<?php $string = $this->parish . ' ' . $this->district . ' ' . $this->county . ' United Kingdom';
 echo $this->FindspotGeoUnknown($string);?>
 <?php $this->inlineScript()->captureStart() ?>
  $(document).ready(function() {
@@ -196,16 +196,16 @@ echo $this->FindspotGeoUnknown($string);?>
  var yahoo_geoplanet_api_key = 'avT7WEDV34HLQLsINzdyv9D4QFGiJtNnPHgtE7C0dvVe7ItxzfuOkGTslkfR_iI9cUCVFKJsrzYTYQ--';
  var bounds = new GLatLngBounds();
  var woeid = '<?php echo $this->woeid;?>';
- var colours = ["red", 
- "blue", "green", "purple", 
- "orange", "yellow", "darkred", 
- "darkblue", "darkgreen", "aqua", 
+ var colours = ["red",
+ "blue", "green", "purple",
+ "orange", "yellow", "darkred",
+ "darkblue", "darkgreen", "aqua",
  "magenta", "springgreen"];
-	
+
 function displayPolygon(woeid) {
-$.getJSON('http://api.flickr.com/services/rest/?method=flickr.places.getInfo&api_key=' 
+$.getJSON('http://api.flickr.com/services/rest/?method=flickr.places.getInfo&api_key='
 + flickr_api_key + '&woe_id=' + woeid + '&format=json&jsoncallback=?', function(data) {
-if(data.place.has_shapedata == 1) {			
+if(data.place.has_shapedata == 1) {
     $.each(data.place.shapedata.polylines.polyline, function(index,polyline) {
     thepoints = [];
     $.each(polyline._content.split(/ /), function(pindex, point) {
@@ -213,21 +213,21 @@ if(data.place.has_shapedata == 1) {
     lng = parseFloat(point.split(/,/)[1]);
     thepoints[pindex] = new GLatLng(lat, lng);
 });
-					
+
 var polyOptions = {geodesic:true};
 var colour = colours.shift();
 var name = data.place.name.split(',')[0];
 var polygon = new GPolygon(thepoints, colour, 2, 1, colour, 0.1, polyOptions);
 map.addOverlay(polygon);
 //$('ul#legend-items').append('<li style="color:' + colour + '">
-    <a href="/database/search/results/woeid/' + woeid + '" 
+    <a href="/database/search/results/woeid/' + woeid + '"
        title="View all data from adjacent places">' + name + '</a></li>');
-					
+
 $.each(thepoints, function(pindex, point) {
 bounds.extend(point);
 });
 });
-			
+
 if(!bounds.isEmpty()) {
 //map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
             }
@@ -235,33 +235,33 @@ if(!bounds.isEmpty()) {
     });
 };
 function displayNeighbours(woeid) {
-$.getJSON('http://where.yahooapis.com/v1/place/' + woeid + '/neighbors?appid=' 
+$.getJSON('http://where.yahooapis.com/v1/place/' + woeid + '/neighbors?appid='
 + yahoo_geoplanet_api_key + '&format=json&callback=?', function(data) {
 neighbours = [];
 $.each(data.places.place, function(index, place) {
     displayPolygon(place.woeid, place.name);
     });
     });
-}	
+}
 $('ul#legend-items li a').live('click', function(event) {
 return true;
 });
-//displayNeighbours(woeid);	
+//displayNeighbours(woeid);
 displayPolygon(woeid);
- <?php endif;?> 
+ <?php endif;?>
     var copyOSM = new GCopyrightCollection('<a href="http://www.openstreetmap.org/">OpenStreetMap</a>');
-        copyOSM.addCopyright(new GCopyright(1, 
+        copyOSM.addCopyright(new GCopyright(1,
         new GLatLngBounds(new GLatLng(-90, -180), new GLatLng(90, 180)),
         0, // minimum zoom level
         ' ' // no additional copyright message, but empty string hides entire copyright
   ));
-	
+
     var osmLayer = new GTileLayer(copyOSM, 0, 18, {
         tileUrlTemplate: 'http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/998/256/{Z}/{X}/{Y}.png',
 	isPng: true,
 	opacity: 1.0
 	});
-	  
+
     var osmMap = new GMapType(
         [osmLayer], // list of layers
 	G_NORMAL_MAP.getProjection(), // borrow the Mercator projection from the standard map
@@ -275,16 +275,16 @@ displayPolygon(woeid);
 	map.addMapType(G_SATELLITE_3D_MAP);
         map.addMapType(G_PHYSICAL_MAP);
 	map.disableScrollWheelZoom();
-	map.setMapType(G_PHYSICAL_MAP); 
+	map.setMapType(G_PHYSICAL_MAP);
 	map.enableRotation();
-<?php 	
+<?php
 if(!is_null($this->county)) {
-echo 'var geoXml = new GGeoXml("http://www.finds.org.uk/kml/'.str_replace(' ','',
+echo 'var geoXml = new GGeoXml("' . $this->serverUrl() . '/kml/'.str_replace(' ','',
         $this->county).'.kml");';
 echo 'map.addOverlay(geoXml);';
 }
 ?>
-		
+
 var tinyIcon = new GIcon();
 		tinyIcon.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
 		tinyIcon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
@@ -301,18 +301,18 @@ var tinyIcon = new GIcon();
 		findIcon.shadowSize = new GSize(22, 20);
 		findIcon.iconAnchor = new GPoint(6, 20);
 		findIcon.infoWindowAnchor = new GPoint(5, 1);
-		
+
 		findOptions = { icon:findIcon };
 
 	var point = new GLatLng(<?php echo $this->latitude.','.$this->longitude;?>);
-	 	
+
 	var marker = new GMarker(point, markerOptions);
         GEvent.addListener(marker, "click", function () {
 	      marker.openInfoWindowHtml("Findspot location");
         });
         map.addOverlay(marker);
 
-   
+
 });
 <?php $this->inlineScript()->captureEnd(); ?>
 <?php endif; ?>
@@ -328,7 +328,7 @@ Latitude: <?php echo $this->declat;?> Longitude: <?php echo $this->declong;?><br
 1:25K map: <?php echo $this->map25k;?><br />
 1:10K map: <?php echo $this->map10k;?><br />
 <?php $this->FindSmrs($this->declat,$this->declong);?>
-<?php 
+<?php
 echo $this->FindspotGeo($this->woeid,$this->declat,$this->declong);
 echo $this->domesdayNear($this->declat,$this->declong, 2);
 ?>
@@ -352,27 +352,27 @@ Discovery circumstances:  <?php echo $this->escape($this->disccircum);?> <br />
 <?php endif;?>
 
 <?php if(!is_null($this->curr_loc)) :?>
-Current location: <?php echo $this->escape($this->curr_loc);?> <br /> 
+Current location: <?php echo $this->escape($this->curr_loc);?> <br />
 <?php endif;?>
 
 <?php if(!is_null($this->landvalue)) :?>
-General landuse: <?php echo $this->landvalue;?> 
+General landuse: <?php echo $this->landvalue;?>
 <span class="scope">[<a href="<?php echo $this->url(array(
     'module' => 'database',
     'controller' => 'terminology',
     'action' => 'landuse',
-    'id' => $this->landusevalue),NULL, true);?>" 
+    'id' => $this->landusevalue),NULL, true);?>"
 title="View scope notes for <?php echo $this->landvalue;?>">scope notes</a>]
 </span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->landuse)) :?>
-Specific landuse: <?php echo $this->escape($this->landuse);?> 
+Specific landuse: <?php echo $this->escape($this->landuse);?>
 <span class="scope">[<a href="<?php echo $this->url(array(
     'module' => 'database',
     'controller'=>'terminology',
     'action'=> 'landuse',
-    'id' => $this->landusecode),null,true);?>" 
+    'id' => $this->landusecode),null,true);?>"
     title="Read scope note for <?php echo $this->landuse;?>">scope notes</a>]
 </span><br/>
 <?php endif;?>

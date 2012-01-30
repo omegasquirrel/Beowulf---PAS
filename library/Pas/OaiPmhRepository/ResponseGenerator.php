@@ -18,20 +18,21 @@
 class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXmlGeneratorAbstract
 {
 
-	const OAI_PMH_BASE_URL = 'http://www.finds.org.uk/database/oai/request/';
+    const OAI_PMH_BASE_URL = 'http://www.finds.org.uk/database/oai/request/';
 	/**
      * HTTP query string or POST vars formatted as an associative array.
      * @var array
      */
     private $query;
-    
+
     /**
      * Array of all supported metadata formats.
      * $metdataFormats['metadataPrefix'] = ImplementingClassName
      * @var array
      */
     private $metadataFormats;
-	private $metadataFormatsClasses;
+
+    private $metadataFormatsClasses;
     /**
      * Constructor
      *
@@ -42,23 +43,32 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      * @uses dispatchRequest()
      */
     public function __construct($query) {
-	$this->error = false;
-	$this->query = $query;
-	$this->document = new DomDocument('1.0', 'UTF-8');
-	//formatOutput makes DOM output "pretty" XML.  Good for debugging, but
-	//adds some overhead, especially on large outputs.
+
+    $this->error = false;
+
+    $this->query = $query;
+
+    $this->document = new DomDocument('1.0', 'UTF-8');
+
+    //formatOutput makes DOM output "pretty" XML.  Good for debugging, but
+    //adds some overhead, especially on large outputs.
     $this->document->formatOutput = true;
     $this->document->xmlStandalone = true;
     $root = $this->document->createElementNS(self::OAI_PMH_NAMESPACE_URI, 'OAI-PMH');
-	$this->document->appendChild($root);
-	$root->setAttributeNS(self::XML_SCHEMA_NAMESPACE_URI, 'xsi:schemaLocation',
-    self::OAI_PMH_NAMESPACE_URI.' '.self::OAI_PMH_SCHEMA_URI);
+
+    $this->document->appendChild($root);
+
+    $root->setAttributeNS(self::XML_SCHEMA_NAMESPACE_URI, 'xsi:schemaLocation',
+            self::OAI_PMH_NAMESPACE_URI.' '.self::OAI_PMH_SCHEMA_URI);
     $responseDate = $this->document->createElement('responseDate', self::unixToUtc(time()));
-	$root->appendChild($responseDate);
-	$this->metadataFormats = $this->getFormats();
-	$this->dispatchRequest();
+
+    $root->appendChild($responseDate);
+
+    $this->metadataFormats = $this->getFormats();
+
+    $this->dispatchRequest();
     }
-    
+
     /**
      * Parses the HTTP query and dispatches to the correct verb handler.
      *
@@ -67,9 +77,9 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      * @uses checkArguments()
      */
     private function dispatchRequest() {
- 	$request = $this->document->createElement('request',  self::OAI_PMH_BASE_URL);
-	$this->document->documentElement->appendChild($request);
-	$requiredArgs = array();
+    $request = $this->document->createElement('request',  self::OAI_PMH_BASE_URL);
+    $this->document->documentElement->appendChild($request);
+    $requiredArgs = array();
     $optionalArgs = array();
     if(isset($this->query['resumptionToken'])){
     $resumptionToken = $this->query['resumptionToken'];
@@ -78,7 +88,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     $verb = $this->query['verb'];
     } else {
     $verb = NULL;
-    $this->throwError(self::OAI_ERR_BAD_VERB);	
+    $this->throwError(self::OAI_ERR_BAD_VERB);
     return;
     }
     if(isset($resumptionToken)){
@@ -97,7 +107,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 		case 'ListIdentifiers':
 		$requiredArgs = array('metadataPrefix');
 		$optionalArgs = array('from', 'until', 'set');
-			break;                
+			break;
 		case 'ListSets':
 			break;
 		case 'ListMetadataFormats':
@@ -106,13 +116,13 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 		default:
 		$this->throwError(self::OAI_ERR_BAD_VERB);
             }
-    } 
+    }
         $this->checkArguments($requiredArgs, $optionalArgs);
-        
+
         if(!$this->error) {
             foreach($this->query as $key => $value)
                 $request->setAttribute($key, $value);
-                
+
             if(isset($this->query['resumptionToken']))
                 $this->resumeListResponse($resumptionToken);
             /* ListRecords and ListIdentifiers use a common code base and share
@@ -122,18 +132,18 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
             else {
                 /* This Inflector use means verb-implementing functions must be
                    the lowerCamelCased version of the verb name. */
-    if ( false === function_exists('lcfirst') ){ 
-    function lcfirst( $str ) { 
+    if ( false === function_exists('lcfirst') ){
+    function lcfirst( $str ) {
     	return (string)(strtolower(substr($str,0,1)).substr($str,1));
-    } 
+    }
     }
                 $functionName = lcfirst($verb);
                 $this->$functionName();
-            	
+
             }
         }
     }
-    
+
     /**
      * Checks the argument list from the POST/GET query.
      *
@@ -147,22 +157,22 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     private function checkArguments($requiredArgs = array(), $optionalArgs = array())
     {
         $requiredArgs[] = 'verb';
-        
-        if($_SERVER['REQUEST_METHOD'] == 'GET' && 
+
+        if($_SERVER['REQUEST_METHOD'] == 'GET' &&
         (urldecode($_SERVER['QUERY_STRING']) != urldecode(http_build_query($this->query)))) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Duplicate arguments in request.");
         }
-        
+
         $keys = array_keys($this->query);
-        
+
         foreach(array_diff($requiredArgs, $keys) as $arg) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Missing required argument $arg.");
         }
         foreach(array_diff($keys, $requiredArgs, $optionalArgs) as $arg) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Unknown argument $arg.");
         }
-        
-        if(isset($this->query['from'])) {       
+
+        if(isset($this->query['from'])) {
         $from = $this->query['from'];
         $fromGran = self::getGranularity($from);
         if($from && !$fromGran) {
@@ -176,25 +186,25 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Invalid date/time argument.");
             }
         }
-        
-        
-        
-        if(isset($this->query['from']) && isset($this->query['until'])) { 
-        
+
+
+
+        if(isset($this->query['from']) && isset($this->query['until'])) {
+
         if($from && $until && $fromGran != $untilGran) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Date/time arguments of differing granularity.");
             }
-        }    
-        if(isset($this->query['metadataPrefix'])) { 
+        }
+        if(isset($this->query['metadataPrefix'])) {
         $metadataPrefix = $this->query['metadataPrefix'];
-    
+
         if($metadataPrefix && !array_key_exists($metadataPrefix, $this->metadataFormats)) {
             $this->throwError(self::OAI_ERR_CANNOT_DISSEMINATE_FORMAT);
         }
         }
     }
-    
-    
+
+
     /**
      * Responds to the Identify verb.
      *
@@ -204,10 +214,10 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     {
         if($this->error)
             return;
-        
+
         /* according to the schema, this order of elements is required for the
            response to validate */
-        $elements = array( 
+        $elements = array(
             'repositoryName'    => 'Portable Antiquities Scheme',
             'baseURL'           => self::OAI_PMH_BASE_URL,
             'protocolVersion'   => self::OAI_PMH_PROTOCOL_VERSION,
@@ -220,13 +230,13 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         );
         $identify = $this->createElementWithChildren(
             $this->document->documentElement, 'Identify', $elements);
-        
+
         $description = $this->document->createElement('description');
         $identify->appendChild($description);
-        
+
        Pas_OaiPmhRepository_OaiIdentifier::describeIdentifier($description);
     }
-    
+
     /**
      * Responds to the GetRecord verb.
      *
@@ -237,18 +247,18 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     {
         $identifier = $this->query['identifier'];
         $metadataPrefix = $this->query['metadataPrefix'];
-        
+
         $findItem = new Pas_OaiPmhRepository_OaiIdentifier();
         $itemId = $findItem->oaiIdToItem($identifier);
-       
+
         if(!$itemId) {
             $this->throwError(self::OAI_ERR_ID_DOES_NOT_EXIST);
             return;
         }
         $itemTable = new OaiFinds();
         $item = $itemTable->getRecord($itemId);
-		 
-         
+
+
         if(!$item) {
             $this->throwError(self::OAI_ERR_ID_DOES_NOT_EXIST);
         }
@@ -260,7 +270,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
             $record->appendRecord();
         }
     }
-    
+
     /**
      * Responds to the ListMetadataFormats verb.
      *
@@ -295,7 +305,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
                 $formatObject->declareMetadataFormat();
             }
         }
-    
+
     }
 
     /**
@@ -311,11 +321,11 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         $collections = $collectionlist->listCollections();
         if(count($collections) == 0)
             $this->throwError(self::OAI_ERR_NO_SET_HIERARCHY);
-            
-        $listSets = $this->document->createElement('ListSets');     
+
+        $listSets = $this->document->createElement('ListSets');
 
         if(!$this->error) {
-            $this->document->documentElement->appendChild($listSets); 
+            $this->document->documentElement->appendChild($listSets);
             foreach ($collections as $collection) {
                 $elements = array( 'setSpec' => $collection['id'],
                                    'setName' => $collection['name'] );
@@ -323,7 +333,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
             }
         }
     }
-    
+
     /**
      * Responds to the ListIdentifiers and ListRecords verbs.
      *
@@ -334,8 +344,8 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      */
     private function initListResponse()
     {
-    	
-    	
+
+
         if(isset($this->query['from'])) {
         	$from = $this->query['from'];
             $fromDate = self::utcToDb($from);
@@ -353,14 +363,14 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         } else {
         	$set = NULL;
         }
-        $this->listResponse($this->query['verb'], 
+        $this->listResponse($this->query['verb'],
                             $this->query['metadataPrefix'],
                             0,
                             $set,
                             $fromDate,
                             $untilDate);
     }
-    
+
     /**
      * Returns the next incomplete list response based on the given resumption
      * token.
@@ -370,16 +380,16 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      */
     private function resumeListResponse($token)
     {
-    	
+
         $tokenTable = new OaiPmhRepositoryTokenTable();
         $where = array();
         $dateTime = Zend_Date::now()->toString('yyyy-MM-dd HH:mm:ss');
         $where = $tokenTable->getAdapter()->quoteInto('expiration <= ?', $dateTime);
         $tokenTable->delete($where);
-		
+
         $tokenObject = $tokenTable->getToken($token);
-       
-       
+
+
         if(is_null($tokenObject) || ($tokenObject['verb'] != $this->query['verb'])) {
             $this->throwError(self::OAI_ERR_BAD_RESUMPTION_TOKEN);
         } else {
@@ -391,7 +401,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
                                 $tokenObject['until']);
         }
     }
-    
+
     /**
      * Responds to the two main List verbs, includes resumption and limiting.
      *
@@ -404,14 +414,14 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      * @uses createResumptionToken()
      */
     private function listResponse($verb, $metadataPrefix, $cursor, $set, $from, $until){
-    	
+
         $listLimit = 30;
-        $itemTable = new OaiFinds(); 
-        $items = $itemTable->getRecords($cursor,$set,$from,$until); 
-   		
+        $itemTable = new OaiFinds();
+        $items = $itemTable->getRecords($cursor,$set,$from,$until);
+
 		$totals = $itemTable->getCountAllFinds($set,$from,$until);
         $rows = $totals['0']['c'];
-        
+
         if(count($items) == 0) {
             $this->throwError(self::OAI_ERR_NO_RECORDS_MATCH, 'No records match the given criteria');
         } else {
@@ -422,20 +432,20 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         }
             $verbElement = $this->document->createElement($verb);
             $this->document->documentElement->appendChild($verbElement);
-           
-           
+
+
             foreach($items as $item) {
-            	
+
             	$record = new $this->metadataFormats[$metadataPrefix]($item, $verbElement);
                 $record->$method();
-               
-                
+
+
             }
-            
+
             $total = $cursor + $listLimit;
            if($rows > $total) {
             $token = $this->createResumptionToken($verb, $metadataPrefix, $cursor, $set, $from, $until);
-		
+
                 $tokenElement = $this->document->createElement('resumptionToken', $token->id);
                 $tokenElement->setAttribute('expirationDate',
                     self::dbToUtc($token->expiration));
@@ -449,7 +459,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
             }
         }
     }
-        
+
     /**
      * Stores a new resumption token record in the database
      *
@@ -465,11 +475,11 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     {
         $tokenTable = new OaiPmhRepositoryTokenTable();
         $resumptionToken = $tokenTable->createRow();
-        
+
         $resumptionToken->verb = $verb;
         $resumptionToken->metadata_prefix = $metadataPrefix;
         $resumptionToken->cursor = $cursor + 30;
-        
+
         if(isset($from)) {
             $resumptionToken->from = $from;
         } else {
@@ -486,15 +496,15 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         	$resumptionToken->set = NULL;
         }
         $resumptionToken->expiration = self::unixToDb(time() + 60 * 60);
-        
+
 //        $resumptionToken->useragent = $_SERVER('HTTP_USER_AGENT');
         $resumptionToken->ipaddress = Zend_Controller_Front::getInstance()->getRequest()->getClientIp();
         $resumptionToken->save();
-        
+
      return $resumptionToken;
     }
-    
-    
+
+
  /**
      * Builds an array of entries for all included metadata mapping classes.
      * Derived heavily from OaipmhHarvester's getMaps().
@@ -514,11 +524,11 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
                     $class = "Pas_OaiPmhRepository_Metadata_. $match[1]";
                     $object = new $class(null, null);
                     $metadataFormats[$object->getMetadataPrefix()] = $class;
-                    
+
                 }
             }
         }
-      
+
         return $metadataFormats;
     }
     /**

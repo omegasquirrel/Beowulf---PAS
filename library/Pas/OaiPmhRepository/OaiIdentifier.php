@@ -20,12 +20,16 @@
  * @subpackage Libraries
  */
 class Pas_OaiPmhRepository_OaiIdentifier {
-	
-const OAI_IDENTIFIER_NAMESPACE_URI =  'http://www.openarchives.org/OAI/2.0/oai-identifier';
-const OAI_IDENTIFIER_SCHEMA_URI =  'http://www.openarchives.org/OAI/2.0/oai-identifier.xsd';
-const OAI_PMH_NAMESPACE_ID = 'finds.org.uk';
-const XML_SCHEMA_NAMESPACE_URI ='http://www.w3.org/2001/XMLSchema-instance';   
-	
+
+
+    const OAI_IDENTIFIER_NAMESPACE_URI =  'http://www.openarchives.org/OAI/2.0/oai-identifier';
+
+    const OAI_IDENTIFIER_SCHEMA_URI =  'http://www.openarchives.org/OAI/2.0/oai-identifier.xsd';
+
+    const OAI_PMH_NAMESPACE_ID = 'finds.org.uk';
+
+    const XML_SCHEMA_NAMESPACE_URI ='http://www.w3.org/2001/XMLSchema-instance';
+
     /**
      * Converts the given OAI identifier to an Omeka item ID.
      *
@@ -36,14 +40,14 @@ const XML_SCHEMA_NAMESPACE_URI ='http://www.w3.org/2001/XMLSchema-instance';
         $scheme = strtok($oaiId, ':');
         $namespaceId = strtok(':');
         $localId = strtok(':');
-        if( $scheme != 'oai' || 
+        if( $scheme != 'oai' ||
             $namespaceId != self::OAI_PMH_NAMESPACE_ID ||
             $localId < 0) {
            return NULL;
         }
         return $localId;
     }
-    
+
     /**
      * Converts the given Omeka item ID to a OAI identifier.
      *
@@ -53,7 +57,7 @@ const XML_SCHEMA_NAMESPACE_URI ='http://www.w3.org/2001/XMLSchema-instance';
     public static function itemToOaiId($itemId) {
         return 'oai:'.self::OAI_PMH_NAMESPACE_ID.':'.$itemId;
     }
-    
+
     /**
      * Outputs description element child describing the repository's OAI
      * identifier implementation.
@@ -72,8 +76,8 @@ const XML_SCHEMA_NAMESPACE_URI ='http://www.w3.org/2001/XMLSchema-instance';
             $oaiIdentifier->appendChild($parentElement->ownerDocument->createElement($tag, $value));
         }
         $parentElement->appendChild($oaiIdentifier);
-        
-        //must set xmlns attribute manually to avoid DOM extension appending 
+
+        //must set xmlns attribute manually to avoid DOM extension appending
         //default: prefix to element name
         $oaiIdentifier->setAttribute('xmlns', self::OAI_IDENTIFIER_NAMESPACE_URI);
         $oaiIdentifier->setAttributeNS(self::XML_SCHEMA_NAMESPACE_URI,

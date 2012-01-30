@@ -1,8 +1,8 @@
 <?php
- 
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
- 
- 
+
+
 // +----------------------------------------------------------------------+
 // | Akelos PHP Application Framework                                     |
 // +----------------------------------------------------------------------+
@@ -14,21 +14,21 @@
 // | - DISCLAIMER (Disclaimer of warranty)                                |
 // | - README (Important information regarding this library)              |
 // +----------------------------------------------------------------------+
- 
- 
+
+
 /**
 * Inflector for pluralize and singularize English nouns.
-* 
+*
 * This Inflector is a port of Ruby on Rails Inflector.
-* 
+*
 * It can be really helpful for developers that want to
 * create frameworks based on naming conventions rather than
 * configurations.
-* 
+*
 * It was ported to PHP for the Akelos Framework, a
 * multilingual Ruby on Rails like framework for PHP that will
 * be launched soon.
-* 
+*
 * @author Bermi Ferrer Martinez <bermi akelos com>
 * @copyright Copyright (c) 2002-2006, Akelos Media, S.L. http://www.akelos.org
 * @license GNU Lesser General Public License <http://www.gnu.org/copyleft/lesser.html>
@@ -38,14 +38,14 @@
 class Pas_OaiPmhRepository_Inflector
 {
     // ------ CLASS METHODS ------ //
- 
+
     // ---- Public methods ---- //
- 
+
     // {{{ pluralize()
- 
+
     /**
     * Pluralizes English nouns.
-    * 
+    *
     * @access public
     * @static
     * @param    string    $word    English noun to pluralize
@@ -72,45 +72,45 @@ class Pas_OaiPmhRepository_Inflector
         '/(ax|test)is$/i'=> '\1es',
         '/s$/i'=> 's',
         '/$/'=> 's');
- 
+
         $uncountable = array('equipment', 'information', 'rice', 'money', 'species', 'series', 'fish', 'sheep');
- 
+
         $irregular = array(
         'person' => 'people',
         'man' => 'men',
         'child' => 'children',
         'sex' => 'sexes',
         'move' => 'moves');
- 
+
         $lowercased_word = strtolower($word);
- 
+
         foreach ($uncountable as $_uncountable){
             if(substr($lowercased_word,(-1*strlen($_uncountable))) == $_uncountable){
                 return $word;
             }
         }
- 
+
         foreach ($irregular as $_plural=> $_singular){
             if (preg_match('/('.$_plural.')$/i', $word, $arr)) {
                 return preg_replace('/('.$_plural.')$/i', substr($arr[0],0,1).substr($_singular,1), $word);
             }
         }
- 
+
         foreach ($plural as $rule => $replacement) {
             if (preg_match($rule, $word)) {
                 return preg_replace($rule, $replacement, $word);
             }
         }
         return false;
- 
+
     }
- 
+
     // }}}
     // {{{ singularize()
- 
+
     /**
     * Singularizes English nouns.
-    * 
+    *
     * @access public
     * @static
     * @param    string    $word    English noun to singularize
@@ -144,51 +144,51 @@ class Pas_OaiPmhRepository_Inflector
         '/(n)ews$/i' => '\\1ews',
         '/s$/i' => '',
         );
- 
+
         $uncountable = array('equipment', 'information', 'rice', 'money', 'species', 'series', 'fish', 'sheep');
- 
+
         $irregular = array(
         'person' => 'people',
         'man' => 'men',
         'child' => 'children',
         'sex' => 'sexes',
         'move' => 'moves');
- 
+
         $lowercased_word = strtolower($word);
         foreach ($uncountable as $_uncountable){
             if(substr($lowercased_word,(-1*strlen($_uncountable))) == $_uncountable){
                 return $word;
             }
         }
- 
+
         foreach ($irregular as $_plural=> $_singular){
             if (preg_match('/('.$_singular.')$/i', $word, $arr)) {
                 return preg_replace('/('.$_singular.')$/i', substr($arr[0],0,1).substr($_plural,1), $word);
             }
         }
- 
+
         foreach ($singular as $rule => $replacement) {
             if (preg_match($rule, $word)) {
                 return preg_replace($rule, $replacement, $word);
             }
         }
- 
+
         return $word;
     }
- 
+
     // }}}
     // {{{ titleize()
- 
+
     /**
     * Converts an underscored or CamelCase word into a English
     * sentence.
-    * 
+    *
     * The titleize function converts text like "WelcomePage",
     * "welcome_page" or  "welcome page" to this "Welcome
     * Page".
     * If second parameter is set to 'first' it will only
     * capitalize the first character of the title.
-    * 
+    *
     * @access public
     * @static
     * @param    string    $word    Word to format as tile
@@ -202,17 +202,17 @@ class Pas_OaiPmhRepository_Inflector
         $uppercase = $uppercase == 'first' ? 'ucfirst' : 'ucwords';
         return $uppercase(Inflector::humanize(Inflector::underscore($word)));
     }
- 
+
     // }}}
     // {{{ camelize()
- 
+
     /**
     * Returns given word as CamelCased
-    * 
+    *
     * Converts a word like "send_email" to "SendEmail". It
     * will remove non alphanumeric character from the word, so
     * "who's online" will be converted to "WhoSOnline"
-    * 
+    *
     * @access public
     * @static
     * @see variablize
@@ -223,18 +223,18 @@ class Pas_OaiPmhRepository_Inflector
     {
         return str_replace(' ','',ucwords(preg_replace('/[^A-Z^a-z^0-9]+/',' ',$word)));
     }
- 
+
     // }}}
     // {{{ underscore()
- 
+
     /**
     * Converts a word "into_it_s_underscored_version"
-    * 
+    *
     * Convert any "CamelCased" or "ordinary Word" into an
     * "underscored_word".
-    * 
+    *
     * This can be really useful for creating friendly URLs.
-    * 
+    *
     * @access public
     * @static
     * @param    string    $word    Word to underscore
@@ -246,20 +246,20 @@ class Pas_OaiPmhRepository_Inflector
         preg_replace('/([a-z\d])([A-Z])/','\1_\2',
         preg_replace('/([A-Z]+)([A-Z][a-z])/','\1_\2',$word))));
     }
- 
+
     // }}}
     // {{{ humanize()
- 
+
     /**
     * Returns a human-readable string from $word
-    * 
+    *
     * Returns a human-readable string from $word, by replacing
     * underscores with a space, and by upper-casing the initial
     * character by default.
-    * 
+    *
     * If you need to uppercase all the words you just have to
     * pass 'all' as a second parameter.
-    * 
+    *
     * @access public
     * @static
     * @param    string    $word    String to "humanize"
@@ -272,17 +272,17 @@ class Pas_OaiPmhRepository_Inflector
         $uppercase = $uppercase == 'all' ? 'ucwords' : 'ucfirst';
         return $uppercase(str_replace('_',' ',preg_replace('/_id$/', '',$word)));
     }
- 
+
     // }}}
     // {{{ variablize()
- 
+
     /**
     * Same as camelize but first char is underscored
-    * 
+    *
     * Converts a word like "send_email" to "sendEmail". It
     * will remove non alphanumeric character from the word, so
     * "who's online" will be converted to "whoSOnline"
-    * 
+    *
     * @access public
     * @static
     * @see camelize
@@ -294,16 +294,16 @@ class Pas_OaiPmhRepository_Inflector
         $word = Inflector::camelize($word);
         return strtolower($word[0]).substr($word,1);
     }
- 
+
     // }}}
     // {{{ tableize()
- 
+
     /**
     * Converts a class name to its table name according to rails
     * naming conventions.
-    * 
+    *
     * Converts "Person" to "people"
-    * 
+    *
     * @access public
     * @static
     * @see classify
@@ -314,16 +314,16 @@ class Pas_OaiPmhRepository_Inflector
     {
         return Inflector::pluralize(Inflector::underscore($class_name));
     }
- 
+
     // }}}
     // {{{ classify()
- 
+
     /**
     * Converts a table name to its class name according to rails
     * naming conventions.
-    * 
+    *
     * Converts "people" to "Person"
-    * 
+    *
     * @access public
     * @static
     * @see tableize
@@ -334,15 +334,15 @@ class Pas_OaiPmhRepository_Inflector
     {
         return Inflector::camelize(Inflector::singularize($table_name));
     }
- 
+
     // }}}
     // {{{ ordinalize()
- 
+
     /**
     * Converts number to its ordinal English form.
-    * 
+    *
     * This method converts 13 to 13th, 2 to 2nd ...
-    * 
+    *
     * @access public
     * @static
     * @param    integer    $number    Number to get its ordinal value
@@ -368,9 +368,7 @@ class Pas_OaiPmhRepository_Inflector
             }
         }
     }
- 
+
     // }}}
- 
+
 }
- 
-?>

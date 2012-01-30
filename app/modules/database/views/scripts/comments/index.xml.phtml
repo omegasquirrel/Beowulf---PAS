@@ -10,7 +10,7 @@
 <author><?php echo $comm['comment_author'];?></author>
 <content><?php echo strip_tags($comm['comment_content']);?></content>
 <find>
-<url>http://www.finds.org.uk/database/artefacts/record/id/<?php echo $comm['id'];?></url>
+<url><?php echo $this->serverUrl();?>/database/artefacts/record/id/<?php echo $comm['id'];?></url>
 <id><?php echo $comm['id'];?></id>
 <findID><?php echo $comm['old_findID'];?></findID>
 <objectType><?php echo $comm['objecttype'];?></objectType>

@@ -14,7 +14,7 @@
     <dc:creator>info@finds.org.uk</dc:creator>
     <dc:rights>Copyright <?php echo gmdate("Y", time()); ?></dc:rights>
     <dc:date><?php echo date(DATE_W3C);?></dc:date>
-    <admin:generatorAgent rdf:resource="http://www.finds.org.uk/" />
+    <admin:generatorAgent rdf:resource="<?php echo $this->serverUrl();?>/" />
 	<?php echo $this->partialLoop('partials/rss/news.phtml',$this->news);?>
     </channel>
 </rss>

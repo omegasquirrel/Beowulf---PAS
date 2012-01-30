@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $dates = '';
 $dates .= $this->escape($this->df);
@@ -21,28 +21,28 @@ $this->headTitle($this->escape($this->rally_name));
 
 
 
-<?php 
+<?php
 echo $this->Href(array(
     'module' => 'database',
-    'controller'=>'rallies', 
-    'action'=>'edit', 
+    'controller'=>'rallies',
+    'action'=>'edit',
     'checkAcl'=>true,
-    'acl'=>'Zend_Acl',  
-    'params' =>array('id'=>$this->id), 
+    'acl'=>'Zend_Acl',
+    'params' =>array('id' => $this->id),
     'content'=>'Edit',
     'attribs' => array(
         'title' => 'Edit rally details')
     ));
-?> 
- 
-<?php 
+?>
+
+<?php
 echo $this->Href(array(
-    'module' => 'database', 
-    'controller'=>'rallies', 
-    'action'=>'delete', 
-    'checkAcl'=>true, 
-    'acl'=>'Zend_Acl', 
-    'params' =>array('id'=>$this->id), 
+    'module' => 'database',
+    'controller'=>'rallies',
+    'action'=>'delete',
+    'checkAcl'=>true,
+    'acl'=>'Zend_Acl',
+    'params' =>array('id'=>$this->id),
     'content'=>'Delete',
     'attribs' => array(
         'title' => 'Delete rally details')
@@ -56,17 +56,17 @@ $user = $auth->getIdentity();
 {
 if(in_array($user->role,array('fa','flos','research', 'admin')))
 {?>
-<?php 
+<?php
 
 if(!is_null($this->gridref)) : ?>
-<?php 
+<?php
 $config = Zend_Registry::get('config');
 $apikey = $config->googlemaps->apikey;
 $this->inlineScript()->appendFile(
-        'http://maps.google.com/maps?file=api&amp;v=2.x&key=' 
-        . $apikey,$type='text/javascript');  
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.jmap.js', 
-        $type='text/javascript'); 
+        'http://maps.google.com/maps?file=api&amp;v=2.x&key='
+        . $apikey,$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.jmap.js',
+        $type='text/javascript');
 ?>
 
 <?php $this->jQuery()->javascriptCaptureStart() ?>
@@ -76,7 +76,7 @@ var icon1 = Mapifies.createIcon({
 'iconSize': new GSize(32,32),
 'iconMozPrintImage':'http://maps.google.com/mapfiles/kml/pal4/icon49.png',
 'iconPrintImage':'http://maps.google.com/mapfiles/kml/pal4/icon49.png',
-'iconAnchor': new GPoint(0,10) 
+'iconAnchor': new GPoint(0,10)
 });
 <?php
 $auth = Zend_Auth::getInstance();
@@ -86,10 +86,10 @@ $user = $auth->getIdentity();
 {
 if(in_array($user->role,array('fa','flos','research', 'admin')))
 {
-echo "jQuery('#map').jmap('init', {'mapType':'physical','mapCenter':[" 
-    . $this->latitude . "," . $this->longitude 
+echo "jQuery('#map').jmap('init', {'mapType':'physical','mapCenter':["
+    . $this->latitude . "," . $this->longitude
     . "],'mapControl':'smallzoom','mapEnableScaleControl':'true',
-    'mapShowjMapsIcon':'false', 'mapEnableType':'menumap', 'mapZoom':13, 
+    'mapShowjMapsIcon':'false', 'mapEnableType':'menumap', 'mapZoom':13,
     'mapAddTerrainType':true});";
 echo "jQuery('#map').jmap('AddMarker', {'pointLatLng': [".$this->latitude
     .",".$this->longitude."],'pointIcon': icon1,'pointMinZoom': 9,
@@ -99,7 +99,7 @@ echo "jQuery('#map').jmap('AddMarker', {'pointLatLng': [".$this->latitude
 }
 
 }
-else 
+else
 {
 echo "jQuery('#map').jmap('init', {'mapType':'physical','mapCenter':[".substr($this->latitude,0,4).",".substr($this->longitude,0,4)."],'mapControl':'none','mapEnableScaleControl':'true','mapShowjMapsIcon':'false', 'mapEnableType':'menumap', 'mapZoom':9, 			'mapAddTerrainType':true});";
 echo "jQuery('#map').jmap('AddMarker', {'pointLatLng': [".substr($this->latitude,0,5).",".substr($this->longitude,0,5)."],'pointIcon': icon1,'pointMinZoom': 9,'pointMaxZoom': 13});";
@@ -108,7 +108,7 @@ echo "jQuery('#map').jmap('AddMarker', {'pointLatLng': [".substr($this->latitude
 ?>
 
 jQuery('#map').jmap('AddFeed', {
-			'feedUrl':'http://www.finds.org.uk/kml/<?php echo $this->escape(ucwords(strtolower($this->county)));?>.kml'});
+'feedUrl':'<?php echo $this->serverUrl();?>/kml/<?php echo $this->escape(ucwords(strtolower($this->county)));?>.kml'});
 
 });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
@@ -139,7 +139,7 @@ if(in_array($user->role,array('fa','flos','research', 'admin')))
 <?php  if(!is_null($this->record_method)):?>
 <p>Recording methodology: <?php echo $this->record_method;?></p>
 <?php endif;?>
-<?php 
+<?php
 }}}?>
 <?php
 $auth = Zend_Auth::getInstance();
@@ -159,12 +159,12 @@ Northing: <?php echo $this->northing;?><br />
 </p>
 <p>Parish: <?php echo $this->escape($this->parish);?><br />
 District: <?php echo $this->escape($this->district);?>
-<?php 
+<?php
 }}}?><br />
 County: <?php echo $this->escape($this->county);?></p>
 
 <p>
-<?php if(!is_null($this->fullname)):?>    
+<?php if(!is_null($this->fullname)):?>
 Created by: <?php echo $this->namethem($this->escape($this->fullname));?><br />
 <?php endif;?>
 <?php if(!is_null($this->created)):?>
@@ -181,10 +181,10 @@ Updated on: <?php echo $this->escape($this->timeagoinwords($this->updated));?>
 <p>View <a href="<?php echo $this->url(array(
     'module' => 'database',
     'controller' => 'search',
-    'action' => 'results', 
+    'action' => 'results',
     'rally' => 1,
     'rallyID' => $this->id),
-    null,true);?>" title="Search database for all records from <?php echo $this->rally_name;?>">all 
+    null,true);?>" title="Search database for all records from <?php echo $this->rally_name;?>">all
     <?php echo $this->finds;?> records</a> from this rally.</p>
 <?php else:?>
 <p>No records of any artefacts have been entered yet on the database.</p>
