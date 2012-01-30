@@ -474,6 +474,7 @@
 	<field name="broadperiod" type="string" indexed="true" stored="true" />
 	<field name="createdBy" type="int" indexed="true" stored="true" />
         <field name="objecttype" type="string" indexed="true" stored="true" />
+        <field name="institution" type="string" indexed="true" stored="true" />
    <!--
    The following store examples are used to demonstrate the various ways one might _CHOOSE_ to
     implement spatial.  It is highly unlikely that you would ever have ALL of these fields defined.
@@ -558,6 +559,8 @@
 	<copyField source="keywords" dest="text" />
 	<copyField source="county" dest="text" />
 	<copyField source="broadperiod" dest="text" />
+        <copyField source="objecttype" dest="text" />
+        <copyField source="old_findID" dest="text" />
 
    <!-- Above, multiple source fields are copied to the [text] field.
 	  Another way to map multiple source fields to the same

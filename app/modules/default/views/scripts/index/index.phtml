@@ -1,12 +1,12 @@
-<?php 
+<?php
 $this->headMeta('noodp','robots');
 $this->headMeta('BJ0IxlmtPbri25v9zbMgcOFDOBuZmNacd9-friMs1_E','google-site-verification');
-$this->jQuery()->addJavascriptFile('/js/JQuery/jquery.lightbox.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile('/js/JQuery/jquery.nivo.slider.pack.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile('/js/JQuery/jquery.lightbox.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile('/js/JQuery/jquery.nivo.slider.pack.js',$type='text/javascript');
 ?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 jQuery(document).ready(function($) {
-$('a[rel*=lightbox]').lightBox() 
+$('a[rel*=lightbox]').lightBox()
 });
 $(window).load(function() {
         $('#slider').nivoSlider({
@@ -35,7 +35,7 @@ $(window).load(function() {
 <div id="teaser"><?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?></div>
 
  <div id="slider-wrapper">
-        
+
             <div id="slider" class="nivoSlider">
 				<img src="/images/frontispiece/coinTray.jpg" title="A tray of gold roman coins - aureii - in Coins and medals" alt="A tray of gold roman coins - aureii - in Coins and medals" height="200" width="917" />
 				<img src="/images/frontispiece/fromeHoard.jpg" title="A detail from the Frome Hoard excavations" alt="A detail from the Frome Hoard excavations" height="200" width="917" />
@@ -43,7 +43,7 @@ $(window).load(function() {
 				<img src="/images/frontispiece/romanDay.jpg" title="The British Museum's staff at Roman day" alt="The British Museum's staff at Roman day" height="200" width="917" />
 				<img src="/images/frontispiece/torc.jpg" title="A closeup of the Newark torc" alt="A closeup of the Newark torc" height="200" width="917" />
            </div>
-        
+
 </div>
 
 
@@ -54,8 +54,8 @@ $(window).load(function() {
 <a href="http://farm3.static.flickr.com/2525/3943597899_5d3e038410_z.jpg" rel="lightbox" title="The cheekpiece from the hoard"><img class="flow" src="http://farm3.static.flickr.com/2525/3943597899_5d3e038410_t.jpg" width="80" height="100" alt="The cheekpiece from the hoard"/></a>
 <h3>Staffordshire Hoard papers</h3>
 
-<p>The <a href="http://finds.org.uk/staffshoardsymposium" title="The hoard papers"></s>Staffordshire Hoard symposium papers</a> have been published for all to access and the <a href="http://finds.org.uk/staffshoard" 
-title="The old Staffshoard website">old website</a> has 
+<p>The <a href="<?php $this->serverUrl();?>/staffshoardsymposium" title="The hoard papers"></s>Staffordshire Hoard symposium papers</a> have been published for all to access and the <a href="<?php $this->serverUrl();?>/staffshoard"
+title="The old Staffshoard website">old website</a> has
 been archived on our site for reference. The hoard's records are being added slowly to the database.</p>
 </div>
 
@@ -85,7 +85,7 @@ been archived on our site for reference. The hoard's records are being added slo
 
 <div id="newsbox" class="panel"><h3>Latest news</h3>
 <ul>
-<?php 
+<?php
 
 echo $this->partialLoop('partials/index/headlines.phtml',$this->news);
 ?>
@@ -110,7 +110,7 @@ echo $this->FlickrFront(Zend_Registry::get('config')->webservice->flickr);
 
 <div id="tweets" class="panel">
 <h3>Latest tweets</h3>
- 
+
 <?php echo $this->LatestTweets();?>
 <a href="http://twitter.com/findsorguk" title="View our twitter profile"><img class="twitterbird" src="/images/logos/twitter_logo_withbird.png" height="37" width="200" alt="The twitter logo with the tweetie bird" /></a>
 

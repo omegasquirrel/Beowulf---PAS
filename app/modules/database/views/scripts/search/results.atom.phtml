@@ -1,13 +1,13 @@
-<?php 
+<?php
 Zend_Controller_Front::getInstance()->getResponse()->setHeader("Content-type", 'application/atom+xml');
 $feed =  new Zend_Feed_Writer_Feed();
-$feed->setTitle('Atom feed of search results for: '.$this->SearchParamsRss($this->params));
-$feed->setLink('http://www.finds.org.uk/');
+$feed->setTitle('Atom feed of search results for: '.$thisetHeaders->SearchParamsRss($this->params));
+$feed->setLink($this->serverUrl());
 $feed->setFeedLink($this->curUrl(), 'atom');
 $feed->addAuthor(array(
     'name'  => 'The Portable Antiquities Scheme',
     'email' => 'info@finds.org.uk',
-    'uri'   => 'http://www.finds.org.uk',
+    'uri'   => $this->serverUrl(),
 ));
 $feed->setDateModified(time());
 $feed->addHub('http://pubsubhubbub.appspot.com/');
@@ -15,10 +15,10 @@ $feed->addHub('http://pubsubhubbub.appspot.com/');
     'format_type'   => 'php'
 ));
 foreach($this->results as $find){
-	
+
 $entry = $feed->createEntry();
-$entry->setTitle($find['old_findID'].' '.$find['objecttype'].' '.$find['broadperiod']);
-$entry->setLink(Zend_Registry::get('siteurl').'/database/artefacts/record/id/'.$find['id']);
+$entry->setTitle($find['old_findID'] . ' '.$find['objecttype'] . ' ' . $find['broadperiod']);
+$entry->setLink($this->serverUrl() . '/database/artefacts/record/id/' . $find['id']);
 $entry->addAuthor(array( 'name'  => $find['fullname'],
 ));
 $updated = new Zend_Date($find['updated'], 'YY-mm-dd hh:mm:ss');
@@ -27,7 +27,7 @@ $entry->setDateModified($updated);
 $entry->setDateCreated($created);
 if(!is_null($find['description'])){
 $description = str_replace(array("\n","\r"),array('',''),$find['description']);
- } else {
+} else {
 	$description = 'Description not entered';
 }
 $entry->setDescription(strip_tags($description));
@@ -35,15 +35,15 @@ $entry->setContent(strip_tags($description));
 $finds = new Finds();
 $imageData = $finds->getImageToFind($find['id']);
 if(isset($imageData[0]['i'])){
-	$size = filesize('/home/beowulf/public_html/images/thumbnails/' . $imageData[0]['i'] . '.jpg');
-	
-$entry->setEnclosure(array('type' => 'image/jpeg','uri' => 'http://finds.org.uk/images/thumbnails/' .$imageData[0]['i'] . '.jpg','length' => $size));
+	$size = filesize('/home/beowulf/public_html/images/thumbnails/'
+                . $imageData[0]['i'] . '.jpg');
 
- 
+$entry->setEnclosure(array('type' => 'image/jpeg','uri' => $this->serverUrl()
+        . '/images/thumbnails/' .$imageData[0]['i'] . '.jpg','length' => $size));
 
 }
 $feed->addEntry($entry);
 }
- 
+
 $out = $feed->export('atom');
 echo $out;

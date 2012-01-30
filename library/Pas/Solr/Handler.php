@@ -236,6 +236,8 @@ class Pas_Solr_Handler {
             );
     }
 
+   
+
     if(array_key_exists('bbox',$params)){
     	$coords = new Pas_Solr_BoundingBoxCheck($params['bbox']);
         $bbox = $coords->checkCoordinates();
@@ -399,7 +401,7 @@ class Pas_Solr_Handler {
      * @return int
      */
     public function _getStart(array $params){
-    if(array_key_exists('page', $params)){
+    if(array_key_exists('page', $params) && !is_null($params['page'])){
         $start = ($params['page'] - 1) * $this->_getRows($params);
     } else {
         $start = 0;

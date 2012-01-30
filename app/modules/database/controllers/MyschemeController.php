@@ -65,6 +65,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
+
+    $search->setFacets(array('objectType','county','broadperiod','institution'));
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
                 && !is_null($this->_getParam('submit'))){
 
@@ -92,6 +94,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
+
+    $this->view->facets = $search->_processFacets();
     }
 
     private function array_cleanup( $array ) {
@@ -122,6 +126,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'description', 'county',
         )
     );
+    $search->setFacets(array('objectType','county','broadperiod','institution'));
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
                 && !is_null($this->_getParam('submit'))){
 
@@ -149,6 +154,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
+    $this->view->facets = $search->_processFacets();
     }
     /** Display all images that a user has added.
      *
@@ -159,16 +165,17 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $this->view->form = $form;
 
     $params = $this->_getAllParams();
-    $params = $this->_getAllParams();
 
     $search = new Pas_Solr_Handler('beoimages');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod', 'imagedir',
     	'filename', 'thumbnail', 'old_findID',
-    	'county','licenseAcronym','findID')
+    	'county','licenseAcronym','findID',
+        'objecttype','institution')
     );
-     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+    $search->setFacets(array('broadperiod','county', 'objecttype','institution'));
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
                 && !is_null($this->_getParam('submit'))){
 
     if ($form->isValid($form->getValues())) {
@@ -190,12 +197,12 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     if(!isset($params['q']) || $params['q'] == ''){
         $params['q'] = '*';
     }
-    $search->setFacets(array('broadperiod','county'));
     $params['createdBy'] = $this->_getDetails()->id;
     $search->setParams($params);
     $search->execute();
     $search->_processFacets();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
+    $this->view->facets = $search->_processFacets();
     }
 }

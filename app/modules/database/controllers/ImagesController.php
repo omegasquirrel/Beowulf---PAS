@@ -56,10 +56,11 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod', 'imagedir',
     	'filename', 'thumbnail', 'old_findID',
-    	'county','licenseAcronym','findID')
+    	'county','licenseAcronym','findID',
+        'institution')
         );
 
-        $search->setFacets(array('broadperiod','county'));
+        $search->setFacets(array('broadperiod','county', 'objecttype','institution'));
 
 
         if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
@@ -91,6 +92,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
         $search->_processFacets();
         $this->view->paginator = $search->_createPagination();
         $this->view->results = $search->_processResults();
+        $this->view->facets = $search->_processFacets();
 
 	}
 

@@ -29,8 +29,9 @@ CONCAT( findspots.declat,  ',', findspots.declong ) AS coordinates,
 users.imagedir,
 users.fullname,
 licenseType.acronym AS licenseAcronym,
-licenseType.flickrID as license
-finds.objecttype
+licenseType.flickrID as license,
+finds.objecttype,
+slides.institution
 FROM slides
 LEFT JOIN periods ON slides.period = periods.id
 LEFT JOIN finds_images ON finds_images.image_id = slides.secuid
@@ -59,6 +60,7 @@ LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
 	    <field column="licenseAcronym" name="licenseAcronym" />
 	    <field column="broadperiod" name="broadperiod" />
 	    <field column="createdBy" name="createdBy" />
+            <field column="institution" name="institution" />
 
 		</entity>
 

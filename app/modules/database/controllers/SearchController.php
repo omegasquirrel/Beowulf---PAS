@@ -61,7 +61,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	/** Display the basic what/where/when page.
 	*/
 	public function indexAction() {
-	$form = new WhatWhereWhenForm();
+	$form = new SolrForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
@@ -330,12 +330,13 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$private = NULL;
 	}
 	if($this->_getParam('by') == 'me'){
-	$this->view->data = $this->_searches->getSavedSearches($this->_helper->identity->getPerson()->id,
+	$this->view->data = $this->_searches->getAllSavedSearches($this->_helper->identity->getPerson()->id,
 		$this->_getParam('page'),$private);
 	} else {
-	$this->view->data = $this->_searches->getSavedSearches(NULL,$this->_getParam('page'), $private);
+	$this->view->data = $this->_searches->getAllSavedSearches(NULL, $this->_getParam('page'), $private);
 	}
 	}
+
 	/** Display the solr form
 	*/
 	public function solrAction(){

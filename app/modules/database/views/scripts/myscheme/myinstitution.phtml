@@ -20,23 +20,14 @@ $('a[rel*=lightbox]').lightBox()
 <?php echo $this->SearchParams($this->params);?>
 <?php endif;?>
 <?php echo $this->form;?>
+<?php
+echo $this->facetCreator($this->facets);
+?>
 <div id="findsList">
 <?php if (count($this->results)): ?>
-<table class="stripeMe" summary="Records recorded by my institution">
-<thead>
-<tr>
-<th>Image</th>
-<th>Object Type</th>
-<th>Find number</th>
-<th>Broadperiod</th>
-<th>County</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<?php echo $this->partialLoop('partials/database/findsTable2.phtml',$this->results);?>
-</tbody>
-</table>
+<div>
+        <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->results);?>
+    </div>
 <?php endif; ?>
 </div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>

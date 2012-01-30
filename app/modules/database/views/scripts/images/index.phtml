@@ -1,11 +1,11 @@
 <?php
 $this->headTitle('All images on the database');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 ?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 jQuery(document).ready(function($) {
- $('a[rel*=lightbox]').lightBox() 
-    })
+ $('a[rel*=lightbox]').lightBox()
+});
 $(function() {
 <?php
 $auth = Zend_Auth::getInstance();
@@ -14,14 +14,17 @@ $user = $auth->getIdentity();
 {
 if(in_array($user->role,array('flos','treasure','fa','admin'))) {
 ?>
-	$('div.image-controls').css('visibility','hidden');
-	$('div.thumbnail').each(function() {
-		var controls = $(this).children('div.image-controls');
-		$(this).hover(
-			function() { $(controls).css('visibility','visible') },
-			function() { $(controls).css('visibility','hidden') }
-		);
-	});	
+$('div.image-controls').css('visibility','hidden');
+$('div.thumbnail').each(function() {
+var controls = $(this).children('div.image-controls');
+$(this).hover(
+    function() {
+    $(controls).css('visibility','visible')
+    },
+    function() {
+    $(controls).css('visibility','hidden')
+    });
+});
 <?php
 }
 }
@@ -29,17 +32,20 @@ if(in_array($user->role,array('flos','treasure','fa','admin'))) {
 ?>
 });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php 
+<?php
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript');
 $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 ?>
 
 
 <h2>All images on the database</h2>
 <div id="imagefilter">
-<table><tr><?php echo $this->form;?></tr></table>
+<?php echo $this->form;?>
 </div>
+<?php
+echo $this->facetCreator($this->facets);
+?>
 <?php if (count($this->results)): ?>
 <div id="gallery">
 <?php echo $this->partialLoop('partials/database/myimagesList.phtml',$this->results);?>

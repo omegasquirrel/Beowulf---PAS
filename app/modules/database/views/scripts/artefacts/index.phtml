@@ -26,12 +26,14 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 <?php echo $this->SearchParams($this->params);?>
 <?php endif;?>
 <?php echo $this->form;?>
+<?php
+echo $this->facetCreator($this->facets);
+?>
 <div id="findsList">
 <?php if ($this->data): ?>
     <div class="stripeMe">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->data);?>
     </div>
-    <?php Zend_Debug::dump($this->facets);?>
 <?php else:?>
     <p>No records are available.
 <?php endif; ?>

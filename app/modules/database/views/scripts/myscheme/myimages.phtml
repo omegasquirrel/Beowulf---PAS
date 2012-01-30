@@ -10,6 +10,9 @@ $('a[rel*=lightbox]').lightBox()
 
 <h2>All images added by me</h2>
 <?php echo $this->form;?>
+<?php
+echo $this->facetCreator($this->facets);
+?>
 <?php if (count($this->results)): ?>
 <div id="gallery">
 <?php echo $this->partialLoop('partials/database/myimagesList.phtml',

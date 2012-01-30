@@ -6,22 +6,12 @@ if($this->finds) :?>
 <h2>My finds recorded by the Scheme</h2>
 
 <p><a href="<?php echo $this->url(array('module' => 'users','controller' => 'records','action' => 'mapped'),NULL,true);?>" title="Map these finds">View these finds on a googlemap</a></p>
-<table summary="A list of all finds recorded by this finder" class="stripeMe">
-<caption>A list of finds for this finder</caption>
-<thead>
-<tr>
-<th>Image</th>
-<th>Object type</th>
-<th>Find number</th>
-<th>Broadperiod</th>
-<th>County</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<?php echo $this->partialLoop('partials/database/findsTable2.phtml',$this->finds);?>
-</tbody>
-</table>
+<?php
+echo $this->facetCreator($this->facets);
+?>
+<div class="stripeMe">
+        <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->finds);?>
+    </div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 
 <?php else:?>

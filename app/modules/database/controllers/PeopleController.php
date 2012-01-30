@@ -35,68 +35,85 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     */
     public function indexAction(){
     $form = new SolrForm();
-        $form->removeElement('thumbnail');
-        $this->view->form = $form;
+    $form->removeElement('thumbnail');
+    $this->view->form = $form;
 
-        $params = $this->array_cleanup($this->_getAllParams());
-        $search = new Pas_Solr_Handler('beopeople');
-        $search->setFields(array('*')
-        );
-
-
-
-        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
-                && !is_null($this->_getParam('submit'))){
-
-        if ($form->isValid($form->getValues())) {
-        $params = $this->array_cleanup($form->getValues());
-
-        $this->_helper->Redirector->gotoSimple('index','people','database',$params);
-        } else {
-        $form->populate($form->getValues());
-        $params = $form->getValues();
-        }
-        } else {
-
-        $params = $this->_getAllParams();
-        $form->populate($this->_getAllParams());
+    $params = $this->array_cleanup($this->_getAllParams());
+    $search = new Pas_Solr_Handler('beopeople');
+    $search->setFields(array('*')
+    );
+    $search->setFacets(array('county','organisation','activity'));
 
 
-        }
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+            && !is_null($this->_getParam('submit'))){
 
-        if(!isset($params['q']) || $params['q'] == ''){
-            $params['q'] = '*';
-        }
+    if ($form->isValid($form->getValues())) {
+    $params = $this->array_cleanup($form->getValues());
 
-        $search->setParams($params);
-        $search->execute();
+    $this->_helper->Redirector->gotoSimple('index','people','database',$params);
+    } else {
+    $form->populate($form->getValues());
+    $params = $form->getValues();
+    }
+    } else {
 
-        $this->view->paginator = $search->_createPagination();
-        $this->view->results = $search->_processResults();
-
-	}
+    $params = $this->_getAllParams();
+    $form->populate($this->_getAllParams());
 
 
+    }
+
+    if(!isset($params['q']) || $params['q'] == ''){
+        $params['q'] = '*';
+    }
+
+    $search->setParams($params);
+    $search->execute();
+
+    $this->view->paginator = $search->_createPagination();
+    $this->view->results = $search->_processResults();
+    $this->view->facets = $search->_processFacets();
+
+    }
 
 
-        private function array_cleanup( $array ) {
-        $todelete = array('submit','action','controller','module','csrf');
-	foreach( $array as $key => $value ) {
-        foreach($todelete as $match){
-    	if($key == $match){
-    		unset($array[$key]);
-    	}
-        }
-        }
-        return $array;
-        }
+
+
+    private function array_cleanup( $array ) {
+    $todelete = array('submit','action','controller','module','csrf');
+    foreach( $array as $key => $value ) {
+    foreach($todelete as $match){
+    if($key == $match){
+            unset($array[$key]);
+    }
+    }
+    }
+    return $array;
+    }
+
     /** Display details of a person
     */
     public function personAction(){
     if($this->_getParam('id',false)) {
-    $this->view->peoples = $this->_peoples->getPersonDetails($this->_getParam('id'));
-    $finds = new Finds();
-    $this->view->finds = $finds->getFindsToPerson($this->_getAllParams());
+    $params = array();
+    $person = $this->_peoples->getPersonDetails($this->_getParam('id'));
+    if($this->_helper->contextSwitch()->getCurrentContext !== 'vcf'){
+    $search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county')
+    );
+    $params['finderID'] = $person['0']['secuid'];
+    $params['page'] = $this->_getParam('page');
+    $search->setParams($params);
+    $search->execute();
+    $this->view->paginator = $search->_createPagination();
+    $this->view->finds = $search->_processResults();
+    }
+    $this->view->peoples = $person;
     } else {
         throw new Exception($this->_missingParameter);
     }
@@ -184,8 +201,8 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     //Updated the people db table
     $update = $this->_peoples->update($updateData, $where);
     //Update the solr instance
-	$this->_helper->solrUpdater->update('beopeople', $this->_getParam('id'));
-	//Update the audit log
+    $this->_helper->solrUpdater->update('beopeople', $this->_getParam('id'));
+    //Update the audit log
     $this->_helper->audit($updateData, $oldData, 'PeopleAudit',
             $this->_getParam('id'), $this->_getParam('id'));
     $this->_flashMessenger->addMessage('Person information updated!');

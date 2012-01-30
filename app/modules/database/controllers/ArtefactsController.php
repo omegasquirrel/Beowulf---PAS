@@ -123,7 +123,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
-    $search->setFacets(array('objectType','county','broadperiod'));
+    $search->setFacets(array('objectType','county','broadperiod','institution'));
 
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {

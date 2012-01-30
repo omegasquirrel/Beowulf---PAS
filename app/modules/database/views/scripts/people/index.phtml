@@ -1,9 +1,9 @@
-<?php 
+<?php
 $this->headTitle('People registered with the Scheme');
-$this->jQuery()->addJavascriptFile($this->baseUrl() 
+$this->jQuery()->addJavascriptFile($this->baseUrl()
         . '/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl() 
-        . '/js/JQuery/autocompleteinitpeople1.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl()
+        . '/js/JQuery/autocompleteinitpeople1.js',$type='text/javascript');
 $this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
 ?>
 <h2>People registered with the Scheme</h2>
@@ -11,6 +11,9 @@ $this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
 <?php echo $this->peopleToolbox();?>
 <div id="findsList">
 <?php if ($this->results): ?>
+    <?php echo $this->facetCreator($this->facets);
+    ?>
+
 <table class="stripeMe" summary="All people registered on our database">
 <thead>
 <tr>
@@ -25,7 +28,7 @@ $this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
 <?php echo $this->form;?>
 </tr>
 <tbody>
-<?php echo $this->partialLoop('partials/database/peopleTableList.phtml', 
+<?php echo $this->partialLoop('partials/database/peopleTableList.phtml',
         $this->results);?>
 </tbody>
 </table>

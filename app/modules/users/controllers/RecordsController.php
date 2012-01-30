@@ -39,10 +39,13 @@ class Users_RecordsController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
+
+    $search->setFacets(array('objectType','county','broadperiod','institution'));
     $search->setParams($params);
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->finds = $search->_processResults();
+    $this->view->facets = $search->_processFacets();
     } else {
         throw new Pas_Exception_Param('Your account needs linking to your userid');
     }

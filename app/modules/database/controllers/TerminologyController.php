@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying object terminologies we employ
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,7 +8,7 @@
 * @license    GNU General Public License
 */
 class Database_TerminologyController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_contexts, $_periods;
 	/** Setup the contexts by action and the ACL.
 	*/
@@ -69,7 +69,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	$this->view->vocabularies = $vocab2;
 	}
 	/** Display a list of periods
-	*/	
+	*/
 	public function periodsAction() {
 	$periods = new Periods();
 	$this->view->periods = $periods->getPeriods();
@@ -87,7 +87,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	/** Show a tag cloud of periods
 	*/
 	public function periodtagcloudAction() {
-	$this->getHelper('layout')->disableLayout(); 
+	$this->getHelper('layout')->disableLayout();
 	$this->view->periods = $this->_periods->getPeriodDetails($this->_getParam('id'));
 	$this->view->objects = $this->_periods->getObjectTypesByPeriod($this->_getParam('id'));
 	}
@@ -113,7 +113,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	if($this->_getParam('id',false)) {
 	$methods = new DiscoMethods();
 	$this->view->methods = $methods->getDiscmethodInformation($this->_getParam('id'));
-	
+
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
@@ -141,7 +141,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	$this->view->preserves = $preserves->getPreservationTerms();
 	}
 	/** Display details for a find of note
-	*/ 
+	*/
  	public function noteAction() {
 	if($this->_getParam('id',false)) {
 	$notes = new Findofnotereasons();
@@ -151,7 +151,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display details for notes
-	*/	
+	*/
 	public function notesAction() {
 	$notes = new Findofnotereasons();
 	$this->view->notes = $notes->getReasonsList();
@@ -189,7 +189,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	$this->view->materials = $materials->getMaterials();
 	}
 	/** Display details for a decoration style
-	*/	
+	*/
 	public function decorationstyleAction() {
 	if($this->_getParam('id',false)) {
 	$decs = new Decstyles();
@@ -199,13 +199,13 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display list of decoration styles
-	*/	
+	*/
 	public function decorationstylesAction() {
 	$decs = new Decstyles();
 	$this->view->decs = $decs->getDecStyles();
 	}
 	/** Display details for method of manufacture
-	*/	
+	*/
 	public function manufactureAction() {
 	if($this->_getParam('id',false)) {
 	$manufactures = new Manufactures();
@@ -215,7 +215,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display list of manufacturing methods
-	*/	
+	*/
 	public function manufacturesAction() {
 	$manufactures = new Manufactures();
 	$this->view->manufactures = $manufactures->getManufacturesListed();
@@ -284,7 +284,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 			default:
 			$actionset = 'mint';
 			$module = 'medievalcoins';
-			
+
 	}
 	$mints[] = array(
 	'id' => $k['id'],
@@ -334,7 +334,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	$this->view->workflows = $workflows->getStageNames();
 	}
 	/** Display surface treastment details
-	*/		
+	*/
 	public function surfaceAction() {
 	if($this->_getparam('id',false)) {
 	$surfaces = new Surftreatments();
@@ -345,19 +345,19 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display list of surface treatments
-	*/		
+	*/
 	public function surfacesAction() {
 	$surfaces = new Surftreatments();
 	$this->view->surfaces = $surfaces->getSurfaceTreatments();
-	}	
+	}
 	/** Display list of die axes
-	*/		
+	*/
 	public function dieaxesAction() {
 	$dieaxes = new Dieaxes();
 	$this->view->dieaxes = $dieaxes->getDieList();
 	}
 	/** Display details of die axis
-	*/		
+	*/
 	public function dieaxisAction() {
 	if($this->_getParam('id',false)){
 	$dieaxes = new Dieaxes();
@@ -365,9 +365,9 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
-	}	
+	}
 	/** Display list of rulers
-	*/		
+	*/
 	public function rulersAction() {
 	$rulers = new Rulers();
 	$rulerList = $rulers->getRulerList($this->_getAllParams());
@@ -379,9 +379,9 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 				$rulerList->getCurrentItemCount(),0));
 	$this->view->data = $data;
 	$rulers = NULL;
-	
+
 	foreach($rulerList as $k){
-	
+
 	$action = $k['term'];
 	switch ($action) {
 		case $action == strtoupper('Roman'):
@@ -415,7 +415,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 			default:
 			$actionset = 'ruler';
 			$module = 'medievalcoins';
-			
+
 	}
 	$rulers[] = array(
 	'id' => $k['id'],
@@ -423,18 +423,18 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	'period' => $k['term'],
 	'dateFrom' => $k['date1'],
 	'dateTo' => $k['date2'],
-	'url' => 'http://finds.org.uk' . $this->view->url(array('module' => $module,
-	'controller' => $actionset.'s' ,'action' => $actionset,'id' => $k['id']),null,true)
+	'url' => $this->view->serverUrl() . $this->view->url(array('module' => $module,
+	'controller' => $actionset . 's' ,'action' => $actionset,'id' => $k['id']),null,true)
 	);
 	}
-	
+
 	$this->view->rulers = $rulers;
 	} else {
 	$this->view->rulers = $rulerList;
 	}
 	}
 	/** Display object type list
-	*/		
+	*/
 	public function objectsAction()
 	{
 	$objects = new ObjectTerms();
@@ -447,19 +447,19 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 				$objectTerms->getCurrentItemCount(),0));
 	$this->view->data = $data;
 	$objectterms = array();
-	
+
 	foreach($objectTerms as $k => $v){
 	$objectterms[$k] = $v;
 	}
-	
+
 	$this->view->objectdata = $objectterms;
 	} else {
 	$this->view->paginator = $objectTerms;
 	}
 	}
-	
+
 	/** Display details of an object term
-	*/	
+	*/
 	public function objectAction()
 	{
 	$term = $this->_getParam('term');
@@ -468,9 +468,9 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	$this->view->objectdata = $objs;
 	$images = new Slides();
 	$this->view->images = $images->getLast10ThumbnailsToObjectType($term, 4);
-	}	
+	}
 	/** Display completeness details
-	*/		
+	*/
 	public function completenessAction() {
 	if($this->_getParam('id',false)) {
 	$comp = new Completeness();
@@ -478,9 +478,9 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
-	}	
+	}
 	/** Display list of denominations
-	*/		
+	*/
 	public function denominationsAction() {
 	$denominations = new Denominations();
 	$denomsList = $denominations->getDenomsValid($this->_getAllParams());
@@ -492,9 +492,9 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 				$denomsList->getCurrentItemCount(),0));
 	$this->view->data = $data;
 	$denoms = NULL;
-	
+
 	foreach($denomsList as $k){
-	
+
 	$action = $k['temporal'];
 	switch ($action) {
 		case $action == strtoupper('Roman'):
@@ -528,13 +528,13 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 			default:
 			$actionset = 'denomination';
 			$module = 'medievalcoins';
-			
+
 	}
 	$denoms[] = array(
 	'id' => $k['id'],
 	'name' => $k['denomination'],
 	'period' => $k['temporal'],
-	'url' => 'http://finds.org.uk' . $this->view->url(array('module' => $module,
+	'url' => $this->view->serverUrl() . $this->view->url(array('module' => $module,
 	'controller' => $actionset.'s' ,'action' => $actionset,'id' => $k['id']),null,true)
 	);
 	}

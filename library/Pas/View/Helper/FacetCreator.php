@@ -5,16 +5,30 @@
  * and open the template in the editor.
  */
 
-/**
- * Description of FacetCreator
- *
- * @author danielpett
+/** This view helper takes the array of facets and their counts and produces
+ * an html rendering of these with links for the search.
+ * @category Pas
+ * @package Pas_View
+ * @subpackage Helper
+ * @version 1
+ * @since 30/1/2012
+ * @copyright Daniel Pett
+ * @author Daniel Pett
+ * @license GNU
+ * @uses Pas_Exception_BadJuJu
+ * @uses Zend_View_Helper_Url
+ * @uses Zend_Controller_Front
  */
 class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
 
+    /** Create the facets boxes for rendering
+     * @access public
+     * @param array $facets
+     * @return string
+     * @throws Pas_Exception_BadJuJu
+     */
 
     public function facetCreator(array $facets){
-
         if(is_array($facets)){
         $html = '<div id="facets">';
         $html .= '<h3>Search facets</h3>';
@@ -28,6 +42,15 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         }
     }
 
+    /** Process the facet array and name
+     * @access public
+     * @param array $facet
+     * @param string $facetName
+     * @return string
+     * @throws Pas_Exception_BadJuJu
+     * @uses Zend_Controller_Front
+     * @uses Zend_View_Helper_Url
+     */
     protected function _processFacet(array $facet, $facetName){
         if(is_array($facet)){
         $html = '<div id="facet-' . $facetName .'" class="thumbnail">';
@@ -48,6 +71,10 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         $html .= '</ul>';
         $request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
 
+        if(isset($request['page'])){
+            unset($request['page']);
+        }
+
         $facet = $request['fq' . $facetName];
         if(isset($facet)){
             unset($request['fq' . $facetName]);
@@ -62,6 +89,11 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         }
     }
 
+    /** Create a pretty name for the facet
+     * @access public
+     * @param string $name
+     * @return string
+     */
     protected function _prettyName($name){
         switch($name){
             case 'objectType':
@@ -80,5 +112,3 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         return $clean;
     }
 }
-
-?>

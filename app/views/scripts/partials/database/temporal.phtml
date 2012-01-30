@@ -1,17 +1,17 @@
 <h4>Chronology</h4>
 <p>
 Broad period: <span property="pas:broadperiod"><?php echo $this->escape($this->broadperiod);?></span><br />
-<?php if(isset($this->subPeriodFrom)  && ($this->subPeriodFrom > 0)):?>
-Subperiod from: <?php echo $this->escape($this->subPeriodFrom);?> <br />
+<?php if(!is_null($this->subPeriodFrom)):?>
+Subperiod from: <span property="pas:subPeriodFrom"><?php echo $this->earlyMiddleLate($this->subPeriodFrom);?></span><br />
 <?php endif;?>
 <?php if(isset($this->term)):?>
 Period from: <span property="pas:periodFrom"><?php echo $this->escape($this->term);?></span> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'database','controller' => 'terminology','action'=>'period','id' => $this->period1),null,true);?>" title="Read scope note for <?php echo $this->term;?>">scope notes</a> | <a href="<?php echo $this->url(array('module'=>'database','controller' => 'search','action'=>'results','periodfrom' => $this->period1),null,true);?>" title="view all records assigned to: <?php echo $this->term;?>">view all attributed records</a>]</span><br />
 <?php endif;?>
-<?php if(isset($this->subPeriodTo) && ($this->subPeriodTo > 0)):?>
-Subperiod to: <?php echo $this->escape($this->subPeriodTo);?><br />
+<?php if(!is_null($this->subPeriodTo)):?>
+Subperiod to: <span property="pas:subPeriodTo"><?php echo $this->earlyMiddleLate($this->subPeriodTo);?></span><br />
 <?php endif;?>
 <?php if(!is_null($this->t2)) : ?>
-Period to: <span property="pas:periodTo"><?php echo $this->t2;?></span> 
+Period to: <span property="pas:periodTo"><?php echo $this->t2;?></span>
 <span class="scope">[<a href="<?php echo $this->url(array(
     'module'=>'database',
     'controller' => 'terminology',
@@ -21,7 +21,7 @@ Period to: <span property="pas:periodTo"><?php echo $this->t2;?></span>
      'module'=>'database',
      'controller' => 'search',
      'action'=>'results',
-     'periodfrom' => $this->period2),null,true);?>" title="view all records assigned to: 
+     'periodfrom' => $this->period2),null,true);?>" title="view all records assigned to:
  <?php echo $this->t2;?>">view all attributed records</a>]</span><br />
 <?php endif;?>
 <?php if(!is_null($this->cult)) : ?>
@@ -31,15 +31,15 @@ Ascribed Culture: <span property="pas:ascribedCulture" datatype="xsd:string">
         'module'=>'database',
         'controller' => 'terminology',
         'action'=>'culture',
-        'id' => $this->culture),null,true);?>" title="Read scope note for 
+        'id' => $this->culture),null,true);?>" title="Read scope note for
     <?php echo $this->cult;?>">scope notes</a>|  <a href="<?php echo $this->url(array(
         'module'=>'database',
         'controller' => 'search',
         'action'=>'results',
-        'culture' => $this->culture),null,true);?>" title="view all records assigned to: 
+        'culture' => $this->culture),null,true);?>" title="view all records assigned to:
     <?php echo $this->cult;?>">view all attributed records</a>]</span><br />
 <?php endif;?>
-<?php if((int)($this->numdate1)) : ?> 
+<?php if((int)($this->numdate1)) : ?>
 Date from:  <?php echo $this->fromcirca;?> <span property="pas:dateFrom" content="<?php echo $this->numdate1;?>" datatype="xsd:date" ><?php echo $this->adbc($this->numdate1);?></span><br />
 <?php endif;?>
 <?php if((int)($this->numdate2)) : ?>

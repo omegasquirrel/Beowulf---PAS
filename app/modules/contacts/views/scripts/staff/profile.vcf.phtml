@@ -1,11 +1,11 @@
 <?php 
 
 
-$vc = new VCard();
+$vc = new Pas_VCard();
 
 /*
 filename is the name of the .vcf file that will be sent to the user if you
-call the download() method. If you leave this blank, the class will 
+call the download() method. If you leave this blank, the class will
 automatically build a filename using the contact's data.
 */
 #$vc->filename = "";
@@ -59,7 +59,7 @@ $vc->data['url'] = "http://www.finds.org.uk";
 if(isset($person['image']))
 {
 $vc->data['photo'] = "http://www.finds.org.uk/images/staffphotos/thumbnails/".rawurlencode($person['image']);
-}  
+}
 #$vc->data['birthday'] = "";
 $vc->data['timezone'] = "00:00";
 #$vc->data['sort_string'] = "";

@@ -2,11 +2,11 @@
 	<dataSource type="JdbcDataSource"
    driver="com.mysql.jdbc.Driver"
    url="jdbc:mysql://localhost/antiquities"
-   user="" 
-   password=""
+   user="webuser2"
+   password="45jql11w"
    tinyInt1isBit="false"/>
 	<document name="content">
-        <entity name="content" transformer="HTMLStripTransformer" 
+        <entity name="content" transformer="HTMLStripTransformer"
 query="
 SELECT
 CONCAT('people-',people.id) AS identifier,
@@ -14,37 +14,40 @@ people.id,
 surname,
 forename,
 fullname,
-county,
+people.county,
 email,
-postcode,
-CONCAT(address,' ',town_city,' ',county) AS place,
-CONCAT(lat,',',lon) AS coordinates,
-lat AS latitude,
-lon AS longitude,
+people.postcode,
+CONCAT(people.address,' ',people.town_city,' ',people.county) AS place,
+CONCAT(people.lat,',',people.lon) AS coordinates,
+people.lat AS lat,
+people.lon AS lon,
 primaryactivities.term AS activity,
 people.created,
 people.updated,
-woeid
+people.woeid,
+organisations.name AS organisation
 FROM people
 LEFT JOIN primaryactivities ON people.primary_activity = primaryactivities.id
-" 
->        
-		<field column="identifier" name="identifier" />
-		<field column="id" name="id" />
-	    <field column="surname" name="surname" />
-	    <field column="forename" name="forename" />
-	    <field column="fullname" name="fullname" />
-	    <field column="created" name="created" />
-	    <field column="updated" name="updated" />
-	    <field column="woeid" name="woeid" />
-	    <field column="place" name="place" />
-	    <field column="postcode" name="postcode" />
-	    <field column="activity" name="activity" />
-	    <field column="email" name="email" />
-	    <field column="latitude" name="latitude" />
-	    <field column="longitude" name="longitude" />
-	    <field column="coordinates" name="coordinates" />
-		</entity>
+LEFT JOIN organisations ON people.organisationID = organisations.secuid
+"
+>
+<field column="identifier" name="identifier" />
+<field column="id" name="id" />
+<field column="surname" name="surname" />
+<field column="forename" name="forename" />
+<field column="fullname" name="fullname" />
+<field column="created" name="created" />
+<field column="updated" name="updated" />
+<field column="woeid" name="woeid" />
+<field column="place" name="place" />
+<field column="postcode" name="postcode" />
+<field column="activity" name="activity" />
+<field column="email" name="email" />
+<field column="lat" name="lat" />
+<field column="lon" name="lon" />
+<field column="coordinates" name="coordinates" />
+<field column="organisation" name="organisation" />
 
+        </entity>
     </document>
 </dataConfig>
