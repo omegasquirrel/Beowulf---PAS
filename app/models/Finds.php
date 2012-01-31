@@ -1542,7 +1542,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		->where('finds.id= ?',(int)$findID);
 	if(in_array($role,$this->_restricted)) {
 	$select->where(new Zend_Db_Expr('finds.secwfstage IN ( 3, 4) OR finds.createdBy = '
-	. (int)$this->getIdentityForForms()));
+	. (int)$this->user()->id));
 	}
 	return  $finds->fetchAll($select);
 	}
