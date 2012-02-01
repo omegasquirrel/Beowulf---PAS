@@ -1,15 +1,16 @@
-<?php 
+<?php
 $this->headTitle('Members of Parliament');
 $this->MetaBase('This page lists all the members of Parliament elected in 2010 election',
 'archaeology',
 'members,election,2010,hansard,parliament');?>
 <h2>A list of all Members of Parliament</h2>
-<?php if(count($this->data)):?>
+<?php if($this->data):?>
 <ul>
 <?php foreach($this->data as $d):?>
-<?php $url = $this->url(array('module' => 'news','controller' => 'theyworkforyou','action' => 'mp','id' => $d['person_id']),null,true);?>
+<?php $url = $this->url(array('module' => 'news','controller' => 'theyworkforyou','action' => 'mp','id' => $d->person_id),null,true);?>
 <li>
-<a href="<?php echo $url;?>" title="View details for <?php echo $d['name'];?>"><?php echo $d['name']?></a> - <?php echo $d['party'];?> - <?php echo $d['constituency'];?>
+<a href="<?php echo $url;?>" title="View details for <?php echo $d->name;?>"><?php echo $d->name?></a> - <?php echo $d->party;?> - <?php echo
+$d->constituency;?>
 </li>
 <?php endforeach;?>
 </ul>

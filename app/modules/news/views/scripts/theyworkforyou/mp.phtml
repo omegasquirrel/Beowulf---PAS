@@ -1,34 +1,18 @@
-<?php $this->headMeta('Details and finds for ' . $this->data[0]->full_name
-        . '\'s constituency','description');
-ini_set('display_errors', '0');
-$this->headTitle('Details for ' . $this->data[0]->full_name);
+<?php
+Zend_Debug::dump($this->data);
+echo $this->findsOfNoteConst($this->data[0]->constituency);
+echo $this->partial('partials/news/mpDetails.phtml',  $this->data);
 ?>
-<h2>Details for objects found in <?php echo $this->data[0]->full_name;?>'s constituency</h2>
-<div class="forRDFOnly">
-<p>The Portable Antiquities Scheme has recently released a new website (www.finds.org.uk), cataloguing public discovery of archaeological objects in England and Wales. This now allows
-for rapid and easy mapping of objects found by your constituents.</p>
-<h3>How to use this</h3>
-<img src="<?php echo $this->serverUrl();?>/images/logos/pasrgbsize4.jpg" style="float:right;"/>
-<p>If you have a website, it is very simple to get this map and a feed of data to embed on your site.</p>
-<p>If you would like to do this, contact the Scheme's ICT Adviser via the details below:</p>
-<p>Daniel Pett, The British Museum, Great Russell Street, London, WC1B 3DG
-
-<br />
-Telephone: 0207 323 8618 or Email: dpett@britishmuseum.org</p></div>
-<?php echo $this->politicalparty($this->data[0]->party);?>
-
-<?php if(array_key_exists('image',$this->data[0])):?>
-<img src="http://www.theyworkforyou.com<?php echo $this->data[0]->image;?>" height="<?php echo $this->data[0]->image_height;?>"
-width="<?php echo $this->data[0]->image_width;?>" alt="The latest portrait image of <?php echo $this->data[0]->full_name;?>" class="flow"/>
-<?php endif;?>
-<? $geo = $this->TwfyGeo($this->data[0]->constituency);
+<?php
+$geo = $this->TwfyGeo($this->data[0]);
 
 if($geo == true && array_key_exists('centre_lat',$geo)):
 ?>
 <?php
+$geo = get_object_vars($geo);
 $config = Zend_Registry::get('config');
-$apikey = $config->googlemaps->apikey;
-$this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key=' . $apikey,$type='text/javascript')
+$apikey = $config->webservice->googlemaps->apikey;
+$this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key=' . $apikey, $type='text/javascript')
 ->appendFile($this->baseUrl() . '/js/maps/clusterer.js',$type='text/javascript');?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -255,43 +239,7 @@ echo $this->findsOfNoteConst($this->data[0]->constituency);
 <?php endif;?>
 <?php echo $this->politicalhouse($this->data[0]->house);?>
 <div id="career">
-<?php foreach($this->data as $d):?>
-
-<h4>Term of office:  <?php echo $this->timeagoinwords($d->entered_house);?> <?php if($d->left_house != '9999-12-31'):?>
--  <?php echo $this->timeagoinwords($d->left_house);?>
-<?php endif;?></h4>
-<p>
-
-Current house: <?php if($d->house == 1){ echo 'House of Commons';} else { echo 'House of Lords';}?> <br/>
-Entered house: <?php echo $this->timeagoinwords($d->entered_house);?><br />
-<?php if($d->left_house != '9999-12-31'):?>
-Left House: <?php echo $this->timeagoinwords($d->left_house);?><br />
-<?php endif;?>
-<?php if($d->entered_reason != ''):?>
-Reason for entering: <?php echo ucfirst(str_replace('_',' ',$d->entered_reason));?><br />
-<?php endif;?>
-<?php if($d->left_reason != ''):?>
-Reason for leaving: <?php echo ucfirst(str_replace('_',' ',$d->left_reason));?><br />
-<?php endif;?>
-<?php if($d->party != ''):?>
-Party at election: <?php echo $d->party;?><br />
-<?php endif;?>
-<?php if($d->constituency != ''):?>
-Constituency: <?php
-Zend_Debug::dump($d);
-echo $d->constituency;?> <br />
-<?php endif;?>
-<?php if(array_key_exists('office',$d)):?>
-<?php if($d->left_reason != 'general_election_standing'):?>
-<?php foreach($d->office as $o):?>
-Held postion of: <?php echo $o->position;?> <?php if($o->dept != ''):?>Department: <?php echo $o->dept;?><?php endif;?><br />
-<?php endforeach;?>
-<?php endif;?>
-<?php endif;?>
-</p>
-
-<?php endforeach;?>
-
+<?php echo $this->partialLoop('partials/news/mp.phtml',$this->data);?>
 </div>
 
 </div>

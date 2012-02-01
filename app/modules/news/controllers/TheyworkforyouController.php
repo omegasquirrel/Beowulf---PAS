@@ -6,42 +6,21 @@
 * @subpackage ActionAdmin
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
+* @version    1.1
+* @since      1/2/2012
+*
 */
 class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 
-	const TWFYURL = 'http://www.theyworkforyou.com/api/';
-
-	protected $_apiKey;
-
+        /** The cache object
+         *
+         * @var type
+         */
 	protected $_cache = NULL;
 
-	protected $_remove = array(
-        'Airdrie and Shotts','Ayr, Carrick and Cumnock',
-	'Belfast North','Belfast East','Belfast South',
-	'Belfast West','Aberdeen North', 'Aberdeen South',
-	'Berwick-upon-Tweed','Dundee East','Dundee West',
-	'Dunfermline and West Fife', 'Berwickshire, Roxburgh and Selkirk','Banff and Buchan',
-	'Caithness, Sutherland and Easter Ross','Cumbernauld,Kilsyth and Kirkintilloch East',
-	'Dumfriesshire, Clydesdale and Tweeddale','Dumfries and Galloway',
-	'East Kilbride, Strathaven and Lesmahagow','East Londonderry','East Antrim',
-	'East Dunbartonshire','East Londonderry','East Lothian',
-	'East Renfrewshire', 'Edinburgh East','Edinburgh North and Leith',
-	'Edinburgh South','Edinburgh South West','Edinburgh West',
-	'Falkirk','Fermanagh and South Tyrone','Foyle',
-	'Glasgow Central','Glasgow East','Glasgow North',
-	'Glasgow North East', 'Glasgow North West','Glasgow South',
-	'Glasgow South West','Glenrothes','Inverclyde',
-	'Inverness, Nairn, Badenoch and Strathspey', 'Kilmarnock and Loudoun',
-	'Kirkcaldy and Cowdenbeath','Lanark and Hamilton East','Mid Ulster',
-	'Midlothian', 'Na h-Eileanan an Iar','Newry and Armagh',
-	'North Antrim','North Down','North East Fife',
-	'Ochil and South Perthshire', 'Paisley and Renfrewshire North','Paisley and Renfrewshire South',
-	'Ross, Skye and Lochaber','Rutherglen and Hamilton West','South Antrim',
-	'Upper Bann','West Aberdeenshire and Kincardine',
-	'West Dunbartonshire','West Tyrone','Lagan Valley',
-	'Strangford'
-	);
-
+        /** Initialise
+         *
+         */
 	public function init() {
  	$this->_helper->_acl->allow(null);
       	$this->_helper->contextSwitch()
@@ -54,54 +33,8 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
             ->addActionContext('constituencies',array('xml','json'))
             ->addActionContext('index',array('xml','json'))
              ->initContext();
-        $frontendOptions = array('lifetime' => 31556926, 'automatic_serialization' => true);
-        $backendOptions = array('cache_dir' => 'app/cache/twfy');
-        $this->_cache = Zend_Cache::factory('Output','File',$frontendOptions,$backendOptions);
-        $this->_apiKey = $this->_helper->config()->webservice->twfy->apikey;
+        $this->_cache = Zend_Registry::get('cache');
         }
-
-
-	private function get($query){
-	$config = array(
-        'adapter'   => 'Zend_Http_Client_Adapter_Curl',
-        'curloptions' => array(
-            CURLOPT_POST =>  true,
-            CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_LOW_SPEED_TIME => 1
-            ),
-	);
-	$client = new Zend_Http_Client(self::TWFYURL . $query, $config);
-	$response = $client->request();
-
-	$code = $this->getStatus($response);
-	if($code == true){
-	return $response->getBody();
-	} else {
-	return NULL;
-	}
-
-	}
-
-	private function getStatus($response) {
-        $code = $response->getStatus();
-        switch($code) {
-            case ($code == 200):
-                    return true;
-                    break;
-
-            case ($code == 404):
-                    throw new Exception('The resource could not be found');
-                    break;
-            case ($code == 406):
-                    throw new Exception('You asked for an unknown representation');
-                    break;
-            default;
-                    return false;
-                    break;
-        }
-	}
 
 
         /** Retrieve the page number
@@ -116,40 +49,21 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	}
 	return $start;
         }
+
+        /** Get the index page and results for PAS search of twfy
+        * @uses Pas_Twfy_Hansard
+        */
 	public function indexAction() {
-	$page = $this->getPage();
 	$term = $this->_getParam('term');
         $search = $term ? $term : 'portable antiquities scheme';
-        $method = 'getHansard?';
-        $params = array(
-            'key' => $this->_apiKey,
-            'output' => 'js',
-            'order' => 'd',
-            'search' => $search,
-            'num' => 20,
-            'page' => $page
-        );
-	$twfy = $method . http_build_query($params);
-
-	$key = md5($twfy);
-
-	if (!($this->_cache->test($key))){
-        $arts = $this->get($twfy);
-        $this->_cache->save($arts);
-	} else {
-	$arts = $this->_cache->load($key);
-	}
-
-	$arts = Zend_Json_Decoder::decode($arts, Zend_Json::TYPE_OBJECT);
-
+        $twfy = new Pas_Twfy_Hansard();
+        $arts = $twfy->get($search, $this->getPage(), 20);
 	$data = array();
-
 	foreach($arts->rows as $row){
-		$data[] = get_object_vars($row);
+	$data[] = get_object_vars($row);
 	}
-
 	$pagination = array(
-	'page'          => (int)$page,
+	'page'          => (int)$this->getPage(),
 	'perpage'      => (int)$arts->info->results_per_page,
 	'total_results' => (int)$arts->info->total_results
 	);
@@ -162,46 +76,32 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	$this->view->paginator = $paginator;
 	}
 
+        /** Get data for a MP
+         * @uses Pas_Twfy_Person
+         * @throws Pas_Exception_Param
+         */
 	public function mpAction() {
 	if($this->_getParam('id',false)) {
-        $method = 'getPerson?';
-        $params = array(
-        'key'       =>  $this->_apiKey,
-        'output'    =>  'js',
-        'id'        =>  $this->_getParam('id')
-        );
-	$twfy = $method . http_build_query($params);
-	if (!($this->_cache->test(md5($twfy)))) {
-	$data = $this->get($twfy);
-	$this->_cache->save($data);
-	} else {
-	$data = $this->_cache->load(md5($twfy));
-	}
-	$this->view->data = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
+	$person =  new Pas_Twfy_Person();
+        $this->view->data = $person->get($this->_getParam('id'));
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
 
+        /** Get the finds within a consituency
+         * @uses Pas_Twfy_Geometry
+         * @throws Pas_Exception_Param
+         */
 	public function findsAction(){
 	if($this->_getParam('constituency',false)){
-	$method = 'getGeometry?';
-	$params = array(
-		'key' => $this->_apiKey,
-		'name' => $this->_getParam('constituency'),
-		'output' => 'js'
-	);
-	$this->view->constituency = $this->_getParam('constituency');
-	$twfy = $method . http_build_query($params);
-	if (!($this->_cache->test(md5($twfy)))) {
-	$data = $this->get($twfy);
-	$this->_cache->save($data);
-	} else {
-	$data = $this->_cache->load(md5($twfy));
-	}
-	$cons = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
-
-	$bbox = array($cons->min_lat, $cons->min_lon, $cons->max_lat, $cons->max_lon);
+	$geo = new Pas_Twfy_Geometry();
+	$cons = $geo->get($this->_getParam('constituency'));
+	$bbox = array(
+            $cons->min_lat,
+            $cons->min_lon,
+            $cons->max_lat,
+            $cons->max_lon);
 	$search = new Pas_Solr_Handler('beowulf');
         $search->setFields(array(
     	'id', 'identifier', 'objecttype',
@@ -221,68 +121,28 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	}
  	}
 
+        /** Get a list of constituencies
+         * @uses Pas_Twfy_Constituencies
+         */
 	public function constituenciesAction() {
-	$page = $this->getPage();
-
-	$params = array(
-		'key' => $this->_apiKey,
-		'output' => 'js',
-		'date'	=> '2010-05-07'
-	);
-	$method = 'getConstituencies?';
-
-	$twfy = $method . http_build_query($params);
-
-	if (!($this->_cache->test(md5($twfy)))) {
-	$data = $this->get($twfy);
-	$this->_cache->save($data);
-	} else {
-	$data = $this->_cache->load(md5($twfy));
-	}
-	$data = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
-
-	foreach ($data as $a) {
-	if(in_array($a->name,$this->_remove)){
-	unset($a->name);
-	}
-	}
-	$data2 = array();
-	foreach($data as $a){
-	if(isset($a->name)){
-	$data2[] = array('name' => $a->name);
-	}
-	}
-	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data2));
+	$cons = new Pas_Twfy_Constituencies();
+        $data = $cons->get('2010-05-07');
+	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data));
 	$paginator->setCurrentPageNumber($this->getPage())
 			->setItemCountPerPage(40)
 			->setCache($this->_cache);
 	$this->view->data = $paginator;
 	}
 
+        /** get a list of members of parliament
+         * @uses Pas_Twfy_Mps
+         * @uses Zend_Paginator
+         * @access public
+         */
 	public function membersAction() {
-	$method = 'getMps?';
-	$params = array(
-		'key' => $this->_apiKey,
-		'output' => 'js',
-	);
-	$twfy = $method . http_build_query($params);
-	if (!($this->_cache->test(md5($twfy)))) {
-	$data = $this->get($twfy);
-	$this->_cache->save($data);
-	} else {
-	$data = $this->_cache->load(md5($twfy));
-	}
-	$data = Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
-	$data2 = array();
-	foreach ($data as $a){
-	if(in_array($a->constituency,$this->_remove)){
-	unset($a);
-	}
-	if(isset($a->name)){
-	$data2[] = get_object_vars($a);
-	}
-	}
-	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data2));
+	$members = new Pas_Twfy_Mps();
+	$data = $members->get();
+	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data));
         $paginator->setCurrentPageNumber((int)$this->getPage());
 	$paginator->setItemCountPerPage(30)
     	      ->setPageRange(10)

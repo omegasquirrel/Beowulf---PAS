@@ -15,8 +15,9 @@
     <div class="stripeMe">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->results);?>
     </div>
-<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
+
 
 
 <?php else :?>

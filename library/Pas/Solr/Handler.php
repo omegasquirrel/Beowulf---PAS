@@ -236,7 +236,7 @@ class Pas_Solr_Handler {
             );
     }
 
-   
+
 
     if(array_key_exists('bbox',$params)){
     	$coords = new Pas_Solr_BoundingBoxCheck($params['bbox']);
@@ -277,6 +277,9 @@ class Pas_Solr_Handler {
     	}
     }
 
+    public function getNumber(){
+    return $this->_resultset->getNumFound();
+    }
     /** Create the paginator
      *
      * @return object
@@ -486,6 +489,7 @@ class Pas_Solr_Handler {
     Zend_Debug::dump($this->_params,'The params sent');
     Zend_Debug::dump($this->_query, 'The Query!');
     Zend_Debug::dump($this->_fields, 'The field list');
+    Zend_Debug::dump($this->_schemaFields, 'The schema fields');
     }
 
     public function debugProcessing(){
