@@ -17,7 +17,7 @@
  * @since 2/2/12
  * @uses viewHelper Pas_View_Helper extends Zend_View_Helper_Abstract
  */
-class Pas_View_Helper_FindsOfNoteConst extends Zend_View_Helper_Abstract {
+class Pas_View_Helper_FindsWithinConst extends Zend_View_Helper_Abstract {
 
 
 	/** The cache object
@@ -44,7 +44,7 @@ class Pas_View_Helper_FindsOfNoteConst extends Zend_View_Helper_Abstract {
          * @param type $const
          * @return type
          */
-        public function findsOfNoteConst($constituency) {
+        public function findsWithinConst($constituency) {
 	return $this->getData($constituency);
 	}
 
@@ -73,7 +73,7 @@ class Pas_View_Helper_FindsOfNoteConst extends Zend_View_Helper_Abstract {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
         );
-	$search->setParams(array('note' => '1','bbox' => implode(',',$bbox)));
+	$search->setParams(array('bbox' => implode(',',$bbox)));
         $search->execute();
         $this->_geometry = implode(',', $bbox);
         return $search->getNumber();
@@ -102,14 +102,13 @@ class Pas_View_Helper_FindsOfNoteConst extends Zend_View_Helper_Abstract {
 	public function buildHtml($data){
 	if($data > 0){
         $url = $this->view->url(array(
-            'module' => 'database',
-            'controller' => 'search',
-            'action' => 'results',
+            'module' => 'news',
+            'controller' => 'theyworkforyou',
+            'action' => 'finds',
             'bbox' => $this->_geometry,
-            'note' => 1
             ),'default',true);
 	$html = '<p>There are <a href="' . $url . '" title ="View finds for this
-            constituency">' . $data  . ' finds of note</a> in this constituency.</p>';
+            constituency">' . $data  . ' finds</a> recorded in this constituency.</p>';
         return $html;
 	} else {
 	return false;

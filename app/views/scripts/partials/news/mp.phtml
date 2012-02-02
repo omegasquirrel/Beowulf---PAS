@@ -3,8 +3,8 @@
 Party: <?php echo $this->party;?><br />
 Constituency: <?php echo $this->constituency;?><br />
 Entered house: <?php echo $this->timeagoinwords($this->entered_house);?>
-<?php if($this->left_house != '9999-12-31') {?>
-Left house: <?php echo $this->left_house;?><br />
+<?php if($this->left_house != '9999-12-31') {?><br />
+Left house: <?php echo$this->timeagoinwords($this->left_house);?><br />
 Reason for leaving: <?php echo str_replace('_', ' ', $this->left_reason);?>
 <?php
 }?>

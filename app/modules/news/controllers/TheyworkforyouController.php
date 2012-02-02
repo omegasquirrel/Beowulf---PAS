@@ -109,8 +109,10 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
         );
-        $search->setFacets(array('objectType','county','broadperiod'));
-	$search->setParams(array('bbox' => implode(',',$bbox)));
+        $params = $this->_getAllParams();
+        $params['bbox'] = implode(',',$bbox);
+        $search->setFacets(array('objectType','county','broadperiod','institution'));
+	$search->setParams($params);
         $search->execute();
 
         $this->view->facets = $search->_processFacets();

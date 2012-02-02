@@ -15,8 +15,8 @@ jQuery(document).ready(function($) {
     <div class="stripeMe">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->finds);?>
     </div>
-<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 
 <?php else:?>
 <p>No objects have been recorded in this bounding box area yet.</p>

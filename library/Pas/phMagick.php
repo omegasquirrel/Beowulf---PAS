@@ -155,7 +155,7 @@ class phmagick{
     //-----------------
 
 	private function loadPlugins(){
-		$base = dirname(__FILE__) . '/plugins';
+		$base = dirname(__FILE__) . '/Plugins';
 		$plugins = glob($base . '/*.php');
 		foreach($plugins as $plugin){
 			include_once $plugin ;

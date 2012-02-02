@@ -19,22 +19,21 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
 	public function TwfyGeo($data) {
 	$geo = new Pas_Twfy_Geometry;
 
-        $geo = $geo->get($data);
-        Zend_Debug::dump($geo);
-        exit;
+        $geo = $geo->get($data->constituency);
+
         return $this->buildMap($geo, $data);
         }
 
         public function buildMap($geo, $data){
-        $html =  $this->view->partial('partials/news/map.phtml', $geo);
-        $html .= $this->osDataToConst($geo->name);
-        $html .= $this->SmrDataToConst($geo->name);
-        $html .= $this->findsOfNoteConst($geo->name);
-        $html .= $this->mpbio($data->full_name);
-        $html .= $this->politicalhouse($data->house);
-        $html .= '<div id="career">';
-        $html .= $this->partialLoop('partials/news/mp.phtml',$this->data);
-        $html .= '</div>';
+        $html =  $this->view->partial('partials/news/map.phtml', get_object_vars($geo));
+        $html .= $this->view->osDataToConst($geo->name);
+        $html .= $this->view->SmrDataToConst($geo->name);
+        $html .= $this->view->findsOfNoteConst($geo->name);
+        $html .= $this->view->findsWithinConst($geo->name);
+        $html .= $this->view->mpbio($data->full_name);
+        $html .= $this->view->politicalhouse($data->house);
+        $mapIt = new Pas_MapIt_Postcode('SW11 3DS');
+        Zend_Debug::dump($mapIt->get());
         return $html;
         }
 }
