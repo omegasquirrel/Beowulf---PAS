@@ -32,8 +32,10 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
         $html .= $this->view->findsWithinConst($geo->name);
         $html .= $this->view->mpbio($data->full_name);
         $html .= $this->view->politicalhouse($data->house);
-        $mapIt = new Pas_MapIt_Postcode('SW11 3DS');
-        Zend_Debug::dump($mapIt->get());
+        $mapIt = new Pas_Edina_SpatialNameSearch();
+        $mapIt->setName(array('Portobello','Musselburgh'));
+        $mapIt->setBoundingBox(array('-3.35081720352173','55.87272644042972','-2.01274991035461','55.9947509765625'));
+        Zend_Debug::dump($mapIt->get(),'call');
         return $html;
         }
 }

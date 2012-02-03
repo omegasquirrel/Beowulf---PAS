@@ -12,6 +12,7 @@
  */
 class Pas_MapIt_Areas extends Pas_MapIt {
 
+
     protected $_types = array(
         'CTY', //(county council)
         'CED', //(county ward)
@@ -43,6 +44,7 @@ class Pas_MapIt_Areas extends Pas_MapIt {
         'WAC', //(Welsh Assembly constituency),
         'WAE', //(Welsh Assembly region),
         'WMC'  //(UK Parliamentary constituency)
-    )
+    );
 
+    
 }
