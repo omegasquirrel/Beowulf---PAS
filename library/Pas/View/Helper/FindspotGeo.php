@@ -13,43 +13,43 @@
  */
 class Pas_View_Helper_FindspotGeo
 	extends Zend_View_Helper_Abstract {
-	
+
 	/** The auth object
 	* @var object $_auth
 	*/
 	protected $_auth = NULL;
-	
+
 	/** The auth object
 	* @var object $_cache
 	*/
 	protected $_cache = NULL;
-	
+
 	/** The config object
 	* @var object $_config
 	*/
 	protected $_config = NULL;
-	
+
 	/** The geoplanet class object
 	* @var object $_geoplanet
 	*/
 	protected $_geoplanet;
-	
+
 	/** The appid object
 	* @var object $_appid
 	*/
 	protected $_appid = NULL;
-	
+
 	/** The constructor
 	 */
-	public function __construct()  { 
+	public function __construct()  {
 	$this->_auth = Zend_Registry::get('auth');
 	$this->_cache = Zend_Registry::get('cache');
 	$this->_config = Zend_Registry::get('config');
 	$this->_appid = $this->_config->webservice->ydnkeys->placemakerkey;
 	$this->_geoplanet = new Pas_Service_Geo_Geoplanet($this->_appid);
-    }	
+    }
 	/** Call the function to created findspot with geo data
-	 * 
+	 *
 	 * @param int $woeid
 	 * @param float $lat
 	 * @param float $lon
@@ -70,11 +70,11 @@ class Pas_View_Helper_FindspotGeo
 	return false;
 	}
     }
-	
+
 	/** Function for determining whether elevation is -ve or +ve or =
 	* @param int $elevation
 	* @return string $string
-	*/	
+	*/
     public function metres($elevation){
     switch($elevation) {
     	case ($elevation === 0):
@@ -86,14 +86,14 @@ class Pas_View_Helper_FindspotGeo
     	case ($elevation < 0):
     		$string = $elevation . ' metres below sea level.';
     		break;
-    }	
+    }
     return $string;
     }
-    
+
     /** Build the HTML for rendering
     * @param array $data
     * @return string $html
-    */   
+    */
     public function buildHtml($data){
     $html = '';
     $html .= '<h4>Data from Yahoo! GeoPlanet</h4>';
@@ -103,14 +103,16 @@ class Pas_View_Helper_FindspotGeo
     $html .= 'Settlement type: ' . $data['placeTypeName'] . '<br/>';
     $html .= 'WOEID: ' . $data['woeid'] . '<br/>';
     if(array_key_exists('postal',$data)){
-    $html .= 'Postcode: ' . $data['postal'] . '<br/>'; 
+    $html .= 'Postcode: ' . $data['postal'] . '<br/>';
     }
+    if(array_key_exists('admin1',$data)){
     $html .= 'Country: ' . $data['admin1'] . '<br/>';
+    }
     $html .= 'Astergdem generated elevation: ' . $this->metres($data['elevation']);
-    $html .= '</p>';	
+    $html .= '</p>';
   	$html .= $this->view->YahooGeoAdjacent($data['woeid']);
   	return $html;
     }
-	
-	
+
+
 }
