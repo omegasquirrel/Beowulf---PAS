@@ -5,21 +5,20 @@
  * and open the template in the editor.
  */
 
-/** An interface to the Edina SpatialNameSearch api call using bounding box
+/** An interface to the Edina SpatialFeatureSearch api call
  * @category Pas
  * @package Pas_Edina
- * @subpackage SpatialNameSearch
+ * @subpackage ClosestMatchSearch
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
- * @author Daniel pett
+ * @author Daniel Pett
  * @uses Pas_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
- *
  * Usage:
- * $edina = new Pas_Edina_SpatialNameSearch();
- * $edina->setName(array('Portobello','Musselburgh'));
+ * $edina = new Pas_Edina_SpatialFeatureSearch();
+ * $edina->setType('Farm');
  * $edina->setBoundingBox(array(
  * '-3.35081720352173', //minx
  * '55.87272644042972', //miny
@@ -27,31 +26,31 @@
  * '55.9947509765625',  //maxy
  * ));
  * $edina->get();
- * Then process the object returned
+ * Then process the object returned in your script
  */
-class Pas_Edina_SpatialNameSearch extends Pas_Edina {
+class Pas_Edina_SpatialFeatureSearch extends Pas_Edina {
 
-    /** API Method to call
+    /** The method to call
      *
      */
-    const METHOD = 'spatialNameSearch?';
+    const METHOD = 'spatialFeatureSearch?';
 
-    /** Number of vertices to check
+    /** The number of vertices to call
      *
      */
     const CORNERS = 4;
 
-    /** Possible operators for query available
+    /** The operators
      * @access protected
      * @var array
      */
     protected $_operators = array('within','intersect');
 
-    /** The place name you will query for
-     * @access protected
+    /** The feature type to search
+     *
      * @var string
      */
-    protected $_name;
+    protected $_type;
 
     /** The minimum latitude
      * @access protected
@@ -60,7 +59,7 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
     protected $_minx;
 
     /** The maximum latitude
-     * @acces protected
+     * @access protected
      * @var float
      */
     protected $_maxx;
@@ -77,29 +76,88 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
      */
     protected $_maxy;
 
-    /** The operator default
-     * @access protected
-     * @var type
-     */
-    protected $_operator = 'within';
-
-    /** The name or names to search for
+    /** Set the type to query
      * @access public
-     * @param array $names
-     * @return string
+     * @param array $types
+     * @return type
      * @throws Pas_Edina_Exception
      */
-    public function setName(array $names){
-        if(!is_array($names)){
-            throw new Pas_Edina_Exception('The list of names must be an array');
+    public function setType( $type){
+        $featureTypes = new Pas_Edina_FeatureTypes();
+        $types = $featureTypes->getTypesList();
+
+        if(!in_array($type, $types)){
+            throw new Pas_Edina_Exception('That type is not supported');
         } else {
-            return $this->_name = implode(',',$names);
+        return $this->_type = $type;
         }
     }
 
-    /** Set the operator if you want to change default
+    /** Get the operators available
      * @access public
-     * @param string $operator
+     * @return type
+     */
+    public function getOperators() {
+        return $this->_operators;
+    }
+
+    /** Get the type of feature called
+     * @access public
+     * @return type
+     */
+    public function getType() {
+        return $this->_type;
+    }
+
+    /** Get the min lat
+     * @access public
+     * @return type
+     */
+    public function getMinx() {
+        return $this->_minx;
+    }
+
+    /** Get the max lat
+     * @access public
+     * @return type
+     */
+    public function getMaxx() {
+        return $this->_maxx;
+    }
+
+    /** Get the min long
+     * @access public
+     * @return type
+     */
+    public function getMiny() {
+        return $this->_miny;
+    }
+
+    /** Get the max lat
+     * @access public
+     * @return type
+     */
+    public function getMaxy() {
+        return $this->_maxy;
+    }
+
+    /** Get the operator used
+     * @access public
+     * @return type
+     */
+    public function getOperator() {
+        return $this->_operator;
+    }
+
+    /** The default operator
+    * @access protected
+    * @var type
+    */
+    protected $_operator = 'within';
+
+    /** set the operator to use
+     * @access public
+     * @param type $operator
      * @throws Pas_Edina_Exception
      */
     public function setOperator($operator){
@@ -110,7 +168,7 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
         }
     }
 
-    /** Set up the bounding box to query within or via intersection
+    /** Set the bounding box
      * @access public
      * @param array $bbox
      */
@@ -154,13 +212,12 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
     }
     }
 
-    /** Using the parent class, call the api
+    /** Get the data from the api
      * @access public
-     * @return object
      */
     public function get() {
         $params = array(
-            'name' => $this->_name,
+            'featureType' => $this->_type,
             'minx' => $this->_minx,
             'miny' => $this->_miny,
             'maxx' => $this->_maxx,
@@ -170,4 +227,5 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
 
     return parent::get(self::METHOD, $params);
     }
+
 }

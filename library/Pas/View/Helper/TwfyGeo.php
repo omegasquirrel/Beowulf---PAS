@@ -27,15 +27,18 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
         public function buildMap($geo, $data){
         $html =  $this->view->partial('partials/news/map.phtml', get_object_vars($geo));
         $html .= $this->view->osDataToConst($geo->name);
-        $html .= $this->view->SmrDataToConst($geo->name);
-        $html .= $this->view->findsOfNoteConst($geo->name);
-        $html .= $this->view->findsWithinConst($geo->name);
-        $html .= $this->view->mpbio($data->full_name);
+//        $html .= $this->view->SmrDataToConst($geo->name);
+//        $html .= $this->view->findsOfNoteConst($geo->name);
+//        $html .= $this->view->findsWithinConst($geo->name);
+//        $html .= $this->view->mpbio($data->full_name);
         $html .= $this->view->politicalhouse($data->house);
-        $mapIt = new Pas_Edina_SpatialNameSearch();
-        $mapIt->setName(array('Portobello','Musselburgh'));
-        $mapIt->setBoundingBox(array('-3.35081720352173','55.87272644042972','-2.01274991035461','55.9947509765625'));
-        Zend_Debug::dump($mapIt->get(),'call');
+ $edina = new Pas_Edina_UniqueNameSearch();
+ $edina->setName('Cambridge');
+ $edina->setGazetteer('os');
+ Zend_Debug::dump($edina->getUrl());
+
+        Zend_Debug::dump($edina->get(),'call');
+
         return $html;
         }
 }

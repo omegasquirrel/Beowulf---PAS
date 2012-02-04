@@ -5,13 +5,23 @@
  * and open the template in the editor.
  */
 
-/**
- * Description of Pas_Edina
+/** Base class for accessing the Edina Unlock Geo api
+ * Caching of calls is handled in this class
  *
- * @author danielpett
+ * @category Pas
+ * @package Pas_Edina
+ * @since 3/2/12
+ * @license GNU Public
+ * @version 1
+ * @copyright Daniel Pett, British Museum
+ * @author Daniel Pett
+ *
  */
 class Pas_Edina {
 
+    /** The base URL for the unlock service
+     *
+     */
     const UNLOCK_URI = 'http://unlock.edina.ac.uk/ws/';
 
     /** Set up the cache
@@ -20,6 +30,10 @@ class Pas_Edina {
     protected $_cache;
 
 
+    /** The url to query via curl
+     *
+     * @var type
+     */
     protected $_url;
 
     /** The array of available formats for service
@@ -52,9 +66,10 @@ class Pas_Edina {
     public function __construct(){
 
     $frontendOptions = array(
-        'lifetime' => 31556926,
+        'lifetime' => 31556926, //Sets the monster cache for 1 year
         'automatic_serialization' => true
         );
+
     $backendOptions = array(
         'cache_dir' => 'app/cache/edina'
         );
@@ -99,9 +114,6 @@ class Pas_Edina {
     } else {
     $data = $this->_cache->load(md5($this->_url));
     }
-    Zend_Debug::dump($this->getUrl());
-    Zend_Debug::dump($data);
-    exit;
     if($this->getFormat() === 'json'){
         return $this->_decoder($data);
     } else {
@@ -124,8 +136,14 @@ class Pas_Edina {
     * @param array $params
     */
     protected function _createUrl($method, array $params){
+    if(!$this->_checkMethods($method)){
+        throw new Pas_Edina_Exception('That method is not in the api');
+    }
     if(is_array($params)){
-        $defaults = array('gazetteer' => $this->_gazetteer, 'format' => $this->_format);
+        $defaults = array(
+            'gazetteer' => $this->_gazetteer,
+            'format' => $this->_format
+                );
         $params = array_merge($params, $defaults);
     return self::UNLOCK_URI . $method . http_build_query($params, null, '&');
     } else {
@@ -173,12 +191,50 @@ class Pas_Edina {
         }
     }
 
+    /** Get the format called
+     * @access public
+     * @return string
+     */
     public function getFormat(){
         return $this->_format;
     }
 
+    /** Get the url queried
+     * @access public
+     * @return string
+     */
     public function getUrl(){
         return $this->_url;
     }
+
+    /** Available API methods to call
+     * @access protected
+     * @var array
+     */
+    protected $_methods = array(
+        'closestMatchSearch?',
+        'supportedFeatureTypes?',
+        'featureLookup?',
+        'footprintLookup?',
+        'nameAndFeatureSearch?',
+        'nameSearch?',
+        'postCodeSearch?',
+        'spatialNameSearch?',
+        'uniqueNameSearch?',
+        'spatialFeatureSearch?'
+        );
+
+    /** An access method check
+     *
+     * @param type $method
+     * @return boolean
+     */
+    protected function _checkMethods($method){
+        if(in_array($method, $this->_methods)){
+            return true;
+        } else {
+            return false;
+    }
+}
 }
 
