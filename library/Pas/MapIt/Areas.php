@@ -28,6 +28,8 @@ class Pas_MapIt_Areas extends Pas_MapIt {
         'coverlaps'
     );
 
+    protected $_method;
+    
     protected $_allowedTypes = array(
         'CTY', //(county council)
         'CED', //(county ward)
@@ -117,11 +119,21 @@ class Pas_MapIt_Areas extends Pas_MapIt {
         throw new Pas_MapIt_Exception('The ids must be an array');
     }
     }
+	/**
+	 * @return the $_method
+	 */
+	public function getMethod() {
+		return $this->_method;
+	}
 
-    public function method($method){
-
-
-    }
-
-
+	/**
+	 * @param $_method the $_method to set
+	 */
+	public function setMethod($method) {
+		if(in_array($method, $this->_methods)){
+		$this->_method = $_method;
+		} else {
+			throw new Pas_MapIt_Exception('That method does not exist');
+		}	
+	}
 }

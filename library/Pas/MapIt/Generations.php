@@ -11,5 +11,10 @@
  * @author danielpett
  */
 class Pas_MapIt_Generations extends Pas_Mapit {
-    //put your code here
+    
+	const APIMETHOD = 'generations';
+	
+	public function get(){
+		return parent::get(self::APIMETHOD, $params = array());
+	}
 }

@@ -32,13 +32,12 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
 //        $html .= $this->view->findsWithinConst($geo->name);
 //        $html .= $this->view->mpbio($data->full_name);
         $html .= $this->view->politicalhouse($data->house);
- $edina = new Pas_Edina_UniqueNameSearch();
- $edina->setName('Cambridge');
- $edina->setGazetteer('os');
- Zend_Debug::dump($edina->getUrl());
 
-        Zend_Debug::dump($edina->get(),'call');
-
+//		$mapIt = new Pas_MapIt_Generations();
+//		Zend_Debug::dump($mapIt->get());
+		$m = new Pas_MapIt_Area();
+		$m->setId(2514);
+		Zend_Debug::dump($m->get());
         return $html;
         }
 }

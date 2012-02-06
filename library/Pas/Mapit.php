@@ -29,33 +29,31 @@ class Pas_Mapit {
         */
     protected $_cache;
 
-    /** Default formats to check calls in
-     *
-     * @var type
-     */
-    protected $_allFormats = array('json', 'html');
-
     /** Generally default to json for response
      *
      * @var type
      */
     protected $_format = 'json';
 
+    protected $_url = null;
+    
     /** Construct the cache. If an api key is needed, this can be set here
      * when it is introduced
      */
     public function __construct(){
     $frontendOptions = array(
-        'lifetime' => 31556926,
+        'lifetime' => 31556926, // Monster year cache as it won't change that much
         'automatic_serialization' => true
         );
-    $backendOptions = array('cache_dir' => 'app/cache/mapit');
+    $backendOptions = array(
+    		'cache_dir' => 'app/cache/mapit'
+    );
     $this->_cache = Zend_Cache::factory(
             'Output',
             'File',
             $frontendOptions,
-            $backendOptions)
-            ;
+            $backendOptions
+    );
     }
 
     /** Perform a curl request based on url provided
@@ -66,7 +64,9 @@ class Pas_Mapit {
     * @param array $params
     */
     public function get($method, array $params) {
-    $url = $this->createUrl($method,$params);
+    $url = $this->setUrl($method,$params);
+	Zend_Debug::dump($url);
+	exit;
     if (!($this->_cache->test(md5($url)))) {
     $config = array(
     'adapter'   => 'Zend_Http_Client_Adapter_Curl',
@@ -98,12 +98,20 @@ class Pas_Mapit {
         * @param string $method The method to use
         * @param array $params
         */
-    public function createUrl(array $params){
+    public function setUrl($method, array $params){
         if(is_array($params)){
-        return self::MAP_IT_URI . http_build_query($params, null, '/');
+        	$params = array_filter($params);
+        $this->_url = self::MAP_IT_URI . $method . '/' . implode('/',$params);
+        if(isset($this->_format)){
+        	$this->_url = $this->_url . '.' . $this->_format;
+        }
+        return $this->_url;
         } else {
             throw new Pas_Twfy_Exception('Parameters have to be an array',500);
         }
     }
-
+    
+    public function getUrl(){
+    	return $this->_url;
+    }
 }
