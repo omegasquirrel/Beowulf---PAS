@@ -27,7 +27,7 @@
  * '55.9947509765625',  //maxy
  * ));
  * $edina->get();
- * Then process the object returned
+ * Then process the object returned in your script
  */
 class Pas_Edina_SpatialNameSearch extends Pas_Edina {
 
