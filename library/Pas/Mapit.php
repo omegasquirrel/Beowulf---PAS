@@ -5,13 +5,21 @@
  * and open the template in the editor.
  */
 
-/**
- * Description of Mapit
- *
- * @author danielpett
+/** A series of method calls to the excellent mysociety produced MapIt api.
+ * @category Pas
+ * @package Pas_MapIt
+ * @since 6/2/12
+ * @version 1
+ * @copyright Daniel Pett, British Museum
+ * @license GNU
+ * @author Daniel Pett
+ * @see http://mapit.mysociety.org/ for full documentation of api
  */
 class Pas_Mapit {
 
+    /** The base mapit url
+     *
+     */
     const MAP_IT_URI = 'http://mapit.mysociety.org/';
 
 
@@ -21,6 +29,21 @@ class Pas_Mapit {
         */
     protected $_cache;
 
+    /** Default formats to check calls in
+     *
+     * @var type
+     */
+    protected $_allFormats = array('json', 'html');
+
+    /** Generally default to json for response
+     *
+     * @var type
+     */
+    protected $_format = 'json';
+
+    /** Construct the cache. If an api key is needed, this can be set here
+     * when it is introduced
+     */
     public function __construct(){
     $frontendOptions = array(
         'lifetime' => 31556926,
@@ -64,7 +87,11 @@ class Pas_Mapit {
     } else {
     $data = $this->_cache->load(md5($url));
     }
+    if($this->_format === 'json'){
     return Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
+    } else {
+        return $data;
+    }
     }
 
     /** Build a url string

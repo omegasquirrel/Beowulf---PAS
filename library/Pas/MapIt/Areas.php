@@ -12,8 +12,23 @@
  */
 class Pas_MapIt_Areas extends Pas_MapIt {
 
+    protected $_types = null;
 
-    protected $_types = array(
+    protected $_ids;
+
+    protected $_geometry = null;
+
+    protected $_methods = array(
+        'geometry',
+        'children',
+        'touches',
+        'overlaps',
+        'covers',
+        'covered',
+        'coverlaps'
+    );
+
+    protected $_allowedTypes = array(
         'CTY', //(county council)
         'CED', //(county ward)
         'COI', //(Isles of Scilly)
@@ -46,5 +61,67 @@ class Pas_MapIt_Areas extends Pas_MapIt {
         'WMC'  //(UK Parliamentary constituency)
     );
 
-    
+    protected $_names = null;
+
+    protected $_format = 'json';
+
+    public function getTypes() {
+        return $this->_types;
+    }
+
+    public function setTypes($types) {
+    if(is_array($types)){
+        foreach($types as $type){
+            if(strlen($type) <> 3){
+                throw new Pas_MapIt_Exception('The area must be a three letter string');
+            }
+            if(!in_array($type, $this->_allowedTypes)){
+                throw new Pas_MapIt_Exception('The area type of ' . $type . ' must be in allowed list');
+            }
+        }
+        $this->_types = implode(',',$types);
+    } else {
+        throw new Pas_MapIt_Exception('Areas must be an array');
+    }
+    }
+
+    public function setGeometry($geo){
+        if(isset($geo)){
+            $this->_geometry = 'geometry';
+        }
+    }
+    public function get() {
+        parent::get($method, $params);
+    }
+
+    public function setNames($names){
+      if(is_array($names)){
+
+      }  else {
+          throw new Pas_MapIt_Exception('The names to search on must be an array');
+      }
+    }
+
+    public function setFormat($format){
+        if(in_array($format, $this->_allFormats)){
+            $this->_format = $format;
+        } else {
+            throw new Pas_MapIt_Exception('That format is not allowed');
+        }
+    }
+
+    public function setIds($ids){
+        if(is_array($ids)){
+            $this->_ids = implode(',',$ids);
+    } else {
+        throw new Pas_MapIt_Exception('The ids must be an array');
+    }
+    }
+
+    public function method($method){
+
+
+    }
+
+
 }
