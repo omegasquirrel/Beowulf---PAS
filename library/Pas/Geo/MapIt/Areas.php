@@ -9,7 +9,7 @@
  * This extends the Mapit base class.
  *
  * @category Pas
- * @package Pas_MapIt
+ * @package Pas_Geo_Mapit
  * @subpackage Areas
  * @version 1
  * @since 6/2/12
@@ -20,11 +20,11 @@
  * @uses Zend_Validate_Alpha
  * @uses Zend_Validate_Digits
  * @uses Zend_Valdiated_AlphaNum
- * @uses Pas_MapIt_Exception
+ * @uses Pas_Geo_Mapit_Exception
  *
  * USAGE
  *
- * $m = new Pas_MapIt_Areas();
+ * $m = new Pas_Geo_Mapit_Areas();
  * Now select one of the following
  * $m->setIds(array(2637,2378));
  * OR
@@ -43,7 +43,7 @@
  * $m->getAllowedTypes();
  *
  */
-class Pas_MapIt_Areas extends Pas_Mapit {
+class Pas_Geo_Mapit_Areas extends Pas_Geo_Mapit {
 
     /** The api method used
     *
@@ -110,25 +110,25 @@ class Pas_MapIt_Areas extends Pas_Mapit {
     /** Set the types of entity to retrieve data upon
      * @access public
      * @param type $types
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      */
     public function setTypes($types) {
     if(is_array($types)){
         foreach($types as $type){
             if(strlen($type) <> 3){
-                throw new Pas_MapIt_Exception('The area must be a three letter string');
+                throw new Pas_Geo_Mapit_Exception('The area must be a three letter string');
             }
             $validator = new Zend_Validate_Alpha();
             if(!$validator->isValid($type)){
-                throw new Pas_MapIt_Exception('Invalid characters used', 500);
+                throw new Pas_Geo_Mapit_Exception('Invalid characters used', 500);
             }
             if(!in_array($type, array_flip($this->_allowedTypes))){
-                throw new Pas_MapIt_Exception('The area type of ' . $type . ' must be in allowed list');
+                throw new Pas_Geo_Mapit_Exception('The area type of ' . $type . ' must be in allowed list');
             }
         }
         $this->_types = implode(',',$types);
     } else {
-        throw new Pas_MapIt_Exception('Areas must be an array');
+        throw new Pas_Geo_Mapit_Exception('Areas must be an array');
     }
     }
 
@@ -153,7 +153,7 @@ class Pas_MapIt_Areas extends Pas_Mapit {
     );
 
     if(sizeof(array_filter($params)) > 1){
-        throw new Pas_MapIt_Exception('You have too many method calls');
+        throw new Pas_Geo_Mapit_Exception('You have too many method calls');
     }
     return parent::get(self::APIMETHOD, $params);
     }
@@ -162,18 +162,18 @@ class Pas_MapIt_Areas extends Pas_Mapit {
      * @access Public
      * @param string $name
      * @return string
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      */
     public function setName($name){
     if(is_string($name)){
     $validator = new Zend_Validate_Alnum($allowWhiteSpace = true);
     if(!$validator->isValid($name)){
-      throw new Pas_MapIt_Exception('That string is not valid', 500);
+      throw new Pas_Geo_Mapit_Exception('That string is not valid', 500);
     } else {
     return $this->_name = $name;
     }
     }  else {
-      throw new Pas_MapIt_Exception('The names to search for must be a string',500);
+      throw new Pas_Geo_Mapit_Exception('The names to search for must be a string',500);
     }
     }
 
@@ -197,19 +197,19 @@ class Pas_MapIt_Areas extends Pas_Mapit {
     /** Set the ids to query
      * @access public
      * @param string $ids
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      */
     public function setIds($ids){
     if(is_array($ids)){
         $validator = new Zend_Validate_Digits();
         foreach($ids as $id){
             if(!$validator->isValid($id)){
-                throw new Pas_MapIt_Exception('The id supplied must be a number');
+                throw new Pas_Geo_Mapit_Exception('The id supplied must be a number');
             }
         }
         $this->_ids = implode(',',$ids);
     } else {
-        throw new Pas_MapIt_Exception('The ids must be an array');
+        throw new Pas_Geo_Mapit_Exception('The ids must be an array');
     }
     }
 

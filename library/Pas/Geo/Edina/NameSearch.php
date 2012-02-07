@@ -7,17 +7,17 @@
 
 /** An interface to the name search api method from edina unlock
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo_Edina
  * @subpackage NameSearch
  * @author Daniel Pett
  * @copyright Daniel Pett, The British Museum
  * @version 1
  * @since 3/2/12
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  *
  * Usage:
  *
- * $edina = new Pas_Edina_NameSearch();
+ * $edina = new Pas_Geo_Edina_NameSearch();
  * $edina->setNames(array('cambridge'));
  * $edina->setFormat('json'); - you can use georss, kml, xml, jaon
  * $edina->setGazetteer('geonames'); - you can use unlock, os, geonames
@@ -31,7 +31,7 @@
  *
  */
 
-class Pas_Edina_NameSearch extends Pas_Edina{
+class Pas_Geo_Edina_NameSearch extends Pas_Geo_Edina{
 
     /** The method to use
      *
@@ -59,13 +59,13 @@ class Pas_Edina_NameSearch extends Pas_Edina{
     /** Set the names to call
      * @access public
      * @param array $names
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setNames(array $names){
     if(is_array($names)){
         $this->_names = implode(',',$names);
     }    else {
-        throw new Pas_Edina_Exception('The search names must be an array');
+        throw new Pas_Geo_Edina_Exception('The search names must be an array');
     }
     }
 

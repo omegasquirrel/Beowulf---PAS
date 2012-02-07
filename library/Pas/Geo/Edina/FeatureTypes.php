@@ -8,17 +8,17 @@
 /** An interface to the Edina FeatureTypes api call
  * The XML returns as badly formed so json use is best here
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo_Edina
  * @subpackage FeatureTypes
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
  * @author Daniel Pett
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
  */
-class Pas_Edina_FeatureTypes extends Pas_Edina {
+class Pas_Geo_Edina_FeatureTypes extends Pas_Geo_Edina {
 
     /** The method to call
      *

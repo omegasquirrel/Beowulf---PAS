@@ -7,19 +7,19 @@
 
 /** An interface to the Edina ClosestMatchSearch api call
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo Edina
  * @subpackage ClosestMatchSearch
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
  * @author Daniel Pett
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
  *
  * Usage:
  *
- * $edina = new Pas_Edina_ClosestMatchSearch();
+ * $edina = new Pas_Geo_Edina_ClosestMatchSearch();
  * $edina->setName('Astrope');
  * $edina->setFormat('json'); - you can use georss, kml, xml, jaon
  * $edina->get();
@@ -30,7 +30,7 @@
  *
  * Then process the object returned as you want (up to you!)
  */
-class Pas_Edina_ClosestMatchSearch extends Pas_Edina{
+class Pas_Geo_Edina_ClosestMatchSearch extends Pas_Geo_Edina{
 
     /** The method to call
      *
@@ -47,11 +47,11 @@ class Pas_Edina_ClosestMatchSearch extends Pas_Edina{
      * @access protected
      * @param type $name
      * @return type
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setName($name){
         if(!is_string($name)){
-            throw new Pas_Edina_Exception('The name must be a string');
+            throw new Pas_Geo_Edina_Exception('The name must be a string');
         } else {
             return $this->_name = $name;
         }

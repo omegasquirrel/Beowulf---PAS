@@ -7,17 +7,17 @@
 
 /** An interface to the Edina SpatialFeatureSearch api call
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo_Edina
  * @subpackage ClosestMatchSearch
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
  * @author Daniel Pett
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
  * Usage:
- * $edina = new Pas_Edina_SpatialFeatureSearch();
+ * $edina = new Pas_Geo_Edina_SpatialFeatureSearch();
  * $edina->setType('Farm');
  * $edina->setBoundingBox(array(
  * '-3.35081720352173', //minx
@@ -28,7 +28,7 @@
  * $edina->get();
  * Then process the object returned in your script
  */
-class Pas_Edina_SpatialFeatureSearch extends Pas_Edina {
+class Pas_Geo_Edina_SpatialFeatureSearch extends Pas_Geo_Edina {
 
     /** The method to call
      *
@@ -80,14 +80,14 @@ class Pas_Edina_SpatialFeatureSearch extends Pas_Edina {
      * @access public
      * @param array $types
      * @return type
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setType( $type){
-        $featureTypes = new Pas_Edina_FeatureTypes();
+        $featureTypes = new Pas_Geo_Edina_FeatureTypes();
         $types = $featureTypes->getTypesList();
 
         if(!in_array($type, $types)){
-            throw new Pas_Edina_Exception('That type is not supported');
+            throw new Pas_Geo_Edina_Exception('That type is not supported');
         } else {
         return $this->_type = $type;
         }
@@ -158,11 +158,11 @@ class Pas_Edina_SpatialFeatureSearch extends Pas_Edina {
     /** set the operator to use
      * @access public
      * @param type $operator
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setOperator($operator){
         if(!in_array($operator, $this->_operators)){
-            throw new Pas_Edina_Exception('The operator you provided is not in scope');
+            throw new Pas_Geo_Edina_Exception('The operator you provided is not in scope');
         } else {
             $this->_operator = $operator;
         }
@@ -185,29 +185,29 @@ class Pas_Edina_SpatialFeatureSearch extends Pas_Edina {
     /** Check that bounding box coordinates are valid
      * @access protected
      * @param array $bbox
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     protected function _bboxCheck($bbox){
       if(count($bbox) === self::CORNERS){
       //Validate the points
       foreach($bbox as $corner){
           if(!is_numeric($corner)){
-              throw new Pas_Edina_Exception('Coordinate provided not numeric');
+              throw new Pas_Geo_Edina_Exception('Coordinate provided not numeric');
           } elseif((abs($corner) > 180)){
-              throw new Pas_Edina_Exception('Coordinate greater than 180 &deg;');
+              throw new Pas_Geo_Edina_Exception('Coordinate greater than 180 &deg;');
           }
       }
       //Check mathematics
       if($bbox['0']  > $bbox['2']){
         //This checks that the minimum latitude is smaller than maximum
         //latitude, if not throw exception
-        throw new Pas_Edina_Exception('Minimum latitude greater than maximum');
+        throw new Pas_Geo_Edina_Exception('Minimum latitude greater than maximum');
        }
 
       if($bbox['1'] > $bbox['3'] ){
         //This checks that the minimum latitude is smaller than maximum
         ////latitude, if not throw exception
-        throw new Pas_Edina_Exception('Minimum longitude greater than maximum');
+        throw new Pas_Geo_Edina_Exception('Minimum longitude greater than maximum');
       }
     }
     }

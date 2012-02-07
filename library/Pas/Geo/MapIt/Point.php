@@ -7,7 +7,7 @@
 
 /** A class to access the MapIt api for point based data
  * @category Pas
- * @package Pas_MapIt
+ * @package Pas_Geo_Mapit
  * @subpackage Point
  * @version 1
  * @since 6/2/12
@@ -18,7 +18,7 @@
  *
  * USAGE
  *
- * $mapIt = new Pas_MapIt_Point();
+ * $mapIt = new Pas_Geo_Mapit_Point();
  * $mapIt->setCoordSystem('BRITISH');
  * $mapIt->setX(400000);
  * $mapIt->setY(300000);
@@ -28,7 +28,7 @@
  * $mapIt->get();
  * No other formats of response available by this method.
  */
-class Pas_MapIt_Point extends Pas_Mapit {
+class Pas_Geo_Mapit_Point extends Pas_Geo_Mapit {
 
 	/** The api method used
 	 *
@@ -83,7 +83,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 				$SRID = 29902;
 				break;
 			default:
-				throw new Pas_MapIt_Exception('Co-ordinate system not available');
+				throw new Pas_Geo_Mapit_Exception('Co-ordinate system not available');
 				break;
 		}
 		return $this->_system = $SRID;
@@ -106,7 +106,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 		if(is_int($x)){
 		return $this->_x = $x;
 		} else {
-			throw new Pas_MapIt_Exception('The x coordinate is not an integer');
+			throw new Pas_Geo_Mapit_Exception('The x coordinate is not an integer');
 		}
 	}
 
@@ -127,7 +127,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 		if(is_int($y)){
 		return $this->_y = $y;
 		} else {
-			throw new Pas_MapIt_Exception('The y coordinate is not an integer');
+			throw new Pas_Geo_Mapit_Exception('The y coordinate is not an integer');
 		}
 	}
 
@@ -147,7 +147,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 		if(isset($this->_y) && isset($this->_x)){
 			return $this->_coordinates = $this->_x . ',' . $this->_y;
 		} else {
-			throw new Pas_MapIt_Exception('Coordinates are malformed');
+			throw new Pas_Geo_Mapit_Exception('Coordinates are malformed');
 		}
 	}
 

@@ -7,7 +7,7 @@
 
 /** A series of method calls to the excellent mysociety produced MapIt api.
  * @category Pas
- * @package Pas_MapIt
+ * @package Pas_Geo_Mapit
  * @since 6/2/12
  * @version 1
  * @copyright Daniel Pett, British Museum
@@ -15,7 +15,7 @@
  * @author Daniel Pett
  * @see http://mapit.mysociety.org/ for full documentation of api
  */
-class Pas_Mapit {
+class Pas_Geo_Mapit {
 
     /** The base mapit url
      *

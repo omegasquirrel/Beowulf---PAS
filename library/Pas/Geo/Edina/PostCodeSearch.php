@@ -8,19 +8,19 @@
 
 /** An interface to the Edina PostCodeSearch api call
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo_Edina
  * @subpackage PostCodeSearch
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
  * @author Daniel pett
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
  *
  * Usage:
  *
- * $edina = new Pas_Edina_SpatialNameSearch();
+ * $edina = new Pas_Geo_Edina_SpatialNameSearch();
  * $edina->setPostCode('WC1B 3DG'); - strips out spaces if validated
  * $edina->setFormat('georss'); - you can use georss, kml, xml, jaon
  * $edina->get();
@@ -31,7 +31,7 @@
  *
  * Then process the object returned
  */
-class Pas_Edina_PostCodeSearch extends Pas_Edina {
+class Pas_Geo_Edina_PostCodeSearch extends Pas_Geo_Edina {
 
     /** The method to call
      *
@@ -77,11 +77,11 @@ class Pas_Edina_PostCodeSearch extends Pas_Edina {
 
      /** Validate the postcode
      * @access protected
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     protected function validatePostCode(){
         if(!$this->_validator->isValid($this->_postCode)){
-            throw new Pas_Edina_Exception('Invalid postcode given');
+            throw new Pas_Geo_Edina_Exception('Invalid postcode given');
         } else {
             $this->_postCode = str_replace(' ', '', $this->_postCode);
         }

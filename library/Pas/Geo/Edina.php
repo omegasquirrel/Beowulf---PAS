@@ -9,7 +9,8 @@
  * Caching of calls is handled in this class
  *
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo
+ * @subpackage Edina
  * @since 3/2/12
  * @license GNU Public
  * @version 1
@@ -17,7 +18,7 @@
  * @author Daniel Pett
  *
  */
-class Pas_Edina {
+class Pas_Geo_Edina {
 
     /** The base URL for the unlock service
      *
@@ -137,7 +138,7 @@ class Pas_Edina {
     */
     protected function _createUrl($method, array $params){
     if(!$this->_checkMethods($method)){
-        throw new Pas_Edina_Exception('That method is not in the api');
+        throw new Pas_Geo_Edina_Exception('That method is not in the api');
     }
     if(is_array($params)){
         $defaults = array(
@@ -147,7 +148,7 @@ class Pas_Edina {
         $params = array_merge($params, $defaults);
     return self::UNLOCK_URI . $method . http_build_query($params, null, '&');
     } else {
-        throw new Pas_Edina_Exception('Parameters have to be an array',500);
+        throw new Pas_Geo_Edina_Exception('Parameters have to be an array',500);
     }
     }
 
@@ -165,12 +166,12 @@ class Pas_Edina {
      * @access public
      * @param string $gazetteer
      * @return string
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setGazetteer($gazetteer){
         $gazetteer = strtolower($gazetteer);
         if(!in_array($gazetteer, $this->_gazetteers)){
-            throw new Pas_Edina_Exception('That gazetteer is not valid');
+            throw new Pas_Geo_Edina_Exception('That gazetteer is not valid');
         } else {
             return $this->_gazetteer = $gazetteer;
         }
@@ -180,12 +181,12 @@ class Pas_Edina {
      * @access public
      * @param string $format
      * @return type
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setFormat($format) {
         $format = strtolower($format);
         if(!in_array($format, $this->_formats)){
-            throw new Pas_Edina_Exception('That format is not valid');
+            throw new Pas_Geo_Edina_Exception('That format is not valid');
         } else {
             return $this->_format = $format;
         }

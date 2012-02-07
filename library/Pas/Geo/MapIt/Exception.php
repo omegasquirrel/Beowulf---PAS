@@ -10,6 +10,6 @@
  *
  * @author danielpett
  */
-class Pas_MapIt_Exception extends Zend_Exception {
+class Pas_Geo_Mapit_Exception extends Zend_Exception {
     //put your code here
 }

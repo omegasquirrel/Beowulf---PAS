@@ -34,7 +34,7 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
         $html .= $this->view->politicalhouse($data->house);
 
 
-        $m = new Pas_MapIt_Area();
+        $m = new Pas_Geo_Mapit_Area();
         $m->setId(65622);
         $m->setMethod('touches');
         $m->setFilter('WMC');

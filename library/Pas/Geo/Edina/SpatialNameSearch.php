@@ -7,18 +7,18 @@
 
 /** An interface to the Edina SpatialNameSearch api call using bounding box
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo_Edina
  * @subpackage SpatialNameSearch
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
  * @author Daniel pett
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
  *
  * Usage:
- * $edina = new Pas_Edina_SpatialNameSearch();
+ * $edina = new Pas_Geo_Edina_SpatialNameSearch();
  * $edina->setName(array('Portobello','Musselburgh'));
  * $edina->setBoundingBox(array(
  * '-3.35081720352173', //minx
@@ -29,7 +29,7 @@
  * $edina->get();
  * Then process the object returned in your script
  */
-class Pas_Edina_SpatialNameSearch extends Pas_Edina {
+class Pas_Geo_Edina_SpatialNameSearch extends Pas_Geo_Edina {
 
     /** API Method to call
      *
@@ -87,11 +87,11 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
      * @access public
      * @param array $names
      * @return string
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setName(array $names){
         if(!is_array($names)){
-            throw new Pas_Edina_Exception('The list of names must be an array');
+            throw new Pas_Geo_Edina_Exception('The list of names must be an array');
         } else {
             return $this->_name = implode(',',$names);
         }
@@ -100,11 +100,11 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
     /** Set the operator if you want to change default
      * @access public
      * @param string $operator
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setOperator($operator){
         if(!in_array($operator, $this->_operators)){
-            throw new Pas_Edina_Exception('The operator you provided is not in scope');
+            throw new Pas_Geo_Edina_Exception('The operator you provided is not in scope');
         } else {
             $this->_operator = $operator;
         }
@@ -127,29 +127,29 @@ class Pas_Edina_SpatialNameSearch extends Pas_Edina {
     /** Check that bounding box coordinates are valid
      * @access protected
      * @param array $bbox
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     protected function _bboxCheck($bbox){
       if(count($bbox) === self::CORNERS){
       //Validate the points
       foreach($bbox as $corner){
           if(!is_numeric($corner)){
-              throw new Pas_Edina_Exception('Coordinate provided not numeric');
+              throw new Pas_Geo_Edina_Exception('Coordinate provided not numeric');
           } elseif((abs($corner) > 180)){
-              throw new Pas_Edina_Exception('Coordinate greater than 180 &deg;');
+              throw new Pas_Geo_Edina_Exception('Coordinate greater than 180 &deg;');
           }
       }
       //Check mathematics
       if($bbox['0']  > $bbox['2']){
         //This checks that the minimum latitude is smaller than maximum
         //latitude, if not throw exception
-        throw new Pas_Edina_Exception('Minimum latitude greater than maximum');
+        throw new Pas_Geo_Edina_Exception('Minimum latitude greater than maximum');
        }
 
       if($bbox['1'] > $bbox['3'] ){
         //This checks that the minimum latitude is smaller than maximum
         ////latitude, if not throw exception
-        throw new Pas_Edina_Exception('Minimum longitude greater than maximum');
+        throw new Pas_Geo_Edina_Exception('Minimum longitude greater than maximum');
       }
     }
     }

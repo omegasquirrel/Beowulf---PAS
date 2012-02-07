@@ -7,19 +7,19 @@
 
 /** An interface to the Edina FeatureLookUp api call
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo_Edina
  * @subpackage FeatureLookUp
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
  * @author Daniel Pett
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
  *
  * Usage:
  *
- * $edina = new Pas_Edina_FeatureLookUp();
+ * $edina = new Pas_Geo_Edina_FeatureLookUp();
  * $edina->setId('9657'); - Lincolnshire county
  * $edina->setFormat('json'); - you can use georss, kml, xml, jaon
  * $edina->setGazetteer('os'); - you can use unlock, os, geonames
@@ -31,7 +31,7 @@
  *
  * Then process the object returned as you want (up to you!)
  */
-class Pas_Edina_FeatureLookUp extends Pas_Edina {
+class Pas_Geo_Edina_FeatureLookUp extends Pas_Geo_Edina {
 
     /** Api method to call
      *
@@ -59,11 +59,11 @@ class Pas_Edina_FeatureLookUp extends Pas_Edina {
      * @access public
      * @param type $id
      * @return type
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setId($id){
         if(!is_int){
-            throw new Pas_Edina_Exception('Entity ID must be an integer');
+            throw new Pas_Geo_Edina_Exception('Entity ID must be an integer');
         } else {
             return $this->_id = $id;
         }

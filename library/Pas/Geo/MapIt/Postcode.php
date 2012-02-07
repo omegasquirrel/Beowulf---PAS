@@ -9,7 +9,7 @@
  * This extends the Mapit base class.
  *
  * @category Pas
- * @package Pas_MapIt
+ * @package Pas_Geo_Mapit
  * @subpackage Postcode
  * @version 1
  * @since 6/2/12
@@ -18,11 +18,11 @@
  * @see http://mapit.mysociety.org/
  * @author Daniel Pett
  * @uses Pas_Validate_ValidPostcode
- * @uses Pas_MapIt_Exception
+ * @uses Pas_Geo_Mapit_Exception
  *
  * USAGE
  *
- * $m = new Pas_MapIt_Postcode();
+ * $m = new Pas_Geo_Mapit_Postcode();
  * You have two options to search for a partial or a full postcode
  * The full postcode is validated for format. I haven't bothered for partial.
  * To set full postcode (used British Museum for eg):
@@ -33,7 +33,7 @@
  * $m->get();
  *
  */
-class Pas_MapIt_Postcode extends Pas_Mapit {
+class Pas_Geo_Mapit_Postcode extends Pas_Geo_Mapit {
 
     /** Set the api method to use
      *
@@ -61,7 +61,7 @@ class Pas_MapIt_Postcode extends Pas_Mapit {
     /** set the full postcode
      * @access public
      * @param string $postcode
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      * @return string
      */
     public function setFullPostCode($postcode){
@@ -69,7 +69,7 @@ class Pas_MapIt_Postcode extends Pas_Mapit {
     if($validator->isValid($postcode)){
          $this->_postcode = str_replace(' ', '', $postcode);
     } else {
-         throw new Pas_MapIt_Exception('Invalid post code specified');
+         throw new Pas_Geo_Mapit_Exception('Invalid post code specified');
     }
     }
 
@@ -103,11 +103,11 @@ class Pas_MapIt_Postcode extends Pas_Mapit {
     /** Get the data from the api
      * @access public
      * @return type
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      */
     public function get(){
         if(isset($this->_postcode) && isset($this->_partialPostCode)){
-            throw new Pas_MapIt_Exception('You cannot use both methods');
+            throw new Pas_Geo_Mapit_Exception('You cannot use both methods');
         }
     $params = array(
          $this->_partial,
@@ -121,7 +121,7 @@ class Pas_MapIt_Postcode extends Pas_Mapit {
         if(is_numeric($generation)){
             $this->_generation = '?generation=' . $generation;
         } else {
-            throw new Pas_MapIt_Exception('The generation must be an integer');
+            throw new Pas_Geo_Mapit_Exception('The generation must be an integer');
         }
 
     }

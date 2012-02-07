@@ -10,7 +10,7 @@
  * This extends the Mapit base class.
  *
  * @category Pas
- * @package Pas_MapIt
+ * @package Pas_Geo_Mapit
  * @subpackage Postcode
  * @version 1
  * @since 6/2/12
@@ -19,11 +19,11 @@
  * @see http://mapit.mysociety.org/
  * @author Daniel Pett
  * @uses Pas_Validate_ValidPostcode
- * @uses Pas_MapIt_Exception
+ * @uses Pas_Geo_Mapit_Exception
  *
  * USAGE
  *
- * $m = new Pas_MapIt_Area();
+ * $m = new Pas_Geo_Mapit_Area();
  * Lots of different options available here
  *
  * SIMPLE - get data for a specific place id
@@ -40,7 +40,7 @@
  * $m->setFilter('WMC'); (Which westminster constituencies overlap)
  * $m->get();
  */
-class Pas_MapIt_Area extends Pas_Mapit {
+class Pas_Geo_Mapit_Area extends Pas_Geo_Mapit {
 
     /** Set the api method to use
      *
@@ -59,7 +59,16 @@ class Pas_MapIt_Area extends Pas_Mapit {
      */
     protected $_id;
 
+    /** get the geometry
+     *
+     * @var type
+     */
     protected $_geometry = null;
+
+    /** Available methods
+     *
+     * @var type
+     */
 
     protected $_methods = array(
         'geometry',
@@ -132,13 +141,13 @@ class Pas_MapIt_Area extends Pas_Mapit {
     /** Set the format you want
      * @access public
      * @param type $format
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      */
     public function setFormat($format){
         if(in_array($format, $this->_formats)){
             $this->_format = $format;
         } else {
-            throw new Pas_MapIt_Exception('That format is not allowed');
+            throw new Pas_Geo_Mapit_Exception('That format is not allowed');
         }
     }
 
@@ -154,14 +163,14 @@ class Pas_MapIt_Area extends Pas_Mapit {
      * @acces public
      * @param type $id
      * @return type
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      */
     public function setId($id){
     $validator = new Zend_Validate_Digits();
     if($validator->isValid($id)){
     	return $this->_id = $id;
     } else {
-        throw new Pas_MapIt_Exception('The id must be an integer');
+        throw new Pas_Geo_Mapit_Exception('The id must be an integer');
     }
     }
 
@@ -178,7 +187,7 @@ class Pas_MapIt_Area extends Pas_Mapit {
      */
     public function setMethod($method) {
         if(!in_array($method, $this->_methods)){
-            throw new Pas_MapIt_Exception('That method does not exist');
+            throw new Pas_Geo_Mapit_Exception('That method does not exist');
 
         } else {
              return $this->_method = $method;
@@ -207,18 +216,18 @@ class Pas_MapIt_Area extends Pas_Mapit {
      * @access public
      * @param type $type
      * @return type
-     * @throws Pas_MapIt_Exception
+     * @throws Pas_Geo_Mapit_Exception
      */
     public function setFilter($type){
       if(strlen($type) <> 3){
-            throw new Pas_MapIt_Exception('The area must be a three letter string');
+            throw new Pas_Geo_Mapit_Exception('The area must be a three letter string');
         }
         $validator = new Zend_Validate_Alpha();
         if(!$validator->isValid($type)){
-            throw new Pas_MapIt_Exception('Invalid characters used', 500);
+            throw new Pas_Geo_Mapit_Exception('Invalid characters used', 500);
         }
         if(!in_array($type, array_flip($this->_allowedTypes))){
-            throw new Pas_MapIt_Exception('The area type of ' . $type . ' must be in allowed list');
+            throw new Pas_Geo_Mapit_Exception('The area type of ' . $type . ' must be in allowed list');
         }
         return $this->_filter = '?type=' . $type;
 

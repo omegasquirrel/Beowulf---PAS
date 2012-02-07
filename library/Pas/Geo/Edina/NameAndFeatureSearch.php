@@ -8,18 +8,18 @@
 
 /** An interface to the Edina NameAndFeatureSearch api call
  * @category Pas
- * @package Pas_Edina
+ * @package Pas_Geo_Edina
  * @subpackage NameAndFeatureSearch
  * @license GNU Public
  * @since 3/2/12
  * @version 1
  * @copyright Daniel Pett, The British Museum
  * @author Daniel Pett
- * @uses Pas_Edina_Exception
+ * @uses Pas_Geo_Edina_Exception
  * @see http://unlock.edina.ac.uk/places/queries/
  * Usage:
  *
- * $edina = new Pas_Edina_NameAndFeatureSearch();
+ * $edina = new Pas_Geo_Edina_NameAndFeatureSearch();
  * $edina->setFeatureType('Cities');
  * $edina->setNames(array('cambridge'));
  * $edina->setFormat('json'); - you can use georss, kml, xml, jaon
@@ -33,7 +33,7 @@
  *
  * Then process the object returned as you want (up to you!)
  */
-class Pas_Edina_NameAndFeatureSearch extends Pas_Edina {
+class Pas_Geo_Edina_NameAndFeatureSearch extends Pas_Geo_Edina {
 
     /** The method to call
      *
@@ -77,13 +77,13 @@ class Pas_Edina_NameAndFeatureSearch extends Pas_Edina {
      * @todo move to a checking class of its own?
      * @param array $array
      * @return array $array
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     protected function _requiredKeys($array){
         foreach($array as $k => $v){
 
             if(!array_key_exists($k, $this->_requiredKeys)){
-                throw new Pas_Edina_Exception('You are missing a required term');
+                throw new Pas_Geo_Edina_Exception('You are missing a required term');
             }
         }
     }
@@ -91,22 +91,22 @@ class Pas_Edina_NameAndFeatureSearch extends Pas_Edina {
     /** Set the names to query
      * @access public
      * @param array $names
-     * @throws Pas_Edina_Exception
+     * @throws Pas_Geo_Edina_Exception
      */
     public function setNames(array $names){
     if(is_array($names)){
         $this->_names = implode(',',$names);
     }    else {
-        throw new Pas_Edina_Exception('The search names must be an array');
+        throw new Pas_Geo_Edina_Exception('The search names must be an array');
     }
     }
 
     public function setFeatureType($type){
-        $featureTypes = new Pas_Edina_FeatureTypes();
+        $featureTypes = new Pas_Geo_Edina_FeatureTypes();
         $types = $featureTypes->getTypesList();
 
         if(!in_array($type, $types)){
-            throw new Pas_Edina_Exception('That type is not supported');
+            throw new Pas_Geo_Edina_Exception('That type is not supported');
         } else {
         return $this->_types = $type;
         }
