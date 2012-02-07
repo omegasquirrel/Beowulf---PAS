@@ -354,14 +354,29 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 
 
-        public function entityAction(){
+        public function postcodeAction(){
+        $form = new PostcodeForm();
+	$this->view->form = $form;
+	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if ($form->isValid($form->getValues())) {
+        $postcode = $form->getValue('postcode');
+        $area = new Pas_Geo_Edina_PostCodeSearch();
+        $area->setPostCode($postcode);
 
-        $area = new Pas_MapIt_Area();
-        $area->setId(34805);
-        $area->setFormat('wkt');
-        Zend_Debug::dump($area->get());
-        Zend_Debug::dump($area->getUrl());
-        exit;
+        $xy = $area->get()->features[0]->bbox;
+
+        $params = array(
+        'lat' => $xy[1],
+        'lon' => $xy[0],
+        'd' => $form->getValue('distance'));
+
+	$this->_flashMessenger->addMessage('Your search is complete');
+	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
+	} else {
+	$form->populate($form->getValues());
+	}
+	}
+
         }
 
         /** Display the index page.
