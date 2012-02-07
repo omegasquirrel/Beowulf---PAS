@@ -15,9 +15,9 @@
  * @copyright Daniel Pett, British Museum
  * @license GNU
  * @see http://mapit.mysociety.org/
- * 
+ *
  * USAGE
- * 
+ *
  * $mapIt = new Pas_MapIt_Point();
  * $mapIt->setCoordSystem('BRITISH');
  * $mapIt->setX(400000);
@@ -29,43 +29,43 @@
  * No other formats of response available by this method.
  */
 class Pas_MapIt_Point extends Pas_Mapit {
-    
+
 	/** The api method used
-	 * 
+	 *
 	 * @var string
 	 */
 	const APIMETHOD = 'point';
 
 	/** Decide whether to find records within bounding box
-	 * @access protected 
-	 * @var boolean, default to false
+	 * @access protected
+	 * @var string
 	 */
-	protected $_box = false;
-	
+	protected $_box = null;
+
 	/** Decide on your coordinate system
-	 * @access protected 
+	 * @access protected
 	 * @var string
 	 */
 	protected $_system;
-	
+
 	/** The coordinate string to query, comma separated string
-	 * @access protected 
+	 * @access protected
 	 * @var string
 	 */
 	protected $_coordinates;
-	
+
 	/** The x coordinate = float or integer
 	 * @access protected
 	 * @var unknown_type
 	 */
 	protected $_x;
-	
+
 	/** The y coordinate = float or integer
 	 * @access protected
 	 * @var unknown_type
 	 */
 	protected $_y;
-	
+
 	/** Set the coordinate system to use
 	 * This has been simplified by me to british,irish or WGS84
 	 * @access public
@@ -76,7 +76,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 			case 'BRITISH':
 				$SRID = 27700;
 				break;
-			case 'WSG84':
+			case 'WGS84':
 				$SRID = 4326;
 				break;
 			case 'IRISH':
@@ -88,7 +88,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 		}
 		return $this->_system = $SRID;
 	}
-	
+
 	/** Get the coordinates system used
 	 * @access public
 	 * @return string
@@ -96,20 +96,20 @@ class Pas_MapIt_Point extends Pas_Mapit {
 	public function getCoordSystem(){
 		return $this->_system;
 	}
-	
+
 	/** Set the x coordinate
 	 * @access public
 	 * @param int|float $x
 	 * @return string
 	 */
-	public function setX($x){	
+	public function setX($x){
 		if(is_int($x)){
 		return $this->_x = $x;
 		} else {
 			throw new Pas_MapIt_Exception('The x coordinate is not an integer');
 		}
 	}
-	
+
 	/** Get the x coordinate
 	 * @access public
 	 * @return string
@@ -117,7 +117,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 	public function getX(){
 		return $this->_x;
 	}
-	
+
 	/** Set the y coordinate
 	 * @access public
 	 * @param int|float $y
@@ -130,7 +130,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 			throw new Pas_MapIt_Exception('The y coordinate is not an integer');
 		}
 	}
-	
+
 	/** Get the Y coordinate
 	 * @access public
 	 * @return string
@@ -138,7 +138,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 	public function getY(){
 		return $this->_y;
 	}
-	
+
 	/** Set the coordinates from your values
 	 * @access public
 	 * @return string
@@ -150,14 +150,14 @@ class Pas_MapIt_Point extends Pas_Mapit {
 			throw new Pas_MapIt_Exception('Coordinates are malformed');
 		}
 	}
-	
+
 	/** Get the coordinates
 	 * @access public
 	 */
 	public function getCoordinates(){
 		return $this->_coordinates;
 	}
-	
+
 	/** decide whether to use the bounding box
 	 * @access public
 	 * @param $box
@@ -167,7 +167,7 @@ class Pas_MapIt_Point extends Pas_Mapit {
 			return $this->_box = 'box';
 		}
 	}
-	
+
 	/** Use the parent get function to get data and render
 	 * @access public
 	 */

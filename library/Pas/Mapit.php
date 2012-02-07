@@ -31,12 +31,20 @@ class Pas_Mapit {
 
     /** Generally default to json for response
      *
-     * @var type
+     * @var string
      */
     protected $_format = 'json';
 
+    /** The url to call
+     *
+     * @var string
+     */
     protected $_url = null;
-    
+
+    protected $_generation = null;
+
+    protected $_filter = null;
+
     /** Construct the cache. If an api key is needed, this can be set here
      * when it is introduced
      */
@@ -65,14 +73,13 @@ class Pas_Mapit {
     */
     public function get($method, array $params) {
     $url = $this->setUrl($method,$params);
-	Zend_Debug::dump($url);
-	exit;
-    if (!($this->_cache->test(md5($url)))) {
+    $key = md5($url);
+    if (!($this->_cache->test($key))) {
     $config = array(
     'adapter'   => 'Zend_Http_Client_Adapter_Curl',
     'curloptions' => array(
     CURLOPT_POST =>  true,
-    CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
+    CURLOPT_USERAGENT =>  $this->_getUserAgent(),
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_LOW_SPEED_TIME => 1,
@@ -85,14 +92,35 @@ class Pas_Mapit {
     $data = $response->getBody();
     $this->_cache->save($data);
     } else {
-    $data = $this->_cache->load(md5($url));
+    $data = $this->_cache->load($key);
     }
     if($this->_format === 'json'){
-    return Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
+        return $this->_decoder($data);
     } else {
-        return $data;
+       return $data;
     }
     }
+
+
+    /** Get the user Agent for sending curl response
+     * @access protected
+     * @return string
+     */
+    protected function _getUserAgent(){
+    $useragent = new Zend_Http_UserAgent();
+    return $useragent->getUserAgent();
+
+    }
+
+    /** Decode the json response as an object
+     * @access protected
+     * @param string $data
+     * @return object
+     */
+    protected function _decoder($data){
+        return Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
+    }
+
 
     /** Build a url string
         * @param string $method The method to use
@@ -100,18 +128,29 @@ class Pas_Mapit {
         */
     public function setUrl($method, array $params){
         if(is_array($params)){
-        	$params = array_filter($params);
+        $params = array_filter($params);
+
         $this->_url = self::MAP_IT_URI . $method . '/' . implode('/',$params);
-        if(isset($this->_format)){
+        if(isset($this->_format) && $this->_format !== 'json'){
         	$this->_url = $this->_url . '.' . $this->_format;
         }
+        if(isset($this->_generation)){
+            $this->_url = $this->_url . $this->_generation;
+        }
+
+        if(isset($this->_filter)){
+            $this->_url = $this->_url . $this->_filter;
+        }
+
         return $this->_url;
         } else {
             throw new Pas_Twfy_Exception('Parameters have to be an array',500);
         }
     }
-    
+
     public function getUrl(){
     	return $this->_url;
     }
+
+
 }

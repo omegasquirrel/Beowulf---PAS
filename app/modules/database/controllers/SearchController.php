@@ -353,7 +353,18 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 
-	/** Display the index page.
+
+        public function entityAction(){
+
+        $area = new Pas_MapIt_Area();
+        $area->setId(34805);
+        $area->setFormat('wkt');
+        Zend_Debug::dump($area->get());
+        Zend_Debug::dump($area->getUrl());
+        exit;
+        }
+
+        /** Display the index page.
 	*/
 	public function resultsAction(){
 	$params = $this->_getAllParams();

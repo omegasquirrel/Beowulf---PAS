@@ -33,11 +33,14 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
 //        $html .= $this->view->mpbio($data->full_name);
         $html .= $this->view->politicalhouse($data->house);
 
-//		$mapIt = new Pas_MapIt_Generations();
-//		Zend_Debug::dump($mapIt->get());
-		$m = new Pas_MapIt_Area();
-		$m->setId(2514);
-		Zend_Debug::dump($m->get());
+
+        $m = new Pas_MapIt_Area();
+        $m->setId(65622);
+        $m->setMethod('touches');
+        $m->setFilter('WMC');
+        Zend_Debug::dump($m->get(), 'data');
+        Zend_Debug::dump($m->getUrl(), 'url');
+                exit;
         return $html;
         }
 }

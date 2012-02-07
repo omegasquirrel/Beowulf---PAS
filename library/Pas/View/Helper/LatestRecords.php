@@ -36,8 +36,10 @@ class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
 	/**
 	 *
 	 */
-	public function latestRecords( $q = '*:*', $fields = 'id,old_findID,
-            objecttype,imagedir,filename,thumbnail,broadperiod', $start = 0, $limit = 4,
+	public function latestRecords( $q = '*:*',
+                $fields =
+                'id,old_findID,objecttype,imagedir,filename,thumbnail,broadperiod',
+                $start = 0, $limit = 4,
 		$sort = 'created', $direction = 'desc') {
 	$select = array(
         'query'         => $q,

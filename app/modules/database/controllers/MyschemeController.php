@@ -10,15 +10,10 @@
 */
 class Database_MyschemeController extends Pas_Controller_Action_Admin {
 
-    /**
-    *
-    * @var object $_auth
-    */
-    protected $_auth;
+
 
     public function init() {
     $this->_helper->_acl->allow('member',null);
-    $this->_auth = Zend_Registry::get('auth');
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     $this->_helper->contextSwitch()
          ->setAutoDisableLayout(true)
@@ -205,4 +200,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $this->view->results = $search->_processResults();
     $this->view->facets = $search->_processFacets();
     }
+
+   
+
 }
