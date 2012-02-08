@@ -25,9 +25,6 @@ class Pas_OaiPmhRepository_Metadata_OaiDc extends Pas_OaiPmhRepository_Metadata_
     /** XML namespace for unqualified Dublin Core */
     const DC_NAMESPACE_URI = 'http://purl.org/dc/elements/1.1/';
 
-    const PAS_RECORD_URL = 'http://www.finds.org.uk/database/artefacts/record/id/';
-
-    const LICENSE = 'CC BY-SA: The Portable Antiquities Scheme';
     /**
      * Appends Dublin Core metadata.
      *
@@ -49,36 +46,33 @@ class Pas_OaiPmhRepository_Metadata_OaiDc extends Pas_OaiPmhRepository_Metadata_
 	*/
 	$oai_dc->setAttribute('xmlns:dc', self::DC_NAMESPACE_URI);
 	$oai_dc->setAttribute('xmlns:xsi', parent::XML_SCHEMA_NAMESPACE_URI);
-	$oai_dc->setAttribute('xsi:schemaLocation', self::METADATA_NAMESPACE . ' ' . self::METADATA_SCHEMA);
+	$oai_dc->setAttribute('xsi:schemaLocation', self::METADATA_NAMESPACE
+                . ' ' . self::METADATA_SCHEMA);
 
 	if(!array_key_exists('0',$this->item)) {
-
 	$data = array(
    	'title'			=> $this->item['broadperiod']. ' ' . $this->item['objecttype'] ,
-	'creator'		=> $this->item['identifier'],
-	'subject'		=> 'archaeology',
+	'creator'		=> $this->item['creator'],
+	'subject'		=> self::SUBJECT,
 	'description'           => strip_tags($this->item['description']),
-	'publisher'             => 'The Portable Antiquities Scheme',
+	'publisher'             => self::RIGHTS_HOLDER,
 	'contributor'           => $this->item['institution'],
 	'date' 			=> $this->item['created'],
  	'type' 			=> $this->item['objecttype'],
-	'format' 		=> 'text/html',
+	'format' 		=> self::FORMAT,
 	'id' 			=> $this->item['id'],
-	'identifier'            => self::PAS_RECORD_URL . $this->item['id'],
-	'source' 		=> 'The Portable Antiquities Scheme Database',
-	'language' 		=> 'en-GB');
+	'identifier'            => $this->_serverUrl . self::RECORD_URI . $this->item['id'],
+	'source' 		=> self::SOURCE,
+	'language' 		=> self::LANGUAGE
+        );
 
-    $files = new OaiFinds();
-    $images = $files->getImages($this->item['id']);
-    if(count($images)){
-    foreach($images as $image){
-	if(!is_null($image['i'])){
-    $thumbnail = 'http://www.finds.org.uk/images/thumbnails/' . $image['i'] . '.jpg';
-	$data['relation'] = $thumbnail;
+
+	if(isset($this->item['thumbnail'])){
+        $relation = $this->_serverUrl . '/' . $this->item['imagedir']
+               . $this->item['filename'];
+	$data['relation'] = $relation;
 	} else {
 	$data['relation'] = '';
-	}
-	}
 	}
 	$data['coverage'] = $this->item['broadperiod'];
 	$data['rights'] = self::LICENSE;

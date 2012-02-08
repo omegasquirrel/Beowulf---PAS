@@ -55,6 +55,7 @@ class Pas_OaiPmhRepository_OaiXmlGeneratorAbstract extends Pas_OaiPmhRepository_
     const OAI_GRANULARITY_STRING   = 'YYYY-MM-DDThh:mm:ssZ';
     const OAI_GRANULARITY_DATE     = 1;
     const OAI_GRANULARITY_DATETIME = 2;
+    const REPOSITORY = 'Portable Antiquities Scheme';
 
     /**
      * Flags if an error has occurred during the response.
@@ -62,6 +63,7 @@ class Pas_OaiPmhRepository_OaiXmlGeneratorAbstract extends Pas_OaiPmhRepository_
      */
     protected $_error;
 
+    protected $_serverUrl;
     /**
      * Throws an OAI-PMH error on the given response.
      *
@@ -139,4 +141,14 @@ class Pas_OaiPmhRepository_OaiXmlGeneratorAbstract extends Pas_OaiPmhRepository_
         else
             return false;
     }
+
+    public function _userAgent(){
+    $useragent = new Zend_Http_UserAgent();
+    return $useragent->getUserAgent();
+    }
+
+    public function _ipAddress(){
+    return Zend_Controller_Front::getInstance()->getRequest()->getClientIp();
+    }
+
 }

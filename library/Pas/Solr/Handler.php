@@ -12,7 +12,7 @@
  * @subpackage Handler
  * @uses Pas_Solr_Exception
  * @uses Solarium_Client
- *
+ * @todo Schema path is hard coded....
  *
  * @author Daniel Pett
  */

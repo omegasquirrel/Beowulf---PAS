@@ -22,27 +22,10 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
 
     protected $_view;
 
-	public function init(){
-	$this->_view = Zend_Controller_Action_HelperBroker::getExistingHelper('ViewRenderer')->view;
-	}
-	/** Function for escaping xml
-	*
-	* @param string $string data to be encoded
-	* @return string $string
-	*/
-    protected function _xmlEscape($string)  {
-    $encoding = 'UTF-8';
-    if ($this->_view instanceof Zend_View_Interface && method_exists($this->_view, 'getEncoding')) {
-    $encoding = $this->_view->getEncoding();
+    public function init(){
+    $this->_view = Zend_Controller_Action_HelperBroker::getExistingHelper('ViewRenderer')->view;
     }
-    if (version_compare(PHP_VERSION, '5.2.3', '>=')) {
-    return htmlspecialchars($string, ENT_QUOTES, $encoding, false);
-    } else {
-    $string = preg_replace('/&(?!(?:#\d++|[a-z]++);)/ui', '&amp;', $string);
-    $string = str_replace(array('<', '>', '\'', '"'), array('&lt;', '&gt;', '&#39;', '&quot;'), $string);
-    return $string;
-    }
-    }
+
 
     /**
      * Appends CDWALite metadata.
@@ -63,8 +46,11 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
     $descriptive = $this->appendNewElement($cdwalite, 'cdwalite:descriptiveMetadata');
     $types = array('Archaeological artefact record');
     $objectWorkTypeWrap = $this->appendNewElement($descriptive, 'cdwalite:objectWorkTypeWrap');
-    if(count($types) == 0) $types[] = 'Unknown';
-	foreach($types as $type) {
+
+    if(count($types) == 0){
+        $types[] = 'Unknown';
+    }
+    foreach($types as $type) {
 	$this->appendNewElement($objectWorkTypeWrap, 'cdwalite:objectWorkType', $type);
     }
     $subjects = array('Archaeology');
@@ -74,18 +60,26 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
     }
     $titles = array('A ' . ucfirst(strtolower($this->item['broadperiod'])) . ' '
     . ucfirst(strtolower($this->item['objecttype'])));
+
     $titleWrap = $this->appendNewElement($descriptive, 'cdwalite:titleWrap');
     if(count($titles) == 0) $titles[] = 'Unknown';
+
     foreach($titles as $title){
     $titleSet = $this->appendNewElement($titleWrap, 'cdwalite:titleSet');
     $this->appendNewElement($titleSet, 'cdwalite:title', $title);
     }
-    $creators = array($this->item['recorder']);
-    foreach($creators as $creator) $creatorTexts[] = $creator;
+
+    $creators = array($this->item['creator']);
+    foreach($creators as $creator){
+        $creatorTexts[] = $creator;
+    }
     $creatorText = count($creators) >= 1 ? implode(',', $creatorTexts) : 'Unknown';
     $this->appendNewElement($descriptive, 'cdwalite:displayCreator', $creatorText);
+
     $indexingCreatorWrap = $this->appendNewElement($descriptive, 'cdwalite:indexingCreatorWrap');
-    if(count($creators) == 0) $creators[] = 'Unknown';
+    if(count($creators) == 0){
+        $creators[] = 'Unknown';
+    }
     foreach($creators as $creator) {
 	$indexingCreatorSet = $this->appendNewElement($indexingCreatorWrap, 'cdwalite:indexingCreatorSet');
 	$nameCreatorSet = $this->appendNewElement($indexingCreatorSet, 'cdwalite:nameCreatorSet');
@@ -93,7 +87,7 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
 	$this->appendNewElement($indexingCreatorSet, 'cdwalite:roleCreator', 'Unknown');
 	}
 
-	$materials = array($this->item['primaryMaterial'], $this->item['secondaryMaterial']);
+	$materials = array($this->item['materialTerm'], $this->item['secondaryMaterialTerm']);
     if(count($materials) == 0) {
 	$materials[] = 'Unknown';
 	}
@@ -111,7 +105,7 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
 	* Required. Fill with 'Unknown' if omitted.
 	* Non-repeatable, include only first date.
 	*/
-	$dates = array($this->item['numdate1'], $this->item['numdate2']);
+	$dates = array($this->item['fromdate'], $this->item['todate']);
 	$dateText = count($dates) > 0 ? $dates[0] : 'Unknown';
 	$this->appendNewElement($descriptive, 'cdwalite:displayCreationDate', $dateText);
 
@@ -155,7 +149,7 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
 	/* Rights => rightsWork
 	* Not required.
 	*/
-	$rights = array('Creative Commons BY-SA');
+	$rights = array(self::LICENSE);
 	foreach($rights as $right){
 	$this->appendNewElement($administrative, 'cdwalite:rightsWork', $right);
 	}

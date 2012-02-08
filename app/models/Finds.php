@@ -1891,7 +1891,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('mints','mints.id = coins.mint_ID', array ('mintName' => 'mint_name'))
 		->joinLeft('denominations','coins.denomination = denominations.id', array('denominationName' => 'denomination'))
 		->joinLeft('rulers','coins.ruler_id = rulers.id',array('rulerName' => 'issuer'))
-		->joinLeft('users','users.id = finds.createdBy', array('imagedir'))
+		->joinLeft('users','users.id = finds.createdBy', array('imagedir','creator' => 'CONCAT(users.first_name," ",users.last_name)'))
 		->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy',
 		array('updatedBy' => 'fullname'))
 		->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('materialTerm' =>'term'))

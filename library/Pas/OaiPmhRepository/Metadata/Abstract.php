@@ -15,7 +15,30 @@ require_once('Pas/OaiPmhRepository/OaiIdentifier.php');
 abstract class Pas_OaiPmhRepository_Metadata_Abstract
 	extends Pas_OaiPmhRepository_OaiXmlGeneratorAbstract {
 
-    const RECORD_URI = 'http://www.finds.org.uk/database/artefacts/record/id/';
+    const RECORD_URI = '/database/artefacts/record/id/';
+
+    const LICENSE = 'CC BY-SA';
+
+    const RIGHTS_HOLDER = 'The Portable Antiquities Scheme';
+
+    const LICENSE_URI = 'http://creativecommons.org/licenses/by-sa/3.0/';
+
+    const SUBJECT = 'archaeology';
+
+    const FORMAT = 'text/html';
+
+    const LANGUAGE = 'en-GB';
+
+    const SOURCE = 'Portable Antquities Scheme database';
+
+    const PROVENANCE = 'Crowdsourced from the public of England and Wales';
+
+    const THUMB_PATH = '/images/thumbnails';
+
+    const EXTENSION = '.jpg';
+
+    protected $_serverUrl;
+
     /**
      * Item object for this record.
      * @var Item
@@ -37,11 +60,13 @@ abstract class Pas_OaiPmhRepository_Metadata_Abstract
      * @param DOMElement element Parent element for XML output.
      */
     public function __construct($item, $element){
-	$this->item = $item;
-	$this->parentElement = $element;
-	if(isset($element)){
-	$this->document = $element->ownerDocument;
-	}
+    $this->item = $item;
+    $this->parentElement = $element;
+    if(isset($element)){
+    $this->document = $element->ownerDocument;
+    }
+    $server = new Pas_OaiPmhRepository_ServerUrl();
+    $this->_serverUrl = $server->get();
     }
 
     /**
@@ -54,12 +79,12 @@ abstract class Pas_OaiPmhRepository_Metadata_Abstract
      * @uses appendMetadata
      */
     public function appendRecord(){
-	$record = $this->document->createElement('record');
+    $record = $this->document->createElement('record');
     $this->parentElement->appendChild($record);
     // Sets the parent of the next append functions
     $this->parentElement = $record;
-	$this->appendHeader();
-	$this->appendMetadata();
+    $this->appendHeader();
+    $this->appendMetadata();
     }
 
     /**
@@ -72,19 +97,19 @@ abstract class Pas_OaiPmhRepository_Metadata_Abstract
      * @uses appendMetadata
      */
     public function appendHeader() {
-	$table = new OaiFinds();
-	if(array_key_exists('0',$this->item)) {
-	$itemid = $this->item['0']['id'];
-	$updated = $this->item['0']['created'];
-	$collectionId = $this->item['0']['institution'];
-	} else {
-	$itemid = $this->item['id'];
-	$updated = $this->item['created'];
-	$collectionId = $this->item['institution'];
-	}
-	$item = $table->fetchRow($table->select()->where('finds.id = ?',$itemid));
-  	$object = new Pas_OaiPmhRepository_OaiIdentifier();
-   	$itemNumber = $object->itemToOaiId($itemid);
+
+    if(array_key_exists('0',$this->item)) {
+    $itemid = $this->item['0']['id'];
+    $updated = $this->item['0']['created'];
+    $collectionId = $this->item['0']['institution'];
+    } else {
+    $itemid = $this->item['id'];
+    $updated = $this->item['created'];
+    $collectionId = $this->item['institution'];
+    }
+//	$item = $table->fetchRow($table->select()->where('finds.id = ?',$itemid));
+    $object = new Pas_OaiPmhRepository_OaiIdentifier();
+    $itemNumber = $object->itemToOaiId($itemid);
     $headerData['identifier'] = $itemNumber;
     $headerData['datestamp'] = self::dbToUtc($updated);
 	if ($collectionId)
@@ -100,15 +125,34 @@ abstract class Pas_OaiPmhRepository_Metadata_Abstract
      * metadata format.
      */
     public function declareMetadataFormat(){
-	$elements = array(
-	'metadataPrefix'    => $this->getMetadataPrefix(),
+    $elements = array(
+    'metadataPrefix'    => $this->getMetadataPrefix(),
     'schema'            => $this->getMetadataSchema(),
     'metadataNamespace' => $this->getMetadataNamespace()
-	);
+    );
     $this->createElementWithChildren(
     $this->parentElement, 'metadataFormat', $elements);
     }
 
+
+    /** Function for escaping xml
+     *
+     * @param string $string data to be encoded
+     * @return string $string
+     */
+    public function _xmlEscape($string)  {
+    $encoding = 'UTF-8';
+    if ($this->_view instanceof Zend_View_Interface && method_exists($this->_view, 'getEncoding')) {
+    $encoding = $this->_view->getEncoding();
+    }
+    if (version_compare(PHP_VERSION, '5.2.3', '>=')) {
+    return htmlspecialchars($string, ENT_QUOTES, $encoding, false);
+    } else {
+    $string = preg_replace('/&(?!(?:#\d++|[a-z]++);)/ui', '&amp;', $string);
+    $string = str_replace(array('<', '>', '\'', '"'), array('&lt;', '&gt;', '&#39;', '&quot;'), $string);
+    return $string;
+    }
+    }
     /**
      * Returns the OAI-PMH metadata prefix for the output format.
      *

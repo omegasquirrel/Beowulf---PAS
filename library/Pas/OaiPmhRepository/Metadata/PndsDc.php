@@ -17,7 +17,8 @@ require_once('Pas/OaiPmhRepository/Metadata/Abstract.php');
  * @package OaiPmhRepository
  * @subpackage Metadata Formats
  */
-class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata_Abstract {
+class Pas_OaiPmhRepository_Metadata_PndsDc
+    extends Pas_OaiPmhRepository_Metadata_Abstract {
 
 
     public function institution($inst) {
@@ -27,7 +28,7 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
     $where[] = $institutions->getAdapter()->quoteInto('institution = ?',$inst);
     $institution = $institutions->fetchRow($where);
     if(!is_null($institution)){
-            return $institution->description;
+    return $institution->description;
     }
     } else {
     return 'The Portable Antiquities Scheme';
@@ -51,16 +52,9 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
     const DC_TERMS_NAMESPACE = 'http://purl.org/dc/terms/';
 
     const PNDS_TERMS_NAMESPACE = 'http://purl.org/mla/pnds/terms/';
-//
-    const PAS_RECORD_URI = 'http://www.finds.org.uk/database/artefacts/record/id/';
-
-    const PAS_IMAGE_URI = 'http://www.finds.org.uk/images/thumbnails/';
 
     const IMAGE_EXTENSION = '.jpg';
 
-    const RIGHTS_HOLDER = 'The Portable Antiquities Scheme';
-
-    const LICENSE_URI = 'http://creativecommons.org/licenses/by-sa/3.0/';
     /**
      * Appends Dublin Core metadata.
      *
@@ -75,24 +69,7 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
     $this->_view = Zend_Controller_Action_HelperBroker::getExistingHelper('ViewRenderer')->view;
     }
 
-    protected function _xmlEscape($string){
-    $enc = 'UTF-8';
-    if ($this->_view instanceof Zend_View_Interface
-        && method_exists($this->_view, 'getEncoding')
-    ) {
-        $enc = $this->_view->getEncoding();
-    }
 
-    // TODO: remove check when minimum PHP version is >= 5.2.3
-    if (version_compare(PHP_VERSION, '5.2.3', '>=')) {
-        // do not encode existing HTML entities
-    return htmlspecialchars($string, ENT_QUOTES, $enc, false);
-    } else {
-        $string = preg_replace('/&(?!(?:#\d++|[a-z]++);)/ui', '&amp;', $string);
-        $string = str_replace(array('<', '>', '\'', '"'), array('&lt;', '&gt;', '&#39;', '&quot;'), $string);
-        return $string;
-    }
-    }
 
     public function appendMetadata() {
     $metadataElement = $this->document->createElement('metadata');
@@ -116,10 +93,10 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
     if(!array_key_exists('0',$this->item)) {
 
     $data = array(
-    'identifier' => self::PAS_RECORD_URL . $this->item['id'],
-    'title' => $this->item['broadperiod']. ' ' . $this->item['objecttype'] ,
+    'identifier' => $this->_serverUrl . self::RECORD_URI . $this->item['id'],
+    'title' => $this->item['broadperiod'] . ' ' . $this->item['objecttype'] ,
     'description' => strip_tags($this->_xmlEscape($this->item['description'])),
-    'subject' => 'archaeology',
+    'subject' => self::SUBJECT,
     'type' => $this->item['objecttype']
 
     );
@@ -131,7 +108,7 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
    }
 
    $rightsURI = $this->appendNewElement($pnds,'dcterms:license','');
-   $rightsURI->setAttribute('valueURI',self::LICENSE_URI);
+   $rightsURI->setAttribute('valueURI', self::LICENSE_URI);
    $this->appendNewElement($pnds, 'dcterms:rightsHolder',self::RIGHTS_HOLDER);
 //   $type = $this->appendNewElement($pnds,'dc:type','PhysicalObject');
 //   $type->setAttribute('encSchemeURI','http://purl.org/dc/terms/DCMIType');
@@ -139,11 +116,11 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
 
 
     $data2= array(
-    'creator' => $this->item['identifier'],
-    'contributor' => $this->item['institution'],
-    'publisher' => 'The Portable Antiquities Scheme',
-    'language' => 'en',
-    'format' => 'text/html',
+    'creator'       => $this->item['creator'],
+    'contributor'   => $this->item['institution'],
+    'publisher'     => self::RIGHTS_HOLDER,
+    'language'      => self::LANGUAGE,
+    'format'        => self::FORMAT,
     );
 
     foreach($data2 as $k => $v){
@@ -155,13 +132,14 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
     'district' => $this->item['district']
     );
     $temporal = array(
-    'year1' => $this->item['numdate1'],
-    'year2' => $this->item['numdate2'],
+    'year1' => $this->item['fromdate'],
+    'year2' => $this->item['todate'],
     );
     if(!is_null($this->item['knownas']) && !is_null($this->item['fourFigure'])){
-    $coords = new Pas_Geo_Gridcalc($this->item['fourFigure']);
-            $lat = $coords['decimalLatLon']['decimalLatitude'];
-            $lon = $coords['decimalLatLon']['decimalLongitude'];
+    $geo = new Pas_Geo_Gridcalc($this->item['fourFigure']);
+    $coords = $geo->convert();
+    $lat = $coords['decimalLatLon']['decimalLatitude'];
+    $lon = $coords['decimalLatLon']['decimalLongitude'];
     $spatial['coords'] = $lat . ',' . $lon;
     }
 
@@ -177,13 +155,13 @@ class Pas_OaiPmhRepository_Metadata_PndsDc extends Pas_OaiPmhRepository_Metadata
     if(count($images)){
     foreach($images as $image){
     if(!is_null($image['i'])){
-    $thumbnail = self::PAS_IMAGE_URI . $image['i'] . self::IMAGE_EXTENSION;
+    $thumbnail = $this->_serverUrl . self::THUMB_PATH . $image['i'] . self::IMAGE_EXTENSION;
     $this->appendNewElement($pnds, 'pndsterms:thumbnail', $thumbnail);
     }
     }
     }
 
-    
+
     }
     }
 
