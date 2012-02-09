@@ -50,7 +50,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     $url = new Pas_OaiPmhRepository_ServerUrl();
     $this->_serverUrl = $url->get();
 
-    $this->error = false;
+    $this->_error = false;
 
     $this->query = $query;
 
@@ -83,7 +83,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      * @uses checkArguments()
      */
     private function dispatchRequest() {
-    $request = $this->document->createElement('request',  self::OAI_PMH_BASE_URL);
+    $request = $this->document->createElement('request',  $this->_serverUrl . self::OAI_PMH_BASE_URL);
     $this->document->documentElement->appendChild($request);
     $requiredArgs = array();
     $optionalArgs = array();
@@ -96,13 +96,12 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     } else {
     $verb = NULL;
     $this->throwError(self::OAI_ERR_BAD_VERB);
-    return;
+
     }
     if(isset($resumptionToken)){
     $requiredArgs = array('resumptionToken');
     } else {
-
-	switch($verb)  {
+    switch($verb)  {
 		case 'Identify':
 			break;
 		case 'GetRecord':
@@ -123,12 +122,11 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         	break;
 		default:
 		$this->throwError(self::OAI_ERR_BAD_VERB);
-                    return;
             }
     }
-        $this->checkArguments($requiredArgs, $optionalArgs);
+    $this->checkArguments($requiredArgs, $optionalArgs);
 
-        if(!$this->error) {
+        if(!$this->_error) {
             foreach($this->query as $key => $value)
                 $request->setAttribute($key, $value);
 
@@ -164,25 +162,23 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      * @param array requiredArgs Array of required argument names.
      * @param array optionalArgs Array of optional, but valid argument names.
      */
-    private function checkArguments($requiredArgs = array(), $optionalArgs = array())
+      private function checkArguments($requiredArgs = array(), $optionalArgs = array())
     {
-         $requiredArgs[] = 'verb';
+        $requiredArgs[] = 'verb';
 
         if($_SERVER['REQUEST_METHOD'] == 'GET' &&
         (urldecode($_SERVER['QUERY_STRING']) != urldecode(http_build_query($this->query)))) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Duplicate arguments in request.");
-            return;
         }
-
+     
         $keys = array_keys($this->query);
 
         foreach(array_diff($requiredArgs, $keys) as $arg) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Missing required argument $arg.");
-            return;
         }
         foreach(array_diff($keys, $requiredArgs, $optionalArgs) as $arg) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Unknown argument $arg.");
-            return;
+
         }
 
         if(isset($this->query['from'])) {
@@ -190,7 +186,6 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         $fromGran = self::getGranularity($from);
         if($from && !$fromGran) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Invalid date/time argument.");
-            return;
             }
         }
         if(isset($this->query['until'])){
@@ -198,7 +193,6 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         $untilGran = self::getGranularity($until);
         if($until && !$untilGran) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Invalid date/time argument.");
-            return;
             }
         }
 
@@ -208,17 +202,16 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 
         if($from && $until && $fromGran != $untilGran) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Date/time arguments of differing granularity.");
-            return;
             }
         }
         if(isset($this->query['metadataPrefix'])) {
         $metadataPrefix = $this->query['metadataPrefix'];
 
-        if($metadataPrefix && !array_key_exists($metadataPrefix, $this->metadataFormats)) {
+        if(!array_key_exists($metadataPrefix, $this->metadataFormats)) {
             $this->throwError(self::OAI_ERR_CANNOT_DISSEMINATE_FORMAT);
-            return;
         }
         }
+
     }
 
 
@@ -229,7 +222,8 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      * Appends the Identify element for the repository to the response.
      */
     public function identify() {
-    if($this->error){
+
+    if($this->_error){
     return;
     }
 
@@ -268,9 +262,9 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         $findItem = new Pas_OaiPmhRepository_OaiIdentifier();
         $itemId = $findItem->oaiIdToItem($identifier);
 
-        if(!$itemId) {
+        if(!$itemId && !is_int($itemId)) {
             $this->throwError(self::OAI_ERR_ID_DOES_NOT_EXIST);
-            return;
+
         }
         $solr = new Pas_OaiPmhRepository_OaiResponse();
         $item = $solr->getRecord($itemId);
@@ -278,10 +272,10 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 
         if(!$single) {
             $this->throwError(self::OAI_ERR_ID_DOES_NOT_EXIST);
-            return;
+
         }
 
-        if(!$this->error) {
+        if(!$this->_error) {
             $getRecord = $this->document->createElement('GetRecord');
             $this->document->documentElement->appendChild($getRecord);
             $record = new $this->metadataFormats[$metadataPrefix]($single['0'], $getRecord);
@@ -303,18 +297,21 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     	$identifier = $this->query['identifier'];
         $findItem = new Pas_OaiPmhRepository_OaiIdentifier();
         $itemId = $findItem->oaiIdToItem($identifier);
-        if(!$itemId) {
+
+        if(!$itemId && !is_int($itemId)) {
             $this->throwError(self::OAI_ERR_ID_DOES_NOT_EXIST);
-            return;
+
+
         }
-        $solr = new OaiResponse();
+        $solr = new Pas_OaiPmhRepository_OaiResponse();
         $item = $solr->getRecord($itemId);
-        if(!$item) {
+
+        if(!$item['finds'][0]) {
             $this->throwError(self::OAI_ERR_ID_DOES_NOT_EXIST);
-            return;
+
         }
     		}
-        if(!$this->error) {
+        if(!$this->_error) {
             $listMetadataFormats = $this->document->createElement('ListMetadataFormats');
             $this->document->documentElement->appendChild($listMetadataFormats);
             foreach($this->metadataFormats as $format) {
@@ -337,13 +334,12 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     {
         $collectionlist = new Institutions();
         $collections = $collectionlist->listCollections();
-        if(count($collections) == 0)
+        if(count($collections) === 0)
             $this->throwError(self::OAI_ERR_NO_SET_HIERARCHY);
-        return;
 
         $listSets = $this->document->createElement('ListSets');
 
-        if(!$this->error) {
+        if(!$this->_error) {
             $this->document->documentElement->appendChild($listSets);
             foreach ($collections as $collection) {
                 $elements = array(
@@ -413,7 +409,6 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 
         if(is_null($tokenObject) || ($tokenObject['verb'] != $this->query['verb'])) {
             $this->throwError(self::OAI_ERR_BAD_RESUMPTION_TOKEN);
-            return;
         } else {
             $this->listResponse($tokenObject['verb'],
                                 $tokenObject['metadata_prefix'],
@@ -446,7 +441,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 
         if($rows === 0) {
             $this->throwError(self::OAI_ERR_NO_RECORDS_MATCH, 'No records match the given criteria');
-            return;
+
         } else {
         if($verb == 'ListIdentifiers') {
         $method = 'appendHeader';

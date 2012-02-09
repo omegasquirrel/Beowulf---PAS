@@ -100,7 +100,7 @@ class Pas_OaiPmhRepository_OaiResponse {
     $select['filterquery']['set'] = array( 'query' => 'institution:' . $set );
     }
     if(isset($from)){
-    $select['filterquery']['from'] = array( 'query' => 'created:[' . $this->todatestamp($from) . 'TO * ]' );
+    $select['filterquery']['from'] = array( 'query' => 'created:[' . $this->todatestamp($from) . ' TO * ]' );
     }
 
     if(isset($until)){
