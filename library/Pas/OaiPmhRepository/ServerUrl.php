@@ -5,10 +5,15 @@
  * and open the template in the editor.
  */
 
-/**
- * Description of ServerUrl
- *
+/** Code moved from the Zend View Helper ServerUrl for getting the server url
+ * 
+ * @category Pas
+ * @package Pas_OaiPmhRepository
+ * @version 1
+ * @since 6/2/12
+ * @license GNU public
  * @author danielpett
+ *
  */
 class Pas_OaiPmhRepository_ServerUrl {
     /**

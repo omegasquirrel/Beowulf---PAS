@@ -10,7 +10,7 @@
  *
  * @author danielpett
  */
-class Pas_OaiPmhRepository_OaiResponse {
+class Pas_OaiPmhRepository_SolrResponse {
 
     const LISTLIMIT = 30;
 

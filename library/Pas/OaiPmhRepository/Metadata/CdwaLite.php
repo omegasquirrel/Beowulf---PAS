@@ -3,15 +3,15 @@
  * @category Pas
  * @package Pas_OaiPmhRepository
  * @subpackage Metadata
- * @author John Flatness, Yu-Hsun Lin
- * @copyright Copyright 2009 John Flatness, Yu-Hsun Lin
+ * @author Daniel Pett (building on the work of John Flatness, Yu-Hsun Lin)
+ * @copyright Copyright 2012 Daniel Pett
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @link http://www.getty.edu/research/conducting_research/standards/cdwa/cdwalite.html
  */
 class Pas_OaiPmhRepository_Metadata_CdwaLite
 	extends Pas_OaiPmhRepository_Metadata_Abstract {
 
-  	/** OAI-PMH metadata prefix */
+    /** OAI-PMH metadata prefix */
     const METADATA_PREFIX = 'cdwalite';
 
     /** XML namespace for output format */
@@ -101,69 +101,70 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
     }
 	}
 
-	/* Date => displayCreationDate
-	* Required. Fill with 'Unknown' if omitted.
-	* Non-repeatable, include only first date.
-	*/
-	$dates = array($this->item['fromdate'], $this->item['todate']);
-	$dateText = count($dates) > 0 ? $dates[0] : 'Unknown';
-	$this->appendNewElement($descriptive, 'cdwalite:displayCreationDate', $dateText);
+    /* Date => displayCreationDate
+    * Required. Fill with 'Unknown' if omitted.
+    * Non-repeatable, include only first date.
+    */
+    $dates = array($this->item['fromdate'], $this->item['todate']);
+    $dateText = count($dates) > 0 ? $dates[0] : 'Unknown';
+    $this->appendNewElement($descriptive, 'cdwalite:displayCreationDate', $dateText);
 
-	/* Date => indexingDatesWrap->indexingDatesSet
-	* Map to both earliest and latest date
-	* Required.  Fill with 'Unknown' if omitted.
-	*/
-	$indexingDatesWrap = $this->appendNewElement($descriptive, 'cdwalite:indexingDatesWrap');
+    /* Date => indexingDatesWrap->indexingDatesSet
+    * Map to both earliest and latest date
+    * Required.  Fill with 'Unknown' if omitted.
+    */
+    $indexingDatesWrap = $this->appendNewElement($descriptive, 'cdwalite:indexingDatesWrap');
 
-	$indexingDatesSet = $this->appendNewElement($indexingDatesWrap, 'cdwalite:indexingDatesSet');
-	$this->appendNewElement($indexingDatesSet, 'cdwalite:earliestDate', $dates['0']);
-	$this->appendNewElement($indexingDatesSet, 'cdwalite:latestDate', $dates['1']);
+    $indexingDatesSet = $this->appendNewElement($indexingDatesWrap, 'cdwalite:indexingDatesSet');
+    $this->appendNewElement($indexingDatesSet, 'cdwalite:earliestDate', $dates['0']);
+    $this->appendNewElement($indexingDatesSet, 'cdwalite:latestDate', $dates['1']);
 
 
-	/* locationWrap->locationSet->locationName
-	* Required. No corresponding metadata, fill with 'location unknown'.
-	*/
-	$locationWrap = $this->appendNewElement($descriptive, 'cdwalite:locationWrap');
-	$locationSet = $this->appendNewElement($locationWrap, 'cdwalite:locationSet');
-	$this->appendNewElement($locationSet, 'cdwalite:locationName', 'location unknown');
+    /* locationWrap->locationSet->locationName
+    * Required. No corresponding metadata, fill with 'location unknown'.
+    */
+    $locationWrap = $this->appendNewElement($descriptive, 'cdwalite:locationWrap');
+    $locationSet = $this->appendNewElement($locationWrap, 'cdwalite:locationSet');
+    $this->appendNewElement($locationSet, 'cdwalite:locationName', 'location unknown');
 
-	/* Description => descriptiveNoteWrap->descriptiveNoteSet->descriptiveNote
-	* Not required.
-	*/
-	$descriptions = array($this->item['description']);
-	if(count($descriptions) > 0)  {
-	$descriptiveNoteWrap = $this->appendNewElement($descriptive, 'cdwalite:descriptiveNoteWrap');
-	foreach($descriptions as $description) {
-	$descriptiveNoteSet = $this->appendNewElement($descriptiveNoteWrap, 'cdwalite:descriptiveNoteSet');
-	$this->appendNewElement($descriptiveNoteSet, 'cdwalite:descriptiveNote', $this->_xmlEscape($description));
-	}
-	}
+    /* Description => descriptiveNoteWrap->descriptiveNoteSet->descriptiveNote
+    * Not required.
+    */
+    $descriptions = array($this->item['description']);
+    if(count($descriptions) > 0)  {
+    $descriptiveNoteWrap = $this->appendNewElement($descriptive, 'cdwalite:descriptiveNoteWrap');
+    foreach($descriptions as $description) {
+    $descriptiveNoteSet = $this->appendNewElement($descriptiveNoteWrap, 'cdwalite:descriptiveNoteSet');
+    $this->appendNewElement($descriptiveNoteSet, 'cdwalite:descriptiveNote', $this->_xmlEscape($description));
+    }
+    }
 
-	/* =======================
-	* ADMINISTRATIVE METADATA
-	* =======================
-	*/
+    /* =======================
+    * ADMINISTRATIVE METADATA
+    * =======================
+    */
 
-	$administrative = $this->appendNewElement($cdwalite, 'cdwalite:administrativeMetadata');
+    $administrative = $this->appendNewElement($cdwalite, 'cdwalite:administrativeMetadata');
 
-	/* Rights => rightsWork
-	* Not required.
-	*/
-	$rights = array(self::LICENSE);
-	foreach($rights as $right){
-	$this->appendNewElement($administrative, 'cdwalite:rightsWork', $right);
-	}
+    /* Rights => rightsWork
+    * Not required.
+    */
+    $rights = array(self::LICENSE);
+    foreach($rights as $right){
+    $this->appendNewElement($administrative, 'cdwalite:rightsWork', $right);
+    }
 
-	/* id => recordWrap->recordID
-	* 'item' => recordWrap-recordType
-	* Required.
-	*/
-	$recordWrap = $this->appendNewElement($descriptive, 'cdwalite:recordWrap');
-	$this->appendNewElement($recordWrap, 'cdwalite:recordID', $this->item['id']);
-	$this->appendNewElement($recordWrap, 'cdwalite:recordType', 'item');
-	$recordMetadataWrap = $this->appendNewElement($recordWrap, 'cdwalite:recordMetadataWrap');
-	$recordInfoID = $this->appendNewElement($recordMetadataWrap, 'cdwalite:recordInfoID', Pas_OaiPmhRepository_OaiIdentifier::itemToOaiId($this->item['id']));
-	$recordInfoID->setAttribute('type', 'oai');
+    /* id => recordWrap->recordID
+    * 'item' => recordWrap-recordType
+    * Required.
+    */
+    $recordWrap = $this->appendNewElement($descriptive, 'cdwalite:recordWrap');
+    $this->appendNewElement($recordWrap, 'cdwalite:recordID', $this->item['id']);
+    $this->appendNewElement($recordWrap, 'cdwalite:recordType', 'item');
+    $recordMetadataWrap = $this->appendNewElement($recordWrap, 'cdwalite:recordMetadataWrap');
+    $recordInfoID = $this->appendNewElement($recordMetadataWrap, 'cdwalite:recordInfoID',
+            Pas_OaiPmhRepository_OaiIdentifier::itemToOaiId($this->item['id']));
+    $recordInfoID->setAttribute('type', 'oai');
 
     }
 
@@ -195,17 +196,17 @@ class Pas_OaiPmhRepository_Metadata_CdwaLite
     }
 
     public function institution($inst) {
-	if(!is_null($inst)){
-	$institutions = new Institutions();
-	$where = array();
-	$where[] = $institutions->getAdapter()->quoteInto('institution = ?',$inst);
-	$institution = $institutions->fetchRow($where);
-	if(!is_null($institution)){
-		return $institution->description;
-	}
-	} else {
-		return 'The Portable Antiquities Scheme';
-		}
-	}
+    if(!is_null($inst)){
+    $institutions = new Institutions();
+    $where = array();
+    $where[] = $institutions->getAdapter()->quoteInto('institution = ?',$inst);
+    $institution = $institutions->fetchRow($where);
+    if(!is_null($institution)){
+            return $institution->description;
+    }
+    } else {
+            return 'The Portable Antiquities Scheme';
+            }
+    }
 
 }

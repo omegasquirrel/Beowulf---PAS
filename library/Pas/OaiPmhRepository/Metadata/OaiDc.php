@@ -1,6 +1,7 @@
 <?php
 /** Class implmenting metadata output for the required oai_dc metadata format.
- * oai_dc is output of the 15 unqualified Dublin Core fields.
+ * oai_dc is output of the 15 unqualified Dublin Core fields. Slight modifications
+ * applied by Daniel Pett, 6/2/12
  *
  * @package OaiPmhRepository
  * @subpackage MetadataFormats

@@ -1,26 +1,24 @@
 <?php
-/**
- * @package OaiPmhRepository
- * @subpackage MetadataFormats
- * @author John Flatness, Yu-Hsun Lin
- * @copyright Copyright 2009 John Flatness, Yu-Hsun Lin
- * @license http://www.gnu.org/licenses/gpl-3.0.txt
- */
-
-require_once('Pas/OaiPmhRepository/Metadata/Abstract.php');
-
 
 /**
- * Class implmenting metadata output for the required oai_dc metadata format.
- * oai_dc is output of the 15 unqualified Dublin Core fields.
- *
- * @package OaiPmhRepository
+ * Class implmenting metadata output for People's Network Discovery Service
+ * @category Pas
+ * @package Pas_OaiPmhRepository
  * @subpackage Metadata Formats
+ * @since 6/2/12
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * @version 1
+ * @copyright Daniel Pett
+ * @author Daniel Pett
  */
 class Pas_OaiPmhRepository_Metadata_PndsDc
     extends Pas_OaiPmhRepository_Metadata_Abstract {
 
-
+    /** Create the institution
+     * @todo perhaps move out to another class
+     * @param type $inst
+     * @return string
+     */
     public function institution($inst) {
     if(!is_null($inst)){
     $institutions = new Institutions();

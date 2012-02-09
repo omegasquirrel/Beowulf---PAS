@@ -35,9 +35,9 @@ class Pas_OaiPmhRepository_XmlGeneratorAbstract
      * @param array $children Child names and values, as name => value.
      * @return DomElement The new tree of elements.
      */
-    protected function _createElementWithChildren($parent, $name, $children)
+    protected function createElementWithChildren($parent, $name, $children)
     {
-        $document = $this->_document;
+        $document = $this->document;
         $newElement = $document->createElement($name);
         foreach($children as $tag => $value)
         {
@@ -59,7 +59,7 @@ class Pas_OaiPmhRepository_XmlGeneratorAbstract
      */
     protected function appendNewElement($parent, $name, $text = null)
     {
-        $document = $this->_document;
+        $document = $this->document;
         $newElement = $document->createElement($name);
         // Use a TextNode, causes escaping of input text
         if($text) {

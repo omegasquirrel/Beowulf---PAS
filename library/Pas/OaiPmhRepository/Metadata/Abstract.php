@@ -1,10 +1,12 @@
 <?php
 /** Abstract class on which all other metadata format handlers are based.
- * Includes logic for all metadata-independent record output.
+ * Includes logic for all metadata-independent record output. Modified for project
+ * specific constants by Daniel Pett, February 2012
+ *
  * @category Pas
  * @package Pas_OaiPmhRepository
  * @subpackage Metadata
- * @author John Flatness, Yu-Hsun Lin
+ * @author John Flatness, Yu-Hsun Lin, Daniel Pett
  * @copyright Copyright 2009 John Flatness, Yu-Hsun Lin
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
@@ -15,28 +17,62 @@ require_once('Pas/OaiPmhRepository/OaiIdentifier.php');
 abstract class Pas_OaiPmhRepository_Metadata_Abstract
 	extends Pas_OaiPmhRepository_OaiXmlGeneratorAbstract {
 
+    /** The base record url
+     *
+     */
     const RECORD_URI = '/database/artefacts/record/id/';
 
+    /** The license type for system
+     *
+     */
     const LICENSE = 'CC BY-SA';
 
+    /** Who owns the rights
+     *
+     */
     const RIGHTS_HOLDER = 'The Portable Antiquities Scheme';
 
+    /** The applicable license
+     *
+     */
     const LICENSE_URI = 'http://creativecommons.org/licenses/by-sa/3.0/';
 
+    /** The subject
+     *
+     */
     const SUBJECT = 'archaeology';
 
+    /** The format to produce
+     *
+     */
     const FORMAT = 'text/html';
 
+    /** The default language
+     *
+     */
     const LANGUAGE = 'en-GB';
 
+    /** Where did data come from
+     *
+     */
     const SOURCE = 'Portable Antquities Scheme database';
 
+    /** How was it sourced
+     *
+     */
     const PROVENANCE = 'Crowdsourced from the public of England and Wales';
 
+    /** The thumbnail path
+     *
+     */
     const THUMB_PATH = '/images/thumbnails';
 
+    /** The thumbnail extension
+     *
+     */
     const EXTENSION = '.jpg';
 
+    
     protected $_serverUrl;
 
     /**

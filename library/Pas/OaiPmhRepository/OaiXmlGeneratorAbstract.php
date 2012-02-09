@@ -1,12 +1,16 @@
 <?php
-/**
+/** A modified version of oai xml generator abstract
  * @package OaiPmhRepository
  * @subpackage Libraries
- * @author John Flatness, Yu-Hsun Lin
+ * @author John Flatness, Yu-Hsun Lin, Daniel Pett
  * @copyright Copyright 2009 John Flatness, Yu-Hsun Lin
+ * @copyright Daniel Pett 2011
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * @uses Zend_Http_UserAgent
+ * @uses Zend_Controller_Front
+ * Changes made on 6/2/12
  */
-
+require_once('XmlGeneratorAbstract.php');
 /**
  * Abstract class containing functions for tasks common to all OAI-PMH
  * responses.
@@ -14,7 +18,7 @@
  * @package OaiPmhRepository
  * @subpackage Libraries
  */
-require_once('XmlGeneratorAbstract.php');
+
 
 class Pas_OaiPmhRepository_OaiXmlGeneratorAbstract extends Pas_OaiPmhRepository_XmlGeneratorAbstract {
 
@@ -55,6 +59,9 @@ class Pas_OaiPmhRepository_OaiXmlGeneratorAbstract extends Pas_OaiPmhRepository_
     const OAI_GRANULARITY_STRING   = 'YYYY-MM-DDThh:mm:ssZ';
     const OAI_GRANULARITY_DATE     = 1;
     const OAI_GRANULARITY_DATETIME = 2;
+    /** Added the name for the Scheme repository as a constant
+     *
+     */
     const REPOSITORY = 'Portable Antiquities Scheme';
 
     /**
@@ -142,11 +149,19 @@ class Pas_OaiPmhRepository_OaiXmlGeneratorAbstract extends Pas_OaiPmhRepository_
             return false;
     }
 
+    /** Get the user agent
+     *
+     * @return type
+     */
     public function _userAgent(){
     $useragent = new Zend_Http_UserAgent();
     return $useragent->getUserAgent();
     }
 
+    /** Get the ip address
+     *
+     * @return type
+     */
     public function _ipAddress(){
     return Zend_Controller_Front::getInstance()->getRequest()->getClientIp();
     }

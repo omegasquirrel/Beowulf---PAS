@@ -1,9 +1,11 @@
 <?php
-/**
+/** Modified in places for the creation of item data via solr
+ *
  * @package OaiPmhRepository
  * @subpackage Libraries
- * @author John Flatness, Yu-Hsun Lin
+ * @author John Flatness, Yu-Hsun Lin & Daniel Pett
  * @copyright Copyright 2009 John Flatness, Yu-Hsun Lin
+ * @copyright Daniel Pett 2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
@@ -18,9 +20,10 @@
 class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXmlGeneratorAbstract
 {
 
+    /** The base url for requests
+     *
+     */
     const OAI_PMH_BASE_URL = '/database/oai/request/';
-
-
 
     /**
      * HTTP query string or POST vars formatted as an associative array.
@@ -35,7 +38,12 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      */
     private $metadataFormats;
 
+    /** The metadata classes
+     *
+     * @var type
+     */
     private $metadataFormatsClasses;
+
     /**
      * Constructor
      *
@@ -47,6 +55,9 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
      */
     public function __construct($query) {
 
+    /** set up the server Url
+     *
+     */
     $url = new Pas_OaiPmhRepository_ServerUrl();
     $this->_serverUrl = $url->get();
 
@@ -170,7 +181,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
         (urldecode($_SERVER['QUERY_STRING']) != urldecode(http_build_query($this->query)))) {
             $this->throwError(self::OAI_ERR_BAD_ARGUMENT, "Duplicate arguments in request.");
         }
-     
+
         $keys = array_keys($this->query);
 
         foreach(array_diff($requiredArgs, $keys) as $arg) {
@@ -266,7 +277,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
             $this->throwError(self::OAI_ERR_ID_DOES_NOT_EXIST);
 
         }
-        $solr = new Pas_OaiPmhRepository_OaiResponse();
+        $solr = new Pas_OaiPmhRepository_SolrResponse();
         $item = $solr->getRecord($itemId);
         $single = $item['finds'];
 
@@ -303,7 +314,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 
 
         }
-        $solr = new Pas_OaiPmhRepository_OaiResponse();
+        $solr = new Pas_OaiPmhRepository_SolrResponse();
         $item = $solr->getRecord($itemId);
 
         if(!$item['finds'][0]) {
@@ -422,7 +433,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 
     /**
      * Responds to the two main List verbs, includes resumption and limiting.
-     *
+     * @access private
      * @param string $verb OAI-PMH verb for the request
      * @param string $metadataPrefix Metadata prefix
      * @param int $cursor Offset in response to begin output at
@@ -434,7 +445,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     private function listResponse($verb, $metadataPrefix, $cursor, $set, $from, $until){
 
         $listLimit = 30;
-        $solr = new Pas_OaiPmhRepository_OaiResponse();
+        $solr = new Pas_OaiPmhRepository_SolrResponse();
         $items = $solr->getRecords($cursor, $set, $from, $until);
 
         $rows = $items['numberFound'];
@@ -478,7 +489,7 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
 
     /**
      * Stores a new resumption token record in the database
-     *
+     * @access private
      * @param string $verb OAI-PMH verb for the request
      * @param string $metadataPrefix Metadata prefix
      * @param int $cursor Offset in response to begin output at
@@ -521,10 +532,10 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
     }
 
 
- /**
-     * Builds an array of entries for all included metadata mapping classes.
+    /** Builds an array of entries for all included metadata mapping classes.
      * Derived heavily from OaipmhHarvester's getMaps().
-     *
+     * Modified the method for directory iteration via dirname(__FILE__)
+     * @access private
      * @return array An array, with metadataPrefix => class.
      */
     private function getFormats() {
@@ -536,11 +547,9 @@ class Pas_OaiPmhRepository_ResponseGenerator extends Pas_OaiPmhRepository_OaiXml
                 $filename = $dirEntry->getFilename();
                 // Check for all PHP files, ignore the abstract class
                 if(preg_match('/^(.+)\.php$/', $filename, $match) && $match[1] != 'Abstract') {
-//                    require_once($pathname);
                     $class = 'Pas_OaiPmhRepository_Metadata_'  . $match[1];
                     $object = new $class(null, null);
                     $metadataFormats[$object->getMetadataPrefix()] = $class;
-
                 }
             }
         }

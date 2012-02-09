@@ -10,8 +10,7 @@
  * @subpackage Metadata
  * @author   Daniel Pett
  * @version  1
- * @since	 22 September 2011
- * @todo	 Will need modifying once the solr classes are implemented
+ * @since    22 September 2011
  */
 class Pas_OaiPmhRepository_Metadata_Europeana
 	extends Pas_OaiPmhRepository_Metadata_Abstract {
@@ -29,7 +28,6 @@ class Pas_OaiPmhRepository_Metadata_Europeana
     const DC_NAMESPACE_URI 	= 'http://purl.org/dc/elements/1.1/';
 
     const DC_METADATA_NAMESPACE = 'http://www.openarchives.org/OAI/2.0/oai_dc/';
-
 
     const DC_TERMS_NAMESPACE	= 'http://purl.org/dc/terms/';
 
@@ -107,7 +105,6 @@ class Pas_OaiPmhRepository_Metadata_Europeana
     $formats = array();
 
     if(!is_null($this->item['thumbnail'])){
-
     $ese['isShownBy'] = $this->_serverUrl . self::THUMB_PATH . $this->item['thumbnail'] . self::EXTENSION;
     $formats[] = $this->_serverUrl . '/' . $this->item['imagedir'] . $this->item['filename'];
     }
