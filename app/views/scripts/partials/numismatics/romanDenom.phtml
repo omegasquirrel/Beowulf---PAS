@@ -3,24 +3,41 @@ $this->headMeta($this->curUrl(),'dc.identifier')
 		->headMeta('CC NC-SA-BY','dc.rights')
 		->headMeta('Daniel Pett','dc.creator')
 		->headMeta('The Portable Antiquities Scheme','dc.publisher');
-$this->headMeta('This page outlines detail for the denomination of ' 
-        . $this->denomination . ' as used on the Scheme\'s database. 
+$this->headMeta('This page outlines detail for the denomination of '
+        . $this->denomination . ' as used on the Scheme\'s database.
             When possible, this has been enhanced with dbpedia.','description');
-$this->headLink()->appendAlternate($this->baseUrl() 
-        . '/database/search/results/denomination/' . $this->id . '/format/atom/', 
-	'application/rss+xml', 'Latest recorded finds feed for ' 
+$this->headLink()->appendAlternate($this->baseUrl()
+        . '/database/search/results/denomination/' . $this->id . '/format/atom/',
+	'application/rss+xml', 'Latest recorded finds feed for '
         . $this->escape($this->denomination));?>
 <h2>The <?php echo $this->denomination;?></h2>
 <?php echo $this->description;?>
+<?php if(!is_null($this->rarity)):?>
 <p><?php echo $this->rarity; ?></p>
-<p>Weight: <?php echo $this->weight; ?> g<br />
+<?php endif;?>
+
+<p>
+
+<?php if(!is_null($this->weight)):?>
+Weight: <?php echo $this->weight; ?> g<br />
+<?php endif;?>
+
+<?php if(!is_null($this->thickness)):?>
 Thickness: <?php echo $this->thickness; ?> mm<br />
+<?php endif;?>
+
+<?php if(!is_null($this->diameter)):?>
 Diameter: <?php echo $this->diameter; ?> mm<br />
+<?php endif;?>
+
+<?php if(!is_null($this->term)):?>
 Metal: <?php echo $this->term;?>
+<?php endif;?>
 </p>
-<?php 
+
+    <?php
 ini_set('display_errors', '0');     # don't show any errors...
-//error_reporting(E_ALL | E_STRICT);  # ...but do log them		
+//error_reporting(E_ALL | E_STRICT);  # ...but do log them
 $config = array('remote_store_endpoint' => 'http://dbpedia.org/sparql');
 $ARC2 = new ARC2();
 $store = $ARC2->getRemoteStore($config);
@@ -65,9 +82,9 @@ OPTIONAL {?denom dbpedia2:alternativeNames ?alt}.
 OPTIONAL {?denom dbpedia2:birthPlace ?bp} .
 OPTIONAL {?denom dbpedia2:dateOfBirth ?dob }.
 OPTIONAL {?denom dbpedia2:dateOfDeath ?dod } .
-OPTIONAL {?denom dbpedia2:deathPlace ?dp}. 
+OPTIONAL {?denom dbpedia2:deathPlace ?dp}.
 ?denom foaf:page ?page.
-FILTER langMatches( lang(?abstract), "en") 
+FILTER langMatches( lang(?abstract), "en")
 
 }
 LIMIT 1
@@ -143,4 +160,4 @@ echo '</p>';
 echo '<img src="http://wiki.dbpedia.org/images/dbpedia_logo.png" alt="Dbpedia\'s logo"/>';
 }
 }
-?> 
+?>

@@ -24,43 +24,9 @@
         <li>Object type: <?php echo $this->escape($this->objecttype);?></li>
         <li>Broad period: <?php echo $this->broadperiod;?></li>
         <li>County: <?php echo $this->county;?></li>
-        <li>Workflow stage: <?php echo $this->workflowStatus($this->workflow);?> 
+        <li>Workflow stage: <?php echo $this->workflowStatus($this->workflow);?>
         <?php echo $this->workflow($this->workflow);?></li>
         <li>Description: <?php echo $this->ellipsisstring($this->description,500);?></li>
-        <?php
-            $pieces = NULL;
-
-            $edit = $this->Href(array(
-                    'module' => 'database',
-                    'controller' => 'artefacts',
-                    'action' => 'edit',
-                    'checkAcl' => true,
-                    'acl'=>'Zend_Acl',
-                    'attribs' => array('title' => 'Edit a quote'),
-                    'params' => array('id' => $this->id),
-                    'content'=> 'Edit')
-                    );
-            if($edit !== false){
-                $pieces[] = $edit;
-            }
-                $delete = $this->Href(array(
-                    'module' => 'database',
-                    'controller' =>'artefacts',
-                    'action' =>'delete',
-                    'checkAcl' => true,
-                    'acl' => 'Zend_Acl',
-                    'attribs' => array('title' => 'Delete a quote'),
-                    'params' => array('id' => $this->id),
-                    'content' => 'Delete')
-                    );
-             if($delete !== false){
-                 $pieces[] = $delete;
-             }
-
-            ?>
-        <?php
-        if($pieces):?>
-        <li><?php echo implode(' | ', $pieces);?></li>
-        <?php endif;?>
+    
     </ul>
 </div>

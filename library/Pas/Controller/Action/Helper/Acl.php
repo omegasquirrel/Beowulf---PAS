@@ -25,7 +25,7 @@ require_once 'Zend/Controller/Action/Helper/Abstract.php';
 /**
  * ACL integration
  *
- * Places_Controller_Action_Helper_Acl provides ACL support to a 
+ * Places_Controller_Action_Helper_Acl provides ACL support to a
  * controller.
  *
  * @uses       Zend_Controller_Action_Helper_Abstract
@@ -100,7 +100,7 @@ class Pas_Controller_Action_Helper_Acl extends Zend_Controller_Action_Helper_Abs
             $user = $this->_auth->getIdentity();
             if(is_object($user)) {
                 $role = $this->_auth->getIdentity()->role;
-						
+
             }
         }
 
@@ -110,32 +110,32 @@ class Pas_Controller_Action_Helper_Acl extends Zend_Controller_Action_Helper_Abs
         $module = $request->getModuleName();
         $this->_controllerName = $controller;
 
-        $resource = $controller;
+        $resource = $module . ':' . $controller;
         $privilege = $action;
 
         if (!$this->_acl->has($resource)) {
             $resource = null;
         }
-		
+
 
         if (!$this->_acl->isAllowed($role, $resource, $privilege)) {
-		
+
           	$request->setModuleName('default');
             $request->setControllerName('error');
            	$request->setActionName('error');
-            $request->setDispatched(false); 
-		
+            $request->setDispatched(false);
+
         }
-		
-	/**	
+
+	/**
 		 if (!$this->_acl->isAllowed($role, $resource, $privilege)){
 		throw new Pas_Exception_NotAuthorised('Not authorised');
-		
+
 		}
 
 		***/
     }
-	
+
     /**
      * Proxy to the underlying Zend_Acl's allow()
      *

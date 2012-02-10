@@ -1,13 +1,12 @@
+<div class="row span15 offset2 colour">
 
-<div id="copyright">
-<strong>&copy; <?php echo $this->romannumerals(2003);?> - <?php echo $this->romannumerals(Zend_Date::now()->toString('yyyy'));?></strong> &raquo; <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License"  src="/images/logos/cc.png" height="15" width="80"/></a>
-<ul id="logo">
-<li><a href="http://www.culture.gov.uk" title="The Department of Culture, Media and Sport website"><img src="<?php echo $this->baseUrl();?>/images/logos/dcms.png" width="80" height="70" alt="DCMS logo"/></a></li>
-<li><a href="http://www.britishmuseum.org" title="The British Museum website"><img src="<?php echo $this->baseUrl();?>/images/logos/bm_logo.png"  width="100" height="48" alt="The British Museum logo"/></a></li>
-</ul>
+<div class="span4">
+
+<a href="http://www.culture.gov.uk" title="The Department of Culture, Media and Sport website"><img src="<?php echo $this->baseUrl();?>/images/logos/dcms.png" width="80" height="70" alt="DCMS logo"/></a>
+<a href="http://www.britishmuseum.org" title="The British Museum website"><img src="<?php echo $this->serverUrl();?>/images/logos/bm_logo.png"  width="184" height="73" alt="The British Museum logo"/></a>
 </div>
 
-<div id="col1">
+<div class="span3">
 <ul>
 <li><a href="<?php echo $this->url(array('module' => 'getinvolved','controller' => 'complaints'),'default',true);?>" title="Submit a complaint about the Scheme" accesskey="7">Complaints</a></li>
 <li><a href="mailto:communications@britishmuseum.org ">British Museum Press Office</a></li>
@@ -18,7 +17,7 @@
 </ul>
 </div>
 
-<div id="col2">
+<div class="span3">
 <ul>
 <li><a href="<?php echo $this->url(array('module' => 'help'),'default',true);?>" title="Find helpful information about using our site" accesskey="6">Help with our site</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'info','controller' => 'content','action' => 'page','slug' => 'accessibility'),'i',true);?>" title="Information about our site's accessibility" accesskey="0">Accessibility</a></li>
@@ -28,5 +27,19 @@
 </ul>
 </div>
 
-<div id="contact-address" class="vcard"><span class="adr"><span class="org fn">The British Museum</span>, <span class="street-address">Great Russell Street</span>, <span class="locality">London</span> <span class="postal-code">WC1B 3DG</span>.</span> <br />T: <span class="tel"><span class="value">+44(0) 20 73238618</span></span> E: <a href="mailto:info@finds.org.uk" title="Email the Scheme" class="email">info@finds.org.uk</a></div>
+    <div class="span3">
+        <h4>Join the conversation</h4>
+        <ul>
+            <li><a href="http://www.twitter.com/#!/findsorguk">Twitter</a></li>
+            <li><a href="http://facebook.com/portableantiquitiesscheme">Facebook</a></li>
+            <li><a href="http://flickr.com/finds">Flickr</a></li>
+            <li>YouTube</li>
+        </ul>
+    </div>
 
+<div class="row span16">
+<div id="contact-address" class="vcard">
+<strong>&copy; <?php echo $this->romannumerals(2003);?> - <?php echo $this->romannumerals(Zend_Date::now()->toString('yyyy'));?></strong> &raquo; <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-SA</a> <span class="adr"><span class="org fn">The British Museum</span>, <span class="street-address">Great Russell Street</span>, <span class="locality">London</span> <span class="postal-code">WC1B 3DG</span>.</span> T: <span class="tel"><span class="value">+44(0) 20 73238618</span></span> E: <a href="mailto:info@finds.org.uk" title="Email the Scheme" class="email">info@finds.org.uk</a></div>
+</div>
+
+</div>

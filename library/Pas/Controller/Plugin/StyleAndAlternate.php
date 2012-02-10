@@ -18,15 +18,15 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	. Zend_Version::VERSION,'generator');
 	$view->baseUrl = $request->getBaseUrl();
 	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/jquery.menu.js', $type='text/javascript');
-	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/corner.js', $type='text/javascript');
+//	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/corner.js', $type='text/javascript');
 	$module = strtolower($request->getModuleName());
-	if($module == 'default') {
-	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/home.css', $type='screen');
-	} else {
-	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/default.css', $type='screen');
-	}
-	$view->headLink()->appendStylesheet($view->baseUrl().'/css/print.css', $type='print')
-		->appendStylesheet($view->baseUrl().'/css/style.css', $type='screen');
+//	if($module == 'default') {
+	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap.css', $type='screen');
+//	} else {
+//	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/default.css', $type='screen');
+//	}
+//	$view->headLink()->appendStylesheet($view->baseUrl().'/css/print.css', $type='print')
+//		->appendStylesheet($view->baseUrl().'/css/style.css', $type='screen');
 	$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 	$view->headLink()->appendAlternate($view->baseUrl().'/database/artefacts/index/format/atom/',
 		'application/rss+xml', 'Latest recorded finds feed')

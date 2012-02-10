@@ -37,40 +37,44 @@
 
 <body>
 
-<div id="container">
+<div class="container-fluid">
 
-<div id="header">
-
-	<?php echo $this->layout()->header ?>
-
-<div id="nav">
-
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="nav-collapse">
 	<?php echo $this->layout()->navigation ?>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
-</div>
 
-</div>
+    <div class="container">
+
+        <div class="row span16">
+
+            <div class="row span9"><?php echo $this->layout()->breadcrumb;?></div>
+
+            <?php echo $this->layout()->messages;?>
+
+            <?php echo $this->acronyms($this->layout()->content); ?>
+
+            <?php echo $this->layout()->contexts; ?>
+
+        </div>
 
 
-<div id="content">
+    </div>
 
-	<?php echo $this->layout()->breadcrumb;	?>
 
-	<?php echo $this->layout()->messages;?>
+    <div class="row span16 muted">
 
-	<?php echo $this->acronyms($this->layout()->content); ?>
+            <?php echo $this->layout()->footer; ?>
 
-	<?php echo $this->layout()->contexts; ?>
+    </div>
 
-</div>
 
-<div id="footer">
-
-	<?php echo $this->layout()->footer; ?>
-
-</div>
-
-</div>
 
 	<?echo $this->JQuery(); ?>
 

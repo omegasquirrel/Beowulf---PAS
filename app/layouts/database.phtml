@@ -42,23 +42,24 @@
 
 </head>
 <body>
-<div id="container">
 
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+          <div class="nav-collapse">
+	<?php echo $this->layout()->navigation ?>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
-<div id="header">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
 
-<?php echo $this->layout()->header ?>
+          <div class="well sidebar-nav">
 
-<div id="nav">
-<?php echo $this->layout()->navigation ?>
-</div>
-
-</div>
-
-
-<div id="sidebar">
-
-<?php echo $this->layout()->userdata;?>
+              <?php echo $this->layout()->userdata;?>
 
 <?php echo $this->layout()->sidebar; ?>
 
@@ -68,27 +69,39 @@
 
 <?php echo $this->layout()->tag;?>
 
-</div>
+          </div><!--/.well -->
 
-<div id="content">
-<?php echo $this->layout()->breadcrumb;	?>
-<?php echo $this->layout()->messages;?>
-<?php echo $this->acronyms($this->layout()->content); ?>
-<?php echo $this->layout()->contexts; ?>
-
-</div>
-
-<div id="footer">
-<?php echo $this->layout()->footer; ?>
-</div>
-
-</div>
-<?echo $this->jQuery(); ?>
-
-<?php echo $this->inlineScript(); ?>
-
-<?php echo $this->layout()->analytics; ?>
+        </div><!--/span-->
+        <div class="span9">
 
 
-</body>
+          <div class="row-fluid">
+
+            <div class="span9">
+                <?php echo $this->layout()->breadcrumb;	?>
+                <?php echo $this->layout()->messages;?>
+                <?php echo $this->acronyms($this->layout()->content); ?>
+                <?php echo $this->layout()->contexts; ?>
+
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+<div class="row span16 muted">
+
+            <?php echo $this->layout()->footer; ?>
+
+    </div>
+
+    </div><!--/.fluid-container-->
+
+    <?echo $this->jQuery(); ?>
+
+    <?php echo $this->inlineScript(); ?>
+
+    <?php echo $this->layout()->analytics; ?>
+
+  </body>
 </html>
