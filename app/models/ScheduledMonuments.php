@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
 * Data model for accessing and manipulating scheduled monument data, derived from
 * the English Heritage NMR data dump.
@@ -20,26 +20,26 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 
 	protected $_primaryKey = 'id';
 
-	
-	
+
+
 	/** Curl function
 	* @param string $url the url to curl
 	* @return object
 	* @todo replace with Zend_Http class
 	*/
 	public function get($url){
-	$ch = curl_init(); 
-	curl_setopt($ch, CURLOPT_URL, $url); 
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-	$output = curl_exec($ch); 
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	$output = curl_exec($ch);
 	curl_close($ch);
 	return $output;
 	}
-	
-	/** Find SMRs within a certain distance of a lat lon pair, this is set up to work 
-	* in kilometres from point. You can adapt this for miles. This perhaps can be 
+
+	/** Find SMRs within a certain distance of a lat lon pair, this is set up to work
+	* in kilometres from point. You can adapt this for miles. This perhaps can be
 	* swapped out for a SOLR based search in future.
-	* @param double $lat Latitude 
+	* @param double $lat Latitude
 	* @param double $long Longitude
 	* @param double $distance distance from point
 	* @return array
@@ -48,26 +48,26 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 		$pi = '3.141592653589793';
 		$nearbys = $this->getAdapter();
 		$select = $nearbys->select()
-			->from($this->_name,array( 'monumentName', 'id', 'lat', 
+			->from($this->_name,array( 'monumentName', 'id', 'lat',
 			'lon','distance' => 'acos((SIN(' . $pi . '*' . $lat . '/180 ) * SIN(' . $pi . '* lat /180)) + (cos('
-			. $pi . '*' . $lat . '/180) * COS(' . $pi .'* lat/180) * COS(' . $pi 
+			. $pi . '*' . $lat . '/180) * COS(' . $pi .'* lat/180) * COS(' . $pi
 			. '* lon/180 - ' . $pi . '* (' . $long . ') /180))) *6378.137'))
 			->where('6378.137 * ACOS((SIN(' . $pi . '*' . $lat . '/180) * SIN('
-			. $pi . '* lat/180)) + (COS(' . $pi . '*' . $lat 
+			. $pi . '* lat/180)) + (COS(' . $pi . '*' . $lat
 			. '/180) * cos(' . $pi . '* lat /180 ) * COS(' . $pi . '* lon /180 -'
 			. $pi . '* ( ' . $long . ')/180))) <=' . $distance)
 			->where('1=1')
 			->order('6378.137 * ACOS((SIN(' . $pi . '*' . $lat . '/180 ) * SIN('
 			. $pi . '* lat/180)) + (COS(' . $pi . '*' . $lat . '/180) * cos('
-			. $pi . ' * lat /180 ) * COS(' . $pi . '* lon /180 - ' 
+			. $pi . ' * lat /180 ) * COS(' . $pi . '* lon /180 - '
 			. $pi . '*  (' . $long . ' )/180))) ASC');
 	return $nearbys->fetchAll($select);
 	}
 
-	/** Find objects recorded with proximity to SMRs within a certain distance of a lat lon pair, 
-	* this is set up to work in kilometres from point. You can adapt this for miles. This perhaps can be 
+	/** Find objects recorded with proximity to SMRs within a certain distance of a lat lon pair,
+	* this is set up to work in kilometres from point. You can adapt this for miles. This perhaps can be
 	* swapped out for a SOLR based search in future.
-	* @param double $lat Latitude 
+	* @param double $lat Latitude
 	* @param double $long Longitude
 	* @param double $distance distance from point
 	* @return array
@@ -79,11 +79,11 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 			->from('finds',array('old_findID','id','objecttype'))
 			->joinLeft('findspots','finds.secuid = findspots.findID', array( 'county', 'declat', 'declong',
 			'distance' => 'acos((SIN(' . $pi . '*' . $lat . '/180 ) * SIN(' . $pi . '* declat /180)) + (cos('
-			. $pi . '*' . $lat . '/180) * COS(' . $pi . '* declat/180) * COS(' . $pi 
+			. $pi . '*' . $lat . '/180) * COS(' . $pi . '* declat/180) * COS(' . $pi
 			. '* declong/180 - ' . $pi . '* (' . $long . ') /180))) *6378.137'))
-			->where('6378.137 * ACOS((SIN(' . $pi . '*' . $lat . '/180) * SIN(' . $pi 
-			. '* declat/180)) + (COS(' . $pi . '*' . $lat . '/180) * cos(' 
-			. $pi . '* declat /180 ) * COS(' . $pi . '* declong /180 -' . $pi 
+			->where('6378.137 * ACOS((SIN(' . $pi . '*' . $lat . '/180) * SIN(' . $pi
+			. '* declat/180)) + (COS(' . $pi . '*' . $lat . '/180) * cos('
+			. $pi . '* declat /180 ) * COS(' . $pi . '* declong /180 -' . $pi
 			. '* ( ' . $long . ')/180))) <=' . $distance)
 			->where('1=1')
 			->order('6378.137 * ACOS((SIN(' . $pi . '*' . $lat . '/180 ) * SIN(' . $pi
@@ -93,9 +93,9 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 		return $nearbys->fetchAll($select);
 	}
 
-	/** 
+	/**
 	* Get a paginated list of Scheduled monuments
-	* @param integer $page the page number 
+	* @param integer $page the page number
 	* @param string $county assigned county
 	* @param string $district assigned district
 	* @param string $parish assigned parish
@@ -108,29 +108,29 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 				->from($this->_name)
 				->order('county');
 			if(isset($monumentName) && ($monumentName != "")){
-			$select->where('monumentName LIKE ?',(string)'%' . $monumentName . '%');	
+			$select->where('monumentName LIKE ?',(string)'%' . $monumentName . '%');
 			}
 			if(isset($district) && ($district != "")){
-			$select->where('district = ?',(string)$district);	
+			$select->where('district = ?',(string)$district);
 			}
 			if(isset($county) && ($county != "")){
-			$select->where('county = ?',(string)$county);	
+			$select->where('county = ?',(string)$county);
 			}
 			if(isset($parish) && ($parish != "")){
 			$select->where('parish = ?',(string)$parish);
 			}
 			$paginator = Zend_Paginator::factory($select);
-			$paginator->setItemCountPerPage(20) 
-				->setPageRange(20);
+			$paginator->setItemCountPerPage(20)
+				->setPageRange(10);
 			if(isset($page) && ($page != "")) {
-		    $paginator->setCurrentPageNumber((int)$page); 
+		    $paginator->setCurrentPageNumber((int)$page);
 		}
 		return $paginator;
 	}
 
-	/** 
-	* Get a paginated list of Scheduled monuments by Yahoo WOEID 
-	* @param integer $page the page number 
+	/**
+	* Get a paginated list of Scheduled monuments by Yahoo WOEID
+	* @param integer $page the page number
 	* @param integer $id the WOEID
 	* @return array
 	*/
@@ -142,15 +142,15 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 				->where('woeid = ?',(int)$id);
 			$paginator = Zend_Paginator::factory($select);
 			$paginator->setCache($this->_cache);
-			$paginator->setItemCountPerPage(20) 
-			          ->setPageRange(20);
+			$paginator->setItemCountPerPage(20)
+			          ->setPageRange(10);
 			if(isset($page) && ($page != "")) {
-		    $paginator->setCurrentPageNumber($page); 
+		    $paginator->setCurrentPageNumber($page);
 			}
 		return $paginator;
 	}
 
-	/** Get a Scheduled monument by id number 
+	/** Get a Scheduled monument by id number
 	* @param integer $id the id of monument
 	* @return array
 	* @todo change to fetchrow?
@@ -163,7 +163,7 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 		return $nearbys->fetchAll($select);
 	}
 
-	/** Get a list of Scheduled monument as key value pairs 
+	/** Get a list of Scheduled monument as key value pairs
 	* @return array
 	*/
 	public function listMonuments() {
@@ -173,15 +173,15 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 			$options = $this->getAdapter()->fetchPairs($select);
 		return $options;
     }
-    
-	/** Get a list of Scheduled monuments within a constituency 
-	* @param $constituency The constituency to query 
+
+	/** Get a list of Scheduled monuments within a constituency
+	* @param $constituency The constituency to query
 	* @return array
 	* @todo change over to YQL query
 	* @todo add cache
 	*/
 	public function getSmrsConstituency($constituency) {
-			$twfy = 'http://www.theyworkforyou.com/api/getGeometry?name=' 
+			$twfy = 'http://www.theyworkforyou.com/api/getGeometry?name='
 			. urlencode($constituency) . '&output=js&key=CzhqDaDMAgkMEcjdvuGZeRtR';
 			$data = $this->get($twfy);
 			$data = json_decode($data);
@@ -190,7 +190,7 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 			$latmax = $data->max_lat;
 			$longmin = $data->min_lon;
 			$longmax = $data->max_lon;
-		
+
 			$finds = $this->getAdapter();
 			$select = $finds->select()
 				->from($this->_name)
@@ -204,7 +204,7 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 			return NULL;
 		}
 	}
-	
+
 	/** Get a list of Scheduled monuments by a query string
 	* @param $q The query string of monument
 	* @return array
@@ -217,7 +217,7 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 				->where('monumentName LIKE ?', (string)'%' . $q . '%')
 				->order('monumentName')
 				->limit(10);
-	return $mons->fetchAll($select);	
+	return $mons->fetchAll($select);
 	}
 
 	/** Get a list of Scheduled monuments by a query string
@@ -232,7 +232,7 @@ class ScheduledMonuments extends Pas_Db_Table_Abstract {
 			->where('monumentName LIKE ?', '%' . $q . '%')
 			->order('monumentName')
 			->limit(10);
-	   return $mons->fetchAll($select);	
+	   return $mons->fetchAll($select);
 	}
-		
+
 }

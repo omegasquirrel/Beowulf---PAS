@@ -30,7 +30,7 @@ class Materials extends Pas_Db_Table_Abstract {
 	}
 	return $options;
     }
-    
+
     /** Get secondary materials
 	* @return array
 	*/
@@ -70,7 +70,7 @@ class Materials extends Pas_Db_Table_Abstract {
 	$options = $this->getAdapter()->fetchAll($select);
 	return $options;
     }
-	
+
     /** Get material name list
 	* @return array
 	* @todo add caching
@@ -95,16 +95,16 @@ class Materials extends Pas_Db_Table_Abstract {
 		->joinLeft('users','users.id = '.$this->_name.'.createdBy',array('fullname'))
 		->joinLeft('users','users_2.id = '.$this->_name.'.updatedBy',array('fn' => 'fullname'))
 		->order('id');$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
-    $paginator->setCurrentPageNumber($page); 
+    $paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}
-	
+
 	/** Get material details
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo add caching
 	*/
@@ -115,9 +115,9 @@ class Materials extends Pas_Db_Table_Abstract {
 		->where('id = ?',(int)$id);
 	return $this->getAdapter()->fetchAll($select);
     }
-    
+
     /** Get material count
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo add caching
 	*/

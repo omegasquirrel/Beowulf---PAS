@@ -1,18 +1,24 @@
-<div typeof="pas:record" about="[<?php echo $this->old_findID;?>]">
-    <div class="thumbnailList dec flow">
-        <?php if(isset($this->thumbnail)):?>
-        <?php
+<div typeof="pas:record" about="[<?php echo $this->old_findID;?>]" class="row span12 well">
+
+
+
+    <div class="span12"> <?php if(isset($this->thumbnail)):?>
+     <?php
         $path = '/images/thumbnails/';
         $ext = '.jpg';
         list($w,$h) = getimagesize($this->serverUrl() . $path . $this->thumbnail . $ext );
         ?>
-	<img src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
-             alt="Thumbnail image of <?php echo $this->old_findID;?>"
-             width="<?php echo $w;?>" height="<?php echo $h;?>"/>
+    <ul class="thumbnails" style="float:right;">
+        <li >
+            <div class="thumbnail">
+            <img src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
+                    alt="Thumbnail image of <?php echo $this->old_findID;?>"
+                    width="<?php echo $w;?>" height="<?php echo $h;?>"/>
+            </div>
+        </li>
+    </ul>
+
 	<?php endif;?>
-    </div>
-
-
     <ul>
     <?php $url = $this->url(array(
     	'module' => 'database',
@@ -27,6 +33,11 @@
         <li>Workflow stage: <?php echo $this->workflowStatus($this->workflow);?>
         <?php echo $this->workflow($this->workflow);?></li>
         <li>Description: <?php echo $this->ellipsisstring($this->description,500);?></li>
-    
+
     </ul>
+
+    </div>
+
+
+
 </div>

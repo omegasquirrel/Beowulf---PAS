@@ -11,12 +11,12 @@
 * @todo add caching and amalgamate some functions (duplication!!!)
 */
 class Denominations extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'denominations';
-	
+
 	protected $_primary = 'id';
 
-	
+
 	/** Get denomination by period as a list
 	* @param $period
 	* @return array
@@ -30,7 +30,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 		->order('denomination');
 	return $denoms->fetchAll($select);
 	}
-	
+
 	/** retrieve a key pair list of roman denominations
 	 */
 	public function getOptionsRoman() {
@@ -52,7 +52,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	$options = $this->getAdapter()->fetchPairs($select);
 	return $options;
     }
-    
+
     /** Get a list of Early medieval denominations as key pairs for dropdowns
      */
 	public function getOptionsEarlyMedieval() {
@@ -63,7 +63,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	$options = $this->getAdapter()->fetchPairs($select);
 	return $options;
     }
-    
+
 	/** Get a list of Medieval denominations as key pair values
 	*/
 	public function getOptionsMedieval() {
@@ -112,13 +112,13 @@ class Denominations extends Pas_Db_Table_Abstract {
     }
 
     /** Get a list of Roman rulers and denominations
-     * 
+     *
      * @param integer $ruler
-     */ 
+     */
 	public function getRomanRulerDenom($ruler) {
 	$select = $this->select()
 		->from($this->_name, array('id', 'term' => 'denomination'))
-		->joinLeft('denominations_rulers', 'denominations.id = denominations_rulers.denomination_id', 
+		->joinLeft('denominations_rulers', 'denominations.id = denominations_rulers.denomination_id',
 		array())
 		->joinLeft('rulers','rulers.id = denominations_rulers.ruler_id', array())
 		->where('denominations_rulers.ruler_id= ?',$ruler);
@@ -127,14 +127,14 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get an admin list of rulers to denominations
-	 * 
+	 *
 	 * @param integer $ruler
 	 */
-	public function getRomanRulerDenomAdmin($ruler) {				
+	public function getRomanRulerDenomAdmin($ruler) {
 	$options = $this->getAdapter();
 	$select = $options->select()
 		->from($this->_name, array('id', 'term' => 'denomination'))
- 		->joinLeft('denominations_rulers','denominations.id = denominations_rulers.denomination_id', 
+ 		->joinLeft('denominations_rulers','denominations.id = denominations_rulers.denomination_id',
  		array('created', 'linkid' => 'id'))
 		->joinLeft('rulers','rulers.id = denominations_rulers.ruler_id', array())
 		->joinLeft('users','users.id = denominations_rulers.createdBy', array('fullname'))
@@ -145,7 +145,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a list of early medieval rulers to denominations
-	 * 
+	 *
 	 * @param integer $ruler
 	 */
 	public function getEarlyMedRulerDenom($ruler) {
@@ -161,7 +161,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a list of early medieval rulers and their denominations
-	 * 
+	 *
 	 * @param integer $ruler
 	 */
 	public function getEarlyMedRulerToDenomination($ruler) {
@@ -177,7 +177,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a key value pair list of early medieval rulers and denominations
-	 * 
+	 *
 	 * @param integer $ruler
 	 */
 	public function getEarlyMedRulerToDenominationPairs($ruler) {
@@ -194,7 +194,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a list of Post Medieval rulers to denominations
-	 * 
+	 *
 	 * @param integer $ruler
 	 */
 	public function getPostMedRulerDenom($ruler) {
@@ -233,7 +233,7 @@ class Denominations extends Pas_Db_Table_Abstract {
     }
 
     /** Get a denomination name from its ID number#
-     * 
+     *
      * @param integer $denomination
      */
 	public function getDenomName($denomination) {
@@ -246,8 +246,8 @@ class Denominations extends Pas_Db_Table_Abstract {
 	return $denoms->fetchAll($select);
     }
 
-    /** Get am emperor's denominations 
-     * 
+    /** Get am emperor's denominations
+     *
      * @param integer $id
      */
 	public function getEmperorDenom($id) {
@@ -264,7 +264,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a denomination by period and id number
-	 * 
+	 *
 	 * @param integer $id
 	 * @param integer $period
 	 */
@@ -281,7 +281,7 @@ class Denominations extends Pas_Db_Table_Abstract {
     }
 
     /** Get denominations by period and paginated by page
-     * 
+     *
      * @param $period
      * @param $page
      */
@@ -294,16 +294,16 @@ class Denominations extends Pas_Db_Table_Abstract {
 		->where('period = ?',(int)$period)
 		->order('denomination');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
-	$paginator->setCurrentPageNumber($page); 
+	$paginator->setCurrentPageNumber($page);
 	}
-	return $paginator;   
+	return $paginator;
 	}
 
 	/** Get denominations for json by period
-	 * 
+	 *
 	 * @param integer $period
 	 */
 	public function getDenominationsJson($period) {
@@ -318,7 +318,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a pair list of all denominations by period
-	 * 
+	 *
 	 * @param integer $period
 	 */
 	public function getDenomsAdd($period){
@@ -331,7 +331,7 @@ class Denominations extends Pas_Db_Table_Abstract {
     }
 
     /** get a paginated list of valid denominations
-     * 
+     *
      * @param array $params
      */
 	public function getDenomsValid( array $params) {
@@ -343,16 +343,16 @@ class Denominations extends Pas_Db_Table_Abstract {
 		->where($this->_name . '.valid = ?',(int)1)
 		->order('denomination');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
     }
 
     /** Fer a ruler to denomination by id
-     * 
+     *
      * @param integer $id
      */
 	public function getRulerDenomination( $id) {
@@ -368,7 +368,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a denomination by ID
-	 * 
+	 *
 	 * @param integer $id
 	 */
 	public function getDenomination($id) {
@@ -382,7 +382,7 @@ class Denominations extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a list of denominations for the sitemap by period
-	 * 
+	 *
 	 * @param integer $period
 	 */
 	public function getDenominationsSitemap($period) {

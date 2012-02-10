@@ -3,7 +3,7 @@
 * @category Pas
 * @package Pas_Db_Table
 * @subpackage Abstract
-* @author Daniel Pett 
+* @author Daniel Pett
 * @copyright 2010 - DEJ Pett dpett @ britishmuseum.org
 * @license GNU General Public License
 * @version		1.0
@@ -11,21 +11,21 @@
 */
 
 class AllenTypes extends Pas_Db_Table_Abstract {
-	
+
 	/** Set the table name
 	 * @var string $_name
-	 * @access protected 
+	 * @access protected
 	 */
 	protected $_name = 'allentypes';
-	
+
 	/** Set the primary key
 	 * @var string $_primary
 	 * @access protected
 	 */
 	protected $_primary = 'id';
-	
+
 	/** Get all valid Allen Types for a dropdown listing
-	* @access public 
+	* @access public
 	* @return array $options
 	*/
 	public function getATypes(){
@@ -66,11 +66,11 @@ class AllenTypes extends Pas_Db_Table_Abstract {
 		->order($this->_name . '.type')
 		->group($this->_name . '.type');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20)
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10)
 		->setCache($this->_cache);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}

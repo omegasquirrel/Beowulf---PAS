@@ -13,11 +13,11 @@
 class Emperors extends Pas_Db_Table_Abstract {
 
 	protected $_name = 'emperors';
-	
+
 	protected $_primary = 'id';
 
 	/** get Roman Emperor details by id number
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	*/
 	public function getEmperorDetails($id){
@@ -36,7 +36,7 @@ class Emperors extends Pas_Db_Table_Abstract {
     }
 
     /** get Roman Emperor reverse types
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo perhaps move this to reverse types model?
 	*/
@@ -55,9 +55,9 @@ class Emperors extends Pas_Db_Table_Abstract {
 		}
         return $data;
 	}
-	
+
 	/** get Roman Emperor's available denominations by join on denoms to emperor table
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo perhaps move this to denominations model?
 	*/
@@ -78,7 +78,7 @@ class Emperors extends Pas_Db_Table_Abstract {
 	}
 
 	/** get Reece period for a Roman emperor
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo perhaps move this to reece period model?
 	*/
@@ -88,16 +88,16 @@ class Emperors extends Pas_Db_Table_Abstract {
 		$select = $reeces->select()
            ->from('emperors', array('id','issuer' => 'name','date_from','date_to','image','dbaseID' => 'pasID'))
 			->joinLeft(array('r' => 'reeceperiods'),'r.id = emperors.reeceID', array('period_name','description','date_range'))
-			->where('emperors.reeceID = ?', (int)$id) 
+			->where('emperors.reeceID = ?', (int)$id)
 			->order($this->_name . '.' . $this->_primary);
         $data =  $reeces->fetchAll($select);
         $this->_cache->save($data, 'reecedetails'.$id);
 		}
         return $data;
     }
-    
+
     /** get Reece period for a Roman emperor
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo why is this not in the dynasty model? Fool!
 	*/
@@ -106,10 +106,10 @@ class Emperors extends Pas_Db_Table_Abstract {
 		$emperors = $this->getAdapter();
 		$select = $emperors->select()
            ->from('emperors', array('id','issuer' => 'name','date_from','date_to','image','dbaseID' => 'pasID'))
-		   ->where('emperors.dynasty = ?',$id) 
+		   ->where('emperors.dynasty = ?',$id)
 		   ->order($this->_name . '.' . $this->_primary);
         return $emperors->fetchAll($select);
-	}	
+	}
 
 	/** get administration list of emperors and paginate it
 	* @return array
@@ -124,14 +124,14 @@ class Emperors extends Pas_Db_Table_Abstract {
 		   ->group($this->_name . '.' . $this->_primary)
 		   ->order($this->_name . '.' . $this->_primary);
 		$paginator = Zend_Paginator::factory($select);
-		$paginator->setItemCountPerPage(30) 
-					->setPageRange(20);
+		$paginator->setItemCountPerPage(30)
+					->setPageRange(10);
 		if(isset($page) && ($page != "")) {
-		$paginator->setCurrentPageNumber($page); 
+		$paginator->setCurrentPageNumber($page);
 		}
 		return $paginator;
 	}
-	
+
 	/** get dynasty to emperors
 	* @return array
 	* @todo is this a duplication of getEmperorsDynasty function?
@@ -142,19 +142,19 @@ class Emperors extends Pas_Db_Table_Abstract {
 		$select = $emperors->select()
            ->from('emperors', array('id','issuer' => 'name','date_from','date_to','dbaseID' => 'pasID'))
            ->joinLeft('rulerImages',$this->_name . '.pasID = rulerImages.rulerID', array('image' => 'filename'))
-		   ->where('emperors.dynasty = ?', $id) 
+		   ->where('emperors.dynasty = ?', $id)
 		   ->order('emperors.date_from');
         $data = $emperors->fetchAll($select);
 		$this->_cache->save($data, 'dynemp'.$id);
 		}
         return $data;
-	}	
-	
+	}
+
 	/** Produce a sitemap list of emperors
 	* @return array
 	* @todo is this a duplication of getEmperorsDynasty function?
 	*/
-	public function getEmperorsSiteMap() {	
+	public function getEmperorsSiteMap() {
 	if (!$data = $this->_cache->load('empsSiteMap')) {
 		$emperors = $this->getAdapter();
 		$select = $emperors->select()

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * A view helper for printing links on image page
  * @category   Pas
@@ -11,7 +11,7 @@
  * @author Daniel Pett
  */
 class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
-	
+
 	protected $noaccess = array('public');
 	protected $restricted = array('member','research','hero');
 	protected $recorders = array('flos');
@@ -23,15 +23,15 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	/** Constructor for authorisation
 	* @access private
 	*/
-	public function __construct()  { 
+	public function __construct()  {
 	$auth = Zend_Registry::get('auth');
-	$this->_auth = $auth; 
+	$this->_auth = $auth;
 	}
-	
+
 	/** Get the user's role from identity
 	 * @access private
 	 * @return string $role The user's role
-	 */	
+	 */
 	private function getRole() {
 	if($this->_auth->hasIdentity()) {
 	$user = $this->_auth->getIdentity();
@@ -39,7 +39,7 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	return $role;
 	}
 	}
-    
+
 	/** get the user's identity number
 	 * @access private
 	 * @return integer $id The user's id number
@@ -51,7 +51,7 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	return $id;
 	}
 	}
-	
+
 	/** Get the user's institution
 	 * @access private
 	 * @return string $inst The institution name
@@ -62,16 +62,16 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	$user = $this->_auth->getIdentity();
 	$inst = $user->institution;
 	if(is_null($inst)){
-	throw new Pas_Exception_Group($this->_missingGroup);	
+	throw new Pas_Exception_Group($this->_missingGroup);
 	}
 	return $inst;
 	} else {
 	return FALSE;
-	}	
 	}
-	
+	}
+
 	/** Check the user's access by ID number and created by
-	 * @access private 
+	 * @access private
 	 * @param integer $createdBy the created by number for the find
 	 * @return boolean
 	 */
@@ -82,7 +82,7 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	return FALSE;
 	}
 	}
-	
+
 	/** Check access by the institutional ID
 	 * @access private
 	 * @param string $oldfindID The record ID
@@ -98,7 +98,7 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	return TRUE;
 	}
 	}
-	
+
 	/** Return the HTML links
 	 * @access private
 	 * @param integer $findID The find number from primary key of finds table
@@ -106,26 +106,28 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	 * @return string $html The code for the strings of links
 	 */
 	private function buildHtml($findID, $oldfindID) {
+        $class = 'btn btn-large btn-warning';
+        $classDanger = 'btn btn-large btn-danger';
 	$editurl = $this->view->url(array('module' => 'database', 'controller' => 'artefacts', 'action' => 'edit',
 	'id' => $findID),null,true);
 	$deleteurl = $this->view->url(array('module' => 'database', 'controller' => 'artefacts', 'action' => 'delete',
 	'id' => $findID),null,true);
-	$html = ' | <a href="';
+	$html = ' | <a class="' . $class . '" href="';
 	$html .= $editurl;
 	$html .= '" title="Edit details for ';
 	$html .= $oldfindID;
-	$html .= '" accesskey="e">Edit</a> | <a href="';
+	$html .= '" accesskey="e">Edit</a> | <a class="' . $classDanger . '" href="';
 	$html .= $deleteurl;
 	$html .= '" title="Delete record ';
 	$html .= $oldfindID;
 	$html .= '" accesskey="d">';
 	$html .= 'Delete</a>';
 	return $html;
-	}	
+	}
 
 	/** Create the links
-	 * @access public 
-	 * @param integer $findID The find number 
+	 * @access public
+	 * @param integer $findID The find number
 	 * @param string $oldfindID The find string
 	 * @param integer $createdBy Created by number
 	 * @return string
@@ -140,14 +142,14 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	return $this->buildHtml($findID,$oldfindID);
 	}
 	} else if(in_array($this->getRole(),$this->recorders)){
-	if(($byID == true && $instID == true) || ($byID == true && $instID == FALSE) 
-	|| ($byID == FALSE && $instID == true)){	
+	if(($byID == true && $instID == true) || ($byID == true && $instID == FALSE)
+	|| ($byID == FALSE && $instID == true)){
 	return $this->buildHtml($findID,$oldfindID);
 	} else {
-	return FALSE;	
-	}	
+	return FALSE;
+	}
 	} else if(in_array($this->getRole(),$this->higherLevel)) {
 	return $this->buildHtml($findID,$oldfindID);
-	} 
+	}
 	}
 }

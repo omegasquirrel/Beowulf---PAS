@@ -12,13 +12,13 @@
 */
 
 class Moneyers extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'moneyers';
-	
+
 	protected $_primary = 'id';
-	
+
 	/** Retrieve moneyer list with concatenated names and dates
-	* @return array 
+	* @return array
 	* @todo add caching
 	*/
 	public function getMoneyers() {
@@ -27,9 +27,9 @@ class Moneyers extends Pas_Db_Table_Abstract {
 		->from($this->_name, array('id','term' => 'CONCAT(name,"(",date_1," ",date_2,")")'));
 	return $moneyers->fetchAll($select);
     }
-    	
+
     /** Retrieve moneyer list with concatenated names and dates in key value pair array
-	* @return array 
+	* @return array
 	* @todo add caching
 	*/
 	public function getRepublicMoneyers() {
@@ -37,11 +37,11 @@ class Moneyers extends Pas_Db_Table_Abstract {
 	$select = $moneyers->select()
 		->from($this->_name, array('id','term' => 'CONCAT(name,"(",date_1," ",date_2,")")'));
 	return $moneyers->fetchPairs($select);
-    }	
-	
-    /** Retrieve paginated moneyer list 
-    * @param integer $params['page'] 
-	* @return array 
+    }
+
+    /** Retrieve paginated moneyer list
+    * @param integer $params['page']
+	* @return array
 	*/
 	public function getValidMoneyers($params) {
 	$moneyers = $this->getAdapter();
@@ -49,17 +49,17 @@ class Moneyers extends Pas_Db_Table_Abstract {
 		->from($this->_name)
 		->where('valid = ?',(int)1);
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
-    }		
-	
-    /** Retrieve moneyer by ID number 
+    }
+
+    /** Retrieve moneyer by ID number
     * @param integer $id
-	* @return array 
+	* @return array
 	* @todo change to fetchrow?
 	* @todo add caching?
 	*/
@@ -69,5 +69,5 @@ class Moneyers extends Pas_Db_Table_Abstract {
 		->from($this->_name)
 		->where($this->_primary . ' = ?',(int)$id);
 	return $moneyers->fetchAll($select);
-    }			
+    }
 }

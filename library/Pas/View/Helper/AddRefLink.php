@@ -10,7 +10,7 @@
  * @since 29 September 2011
  * @author dpett
  */
-class Pas_View_Helper_AddRefLink 
+class Pas_View_Helper_AddRefLink
 	extends Zend_View_Helper_Abstract {
 
 	protected $noaccess = array('public');
@@ -20,26 +20,26 @@ class Pas_View_Helper_AddRefLink
 	protected $_auth = NULL;
 	protected $_missingGroup = 'User is not assigned to a group';
 	protected $_message = 'You are not allowed edit rights to this record';
-	
+
 	/** Construct the auth object
 	*/
-	public function __construct() { 
+	public function __construct() {
     $auth = Zend_Auth::getInstance();
-    $this->_auth = $auth; 
+    $this->_auth = $auth;
     }
-    
+
 	/** Get the user's role
-	*/	
+	*/
 	public function getRole() {
 	if($this->_auth->hasIdentity()) {
 	$user = $this->_auth->getIdentity();
 	$role = $user->role;
 	} else {
 	$role = 'public';
-	}	
+	}
 	return $role;
 	}
-	
+
 	/** Get the userid
 	*/
 	public function getUserID() {
@@ -75,10 +75,10 @@ class Pas_View_Helper_AddRefLink
 	} else if((in_array($this->getRole(),$this->recorders) && ($id == 'PUBLIC'))) {
 	return TRUE;
 	} else {
-	return FALSE;	
+	return FALSE;
 	}
 	}
-	
+
 	/** Get the user's group
 	 * @return boolean
 	 */
@@ -89,9 +89,9 @@ class Pas_View_Helper_AddRefLink
 	return $inst;
 	} else {
 	return FALSE;
-	}	
 	}
-	
+	}
+
 	/** Check access by userid
 	 * @return boolean
 	 * @param int $createdBy
@@ -109,7 +109,7 @@ class Pas_View_Helper_AddRefLink
 	}
 
 	/** Add the reference link
-	 * 
+	 *
 	 * @param $oldfindID
 	 * @param $findID
 	 * @param $secuid
@@ -133,16 +133,16 @@ class Pas_View_Helper_AddRefLink
 	}
 	}
 	}
-	
+
 	/** Build the html
-	 * 
+	 *
 	 * @param string $findID
 	 * @param string $secuid
 	 */
 	public function buildHtml($findID, $secuid) {
 	$url = $this->view->url(array('module' => 'database','controller' => 'references','action' => 'add',
 	'findID' => $findID,'secID' => $secuid), null, true);
-	$string = '<div id="addref" class="addpanel noprint"><a href="' . $url 
+	$string = '<div id="addref" class="btn btn-large btn-primary"><a href="' . $url
 	. '" title="Add a reference" accesskey="r">Add a reference</a></div>';
 
 	return $string;

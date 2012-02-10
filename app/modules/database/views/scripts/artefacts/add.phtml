@@ -1,5 +1,5 @@
-<?php 
-	$this->jQuery()->addJavascriptFile($this->baseUrl() . 
+<?php
+	$this->jQuery()->addJavascriptFile($this->baseUrl() .
 	'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/autocompleteinitPeople.js',$type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/ui.datepicker.js',$type='text/javascript');
@@ -12,18 +12,18 @@
 $(document).ready(function() {
 $("#datefound1").datepicker({ maxDate: '+1y'});
 $("#datefound2").datepicker({ maxDate: '+1y' });
-	
+
 });
 
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
 <h2>Add a new object</h2>
-<p>You can copy your <a href="<?php echo $this->url(array(
+<p><a class="btn btn-success btn-large" href="<?php echo $this->url(array(
 	'module' => 'database',
 	'controller' => 'artefacts',
 	'action' => 'add',
 	'copy' => 'last'),
-	null,true);?>" 
-title="Autofill form fields from last record you created" id="populate" accesskey="c">last record</a></p>
+	null,true);?>"
+title="Autofill form fields from last record you created" id="populate" accesskey="c">Copy last record</a></p>
 <?php
 echo $this->form;
 ?>

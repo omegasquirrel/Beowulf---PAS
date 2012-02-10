@@ -1,4 +1,4 @@
-<div >
+<div class="span10">
 <div class="image-f" >
 <a href="<?php echo $this->url_m;?>" rel="lightbox" title="Larger image of <?php echo $this->title;?>"><img src="<?php echo $this->url_sq;?>" alt="<?php $this->title;?>" width="<?php echo $this->width_sq;?>" class="tmb"/></a><br />
 <a href="http://www.flickr.com/photos/<?php echo $this->pathalias;?>/<?php echo $this->id;?>" title="View this in its original context on flickr">View this on flickr</a>
@@ -7,10 +7,10 @@
 <h4><?php
 echo $this->title;?></h4>
 <p><?php echo $this->description;?></p>
-<p><a href="http://www.flickr.com/photos/<?php echo $this->pathalias;?>" title="Go to 
+<p><a href="http://www.flickr.com/photos/<?php echo $this->pathalias;?>" title="Go to
 <?php echo $this->ownername;?>'s profile on flickr">
-<img src="http://farm<?php echo $this->iconfarm;?>.static.flickr.com/<?php echo $this->iconserver;?>/buddyicons/<?php echo $this->flickrNsid($this->ownername);?>.jpg" height="48" 
-width="48" alt="View <?php echo $this->ownername;?>'s images" style="float:left;padding:5px;"/></a> 
+<img src="http://farm<?php echo $this->iconfarm;?>.static.flickr.com/<?php echo $this->iconserver;?>/buddyicons/<?php echo $this->flickrNsid($this->ownername);?>.jpg" height="48"
+width="48" alt="View <?php echo $this->ownername;?>'s images" style="float:left;padding:5px;"/></a>
 Image taken by: <?php echo $this->ownername;?><br />
 
 <?php if(isset($this->woeid)):?>
@@ -21,11 +21,11 @@ Lat/Lon: <?php echo $this->latitude;?>, <?php echo $this->longitude;?><br />
 Taken: <?php echo $this->datetaken;?><br />
 Date we liked this: <?php echo date(DATE_ATOM,$this->date_faved);?><br />
 Licence: <?php echo $this->FlickrLicense((int)$this->license);?><br />
-Tags: <?php 
-$tags = $this->tags; 
-$pieces = explode(" ", $tags); 
-	foreach($pieces as $t) 
-	{ 
+Tags: <?php
+$tags = $this->tags;
+$pieces = explode(" ", $tags);
+	foreach($pieces as $t)
+	{
 	$url = 'http://www.flickr.com/photos/tags/'.$t;
 	$separator = ' ';
 	echo '<a href="'.$url.'" title="View all tagged photos on flickrwith this tag">'.$t.'</a>'.$separator;
@@ -42,7 +42,6 @@ Views: <?php echo $this->views;?><br/>
 'id' => $this->id),'default',true);?>" title="View all details for this photo">More details &raquo;</a></p>
 </div>
 </div>
-    
-    
-    
-   
+
+
+

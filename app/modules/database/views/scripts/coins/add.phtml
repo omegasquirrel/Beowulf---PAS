@@ -1,13 +1,13 @@
-<?php 
- $this->jQuery()->addJavascriptFile($this->baseUrl() 
+<?php
+ $this->jQuery()->addJavascriptFile($this->baseUrl()
     . '/js/JQuery/jQueryLinkedSelect.js',
-    $type='text/javascript'); 
-    $this->jQuery()->addJavascriptFile($this->baseUrl() 
+    $type='text/javascript');
+    $this->jQuery()->addJavascriptFile($this->baseUrl()
     . '/js/JQuery/coinslinkedselect.js',
-    $type='text/javascript'); 
+    $type='text/javascript');
     ?>
 
 <h2>Add numismatic data</h2>
-<p>You can copy your <a href="<?php echo $this->url(array('module' => 'database','controller' => 'coins','action' => 'add','copy' => 'last'),null,false);?>" title="Autofill form fields from last record you created" id="populate" accesskey="c">last record</a></p>
+<p><a class="btn btn-success btn-large" href="<?php echo $this->url(array('module' => 'database','controller' => 'coins','action' => 'add','copy' => 'last'),null,false);?>" title="Autofill form fields from last record you created" id="populate" accesskey="c">Copy last record</a></p>
 
 <?php echo $this->form;?>

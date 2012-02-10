@@ -19,7 +19,7 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 
 
 	/** Get all the early medieval types attached to a ruler
-	* @param integer $rulerID 
+	* @param integer $rulerID
 	* @return array
 	* @todo add cache
 	*/
@@ -34,7 +34,7 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
     }
 
 	/** Get all the early medieval types attached to a ruler
-	* @param integer $rulerID 
+	* @param integer $rulerID
 	* @return array
 	* @todo add cache
 	* @todo this replicates the previous method!
@@ -48,9 +48,9 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 		->order('medievaltypes.id');
 	return $rulers->fetchAll($select);
     }
-    
+
     /** Get all the early medieval types attached to a ruler for admin
-	* @param integer $rulerID 
+	* @param integer $rulerID
 	* @return array
 	* @todo add cache
 	*/
@@ -64,9 +64,9 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 		->order('medievaltypes.id');
 	return $rulers->fetchAll($select);
     }
-	
+
     /** Get all the medieval types attached to a ruler
-	* @param integer $rulerID 
+	* @param integer $rulerID
 	* @return array
 	* @todo add cache
 	*/
@@ -80,9 +80,9 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 		->order('medievaltypes.id');
 	return $rulers->fetchAll($select);
     }
-	
+
  	/** Get all the early medieval types attached to a ruler
-	* @param integer $rulerID 
+	* @param integer $rulerID
 	* @return array
 	* @todo add cache
 	*/
@@ -96,9 +96,9 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 		->order('medievaltypes.id');
 	return $rulers->fetchAll($select);
     }
-    
+
     /** Get all the medieval types attached to a ruler as dropdown ket value pairs
-	* @param integer $rulerID 
+	* @param integer $rulerID
 	* @return array
 	* @todo add cache
 	*/
@@ -149,33 +149,33 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 	* @return array
 	* @todo add cache
 	*/
-	public function getTypesByPeriod($periodID,$page) {	
+	public function getTypesByPeriod($periodID,$page) {
 	$rulers = $this->getAdapter();
 	$select = $rulers->select()
 		->from($this->_name)
 		->joinLeft('users','users.id = ' . $this->_name . '.createdBy', array('fullname'))
 		->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname'))
 		->joinLeft('medievalcategories',$this->_name . '.categoryID = medievalcategories.id', array('c' => 'category'))
-		->joinLeft('rulers','rulers.id = ' . $this->_name . '.rulerID', 
+		->joinLeft('rulers','rulers.id = ' . $this->_name . '.rulerID',
 		array('ruler' => 'issuer','i' => 'id'))
 		->where('medievaltypes.periodID = ?',(int)$periodID)
 		->order('medievaltypes.id');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
-	$paginator->setCurrentPageNumber($page); 
+	$paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}
-	
+
 	/** Get all the medieval types paginated by period for admin console
 	* @param integer $params['periodID'] The period ID number
 	* @param integer $params['page']  The page number
 	* @return array
 	* @todo add cache
 	*/
-	public function getTypesByPeriodAdmin($params) {	
+	public function getTypesByPeriodAdmin($params) {
 	$rulers = $this->getAdapter();
 	$select = $rulers->select()
 		->from($this->_name)
@@ -186,14 +186,14 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 		->where('medievaltypes.periodID = ?',(int)$params['period'])
 		->order('medievaltypes.id');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}
-	
+
 	/** Get a specific medieval type details
 	* @param integer $id  The type number
 	* @return array
@@ -210,7 +210,7 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 		->where($this->_name . '.id = ?',(int)$id);
 	return $types->fetchAll($select);
 	}
-	
+
 	/** Get all the medieval types for sitemap
 	* @param integer $periodID The period ID number
 	* @return array

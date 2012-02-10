@@ -6,7 +6,7 @@
  */
 
 /**
- * MoreLikeThis view helper for compiling an html render of 4 objects that are similar to 
+ * MoreLikeThis view helper for compiling an html render of 4 objects that are similar to
  * the current one being viewed.
  * @category Pas
  * @package  Pas_View_
@@ -16,33 +16,33 @@
  * @author Daniel Pett
  */
 class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
-    
+
     /** The Solr instance
-     * 
+     *
      * @var object
      */
     protected $_solr;
-    
+
     /** The cache
-     * 
+     *
      * @var object
      */
     protected $_cache;
-    
+
     /** The config object
-     * 
+     *
      * @var object
      */
     protected $_config;
-    
+
     /** Solr config
-     * 
+     *
      * @var array
      */
     protected $_solrConfig;
-    
+
     /** Construct all the objects
-     * 
+     *
      */
     public function __construct(){
     $this->_cache = Zend_Registry::get('rulercache');
@@ -52,7 +52,7 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
     }
 
     /** Query the solr instance
-     * 
+     *
      * @param string $query
      */
     public function moreLikeThis($query){
@@ -72,37 +72,35 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
     	return false;
     }
     }
-    
-    /** Get the baseurl for the site
-     * 
-     */
-    private function getSiteUrl(){
-    	return Zend_Registry::get('siteurl');
-    }
-    
+
+
     /** Build the HTML response
-     * 
+     *
      * @param array $solrResponse
      */
     private function buildHtml($solrResponse){
-    $html ='<div id="similar"><h4>Similar objects</h4>';
+    $html ='<div class="similar row span12"><h4>Similar objects</h4>';
     foreach($solrResponse['results'] as $document){
-       if(($document->thumbnail)){ 
-			$html .= '<div class="thumbnail">';
-			$html .= '<a href="' . $this->getSiteUrl() . '/database/artefacts/record/id/' 
+       if(($document->thumbnail)){
+			$html .= '<ul class="thumbnails">';
+                        $html .= '<li>';
+                        $html .= '<div class="thumbnail span3">';
+			$html .= '<a href="' . $this->view->serverUrl() . '/database/artefacts/record/id/'
                 . $document->id . '">';
 			$html .= '<img src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
 			$html .= '</a><br />Find number: ';
 			$html .= $document->old_findID;
 			$html .= '<br />Object type: ' . $document->objecttype;
 			$html .= '<br />Broadperiod: ' . $document->broadperiod;
-			$html .= '</div>';
-       }         
+                        $html .= '</div>';
+                        $html .= '</li>';
+			$html .= '</ul>';
+       }
     }
     $html .= '</div>';
     return $html;
     }
-    
+
 }
 
 

@@ -11,11 +11,11 @@
 * @todo 		sort out cache and cleaning
 */
 class Tribes extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'ironagetribes';
-	
+
 	protected $_primary = 'id';
-	
+
 	/** Get a key value pair list of tribes
 	* @return array
 	*/
@@ -27,7 +27,7 @@ class Tribes extends Pas_Db_Table_Abstract {
 		->order($this->_primary);
 	return $tribes->fetchPairs($select);
     }
-	
+
     /** Get a  list of tribes
 	* @return array
 	*/
@@ -44,7 +44,7 @@ class Tribes extends Pas_Db_Table_Abstract {
     }
 
     /** Get a paginated list of all tribes for administration
-	* @param integer $page the page number 
+	* @param integer $page the page number
 	* @return array
 	*/
 	public function getTribesListAdmin($page) {
@@ -55,16 +55,16 @@ class Tribes extends Pas_Db_Table_Abstract {
 		->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname'))
 		->order('id');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($page) && ($page != ""))  {
-    $paginator->setCurrentPageNumber($page); 
+    $paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}
 
 	/** Get a tribe details
-	* @param integer $id the tribe id number 
+	* @param integer $id the tribe id number
 	* @return array
 	*/
 	public function getTribe($id) {
@@ -77,14 +77,14 @@ class Tribes extends Pas_Db_Table_Abstract {
         return $tribes->fetchAll($select);
     }
 	/** Get a tribe to region list, cached
-	* @param integer $region the region's id number 
+	* @param integer $region the region's id number
 	* @return array
-	*/	
+	*/
 	public function getIronAgeTribeRegion($region) {
 	$tribes = $this->getAdapter();
 	$select = $tribes->select()
 		->from($this->_name, array('id','term' => 'tribe'))
-		->joinLeft('ironageregionstribes','ironageregionstribes.tribeID = ironagetribes.id', array())  
+		->joinLeft('ironageregionstribes','ironageregionstribes.tribeID = ironagetribes.id', array())
 		->joinLeft('geographyironage','ironageregionstribes.regionID = geographyironage.id', array())
 		->where('geographyironage.id = ?', (int)$region)
 		->order('ironagetribes.tribe ASC');
@@ -93,16 +93,16 @@ class Tribes extends Pas_Db_Table_Abstract {
 
 	/** Get a tribe list for xml site map
 	* @return array
-	*/	
+	*/
 	public function getSitemap(){
-	if (!$data = $this->_cache->load('tribeslist')) {	
+	if (!$data = $this->_cache->load('tribeslist')) {
 	$tribes = $this->getAdapter();
 	$select = $tribes->select()
 		->from($this->_name, array('id','term' => 'tribe','updated'))
 		->order('ironagetribes.tribe ASC');
 	$data =  $tribes->fetchAll($select);
 	$this->_cache->save($data, 'tribeslist');
-	} 
+	}
 	return $data;
 	}
 

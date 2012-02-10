@@ -204,7 +204,7 @@ echo $this->moreLikeThis('old_findID:' . $this->finds['0']['old_findID']);
 
 <div id="QRtag">
 <h4>QR barcode</h4>
-<img src="http://chart.apis.google.com/chart?chs=150x150&amp;cht=qr&amp;chl=<?php echo $this->CurUrl();?>" alt="QR code for this URL" width="50" height="50" style="float:right;"/>
+<img src="http://chart.apis.google.com/chart?chs=180x180&amp;cht=qr&amp;chl=<?php echo $this->CurUrl();?>" alt="QR code for this URL" width="50" height="50" style="float:right;"/>
 <p>If you have a mobile phone equipped with QR recognition software, you can go directly to the webpage that this record resides at. Every record has an individual one of these.</p>
 </div>
 
@@ -212,11 +212,11 @@ echo $this->moreLikeThis('old_findID:' . $this->finds['0']['old_findID']);
 
 
 <p>
-<a href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts','action' => 'errorreport'));?>" title="Send message to the allotted National Finds Adviser">Spotted a mistake? Tell us.</a> | <?php if(count($this->comments) <= 0) : ?>
+<a class="btn btn-large" href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts','action' => 'errorreport'));?>" title="Send message to the allotted National Finds Adviser">Spotted a mistake? Tell us.</a> | <?php if(count($this->comments) <= 0) : ?>
 
-<a href="#comment_content" id="addcomment" title="Comment on this artefact's record">Be the first to comment</a></p>
+<a class="btn btn-large" href="#comment_content" id="addcomment" title="Comment on this artefact's record">Be the first to comment</a></p>
 <?php else: ?>
-<a href="#comment_content" id="addcomment" title="Comment on this find">Add a new comment</a> | Total Comments [<?php echo count($this->comments);?>]</p><h4>Approved comments on this record</h4>
+<a class="btn btn-large" href="#comment_content" id="addcomment" title="Comment on this find">Add a new comment</a> | Total Comments [<?php echo count($this->comments);?>]</p><h4>Approved comments on this record</h4>
 <?php endif;?>
 <div id="comm">
 <?php if($this->comments):?>

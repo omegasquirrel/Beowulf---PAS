@@ -15,7 +15,7 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 
 	protected $_primary = 'id';
 
-	protected $higherlevel = array('admin','flos','fa','treasure'); 
+	protected $higherlevel = array('admin','flos','fa','treasure');
 
 	protected $restricted = array('public','member','research','hero');
 
@@ -48,9 +48,9 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 		->where('contentID = ?' , (int)$id)
 		->where('origin != ?', (string)'YahooGeo')
 		->where('contenttype = ?',( string)$type);
-	return $tags->fetchAll($select);	
+	return $tags->fetchAll($select);
 	}
-	
+
 	/** Get some geotagged content
 	* @param integer $id content number
 	* @param string $type The type of the content to retrieve
@@ -63,7 +63,7 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 		->where('contentID = ?' , (int)$id)
 		->where('contenttype = ?', (string)$type)
 		->where('origin = ?', (string)'YahooGeo');
-	return $tags->fetchAll($select);	
+	return $tags->fetchAll($select);
 	}
 
 	/** Get some tagged content by particular tag
@@ -78,8 +78,8 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 		->joinLeft('finds',$this->_name . '.contentID = finds.id',array('id', 'old_findID','objecttype',
 		'broadperiod','description'))
 		->joinLeft('findspots','finds.secuid = findspots.findID',array('county'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id',array()) 
-		->joinLeft('slides','slides.secuid = finds_images.image_id',array('i' => 'imageID','f' => 'filename')) 
+		->joinLeft('finds_images','finds.secuid = finds_images.find_id',array())
+		->joinLeft('slides','slides.secuid = finds_images.image_id',array('i' => 'imageID','f' => 'filename'))
 		->joinLeft('users','users.id = finds.createdBy',array('username','fullname','institution'))
 		->where('term = ?' , (string)$params['tag'])
 		->where('origin != ?', (string)'YahooGeo')
@@ -87,17 +87,17 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 		->group('finds.id');
 	if(in_array($this->getRole(),$this->restricted)){
 	$select->where('finds.secwfstage NOT IN ( 1, 2 )');
-	}	
+	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setCache(Zend_Registry::get('cache'));
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
-	return $paginator;		
+	return $paginator;
 	}
-	
+
 	/** Get some geotagged content by particular tag
 	* @param string $params['tag'] The tag to pull out
 	* @param string $params['page'] The page number
@@ -107,29 +107,29 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 	$tags = $this->getAdapter();
 	$select = $tags->select()
 		->from($this->_name,array('term'))
-		->joinLeft('finds',$this->_name . '.contentID = finds.id', 
+		->joinLeft('finds',$this->_name . '.contentID = finds.id',
 		array('id', 'old_findID', 'objecttype', 'broadperiod', 'description'))
 		->joinLeft('findspots','finds.secuid = findspots.findID',array('county'))
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id',array()) 
+		->joinLeft('finds_images','finds.secuid = finds_images.find_id',array())
 		->joinLeft('users','users.id = finds.createdBy',array('username','fullname','institution'))
-		->joinLeft('slides','slides.secuid = finds_images.image_id',array('i' => 'imageID','f' => 'filename')) 
+		->joinLeft('slides','slides.secuid = finds_images.image_id',array('i' => 'imageID','f' => 'filename'))
 		->where('term = ?' ,(string)$params['tag'])
 		->where('origin = ?', (string)'YahooGeo')
 		->where('contenttype = ?','findsrecord')
 		->group('finds.id');
 	if(in_array($this->getRole(),$this->restricted)) {
 	$select->where('finds.secwfstage NOT IN ( 1, 2 )');
-	}	
+	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setCache(Zend_Registry::get('cache'));
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != ""))  {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}
-	
+
 	/** Get some tags for a cloud
 	* @return array
 	*/
@@ -143,7 +143,7 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 		->group('term');
 	return $tags = $tags->fetchAll($select);
 	}
-	
+
 	/** Get some tags for a cloud front page
 	* @return array
 	*/
@@ -160,7 +160,7 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 		->limit(25);
 	$tags = $tags->fetchAll($select);
 	$this->_cache->save($tags, 'tagsfront'.$this->getRole());
-	} 
+	}
 	return $tags;
 	}
 	/** Get some tags for a cloud of geo
@@ -177,7 +177,7 @@ class OpenCalaisModel extends Pas_Db_Table_Abstract {
 		->order('total DESC');
 	if(in_array($this->getRole(),$this->restricted)) {
 	$select->where('finds.secwfstage NOT IN ( 1, 2 )');
-	}	
+	}
 	return $tags = $tags->fetchAll($select);
 	}
 }

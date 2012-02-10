@@ -37,35 +37,49 @@
 
 <body>
 
-<div class="container-fluid">
+
 
 <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
+<a class="brand" href="#">Portable Antiquities Scheme | The British Museum</a>
           <div class="nav-collapse">
 	<?php echo $this->layout()->navigation ?>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+<div class="container-fluid">
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+
+          <div class="well sidebar-nav">
+
+              <?php echo $this->layout()->userdata;?>
+
+<?php echo $this->layout()->sidebar; ?>
+
+          </div><!--/.well -->
+
+        </div><!--/span--> <div class="span9">
 
 
-    <div class="container">
+          <div class="row-fluid">
 
-        <div class="row span16">
+            <div class="span9">
+                <?php echo $this->layout()->breadcrumb;	?>
+                <?php echo $this->layout()->messages;?>
+                <?php echo $this->acronyms($this->layout()->content); ?>
+                <?php echo $this->layout()->contexts; ?>
 
-            <div class="row span9"><?php echo $this->layout()->breadcrumb;?></div>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
 
-            <?php echo $this->layout()->messages;?>
-
-            <?php echo $this->acronyms($this->layout()->content); ?>
-
-            <?php echo $this->layout()->contexts; ?>
-
-        </div>
-
-
-    </div>
+      <hr>
 
 
     <div class="row span16 muted">

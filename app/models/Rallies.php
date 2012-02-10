@@ -11,7 +11,7 @@
 * @since 		22 September 2011
 */
 class Rallies extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'rallies';
 	protected $_primary = 'id';
 
@@ -29,7 +29,7 @@ class Rallies extends Pas_Db_Table_Abstract {
 	}
 	return $options;
     }
-	
+
     /**
      * Retrieves list array for rallies (cached) and paginated
      * @param array $params
@@ -48,15 +48,15 @@ class Rallies extends Pas_Db_Table_Abstract {
 		->joinLeft('users','users_2.id = '.$this->_name.'.updatedBy',array('fn' => 'fullname'))
 		->order('date_from DESC');
 	if(isset($params['year'])){
-	$select->where('EXTRACT(YEAR FROM date_to)= ?',$params['year']);	
-	}			  
-	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
-	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']); 
+	$select->where('EXTRACT(YEAR FROM date_to)= ?',$params['year']);
 	}
-	return $paginator;    
+	$paginator = Zend_Paginator::factory($select);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
+	if(isset($params['page']) && ($params['page'] != "")) {
+	$paginator->setCurrentPageNumber((int)$params['page']);
+	}
+	return $paginator;
     }
 
     /**
@@ -83,7 +83,7 @@ class Rallies extends Pas_Db_Table_Abstract {
 		->group($this->_primary);
 	return $rallies->fetchAll($select);
     }
-	
+
      /**
      * Retrieves rally names by id
      * @param integer $id
@@ -99,7 +99,7 @@ class Rallies extends Pas_Db_Table_Abstract {
 		->limit('1');
 	return $rallies->fetchAll($select);
     }
-    
+
      /**
      * Retrieves rally names by id
      * @param integer $id
@@ -116,7 +116,7 @@ class Rallies extends Pas_Db_Table_Abstract {
 		->limit('1');
 	return $rallies->fetchAll($select);
     }
-	
+
      /**
      * Retrieves rally names for mapping xml view
      * @param integer $year
@@ -130,8 +130,8 @@ class Rallies extends Pas_Db_Table_Abstract {
 		'dt' => 'DATE_FORMAT(date_to,"%D %M %Y")','lat' => 'latitude', 'lng' => 'longitude'))
 		->where('latitude > ?',0);
 	if(isset($year)){
-	$select->where('EXTRACT(YEAR FROM date_to)= ?', (int)$year);	
-	}			   
+	$select->where('EXTRACT(YEAR FROM date_to)= ?', (int)$year);
+	}
 	return $rallies->fetchAll($select);
     }
 

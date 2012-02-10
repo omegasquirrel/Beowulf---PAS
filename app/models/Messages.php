@@ -54,7 +54,7 @@ class Messages extends Pas_Db_Table_Abstract {
 		->order($this->_primary.' DESC');
         $paginator = Zend_Paginator::factory($select);
 	$paginator->setItemCountPerPage(30)
-	          ->setPageRange(20);
+	          ->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
         $paginator->setCurrentPageNumber($params['page']);
 	}

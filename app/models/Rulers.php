@@ -10,11 +10,11 @@
 * @since 		22 October 2010, 17:12:34
 */
 class Rulers extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'rulers';
-	
+
 	protected $_primary = 'id';
-	
+
 	/** Get all roman issuers as a key value pair for dropdown listing
 	* @return Array $options
 	* @todo add caching
@@ -30,7 +30,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get all issuers as an array by period
     * @param integer $periodID the period ID to query by
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getAllRulers($periodID) {
@@ -44,7 +44,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get all issuers as an array of key value pairs for the Greek
     * and Roman Provincial period
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getRulersGreek() {
@@ -59,7 +59,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     }
 
 	/** Get all issuers as an array of key value pairs for the Byzantine period
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getRulersByzantine() {
@@ -72,10 +72,10 @@ class Rulers extends Pas_Db_Table_Abstract {
 		$options = $this->getAdapter()->fetchPairs($select);
 	return $options;
     }
-	
-    /** Get all issuers as a paginated array for the Byzantine period 
+
+    /** Get all issuers as a paginated array for the Byzantine period
     * @param integer $page page id
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getRulersByzantineList($page) {
@@ -86,17 +86,17 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->order('date2')
 			->where('valid = ?',(int)1);
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-	          ->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+	          ->setPageRange(10);
 	if(isset($page) && ($page != "")) {
-	$paginator->setCurrentPageNumber($page); 
+	$paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}
 
 	/** Get all issuers as a paginated array for the Greek and Roman Provincial period
 	* @param integer $params['page'] page number
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getRulersGreekList($params) {
@@ -109,16 +109,16 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->where('valid = ?',(int)1);
 	$data = $rulers->fetchAll($select);
 	$paginator = Zend_Paginator::factory($data);
-	$paginator->setItemCountPerPage(30) 
-			->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+			->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")){
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}
 
 	/** Get early medieval rulers, concatenated dates as a key value pair
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getEarlyMedRulers() {
@@ -130,9 +130,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->order('date1');
 	return $rulers->fetchPairs($select);
     }
-	
+
     /** Get Roman rulers, concatenated dates as a key value pair
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getRomanRulers() {
@@ -147,7 +147,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     }
 
     /** Get Medieval rulers as a key value pair array
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getAllMedRulers() {
@@ -161,7 +161,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     }
 
     /** Get Medieval rulers as a key value pair array
-	* @return Array 
+	* @return Array
 	* @todo add caching
 	*/
 	public function getMedievalRulers() {
@@ -173,9 +173,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->order('id');
 	return $rulers->fetchPairs($select);
     }
-	
+
     /** Get Medieval rulers as an array
-	* @return Array 
+	* @return Array
 	*/
 	public function getMedievalRulersList() {
 	if (!$data = $this->_cache->load('medievalListRulers')) {
@@ -189,9 +189,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 		}
 	return $data;
     }
-    
+
     /** Get Early Medieval rulers as an array
-	* @return Array 
+	* @return Array
 	*/
 	public function getEarlyMedievalRulersList() {
 	if (!$data = $this->_cache->load('earlymedievalListRulers')) {
@@ -207,7 +207,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     }
 
     /** Get Iron Age rulers as an array
-	* @return Array 
+	* @return Array
 	*/
 	public function getIARulersList() {
 	if (!$data = $this->_cache->load('ialistRulers')) {
@@ -223,7 +223,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     }
 
     /** Get Greek and Roman rulers as an array
-	* @return Array 
+	* @return Array
 	*/
 	public function getGreekRulersList(){
 	if (!$data = $this->_cache->load('greeklistRulers')) {
@@ -237,9 +237,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 	}
     return $data;
     }
-    
+
     /** Get Byzantine rulers as an array
-	* @return Array 
+	* @return Array
 	*/
 	public function getByzRulersList() {
 	if (!$data = $this->_cache->load('byzlistRulers')) {
@@ -253,9 +253,9 @@ class Rulers extends Pas_Db_Table_Abstract {
     	}
 	return $data;
     }
-    
+
     /** Get Post Medieval rulers as an array
-	* @return Array 
+	* @return Array
 	*/
 	public function getPostMedievalRulersList() {
 	if (!$data = $this->_cache->load('pmedlistRulers')) {
@@ -268,10 +268,10 @@ class Rulers extends Pas_Db_Table_Abstract {
 		$this->_cache->save($data, 'pmedlistRulers');
 	}
 	return $data;
-    } 
-    
+    }
+
     /** Get Post Medieval rulers as an array of key value pairs
-	* @return Array 
+	* @return Array
 	*/
 	public function getPostMedievalRulers() {
 		$rulers = $this->getAdapter();
@@ -285,7 +285,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get Early Medieval rulers as an array by category ID
     * @param integer $catID
-	* @return Array 
+	* @return Array
 	*/
 	public function getEarlyMedievalRulers($catID)  {
 		$rulers = $this->getAdapter();
@@ -303,7 +303,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get Early Medieval rulers as an array for ajax by category ID
     * @param integer $catID
-	* @return Array 
+	* @return Array
 	*/
 	public function getEarlyMedievalRulersAjax($catID) {
 		$rulers = $this->getAdapter();
@@ -321,7 +321,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get Medieval rulers as an array for ajax by category ID
     * @param integer $catID
-	* @return Array 
+	* @return Array
 	*/
 	public function getMedievalRulersAjax($catID) {
 		$rulers = $this->getAdapter();
@@ -336,10 +336,10 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->order('date1');
         return $rulers->fetchAll($select);
     }
-    
+
     /** Get Post Medieval rulers as an array for ajax by category ID
     * @param integer $catID
-	* @return Array 
+	* @return Array
 	*/
 	public function getPostMedievalRulersAjax($catID) {
 		$rulers = $this->getAdapter();
@@ -358,7 +358,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     /** Get Medieval rulers listed as an array for ajax by category ID and period
     * @param integer $catID category ID
     * @param integer $period period ID
-	* @return Array 
+	* @return Array
 	*/
 	public function getMedievalRulersListed($catID, $period) {
         $rulers = $this->getAdapter();
@@ -379,7 +379,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     /** Get Medieval rulers listed as an array for ajax by category ID and period
     * @param integer $catID category ID
     * @param integer $period period ID
-	* @return Array 
+	* @return Array
 	*/
 	public function getMedievalRulersListedMain($period) {
         $rulers = $this->getAdapter();
@@ -398,7 +398,7 @@ class Rulers extends Pas_Db_Table_Abstract {
     /** Get rulers listed as an array for ajax by category ID and country
     * @param integer $catID category ID
     * @param integer $country country ID
-	* @return Array 
+	* @return Array
 	*/
 	public function getForeign($period, $country ){
         $rulers = $this->getAdapter();
@@ -416,7 +416,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
 	/** Get medieval ruler profile by id number
     * @param integer $id ruler id
-	* @return Array 
+	* @return Array
 	*/
 	public function getMedievalRulerProfile($id) {
 		$rulers = $this->getAdapter();
@@ -430,7 +430,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get any  ruler profile by id number
     * @param integer $id ruler id
-	* @return Array 
+	* @return Array
 	*/
 	public function getRulerProfile($id) {
 		$rulers = $this->getAdapter();
@@ -444,7 +444,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get any  ruler profile by id number for admin section
     * @param integer $id ruler id
-	* @return Array 
+	* @return Array
 	*/
 	public function getRulerProfileAdmin($id) {
 		$rulers = $this->getAdapter();
@@ -454,9 +454,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->limit('1');
 	return $rulers->fetchAll($select);
     }
-	
+
     /** Get northumbrian issuers
-	* @return Array 
+	* @return Array
 	*/
 	public function getEarlyMedievalRulersNorthumbrian() {
 		$rulers = $this->getAdapter();
@@ -467,9 +467,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->order('date1');
 	return $rulers->fetchAll($select);
     }
-	
+
     /** Get all Iron Age rulers as key value pair array
-	* @return Array 
+	* @return Array
 	*/
 	public function getIronAgeRulers() {
 		$rulers = $this->getAdapter();
@@ -479,9 +479,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->order('issuer ASC');
 	return $rulers->fetchPairs($select);
     }
-	
+
     /** Get all Iron Age rulers as a list
-	* @return Array 
+	* @return Array
 	*/
 	public function getIronAgeRulersListed()  {
 		$rulers = $this->getAdapter();
@@ -495,7 +495,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
     /** Get an Iron Age ruler profile
     * @param integer $id ruler id number
-	* @return Array 
+	* @return Array
 	*/
 	public function getIronAgeRuler($id) {
 		$rulers = $this->getAdapter();
@@ -506,10 +506,10 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->order('id ASC');
 	return $rulers->fetchAll($select);
     }
-    
-    /** Get rulers by denomination 
+
+    /** Get rulers by denomination
     * @param integer $denomination denomination number
-	* @return Array 
+	* @return Array
 	*/
 	public function getRomanDenomRuler($denomination) {
 		$rulers = $this->getAdapter();
@@ -524,36 +524,36 @@ class Rulers extends Pas_Db_Table_Abstract {
 
 	/** Get Iron Age  region  by ruler
     * @param integer $ruler ruler number
-	* @return Array 
+	* @return Array
 	*/
 	public function getIronAgeRulerRegion($ruler) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
             ->from($this->_name, array('id','term' => 'issuer'))
-			->joinLeft('ironagerulerxregion','ironagerulerxregion.rulerID = rulers.id', array())  
+			->joinLeft('ironagerulerxregion','ironagerulerxregion.rulerID = rulers.id', array())
 			->joinLeft('geographyironage','ironagerulerxregion.regionID = geographyironage.id', array())
 			->where('geographyironage.id = ?', (int)$ruler)
             ->order('issuer ASC');
 	return $rulers->fetchAll($select);
 	}
 
-	/** Get Iron Age rulers by region 
+	/** Get Iron Age rulers by region
     * @param integer $region region number
-	* @return Array 
+	* @return Array
 	*/
 	public function getIronAgeRulerToRegion($region) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
 			->from($this->_name, array('id', 'issuer', 'region'	))
-			->joinLeft('ironagerulerxregion','ironagerulerxregion.rulerID = rulers.id', array())  
+			->joinLeft('ironagerulerxregion','ironagerulerxregion.rulerID = rulers.id', array())
 			->joinLeft('geographyironage','ironagerulerxregion.regionID = geographyironage.id', array())
 			->where('geographyironage.id = ?', (int)$region);
 	return $rulers->fetchAll($select);
 	}
 
-	/** Get a ruler's name 
+	/** Get a ruler's name
     * @param integer $ruler
-	* @return Array 
+	* @return Array
 	* @todo isn't this a duplicate method?
 	*/
 	public function getRulersName($ruler) {
@@ -568,7 +568,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 
 	/** Get a ruler's image
     * @param integer $ruler
-	* @return Array 
+	* @return Array
 	*/
 	public function getRulerImage($ruler) {
 		$images = $this->getAdapter();
@@ -581,9 +581,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 
 	/** Get rulers for a mint
     * @param integer $mintID
-	* @return Array 
+	* @return Array
 	*/
-	public function getRomanMintRulerList($mintID) {		
+	public function getRomanMintRulerList($mintID) {
 		$actives = $this->getAdapter();
 		$select = $actives->select()
 			->from($this->_name)
@@ -601,9 +601,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 
 	/** Get rulers for a mint
     * @param integer $mintID
-	* @return Array 
+	* @return Array
 	*/
-	public function getMedievalMintRulerList($mintID) {		
+	public function getMedievalMintRulerList($mintID) {
 		$actives = $this->getAdapter();
 		$select = $actives->select()
 			->from($this->_name)
@@ -614,9 +614,9 @@ class Rulers extends Pas_Db_Table_Abstract {
 	return $actives->fetchAll($select);
 	}
 
-	/** Get a paginated list of all rulers 
+	/** Get a paginated list of all rulers
     * @param integer $params['page'] page number
-	* @return Array 
+	* @return Array
 	*/
 	public function getRulerList($params){
 		$actives = $this->getAdapter();
@@ -624,24 +624,24 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->from($this->_name)
 			->joinLeft('periods','periods.id = rulers.period', array('term','i' => 'id'))
 			->joinLeft('users','users.id = ' . $this->_name . '.createdBy', array('fullname'))
-            ->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname'))	
+            ->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname'))
 			->where($this->_name . '.valid = ?', (int)1)
 			->group('issuer');
 		if(isset($params['period']) && ($params['period'] != "")) {
 		$select->where('period = ?',(int)$params['period']);
-		}		
+		}
 		$paginator = Zend_Paginator::factory($select);
-		$paginator->setItemCountPerPage(30) 
-		          ->setPageRange(20);
+		$paginator->setItemCountPerPage(30)
+		          ->setPageRange(10);
 		if(isset($params['page']) && ($params['page'] != ""))  {
-	    $paginator->setCurrentPageNumber($params['page']); 
+	    $paginator->setCurrentPageNumber($params['page']);
 		}
 	return $paginator;
 	}
 
-	/** Get a paginated list of all rulers for admin section 
+	/** Get a paginated list of all rulers for admin section
     * @param integer $params['page'] page number
-	* @return Array 
+	* @return Array
 	*/
 	public function getRulerListAdmin($params) {
 		$actives = $this->getAdapter();
@@ -652,22 +652,22 @@ class Rulers extends Pas_Db_Table_Abstract {
             ->joinLeft('users','users_2.id = '.$this->_name.'.updatedBy', array('fn' => 'fullname'));
 		if(isset($params['period']) && ($params['period'] != "")) {
 		$select->where('period = ?',(int)$params['period']);
-		}		
+		}
 		if(isset($params['ruler'])) {
 			$select->where('issuer LIKE ?','%'.$params['ruler'].'%');
-		}		
+		}
 		$paginator = Zend_Paginator::factory($select);
-		$paginator->setItemCountPerPage(30) 
-		          ->setPageRange(20);
+		$paginator->setItemCountPerPage(30)
+		          ->setPageRange(10);
 		if(isset($params['page']) && ($params['page'] != "")) {
-		$paginator->setCurrentPageNumber($params['page']); 
+		$paginator->setCurrentPageNumber($params['page']);
 		}
 	return $paginator;
 	}
-	
+
 	/** Get ruler profile for medieval period
     * @param integer $rulerID the issuer number
-	* @return Array 
+	* @return Array
 	*/
 	public function getRulerProfileMed($rulerID) {
 		$monarchs = $this->getAdapter();
@@ -677,10 +677,10 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->where('valid',(int)1)
 			->where('rulers.id = ?',(int)$rulerID);
 	return $monarchs->fetchAll($select);
-	}	
+	}
 
-	/** Get a list of all rulers who issue jettons 
-	* @return Array 
+	/** Get a list of all rulers who issue jettons
+	* @return Array
 	*/
 	public function getJettonRulers() {
 	if (!$data = $this->_cache->load('jettonRulers')) {
@@ -696,5 +696,5 @@ class Rulers extends Pas_Db_Table_Abstract {
 	}
 	return $data;
     }
-	
+
 }

@@ -13,13 +13,13 @@
 class TreasureCases extends Pas_Db_Table_Abstract {
 
 	protected $_primary = 'id';
-	
+
 	protected $_name = 'finds';
-	
+
 	protected $_access = array('fa','flos','admin','treasure');
-	
-	
-	/** Retrieve role of user - needs DRY 
+
+
+	/** Retrieve role of user - needs DRY
 	* @return string
 	*/
 	public function getRole(){
@@ -32,7 +32,7 @@ class TreasureCases extends Pas_Db_Table_Abstract {
 	return $role;
 	}
 	}
-	
+
 	/** get a list of Treasure cases in paginated format
 	* @param integer $params['page']
 	* @return string
@@ -47,20 +47,20 @@ class TreasureCases extends Pas_Db_Table_Abstract {
 			->group('finds.treasureID');
 		if(!in_array($this->getRole(),$this->_access)){
 			$select->where('finds.secwfstage > ?', (int)2);
-		}	
+		}
 		if(isset($params['year'])){
-		$select->where($this->_name . '.treasureID LIKE ?',$params['year'].'%');	
+		$select->where($this->_name . '.treasureID LIKE ?',$params['year'].'%');
 		}
         $data =  $finds->fetchAll($select);
         $paginator = Zend_Paginator::factory($data);
-		$paginator->setItemCountPerPage(30) 
-	          	  ->setPageRange(20);
+		$paginator->setItemCountPerPage(30)
+	          	  ->setPageRange(10);
 	    if(isset($params['page']) && ($params['page'] != "")){
-    	$paginator->setCurrentPageNumber((int)$params['page']); 
+    	$paginator->setCurrentPageNumber((int)$params['page']);
 		}
-        return $paginator;	
+        return $paginator;
 	}
-	
+
 	/** Get a Treasure case's details
 	* @param integer $treasureID The id of the case
 	* @return string
@@ -75,7 +75,7 @@ class TreasureCases extends Pas_Db_Table_Abstract {
 		$data = $finds->fetchAll($select);
 		return $data;
 	}
-	
+
 	/** Get an extended set of a Treasure case's details
 	* @param integer $treasureID The id of the case
 	* @return string

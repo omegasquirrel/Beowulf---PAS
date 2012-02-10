@@ -41,10 +41,10 @@ class Vacancies extends Pas_Db_Table_Abstract {
 		->order('id');
 	$paginator = Zend_Paginator::factory($select);
 	Zend_Paginator::setCache($this->_cache);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
-    $paginator->setCurrentPageNumber($page); 
+    $paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}
@@ -81,10 +81,10 @@ class Vacancies extends Pas_Db_Table_Abstract {
 	$data = $archivejobs->fetchAll($select);
 	$paginator = Zend_Paginator::factory($data);
 	Zend_Paginator::setCache($this->_cache);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
-    $paginator->setCurrentPageNumber($page); 
+    $paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}
@@ -119,10 +119,10 @@ class Vacancies extends Pas_Db_Table_Abstract {
 	$data = $livejobs->fetchAll($select);
 	$paginator = Zend_Paginator::factory($select);
 	Zend_Paginator::setCache($this->_cache);
-	$paginator->setItemCountPerPage(30) 
-	          ->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+	          ->setPageRange(10);
 	if(isset($page) && ($page != "")) {
-    $paginator->setCurrentPageNumber($page); 
+    $paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}

@@ -1,6 +1,6 @@
 <?php
 /** Controller for the Staffordshire symposium
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -9,17 +9,17 @@
 */
 
 class Search_ResultsController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_solr;
 	/**
 	 * Set up the ACL
 	 */
 	public function init() {
-	$this->_helper->_acl->allow('public',null);	
+	$this->_helper->_acl->allow('public',null);
 	}
-	
- 
-	
+
+
+
 	/** List of the papers available
 	 */
 	public function indexAction() {
@@ -29,15 +29,15 @@ class Search_ResultsController extends Pas_Controller_Action_Admin {
 	$page = $this->_getParam('page');
 	if(!isset($page)){
 		$start = 0;
-		
+
 	} else {
 		unset($params['page']);
 		$start = ($page - 1) * 20;
-	}	
+	}
 	$q = '';
 	if(array_key_exists('q',$params)){
 	$q .= $params['q'] . ' ';
-	unset($params['q']); 
+	unset($params['q']);
 	}
 
 	if(array_key_exists('images',$params)){
@@ -50,7 +50,7 @@ class Search_ResultsController extends Pas_Controller_Action_Admin {
 	$this->view->facet = 'facet/'.$facetQuery;
 	}
 	$params = array_filter($params);
-	
+
 	foreach($params as $k => $v){
 	$q .= $k . ':"' . $v . '" ';
 	}
@@ -62,7 +62,7 @@ class Search_ResultsController extends Pas_Controller_Action_Admin {
 	'core' => 'beocontent'
     )
 	);
-	
+
 	$select = array(
     'query'         => $q,
     'start'         => $start,
@@ -90,9 +90,9 @@ class Search_ResultsController extends Pas_Controller_Action_Admin {
 	$resultset = $client->select($query);
 //	echo $resultset->getData();
 	$this->view->sectionFacet = $resultset->getFacetSet()->getFacet('section');
-	$pagination = array(    
-	'page'          => $page, 
-	'per_page'      => $limit, 
+	$pagination = array(
+	'page'          => $page,
+	'per_page'      => $limit,
     'total_results' => $resultset->getNumFound()
 	);
 	$data = array();
@@ -103,16 +103,16 @@ class Search_ResultsController extends Pas_Controller_Action_Admin {
 	    }
 	    $data[] = $fields;
 	}
-	
+
 	$paginator = Zend_Paginator::factory($resultset->getNumFound());
     $paginator->setCurrentPageNumber($page)
               ->setItemCountPerPage($limit)
-              ->setPageRange(20);
+              ->setPageRange(10);
     $this->view->paginator = $paginator;
 	$this->view->results = $data;
 	$this->view->query = $q;
 	} else {
-		throw new Pas_Exception_Param('Your search has no parameters!',500);	
+		throw new Pas_Exception_Param('Your search has no parameters!',500);
 	}
 	}
 

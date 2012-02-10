@@ -62,10 +62,10 @@ class Help extends Pas_Db_Table_Abstract {
 		   ->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy',array('fn' => 'fullname'))
 		   ->order('created DESC');
 		$paginator = Zend_Paginator::factory($select);
-		$paginator->setItemCountPerPage(30) 
-	    	      ->setPageRange(20);
+		$paginator->setItemCountPerPage(30)
+	    	      ->setPageRange(10);
 		if(isset($page) && ($page != "")) {
-    	$paginator->setCurrentPageNumber($page); 
+    	$paginator->setCurrentPageNumber($page);
 		}
 		return $paginator;
 	}
@@ -85,14 +85,14 @@ class Help extends Pas_Db_Table_Abstract {
 			->where('section = ?',$section)
 			->order('created DESC');
 		$paginator = Zend_Paginator::factory($select);
-		$paginator->setItemCountPerPage(30) 
-	    	      ->setPageRange(20);
+		$paginator->setItemCountPerPage(30)
+	    	      ->setPageRange(10);
 		if(isset($page) && ($page != "")) {
-    	$paginator->setCurrentPageNumber($page); 
+    	$paginator->setCurrentPageNumber($page);
 		}
 	return $paginator;
 	}
-	
+
 	/** Retrieve content by topic id
 	* @param string $section
 	* @param integer $id
@@ -109,5 +109,5 @@ class Help extends Pas_Db_Table_Abstract {
        return $content->fetchAll($select);
 	}
 
-	
+
 }

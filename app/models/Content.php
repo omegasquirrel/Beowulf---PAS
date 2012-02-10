@@ -11,7 +11,7 @@
 * */
 
 class Content extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'content';
 	protected $_primary = 'id';
 
@@ -34,10 +34,10 @@ class Content extends Pas_Db_Table_Abstract {
 		->where('section = ?',(string)$section);
 	$data = $content->fetchAll($select);
 	$this->_cache->save($data, 'frontcontent' . $section);
-	} 
+	}
 	return $data;
 	}
-	
+
 	/** Retrieves content by section, slug and when publication status is set to published
      * @param string $section
      * @param string $slug
@@ -74,7 +74,7 @@ class Content extends Pas_Db_Table_Abstract {
 		->order('created DESC');
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setItemCountPerPage(30)
-		->setPageRange(20);
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
 	$paginator->setCurrentPageNumber($page);
 	}
@@ -94,7 +94,7 @@ class Content extends Pas_Db_Table_Abstract {
 		->where('publishState = ?', (int)3);
 	return $content->fetchAll($select);
 	}
-	
+
 	/** Retrieves treasure section list for menu when publication status is set to published
      * @return array
 	*/
@@ -139,7 +139,7 @@ class Content extends Pas_Db_Table_Abstract {
 		->order('id ASC');
 	return $content->fetchAll($select);
 	}
-	
+
 	/** Retrieves content list for treasure section when publication status is set to published
      * and frontpage status is not set
      * @param string $section
@@ -158,7 +158,7 @@ class Content extends Pas_Db_Table_Abstract {
 		->order('slug ASC');
 	$data = $content->fetchAll($select);
 	$this->_cache->save($data, 'treportsmenu');
-    } 
+    }
 	return $data;
 	}
 

@@ -11,11 +11,11 @@
 * @todo add caching
 */
 class Quotes extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'quotes';
-	
+
 	protected $_primary = 'id';
-	
+
 	/** Set up the time field
 	* @return date $dateTime
 	*/
@@ -36,10 +36,10 @@ class Quotes extends Pas_Db_Table_Abstract {
 		->joinLeft('users','users_2.id = ' . $this->_name .'.updatedBy',array('fn' => 'fullname'))
 		->order('id DESC');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($page) && ($page != ""))  {
-	$paginator->setCurrentPageNumber($page); 
+	$paginator->setCurrentPageNumber($page);
 	}
 	return $paginator;
 	}
@@ -57,7 +57,7 @@ class Quotes extends Pas_Db_Table_Abstract {
 		->limit(1);
 	$data =  $quotes->fetchAll($select);
 	$this->_cache->save($data, 'frontquotes');
-    } 
+    }
 	return $data;
 	}
 }

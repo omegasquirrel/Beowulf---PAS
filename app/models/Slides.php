@@ -9,17 +9,17 @@
 * @license 		GNU General Public License
 * @version 		1
 * @since 		22 October 2010, 17:12:34
-* @todo 		rewrite this terrible piece of cruddy programming. Man, I've learnt since I 
+* @todo 		rewrite this terrible piece of cruddy programming. Man, I've learnt since I
 * 				wrote this crap. SOLR it up baby!
 */
 class Slides extends Pas_Db_Table_Abstract {
 
 	protected $_name = 'slides';
-	
+
 	protected $_primary = 'imageID';
-	
-	protected $_higherlevel = array('admin','flos','fa'); 
-	
+
+	protected $_higherlevel = array('admin','flos','fa');
+
 	protected $_restricted = array('public','member');
 
 
@@ -38,7 +38,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get thumbnails for a particular find number
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo add caching
 	*/
@@ -46,7 +46,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','i' => 'imageID','label','createdBy'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('old_findID','objecttype','id','secuid'))
 		->joinLeft('users','users.id = slides.createdBy', array('username','imagedir'))
 		->where('finds.id = ?', (int)$id)
@@ -55,7 +55,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get last 10 thumbnails
-	* @param integer $limit 
+	* @param integer $limit
 	* @return array
 	*/
 	public function getLast10Thumbnails($limit=NULL) {
@@ -63,19 +63,19 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name,array('thumbnail'  => 'slides.imageID','created','label','f' => 'filename'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('objecttype','id','old_findID','broadperiod'))
 		->joinLeft('users','users.id = slides.createdBy', array('imagedir','username'))
 		->order('slides.created DESC')
 		->limit($limit);
 	$data =   $thumbs->fetchAll($select);
 	$this->_cache->save($data, 'frontimagesdb'.$this->getRole());
-	} 
+	}
 	return $data;
 	}
 
 	/** Get last 12 thumbnails for a staff member
-	* @param integer $limit 
+	* @param integer $limit
 	* @param integer $id
 	* @return array
 	* @todo add caching
@@ -85,7 +85,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$select = $thumbs->select()
 		->distinct()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('objecttype','id','old_findID'))
 		->joinLeft('staff','staff.dbaseID = finds.createdBy',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -98,7 +98,7 @@ class Slides extends Pas_Db_Table_Abstract {
 
 
 	/** Get last 12 thumbnails for a rally
-	* @param integer $limit 
+	* @param integer $limit
 	* @param integer $id
 	* @return array
 	* @todo add caching
@@ -107,7 +107,7 @@ class Slides extends Pas_Db_Table_Abstract {
 		$thumbs = $this->getAdapter();
 		$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('objecttype','id','old_findID'))
 		->joinLeft('staff','staff.dbaseID = finds.createdBy',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -127,7 +127,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('old_findID'))
 		->where('finds.id = ?', (int)$id)
 		->limit(1);
@@ -135,7 +135,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get coin examples
-	* @param integer $limit 
+	* @param integer $limit
 	* @param integer $rulerID
 	* @return array
 	* @todo add caching
@@ -144,7 +144,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -159,7 +159,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a user's images paginated
-	* @param integer $id 
+	* @param integer $id
 	* @param array $params
 	* @return array
 	* @todo add caching
@@ -168,7 +168,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id')
 		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
 		->joinLeft('users','users.id = slides.createdBy', array('imagedir'))
@@ -176,12 +176,12 @@ class Slides extends Pas_Db_Table_Abstract {
 	->order($this->_name . '.created DESC');
 	$rowCount = $thumbs->select()->from($this->_name);
 	$rowCount->reset( Zend_Db_Select::COLUMNS )
-		->columns( new Zend_Db_Expr( 'COUNT(*) AS ' . 
+		->columns( new Zend_Db_Expr( 'COUNT(*) AS ' .
 	Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN ));
 	if(isset($params['old_findID']) && ($params['old_findID'] != "")) {
 	$findID = strip_tags($params['old_findID']);
 	$select->where('finds.old_findID = ?', (string)$findID);
-	$rowCount->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+	$rowCount->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array())
 		->where('finds.old_findID = ?', (string)$findID);
 	}
@@ -202,15 +202,15 @@ class Slides extends Pas_Db_Table_Abstract {
 	}
 	$paginator = Zend_Paginator::factory($select);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']); 
+	$paginator->setCurrentPageNumber((int)$params['page']);
 	}
-	$paginator->setItemCountPerPage(40) 
-		->setPageRange(20); 
+	$paginator->setItemCountPerPage(40)
+		->setPageRange(10);
 	return $paginator;
 	}
-	
+
 	/** Get all images
-	* @param array $params 
+	* @param array $params
 	* @param integer $id
 	* @return array
 	* @todo add caching
@@ -219,7 +219,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','secuid'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('id','old_findID','broadperiod'))
 		->joinLeft('users','users.id = slides.createdBy', array('imagedir'))
 		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'));
@@ -232,7 +232,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	if(isset($params['old_findID']) && ($params['old_findID'] != ""))  {
 	$findID = strip_tags($params['old_findID']);
 	$select->where('finds.old_findID = ?', $findID);
-	$rowCount->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+	$rowCount->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array())
 		->where('finds.old_findID = ?', $findID);
 	}
@@ -254,15 +254,15 @@ class Slides extends Pas_Db_Table_Abstract {
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->getAdapter()->setRowCount($rowCount);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']); 
+	$paginator->setCurrentPageNumber((int)$params['page']);
 	}
-	$paginator->setItemCountPerPage(40) 
-		->setPageRange(20); 
+	$paginator->setItemCountPerPage(40)
+		->setPageRange(10);
 	return $paginator;
 	}
 
 	/** Get a specific image
-	* @param integer $id 
+	* @param integer $id
 	* @return array
 	* @todo add caching
 	*/
@@ -272,13 +272,13 @@ class Slides extends Pas_Db_Table_Abstract {
 		->from($this->_name,array('id' => 'imageID','filename','label',
 		'filesize','county','period','imagerights',
 		'secuid','created','createdBy'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('old_findID','broadperiod'))
 		->joinLeft('users','users.id = slides.createdBy', array('imagedir','fullname'))
 		->where('slides.imageID = ?', (int)$id);
 	return  $thumbs->fetchAll($select);
 	}
-	
+
 	/** Get linked finds to an image
 	* @param integer $id
 	* @return array
@@ -288,14 +288,14 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name)
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array('linkid' => 'id')) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array('linkid' => 'id'))
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('old_findID','broadperiod','objecttype',
 		'findID' => 'id'))
 		->joinLeft('users','users.id = slides.createdBy', array('fullname','userid' => 'id'))
 		->where('slides.imageID = ?', (int)$id);
 	return  $thumbs->fetchAll($select);
 	}
-	
+
 	/** Get linked finds to an image
 	* @param string $secuid
 	* @return array
@@ -319,7 +319,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','created','f' => 'filename','i' => 'imageID','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('objecttype','id','old_findID'))
 		->joinLeft('users','users.id = slides.createdBy', array('username', 'imagedir'))
 		->order($this->_name.'.imageID DESC')
@@ -342,13 +342,13 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('f' => 'filename','label','imageID','secuid'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds_images.find_id = finds.secuid', array('id'))
 		->joinLeft('users','users.id = slides.createdBy', array('imagedir'))
 		->where($this->_name.'.imageID = ?', (int)$id);
 	return  $thumbs->fetchAll($select);
 	}
-	
+
 	/** Fetch deletion data
 	* @param integer $id
 	* @return array
@@ -358,7 +358,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('f' => 'filename','imageID','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('users','users.id = slides.createdBy',array('imagedir'))
 		->where($this->_name.'.imageID = ?', (int)$id);
 	return  $thumbs->fetchAll($select);
@@ -374,7 +374,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name,array('thumbnail'  => 'slides.imageID','created','label','f' => 'filename'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('objecttype','id','old_findID','broadperiod'))
 		->joinLeft('users','users.id = slides.createdBy', array('imagedir','username'))
 		->where('finds.broadperiod = ?', (string)$period)
@@ -387,7 +387,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	}
 	$data =  $thumbs->fetchAll($select);
 	$this->_cache->save($data, 'coinsperiod' . str_replace(' ','',$period) . $this->getRole());
-	} 
+	}
 	return $data;
 	}
 
@@ -400,7 +400,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','broadperiod','objecttype'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -424,7 +424,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
@@ -447,7 +447,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
@@ -470,7 +470,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -494,7 +494,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -517,7 +517,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -540,7 +540,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -563,7 +563,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('coins','coins.findID = finds.secuid',array())
 		->joinLeft('users','users.id = slides.createdBy',array('username'))
@@ -587,7 +587,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$users = $this->getAdapter();
 	$select = $users->select()
 		->from($this->_name,array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array()) 
+		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
 		->joinLeft('users','users.id = finds.createdBy',array('username'))
 		->where('users.username = ?', $username)
@@ -600,7 +600,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	}
 	return $data;
 	}
-	
+
 	public function getSolrData($id){
 	$slides = $this->getAdapter();
 	$select = $slides->select()
@@ -611,9 +611,9 @@ class Slides extends Pas_Db_Table_Abstract {
 		->joinLeft('periods',$this->_name . '.period = periods.id',
 		array('broadperiod' => 'term'))
 		->joinLeft('finds_images','finds_images.image_id = slides.secuid',array())
-		->joinLeft('finds','finds_images.find_id = finds.secuid',array('old_findID', 
+		->joinLeft('finds','finds_images.find_id = finds.secuid',array('old_findID',
 		'findID' => 'finds.id'))
-		->joinLeft('findspots','finds.secuid = findspots.findID',array('woeid', 
+		->joinLeft('findspots','finds.secuid = findspots.findID',array('woeid',
 		'latitude' => 'declat','longitude' => 'declong',
 		'coordinates' => 'CONCAT( findspots.declat,  ",", findspots.declong )',
 		'county'))

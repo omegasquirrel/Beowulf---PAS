@@ -2,9 +2,9 @@
 $config = Zend_Registry::get('config');
 ?>
 
-<h4>Spatial data</h4> 
+<h4>Spatial data</h4>
 <?php if(!is_null($this->gridref) && is_null($this->knownas)) : ?>
-<?php 
+<?php
 $config = Zend_Registry::get('config');
 $apikey = $config->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='.$apikey,$type='text/javascript')
@@ -47,15 +47,14 @@ echo 'Parish: '. ucwords(strtolower($this->parish)).'<br />';
 	echo 'Settlement type: '.$place->type.'<br />';
 	if(isset($place->postal)) {
 	echo 'Postcode: '.$place->postal.'<br />';
-	}	
+	}
 	echo 'WOEID: '.$place->woeid.'<br />';
-	echo 'Some of the spatially enriched data provided here was sourced from the excellent Places/Placemaker service from Yahoo\'s geo team.<br />
-<a href="http://www.ygeoblog.com/" title="Yahoo geo developer network resources"><img src="'.$this->baseUrl().'/images/logos/yahoogeo.jpg" height="89" width="250" alt="Yahoo Geo Developer logo" class="geo" /></a>';	
+	echo 'Some of the spatially enriched data provided here was sourced from the excellent Places/Placemaker service from Yahoo\'s geo team.';
 }
 }
 ?>
 </p>
-<?php 
+<?php
 if(!is_null($this->knownas)){
 $pm = new Pas_Service_Geo_Placemaker($config->webservice->ydnkeys->appid);
 $place = $pm->getSingle($this->parish.','.$this->county.' United Kingdom');
@@ -64,20 +63,20 @@ echo $this->YahooGeoAdjacent($place->woeid);
 }
 }
 ?>
-<?php 
+<?php
 if(is_null($this->knownas) && !is_null($this->declat)){
 $this->inlineScript()->captureStart();?>
 $(document).ready(function() {
 
 if (GBrowserIsCompatible()) {
 
-<?php 
+<?php
 $pm = new Pas_Service_Geo_Placemaker($config->webservice->ydnkeys->appid);
 	$place = $pm->getSingle($this->parish.' , '.$this->county.' , United Kingdom');
 	if(!is_null($place)){
 	$woeid = $place->woeid;
 	} else {
-		$woeid = NULL; 
+		$woeid = NULL;
 	}
 if(!is_null($woeid)):?>
  var locations = {};
@@ -86,11 +85,11 @@ if(!is_null($woeid)):?>
 	var bounds = new GLatLngBounds();
 	var woeid = '<?php echo $woeid;?>';
 	var colours = ["red", "blue", "green", "purple", "orange", "yellow", "darkred", "darkblue", "darkgreen", "aqua", "magenta", "springgreen"];
-	
+
 	function displayPolygon(woeid) {
 		$.getJSON('http://api.flickr.com/services/rest/?method=flickr.places.getInfo&api_key=' + flickr_api_key + '&woe_id=' + woeid + '&format=json&jsoncallback=?', function(data) {
 			if(data.place.has_shapedata == 1) {
-			
+
 				$.each(data.place.shapedata.polylines.polyline, function(index,polyline) {
 					thepoints = [];
 					$.each(polyline._content.split(/ /), function(pindex, point) {
@@ -98,20 +97,20 @@ if(!is_null($woeid)):?>
 						lng = parseFloat(point.split(/,/)[1]);
 						thepoints[pindex] = new GLatLng(lat, lng);
 					});
-					
+
 					var polyOptions = {geodesic:true};
 					var colour = colours.shift();
 					var name = data.place.name.split(',')[0];
-					
+
 					var polygon = new GPolygon(thepoints, colour, 2, 1, colour, 0.1, polyOptions);
 					map.addOverlay(polygon);
 					//$('ul#legend-items').append('<li style="color:' + colour + '"><a href="/database/search/results/woeid/' + woeid + '" title="View all data from adjacent places">' + name + '</a></li>');
-					
+
 					$.each(thepoints, function(pindex, point) {
 						bounds.extend(point);
 					});
 				});
-			
+
 				if(!bounds.isEmpty()) {
 					map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
 				}
@@ -120,9 +119,9 @@ if(!is_null($woeid)):?>
 	};
 
 
-	
+
 	//displayPolygon(woeid);
- <?php endif;?> 
+ <?php endif;?>
 
  // -- copy&paste block start
 var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90, -180),new GLatLng(90, 180)), 1,
@@ -136,37 +135,37 @@ var nlsmap = new GMapType([tilelayer], G_NORMAL_MAP.getProjection(), "Historical
 
 
   	 var copyOSM = new GCopyrightCollection('<a href="http://www.openstreetmap.org/">OpenStreetMap</a>');
-  copyOSM.addCopyright(new GCopyright(1, 
+  copyOSM.addCopyright(new GCopyright(1,
     new GLatLngBounds(new GLatLng(-90, -180), new GLatLng(90, 180)),
     0, // minimum zoom level
     ' ' // no additional copyright message, but empty string hides entire copyright
   ));
-	
+
 	var osmLayer = new GTileLayer(copyOSM, 0, 18, {
 		tileUrlTemplate: 'http://b.tile.cloudmade.com/758908c8a49c53628f805e18f661d500/5/256/{Z}/{X}/{Y}.png',
 		isPng: true,
 		opacity: 1.0
 		});
-	  
+
 	var osmMap = new GMapType(
 		[osmLayer], // list of layers
 		G_NORMAL_MAP.getProjection(), // borrow the Mercator projection from the standard map
 		'OSM' // name should be short enough to fit in button
 	  );
-	 
+
 	var map = new GMap2(document.getElementById("map"));
 		map.addControl(new GLargeMapControl());
       	map.addControl(new GMapTypeControl());
         map.setCenter(new GLatLng(<?php echo $this->declat.',',$this->declong;?>),8);
 		map.addMapType(osmMap);
 		map.addMapType(nlsmap);
-	    map.addMapType(G_PHYSICAL_MAP); 
-		map.setMapType(G_PHYSICAL_MAP); 
+	    map.addMapType(G_PHYSICAL_MAP);
+		map.setMapType(G_PHYSICAL_MAP);
 
 	var mt = map.getMapTypes();for (var i=0; i < mt.length; i++) {
         mt[i].getMinimumResolution = function() {return 2;}
         mt[i].getMaximumResolution = function() {return 11;}
-      }	
+      }
 
     }
 
@@ -185,8 +184,8 @@ var nlsmap = new GMapType([tilelayer], G_NORMAL_MAP.getProjection(), "Historical
 	echo $this->GridRef($place->latitude,$place->longitude).'<br />';
 	}
 	?>
-	
-<?php 
+
+<?php
 $config = Zend_Registry::get('config');
 $apikey = $config->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='.$apikey,$type='text/javascript')
@@ -199,7 +198,7 @@ $(document).ready(function() {
 if (GBrowserIsCompatible()) {
 <?php $pm = new Placemaker();
 	$place = $pm->get($this->parish.' , '.$this->county.' , United Kingdom');
-		
+
 	$woeid = $place->woeid;
 if(!is_null($woeid)):?>
  var locations = {};
@@ -208,11 +207,11 @@ if(!is_null($woeid)):?>
 	var bounds = new GLatLngBounds();
 	var woeid = '<?php echo $place->woeid;?>';
 	var colours = ["red", "blue", "green", "purple", "orange", "yellow", "darkred", "darkblue", "darkgreen", "aqua", "magenta", "springgreen"];
-	
+
 	function displayPolygon(woeid) {
 		$.getJSON('http://api.flickr.com/services/rest/?method=flickr.places.getInfo&api_key=' + flickr_api_key + '&woe_id=' + woeid + '&format=json&jsoncallback=?', function(data) {
 			if(data.place.has_shapedata == 1) {
-			
+
 				$.each(data.place.shapedata.polylines.polyline, function(index,polyline) {
 					thepoints = [];
 					$.each(polyline._content.split(/ /), function(pindex, point) {
@@ -220,20 +219,20 @@ if(!is_null($woeid)):?>
 						lng = parseFloat(point.split(/,/)[1]);
 						thepoints[pindex] = new GLatLng(lat, lng);
 					});
-					
+
 					var polyOptions = {geodesic:true};
 					var colour = colours.shift();
 					var name = data.place.name.split(',')[0];
-					
+
 					var polygon = new GPolygon(thepoints, colour, 2, 1, colour, 0.1, polyOptions);
 					map.addOverlay(polygon);
 				//	$('ul#legend-items').append('<li style="color:' + colour + '"><a href="/database/search/results/woeid/' + woeid + '" title="View all data from adjacent places">' + name + '</a></li>');
-					
+
 					$.each(thepoints, function(pindex, point) {
 						bounds.extend(point);
 					});
 				});
-			
+
 				if(!bounds.isEmpty()) {
 					map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
 				}
@@ -242,10 +241,10 @@ if(!is_null($woeid)):?>
 	};
 
 
-	
+
 	//displayPolygon(woeid);
- <?php endif;?> 
-	
+ <?php endif;?>
+
 		 // -- copy&paste block start
 var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90, -180),new GLatLng(90, 180)), 1,
 	"Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>");
@@ -257,37 +256,37 @@ var nlsmap = new GMapType([tilelayer], G_NORMAL_MAP.getProjection(), "Historical
 // -- copy&paste block end
 
   	 var copyOSM = new GCopyrightCollection('<a href="http://www.openstreetmap.org/">OpenStreetMap</a>');
-  copyOSM.addCopyright(new GCopyright(1, 
+  copyOSM.addCopyright(new GCopyright(1,
     new GLatLngBounds(new GLatLng(-90, -180), new GLatLng(90, 180)),
     0, // minimum zoom level
     ' ' // no additional copyright message, but empty string hides entire copyright
   ));
-	
+
 	var osmLayer = new GTileLayer(copyOSM, 0, 18, {
 		tileUrlTemplate: 'http://b.tile.cloudmade.com/758908c8a49c53628f805e18f661d500/998/256/{Z}/{X}/{Y}.png',
 		isPng: true,
 		opacity: 1.0
 		});
-	  
+
 	var osmMap = new GMapType(
 		[osmLayer], // list of layers
 		G_NORMAL_MAP.getProjection(), // borrow the Mercator projection from the standard map
 		'OSM' // name should be short enough to fit in button
 	  );
-	 
+
 	var map = new GMap2(document.getElementById("map"));
 		map.addControl(new GLargeMapControl());
       	map.addControl(new GMapTypeControl());
         map.setCenter(new GLatLng(<?php echo $place->latitude.','.$place->longitude;?>),9);
 		map.addMapType(osmMap);
 		map.addMapType(nlsmap);
-	    map.addMapType(G_PHYSICAL_MAP); 
-		map.setMapType(G_PHYSICAL_MAP); 
+	    map.addMapType(G_PHYSICAL_MAP);
+		map.setMapType(G_PHYSICAL_MAP);
 		var mt = map.getMapTypes();
 		for (var i=0; i < mt.length; i++) {
         mt[i].getMinimumResolution = function() {return 2;}
         mt[i].getMaximumResolution = function() {return 11;}
-      }	
+      }
 
     }
 
@@ -315,7 +314,7 @@ Discovery circumstances: <span property="pas:discoveryCircumstances"><?php echo 
 <?php endif;?>
 
 <?php if(!is_null($this->curr_loc)):?>
-Current location: <span property="pas:currentLocation"><?php echo $this->escape($this->curr_loc);?></span><br /> 
+Current location: <span property="pas:currentLocation"><?php echo $this->escape($this->curr_loc);?></span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->landvalue)):?>

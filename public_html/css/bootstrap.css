@@ -3067,6 +3067,14 @@ a.thumbnail:hover {
 .label-info {
   background-color: #3a87ad;
 }
+
+#map img {
+max-width: none;
+}
+#map {
+ height: 500px;
+}
+
 @-webkit-keyframes progress-bar-stripes {
   from {
     background-position: 0 0;

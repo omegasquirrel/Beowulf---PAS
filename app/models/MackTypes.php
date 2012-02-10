@@ -58,10 +58,10 @@ class MackTypes extends Pas_Db_Table_Abstract {
 			->order($this->_name.'.type')
 			->group($this->_name.'.type');
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-	          ->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+	          ->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-    $paginator->setCurrentPageNumber($params['page']); 
+    $paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}

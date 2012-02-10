@@ -16,7 +16,7 @@ class Hoards extends Pas_Db_Table_Abstract {
 	protected $_name = 'hoards';
 
 	protected $_primary = 'id';
-		
+
 	/** Retrieval of all hoards on database
 	* @return array $data
 	* @todo add caching
@@ -30,7 +30,7 @@ class Hoards extends Pas_Db_Table_Abstract {
 	}
 
 	/** Retrieval of hoard data by ID number
-	* @param integer $id 
+	* @param integer $id
 	* @return array $data
 	* @todo add caching
 	*/
@@ -43,8 +43,8 @@ class Hoards extends Pas_Db_Table_Abstract {
 		 return $hoards->fetchAll($select);
 		 }
 
-	/** get paginated hoard list 
-	* @param integer $page 
+	/** get paginated hoard list
+	* @param integer $page
 	* @return array $data
 	* @todo add caching
 	*/
@@ -57,12 +57,12 @@ class Hoards extends Pas_Db_Table_Abstract {
 			->group('hoards.id')
 			->order($this->_name . '.id ASC');
 		$paginator = Zend_Paginator::factory($select);
-		$paginator->setItemCountPerPage(30) 
-	          ->setPageRange(20);
+		$paginator->setItemCountPerPage(30)
+	          ->setPageRange(10);
 		if(isset($params['page']) && ($params['page'] != "")) {
-    	      $paginator->setCurrentPageNumber((int)$params['page']); 
+    	      $paginator->setCurrentPageNumber((int)$params['page']);
 		}
-        return $paginator;		 
+        return $paginator;
 		}
 
 

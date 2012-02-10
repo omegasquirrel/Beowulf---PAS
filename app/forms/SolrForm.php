@@ -6,19 +6,13 @@
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
 */
-class SolrForm extends Pas_Form
+class SolrForm extends Twitter_Form
 {
 public function __construct($options = null)
 {
-parent::__construct($options);
+    parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'),
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
+
 
 	$this->setName('solr')->removeDecorator('HtmlTag');
 
@@ -27,12 +21,11 @@ parent::__construct($options);
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
-		->addErrorMessage('Please enter a search term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a search term');
+
         $thumbnail = new Zend_Form_Element_Checkbox('thumbnail');
         $thumbnail->setLabel('Only with images?')
-                ->setUnCheckedValue(null)
-                ->setDecorators($decorators);
+                ->setUnCheckedValue(null);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Search!')
@@ -50,11 +43,7 @@ parent::__construct($options);
 	$this->addElements(array($q, $thumbnail, $submit, $hash ));
 
 
-	$this->addDisplayGroup(array('q', 'thumbnail', 'submit'), 'Search');
-	$this->Search->removeDecorator('DtDdWrapper');
-	$this->Search->removeDecorator('HtmlTag');
-	$this->Search->addDecorators(array(array('HtmlTag', array('tag' => 'ul','id' => 'www'))))
-	->addDecorator('FieldSet');
+
 
 	}
 }

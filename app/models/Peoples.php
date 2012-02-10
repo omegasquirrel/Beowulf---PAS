@@ -12,11 +12,11 @@
 class Peoples extends Pas_Db_Table_Abstract {
 
 	protected $_name = 'people';
-	
+
 	protected $_primary = 'id';
-	
+
 	/** Get people's name from an ajax lookup with concatenation different to next function
-	* @param string $q 
+	* @param string $q
 	* @return array
 	*/
 	public function getNames($q) {
@@ -54,7 +54,7 @@ class Peoples extends Pas_Db_Table_Abstract {
     $options = $this->getAdapter()->fetchAll($select);
     return $options;
     }
-	
+
     /** Get personal details to an individual find
 	* @param integer $id
 	* @return boolean
@@ -84,7 +84,7 @@ class Peoples extends Pas_Db_Table_Abstract {
 	return	$this->getAdapter()->fetchAll($select);
     }
 
-    /** Get personal details for a finder by id with enhanced information 
+    /** Get personal details for a finder by id with enhanced information
 	* @param integer $id
 	* @return array
 	*/
@@ -93,11 +93,11 @@ class Peoples extends Pas_Db_Table_Abstract {
 	$select = $persons->select()
 		->from($this->_name)
 		->joinLeft('countries','people.country = countries.iso', array('abode' => 'printable_name'))
-		->joinLeft('primaryactivities','people.primary_activity = primaryactivities.id', 
+		->joinLeft('primaryactivities','people.primary_activity = primaryactivities.id',
 		array('role' => 'term'))
-		->joinLeft('organisations', 'people.organisationID = organisations.secuid', 
-		array('secid' => 'secuid','orgaddress' => 'address', 'orgcounty' => 'county', 'orgpostcode' => 'postcode', 
-		'orglat' => 'lat', 'orglon' => 'lon', 'org' => 'name', 
+		->joinLeft('organisations', 'people.organisationID = organisations.secuid',
+		array('secid' => 'secuid','orgaddress' => 'address', 'orgcounty' => 'county', 'orgpostcode' => 'postcode',
+		'orglat' => 'lat', 'orglon' => 'lon', 'org' => 'name',
 		'i' => 'id', 'orgwoeid' => 'woeid', 'orgwebsite' => 'website'))
 		->joinLeft(array('count' => 'countries'),'organisations.country = count.iso',
 		array('orgcountry' => 'printable_name'))
@@ -109,7 +109,7 @@ class Peoples extends Pas_Db_Table_Abstract {
 
     /** Get list of people in paginated format
 	* @param string $params['fullname']
-	* @param string $params['primary_activity']	
+	* @param string $params['primary_activity']
 	* @param string $params['organisationID']
 	* @param string $params['county']
 	* @param integer $params['page']
@@ -139,13 +139,13 @@ class Peoples extends Pas_Db_Table_Abstract {
 	$select->where($this->_name . '.county = ?', (string)$county);
 	}
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-	          ->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+	          ->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-    $paginator->setCurrentPageNumber($params['page']); 
+    $paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
-	}	
+	}
 
 	/** Get count of people to annoy Paul Barford
 	* @return array
@@ -169,7 +169,7 @@ class Peoples extends Pas_Db_Table_Abstract {
 		->where('users.id = ?',(int)$id);
 	return	$persons->fetchAll($select);
 	}
-	
+
 	/** Get dropdown list of curators names
 	* @return array
 	*/
@@ -184,7 +184,7 @@ class Peoples extends Pas_Db_Table_Abstract {
 	}
     return $data;
 	}
-	
+
 	/** Get dropdown list of valuers names
 	* @return array
 	*/
@@ -199,9 +199,9 @@ class Peoples extends Pas_Db_Table_Abstract {
 	}
     return $data;
 	}
-	
+
 	/** Get people data for solr updates
-	 * 
+	 *
 	 */
 	public function getSolrData($id){
 	$persons = $this->getAdapter();
@@ -211,13 +211,13 @@ class Peoples extends Pas_Db_Table_Abstract {
 			'fullname', 'surname','forename',
 			'longitude' => 'lon','latitude' => 'lat',
 			'email','created','updated',
-			'coordinates' => 'CONCAT(lat,",",lon)', 
+			'coordinates' => 'CONCAT(lat,",",lon)',
 			'place' => 'CONCAT(address," ",town_city," ",county)'
 			 ))
 		->joinLeft('primaryactivities',$this->_name . '.primary_activity = primaryactivities.id',
 		array('activity' => 'term'))
 		->where('people.id = ?',(int)$id);
-	return	$persons->fetchAll($select);	
+	return	$persons->fetchAll($select);
 	}
-	
+
 }

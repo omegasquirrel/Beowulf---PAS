@@ -30,9 +30,9 @@ class VanArsdellTypes extends Pas_Db_Table_Abstract {
 	}
 	return $options;
     }
-    
+
     /** Get a list of types based on query string
-    * @param string $q 
+    * @param string $q
 	* @return array
 	*/
 	public function getTypes($q) {
@@ -46,7 +46,7 @@ class VanArsdellTypes extends Pas_Db_Table_Abstract {
 	}
 
 	/** Get a list of va types paginated
-    * @param integer $params['page'] page number requested 
+    * @param integer $params['page'] page number requested
 	* @return array
 	*/
 	public function getVaTypes($params) {
@@ -54,10 +54,10 @@ class VanArsdellTypes extends Pas_Db_Table_Abstract {
 	$select = $types->select()
 		->from($this->_name);
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-    $paginator->setCurrentPageNumber($params['page']); 
+    $paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
 	}

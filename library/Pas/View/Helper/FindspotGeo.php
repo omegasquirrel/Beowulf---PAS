@@ -98,8 +98,7 @@ class Pas_View_Helper_FindspotGeo
     $html = '';
     $html .= '<h4>Data from Yahoo! GeoPlanet</h4>';
     $html .= '<p>The spatially enriched data provided here was sourced from the excellent Places/Placemaker service';
-    $html .= ' from Yahoo\'s geo team.<br /><img src="' . $this->view->baseUrl() . '/images/logos/yahoogeo.jpg" height="89"';
-    $html .= ' width="250" alt="Yahoo Geo Developer logo" class="geo">';
+    $html .= ' from Yahoo\'s geo team.<br />';
     $html .= 'Settlement type: ' . $data['placeTypeName'] . '<br/>';
     $html .= 'WOEID: ' . $data['woeid'] . '<br/>';
     if(array_key_exists('postal',$data)){

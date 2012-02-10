@@ -1372,7 +1372,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setItemCountPerPage(10)
-		->setPageRange(20)
+		->setPageRange(10)
                 ->setCache($this->_cache);
 	if(isset($params['page']) && ($params['page'] != "")) {
 	$paginator->setCurrentPageNumber((int)$params['page']);
@@ -1466,7 +1466,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setItemCountPerPage(30)
-		->setPageRange(20)
+		->setPageRange(10)
                 ->setCache($this->_cache);
 	if(isset($params['page']) && ($params['page'] != "")) {
 	$paginator->setCurrentPageNumber((int)$params['page']);

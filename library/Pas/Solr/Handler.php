@@ -288,7 +288,7 @@ class Pas_Solr_Handler {
     $paginator = Zend_Paginator::factory($this->_resultset->getNumFound());
     $paginator->setCurrentPageNumber($this->getPage($this->_params))
             ->setItemCountPerPage($this->_getRows($this->_params))
-            ->setPageRange(20);
+            ->setPageRange(10);
     return $paginator;
     }
 

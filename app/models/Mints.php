@@ -3,7 +3,7 @@
 * @category Pas
 * @package Pas_Db_Table
 * @subpackage Abstract
-* 
+*
 * @author Daniel Pett dpett @ britishmuseum.org
 * @copyright 2010 - DEJ Pett
 * @license GNU General Public License
@@ -28,7 +28,7 @@ class Mints extends Pas_Db_Table_Abstract {
 	$options = $this->getAdapter()->fetchPairs($select);
     return $options;
     }
-	
+
     /** Get all Byzantine mints as a key value pair list for dropdown
 	* @return array
 	* @todo add caching
@@ -41,7 +41,7 @@ class Mints extends Pas_Db_Table_Abstract {
 	$options = $this->getAdapter()->fetchPairs($select);
 	return $options;
     }
-    
+
     /** Get all Greek mints as a key value pair list for dropdown
 	* @return array
 	* @todo add caching
@@ -131,7 +131,7 @@ class Mints extends Pas_Db_Table_Abstract {
 	$options = $this->getAdapter()->fetchPairs($select);
 	return $options;
     }
-    
+
     /** Get all  mints by period id as a key value pair list for dropdown
 	* @param integer $periodID The specific ID of the period
 	* @return array
@@ -162,7 +162,7 @@ class Mints extends Pas_Db_Table_Abstract {
 	return $rulers->fetchAll($select);
     }
 
-    /** Get all list of all  mints by period id 
+    /** Get all list of all  mints by period id
 	* @param integer $periodID The specific ID of the period
 	* @return array
 	*/
@@ -261,7 +261,7 @@ class Mints extends Pas_Db_Table_Abstract {
 		->order('mints.mint_name ASC');
 	return $mints->fetchAll($select);
     }
-    
+
     /** Get early med mints attached to a ruler as key value pairs for dropdown
 	* @param integer $rulerID The specific ID of the ruler
 	* @return array
@@ -277,7 +277,7 @@ class Mints extends Pas_Db_Table_Abstract {
 		->order('mints.mint_name ASC');
 	return $mints->fetchPairs($select);
     }
-    
+
     /** Get med mints attached to a ruler as list
 	* @param integer $rulerID The specific ID of the ruler
 	* @return array
@@ -294,7 +294,7 @@ class Mints extends Pas_Db_Table_Abstract {
 	return $mints->fetchAll($select);
     }
 
-    /** Get  med mints attached to a ruler - unsure what this is for 
+    /** Get  med mints attached to a ruler - unsure what this is for
 	* @param integer $rulerID The specific ID of the ruler
 	* @return array
 	* @todo add caching
@@ -325,11 +325,11 @@ class Mints extends Pas_Db_Table_Abstract {
 		->limit(1);
 	return $mints->fetchAll($select);
     }
-	
+
     /** Get specific mint name from a reverse type IOD
 	* @param integer $reverseID The specific ID of the reverse
 	* @return array
-	* @todo add caching 
+	* @todo add caching
 	*/
 	public function getMintReverseType($reverseID){
 	$mints = $this->getAdapter();
@@ -356,7 +356,7 @@ class Mints extends Pas_Db_Table_Abstract {
 		->limit(1);
 	return $mints->fetchAll($select);
     }
-    
+
     /** Get paginated list of mints
 	* @param integer $params['period'] The period id number
 	* @param integer $params['page'] The page number
@@ -371,16 +371,16 @@ class Mints extends Pas_Db_Table_Abstract {
 		->where($this->_name . '.valid = ?',(int)1);
 	if(isset($params['period']) && ($params['period'] != "")) {
 	$select->where('period = ?',(int)$params['period']);
-	}		
+	}
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
     }
-    
+
     /** Get paginated list of mints for admin console
 	* @param integer $params['period'] The period id number
 	* @param integer $params['page'] The page number
@@ -397,12 +397,12 @@ class Mints extends Pas_Db_Table_Abstract {
 		->where($this->_name . '.valid = ?',(int)1);
 	if(isset($params['period']) && ($params['period'] != "")) {
 	$select->where('period = ?',(int)$params['period']);
-	}		
+	}
 	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(30) 
-		->setPageRange(20);
+	$paginator->setItemCountPerPage(30)
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	return $paginator;
     }

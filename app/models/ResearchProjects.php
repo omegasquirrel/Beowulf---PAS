@@ -18,12 +18,12 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 
 	protected $_primary = 'id';
 
-	protected $_higherlevel = array( 'admin', 'flos', 'fa'); 
+	protected $_higherlevel = array( 'admin', 'flos', 'fa');
 
 	protected $_restricted = array( 'public', 'member' );
 
-	/** 
-	* Get a role from Zend_Auth 
+	/**
+	* Get a role from Zend_Auth
 	* @return string $role Role of the user for reuse on scripts
 	*/
 	protected function getRole() {
@@ -38,8 +38,8 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 	}
 	}
 
-	/** 
-	* Get a count of the project types 
+	/**
+	* Get a count of the project types
 	* @return array
 	*/
 	public function getCounts() {
@@ -51,9 +51,9 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 		return $projects->fetchAll($select);
 	}
 
-	/** 
-	* Get a paginated list of the project types 
-	* @param integer $params['page'] 
+	/**
+	* Get a paginated list of the project types
+	* @param integer $params['page']
 	* @return array
 	*/
 	public function getProjects($params) {
@@ -63,16 +63,16 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 				->joinLeft('projecttypes',$this->_name . '.level = projecttypes.id', array('type' => 'title'));
     	$paginator = Zend_Paginator::factory($select);
 		if(isset($params['page']) && ($params['page'] != "")) {
-	    $paginator->setCurrentPageNumber((int)$params['page']); 
+	    $paginator->setCurrentPageNumber((int)$params['page']);
 		}
-		$paginator->setItemCountPerPage(20) 
-	          ->setPageRange(10); 
+		$paginator->setItemCountPerPage(20)
+	          ->setPageRange(10);
 	return $paginator;
 	}
 
-	/** 
-	* Get a specific project by id nymber 
-	* @param integer $id 
+	/**
+	* Get a specific project by id nymber
+	* @param integer $id
 	* @return array
 	*/
 	public function getProjectDetails($id) {
@@ -80,15 +80,15 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 		$select = $projects->select()
         	    ->from($this->_name)
 				->joinLeft('projecttypes',$this->_name . '.level = projecttypes.id', array('type' => 'title'))
-                ->joinLeft('users','users.id = ' . $this->_name . '.createdBy', 
+                ->joinLeft('users','users.id = ' . $this->_name . '.createdBy',
                 array('fullname', 'email', 'userid' => 'id'))
 			    ->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname'))
 				->where($this->_name . '.' . $this->_primary . ' = ?',(int)$id);
 	return $projects->fetchAll($select);
 	}
 
-	/** 
-	* Get projects added by a user 
+	/**
+	* Get projects added by a user
 	* @param integer $user
 	* @return array
 	*/
@@ -101,8 +101,8 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 		return $projects->fetchAll($select);
 	}
 
-	/** 
-	* Get projects list for feeds, limited to 25 
+	/**
+	* Get projects list for feeds, limited to 25
 	* @return array
 	*/
 	public function getProjectsFeeds() {
@@ -115,7 +115,7 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 	}
 
 
-	/** 
+	/**
 	* Get a specific project
 	* @return array
 	* @todo is this the same as get project details?
@@ -125,12 +125,12 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 		$select = $projects->select()
         	    ->from($this->_name)
 				->joinLeft('projecttypes',$this->_name . '.level = projecttypes.id', array('type' => 'title'))
-				->joinLeft('people',$this->_name . '.investigator = people.secuid', array('fullname')) 
+				->joinLeft('people',$this->_name . '.investigator = people.secuid', array('fullname'))
 				->where($this->_name . '.id = ?',(int)$id);
 	return $projects->fetchAll($select);
 	}
 
-	/** 
+	/**
 	* Get a list of all projects paginated
 	* @param integer $params['page']
 	* @param string $params['level'] the level of project
@@ -147,16 +147,16 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 				->order('id DESC');
 		if(isset($params['level'])) {
 		$select->where($this->_name.'.level = ?',(int)$params['level']);
-		}				   
-	    if(in_array($this->getRole(),$this->restricted)) {     
+		}
+	    if(in_array($this->getRole(),$this->_restricted)) {
 		$select->where($this->_name.'.valid = ?',(int)1);
 		}
 		$paginator = Zend_Paginator::factory($select);
 		if(isset($params['page']) && ($params['page'] != "")) {
-		$paginator->setCurrentPageNumber((int)$params['page']); 
+		$paginator->setCurrentPageNumber((int)$params['page']);
 			}
-		$paginator->setItemCountPerPage(20) 
-				->setPageRange(10); 
+		$paginator->setItemCountPerPage(20)
+				->setPageRange(10);
 	return $paginator;
 	}
 }

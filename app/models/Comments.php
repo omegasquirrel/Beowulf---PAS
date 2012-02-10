@@ -85,7 +85,7 @@ class Comments extends Pas_Db_Table_Abstract {
 	$data = $comments->fetchAll($select);
 	$paginator = Zend_Paginator::factory($data);
 	$paginator->setItemCountPerPage(30)
-		->setPageRange(20);
+		->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != ""))  {
 	$paginator->setCurrentPageNumber($params['page']);
 	}
@@ -136,7 +136,7 @@ class Comments extends Pas_Db_Table_Abstract {
 	}
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setItemCountPerPage(30)
-		->setPageRange(20);
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
 	$paginator->setCurrentPageNumber($page);
 	}
@@ -166,7 +166,7 @@ class Comments extends Pas_Db_Table_Abstract {
 		->group('comments.id');
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setItemCountPerPage(30)
-		->setPageRange(20);
+		->setPageRange(10);
 	if(isset($page) && ($page != "")) {
 	$paginator->setCurrentPageNumber($page);
 	}

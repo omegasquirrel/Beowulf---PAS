@@ -1,8 +1,8 @@
-/* 
+/*
 Simple JQuery menu.
 HTML structure to use:
 
-Notes: 
+Notes:
 
 1: each menu MUST have an ID set. It doesn't matter what this ID is as long as it's there.
 2: each menu MUST have a class 'menu' set. If the menu doesn't have this, the JS won't make it dynamic
@@ -46,7 +46,7 @@ function initMenus() {
 	$('ul.menu ul').hide();
 	$.each($('ul.menu'), function(){
 		$('.expandfirst ul:first').show();
-							  
+
 		//$('#' + this.id + '.expandfirst ul:first').show();
 	});
 	$('ul.menu li a').click(
@@ -72,18 +72,7 @@ function initMenus() {
 		}
 	);
 }
-$(document).ready(function() {initMenus();
-$(".stripeMe tr").mouseover(function() {$(this).addClass("over");}).mouseout(function() {$(this).removeClass("over");});
-$(".stripeMe tr:even").addClass("alt");
-$("#stripeDiv div").mouseover(function() {$(this).addClass("over");}).mouseout(function() {$(this).removeClass("over");});
-$("#stripeDiv div:even").addClass("alt");
-$(".thumbnail").corner();
-$("#action li").corner();
-$("#userdata").corner();
-$("#action").corner();
-$(".panel").corner();
-
-
-$(".addpanel").corner();
+$(document).ready(function() {
+    initMenus();
 
 });
