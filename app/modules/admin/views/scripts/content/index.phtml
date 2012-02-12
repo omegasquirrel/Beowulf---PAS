@@ -1,9 +1,9 @@
-<?php 
+<?php
 $this->headTitle('Administer content');
 if (count($this->contents)): ?>
 <h2>Administer site content</h2>
-<p><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'content','action' => 'add'),null,true);?>" title="">Add new content</a></p>
-<table class="stripeMe" summary="All content entered on the system">
+<p><a class="btn btn-large btn-success" href="<?php echo $this->url(array('module' => 'admin','controller' => 'content','action' => 'add'),null,true);?>" title="">Add new content</a></p>
+<table class="table table-striped" summary="All content entered on the system">
 <caption>All content entered</caption>
 <thead>
 <tr>

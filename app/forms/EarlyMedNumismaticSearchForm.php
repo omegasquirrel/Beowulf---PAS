@@ -6,9 +6,9 @@
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
 */
-class EarlyMedNumismaticSearchForm extends Twitter_Form {
+class EarlyMedNumismaticSearchForm extends Pas_Form {
 
-         protected function getRole(){
+        protected function getRole(){
 	$auth = Zend_Auth::getInstance();
 	if($auth->hasIdentity()){
 	$user = $auth->getIdentity();
@@ -26,7 +26,7 @@ class EarlyMedNumismaticSearchForm extends Twitter_Form {
 
 	public function __construct($options = null) {
 
-	
+
 	$institutions = new Institutions();
 	$inst_options = $institutions->getInsts();
 

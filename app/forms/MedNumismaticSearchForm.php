@@ -10,54 +10,47 @@ class MedNumismaticSearchForm extends Pas_Form {
 
 public function __construct($options = null) {
 
-	$primaries = new Materials();
-	$primary_options = $primaries->getPrimaries();
+
 	//Get data to form select menu for periods
 	//Get Rally data
 
 	$rallies = new Rallies();
 	$rally_options = $rallies->getRallies();
-	
+
 	//Get Hoard data
 	$hoards = new Hoards();
 	$hoard_options = $hoards->getHoards();
-	
+
 	$counties = new Counties();
 	$county_options = $counties->getCountyName2();
-	
+
 	$rulers = new Rulers();
 	$ruler_options = $rulers->getMedievalRulers();
-	
+
 	$denominations = new Denominations();
 	$denomination_options = $denominations->getOptionsMedieval();
-	
+
 	$mints = new Mints();
 	$mint_options = $mints->getMedievalMints();
-	
+
 	$axis = new Dieaxes();
 	$axis_options = $axis->getAxes();
-	
+
 	$cats = new CategoriesCoins();
 	$cat_options = $cats->getPeriodMed();
-	
+
 	$regions = new Regions();
 	$region_options = $regions->getRegionName();
-	
+
 	$institutions = new Institutions();
 	$inst_options = $institutions->getInsts();
-	
+
 	$axis = new Dieaxes();
 	$axis_options = $axis->getAxes();
-	
+
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
+
 
 	$this->setName('medNumismaticsSearch');
 
@@ -66,47 +59,46 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid number!')
-		->setDecorators($decorators);
+		->setAttrib('class', 'span6');
 
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Object description contains: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		;
 
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL , 
-		'Choose Worklow stage' => array('1'=> 'Quarantine','2' => 'On review', 
+		->addMultiOptions(array(NULL => NULL ,
+		'Choose Worklow stage' => array('1'=> 'Quarantine','2' => 'On review',
 		'3' => 'Awaiting validation', '4' => 'Published')))
-		->setDecorators($decorators);
+		;
 
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
 	$rally->setLabel('Rally find: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->setUncheckedValue(NULL)
-		->setDecorators($decorators);
-	
+		->setUncheckedValue(NULL);
+
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $rally_options))
 		->addValidator('InArray', false, array(array_keys($rally_options)))
-		->setDecorators($decorators);
+		;
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
 	$hoard->setLabel('Hoard find: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Int')
-		->setUncheckedValue(NULL)
-		->setDecorators($decorators);
+                ->separator('')
+		->setUncheckedValue(NULL);
 
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
@@ -114,7 +106,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $hoard_options))
 		->addValidator('InArray', false, array(array_keys($hoard_options)))
-		->setDecorators($decorators);
+		;
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
@@ -122,36 +114,36 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
 		->addValidator('InArray', false, array(array_keys($county_options)))
-		->setDecorators($decorators);
+		;
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->setRegisterInArrayValidator(false)
-		->setDecorators($decorators);
+		;
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 		->setRegisterInArrayValidator(false)
 		->addMultiOptions(array(NULL => 'Choose parish after county'))
-		->setDecorators($decorators);
+		;
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
 		->setRegisterInArrayValidator(false)
 		->addMultiOptions(array(NULL => 'Choose a region for a wide result',
 		'Choose region' => $region_options))
-		->setDecorators($decorators);
+		;
 
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')
 		->addValidators(array('NotEmpty','ValidGridRef'))
-		->setDecorators($decorators);
-	
+		;
+
 	$fourFigure = new Zend_Form_Element_Text('fourFigure');
 	$fourFigure->setLabel('Four figure grid reference: ')
 		->addValidators(array('NotEmpty','ValidGridRef'))
-		->setDecorators($decorators);
+		;
 
 	###
 	##Numismatic data
@@ -161,10 +153,10 @@ public function __construct($options = null) {
 	$denomination->setLabel('Denomination: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => 'Choose a denomination', 
+		->addMultiOptions(array(NULL => 'Choose a denomination',
 		'Available denominations' => $denomination_options))
 		->addValidator('InArray', false, array(array_keys($denomination_options)))
-		->setDecorators($decorators);
+		;
 
 	$cat = new Zend_Form_Element_Select('category');
 	$cat->setLabel('Category: ')
@@ -172,13 +164,13 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose a category','Available categories' => $cat_options))
 		->addValidator('InArray', false, array(array_keys($cat_options)))
-		->setDecorators($decorators);
+		;
 
 	$type = new Zend_Form_Element_Select('typeID');
 	$type->setLabel('Coin type: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->setDecorators($decorators);
+		;
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');
@@ -187,7 +179,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose a ruler', 'Available issuers' => $ruler_options))
 		->addValidator('InArray', false, array(array_keys($ruler_options)))
-		->setDecorators($decorators);
+		;
 
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
@@ -197,7 +189,7 @@ public function __construct($options = null) {
 		->addFilter('StringTrim')
 		->addMultiOptions(array(NULL => 'Choose a mint', 'Available mints' => $mint_options))
 		->addValidator('InArray', false, array(array_keys($mint_options)))
-		->setDecorators($decorators);
+		;
 
 	//Obverse inscription
 	$obverseinsc = new Zend_Form_Element_Text('obinsc');
@@ -205,7 +197,7 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		;
 
 	//Obverse description
 	$obversedesc = new Zend_Form_Element_Text('obdesc');
@@ -213,7 +205,7 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		;
 
 	//reverse inscription
 	$reverseinsc = new Zend_Form_Element_Text('revinsc');
@@ -221,7 +213,7 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		;
 
 	//reverse description
 	$reversedesc = new Zend_Form_Element_Text('revdesc');
@@ -229,7 +221,7 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		;
 
 	//Die axis
 	$axis = new Zend_Form_Element_Select('axis');
@@ -238,11 +230,11 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose an axis', 'Available measurements' => $axis_options))
 		->addValidator('InArray', false, array(array_keys($axis_options)))
-		->setDecorators($decorators);
+		;
 
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('COIN')
-		->addFilters(array('StripTags', 'StringTrim'))	
+		->addFilters(array('StripTags', 'StringTrim'))
 		->setAttrib('class', 'none')
 		->removeDecorator('label')
 		->removeDecorator('HtmlTag')
@@ -257,31 +249,30 @@ public function __construct($options = null) {
 		->removeDecorator('DtDdWrapper')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Alpha');
-		
-	//Submit button 
+
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
+	$submit->setAttrib('class', 'btn btn-large btn-success  ')
 		->removeDecorator('label')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('DtDdWrapper')
-		->setLabel('Submit')
-		->setAttrib('class', 'large');
-		
+		->setLabel('Submit');
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_config->form->salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(4800);
 	$this->addElement($hash);
-	
+
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => 'Choose an institution',
 	'Available institutions' => $inst_options))
-	->setDecorators($decorators); 
-	
+	;
+
 	$this->addElements(array(
 	$old_findID, $type, $description,
 	$workflow, $rally, $rallyID,
@@ -292,16 +283,16 @@ public function __construct($options = null) {
 	$obverseinsc, $obversedesc,$reverseinsc,
 	$reversedesc, $objecttype, $broadperiod,
 	$cat, $submit,$hash, $institution));
-	
-	
-	
+
+
+
 	$this->addDisplayGroup(array(
 	'category', 'ruler', 'typeID',
 	'denomination', 'mint','moneyer',
 	'axis',  'obinsc','obdesc',
 	'revinsc','revdesc'), 'numismatics')
 	->removeDecorator('HtmlTag');
-	
+
 	$this->numismatics->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 	$this->numismatics->removeDecorator('DtDdWrapper');
 	$this->numismatics->setLegend('Numismatic details: ');
@@ -310,16 +301,16 @@ public function __construct($options = null) {
 	$this->details->setLegend('Object details:');
 	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 	$this->details->removeDecorator('DtDdWrapper');
-	
+
 	$this->addDisplayGroup(array('county','regionID','district','parish','gridref','fourFigure', 'institution'), 'spatial')->removeDecorator('HtmlTag');
 	$this->spatial->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 	$this->spatial->removeDecorator('DtDdWrapper');
 	$this->spatial->setLegend('Spatial details: ');
-	
+
 	$this->setLegend('Perform an advanced search on our database: ');
-	
+
 	$this->addDisplayGroup(array('submit'), 'submit');
-				 
-	
+
+
 	}
 }

@@ -4,7 +4,7 @@ $this->headTitle('Account upgrades');
 ?>
 <h2>Account upgrade requests</h2>
 <?php if(count($this->users)):?>
-<table class="stripeMe" summary="A list of people requesting upgrades">
+<table class="table table-striped" summary="A list of people requesting upgrades">
 <thead>
 <tr>
 <th>Username</th>
@@ -18,8 +18,8 @@ $this->headTitle('Account upgrades');
 <?php echo $this->partialLoop('partials/users/upgrades.phtml',$this->users);?>
 </tbody>
 </table>
-<?php 
-echo $this->paginationControl($this->users, 'Sliding', 'structure/pagination.phtml'); 
+<?php
+echo $this->paginationControl($this->users, 'Sliding', 'structure/pagination.phtml');
 ?>
 <?php else:?>
 <p>It is your lucky day Odysseus, Nemo has come knocking for account upgrades! Go wrestle a lion!</p>

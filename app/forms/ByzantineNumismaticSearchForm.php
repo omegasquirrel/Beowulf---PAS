@@ -8,8 +8,7 @@ public function __construct($options = null)
 $institutions = new Institutions();
 $inst_options = $institutions->getInsts();
 //Get data to form select menu for primary and secondary material
-$primaries = new Materials();
-$primary_options = $primaries->getPrimaries();
+
 //Get data to form select menu for periods
 //Get Rally data
 $rallies = new Rallies();
@@ -42,25 +41,25 @@ parent::__construct($options);
 
 
 $this->setAttrib('accept-charset', 'UTF-8');
-       
-$this->clearDecorators();
-	
 
-$decorator =  array('SimpleInput');
-$decoratorButton =  array('NormalDecButton');
 
-$decorators = array(
-            array('ViewHelper'), 
+
+
+    $decorators = array(
+            array('ViewHelper'),
             array('Description', array('placement' => 'append','class' => 'info')),
             array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
             array('Label'),
             array('HtmlTag', array('tag' => 'li')),
+            array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
+			"Label",
+			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
 		    );
-					
+
 
 
 	$this->setName('byzantine-search');
-	
+
 	$old_findID = new Zend_Form_Element_Text('old_findID');
 	$old_findID->setLabel('Find number: ')
 		->setRequired(false)
@@ -187,7 +186,7 @@ $decorators = array(
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => NULL,'Choose primary ruler' => $ruler_options))
 		->setDecorators($decorators);
-	
+
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
 	$mint->setLabel('Issuing mint: ')
@@ -241,8 +240,8 @@ $decorators = array(
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => NULL,'Choose institution' => $inst_options))
-	->setDecorators($decorators); 	
-	
+	->setDecorators($decorators);
+
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin');
 	$objecttype->removeDecorator('HtmlTag')
@@ -257,7 +256,7 @@ $decorators = array(
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('label');
 
-	//	Submit button 
+	//	Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')
 		->removeDecorator('label')
@@ -273,15 +272,15 @@ $decorators = array(
 	$gridref, $denomination, $ruler,
 	$mint, $axis, $obverseinsc,
 	$obversedesc, $reverseinsc, $reversedesc,
-	$objecttype, $broadperiod, $institution, 
+	$objecttype, $broadperiod, $institution,
 	$submit));
-	
+
 	$this->addDisplayGroup(array(
 	'denomination', 'ruler', 'mint',
 	'moneyer', 'axis', 'obverseLegend',
-	'obverseDescription','reverseLegend','reverseDescription'), 
+	'obverseDescription','reverseLegend','reverseDescription'),
 	'numismatics');
-	
+
 	$this->addDisplayGroup(array(
 	'old_findID', 'description', 'rally',
 	'rallyID', 'hoard', 'hID',
@@ -293,12 +292,12 @@ $decorators = array(
 	$this->numismatics->setLegend('Numismatic details');
 	$this->numismatics->removeDecorator('DtDdWrapper');
 	$this->numismatics->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	
-	
+
+
 	$this->details->setLegend('Artefact details');
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	
+
 	$this->spatial->setLegend('Spatial details');
 	$this->spatial->removeDecorator('DtDdWrapper');
 	$this->spatial->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
@@ -307,7 +306,7 @@ $decorators = array(
 	$this->addDecorator('FormElements')
 		 ->addDecorator('Form')
 	     ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'));
-	$this->removeDecorator('DtDdWrapper');			 
+	$this->removeDecorator('DtDdWrapper');
 
 }
 }

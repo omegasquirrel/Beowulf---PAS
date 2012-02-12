@@ -10,13 +10,13 @@
 * @license    GNU General Public License
 
 */
-class Pas_Filter_UrlSlug implements Zend_Filter_Interface_Abstract {
-   
+class Pas_Filter_UrlSlug implements Zend_Filter_Interface {
+
     /** Filter the input
     * @param string $slug The string to sanitise
     * @return string $result the cleaned result
     */
-    public function generateSlug($slug) {
+    public function filter($slug) {
     $result = strtolower($slug);
     $result = preg_replace("/[^a-z0-9\s-]/", "", $result);
     $result = trim(preg_replace("/\s+/", " ", $result));

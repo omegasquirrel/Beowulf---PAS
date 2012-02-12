@@ -42,7 +42,8 @@ echo $this->Href(array(
     'action' => 'add',
     'checkAcl' => true,
     'acl'=>'Zend_Acl',
-    'attribs' => array('title' => 'Edit a discovery method'),
+    'attribs' => array('title' => 'Edit a discovery method',
+        'class' => 'btn btn-large btn-primary'),
     'params' => array('id' => $this->id),
     'content'=> 'Edit', 'wrapper' => array('tag' => 'p'))
     );
@@ -50,7 +51,7 @@ echo $this->Href(array(
 ?>
 <?php if ($this->hers): ?>
 
-<table class="stripeMe" summary="This table lists all the HERs that have signed up to our data transfer agreement">
+<table class="table-striped table" summary="This table lists all the HERs that have signed up to our data transfer agreement">
 <caption>Signed up HER offices</caption>
 <thead>
 <tr>
@@ -63,7 +64,7 @@ echo $this->allowedtest($string);?>
 </tr>
 </thead>
 <tbody>
-<?php echo $this->partialLoop('partials/research/hers.phtml',$this->hers);?>
+<?php echo $this->partialLoop('partials/research/hers.phtml', $this->hers);?>
 </tbody>
 </table>
 <?php else:?>

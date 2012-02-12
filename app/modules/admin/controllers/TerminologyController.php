@@ -1,6 +1,6 @@
 <?php
 /** Controller for administering the terminology on the database
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,12 +8,12 @@
 * @license    GNU General Public License
 */
 class Admin_TerminologyController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_redirectUrl = '/admin/terminology/';
-	
+
 	CONST UPDATE = 'Update details';
 	CONST DELETED = 'Record deleted!';
-	
+
 	/** Setup the ACL.
 	*/
 	public function init() {
@@ -33,7 +33,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 
 	/** Add an activity
-	*/	
+	*/
 	public function addactivityAction() {
 	$form = new ActivityForm();
 	$form->submit->setLabel('Add a new activity');
@@ -50,7 +50,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit an activity
-	*/	
+	*/
 	public function editactivityAction() {
 	if($this->_getparam('id',false)) {
 	$form = new ActivityForm();
@@ -107,7 +107,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display a list of discovery methods
-	*/	
+	*/
 	public function methodsAction() {
 	$methods = new DiscoMethods();
 	$this->view->methods = $methods->getDiscMethodsListAdmin();
@@ -148,7 +148,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete a method of discovery
-	*/	
+	*/
 	public function deletemethodAction() {
 	if ($this->_request->isPost()) {
 	$id = (int)$this->_request->getPost('id');
@@ -186,7 +186,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
 	/** List decorative methods
 	*/
 	public function decorationmethodsAction() {
@@ -211,7 +211,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a decorative method.
-	*/	
+	*/
 	public function editdecorationmethodAction() {
 	if($this->_getParam('id',false)) {
 	$form = new DecMethodsForm();
@@ -245,7 +245,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete a decorative method
-	*/	
+	*/
 	public function deletedecorationmethodAction() {
 	$this->_flashMessenger->addMessage($this->_noChange);
 	if ($this->_request->isPost()) {
@@ -267,13 +267,13 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List surface treatments
-	*/	
+	*/
 	public function surfacesAction(){
 	$surfaces = new Surftreatments();
 	$this->view->surfaces = $surfaces->getSurfaceTreatmentsAdmin();
 	}
 	/** Add a surface treatment
-	*/	
+	*/
 	public function addsurfaceAction() {
 	$form = new SurfTreatmentsForm();
 	$form->submit->setLabel('Add new surface treatment');
@@ -290,7 +290,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a surface treatment
-	*/	
+	*/
 	public function editsurfaceAction() {
 	if($this->_getParam('id',false)) {
 	$form = new SurfTreatmentsForm();
@@ -347,13 +347,13 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List periods in use
-	*/	
+	*/
 	public function periodsAction(){
 	$periods = new Periods();
 	$this->view->periods = $periods->getPeriodsAll();
 	}
 	/** Edit a specific period
-	*/	
+	*/
 	public function editperiodAction() {
 	if($this->_getParam('id',false)) {
 	$form = new PeriodForm();
@@ -410,7 +410,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Add a new period - won't be used much!
-	*/	
+	*/
 	public function addperiodAction() {
 	$form = new PeriodForm();
 	$form->submit->setLabel('Add a new period');
@@ -427,13 +427,13 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List ascribed cultures
-	*/	
+	*/
 	public function culturesAction() {
 	$cultures = new Cultures();
 	$this->view->cultures = $cultures->getCulturesListAdmin();
 	}
 	/** Add an ascribed culture
-	*/	
+	*/
 	public function addcultureAction(){
 	$form = new CultureForm();
 	$form->details->setLegend('Ascribed Culture details: ');
@@ -451,7 +451,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit an ascribed culture
-	*/	
+	*/
 	public function editcultureAction() {
 	if($this->_getParam('id',false)) {
 	$this->view->headTitle("Edit an ascribed culture ");
@@ -464,7 +464,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	$cultures = new Cultures();
 	$where = array();
 	$where[] = $cultures->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-	
+
 	$cultures->update($form->getValues(), $where);
 	$this->_flashMessenger->addMessage('Culture updated!');
 	$this->_redirect($this->_redirectUrl . 'cultures');
@@ -488,7 +488,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	/** Delete an ascribed culture
 	*/
 	public function deletecultureAction() {
@@ -512,7 +512,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List workflows in use
-	*/	
+	*/
 	public function workflowsAction(){
 	$workflows = new Workflows();
 	$this->view->workflows = $workflows->getStageNamesAdmin();
@@ -535,9 +535,9 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a workflow stage
-	*/	
+	*/
 	public function editworkflowAction() {
-	if($this->_getParam((int)'id',false)) {
+	if($this->_getParam('id',false)) {
 	$form = new WorkflowForm();
 	$form->submit->setLabel( self::UPDATE );
 	$this->view->form = $form;
@@ -592,7 +592,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List preservation states
-	*/	
+	*/
 	public function preservationsAction() {
 	$preserves = new Preservations();
 	$this->view->preserves = $preserves->getPreservationTermsAdmin();
@@ -671,11 +671,11 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List the types of grid reference origins
-	*/	
+	*/
 	public function maporiginsAction() {
 	$origins = new MapOrigins();
 	$this->view->origins = $origins->getOrigins();
-	}	
+	}
 	/** Add a map origin statement
 	*/
 	public function addmaporiginAction() {
@@ -695,7 +695,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a map origin statement
-	*/	
+	*/
 	public function editmaporiginAction() {
 	if($this->_getParam('id',false)) {
 	$form = new OriginForm();
@@ -752,13 +752,13 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List finds of note methods
-	*/	
+	*/
 	public function notesAction(){
 	$notes = new Findofnotereasons();
 	$this->view->notes = $notes->getReasonsListAdmin();
 	}
 	/** Add a find of note reasoning
-	*/	
+	*/
 	public function addnoteAction() {
 	$form = new FindNoteReasonForm();
 	$form->submit->setLabel('Add a new reason');
@@ -775,7 +775,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit find of note statement
-	*/	
+	*/
 	public function editnoteAction() {
 	if($this->_getParam('id',false)) {
 	$form = new FindNoteReasonForm();
@@ -810,7 +810,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete a find of note statement
-	 * 
+	 *
 	 */
 	public function deletenoteAction() {
 	if ($this->_request->isPost()) {
@@ -832,7 +832,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List primary materials
-	*/	
+	*/
 	public function materialsAction() {
 	$materials = new Materials();
 	$this->view->materials = $materials->getMaterialsAdmin($this->_getParam('page'));
@@ -855,7 +855,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a material type
-	*/	
+	*/
 	public function editmaterialAction() 	{
 	if($this->_getParam('id',false)) {
 	$form = new MaterialForm();
@@ -888,9 +888,9 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	/** Delete a material
-	*/	
+	*/
 	public function deletematerialAction() {
 	if ($this->_request->isPost()) {
 	$id = (int)$this->_request->getPost('id');
@@ -911,7 +911,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List decorative styles
-	*/	
+	*/
 	public function decorationstylesAction() {
 	$decs = new Decstyles();
 	$this->view->decs = $decs->getDecStylesAdmin();
@@ -935,7 +935,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	/** Edit a decorative style
 	*/
-	public function editdecorationstyleAction() { 
+	public function editdecorationstyleAction() {
 	if($this->_getParam('id',false)) {
 	$form = new DecStylesForm();
 	$form->submit->setLabel( self::UPDATE );
@@ -968,7 +968,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete a decorative style
-	*/	
+	*/
 	public function deletedecorationstyleAction() {
 	if ($this->_request->isPost()) {
 	$id = (int)$this->_request->getPost('id');
@@ -988,9 +988,9 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
 	/** List manufacture methods
-	*/	
+	*/
 	public function manufacturesAction() {
 	$manufactures = new Manufactures();
 	$this->view->manufactures = $manufactures->getManufacturesListedAdmin();
@@ -1014,7 +1014,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a manufacture method
-	*/	
+	*/
 	public function editmanufactureAction() {
 	if($this->_getParam('id',false)) {
 	$form = new ManufacturesForm();
@@ -1049,7 +1049,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete a manufacture method
-	*/	
+	*/
 	public function deletemanufactureAction() {
 	if ($this->_request->isPost()) {
 	$id = (int)$this->_request->getPost('id');
@@ -1071,7 +1071,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 
 	/** List landuses
-	*/	
+	*/
 	public function landusesAction() {
 	$landuses = new Landuses();
 	$this->view->landuses = $landuses->getLandusesAdmin();
@@ -1095,9 +1095,9 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
 	/** Edit a landuse
-	*/	
+	*/
 	public function editlanduseAction() {
 	if($this->_getParam('id',false)) {
 	$form = new LanduseForm();
@@ -1132,9 +1132,9 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	/** Delete a landuse
-	*/	
+	*/
 	public function deletelanduseAction() {
 	$this->_flashMessenger->addMessage($this->_noChange);
 	if ($this->_request->isPost()) {
@@ -1154,5 +1154,5 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	$this->view->landuse = $landuses->fetchRow('id=' . $id);
 	}
 	}
-	}	
+	}
 }

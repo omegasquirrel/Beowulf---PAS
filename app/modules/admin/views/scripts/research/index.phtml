@@ -35,10 +35,11 @@ $('a.delete').confirm({
 <?php $this->jQuery()->javascriptCaptureEnd();?>
 
 <h2>Research projects conducted on Scheme data</h2>
-<p><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'research','action' => 'add'),null,true);?>" title="Add a new research project to the register">Add a new project</a></p>
+<p><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'research','action' => 'add'),null,true);?>"
+      class=""btn btn-large btn-warning" title="Add a new research project to the register">Add a new project</a></p>
 <?php if (count($this->research)): ?>
 
-<table class="stripeMe" summary="A table of all research projects conducted on Scheme research">
+<table class="table table-striped" summary="A table of all research projects conducted on Scheme research">
 <caption>Research projects</caption>
 <thead>
 <tr>

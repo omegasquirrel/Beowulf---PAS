@@ -31,7 +31,7 @@ $('a[class^=delete]').confirm({
     buttons: {
       wrapper:'<button></button>',
       separator:'  '
-    }  
+    }
   });
  });
 
@@ -41,15 +41,16 @@ $('a[class^=delete]').confirm({
 
 <?php echo $this->commenttitle($this->params);?>
 
-<ul id="commentslist">
-<li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments'),'default',true);?>" title="View all comments as one table">All comments</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'index','approval' => 'spam'),'default',true);?>" title="View all comments as one table">Spam comments</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'index','approval' => 'moderation'),'default',true);?>" title="View all comments as one table">Pending comments</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'index','approval' => 'approved'),'default',true);?>" title="View all comments as one table">Authorised comments</a></li>
-</ul>
-<form>
+<div class="btn-group">
+<a class="btn btn-large" href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments'),'default',true);?>" title="View all comments as one table">All comments</a>
+<a class="btn btn-large" href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'index','approval' => 'spam'),'default',true);?>" title="View all comments as one table">Spam comments</a>
+<a class="btn btn-large" href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'index','approval' => 'moderation'),'default',true);?>" title="View all comments as one table">Pending comments</a>
+<a class="btn btn-large" href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'index','approval' => 'approved'),'default',true);?>" title="View all comments as one table">Authorised comments</a>
+</div>
+
 <?php if(count($this->comments)):?>
-<table class="stripeMe" cellspacing="0">
+<table class="table table-striped" cellspacing="0">
+    <caption>Comments entered</caption>
 <thead>
 	<tr>
 	<th scope="col" id="author" class="manage-column column-author">Author</th>
@@ -73,6 +74,3 @@ $('a[class^=delete]').confirm({
 <p>No comments are listed or available to you</p>
 <?php endif;?>
 <?echo $this->paginationControl($this->comments, 'Sliding', 'structure/pagination.phtml'); ?>
-
-
-</form>

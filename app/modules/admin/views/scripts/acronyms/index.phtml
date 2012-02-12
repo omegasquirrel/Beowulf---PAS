@@ -1,17 +1,17 @@
-<?php 
+<?php
 $this->headTitle('All active acronyms on the system');
 $this->headMeta('A list of all acronyms/ abbreviations on the database',
         'description');?>
 
 <h2>Active acronyms</h2>
 <?php if(count($this->acronyms)):?>
-<p><a href="<?php echo $this->url(array(
-    'module' => 'admin', 
+<p><a class="btn btn-large btn-success" href="<?php echo $this->url(array(
+    'module' => 'admin',
     'controller' => 'acronyms',
-    'action' => 'add', 
+    'action' => 'add',
     'id' => $this->id),
         null, true);?>" title="add a new acronym">Add a new acronym</a></p>
-<table class="stripeMe" summary="All active acronyms">
+<table class="table table-striped" summary="All active acronyms">
 <caption>All acronyms</caption>
 <thead>
 <tr>

@@ -6,7 +6,7 @@
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
 */
-class SolrForm extends Twitter_Form
+class SolrForm extends Pas_Form
 {
 public function __construct($options = null)
 {
@@ -20,7 +20,7 @@ public function __construct($options = null)
 	$q->setLabel('Search content: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size', 20)
+		->setAttrib('class', 'span6 ')
 		->addErrorMessage('Please enter a search term');
 
         $thumbnail = new Zend_Form_Element_Checkbox('thumbnail');
@@ -29,7 +29,7 @@ public function __construct($options = null)
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Search!')
-		->setAttribs(array('class'=> 'large'))
+                ->setAttrib('class', 'btn btn-large btn-success span3 xlarge')
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag');
 

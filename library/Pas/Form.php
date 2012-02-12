@@ -11,31 +11,6 @@
 */
 class Pas_Form extends Zend_Form {
 
-    protected $_standardElementDecorator = array(
-        'ViewHelper',
-        array('LabelError', array('escape'=>false)),
-        array('HtmlTag', array('tag'=>'li'))
-    );
-
-    protected $_buttonElementDecorator = array(
-        'ViewHelper'
-    );
-
-    protected $_standardGroupDecorator = array(
-        'FormElements',
-        array('HtmlTag', array('tag'=>'ol')),
-        'Fieldset'
-    );
-
-    protected $_buttonGroupDecorator = array(
-        'FormElements',
-        'Fieldset'
-    );
-
-    protected $_noElementDecorator = array(
-        'ViewHelper'
-    );
-
     public $_config;
 
 	public function init()  {
@@ -43,27 +18,122 @@ class Pas_Form extends Zend_Form {
 	$this->_config = Zend_Registry::get('config');
     }
 
-        public function __construct($options = null) {
-	$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element', 'element')
-	->addPrefixPath('Pas_Form_Decorator', 'Pas/Form/Decorator', 'decorator');
-	$this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
 
-	parent::__construct($options);
+    public function __construct()
+	{
+		// Let's load our own decorators
+                $this->addPrefixPath("Twitter_Form_Decorator", "Twitter/Form/Decorator/", "decorator");
+//		$this->addPrefixPath("Pas_Form_Decorator", "Pas/Form/Decorator/", "decorator");
+                $this->addElementPrefixPath('Pas_Filter','Pas/Filter/','filter');
+                $this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
+		// Get rid of all the pre-defined decorators
+		$this->clearDecorators();
 
-	$this->setAttrib('accept-charset', 'UTF-8');
-	$this->clearDecorators();
+		// Decorators for all the form elements
+		$this->setElementDecorators(array(
+			"ViewHelper",
+			array("Errors", array("placement" => "prepend")),
+			array("Description", array("tag" => "span", "class" => "help-block")),
+			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
+			"Label",
+			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+		));
 
-	$this->setDecorators(array(
-		'FormElements',
-		'Form'
-	));
-    }
-
-	public function addElement($element, $name = null, $options = null) {
-	if (!is_array($options)) {
-	$options = array();
+		// Decorators for the form itself
+		$this->addDecorator("FormElements")
+			->addDecorator("HtmlTag", array("tag" => "fieldset"))
+			->addDecorator("Form", array("class" => "form-vertical"));
+                $this->_config = Zend_Registry::get('config');
+		parent::__construct();
 	}
-	$options['disableTranslator'] = true;
-	return parent::addElement($element, $name, $options);
-    }
+
+	/**
+	 * @see Zend_Form::addElement
+	 *
+	 * We have to override this, because we have to set some special decorators
+	 * on a per-element basis (checkboxes and submit buttons have different
+	 * decorators than other elements)
+	 */
+	public function addElement($element, $name = null, $options = null)
+	{
+		parent::addElement($element, $name, $options);
+
+		if(!$element instanceof Zend_Form_Element_Abstract && $name != null)
+		{
+			$element = $this->getElement($name);
+		}
+
+		// Special style for Zend
+		if($element instanceof Zend_Form_Element_Submit
+			|| $element instanceof Zend_Form_Element_Reset
+			|| $element instanceof Zend_Form_Element_Button)
+		{
+			$class = "";
+
+			if($element instanceof Zend_Form_Element_Submit
+				&& !($element instanceof Zend_Form_Element_Reset)
+			 	&& !($element instanceof Zend_Form_Element_Button))
+			{
+				$class = "primary";
+			}
+
+			$element->setAttrib("class", trim("btn $class " . $element->getAttrib("class")));
+			$element->removeDecorator("Label");
+			$element->removeDecorator("outerwrapper");
+			$element->removeDecorator("innerwrapper");
+
+
+
+			//$element->addDecorator(array(
+				//"outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "actions")
+			//);
+		}
+
+		if($element instanceof Zend_Form_Element_Checkbox)
+		{
+			$element->setDecorators(array(
+				array(array("labelopening" => "HtmlTag"), array("tag" => "label", "id" => $element->getId()."-label", "for" => $element->getName(), "openOnly" => true)),
+				"ViewHelper",
+				array("Checkboxlabel"),
+				array(array("labelclosing" => "HtmlTag"), array("tag" => "label", "closeOnly" => true)),
+				array(array("liwrapper" => "HtmlTag"), array("tag" => "li")),
+				array(array("ulwrapper" => "HtmlTag"), array("tag" => "ul", "class" => "inputs-list")),
+				array("Errors", array("placement" => "prepend")),
+				array("Description", array("tag" => "span", "class" => "help-block")),
+				array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
+				array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+			));
+		}
+
+		if($element instanceof Zend_Form_Element_Radio
+			|| $element instanceof Zend_Form_Element_MultiCheckbox)
+		{
+			$multiOptions = array();
+			foreach($element->getMultiOptions() as $value => $label)
+			{
+				$multiOptions[$value] = " ".$label;
+			}
+
+			$element->setMultiOptions($multiOptions);
+
+
+			$element->setOptions(array("separator" => ""));
+			$element->setDecorators(array(
+				"ViewHelper",
+				array(array("liwrapper" => "HtmlTag"), array("tag" => "li")),
+				array(array("ulwrapper" => "HtmlTag"), array("tag" => "ul", "class" => "inputs-list")),
+				array("Errors", array("placement" => "prepend")),
+				array("Description", array("tag" => "span", "class" => "help-block")),
+				array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
+				array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+			));
+		}
+
+		if($element instanceof Zend_Form_Element_Hidden)
+		{
+			$element->setDecorators(array("ViewHelper"));
+		}
+	}
+
+
 }

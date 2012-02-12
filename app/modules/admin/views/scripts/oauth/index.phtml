@@ -1,15 +1,15 @@
 <h2>Oauth Tokens in the database</h2>
 
-<table class="stripeMe"><caption>Oauth tokens that exist on the database</caption>
+<table class="table table-striped"><caption>Oauth tokens that exist on the database</caption>
 <tr><th>Service</th><th>Created</th><th>Expiry date</th></tr>
 
-<?php 
+<?php
 
 $tokens = ((object)$this->tokens);
 foreach($tokens as $t){
 ?><tr><td><?php echo $t->service; ?></td>
 <td><?php echo $this->timeagoinwords($t->created);?> </td>
 <td><?php echo $this->timeagoinwords($t->expires);?> </td></tr>
-<?php 
+<?php
 }?>
 </table>

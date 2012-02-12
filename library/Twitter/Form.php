@@ -29,7 +29,7 @@ class Twitter_Form extends Zend_Form
 		// Decorators for the form itself
 		$this->addDecorator("FormElements")
 			->addDecorator("HtmlTag", array("tag" => "fieldset"))
-			->addDecorator("Form", array("class" => "form-inline"));
+			->addDecorator("Form", array("class" => "form-horizontal"));
 
                 $this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element', 'element');
                 $this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
@@ -74,11 +74,11 @@ class Twitter_Form extends Zend_Form
 			$element->removeDecorator("outerwrapper");
 			$element->removeDecorator("innerwrapper");
 
-			$this->_addActionsDisplayGroupElement($element);
+//			$this->_addActionsDisplayGroupElement($element);
 
-			//$element->addDecorator(array(
-				//"outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "actions")
-			//);
+			$element->addDecorator(array(
+				"outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "actions")
+			);
 		}
 
 		if($element instanceof Zend_Form_Element_Checkbox)

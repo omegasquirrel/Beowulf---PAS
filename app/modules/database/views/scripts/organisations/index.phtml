@@ -8,12 +8,12 @@ $this->headTitle('Organisations registered with the Scheme');
 <h2>Organisations registered with the Scheme</h2>
 <?php
 echo $this->Href(array('module' => 'database','controller'=>'organisations', 'action'=>'add', 'checkAcl'=>true,
-'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'div','class' => 'redadd','id' => 'action'), 'content'=>'Add an organisation','attribs' => array('title' => 'Add an organisation')));
+'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'div','class' => 'btn btn-large btn-primary'), 'content'=>'Add an organisation','attribs' => array('title' => 'Add an organisation')));
 ?>
 
 <?php if (count($this->paginator)): ?>
 <div id="findsList">
-<table class="stripeMe">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Organisation name</th>

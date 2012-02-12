@@ -1,7 +1,8 @@
 <?php $this->headTitle('All messages submitted to the Scheme');?>
 <h2>All messages submitted</h2>
 <?php if(count($this->messages)):?>
-<table class="stripeMe" cellspacing="0">
+<table class="table table-striped" summary="All messages submitted">
+    <caption>All messages</caption>
 <thead>
 	<tr>
 	<th scope="col" id="author" class="manage-column column-author">Author</th>
@@ -13,7 +14,7 @@
 </thead>
 
 
-<tbody id="the-comment-list" class="list:comment">
+<tbody>
 
 <?php echo $this->partialLoop('partials/admin/messages.phtml', $this->messages) ?>
 

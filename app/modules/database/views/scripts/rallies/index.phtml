@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->headMeta('All known metal detecting rallies that the Scheme has tried to attend. These present the Scheme
 with a resource management issue','description')
 ->headMeta('archaeology,rally,rallies,england,wales','dc.keywords')
@@ -11,9 +11,9 @@ $this->headTitle('Rallies known to the Scheme');
 ?>
 
 <h2>Metal Detecting Rallies</h2>
-<?php 
+<?php
 echo $this->Href(array('module' => 'database','controller'=>'rallies', 'action'=>'add', 'checkAcl'=>true,
-'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'div','class' => 'redadd','id' => 'action'), 'content'=>'Add a rally','attribs' => array('title' => 'Add an organisation')));
+'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'div','class' => 'btn btn-large btn-primary','id' => 'action'), 'content'=>'Add a rally','attribs' => array('title' => 'Add an organisation')));
 ?>
 
 
@@ -22,7 +22,7 @@ echo $this->Href(array('module' => 'database','controller'=>'rallies', 'action'=
 <?php echo $this->partialLoop('partials/database/archiveYearsRallies.phtml',$this->years);?>
 </ul>
 <p>View <a href="<?php echo $this->url(array('module' => 'database','controller' => 'rallies','action' => 'map'),NULL,true);?>" title="View rally locations">rally locations</a> on a map</p>
-<table class="stripeMe" summary="A list of all rallies we have attended">
+<table class="table table-striped" summary="A list of all rallies we have attended">
 <caption>Rallies that the Scheme has attended</caption>
 <thead>
 <tr>
