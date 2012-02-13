@@ -1,4 +1,5 @@
-<div class="thumbnail" id="thumbnail-<?php echo $this->old_find;?>">
+<li class="span3">
+    <div class="thumbnail" style="height:240px;" >
 <a href="/<?php echo $this->imagedir. 'medium/' . $this->filename;?>" rel="lightbox" title="Thumbnail of <?php echo $this->old_findID;?>">
 <?php
 
@@ -18,7 +19,8 @@ if(file_exists($thumb)) { ?>
 
 }
 ?>
-</a><br/>
+</a>
+        <div class="caption">
 <?php if(!is_null($this->objecttype)) {
     echo ucfirst(strtolower($this->objecttype)) . '<br />';
 
@@ -57,4 +59,5 @@ if(in_array($user->role,$allowed))
 }
 }
 ?>
-</div>
+        </div></div>
+</li>

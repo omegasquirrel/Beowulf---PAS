@@ -79,24 +79,26 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
      * @param array $solrResponse
      */
     private function buildHtml($solrResponse){
-    $html ='<div class="similar row span12"><h4>Similar objects</h4>';
+    $html ='<div class="row-fluid"><h4>Similar objects</h4>';
+    $html .= '<ul class="thumbnails">';
     foreach($solrResponse['results'] as $document){
        if(($document->thumbnail)){
-			$html .= '<ul class="thumbnails">';
-                        $html .= '<li>';
-                        $html .= '<div class="thumbnail span3">';
+
+                        $html .= '<li class="span3">';
+                        $html .= '<div class="thumbnail" style="height:200px;">';
 			$html .= '<a href="' . $this->view->serverUrl() . '/database/artefacts/record/id/'
                 . $document->id . '">';
 			$html .= '<img src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
-			$html .= '</a><br />Find number: ';
+			$html .= '</a><div class="caption">Find number: ';
 			$html .= $document->old_findID;
 			$html .= '<br />Object type: ' . $document->objecttype;
 			$html .= '<br />Broadperiod: ' . $document->broadperiod;
-                        $html .= '</div>';
+                        $html .= '</div></div>';
                         $html .= '</li>';
-			$html .= '</ul>';
        }
     }
+
+			$html .= '</ul>';
     $html .= '</div>';
     return $html;
     }

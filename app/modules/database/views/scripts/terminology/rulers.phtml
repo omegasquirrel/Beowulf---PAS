@@ -1,19 +1,19 @@
-<?php 
+<?php
 
 $this->headTitle('All available rulers');
 ?>
 <h2>Rulers or issuers available for use on the database</h2>
 
 <?php if (count($this->rulers)): ?>
-<table class="stripeMe" summary="List of all active rulers on the Scheme's database">
+<table class="table table-striped" summary="List of all active rulers on the Scheme's database">
 <caption>Active rulers on the Scheme database</caption>
-<thead>
-<tr>
-<th>Issuer name</th>
-<th>Period</th>
-<th>Date reigned</th>
-</tr>
-</thead>
+    <thead>
+        <tr>
+            <th>Issuer name</th>
+            <th>Period</th>
+            <th>Date reigned</th>
+        </tr>
+    </thead>
 <tbody>
 <?php echo $this->partialLoop('partials/database/rulerListsCTerms.phtml',$this->rulers);?>
 </tbody>

@@ -1,6 +1,6 @@
-<ul id="menu1" class="menu collapsible expandfirst">
+<ul id="menu1" class="menu collapsible expandfirst nav nav-stacked nav-pills">
 <li><a href="#">Roman coins</a>
-<ul>
+<ul class="nav nav-stacked nav-pills">
 <li><a href="<?php echo $this->url(array('module'=>'romancoins'),'default', true);?>">Introduction</a></li>
 <li><a href="<?php echo $this->url(array('controller'=>'romancoins','action'=>'articles'),'default',true);?>" title="View introductory articles">General articles</a></li>
 <li><a href="<?php echo $this->url(array('controller'=>'romancoins','action'=>'emperors'),'default',true);?>" title="View our guide to Roman emperors issuing coins">Emperor guide</a></li>
@@ -13,8 +13,8 @@
 <li><a href="<?php echo $this->url(array('module'=>'romancoins','controller'=>'moneyers'),'default', true);?>" title="Learn more about the moneyers of Republican Rome">Republican moneyers</a></li>
 </ul>
 </li>
-<li><a href="#">Other numismatic periods</a>
-<ul>
+<li><a href="#">Other numismatic periods <i class="icon-folder-open"></i></a>
+<ul class="nav nav-stacked nav-pills">
 <li><a href="<?php echo $this->url(array('controller'=>'byzantinecoins','action'=>'index'),'default', true);?>">Byzantine coins</a></li>
 <li><a href="<?php echo $this->url(array('controller'=>'ironagecoins','action'=>'index'),'default', true);?>">Iron Age coins</a></li>
 <li><a href="<?php echo $this->url(array('controller'=>'earlymedievalcoins','action'=>'index'),'default', true);?>">Early Medieval coins</a></li>

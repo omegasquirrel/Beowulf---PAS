@@ -1,8 +1,8 @@
-<div typeof="pas:record" about="[<?php echo $this->old_findID;?>]" class="row span12 well">
+<div typeof="pas:record" about="[<?php echo $this->old_findID;?>]" class="row span8 well">
 
 
 
-    <div class="span12"> <?php if(isset($this->thumbnail)):?>
+    <div> <?php if(isset($this->thumbnail)):?>
      <?php
         $path = '/images/thumbnails/';
         $ext = '.jpg';
@@ -19,22 +19,22 @@
     </ul>
 
 	<?php endif;?>
-    <ul>
+    <p>
     <?php $url = $this->url(array(
     	'module' => 'database',
     	'controller' => 'artefacts',
     	'action' => 'record',
     	'id' => $this->id),
     	'default',true);?>
-        <li>Record ID: <a href="<?php echo $url; ?>" title="View details for <?php echo $this->old_findID;?>"><?php echo $this->old_findID;?></a></li>
-        <li>Object type: <?php echo $this->escape($this->objecttype);?></li>
-        <li>Broad period: <?php echo $this->broadperiod;?></li>
-        <li>County: <?php echo $this->county;?></li>
-        <li>Workflow stage: <?php echo $this->workflowStatus($this->workflow);?>
-        <?php echo $this->workflow($this->workflow);?></li>
-        <li>Description: <?php echo $this->ellipsisstring($this->description,500);?></li>
+        Record ID: <a href="<?php echo $url; ?>" title="View details for <?php echo $this->old_findID;?>"><?php echo $this->old_findID;?></a><br />
+        Object type: <?php echo $this->escape($this->objecttype);?><br />
+        Broad period: <?php echo $this->broadperiod;?><br />
+        County: <?php echo $this->county;?><br />
+        Workflow stage: <?php echo $this->workflowStatus($this->workflow);?>
+        <?php echo $this->workflow($this->workflow);?><br />
+        Description: <?php echo $this->ellipsisstring($this->description,600);?><br />
 
-    </ul>
+    </p>
 
     </div>
 

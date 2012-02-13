@@ -24,7 +24,7 @@ class Pas_View_Helper_Menu
 	$menus = $content->buildMenu($controller);
 	$html = '';
 	foreach($menus as $m) {
-	$html .= '<li><a href="';
+	$html .= '<li class="menu collapsible nav nav-stacked nav-pills"><a href="';
 	$html .= $this->view->url(array(
 		'module' => $section,
 		'controller' => $controller,

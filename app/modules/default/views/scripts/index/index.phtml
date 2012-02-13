@@ -1,20 +1,65 @@
 <?php
 $this->headMeta('noodp','robots');
 $this->headMeta('BJ0IxlmtPbri25v9zbMgcOFDOBuZmNacd9-friMs1_E','google-site-verification');
-$this->jQuery()->addJavascriptFile('/js/JQuery/jquery.lightbox.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javascript');
 ?>
-<?php $this->jQuery()->javascriptCaptureStart() ?>
-jQuery(document).ready(function($) {
-$('a[rel*=lightbox]').lightBox()
-});
 
-
-<?php $this->jQuery()->javascriptCaptureEnd() ?>
 <div class="container">
-<div class="hero-unit">
+
+
+
+
+
+
+ <section id="carousel">
+<div class="span10">
     <?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?>
 </div>
+        <div class="span10">
 
+          <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="http://farm8.staticflickr.com/7011/6509648969_3a898da77a_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The Viking hoard from Cumbria</h4>
+                  <p>Ian Richardson cradles the hoard in his gloved palms at the 2011 Treasure Launch</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="http://farm6.staticflickr.com/5147/5621551253_68547bc4de_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The Hackney Hoard</h4>
+                  <p>An interesting Treasure case, with a human touch. The Hackney hoard relates to the sad
+                  story of the Sulzbacher family</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="http://farm5.staticflickr.com/4131/5200670881_373ed82088_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The magnificent Frome hoard</h4>
+                  <p>150 kg of Roman coins were found by detectorist Dave Crisp.</p>
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          </div>
+
+
+
+        </div>
+      </div>
+
+<div class="hero-unit span9">
+    <?php echo $this->partialLoop('partials/index/quotes.phtml',$this->quotes);?>
+</div>
+    </section>
+    <?php $this->jQuery()->javascriptCaptureStart()?>
+    $('.myCarousel').carousel({
+  interval: 2000
+});
+<?php $this->jQuery()->javascriptCaptureEnd()?>
 </div>
 
 
@@ -58,16 +103,6 @@ $('a[rel*=lightbox]').lightBox()
 </div>
 
 
-
-<div id="quotes">
-    <?php echo $this->partialLoop('partials/index/quotes.phtml',$this->quotes);?>
-</div>
-
-<div class="row span10 well">
-<?php
-echo $this->FlickrFront(Zend_Registry::get('config')->webservice->flickr);
-?>
-</div>
 
 <div class="row">
     <div id="tweets" class="span4 well">

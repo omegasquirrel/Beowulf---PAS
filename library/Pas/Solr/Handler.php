@@ -319,10 +319,10 @@ class Pas_Solr_Handler {
             $facetData[$k] = array();
             $f = $this->_resultset->getFacetSet()->getFacet($k);
             foreach($f as $value => $count) {
+
             $facetData[$k][ $value ]  = $count;
             }
         }
-
         return $facetData;
         } else {
             return false;

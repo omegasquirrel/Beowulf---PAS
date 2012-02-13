@@ -38,7 +38,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
         $search->setFields(array(
     	'*')
         );
-
+        $search->setFacets(array('publisher','yearPublished'));
 
         if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
                 && !is_null($this->_getParam('submit'))){
@@ -65,7 +65,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
         $params['sort'] = 'title';
         $search->setParams($params);
         $search->execute();
-
+        $this->view->facets = $search->_processFacets();
         $this->view->paginator = $search->_createPagination();
         $this->view->results = $search->_processResults();
 

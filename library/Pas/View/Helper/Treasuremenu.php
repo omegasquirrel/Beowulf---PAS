@@ -12,7 +12,7 @@
  * @since September 13 2011
  * @todo change the class to use zend_navigation
 */
-class Pas_View_Helper_Treasuremenu 
+class Pas_View_Helper_Treasuremenu
 	extends Zend_View_Helper_Abstract {
 
 	/** Display the treasure menu
@@ -24,7 +24,7 @@ class Pas_View_Helper_Treasuremenu
 	$treasure = $treasure->getTreasureContent();
 	$html = '';
 	foreach($treasure as $t) {
-	$html .= '<li><a href="';
+	$html .= '<li ><a href="';
 	$html .= $this->view->url(array(
 	'module' => 'treasure',
 	'controller' => 'advice',

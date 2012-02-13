@@ -10,18 +10,22 @@ $('a[rel*=lightbox]').lightBox()
 
 <h2>All images added by me</h2>
 <?php echo $this->form;?>
+
+<?php if ($this->results): ?>
+<div class="row-fluid ">
+    <div class="span10">
+    <ul class="thumbnails">
+<?php echo $this->partialLoop('partials/database/myimagesList.phtml',
+        $this->results);?>
+    </ul>
+    </div>
 <?php
 echo $this->facetCreator($this->facets);
 ?>
-<?php if (count($this->results)): ?>
-<div id="gallery">
-<?php echo $this->partialLoop('partials/database/myimagesList.phtml',
-        $this->results);?>
 </div>
-<div style="clear:both;">
 <?php echo $this->paginationControl($this->paginator, 'Elastic',
         'structure/pagination.phtml'); ?>
-</div>
+
 <?php else:?>
 <p>You have added no images to our database.</p>
 <?php endif; ?>

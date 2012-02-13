@@ -61,7 +61,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'description', 'county')
     );
 
-    $search->setFacets(array('objectType','county','broadperiod','institution'));
+    $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow'));
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
                 && !is_null($this->_getParam('submit'))){
 
@@ -121,7 +121,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'description', 'county',
         )
     );
-    $search->setFacets(array('objectType','county','broadperiod','institution'));
+    $search->setFacets(array('objectType','county','broadperiod','institution','workflow'));
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
                 && !is_null($this->_getParam('submit'))){
 
@@ -188,7 +188,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
 
 
     }
-
+    $params['show'] = 18;
     if(!isset($params['q']) || $params['q'] == ''){
         $params['q'] = '*';
     }
@@ -201,6 +201,6 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $this->view->facets = $search->_processFacets();
     }
 
-   
+
 
 }

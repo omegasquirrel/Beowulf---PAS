@@ -25,35 +25,28 @@ echo $this->Href(array(
     'params' =>array('id'=>$this->id),
     'content'=>'Add publication',
     'wrapper' => array(
-        'tag' => 'div',
-        'id' => 'action',
-        'class' => 'redadd'),'
+        'tag' => 'p',
+        'class' => 'btn btn-large btn-success'),'
             attribs' => array(
                 'title' => 'Add publication details')));
 ?>
+<?php echo $this->form;?>
 
 <?php if ($this->results): ?>
-<table class="stripeMe" id="publicationsList" summary="A list of all publications on the Scheme's database">
+<table class="table table-striped" summary="A list of all publications on the Scheme's database">
 <caption>All publications listed on the Scheme's database</caption>
-<thead>
-<tr>
-<th>Title</th>
-<th>Author/Editor</th>
-<th>Publication year</th>
-<th>Publication place</th>
-<th>Actions</th>
-</tr>
-<tr>
-<?php echo $this->form;?>
-</tr>
-
-</thead>
-<tbody>
-
-<?php echo $this->partialLoop('partials/database/pubListTable.phtml',$this->results);
-?>
-
-</tbody>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author/Editor</th>
+            <th>Publication year</th>
+            <th>Publication place</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php echo $this->partialLoop('partials/database/pubListTable.phtml',$this->results);?>
+    </tbody>
 </table>
 
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'structure/pagination.phtml'); ?>

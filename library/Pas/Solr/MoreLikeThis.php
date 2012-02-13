@@ -55,7 +55,7 @@ class Pas_Solr_MoreLikeThis {
     }
     }
 
-    public function executeQuery( $minDocFreq = 1, $minTermFreq = 1, $count = 4){
+    public function executeQuery( $minDocFreq = 1, $minTermFreq = 1, $count = 3){
     $client = $this->_solr;
     $query = $client->createSelect();
     $query->setQuery($this->_query)

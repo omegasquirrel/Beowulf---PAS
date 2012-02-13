@@ -39,7 +39,7 @@ class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
 	public function latestRecords( $q = '*:*',
                 $fields =
                 'id,old_findID,objecttype,imagedir,filename,thumbnail,broadperiod',
-                $start = 0, $limit = 4,
+                $start = 0, $limit = 3,
 		$sort = 'created', $direction = 'desc') {
 	$select = array(
         'query'         => $q,
@@ -83,7 +83,9 @@ class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
 	$html = '<h3>Latest examples recorded with images</h3>';
 	$html .= '<p>We have recorded ' . number_format($data['numberFound'])
                 . ' examples.</p>';
-	$html .= '<div id="latest">';
+	$html .= '<div class="row-fluid ">
+    <div class="span12">
+    <ul class="thumbnails">';
 	$html .= $this->view->partialLoop('partials/database/imagesPaged.phtml',
                 $data['images']);
 	$html .= '</div>';

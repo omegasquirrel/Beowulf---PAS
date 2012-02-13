@@ -15,20 +15,19 @@ $this->headTitle('List all Scheduled Monuments of the National Monument record')
 
 <?php if(count($this->smrs) > 0):?>
 <div id="findsList">
-<table class="stripeMe" summary="A list of all scheduled monuments in England">
-<thead>
-<tr>
-<th>Monument name</th>
-<th>County</th>
-<th>District</th>
-<th>Parish</th>
-<th>Grid reference</th>
-</tr>
-</thead>
-<tr><?php echo $this->form;?></tr>
-<tbody>
-<?php echo $this->partialLoop('partials/database/smr.phtml',$this->smrs);?>
-</tbody>
+<table class="table table-striped" summary="A list of all scheduled monuments in England">
+    <thead>
+        <tr>
+            <th>Monument name</th>
+            <th>County</th>
+            <th>District</th>
+            <th>Parish</th>
+        </tr>
+    </thead>
+    <tr><?php echo $this->form;?></tr>
+    <tbody>
+        <?php echo $this->partialLoop('partials/database/smr.phtml',$this->smrs);?>
+    </tbody>
 </table>
 <?php echo $this->paginationControl($this->smrs, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>

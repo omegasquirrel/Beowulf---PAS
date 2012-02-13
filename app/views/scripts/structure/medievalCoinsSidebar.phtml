@@ -1,4 +1,4 @@
-<ul id="menu1" class="menu collapsible expandfirst">
+<ul id="menu1" class="menu collapsible expandfirst nav nav-stacked nav-pills">
 <?php $module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName(); ?>
 <li><a href="#">Medieval coins</a>
 <ul>
@@ -14,8 +14,8 @@
 <li><a href="<?php echo $this->url(array('module' => $module,'controller'=> 'articles','action' => 'index'),'default', true);?>">Articles</a></li>
 </ul>
 </li>
-<li><a href="#">Other numismatic periods</a>
-<ul>
+<li><a href="#">Other numismatic periods <i class="icon-folder-open"</a>
+<ul class="nav nav-pills nav-stacked">
 <li><a href="<?php echo $this->url(array('module'=>'byzantinecoins'),'default', true);?>">Byzantine coins</a></li>
 <li><a href="<?php echo $this->url(array('module'=>'ironagecoins'),'default', true);?>">Iron Age coins</a></li>
 <li><a href="<?php echo $this->url(array('module'=>'romancoins'),'default', true);?>">Roman coins</a></li>

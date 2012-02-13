@@ -1,7 +1,7 @@
 <?php
 
 /** Form for manipulating emperor data
-* 
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -9,7 +9,7 @@
 */
 
 class EmperorForm extends Pas_Form {
-	
+
 public function __construct($options = null) {
 
 $reeces = new Reeces();
@@ -25,13 +25,13 @@ $dynasties_options = $dynasties->getOptions();
 parent::__construct($options);
 
  $decorators = array(
-            array('ViewHelper'), 
+            array('ViewHelper'),
             array('Description', array('placement' => 'append','class' => 'info')),
             array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
             array('Label'),
             array('HtmlTag', array('tag' => 'li')),
 		    );
-      
+
 	$this->setName('EmperorDetails');
 
 	$name = new Zend_Form_Element_Text('name');
@@ -80,7 +80,7 @@ parent::__construct($options);
 	$biography = new Pas_Form_Element_RTE('biography');
 	$biography->setLabel('Biography: ')
 	->setRequired(true)
-	->addFilters('StringTrim','WordChars','BasicHtml','EmptyParagraph')
+	->addFilters(array('StringTrim','WordChars','BasicHtml','EmptyParagraph'))
 	->setAttrib('rows',10)
 	->setAttrib('cols',40)
 	->setAttrib('Height',400)
@@ -114,7 +114,7 @@ parent::__construct($options);
 	$this->addElement($hash);
 
 	$this->addElements(array(
-	$name, 
+	$name,
 	$reeceID,
 	$pasID,
 	$date_from,
@@ -126,7 +126,7 @@ parent::__construct($options);
 	$this->addDisplayGroup(array('name','reeceID','pasID','date_from','date_to','biography','dynasty','submit'), 'details');
 	$this->details->addDecorators(array( array('HtmlTag', array('tag' => 'ul'))
 	));
-	
+
 	$this->details->removeDecorator('HtmlTag');
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->removeDecorator('HtmlTag');

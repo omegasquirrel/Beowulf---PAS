@@ -6,17 +6,17 @@ $this->MetaBasic();?>
 
 <table class="table table-striped" summary="All decorative methods available">
 <caption>Available decorative methods</caption>
-<thead>
-<tr>
-<th>Denomination</th>
-<th>Created</th>
-<th>Created by</th>
-<th>Updated</th>
-<th>Updated by</th>
-<th>Validity</th>
-<th>Actions</th>
-</tr>
-</thead>
+    <thead>
+        <tr>
+            <th>Denomination</th>
+            <th>Created</th>
+            <th>Created by</th>
+            <th>Updated</th>
+            <th>Updated by</th>
+            <th>Validity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 <tbody>
 <?php echo $this->partialLoop('partials/admin/decmethodsTable.phtml',$this->decs);?>
 </tbody>

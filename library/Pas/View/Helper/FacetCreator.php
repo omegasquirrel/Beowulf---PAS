@@ -30,7 +30,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
 
     public function facetCreator(array $facets){
         if(is_array($facets)){
-        $html = '<div class="row span12">';
+        $html = '<div class="offset8">';
         $html .= '<h3>Search facets</h3>';
         foreach($facets as $facetName => $facet){
             $html .= $this->_processFacet($facet, $facetName);
@@ -53,17 +53,27 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
      */
     protected function _processFacet(array $facet, $facetName){
         if(is_array($facet)){
-        $html = '<div id="facet-' . $facetName .'" class="span3">';
+        $html = '<div id="facet-' . $facetName .'">';
         $html .= '<h4>' . $this->_prettyName($facetName) . '</h4>';
-        $html .= '<ul>';
-        $facet = array_slice($facet,0,10);
+        $html .= '<ul class="navpills nav-stacked nav">';
 
+        if($facetName !== 'workflow'){
+            $facet = array_slice($facet,0,10);
+        }
         foreach($facet as $key => $value){
+
         $url = $this->view->url(array('fq' . $facetName => $key),'default',false);
         $html .= '<li>';
+        if($facetName !== 'workflow'){
         $html .= '<a href="' . $url . '" title="Facet query for ' . $key;
         $html .= '">';
         $html .= $key . ' ('. number_format($value) .')';
+        } else {
+        $html .=  '<a href="' . $url . '" title="Facet query for ' . $this->_workflow($key);
+        $html .= '">';
+        $html .= $this->_workflow($key) . ' ('. number_format($value) .')';
+        }
+
         $html .= '</a>';
         $html .= '</li>';
         }
@@ -78,7 +88,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         $facet = $request['fq' . $facetName];
         if(isset($facet)){
             unset($request['fq' . $facetName]);
-            $html .= '<p><a href="' . $this->view->url(($request),'default',true)
+            $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
                     . '" title="Clear the facet">Clear this facet</a></p>';
         }
 
@@ -111,4 +121,26 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         }
         return $clean;
     }
+
+    protected function _workflow($key){
+        switch($key){
+            case '1':
+                $type = 'Quarantine';
+                break;
+            case '2':
+                $type = 'Review';
+                break;
+            case '3':
+                $type = 'Published';
+                break;
+            case '4':
+                $type = 'Validation';
+                break;
+            default:
+                $type = 'Unset workflow';
+                break;
+            }
+            return $type;
+        }
+
 }

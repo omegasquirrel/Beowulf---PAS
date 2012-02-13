@@ -7,33 +7,33 @@ $this->jQuery()->addJavascriptFile($this->baseUrl()
 $this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
 ?>
 <h2>People registered with the Scheme</h2>
-
+<div class="row-fluid">
 <?php echo $this->peopleToolbox();?>
-<div id="findsList">
-<?php if ($this->results): ?>
-    <?php echo $this->facetCreator($this->facets);
-    ?>
-
-<table class="stripeMe" summary="All people registered on our database">
-<thead>
-<tr>
-<th>Name</th>
-<th>County</th>
-<th>Organisation</th>
-<th>Primary activity</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tr>
 <?php echo $this->form;?>
-</tr>
+
+<?php if ($this->results): ?>
+
+
+<table class="table table-striped span8" summary="All people registered on our database">
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>County</th>
+        <th>Organisation</th>
+        <th>Primary activity</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+
 <tbody>
 <?php echo $this->partialLoop('partials/database/peopleTableList.phtml',
         $this->results);?>
 </tbody>
 </table>
+        <?php echo $this->facetCreator($this->facets);
+    ?>
 <?php else :?>
 <p>There are no people registered or available to you.</p>
 <?php endif; ?>
-<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>

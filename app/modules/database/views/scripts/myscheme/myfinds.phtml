@@ -21,17 +21,17 @@ $('a[rel*=lightbox]').lightBox()
 <?php endif;?>
 
 <?php echo $this->form;?>
-<?php
-echo $this->facetCreator($this->facets);
-?>
-<?php if (count($this->results)): ?>
-<div class="stripeMe">
+<div class="row-fluid">
+<?php if ($this->results): ?>
+    <div class="stripeMe">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->results);?>
     </div>
 <?php else:?>
-    <p>You have not recorded any objects.</p>
+    <p>No records are available.
 <?php endif; ?>
-
-
-
+        <?php
+echo $this->facetCreator($this->facets);
+?>
+</div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
+

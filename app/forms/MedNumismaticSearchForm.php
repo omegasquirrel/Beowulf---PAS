@@ -97,7 +97,6 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Int')
-                ->separator('')
 		->setUncheckedValue(NULL);
 
 	$hoardID =  new Zend_Form_Element_Select('hID');

@@ -7,18 +7,18 @@
 
 <table class="table table-striped" summary="A list of all quotes or announcements used on the system">
 <caption>All quotes in use</caption>
-<thead>
-<tr>
-<th>Statement</th>
-<th>Type</th>
-<th>Expiry date</th>
-<th>Created</th>
-<th>Created by</th>
-<th>Updated</th>
-<th>Updated by</th>
-<th>Actions</th>
-</tr>
-</thead>
+    <thead>
+        <tr>
+            <th>Statement</th>
+            <th>Type</th>
+            <th>Expiry date</th>
+            <th>Created</th>
+            <th>Created by</th>
+            <th>Updated</th>
+            <th>Updated by</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 <tbody>
 <?php echo $this->partialLoop('partials/admin/quoteTable.phtml',$this->quotes);?>
 </tbody>

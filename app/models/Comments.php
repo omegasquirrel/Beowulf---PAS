@@ -80,7 +80,7 @@ class Comments extends Pas_Db_Table_Abstract {
 	$select->where('comments.comment_approved = ?',(string)'moderation');
 	}
 	if(isset($userID)){
-	$select->where('comments.user_id = ?',(int)$userID);
+	$select->where('comments.createdBy = ?',(int)$userID);
 	}
 	$data = $comments->fetchAll($select);
 	$paginator = Zend_Paginator::factory($data);

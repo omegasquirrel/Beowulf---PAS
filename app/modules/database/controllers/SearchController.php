@@ -389,7 +389,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
         'title','broadperiod','description',
         'old_findID','thumbnail', 'county',
         'imagedir','filename'));
-        $search->setFacets(array('objectType','county','broadperiod','institution'));
+        $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow'));
 	$search->setParams($params);
 	$search->execute();
         $this->view->facets = $search->_processFacets();

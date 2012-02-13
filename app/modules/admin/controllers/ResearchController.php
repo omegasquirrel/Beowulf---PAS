@@ -37,7 +37,7 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	$form->submit->setLabel('Add a project');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
-    if ($form->isValid($form->getValues())) {
+        if ($form->isValid($form->getValues())) {
 	$this->_research->add($form->getValues());
 	$this->_flashMessenger->addMessage('A new research project has been entered.');
 	$this->_redirect(self::REDIRECT);
@@ -141,4 +141,13 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 
+        public function topicAction()
+        {
+
+        }
+
+        public function projectAction(){
+
+            
+        }
 }

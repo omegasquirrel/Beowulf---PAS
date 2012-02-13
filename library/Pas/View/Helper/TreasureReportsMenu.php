@@ -12,7 +12,7 @@
  * @since September 13 2011
  * @todo change the class to use zend_navigation
 */
-class Pas_View_Helper_TreasureReportsMenu 
+class Pas_View_Helper_TreasureReportsMenu
 	extends Zend_View_Helper_Abstract {
 
 	/** Display the treasure reports menu
@@ -24,7 +24,7 @@ class Pas_View_Helper_TreasureReportsMenu
 	$treasure = $treasure->buildTMenu();
 	$html = '';
 	foreach($treasure as $t) {
-	$html .= '<li><a href="';
+	$html .= '<li class="menu collapsible nav nav-stacked nav-pills"><a href="';
 	$html .= $this->view->url(array(
 		'module' => 'treasure',
 		'controller' => 'reports',

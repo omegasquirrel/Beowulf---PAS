@@ -2,20 +2,20 @@
 $this->headTitle('Scheme news stories');
 ?>
 <h2>News from the Scheme</h2>
-<p><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'news','action' => 'add'),'default',true);?>" title="Add a new story">Add a new story</a></p>
-<?php if (count($this->news)): ?>
-<table class="stripeMe" summary="All news stories listed">
+<p><a class="btn btn-success btn-large" href="<?php echo $this->url(array('module' => 'admin','controller' => 'news','action' => 'add'),'default',true);?>" title="Add a new story">Add a new story</a></p>
+<?php if ($this->news): ?>
+<table class="table table-striped" summary="All news stories listed">
 <caption>All news stories on the site</caption>
-<thead>
-<tr>
-<th>Title</th>
-<th>Date filed</th>
-<th>Created by</th>
-<th>Updated</th>
-<th>Updated by</th>
-<th>Edit</th>
-</tr>
-</thead>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date filed</th>
+            <th>Created by</th>
+            <th>Updated</th>
+            <th>Updated by</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
 <tbody>
 <?php echo $this->partialLoop('partials/admin/newsTable.phtml',$this->news);?>
 

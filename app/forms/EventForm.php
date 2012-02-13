@@ -1,7 +1,7 @@
 <?php
 
 /** Form for manipulating events details
-* 
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -10,12 +10,13 @@
 class EventForm extends Pas_Form {
 
 public function __construct($options = null) {
-	
+
 	$staffregions = new StaffRegions();
 	$staffregions_options = $staffregions->getOptions();
-	
+
 	$eventtypes = new EventTypes();
 	$event_options = $eventtypes->getTypes();
+
 	$orgs = array('PAS' => 'The Portable Antiquities Scheme',
 	 'BM' => 'The British Museum',
 	 'MLA' => 'MLA',
@@ -27,21 +28,21 @@ public function __construct($options = null) {
 	 'LOC' => 'Local museum',
 	 'NADFAS' => 'NADFAS',
 	 'CASPAR' => 'CASPAR');
-	
+
 	ZendX_JQuery::enableForm($this);
-	
+
 	parent::__construct($options);
-	
+
 	$this->setAttrib('accept-charset', 'UTF-8');
-	
+
 	$decorators = array(
-	            array('ViewHelper'), 
+	            array('ViewHelper'),
 	            array('Description', array('placement' => 'append','class' => 'info')),
 	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
 	            array('Label'),
 	            array('HtmlTag', array('tag' => 'li')),
 			    );
-			    
+
 	$this->setName('event');
 
 	$eventTitle = new Zend_Form_Element_Text('eventTitle');
@@ -55,7 +56,7 @@ public function __construct($options = null) {
 	$eventDescription = new Pas_Form_Element_RTE('eventDescription');
 	$eventDescription->setLabel('Event description: ')
 	->setRequired(true)
-	->addFilters('StringTrim','WordChars','BasicHtml','EmptyParagraph')
+	->addFilters(array('StringTrim','WordChars','BasicHtml','EmptyParagraph'))
 	->setAttrib('rows',10)
 	->setAttrib('cols',40)
 	->setAttrib('Height',400)
@@ -113,7 +114,7 @@ public function __construct($options = null) {
 	->addValidator('inArray', false, array(array_keys($staffregions_options)))
 	->addMultiOptions($staffregions_options)
 	->setDecorators($decorators);
-	
+
 	$eventType = new Zend_Form_Element_Select('eventType');
 	$eventType->setLabel('Type of event: ')
 	->setRequired(true)
@@ -142,10 +143,10 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->setValue('PAS')
 	->addFilters(array('StripTags','StringTrim'))
-	->addMultioptions(array(NULL => 'Choose an organisation', 
-	'Available institutions' => array(
+	->addMultioptions(array(NULL => 'Choose an organisation',
+	'Available institutions' =>
 	$orgs
-	)))
+	))
 	->addValidator('InArray', false, array(array_keys($orgs)))
 	->setDecorators($decorators);
 
@@ -154,7 +155,7 @@ public function __construct($options = null) {
 	->setAttrib('class', 'large')
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag');
-	
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_config->form->salt)
 	->removeDecorator('DtDdWrapper')
@@ -162,21 +163,28 @@ public function __construct($options = null) {
 	->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-	
+
 	$this->addElements(array(
-	$eventTitle,$eventDescription,$eventStartTime,$eventEndTime,$eventStartDate,$eventEndDate,$organisation,$childrenAttend,$eventRegion,$adultsAttend,$address,$eventType,
-	$submit
+            $eventTitle,$eventDescription,$eventStartTime,
+            $eventEndTime,$eventStartDate,$eventEndDate,
+            $organisation,$childrenAttend,$eventRegion,
+            $adultsAttend,$address,$eventType,
+            $submit
 	));
-	
-	$this->addDisplayGroup(array('eventTitle','eventDescription','eventLocation','eventStartTime','eventEndTime','eventStartDate','eventEndDate','eventRegion','organisation','childrenAttend','adultsAttend','eventType'), 'details')
+
+	$this->addDisplayGroup(array(
+            'eventTitle','eventDescription','eventLocation',
+            'eventStartTime','eventEndTime','eventStartDate',
+            'eventEndDate','eventRegion','organisation',
+            'childrenAttend','adultsAttend','eventType'), 'details')
 	->removeDecorator('HtmlTag');
 	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->removeDecorator('HtmlTag');
-	
+
 	$this->addDisplayGroup(array('submit'), 'submit');
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
-	
+
 	}
 }

@@ -1,5 +1,7 @@
-<div id="researchtable">
-<table class="stripeMe" summary="Breakdown of research being conducted on Scheme data">
+<div class="row-fluid">
+    <div class="span9"><?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?></div>
+    <div id="researchtable" class="span3">
+<table class="table table-striped" summary="Breakdown of research being conducted on Scheme data">
 <caption>Research project types</caption>
 <thead>
 <tr>
@@ -21,4 +23,4 @@ echo array_sum($quant);?></td>
 </tbody>
 </table>
 </div>
-<?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?>
+</div>

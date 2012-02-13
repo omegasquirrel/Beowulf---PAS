@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 <p>Your search returned <span class="results"><?php echo $this->Pluralism($this->paginationControl($this->results, 'Sliding', 'structure/queryCounts.phtml')); ?> <?php echo $this->paginationControl($this->results, 'Sliding', 'structure/viewingCounts.phtml');?></span>
 <?php $this->headTitle($this->Pluralism($this->paginationControl($this->results, 'Sliding','structure/queryCounts.phtml')));?></p>
 <?php echo $this->export($this->params);?>
-<table class="stripeMe" summary="Table of your search results">
+<table class="table table-striped" summary="Table of your search results">
 <caption>Your search results</caption>
 <thead>
   <tr>

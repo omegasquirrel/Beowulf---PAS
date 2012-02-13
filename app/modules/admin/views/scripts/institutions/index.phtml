@@ -2,7 +2,7 @@
 $this->headTitle('Institutions available on the database');?>
 <h2>Institutions available on the database</h2>
 
-<p><a class="btn btn-large btn-success" href="<?php echo $this->url(array('module' => 'admin','controller' => 'contacts','action' => 'addinstitution'),null,true);?>" title="Add a new institution">Add a new institution</a></p>
+<p><a class="btn btn-large btn-success" href="<?php echo $this->url(array('module' => 'admin','controller' => 'contacts','action' => 'add'),null,true);?>" title="Add a new institution">Add a new institution</a></p>
 <?php if (count($this->insts)): ?>
 
 <table class="table table-striped" summary="All available recording institutions available on database">

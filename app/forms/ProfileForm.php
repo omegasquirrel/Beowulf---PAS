@@ -9,10 +9,10 @@
 class ProfileForm extends Pas_Form
 {
     protected $_actionUrl;
-	
+
     protected $_copyright = NULL;
-    
-	public function __construct($actionUrl = null, $options=null) {
+
+    public function __construct($actionUrl = null, $options=null) {
         parent::__construct($options);
         $this->setActionUrl($actionUrl);
         $this->init();
@@ -33,40 +33,44 @@ class ProfileForm extends Pas_Form
              ->setAttrib('id', 'accountform');
 
         $this->clearDecorators();
-		
+
         $decorators = array(
-	
-            array('ViewHelper'), 
+
+            array('ViewHelper'),
             array('Description', array('placement' => 'append','class' => 'info')),
             array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
             array('Label', array('separator'=>' ', 'requiredSuffix' => ' *', 'class' => 'leftalign')),
             array('HtmlTag', array('tag' => 'li')),
-			
+
         );
-        
+
 		$username = $this->addElement('text','username',array('label' => 'Username:'))
 			->username;
+                $username = $this->getElement('username');
 		$username->setDecorators($decorators)
 			->Disabled = true;
 		$username->addFilters(array('StringTrim','StripTags'));
 
 
-        $firstName = $this->addElement('text', 'first_name', 
+        $firstName = $this->addElement('text', 'first_name',
             array('label' => 'First Name: ', 'size' => '30'))->first_name;
+        $firstName = $this->getElement('first_name');
         $firstName->setRequired(true)
 			->addFilters(array('StringTrim','StripTags'))
 			->addErrorMessage('You must enter a firstname');
 		$firstName->setDecorators($decorators);
 
-        $lastName = $this->addElement('text', 'last_name', 
+        $lastName = $this->addElement('text', 'last_name',
             array('label' => 'Last Name: ', 'size' => '30'))->last_name;
+        $lastName = $this->getElement('last_name');
         $lastName->setRequired(true)
 			->addFilters(array('StringTrim','StripTags'))
 			->addErrorMessage('You must enter a surname');
         $lastName->setDecorators($decorators);
 
-        $fullname = $this->addElement('text', 'fullname', 
+        $fullname = $this->addElement('text', 'fullname',
             array('label' => 'Preferred Name: ', 'size' => '30'))->fullname;
+        $fullname = $this->getElement('fullname');
         $fullname->setRequired(true)
 			->addFilters(array('StringTrim','StripTags'))
 			->addErrorMessage('You must enter your preferred name');
@@ -74,35 +78,29 @@ class ProfileForm extends Pas_Form
 
         $email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))
 			->email;
+        $email = $this->getElement('email');
         $email->addValidator('emailAddress')
 			->setRequired(true)
 			->addErrorMessage('Please enter a valid address!')
 			->addFilters(array('StringTrim','StripTags','StringToLower'))
 			->addValidator('EmailAddress',false,array('mx' => true));
         $email->setDecorators($decorators);
-		
-		$password = $this->addElement('password', 'password',array('label' => 'Change password: ', 'size' => '30'))->password;
+
+	$password = $this->addElement('password', 'password',array('label' => 'Change password: ', 'size' => '30'))->password;
+        $password = $this->getElement('password');
         $password->addFilters(array('StringTrim','StripTags'))
 			  ->setRequired(false);
         $password->setDecorators($decorators);
-        
+
         $copyright = $this->addElement('select','copyright',array('label' => 'Default copyright: '))
 			->copyright;
+        $copyright = $this->getElement('copyright');
         $copyright->setRequired(TRUE);
         $copyright->addMultiOptions(array(NULL => 'Select a licence holder',
         	'Valid copyrights' => $copy))
-			->addValidator('InArray', false, array(array_keys($copy)))	
+			->addValidator('InArray', false, array(array_keys($copy)))
 			->setDecorators($decorators);
-		
-        $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Save details');
-        $submit->clearDecorators();
-        $submit->addDecorators(array(
-            array('ViewHelper'),    // element's view helper
-            array('HtmlTag', array('tag' => 'div', 'class' => 'submit')),
-        ));
-		$submit->setAttrib('class','large');
-        $this->addElement($submit);
+
 
 
 	$this->addDisplayGroup(array(
@@ -112,12 +110,12 @@ class ProfileForm extends Pas_Form
 	$this->addDecorator('FormElements')
 	     ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'))
 		 ->addDecorator('FieldSet') ->addDecorator('Form');
-				 
+
 	$this->setLegend('Edit your account and profile details: ');
 	$this->userdetails->removeDecorator('DtDdWrapper');
 	$this->userdetails->removeDecorator('HtmlTag');
 	$this->userdetails->removeDecorator('FieldSet');
-	
+
 	$this->userdetails->addDecorator(array('DtDdWrapper' => 'HtmlTag'),array('tag' => 'ul'));
 	$this->addDisplayGroup(array('submit'),'submit');
     }

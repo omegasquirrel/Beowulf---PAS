@@ -12,29 +12,29 @@ class ContactForm extends Pas_Form
 
 	$roles = new StaffRoles();
 	$role_options = $roles->getOptions();
-	
+
 	$institutions = new Institutions();
 	$insts = $institutions->getInsts();
-	
+
 	$staffregions = new StaffRegions();
 	$staffregions_options = $staffregions->getOptions();
-	
+
 	$countries = new Countries();
 	$countries_options = $countries->getOptions();
-	
+
 	$users = new Users();
 	$users_options = $users->getOptions();
 
 	parent::__construct($options);
 
 	$decorators = array(
-            array('ViewHelper'), 
+            array('ViewHelper'),
             array('Description', array('placement' => 'append','class' => 'info')),
             array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
             array('Label'),
             array('HtmlTag', array('tag' => 'li')),
 		    );
-			
+
 	$this->setName('contact');
 
 	$firstname = new Zend_Form_Element_Text('firstname');
@@ -182,8 +182,8 @@ class ContactForm extends Pas_Form
 	->addMultiOptions(array(NULL => NULL, 'Choose staff region' => $staffregions_options))
 	->setDecorators($decorators);
 
-	$profile= $this->addElement('RTE', 'profile',array('label' => 'Profile: ')); 
-	$profile = $this->getElement('profile')
+	$profile= new Pas_Form_Element_RTE('profile');
+	$profile->setLabel('Profile: ')
 	->setRequired(false)
 	->setAttrib('rows',10)
 	->setAttrib('cols',40)
@@ -193,7 +193,7 @@ class ContactForm extends Pas_Form
 	->addFilter('BasicHtml')
 	->addFilter('EmptyParagraph')
 	->addFilter('WordChars');
-		
+
 	$website = new Zend_Form_Element_Text('website');
 	$website->SetLabel('Employer\'s website address: ')
 	->setRequired(false)
@@ -230,7 +230,7 @@ class ContactForm extends Pas_Form
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-	
+
 	$this->addDisplayGroup(array('firstname', 'lastname', 'role',
 	'dbaseID', 'identifier', 'region',
 	'profile', 'email_one', 'email_two',
@@ -241,12 +241,12 @@ class ContactForm extends Pas_Form
 	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->removeDecorator('HtmlTag');
-	
+
 	$this->addDisplayGroup(array('submit'), 'submit');
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
-	
-	
+
+
 	$this->details->setLegend('Contact details');
 
 }

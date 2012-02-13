@@ -1,4 +1,4 @@
-<ul id="menu1" class="menu collapsible expandfirst">
+<ul id="menu1" class="menu collapsible expandfirst nav nav-stacked nav-pills">
 <?php $module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName(); ?>
 
 <li><a href="#">Greek and Roman Provincial coins</a>
@@ -11,7 +11,7 @@
 <li><a href="<?php echo $this->url(array('module'=> 'database','controller' =>'search','action' => 'greekroman'),NULL,true);?>" title="Search for the Greek and Roman provincial period">Search</a></li>
 </ul>
 <li><a href="#">Other numismatic periods</a>
-<ul>
+<ul class="nav nav-stacked nav-pills">
 <li><a href="<?php echo $this->url(array('module'=>'ironagecoins'),NULL, true);?>" title="Learn about Iron age coins">Iron age coins</a></li>
 <li><a href="<?php echo $this->url(array('module'=>'romancoins'),NULL, true);?>" title="Learn about Roman coins">Roman coins</a></li>
 <li><a href="<?php echo $this->url(array('module'=>'greekromancoins'),NULL, true);?>" title="Learn about Greek and Roman coins">Greek &amp; Roman coins</a></li>

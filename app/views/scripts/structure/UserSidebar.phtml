@@ -2,13 +2,22 @@
 $allowed = array('flos','fa','admin','treasure');
 $auth = Zend_Auth::getInstance();
 if($auth->hasIdentity()) {
-$user = $auth->getIdentity(); 
+$user = $auth->getIdentity();
 $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 ?>
 
-<ul id="menu1" class="menu collapsible">
-<li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'named'),null,true);?>" title="View all our registered users">View all users</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'audit','action' => 'logins'),null,true);?>" title="When have I logged in and where from">Login history</a></li>
+<ul id="menu1" class="menu collapsible nav nav-stacked nav-pills">
+<li><a href="<?php echo $this->url(array(
+    'module' => 'users',
+    'controller' => 'named'),null,true);?>" title="View all our registered users">View all users</a></li>
+<li><a href="<?php echo $this->url(array(
+    'module' => 'users',
+    'controller' => 'audit',
+    'action' => 'logins'),null,true);?>" title="When have I logged in and where from">Login history</a></li>
+<li><a href="<?php echo $this->url(array(
+    'module' => 'users',
+    'controller' => 'audit',
+    'action' => 'iphistory'),null,true);?>" title="When have I logged in and where from">IP address history</a></li>
 <?php
 if(in_array($user->role,$allowed)) {
 ?>
@@ -30,10 +39,8 @@ if(in_array($user->role,$allowed)) {
 </li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme','action' => 'myimages'),null,true);?>" title="View all images I have added">My images</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'social',),null,true);?>" title="Administer my social sites available to other users">My social web</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'interests'),null,true);?>" title="Update my interests">My interests</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'education'),null,true);?>" title="Update my interests">My educational background</a></li>
 <li <?php if($controller == 'comments') { echo 'class="expandfirst"';}?>><a href="#" title="Expand comments section">Comments</a>
-<ul>
+<ul class="nav nav-pills nav-stacked">
 <li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'comments','action' => 'imade'),null,true);?>" title="View my comments">My comments</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'comments','action' => 'onmine'),null,true);?>" title="View all comments on my records">Comments on my records</a></li>
 </ul>

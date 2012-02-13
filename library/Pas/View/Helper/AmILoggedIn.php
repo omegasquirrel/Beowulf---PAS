@@ -62,7 +62,7 @@ class Pas_View_Helper_AmILoggedIn extends Zend_View_Helper_Abstract {
 
     $allowed =  array('admin' , 'fa');
     if(in_array($user->role,$allowed)) {
-    $string .= '<p><a href="' .$this->view->url(array('module'  => 'admin'),'default',true)
+    $string .= '<p><a class="btn btn-small btn-danger" href="' . $this->view->url(array('module'  => 'admin'),'default',true)
     . '">Administer site</a></p>';
     }
     } else {

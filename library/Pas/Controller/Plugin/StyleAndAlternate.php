@@ -18,6 +18,8 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	. Zend_Version::VERSION,'generator');
 	$view->baseUrl = $request->getBaseUrl();
 	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/jquery.menu.js', $type='text/javascript');
+
+	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/bootstrap.min.js', $type='text/javascript');
 //	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/corner.js', $type='text/javascript');
 	$module = strtolower($request->getModuleName());
 //	if($module == 'default') {
