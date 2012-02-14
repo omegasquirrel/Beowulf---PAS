@@ -1,6 +1,6 @@
 <?php
 /** Controller for index page for database module
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -15,21 +15,37 @@ class Database_IndexController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	}
 	/** Setup index page
-	*/	
+	*/
 	public function indexAction() {
 	$content = new Content();
 	$this->view->contents = $content->getFrontContent('database');
-	
+
 	$thumbs = new Slides();
 	$this->view->thumbs = $thumbs->getLast10Thumbnails(4);
-	
+
 	$finds = new Finds();
 	$this->view->counts = $finds->getCountAllFinds();
 
 	$recent = new Logins();
 	$this->view->logins = $recent->todayVisitors();
-	
+
 	$form = new SolrForm();
+        $form->q->setDecorators(array(
+			"ViewHelper",
+			array("Errors", array("placement" => "prepend")),
+			array("Description", array("tag" => "span", "class" => "help-block")),
+			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
+			"Label",
+			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+		));
+         $form->thumbnail->setDecorators(array(
+			"ViewHelper",
+			array("Errors", array("placement" => "prepend")),
+			array("Description", array("tag" => "span", "class" => "help-block")),
+			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
+			"Label",
+			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+		));
 	$form->setMethod('post');
 	$this->view->form = $form;
 	$values = $form->getValues();
@@ -42,9 +58,9 @@ class Database_IndexController extends Pas_Controller_Action_Admin {
 	} else {
 	$form->populate($data);
 	}
-	}	
 	}
-	
+	}
+
 	function array_cleanup( $array ) {
     $todelete = array('submit','action','controller','module','page','csrf');
 		foreach( $array as $key => $value ) {
@@ -52,7 +68,7 @@ class Database_IndexController extends Pas_Controller_Action_Admin {
     	if($key == $match){
     		unset($array[$key]);
     	}
-    } 
+    }
     }
     return $array;
 }

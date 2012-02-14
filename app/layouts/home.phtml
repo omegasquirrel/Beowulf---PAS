@@ -25,13 +25,13 @@
 >
 <head>
 
-<?echo $this->headTitle(); ?>
+<?php echo $this->headTitle(); ?>
 
-<?echo $this->headMeta(); ?>
+<?php echo $this->headMeta(); ?>
 
-<?echo $this->headLink(); ?>
+<?php echo $this->headLink(); ?>
 
-<?echo $this->headScript(); ?>
+<?php echo $this->headScript(); ?>
 
 </head>
 
@@ -55,23 +55,39 @@
       <div class="row-fluid">
         <div class="span2">
 
-          <div class="well sidebar-nav">
+            <img src="/images/logos/pas.gif" />
+
+            <div class="well sidebar-nav">
 
               <?php echo $this->layout()->userdata;?>
 
-<?php echo $this->layout()->sidebar; ?>
+
+
+              <?php echo $this->layout()->sidebar; ?>
 
           </div><!--/.well -->
 
-        </div><!--/span--> <div class="span9">
+
+              <?php echo $this->layout()->searchForm;?>
+
+              <?php echo $this->layout()->staffs; ?>
+
+                <?php echo $this->layout()->bronzeage; ?>
+
+        </div><!--/span-->
+        <div class="span9">
 
 
           <div class="row-fluid">
 
             <div class="span9">
+
                 <?php echo $this->layout()->breadcrumb;	?>
+
                 <?php echo $this->layout()->messages;?>
+
                 <?php echo $this->acronyms($this->layout()->content); ?>
+
                 <?php echo $this->layout()->contexts; ?>
 
             </div><!--/span-->
@@ -79,7 +95,7 @@
         </div><!--/span-->
       </div><!--/row-->
 
-      <hr>
+      <hr />
 
 
     <div class="row span16 muted">
@@ -90,7 +106,7 @@
 
 
 
-	<?echo $this->JQuery(); ?>
+	<?php echo $this->JQuery(); ?>
 
 	<?php echo $this->inlineScript(); ?>
 

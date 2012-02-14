@@ -111,13 +111,14 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
         );
         $params = $this->_getAllParams();
         $params['bbox'] = implode(',',$bbox);
-        $search->setFacets(array('objectType','county','broadperiod','institution'));
+        $search->setFacets(array('objectType','county','broadperiod','institution','workflow'));
 	$search->setParams($params);
         $search->execute();
 
         $this->view->facets = $search->_processFacets();
         $this->view->paginator = $search->_createPagination();
         $this->view->finds = $search->_processResults();
+        $this->view->constituency = $this->_getParam('constituency');
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}

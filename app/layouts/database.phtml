@@ -29,15 +29,15 @@
 >
 <head>
 
-<?echo $this->headTitle(); ?>
+<?php echo $this->headTitle(); ?>
 
-<?echo $this->headMeta(); ?>
-
-
-<?echo $this->headLink(); ?>
+<?php echo $this->headMeta(); ?>
 
 
-<?echo $this->headScript(); ?>
+<?php echo $this->headLink(); ?>
+
+
+<?php echo $this->headScript(); ?>
 
 
 </head>
@@ -46,6 +46,7 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
+<a class="brand" href="#">Portable Antiquities Scheme | The British Museum</a>
           <div class="nav-collapse">
 	<?php echo $this->layout()->navigation ?>
           </div><!--/.nav-collapse -->
@@ -57,8 +58,8 @@
       <div class="row-fluid">
         <div class="span2">
 
+<img src="/images/logos/pas.gif" />
           <div class="well sidebar-nav">
-
               <?php echo $this->layout()->userdata;?>
 
 <?php echo $this->layout()->sidebar; ?>
@@ -77,7 +78,7 @@
 
           <div class="row-fluid">
 
-            <div class="span9">
+            <div class="span12">
                 <?php echo $this->layout()->breadcrumb;	?>
                 <?php echo $this->layout()->messages;?>
                 <?php echo $this->acronyms($this->layout()->content); ?>
@@ -88,8 +89,9 @@
         </div><!--/span-->
       </div><!--/row-->
 
-      <hr>
-<div class="row span16 muted">
+      <hr />
+
+    <div class="row span16 muted">
 
             <?php echo $this->layout()->footer; ?>
 
@@ -97,7 +99,7 @@
 
     </div><!--/.fluid-container-->
 
-    <?echo $this->jQuery(); ?>
+    <?php echo $this->jQuery(); ?>
 
     <?php echo $this->inlineScript(); ?>
 

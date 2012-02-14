@@ -30,7 +30,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
 
     public function facetCreator(array $facets){
         if(is_array($facets)){
-        $html = '<div class="offset8">';
+        $html = '<div class="span3">';
         $html .= '<h3>Search facets</h3>';
         foreach($facets as $facetName => $facet){
             $html .= $this->_processFacet($facet, $facetName);

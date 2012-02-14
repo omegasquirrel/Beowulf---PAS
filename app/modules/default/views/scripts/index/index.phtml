@@ -7,11 +7,7 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 <div class="container">
 
 
-
-
-
-
- <section id="carousel">
+<section id="carousel">
 <div class="span10">
     <?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?>
 </div>
@@ -64,11 +60,18 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 
 
 
+<div class="row-fluid">
+
+ <div id="tweets" class="well span4">
+        <h3>Latest tweets</h3>
+
+        <?php echo $this->LatestTweets();?>
+        <a href="http://twitter.com/findsorguk" title="View our twitter profile"><img class="twitterbird" src="/images/logos/twitter_logo_withbird.png" height="37" width="200" alt="The twitter logo with the tweetie bird" /></a>
+
+    </div>
 
 
-
-<div class="row">
-<div  class="span4 well">
+<div  class="span3 well">
 <h3>Numismatic guides</h3>
 <p class="indent">Learn about each numismatic study area.</p>
 <ul>
@@ -80,19 +83,16 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 <li><a href="<?php echo $this->url(array('module' => 'medievalcoins'),null,true);?>" title="Learn about Medieval coins">Medieval</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'postmedievalcoins'),null,true);?>" title="Learn about Post medieval coins">Post Medieval</a></li>
 </ul>
-<span class="twitterbird">
-<a href="<?php echo $this->serverUrl();?>/database/artefacts/record/id/198178" title="An early 5th-century gold solidus of Honorius"><img src="/images/logos/solidus.jpg" height="60" width="117" alt="A gold solidus of Honorius" /></a>
-<a href="<?php echo $this->serverUrl();?>/database/artefacts/record/id/413297" title="A gold stater of the Atrebates"><img src="/images/logos/stater.jpg" height="60" width="105" alt="A gold stater of the Atrebates" /></a>
-</span>
 </div>
 
-    <div class="span3 well">
-        <h3>Bare stats:</h3>
-         <ol><li><?php echo number_format($this->finds['0']['c']);?> records</li><li><?php echo number_format($this->finds['0']['q']);?> objects</li><li><?php echo number_format($this->people['0']['total']);?> people involved</li><li><?php echo number_format($this->users['0']['count']);?> accounts</li>
-        </ol>
-    </div>
 
-    <div class="span4 well"><h3>Latest news</h3>
+</div>
+
+
+
+<div class="row-fluid">
+
+<div class="well span8"><h3>Latest news</h3>
         <ul>
         <?php
         echo $this->partialLoop('partials/index/headlines.phtml',$this->news);
@@ -102,23 +102,11 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 
 </div>
 
+<?php $this->placeholder('searchForm')->captureStart();?>
+<h4>Search content</h4>
+<?php
 
+echo $this->form;?>
 
-<div class="row">
-    <div id="tweets" class="span4 well">
-        <h3>Latest tweets</h3>
-
-        <?php echo $this->LatestTweets();?>
-        <a href="http://twitter.com/findsorguk" title="View our twitter profile"><img class="twitterbird" src="/images/logos/twitter_logo_withbird.png" height="37" width="200" alt="The twitter logo with the tweetie bird" /></a>
-
-    </div>
-
-
-    <div id="wp" class="span4 well"><h3>Scheme blog</h3>
-    <ul>
-    <?php echo $this->partialLoop('partials/index/wp.phtml',$this->wp);?>
-    </ul>
-    </div>
-</div>
-
+<?php $this->placeholder('searchForm')->captureEnd();
 

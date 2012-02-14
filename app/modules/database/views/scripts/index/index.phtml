@@ -28,18 +28,3 @@ echo $c['body'];
 }
 ?>
 </div>
-
-<div >
-<?php echo $this->latestRecords();?>
-</div>
-<?php
-$auth = Zend_Registry::get('auth');
-if($auth->hasIdentity()):?>
-<?php if($this->logins):?>
-<h3>We've had <?php echo count($this->logins);?> registered users today</h3>
-<p><?php foreach($this->logins as $l):?>
-<a href="<?php echo $this->url(array('module' => 'users', 'controller' => 'named','action' => 'person','as' => $l['username']),null,true);?>" title="View profile for <?php echo $l['username'];?>"><?php echo $l['username'];?></a>
-<?php endforeach;?>
-</p>
-<?php endif;?>
-<?php endif;?>

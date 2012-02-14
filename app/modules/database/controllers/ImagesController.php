@@ -60,7 +60,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
         'institution')
         );
 
-        $search->setFacets(array('broadperiod','county', 'objecttype','institution'));
+        $search->setFacets(array('licenseAcronym','broadperiod','county', 'objecttype','institution'));
 
 
         if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())

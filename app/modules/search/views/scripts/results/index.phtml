@@ -24,7 +24,8 @@ foreach($this->results as $result){
 <?php endif; ?>
 
 
-<?php echo  $this->paginationControl($this->paginator, 'Sliding', 'structure/queryPagination.phtml');
+<?php echo  $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml');
+
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js', $type='text/javascript');
 ?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>

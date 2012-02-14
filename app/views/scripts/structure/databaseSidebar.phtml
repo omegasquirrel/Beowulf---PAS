@@ -12,8 +12,8 @@ $allowedAccess = array('member','flos','hero','research','fa','admin');
 if(in_array($user->role,$allowedAccess))
 {
 ?>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myfinds'),null,true);?>" title="View all finds I have recorded">My finds</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myinstitution'),null,true);?>" title="View everything recorded at my workplace">My institution's records</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myfinds'),null,true);?>" title="View all finds I have recorded">My finds  <i class="icon-list"></i></a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myinstitution'),null,true);?>" title="View everything recorded at my workplace">My institution's records  <i class="icon-list"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme','action' => 'myimages'),null,true);?>">My images <i class="icon-camera"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'images'),null,true);?>">All images <i class="icon-picture"></i></a></li>
 </li>
@@ -80,12 +80,12 @@ $allowed = array('fa','admin','flos','hero');
 if(in_array($user->role,$allowed))
 {
 echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'smr'),NULL,true).
-'" title="List of scheduled monuments">Scheduled monuments</a></li>';
+'" title="List of scheduled monuments">Scheduled monuments  <i class="icon-list"></i></a></li>';
 }
 }
 }
 ?>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller'=>  'publications'),NULL,true);?>" title="Reference works cited on database">Reference works cited</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller'=>  'publications'),NULL,true);?>" title="Reference works cited on database">Reference works cited  <i class="icon-book"></i></a></li>
 <li><a href="#">Numismatics <i class="icon-folder-open"></i></a>
 <ul class="nav nav-pills nav-stacked">
 <li><a href="<?php echo $this->url(array('module' => 'ironagecoins'),NULL,true);?>" title="Iron Age coin guide">Iron Age</a></li>
@@ -100,7 +100,7 @@ echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'sm
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'hoards'),null,true);?>" title="List of hoards on the database">Hoards</a></li>
 <li <?php if($controller == 'terminology') { echo 'class="expandfirst"';};?>>
     <a href="#" title="Click to view controlled lists">Controlled vocabulary <i class="icon-folder-open"></i></a>
-<ul >
+<ul class="nav nav-pills nav-stacked">
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'terminology','action' => 'objects'),NULL,true);?>" title="Learn about object terms in use">Object terms</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'terminology', 'action' => 'periods'),null,true);?>" title="View a list of the temporal terms we use">Periods</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'terminology', 'action' => 'denominations'),null,true);?>" title="View a list of active denoinations">Denominations</a></li>
@@ -119,9 +119,9 @@ echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'sm
 
 </ul></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'rallies'),null,true);?>" title="View list of rallies we have recorded at">Rallies</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'comments'),null,true);?>" title="View comments attached to finds">Commentary</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'comments'),null,true);?>" title="View comments attached to finds">Commentary  <i class="icon-comment"></i></a></li>
 <li <?php if($controller == 'statistics') { echo 'class="expandfirst"';};?>><a href="#">Statistics <i class="icon-folder-open"></i></a>
-<ul>
+<ul class="nav nav-pills nav-stacked">
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'statistics'),null,true);?>" title="Find out what was recorded daily">Archives by day</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database', 'controller' => 'statistics','action' => 'annual'),null,true);?>" title="View annual archived statistics">Overall statistics</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'statistics','action' => 'regional'),null,true);?>" title="View annual regional archived statistics">Regional statistics</a></li>
@@ -131,5 +131,4 @@ echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'sm
 </li>
 <li><a href="<?php echo $this->url(array('module' => 'guide'),null,true);?>" title="Learn more about recording">Volunteer recording guide</a></li>
 </ul>
-<h4>Data enhanced by</h4>
-<img src="/images/logos/calais.png" alt="The Open Calais logo" width="52" height="68"/><img src="/images/logos/geoplanet.png" alt="Yahoo geoplanet logo" height="68" width="70"/>
+

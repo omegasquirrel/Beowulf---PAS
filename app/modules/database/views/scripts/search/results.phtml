@@ -1,9 +1,6 @@
 <h2>Search results</h2>
 
 
-
-
-
 <?php if ($this->results): ?>
     <?php echo $this->form;?>
 <p><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search'),'default',true);?>">Back to simple search</a>
@@ -12,9 +9,7 @@
  <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'save'),'default',true);?>">Save search</a></p>
 <div class="row-fluid">
 <?php if ($this->results): ?>
-    <div class="stripeMe">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->results);?>
-    </div>
 <?php else:?>
     <p>No records are available.
 <?php endif; ?>

@@ -1,9 +1,9 @@
-<?php 
+<?php
 $this->jQuery()->addJavascriptFile('http://jquery-ui.googlecode.com/svn/tags/latest/ui/ui.tabs.js',
 	$type='text/javascript');?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
  $(document).ready(function(){
-$('#tabs').tabs({ fx: { opacity: 'toggle' } }); 
+$('#tabs').tabs({ fx: { opacity: 'toggle' } });
 });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
 
@@ -23,7 +23,7 @@ $('#tabs').tabs({ fx: { opacity: 'toggle' } });
 <h3>Records recorded by period</h3>
 <table class="table table-striped" summary="A summary of all records recorded by this alumnus">
 <caption>All records recorded by period</caption>
-<thead>  
+<thead>
   <tr>
     <th scope="col">Period</th>
     <th scope="col">Finds</th>
@@ -32,7 +32,7 @@ $('#tabs').tabs({ fx: { opacity: 'toggle' } });
  </thead>
  <tbody>
   <?php echo $this->partialLoop('partials/statistics/periodtotals.phtml', $this->periodtotals);?>
-<?php 
+<?php
 $finds_officers = array();
 $records_officers = array();
 foreach($this->periodtotals as $off)
@@ -58,9 +58,9 @@ $recordsOffTotal = array_sum($records_officers);
 <?php if($this->findstotals):?>
 <div id="records">
 <h3>Records and finds recorded by quarter</h3>
-<table class="stripeMe">
+<table class="table table-striped">
 <caption>A breakdown of finds recorded by quarter</caption>
-<thead> 
+<thead>
 <tr>
 <th>Year</th>
 <th>Quarter</th>
@@ -80,4 +80,4 @@ $recordsOffTotal = array_sum($records_officers);
 </table>
 </div>
 <?php endif;?>
-</div> 
+</div>

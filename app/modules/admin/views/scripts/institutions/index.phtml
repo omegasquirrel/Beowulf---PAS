@@ -7,19 +7,19 @@ $this->headTitle('Institutions available on the database');?>
 
 <table class="table table-striped" summary="All available recording institutions available on database">
     <caption>All institutions</caption>
-<thead>
-<tr>
-<th>Institution</th>
-<th>Created</th>
-<th>Created by</th>
-<th>Updated</th>
-<th>Updated by</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<?php echo $this->partialLoop('partials/admin/instTable.phtml',$this->insts);?>
-</tbody>
+        <thead>
+            <tr>
+                <th>Institution</th>
+                <th>Created</th>
+                <th>Created by</th>
+                <th>Updated</th>
+                <th>Updated by</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    <tbody>
+    <?php echo $this->partialLoop('partials/admin/instTable.phtml',$this->insts);?>
+    </tbody>
 </table>
 <?php else:?>
 <p>There are no institutions available to you.</p>

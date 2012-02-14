@@ -110,7 +110,7 @@ class Pas_Controller_Action_Helper_Acl extends Zend_Controller_Action_Helper_Abs
         $module = $request->getModuleName();
         $this->_controllerName = $controller;
 
-        $resource = $module . ':' . $controller;
+        $resource = $controller;
         $privilege = $action;
 
         if (!$this->_acl->has($resource)) {

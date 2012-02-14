@@ -160,7 +160,7 @@ class Comments extends Pas_Db_Table_Abstract {
 		->joinLeft('slides','slides.secuid = finds_images.image_id',array('i' => 'imageID','f' => 'filename'))
 		->joinLeft(array('u' => 'users'),'slides.createdBy = u.id',array('imagedir'))
 		->joinLeft('findspots','finds.secuid = findspots.findID',array('county'))
-		->where('comment_type = ?','recordcomment')
+		->where('comment_type = ?','findComment')
 		->where('comment_approved = ?',(string)'approved')
 		->order('created DESC,finds.id ')
 		->group('comments.id');

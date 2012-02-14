@@ -12,20 +12,20 @@
  * @author Daniel Pett
  * @since September 13 2011
 */
-class Pas_View_Helper_LatestTweets 
+class Pas_View_Helper_LatestTweets
 	extends Zend_View_Helper_Abstract {
 
 	protected $_cache;
 	protected $_config;
 
 	/** Constructor
-	 * 
+	 *
 	 */
 	public function __construct(){
 	$this->_cache = Zend_Registry::get('rulercache');
 	$this->_config = Zend_Registry::get('config');
 	}
-	
+
 	/** Retrieve tokens (already generated elsewhere)
 	 * @access private
 	 * @return object $tokenList
@@ -40,7 +40,7 @@ class Pas_View_Helper_LatestTweets
 	}
 
 	/** Call Twitter after getting token for oauth
-	 * 
+	 *
 	 */
 	public function callTwitter() {
 	$token = $this->getTokens();
@@ -51,29 +51,29 @@ class Pas_View_Helper_LatestTweets
 	}
 
 	/** Build the html
-	 * 
+	 *
 	 * @param array $response
 	 */
 	public function buildHtml($response){
 	$html = '';
 	$html .= '<ul>';
 	foreach($response as $post){
-	$html .= '<li>On <strong>'. date('m.d.y @ H:m:s',strtotime($post->created_at)) 
-	. '</strong>, <strong><a href="http://www.twitter.com/'.$post->user->screen_name 
-	. '">' . $post->user->screen_name . '</a></strong> said: '. $this->view->autoLink($post->text) 
+	$html .= '<li>On <strong>'. date('m.d.y @ H:m:s',strtotime($post->created_at))
+	. '</strong>, <strong><a href="http://www.twitter.com/'.$post->user->screen_name
+	. '">' . $post->user->screen_name . '</a></strong> said: '. $this->view->autoLink($post->text)
 	. '</li>';
 	}
 	$html .= '</ul>';
 	return $html;
 	}
-	
+
 	/** Call Twitter to get tweets
-	 * 
+	 *
 	 */
 	public function latestTweets() {
 	return $this->callTwitter();
 	}
-	
-	
+
+
 }
 
