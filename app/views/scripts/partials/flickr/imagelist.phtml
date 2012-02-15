@@ -1,29 +1,12 @@
-<div class="flickr">
-<div class="flickrthumbnail">
-<a rel="lightbox" href="<?php echo $this->url_m;?>" title="<?php echo $this->title;?>">
-<img src="<?php echo $this->url_s;?>" alt="<?php echo $this->title;?>" width="75" height="75" />
-</a>
-<?php if(isset($this->pathalias)):?>
-<?php 
-if(($this->iconfarm) > 0){
-$image =  'http://farm' .  $this->iconfarm . '.static.flickr.com/' . $this->iconserver . '/buddyicons/' . $this->owner . '.jpg';
-} else {
-$image = 'http://www.flickr.com/images/buddyicon.jpg';
-}
-?>
-<br />
-<a href="http://www.flickr.com/photos/<?php echo $this->pathalias;?>" 
-title="Go to <?php echo $this->ownername;?>'s profile on flickr">
-<img src="<?php echo $image;?>" height="48" 
-width="48" alt="View <?php echo $this->username;?>'s images" style="float:left;padding:5px;"/></a>
-Image taken by: <?php echo $this->ownername;?>
-<?php endif;?>
+<div class="span7 well">
 
-</div>
+
+    <div class="span7">
+
 <div>
 <h4>Title: <?php echo $this->title;?></h4>
 
-<?php 
+<?php
 $len = strlen($this->description);
 if($len > 0):?>
 <p><?php echo $this->description;?></p>
@@ -34,11 +17,11 @@ if($len > 0):?>
 <?php // echo $this->FlickrGeo($this->woeid,NULL,NULL);?>
 <?php endif;?>
 <?php if($this->tags):?>
-<p>Tags: <?php 
-$tags = $this->tags; 
-$pieces = explode(" ", $tags); 
-	foreach($pieces as $t) 
-	{ 
+<p>Tags: <?php
+$tags = $this->tags;
+$pieces = explode(" ", $tags);
+	foreach($pieces as $t)
+	{
 	//$url = $this->url(array('module' => 'flickr','controller' => 'photos','action' => 'tagged',
 	//'as' => $t),'default',true);
 	$url = $this->url(array('module' => 'flickr', 'controller' => 'photos', 'action' => 'tagged','as' => $t),'default',true);
@@ -50,4 +33,27 @@ Created: <?php echo $this->timeagoinwords($this->datetaken);?><br />
 <a href="<?php echo $this->url(array('module' => 'flickr','controller' => 'photos','action' => 'details',
 'id' => $this->id),'default',true);?>" title="View all details for this photo">More details &raquo;</a></p>
 </div>
+
+<div class="flickrthumbnail">
+<a rel="lightbox" href="<?php echo $this->url_m;?>" title="<?php echo $this->title;?>">
+<img src="<?php echo $this->url_s;?>" alt="<?php echo $this->title;?>" width="75" height="75" />
+</a>
+<?php if(isset($this->pathalias)):?>
+<?php
+if(($this->iconfarm) > 0){
+$image =  'http://farm' .  $this->iconfarm . '.static.flickr.com/' . $this->iconserver . '/buddyicons/' . $this->owner . '.jpg';
+} else {
+$image = 'http://www.flickr.com/images/buddyicon.jpg';
+}
+?>
+<br />
+<a href="http://www.flickr.com/photos/<?php echo $this->pathalias;?>"
+title="Go to <?php echo $this->ownername;?>'s profile on flickr">
+<img src="<?php echo $image;?>" height="48"
+width="48" alt="View <?php echo $this->username;?>'s images" style="float:left;padding:5px;"/></a>
+Image taken by: <?php echo $this->ownername;?>
+<?php endif;?>
+
+</div>
+    </div>
 </div>

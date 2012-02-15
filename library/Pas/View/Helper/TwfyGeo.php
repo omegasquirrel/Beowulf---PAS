@@ -27,20 +27,12 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
         public function buildMap($geo, $data){
         $html =  $this->view->partial('partials/news/map.phtml', get_object_vars($geo));
         $html .= $this->view->osDataToConst($geo->name);
-//        $html .= $this->view->SmrDataToConst($geo->name);
-//        $html .= $this->view->findsOfNoteConst($geo->name);
-//        $html .= $this->view->findsWithinConst($geo->name);
-//        $html .= $this->view->mpbio($data->full_name);
+        $html .= $this->view->SmrDataToConst($geo->name);
+        $html .= $this->view->findsOfNoteConst($geo->name);
+        $html .= $this->view->findsWithinConst($geo->name);
+        $html .= $this->view->mpbio($data->full_name);
         $html .= $this->view->politicalhouse($data->house);
 
-
-        $m = new Pas_Geo_Mapit_Area();
-        $m->setId(65622);
-        $m->setMethod('touches');
-        $m->setFilter('WMC');
-        Zend_Debug::dump($m->get(), 'data');
-        Zend_Debug::dump($m->getUrl(), 'url');
-                exit;
         return $html;
         }
 }

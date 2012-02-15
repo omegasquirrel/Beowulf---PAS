@@ -11,6 +11,9 @@
  .flow {
      float:right;
  }
+ .forRDFOnly {
+     display: none;
+ }
 article,
 aside,
 details,
@@ -3072,7 +3075,7 @@ a.thumbnail:hover {
   background-color: #3a87ad;
 }
 
-#map img {
+#map, #mapConstituency img {
 max-width: none;
 }
 #map {

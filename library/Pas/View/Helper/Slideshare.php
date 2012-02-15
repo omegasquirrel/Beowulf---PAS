@@ -10,18 +10,18 @@
  * @uses Zend_Service_SlideShare
  */
 class Pas_View_Helper_Slideshare extends Zend_View_Helper_Abstract  {
-	
+
 	protected $_config, $_password, $_username, $_secret, $_key;
-	
-	public function init(){
+
+	public function __construct(){
 	$this->_config = Zend_Registry::get('config');
 	$this->_secret = $this->_config->webservice->slideshare->secret;
 	$this->_key = $this->_config->webservice->slideshare->apikey;
 	$this->_username = $this->_config->webservice->slideshare->username;
-	$this->_password = $this->_config->webservice->slideshare->pword;	
+	$this->_password = $this->_config->webservice->slideshare->pword;
 	}
 	/** Build HTML response based on slideshare user ud
-	 * 
+	 *
 	 * @param string $ss_user
 	 * @return string $html
 	 */
@@ -40,11 +40,11 @@ class Pas_View_Helper_Slideshare extends Zend_View_Helper_Abstract  {
 	}
 	$html .= '</div>';
 	return $html;
-	}	
 	}
-	
+	}
+
 	/** Query slideshare for slideshare objects
-	 * 
+	 *
 	 * @param unknown_type $userid
 	 * @uses Zend_Service_SlideShare
 	 */
@@ -55,6 +55,7 @@ class Pas_View_Helper_Slideshare extends Zend_View_Helper_Abstract  {
 	if(count($ssid)) {
 	$ssidno = $ssid['0']['account'];
 	$ss = new Zend_Service_SlideShare($this->_key, $this->_secret, $this->_username, $this->_password);
+
 	$starting_offset = 0;
 	$limit = 4;
 	$ss_user = $ss->getSlideShowsByUserName($ssidno, $starting_offset, $limit);

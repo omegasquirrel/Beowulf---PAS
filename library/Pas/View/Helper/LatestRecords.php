@@ -88,7 +88,7 @@ class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
     <ul class="thumbnails">';
 	$html .= $this->view->partialLoop('partials/database/imagesPaged.phtml',
                 $data['images']);
-	$html .= '</ul></div>';
+	$html .= '</ul></div></div>';
 	return $html;
 	} else {
 		return false;

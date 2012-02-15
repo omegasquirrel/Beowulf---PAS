@@ -81,17 +81,19 @@ class Flickr_PhotosController
 	$flickr = $this->_cache->load($key);
 	}
 	$total = $flickr->photos->total;
-	$perpage = 	$flickr->photos->perpage;
+	$perpage = $flickr->photos->perpage;
 	$pagination = array(
 	'page'          => $page,
 	'per_page'      => $perpage,
         'total_results' => (int)$total
 	);
+
 	$paginator = Zend_Paginator::factory($pagination['total_results']);
+
 	$paginator->setCurrentPageNumber($pagination['page'])
-		->setCache($this->_cache)
-		->setItemCountPerPage(20)
-		->setPageRange(10);
+                ->setItemCountPerPage(20)
+		->setPageRange(10)
+                ->setCache($this->_cache);
 	$this->view->paginator = $paginator;
 	$this->view->pictures = $flickr;
 

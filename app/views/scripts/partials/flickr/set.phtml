@@ -1,9 +1,7 @@
-<div class="span10">
-<div class="image-f" >
-<a href="<?php echo $this->url_m;?>" rel="lightbox" title="Larger image of <?php echo $this->title;?>"><img src="<?php echo $this->url_sq;?>" alt="<?php $this->title;?>" width="<?php echo $this->width_sq;?>" class="tmb"/></a><br />
-<a href="http://www.flickr.com/photos/<?php echo $this->pathalias;?>/<?php echo $this->id;?>" title="View this in its original context on flickr">View this on flickr</a>
-</div>
-<div>
+<div class="span7 well">
+
+
+<div class="span7">
 <h4><?php
 echo $this->title;?></h4>
 <p><?php echo $this->description;?></p>
@@ -41,6 +39,17 @@ Views: <?php echo $this->views;?><br/>
 <a href="<?php echo $this->url(array('module' => 'flickr','controller' => 'photos','action' => 'details',
 'id' => $this->id),'default',true);?>" title="View all details for this photo">More details &raquo;</a></p>
 </div>
+ <ul class="thumbnails span5 offset1">
+     <li >
+    <div class="thumbnail" >
+<a href="<?php echo $this->url_m;?>" rel="lightbox" title="Larger image of
+    <?php echo $this->title;?>"><img src="<?php echo $this->url_s;?>"
+       alt="<?php $this->title;?>" width="<?php echo $this->width_s;?>" height="<?php echo $this->height_s;?>"/></a><br />
+<a href="http://www.flickr.com/photos/<?php echo $this->pathalias;?>/<?php echo $this->id;?>" title="View this in its original context on flickr">View this on flickr</a>
+</div>
+    </li>
+ </ul>
+
 </div>
 
 

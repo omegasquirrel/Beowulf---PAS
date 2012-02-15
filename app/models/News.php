@@ -13,16 +13,16 @@
 class News extends Pas_Db_Table_Abstract {
 
 	protected $_name = 'news';
-	
+
 	protected $_primary = 'id';
-	
-	protected $_higherlevel = array('admin', 'flos', 'fa'); 
-	
+
+	protected $_higherlevel = array('admin', 'flos', 'fa');
+
 	public function init(){
-		$this->_geoPlanet = new Pas_Service_Geo_Geoplanet($this->_config->webservice->ydnkeys->appid);
-		$this->_geocoder = new Pas_Service_Geo_Coder($this->_config->webservice->googlemaps->apikey);
+	$this->_geoPlanet = new Pas_Service_Geo_Geoplanet($this->_config->webservice->ydnkeys->appid);
+	$this->_geocoder = new Pas_Service_Geo_Coder($this->_config->webservice->googlemaps->apikey);
 	}
-	
+
 	/** get the user's id from their identity object
 	* @return integer
 	*/
@@ -39,7 +39,7 @@ class News extends Pas_Db_Table_Abstract {
 
 	/** get the user's role from their identity object
 	* @return String
-	* 
+	*
 	*/
 	public function getRole(){
 	if($this->_auth->hasIdentity()) {
@@ -52,9 +52,9 @@ class News extends Pas_Db_Table_Abstract {
 	}
 	}
 
-	/** get all news articles 
+	/** get all news articles
 	* @return array
-	* 
+	*
 	*/
 	public function getNews() {
 	$news = $this->getAdapter();
@@ -66,12 +66,12 @@ class News extends Pas_Db_Table_Abstract {
 	return $news->fetchAll($select);
 	}
 
-	/** get all news articles headlines limited to 5 
+	/** get all news articles headlines limited to 5
 	* @return array
-	* 
+	*
 	*/
 	public function getHeadlines() {
-	if (!$data = $this->_cache->load('headlines')) {	
+	if (!$data = $this->_cache->load('headlines')) {
 	$news = $this->getAdapter();
 	$select = $news->select()
 		->from($this->_name)
@@ -80,40 +80,44 @@ class News extends Pas_Db_Table_Abstract {
 		->limit((int)5);
 	$data = $news->fetchAll($select);
 	$this->_cache->save($data, 'headlines');
-	} 
+	}
 	return $data;
 	}
-	   
+
 	/** get all news articles paginated for public view
 	* @param integer $params['page']
 	* @return array
-	* 
+	*
 	*/
 	public function getAllNewsArticles($params) {
 	$news = $this->getAdapter();
 	$select = $news->select()
-		->from($this->_name, array( 'datePublished', 'title', 'id', 
+		->from($this->_name, array(
+                'datePublished', 'title', 'id',
 		'summary', 'contents', 'created',
 		'd' =>'updated', 'latitude', 'longitude',
-		'updated', 'golive'))
+		'updated', 'golive', 'author',
+                    'contactEmail'))
 		->joinLeft('users','users.id = ' . $this->_name . '.createdBy', array('fullname', 'username'))
 		->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname', 'un' => 'username'))
+
+                ->joinLeft('staff', 'staff.dbaseID = users.id',array('personID' => 'id'))
 		->where('golive <= NOW()')
 		->order('created DESC');
 	$data = $news->fetchAll($select);
 	$paginator = Zend_Paginator::factory($data);
 	if(isset($params['page']) && ($params['page'] != "")) {
-    $paginator->setCurrentPageNumber((int)$params['page']); 
+        $paginator->setCurrentPageNumber((int)$params['page']);
 	}
-	$paginator->setItemCountPerPage(10) 
-		->setPageRange(10); 
+	$paginator->setItemCountPerPage(10)
+		->setPageRange(10);
 	return $paginator;
 	}
-	
+
 	/** get all news articles paginated for admin interface
 	* @param integer $params['page']
 	* @return array
-	* 
+	*
 	*/
 	public function getAllNewsArticlesAdmin($params) {
 	$news = $this->getAdapter();
@@ -124,15 +128,15 @@ class News extends Pas_Db_Table_Abstract {
 		->order('id DESC');
 	if(in_array($this->getRole(),$this->_higherlevel)) {
 	$select->where($this->_name . '.createdBy = ?',$this->getIdentityForForms());
-	} 			
+	}
 	$paginator = Zend_Paginator::factory($select);
 	if(isset($params['page']) && ($params['page'] != "")) {
-    $paginator->setCurrentPageNumber((int)$params['page']); 
+    $paginator->setCurrentPageNumber((int)$params['page']);
 	}
-	$paginator->setItemCountPerPage(10) 
-          ->setPageRange(10); 
+	$paginator->setItemCountPerPage(10)
+          ->setPageRange(10);
 	return $paginator;
-	}	
+	}
 
 	/** Retrieve a news story by the id number
 	* @param integer $id
@@ -143,15 +147,17 @@ class News extends Pas_Db_Table_Abstract {
 	$news = $this->getAdapter();
 	$select = $news->select()
 		->from($this->_name, array('created', 'd' => 'DATE_FORMAT(datePublished,"%D %M %Y")', 'title',
-		'id', 'contents', 'link', 
-		'author', 'contactName', 'contactEmail', 
+		'id', 'contents', 'link',
+		'author', 'contactName', 'contactEmail',
 		'contactTel', 'editorNotes', 'keywords',
 		'golive'))
+                ->joinLeft('users','users.id = ' . $this->_name . '.createdBy', array('fullname'))
+                ->joinLeft('staff', 'staff.dbaseID = users.id',array('personID' => 'id'))
 		->where('news.id = ?',(int)$id)
 		->order('datePublished DESC');
 	return $news->fetchAll($select);
 	}
-	
+
 	/** Retrieve  news stories to show on map or as kml
 	* @return array
 	* @todo add caching?
@@ -169,7 +175,7 @@ class News extends Pas_Db_Table_Abstract {
 	* @todo add caching?
 	*/
 	public function getSitemapNews(){
-	if (!$data = $this->_cache->load('newscached')) {	
+	if (!$data = $this->_cache->load('newscached')) {
 	$news = $this->getAdapter();
 	$select = $news->select()
 		->from($this->_name,array('id','title','updated'))
@@ -177,16 +183,16 @@ class News extends Pas_Db_Table_Abstract {
 		->order('id DESC');
 	$data = $news->fetchAll($select);
 	$this->_cache->save($data, 'newscached');
-	} 
-	return $data; 
 	}
-	
+	return $data;
+	}
+
 	public function addNews($data){
 	if(is_array($data)){
-	$coords = $this->_geocoder->getCoordinates($data['primaryNewsLocation']);	
+	$coords = $this->_geocoder->getCoordinates($data['primaryNewsLocation']);
 	if($coords){
 		$$data['latitude'] = $coords['lat'];
-		$$data['longitude'] = $coords['lon']; 
+		$$data['longitude'] = $coords['lon'];
 		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
 		$data['woeid'] = $place['woeid'];
 	} else {
@@ -194,18 +200,18 @@ class News extends Pas_Db_Table_Abstract {
 		$$data['longitude']  = NULL;
 		$data['woeid'] = NULL;
 	}
-	
+
 	return parent::insert($data);
 	} else {
 		throw new Exception(('The insert data must be in array format.'));
-	}	
 	}
-	
+	}
+
 	public function updateNews($data, $id){
-	$coords = $this->_geocoder->getCoordinates($data['primaryNewsLocation']);	
+	$coords = $this->_geocoder->getCoordinates($data['primaryNewsLocation']);
 	if($coords){
 		$$data['latitude'] = $coords['lat'];
-		$$data['longitude'] = $coords['lon']; 
+		$$data['longitude'] = $coords['lon'];
 		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
 		$data['woeid'] = $place['woeid'];
 	} else {
