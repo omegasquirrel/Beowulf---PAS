@@ -1,11 +1,13 @@
 <h2>Events at the British Museum</h2>
 <p>This data is screen scaped directly off the BM events pages. It is cached for 2 days so may not be totally accurate.</p>
-<?php 
-$cache = Zend_Registry::get('rulercache');
-if(!$cache->start('bmeventsdata')) {
+<?php
+
+$this->headTitle('Latest events at the British Museum');
+$cache = Zend_Registry::get('cache');
+
 ?>
 
-<table class="stripeMe">
+<table class="table-striped table">
 <tr>
 <th>Date</th>
 <th>Time</th>
@@ -14,7 +16,7 @@ if(!$cache->start('bmeventsdata')) {
 <th>Costs</th>
 </tr>
 
-<?php 
+<?php
 
 foreach($this->data as $dat):?><tr>
 <td><?php echo $dat['col1'];?></td>
@@ -26,7 +28,4 @@ foreach($this->data as $dat):?><tr>
 <?php endforeach;?>
 
 </table>
-<?php
-$cache->end();
-}
-?>
+

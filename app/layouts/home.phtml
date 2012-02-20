@@ -40,18 +40,23 @@
 
 
 <div class="navbar navbar-fixed-top">
+
       <div class="navbar-inner">
-        <div class="container">
-<a class="brand" href="#">Portable Antiquities Scheme | The British Museum</a>
+        <div class="container-fluid">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
           <div class="nav-collapse">
 	<?php echo $this->layout()->navigation ?>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-<div class="container-fluid">
 
-    <div class="container-fluid">
+
+  <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
 
@@ -75,14 +80,13 @@
                 <?php echo $this->layout()->bronzeage; ?>
 
         </div><!--/span-->
-        <div class="span9">
 
+
+         <div class="span9">
 
           <div class="row-fluid">
 
-            <div class="span9">
-
-                <?php echo $this->layout()->breadcrumb;	?>
+            <?php echo $this->layout()->breadcrumb;	?>
 
                 <?php echo $this->layout()->messages;?>
 
@@ -90,15 +94,18 @@
 
                 <?php echo $this->layout()->contexts; ?>
 
-            </div><!--/span-->
           </div><!--/row-->
+
         </div><!--/span-->
+
+
+
       </div><!--/row-->
 
       <hr />
 
 
-    <div class="row span16 muted">
+    <div class="row-fluid span16  muted">
 
             <?php echo $this->layout()->footer; ?>
 

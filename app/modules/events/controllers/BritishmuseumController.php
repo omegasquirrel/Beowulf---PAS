@@ -1,7 +1,7 @@
 <?php
 /**
-* Screen scraped British Museum events controller. 
-* 
+* Screen scraped British Museum events controller.
+*
 * This has been implemented because they don't have RSS that works properly or feeds
 *
 * @category		Pas
@@ -19,15 +19,14 @@ class Events_BritishmuseumController extends Zend_Controller_Action {
 	/** Initialise the ACL for access levels and the contexts
 	*/
 	public function init() {
-	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	}
+	$this->_helper->acl->allow('public',null);
+        }
 
 	/**
 	* Return data for the index page
 	*/
 	public function indexAction() {
-	$this->view->headTitle('Latest events at the British Museum');
-	include 'simple_html_dom.php';
+        include 'simple_html_dom.php';
 	ini_set('user_agent', 'Portable Antiquities Scraper/GetRSSsorted');
 	$html = file_get_html('http://www.britishmuseum.org/whats_on/events_calendar/full_events_calendar.aspx');
 	$results = array();
