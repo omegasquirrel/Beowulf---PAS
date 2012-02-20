@@ -41,7 +41,7 @@ class ComplaintsForm extends Pas_Form {
 	$comment_author_email->setLabel('Enter your email address: ')
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim', 'StringToLower'))
-	->addValidator('EmailAddress')   
+	->addValidator('EmailAddress')
 	->addErrorMessage('Please enter a valid email address!')
 	->setDescription('This will not be displayed to the public.');
 
@@ -62,24 +62,24 @@ class ComplaintsForm extends Pas_Form {
 	->addErrorMessage('Please enter something in the comments box!');
 
 
-	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
-                        		'captcha' => 'ReCaptcha',
-								'label' => 'Please prove you are not a spammer',
-                                'captchaOptions' => array(  
-                                'captcha' => 'ReCaptcha',								  
+	$captcha = new Zend_Form_Element_Captcha('captcha', array(
+                        	'captcha' => 'ReCaptcha',
+				'label' => 'Please prove you are not a spammer',
+                                'captchaOptions' => array(
+                                'captcha' => 'ReCaptcha',
                                 'privKey' => $this->_privateKey,
                                 'pubKey' => $this->_pubKey,
 								'theme'=> 'clean')
                         ));
-					
-			
+
+
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
 	              ->removeDecorator('HtmlTag')
 				  ->removeDecorator('DtDdWrapper')
 				  ->setAttrib('class','large')
 				  ->setLabel('Submit your query');
-				  
+
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
@@ -88,7 +88,7 @@ class ComplaintsForm extends Pas_Form {
 	->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-	
+
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()){
 	$this->addElements(array(
@@ -97,12 +97,8 @@ class ComplaintsForm extends Pas_Form {
 	$captcha, $submit));
 
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
-	'comment_content','captcha'), 'details')
-	->removeDecorator('HtmlTag');
+	'comment_content','captcha'), 'details');
 
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	$this->details->setLegend('Enter your comments: ');
 	} else {
 	$user = $auth->getIdentity();
@@ -114,19 +110,12 @@ class ComplaintsForm extends Pas_Form {
 	$submit));
 
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
-	'comment_content'), 'details')
-	->removeDecorator('HtmlTag');
-
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'comment_content'), 'details');
 	$this->details->setLegend('Enter your comments: ');
 	}
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+
 	parent::init();
 	}
-	
+
 }

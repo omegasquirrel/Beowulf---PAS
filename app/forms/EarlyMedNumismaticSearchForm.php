@@ -306,36 +306,31 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(60);
 	$this->addElement($hash);
 
-	$this->addDisplayGroup(array('category', 'ruler', 'typeID',
-	'denomination', 'mint','moneyer',
-	'axis', 'obverseLegend', 'obverseDescription',
-	'reverseLegend','reverseDescription'),'numismatics')
-	->removeDecorator('HtmlTag');
-	$this->numismatics->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->numismatics->removeDecorator('DtDdWrapper');
+	$this->addDisplayGroup(array(
+            'category', 'ruler', 'typeID',
+            'denomination', 'mint','moneyer',
+            'axis', 'obverseLegend', 'obverseDescription',
+            'reverseLegend','reverseDescription'),
+                'numismatics');
 	$this->numismatics->setLegend('Numismatic details: ');
-	$this->addDisplayGroup(array('old_findID','description','rally','rallyID','hoard','hID','workflow'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
+	$this->addDisplayGroup(array(
+            'old_findID','description','rally',
+            'rallyID','hoard','hID','workflow'),
+                'details');
 
 	$this->details->setLegend('Object details: ');
-	$this->addDisplayGroup(array('county','regionID','district','parish','gridref','fourFigure', 'institution'), 'spatial')
-	->removeDecorator('HtmlTag');
-	$this->spatial->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->spatial->removeDecorator('DtDdWrapper');
+	$this->addDisplayGroup(array(
+            'county','regionID','district',
+            'parish','gridref','fourFigure',
+            'institution'), 'spatial');
 	$this->spatial->setLegend('Spatial details: ');
 
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->addDecorator('FormElements')
-		 ->addDecorator('Form')
-	     ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'));
+
 	parent::init();
 	}
 }

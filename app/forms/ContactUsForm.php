@@ -42,7 +42,7 @@ parent::__construct($options);
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
 	->setRequired(true)
-	->addValidator('EmailAddress')   
+	->addValidator('EmailAddress')
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addErrorMessage('Please enter a valid email address!')
 	->setDescription('* This will not be displayed to the public.');
@@ -66,71 +66,62 @@ parent::__construct($options);
 	->addErrorMessage('Please enter something in the comments box!');
 
 
-	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
+	$captcha = new Zend_Form_Element_Captcha('captcha', array(
                         	'captcha' => 'ReCaptcha',
 							'label' => 'Please fill in this reCaptcha to prove human life exists at your end!',
-                            'captchaOptions' => array(  
-                            'captcha' => 'ReCaptcha',								  
+                            'captchaOptions' => array(
+                            'captcha' => 'ReCaptcha',
                             'privKey' => $this->_privateKey,
                             'pubKey' => $this->_pubKey,
 							'theme'=> 'clean')
                         ));
-                        
-                        
+
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-				
+
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
 	->removeDecorator('HtmlTag')
 	->removeDecorator('DtDdWrapper')
 	->setAttrib('class','large')
 	->setLabel('Submit your query');
-			  
-			  
+
+
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()) {
 	$this->addElements(array(
 	$comment_author_IP, $comment_agent,	$comment_author,
 	$comment_author_email, $comment_content,	$comment_author_url,
 	$captcha, $submit));
-	
+
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_author_url',
-	'comment_content', 'captcha'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'comment_content', 'captcha'), 'details');
 	$this->details->setLegend('Enter your comments: ');
-	
+
 	} else {
 	$user = $auth->getIdentity();
 	$comment_author->setValue($user->fullname);
 	$comment_author_email->setValue($user->email);
-	
+
 	$this->addElements(array(
 	$comment_author_IP,	$comment_agent, $comment_author,
 	$comment_author_email, $comment_content,$comment_author_url,
 	$submit));
-	
+
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_author_url',
-	'comment_content'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'comment_content'), 'details');
 	$this->details->setLegend('Enter your comments: ');
 	}
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
+        
 	parent::init();
 	}
-	
+
 }

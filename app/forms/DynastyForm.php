@@ -1,6 +1,6 @@
 <?php
 /** Form for entering data about Roman dynasties
-* 
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -11,7 +11,7 @@ class DynastyForm extends Pas_Form
 public function __construct($options = null)
 {
 	parent::__construct($options);
-	
+
 	$this->setName('dynasticDetails');
 
 	$dynasty = new Zend_Form_Element_Text('dynasty');
@@ -56,17 +56,13 @@ public function __construct($options = null)
 	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
-	
-	$this->addElements(array( 
+
+	$this->addElements(array(
 	$dynasty, $date_from, $date_to,
 	$description, $valid, $submit));
-	$this->removeDecorator('HtmlTag');
 	$this->addDisplayGroup(array('dynasty','date_from','date_to','description','valid','submit'), 'details');
-	$this->details->addDecorators(array(
-	    'FormElements',
-	    array('HtmlTag', array('tag' => 'ul'))
-	));
 	
+
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->removeDecorator('HtmlTag');
 

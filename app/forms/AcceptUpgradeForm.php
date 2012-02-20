@@ -13,21 +13,26 @@ class AcceptUpgradeForm extends Pas_Form {
 public function __construct($options = null) {
 
 	parent::__construct($options);
-		$roles = new Roles();
-		$role_options = $roles->getRoles();
-		$inst = new Institutions();
-		$inst_options = $inst->getInsts();       
-		$projecttypes = new ProjectTypes();
-		$projectype_list = $projecttypes->getTypes();
-  
+
+        $roles = new Roles();
+	$role_options = $roles->getRoles();
+
+        $inst = new Institutions();
+	$inst_options = $inst->getInsts();
+
+        $projecttypes = new ProjectTypes();
+        $projectype_list = $projecttypes->getTypes();
+
 	$this->setName('acceptupgrades');
 
 	ZendX_JQuery::enableForm($this);
-	
+
 	$level = new Zend_Form_Element_Select('level');
 	$level->setLabel('Level of research: ')
 		->setRequired(true)
-		->addMultiOptions(array(NULL => NULL,'Choose type of research' => $projectype_list))
+		->addMultiOptions(array(
+                    NULL => 'Choose type of research',
+                    'Available types' => $projectype_list))
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addErrorMessage('You must set the level of research');
@@ -47,12 +52,9 @@ public function __construct($options = null) {
 		->setAttrib('cols',40)
 		->setAttrib('Height',400)
 		->setAttrib('ToolbarSet','Finds')
-		->addFilter('StringTrim')
-		->addFilter('BasicHtml')
-		->addFilter('EmptyParagraph')
-		->addFilter('WordChars')
+		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'))
 		->addErrorMessage('Outline must be present.');
-		
+
 	$reference = new Zend_Form_Element_Text('reference');
 	$reference->setLabel('Referee\'s name: ')
 		->setAttrib('size',30)
@@ -71,12 +73,9 @@ public function __construct($options = null) {
 		->setAttrib('cols',40)
 		->setAttrib('Height',400)
 		->setAttrib('ToolbarSet','Finds')
-		->addFilter('StringTrim')
-		->addFilter('BasicHtml')
-		->addFilter('EmptyParagraph')
-		->addFilter('WordChars')
+		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'))
 		->addErrorMessage('You must enter a message for the user to know they have been approved.');
-		
+
 	$fullname = new Zend_Form_Element_Text('fullname');
 	$fullname->setLabel('Fullname: ')
 		->setAttrib('size',30)
@@ -85,7 +84,7 @@ public function __construct($options = null) {
 
 	$institution = $this->addElement('select', 'institution',array('label' => 'Recording institution: '))->institution;
 	$institution->addMultiOptions(array(NULL => NULL, 'Choose institution' => $inst_options));
-		
+
 	$role = $this->addElement('select', 'role',array('label' => 'Site role: '))->role;
 	$role->addMultiOptions(array(NULL => NULL,'Choose role' => $role_options));
 	$role->removeMultiOption('admin');
@@ -133,16 +132,13 @@ public function __construct($options = null) {
 		->setOptions(array('separator' => ''));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
+
 
 	$this->addElements(array(
 	$reference, $referenceEmail, $researchOutline,
 	$startDate, $endDate, $fullname,
 	$valid, $level, $title,
-	$submit, $already, $insert, 
+	$submit, $already, $insert,
 	$message));
 
 	$this->addDisplayGroup(array(
@@ -151,16 +147,13 @@ public function __construct($options = null) {
 	'reference', 'referenceEmail', 'message',
 	'researchOutline', 'title', 'startDate',
 	'endDate', 'already', 'higherLevel',
-	'insert'), 
-	'details')
-		->removeDecorator('HtmlTag');
+	'insert'),
+	'details');
 
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+
 	$this->details->setLegend('Details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
 	parent::init();
 	}
-	
+
 }

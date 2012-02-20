@@ -15,8 +15,8 @@ class ActivateForm extends Pas_Form {
 
 
     public function init() {
-       
-        $username = $this->addElement('text', 'username', 
+
+        $username = $this->addElement('text', 'username',
             array('label' => 'Username'));
         $username = $this->getElement('username')
                   ->addValidator('Alnum')
@@ -29,14 +29,10 @@ class ActivateForm extends Pas_Form {
 
 
         $submit = $this->addElement('submit', 'Login');
-        $submit = $this->getElement('Login')
-                       ->setDecorators(array(
-                        array('ViewHelper'),
-                        array('HtmlTag', array('tag' => 'li', 'class' => 'submit')),
-        ));
 
-		$this->setLegend('Activate your account on Beowulf: ');
+
+	$this->setLegend('Activate your account on Beowulf: ');
 	parent::init();
 	}
-	
+
 }

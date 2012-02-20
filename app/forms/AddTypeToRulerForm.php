@@ -13,8 +13,6 @@ public function __construct($options = null)
 {
 parent::__construct($options);
 
-
-	$this->setAttrib('accept-charset', 'UTF-8');
 	$this->setName('TypeToRuler');
 
 	$type = new Zend_Form_Element_Select('type');
@@ -26,31 +24,22 @@ parent::__construct($options);
 	$ruler_id = new Zend_Form_Element_Hidden('ruler_id');
 	$ruler_id->removeDecorator('DtDdWrapper')
 	->setRequired(true)
-	->addValidator('Int')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('Label');
+	->addValidator('Int');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-	
-	//Submit button 
+
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttribs(array('class'=> 'large'));
-	
-	
+
+
 	$this->addElements(array($type,$ruler_id,$submit))
 	->setLegend('Add a new type')
-	->setMethod('post')
-	->addDecorators(array('FieldSet',
-	'form',array('HtmlTag', array('tag' => 'div'))
-	));
-	
+	->setMethod('post');
+
 	parent::init();
 	}
-	
+
 }

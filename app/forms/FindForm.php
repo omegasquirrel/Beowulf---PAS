@@ -152,8 +152,7 @@ public function __construct($options = null) {
 	->setAttrib('size',60)
 	->setRequired(false)
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Find subclassification
 	$subclass = new Zend_Form_Element_Text('subclass');
@@ -161,7 +160,6 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-
 	->setAttrib('size',60);
 
 	//Inscription: Only available if !=coin
@@ -170,8 +168,7 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->setAttrib('size',60)
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	;
+	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
 
 	//Treasure: enumerator 1/0
 	$treasure = new Zend_Form_Element_Checkbox('treasure');
@@ -179,8 +176,7 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->setCheckedValue('1')
 	->setUncheckedValue(NULL)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 
 	//Treasure: enumerator 1/0
@@ -199,7 +195,6 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose broadperiod' ,
 	'Available periods' => $periodword_options))
-
 	->addErrorMessage('You must enter a broad period.')
 	->addValidator('InArray', false, array(array_keys($periodword_options)));
 
@@ -209,8 +204,7 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose a subperiod' ,
-	'Valid sub periods' => array('1' => 'Early','2' => 'Middle', '3' => 'Late')))
-	;
+	'Valid sub periods' => array('1' => 'Early','2' => 'Middle', '3' => 'Late')));
 
 
 	//Period from: Assigned via dropdown
@@ -221,8 +215,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array(NULL => 'Choose a period from' ,
 	'Available periods' => $period_options))
 	->addValidator('InArray', false, array(array_keys($period_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 	$objdate1cert = new Zend_Form_Element_Radio('objdate1cert');
 	$objdate1cert->setLabel('Period from certainty: ')
@@ -230,8 +223,7 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags','StringTrim'))
 	->setOptions(array('separator' => ''))
-	->addValidator('Digits')
-	;
+	->addValidator('Digits');
 
 	//Period from: Assigned via dropdown
 	$objdate2subperiod = new Zend_Form_Element_Select('objdate2subperiod');
@@ -240,8 +232,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose a subperiod' ,
 	'Valid sub periods' => array('1' => 'Early','2' => 'Middle', '3' => 'Late')))
-	->addValidator('Digits')
-	;
+	->addValidator('Digits');
 
 	//Period to: Assigned via dropdown
 	$objdate2period = new Zend_Form_Element_Select('objdate2period');
@@ -251,8 +242,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array(NULL => 'Choose period to',
 	'Available periods' => $period_options))
 	->addValidator('InArray', false, array(array_keys($period_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 	$objdate2cert = new Zend_Form_Element_Radio('objdate2cert');
 	$objdate2cert->setLabel('Period to certainty: ')
@@ -260,7 +250,6 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags','StringTrim'))
 	->setOptions(array('separator' => ''))
-
 	->addValidator('Digits');
 
 	$numdate1qual = new Zend_Form_Element_Radio('numdate1qual');
@@ -269,7 +258,6 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags','StringTrim'))
 	->setOptions(array('separator' => ''))
-
 	->addValidator('Digits');
 
 	//Date from: Free text Integer +ve or -ve
@@ -277,8 +265,7 @@ public function __construct($options = null) {
 	$numdate1->setLabel('Date from: ')
 	->setAttrib('size',10)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Digits')
-	;
+	->addValidator('Digits');
 
 	$numdate2qual = new Zend_Form_Element_Radio('numdate2qual');
 	$numdate2qual->setLabel('Date certainty: ')
@@ -286,102 +273,81 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags','StringTrim'))
 	->setOptions(array('separator' => ''))
-
 	->addValidator('Digits');
 
 	//Date to: Free text Integer +ve or -ve
 	$numdate2 = new Zend_Form_Element_Text('numdate2');
 	$numdate2->setLabel('Date to: ')
-	->setRequired(false)
 	->setAttrib('size',10)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Digits')
-	;
+	->addValidator('Digits');
 
 	//Ascribed culture: assigned via dropdown
 	$culture = new Zend_Form_Element_Select('culture');
 	$culture->setLabel('Ascribed culture: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose ascribed culture',
 	'Available cultures' => $culture_options))
 	->addValidator('InArray', false, array(array_keys($culture_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 	//Period of reuse
 	$reuse_period = new Zend_Form_Element_Select('reuse_period');
 	$reuse_period->setLabel('Period of reuse: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose period of reuse',
 	'Available periods' => $period_options))
 	->addValidator('InArray', false, array(array_keys($period_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 	//Evidence of reuse
 	$reuse = new Zend_Form_Element_Text('reuse');
 	$reuse->setLabel('Evidence of reuse: ')
 	->setAttrib('size',60)
-	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//METRICS SECTION//
 	//Weight: grammes
 	$weight = new Zend_Form_Element_Text('weight');
 	$weight->setLabel('Weight: ')
 	->setAttrib('size',5)
-	->setRequired(false)
 	->addValidator('Float')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Height: millimetres
 	$height = new Zend_Form_Element_Text('height');
 	$height->setLabel('Height: ')
-	->setRequired(false)
 	->setAttrib('size',5)
 	->addValidator('Float')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Length: millimetres
 	$length = new Zend_Form_Element_Text('length');
 	$length->setLabel('Length: ')
-	->setRequired(false)
 	->setAttrib('size',5)
 	->addValidator('Float')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Diameter: millimetres
 	$diameter = new Zend_Form_Element_Text('diameter');
 	$diameter->setLabel('Diameter: ')
-	->setRequired(false)
 	->setAttrib('size',5)
 	->addValidator('Float')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//
 	$width = new Zend_Form_Element_Text('width');
 	$width->setLabel('Width: ')
-	->setRequired(false)
 	->setAttrib('size',5)
 	->addValidator('Float')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Thickness: millimetres
 	$thickness = new Zend_Form_Element_Text('thickness');
 	$thickness->setLabel('Thickness: ')
-	->setRequired(false)
 	->setAttrib('size',5)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Float')
-	;
+	->addValidator('Float');
 
 	//Quantity: positive integers only
 	$quantity = new Zend_Form_Element_Text('quantity');
@@ -390,115 +356,95 @@ public function __construct($options = null) {
 	->setValue('1')
 	->setAttrib('size',3)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Digits')
-	;
+	->addValidator('Digits');
 
 	$material1 = new Zend_Form_Element_Select('material1');
 	$material1->setLabel('Primary material: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose primary material',
 	'Available materials' => $primary_options))
 	->addValidator('InArray', false, array(array_keys($primary_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 
 	//Secondary material
 	$material2 = new Zend_Form_Element_Select('material2');
 	$material2->setLabel('Secondary material: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose secondary material',
 	'Available materials' => $primary_options))
 	->addValidator('InArray', false, array(array_keys($primary_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 
 	//Manufacture method
 	$manmethod = new Zend_Form_Element_Select('manmethod');
 	$manmethod->setLabel('Manufacture method: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose method of manufacture',
 	'Available methods' => $man_options))
 	->addValidator('InArray', false, array(array_keys($man_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 	//Decoration method
 	$decmethod = new Zend_Form_Element_Select('decmethod');
 	$decmethod->setLabel('Decoration method: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose decoration method',
 	'Available methods' => $decmeth_options))
 	->addValidator('InArray', false, array(array_keys($decmeth_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 
 	//Surface treatment
 	$surftreat = new Zend_Form_Element_Select('surftreat');
 	$surftreat->setLabel('Surface Treatment: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose surface treatment',
 	'Available treatments' => $surface_options))
 	->addValidator('InArray', false, array(array_keys($surface_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 
 	//decoration style
 	$decstyle = new Zend_Form_Element_Select('decstyle');
 	$decstyle->setLabel('Decorative style: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose decorative style',
 	'Available styles' => $decoration_options))
 	->addValidator('InArray', false, array(array_keys($decoration_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 	//Preservation of object
 	$preservation = new Zend_Form_Element_Select('preservation');
 	$preservation->setLabel('Preservation: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
 	->addMultiOptions(array(NULL => 'Choose level of preservation',
 	'Available states' => $preserve_options))
 	->addValidator('InArray', false, array(array_keys($preserve_options)))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 
 	//Completeness of object
 	$completeness = new Zend_Form_Element_Radio('completeness');
 	$completeness->setLabel('Completeness: ')
-	->setRequired(false)
 	->addMultiOptions(array('4' => 'Complete','2' => 'Incomplete','1' => 'Fragment','3' => 'Uncertain'))
 	->setValue('4')
 	->setOptions(array('separator' => ''))
 	->addFilters(array('StripTags','StringTrim'))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
-	;
+	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
 
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
 	$rally->setLabel('Rally find: ')
-	->setRequired(false)
 	->setCheckedValue('1')
 	->setUncheckedValue(NULL)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Int')
-	;
+	->addValidator('Int');
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose rally name',
 	'Available rallies' => $rally_options))
@@ -511,7 +457,6 @@ public function __construct($options = null) {
 	$finder = new Zend_Form_Element_Text('finder');
 	$finder->setLabel('Found by: ')
 	->addFilters(array('StripTags','StringTrim'))
-
 	->setDescription('To make a new finder/identifier appear, you first need to create them from the people menu on the left hand side');
 
 
@@ -520,41 +465,33 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->removeDecorator('Label')
 	->removeDecorator('HtmlTag')
-	->removeDecorator('DdDtWrapper')
-	;
+	->removeDecorator('DdDtWrapper');
 
 	$secondfinder = new Zend_Form_Element_Text('secondfinder');
 	$secondfinder->setLabel('Secondary finder: ')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Secondary finder
 	$finder2ID = new Zend_Form_Element_Hidden('finder2ID');
-	$finder2ID->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
+	$finder2ID->addFilters(array('StripTags','StringTrim'))
 	->removeDecorator('Label')
 	->removeDecorator('HtmlTag')
-	->removeDecorator('DdDtWrapper')
-	;
+	->removeDecorator('DdDtWrapper');
 
 	$recordername = new Zend_Form_Element_Text('recordername');
 	$recordername->setLabel('Recorded by: ')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//recorder information
 	$recorderID = new Zend_Form_Element_Hidden('recorderID');
-	$recorderID->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
+	$recorderID->addFilters(array('StripTags','StringTrim'))
 	->removeDecorator('Label')
 	->removeDecorator('HtmlTag')
-	->removeDecorator('DdDtWrapper')
-	;
+	->removeDecorator('DdDtWrapper');
 
 	$idBy = new Zend_Form_Element_Text('idBy');
 	$idBy->setLabel('Primary identifier: ')
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	$identifier1ID = new Zend_Form_Element_Hidden('identifier1ID');
 	$identifier1ID->removeDecorator('HtmlTag')
@@ -565,8 +502,7 @@ public function __construct($options = null) {
 	$id2by = new Zend_Form_Element_Text('id2by');
 	$id2by->setLabel('Secondary Identifier: ')
 	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Secondary Identifier
 	$identifier2ID = new Zend_Form_Element_Hidden('identifier2ID');
@@ -585,72 +521,56 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
 	->addValidator('inArray', true, array(array_keys($disc_options)))
-	->addMultiOptions(array(NULL => 'Choose method of discovery','Available methods' => $disc_options))
-	;
+	->addMultiOptions(array(NULL => 'Choose method of discovery','Available methods' => $disc_options));
 
 	//Discovery circumstances
 	$disccircum = new Zend_Form_Element_Text('disccircum');
 	$disccircum->setLabel('Discovery circumstances: ')
-	->setRequired(false)
 	->setAttrib('size',50)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Date found from
 	$datefound1 = new Zend_Form_Element_Text('datefound1');
 	$datefound1->setLabel('First discovery date: ')
-	->setRequired(false)
 	->setAttrib('size',10)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Datetime')
-	;
+	->addValidator('Datetime');
 
 	//Date found to
 	$datefound2 = new Zend_Form_Element_Text('datefound2');
 	$datefound2->setLabel('Second discovery date: ')
-	->setRequired(false)
 	->setAttrib('size',10)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Datetime')
-	;
+	->addValidator('Datetime');
 
 	##OTHER REFERENCE NUMBERS
 	//Other reference number
 	$other_ref = new Zend_Form_Element_Text('other_ref');
 	$other_ref->setLabel('Other reference: ')
-	->setRequired(false)
 	->setAttrib('size',50)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//SMR reference number
 	$smrrefno = new Zend_Form_Element_Text('smr_ref');
 	$smrrefno->setLabel('Sites and Monuments record number: ')
-	->setRequired(false)
 	->setAttrib('size',30)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Museum accession number
 	$musaccno = new Zend_Form_Element_Text('musaccno');
 	$musaccno->setLabel('Museum accession number: ')
-	->setRequired(false)
 	->setAttrib('size',50)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Current location of object
 	$curr_loc = new Zend_Form_Element_Text('curr_loc');
 	$curr_loc->setLabel('Current location: ')
-	->setRequired(false)
 	->setAttrib('size',60)
-	->addFilters(array('StripTags','StringTrim'))
-	;
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Current location of object
 	$subs_action = new Zend_Form_Element_Select('subs_action');
 	$subs_action->setLabel('Subsequent action: ')
-	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
 
 	->addMultiOptions(array(NULL => 'Choose a subsquent action',
@@ -661,8 +581,6 @@ public function __construct($options = null) {
 
  	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(4800);
 	$this->addElement($hash);
 
@@ -671,10 +589,6 @@ public function __construct($options = null) {
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-	              ->removeDecorator('HtmlTag')
-				  ->setAttrib('class','large')
-				  ->removeDecorator('DtDdWrapper');
 
 	$this->addElements(array(
 	$secuid, $old_findID,
@@ -705,8 +619,6 @@ public function __construct($options = null) {
 	'subclass','description','notes',
 	'inscription','findofnote','findofnotereason',
 	'treasure','treasureID'), 'objectdetails');
-	$this->objectdetails->removeDecorator('DtDdWrapper');
-	$this->objectdetails->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 	$this->objectdetails->setLegend('Object details');
 
 	$this->addDisplayGroup(array('broadperiod','objdate1period','objdate1cert',
@@ -714,46 +626,32 @@ public function __construct($options = null) {
 	'objdate2subperiod','numdate1qual','numdate1',
 	'numdate2qual','numdate2','culture',
 	'reuse_period','reuse'), 'date');
-	$this->date->removeDecorator('DtDdWrapper');
 	$this->date->setLegend('Temporal details');
-	$this->date->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 
 
 	$this->addDisplayGroup(array('length','width','thickness','height',
 	'diameter','weight','quantity'), 'metrics');
-	$this->metrics->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->metrics->removeDecorator('DtDdWrapper');
 	$this->metrics->setLegend('Measurements');
 
 	$this->addDisplayGroup(array('material1','material2','manmethod','surftreat',
 	//'decmethod',
 	'decstyle','preservation','completeness'), 'methods');
-	$this->methods->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->methods->removeDecorator('DtDdWrapper');
 	$this->methods->setLegend('Methods of production and decoration');
 
 	$this->addDisplayGroup(array('recordername','recorderID','idBy',
 	'identifier1ID','id2by','identifier2ID'), 'people');
-	$this->people->removeDecorator('DtDdWrapper');
-	$this->people->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 	$this->people->setLegend('Recording details');
 
 	$this->addDisplayGroup(array('finder','finderID','secondfinder','finder2ID'), 'discoverers');
-	$this->discoverers->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->discoverers->removeDecorator('DtDdWrapper');
 	$this->discoverers->setLegend('Discoverer details');
 
 
 	$this->addDisplayGroup(array('disccircum','discmethod','datefound1',
 	'datefound2','rally','rallyID'), 'discovery');
-	$this->discovery->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->discovery->removeDecorator('DtDdWrapper');
 	$this->discovery->setLegend('Discovery details');
 
 	$this->addDisplayGroup(array('other_ref','smr_ref','musaccno','curr_loc',
 	'subs_action'), 'references');
-	$this->references->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->references->removeDecorator('DtDdWrapper');
 	$this->references->setLegend('Reference numbers');
 
 

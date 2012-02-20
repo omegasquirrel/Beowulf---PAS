@@ -13,12 +13,12 @@ public function __construct($options = null)
 
 	$countries = new Countries();
 	$countries_options = $countries->getOptions();
-	
+
 	$counties = new Counties();
 	$county_options = $counties->getCountyName2();
 
 	parent::__construct($options);
-	
+
 	$this->setName('coroner');
 
 	$firstname = new Zend_Form_Element_Text('firstname');
@@ -98,12 +98,9 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('StringLength', false, array(1,200));
 
-	//Submit button 
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->removeDecorator('DtDdWrapper')
-	->setAttrib('class','large');
-
+	
 	$this->addElements(array(
 	$firstname, $lastname, $email,
 	$address_1,	$address_2,	$town,
@@ -111,21 +108,16 @@ public function __construct($options = null)
 	$telephone,	$fax,$region_name,
 	$submit));
 
-	$this->addDisplayGroup(array( 
+	$this->addDisplayGroup(array(
 	'firstname', 'lastname', 'region_name',
 	'email', 'address_1', 'address_2',
 	'town', 'postcode', 'county',
-	'country','telephone','fax',), 'details')->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'country','telephone','fax',), 'details');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+
 	$this->details->setLegend('Submit Coroner\'s details ');
   	parent::init();
 	}
-	
+
 }

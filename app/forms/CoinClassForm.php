@@ -39,31 +39,22 @@ public function __construct($options = null)
 	->addMultiOptions(array(NULL=> NULL,'Choose period:' => $period_actives))
 	->addErrorMessage('You must enter a period for this mint');
 
-	//Submit button 
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
 
 	$this->addElements(array($referenceName, $valid, $period,$submit));
 
-	$this->addDisplayGroup(array('referenceName','period','valid'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
+	$this->addDisplayGroup(array('referenceName','period','valid'), 'details');
 
 	$this->details->setLegend('Mint details: ');
-	$this->details->removeDecorator('DtDdWrapper');
 	$this->addDisplayGroup(array('submit'),'submit');
 
 	parent::init();
 	}
-	
+
 }

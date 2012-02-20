@@ -12,47 +12,36 @@ class AddReverseToRulerForm extends Pas_Form
 public function __construct($options = null) {
 
 	parent::__construct($options);
-	
+
 	$this->setName('MintToRuler');
 
 	$reverseID = new Zend_Form_Element_Select('reverseID');
 	$reverseID->setLabel('Reverse type: ')
 	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->setAttribs(array('class'=> 'textInput'));
-	
+	->addFilters(array('StripTags','StringTrim','StringToLower'));
+
 	$rulerID = new Zend_Form_Element_Hidden('rulerID');
-	$rulerID ->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->addValidator('Int');
+	$rulerID->addValidator('Int');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
 
-	//Submit button 
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setLabel('Add a reverse type for this ruler')
-	->setAttribs(array('class'=> 'large'));
-	
+	$submit->setLabel('Add a reverse type for this ruler');
+
 	$this->addElements(array($reverseID,$rulerID,$submit));
-	$this->addDisplayGroup(array('reverseID'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('reverseID'), 'details');
+
 	$this->details->setLegend('Add an active Mint');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+
 	$this->details->setLegend('Add an active reverse type');
-	
+
 	parent::init();
 	}
-	
+
 }

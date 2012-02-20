@@ -24,12 +24,14 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	$module = strtolower($request->getModuleName());
 //	if($module == 'default') {
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap.css', $type='screen');
+        $view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.css', $type='screen');
 //	} else {
 //	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/default.css', $type='screen');
 //	}
 //	$view->headLink()->appendStylesheet($view->baseUrl().'/css/print.css', $type='print')
 //		->appendStylesheet($view->baseUrl().'/css/style.css', $type='screen');
 	$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
+        $view->headMeta()->appendName('viewport','width=device-width, initial-scale=1.0');
 	$view->headLink()->appendAlternate($view->baseUrl().'/database/artefacts/index/format/atom/',
 		'application/rss+xml', 'Latest recorded finds feed')
 		->appendAlternate($view->baseUrl() . '/news/format/atom',

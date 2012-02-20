@@ -12,7 +12,7 @@ class ActivityForm extends Pas_Form {
 	public function __construct($options = null) {
 
 	parent::__construct($options);
-	  
+
 	$this->setName('activity');
 
 	$term = new Zend_Form_Element_Text('term');
@@ -33,32 +33,22 @@ class ActivityForm extends Pas_Form {
 		->addFilter('StringTrim')
 		->addFilter('BasicHtml')
 		->addFilter('EmptyParagraph')
-		->addFilter('WordChars')
-		->addDecorator('HtmlTag',array('tag' => 'li'));
+		->addFilter('WordChars');
 
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
 		->setRequired(false)
 		->addValidator('NotEmpty','boolean');
-	
-		//Submit button 
-	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
+
+		//Submit button
+	$submit = new Zend_Form_Element_Submit('submit');;
 
 	$this->addElements( array($term, $termdesc, $valid, $submit) );
 
-	$this->addDisplayGroup(array('term','termdesc','valid','submit'), 'details')
-		->removeDecorator('HtmlTag');
-		
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('term','termdesc','valid','submit'), 'details');
 	$this->details->setLegend('Primary activity details: ');
     parent::init();
 	}
-	
+
 }

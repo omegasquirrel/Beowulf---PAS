@@ -1,6 +1,6 @@
 <?php
 /** Form for editing a user's account details
-* 
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -25,30 +25,29 @@ class EditAccountForm extends Pas_Form
 
     public function init()
     {
-        $required = true;
         $roles = new Roles();
-		$role_options = $roles->getRoles();
-		$inst = new Institutions();
-		$inst_options = $inst->getInsts();
+	$role_options = $roles->getRoles();
+
+        $inst = new Institutions();
+	$inst_options = $inst->getInsts();
+
         $this->setAction($this->_actionUrl)
              ->setMethod('post')
              ->setAttrib('id', 'accountform');
 
-		
-		
-		$username = $this->addElement('text','username',array('label' => 'Username: '))->username;
-		$username->addFilters(array('StripTags', 'StringTrim'))
-				->setRequired(true);
-				
+        $username = $this->addElement('text','username',array('label' => 'Username: '))->username;
 
-        $firstName = $this->addElement('text', 'first_name', 
+        $username->addFilters(array('StripTags', 'StringTrim'))->setRequired(true);
+
+
+        $firstName = $this->addElement('text', 'first_name',
             array('label' => 'First Name', 'size' => '30'))->first_name;
         $firstName->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 		->addErrorMessage('You must enter a firstname');
 
-        $lastName = $this->addElement('text', 'last_name', 
+        $lastName = $this->addElement('text', 'last_name',
             array('label' => 'Last Name', 'size' => '30'))
 		->last_name;
         $lastName->setRequired(true)
@@ -56,7 +55,7 @@ class EditAccountForm extends Pas_Form
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 		->addErrorMessage('You must enter a surname');
 
-        $fullname = $this->addElement('text', 'fullname', 
+        $fullname = $this->addElement('text', 'fullname',
 		array('label' => 'Preferred Name: ', 'size' => '30'))
 		->fullname;
         $fullname->setRequired(true)
@@ -70,21 +69,24 @@ class EditAccountForm extends Pas_Form
 		->addFilters(array('StripTags','StringTrim','StringToLower'))
 		->setRequired(true)
 		->addErrorMessage('Please enter a valid address!');
-		
-		$password = $this->addElement('password', 'password',array('label' => 'Change password: ', 
+
+		$password = $this->addElement('password', 'password',array('label' => 'Change password: ',
 		'size' => '30'))
 		->password;
         $password->setRequired(false);
-		
-		$institution = $this->addElement('select', 'institution',array('label' => 'Recording institution: '))->institution;
-		$institution->addMultiOptions(array(NULL => NULL, 'Choose institution' => $inst_options));
-		
-		$role = $this->addElement('select', 'role',array('label' => 'Site role: '))->role;
-		$role->addMultiOptions(array(NULL => NULL,'Choose role' => $role_options));
 
-		$person = $this->addElement('text', 'person',array('label' => 'Personal details attached: '))->person;
-		
-		$peopleID = $this->addElement('hidden', 'peopleID',array())->peopleID;
+        $institution = $this->addElement('select', 'institution',array('label' => 'Recording institution: '))->institution;
+        $institution->addMultiOptions(array(
+            NULL => 'Choose institution',
+            'Available institutions'=> $inst_options
+            ));
+
+        $role = $this->addElement('select', 'role',array('label' => 'Site role: '))->role;
+        $role->addMultiOptions(array(NULL => NULL,'Choose role' => $role_options));
+
+        $person = $this->addElement('text', 'person',array('label' => 'Personal details attached: '))->person;
+
+        $peopleID = $this->addElement('hidden', 'peopleID',array())->peopleID;
 
         $submit = new Zend_Form_Element_Submit('submit');
         $this->addElement($submit);
@@ -93,11 +95,14 @@ class EditAccountForm extends Pas_Form
 	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
-	
-	$this->addDisplayGroup(array('username','first_name','last_name','fullname','email','institution','role','password','person','peopleID'), 'userdetails');
-	
+
+	$this->addDisplayGroup(array(
+            'username','first_name','last_name',
+            'fullname','email','institution',
+            'role','password','person','peopleID'), 'userdetails');
+
 	$this->addDisplayGroup(array('submit'),'submit');
-				 
+
 	$this->setLegend('Edit account details: ');
     parent::init();
 	}

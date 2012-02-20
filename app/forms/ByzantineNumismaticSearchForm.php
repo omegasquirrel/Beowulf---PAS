@@ -8,34 +8,36 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$institutions = new Institutions();
 	$inst_options = $institutions->getInsts();
 	//Get data to form select menu for primary and secondary material
-	
+
 	//Get data to form select menu for periods
 	//Get Rally data
 	$rallies = new Rallies();
 	$rally_options = $rallies->getRallies();
-	//Get Hoard data
+
+//Get Hoard data
 	$hoards = new Hoards();
 	$hoard_options = $hoards->getHoards();
-	
+
 	$counties = new Counties();
 	$county_options = $counties->getCountyName2();
-	
+
 	$rulers = new Rulers();
 	$ruler_options = $rulers->getRulersByzantine();
-	
+
 	$denominations = new Denominations();
 	$denomination_options = $denominations->getDenomsByzantine();
-	$mints = new Mints();
+
+        $mints = new Mints();
 	$mint_options = $mints->getMintsByzantine();
-	$axis = new Dieaxes();
+
+        $axis = new Dieaxes();
 	$axis_options = $axis->getAxes();
-	$reece = new Reeces();
-	$reece_options = $reece->getReeces();
-	
-	
+
+
+
 	$regions = new Regions();
 	$region_options = $regions->getRegionName();
-	
+
 	parent::__construct($options);
 
 
@@ -65,9 +67,9 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addMultiOptions(array(NULL => NULL ,'Choose Worklow stage' => array(
-		'1'=> 'Quarantine', 
+		'1'=> 'Quarantine',
 		'2' => 'On review',
-		'3' => 'Awaiting validation', 
+		'3' => 'Awaiting validation',
 		'4' => 'Published')))
 		->setDisableTranslator(true);
 
@@ -206,25 +208,15 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin');
-	$objecttype->removeDecorator('HtmlTag')
-		->addFilters(array('StripTags','StringTrim'))
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('label');
+	$objecttype->addFilters(array('StripTags','StringTrim'));
 
 	$broadperiod = new Zend_Form_Element_Hidden('broadperiod');
 	$broadperiod->setValue('Byzantine')
-		->addFilters(array('StripTags','StringTrim','StringToUpper'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('label');
+		->addFilters(array('StripTags','StringTrim','StringToUpper'));
 
 	//	Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setAttrib('class', 'large');
+
 
 	$this->addElements(array(
 	$old_findID, $description, $workflow,
@@ -251,24 +243,16 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	'county','regionID','district',
 	'parish','gridref','fourFigure',
 	'institution'), 'spatial');
-	$this->numismatics->setLegend('Numismatic details');
-	$this->numismatics->removeDecorator('DtDdWrapper');
-	$this->numismatics->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 
+	$this->numismatics->setLegend('Numismatic details');
 
 	$this->details->setLegend('Artefact details');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 
 	$this->spatial->setLegend('Spatial details');
-	$this->spatial->removeDecorator('DtDdWrapper');
-	$this->spatial->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
+
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->addDecorator('FormElements')
-		 ->addDecorator('Form')
-	     ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'));
-	$this->removeDecorator('DtDdWrapper');
+
 	parent::init();
 }
 }

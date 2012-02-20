@@ -200,8 +200,6 @@ class ContactForm extends Pas_Form
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
 
@@ -212,18 +210,12 @@ class ContactForm extends Pas_Form
 	'postcode', 'county', 'telephone',
 	'fax', 'website', 'alumni'), 'details')
 	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-
 
 	$this->details->setLegend('Contact details');
 
 	parent::init();
 	}
-	
+
 }

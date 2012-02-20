@@ -25,114 +25,101 @@ class AccountForm extends Pas_Form
     }
 
     public function init() {
-        $required = true;
-        
-        $this->setAction($this->_actionUrl)
+
+    $this->setAction($this->_actionUrl)
              ->setMethod('post')
              ->setAttrib('id', 'accountform');
-		
-		$username = $this->addElement('text','username',array('label' => 'Username: '))->username;
-		$username->addFilter('StripTags')
-				->addFilter('StringTrim')
-				->addValidator('StringLength', true, array('max' => 40))
-				->setRequired(true);
-		$username->getValidator('StringLength')->setMessage('Username is too long');
-				
-        $password = $this->addElement('password', 'password', 
-            array('label' => 'Password'))->password;
-        $password->addValidator('StringLength', true, array(6))
-                 ->addValidator('Regex', true, array('/^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/'))
-                 ->setRequired(true)
-				 ->addErrorMessage('Please enter a valid password!');
-        $password->getValidator('StringLength')->setMessage('Password is too short');
-        $password->getValidator('Regex')->setMessage('Password does not contain letters and numbers');
 
-        $firstName = $this->addElement('text', 'first_name', 
+    $username = $this->addElement('text','username',array('label' => 'Username: '))->username;
+    $username->addFilter('StripTags')
+            ->addFilter('StringTrim')
+            ->addValidator('StringLength', true, array('max' => 40))
+            ->setRequired(true);
+    $username->getValidator('StringLength')->setMessage('Username is too long');
+
+    $password = $this->addElement('password', 'password',
+        array('label' => 'Password'))->password;
+    $password->addValidator('StringLength', true, array(6))
+             ->addValidator('Regex', true, array('/^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/'))
+             ->setRequired(true)
+             ->addErrorMessage('Please enter a valid password!');
+    $password->getValidator('StringLength')->setMessage('Password is too short');
+    $password->getValidator('Regex')->setMessage('Password does not contain letters and numbers');
+
+    $firstName = $this->addElement('text', 'first_name',
             array('label' => 'First Name', 'size' => '30'))->first_name;
-        $firstName->setRequired(true)
-                  ->addFilter('StripTags')
-                  ->addFilter('StringTrim')
-				  ->addErrorMessage('You must enter a firstname');
+    $firstName->setRequired(true)
+            ->addFilters(array('StripTags', 'StringTrim'))
+              ->addErrorMessage('You must enter a firstname');
 
-        $lastName = $this->addElement('text', 'last_name', 
+    $lastName = $this->addElement('text', 'last_name',
             array('label' => 'Last Name', 'size' => '30'))->last_name;
-        $lastName->setRequired(true)
-                 ->addFilter('StripTags')
-                 ->addFilter('StringTrim')
-				 ->addErrorMessage('You must enter a surname');
+    $lastName->setRequired(true)
+            ->addFilters(array('StripTags', 'StringTrim'))
+             ->addErrorMessage('You must enter a surname');
 
-        $fullname = $this->addElement('text', 'fullname', 
+   $fullname = $this->addElement('text', 'fullname',
             array('label' => 'Preferred Name: ', 'size' => '30'))->fullname;
-        $fullname->setRequired(true)
-                      ->addFilter('StripTags')
-                      ->addFilter('StringTrim')
-					  ->addErrorMessage('You must enter your preferred name');
+   $fullname->setRequired(true)
+            ->addFilters(array('StripTags', 'StringTrim'))
+            ->addErrorMessage('You must enter your preferred name');
 
-        $email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))->email;
-        $email->addValidator('EmailAddress')
-			  ->setRequired(true)
-			  ->addFilter('StringToLower')
-			  ->addFilter('StringTrim')
-			  ->addFilter('StripTags')
-			  ->addErrorMessage('Please enter a valid address!');
-		
-		$institution = $this->addElement('text', 'institution',array('label' => 'Recording institution: ', 'size' => '30'))->institution;
-		
-		
-		$researchOutline = $this->addElement('textArea','research_outline', 
+   $email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))->email;
+   $email->addValidator('EmailAddress')
+            ->setRequired(true)
+            ->addFilters(array('StringToLower', 'StripTags', 'StringTrim'))
+            ->addErrorMessage('Please enter a valid address!');
+
+   $institution = $this->addElement('text', 'institution',array('label' => 'Recording institution: ', 'size' => '30'))->institution;
+
+
+   $researchOutline = $this->addElement('textArea','research_outline',
 				array('label' => 'Outline your research', 'rows' => 10, 'cols' => 40))->research_outline;
-		$researchOutline->setRequired(false)
-						->addFilter('HtmlBody')
-						->addFilter('EmptyParagraph');
-		
-		
-		
-		$reference = $this->addElement('text','reference',
-				array('label' => 'Please provide a referee:', 'size' => '40'))
-				->reference;
-		$reference->setRequired(false)
-				  ->addFilter('StripTags')
-				  ->addFilter('StringTrim');
-		
-		$referenceEmail = $this->addElement('text','reference_email',
-				array('label' => 'Please provide an email address for your referee:', 
+
+   $researchOutline->setRequired(false)
+            ->addFilter('HtmlBody')
+            ->addFilter('EmptyParagraph');
+
+
+
+    $reference = $this->addElement('text','reference',
+            array('label' => 'Please provide a referee:', 'size' => '40'))->reference;
+
+    $reference->setRequired(false)
+             ->addFilter('StripTags')
+             ->addFilter('StringTrim');
+
+
+    $referenceEmail = $this->addElement('text','reference_email',
+		array('label' => 'Please provide an email address for your referee:',
 				'size' => '40'))
 				->reference_email;
-		$referenceEmail->setRequired(false)
-				  ->addFilter('StripTags')
-				  ->addFilter('StringTrim')
-				  ->addValidator('EmailAddress');
-		
-        $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Set my account up on Beowulf');
-        $submit->clearDecorators();
-        $submit->addDecorators(array(
-            array('ViewHelper'),    // element's view helper
-            array('HtmlTag', array('tag' => 'div', 'class' => 'submit')),
-        ));
-		$submit->setAttrib('class','large');
-        $this->addElement($submit);
+    $referenceEmail->setRequired(false)
+            ->addFilter('StripTags')
+            ->addFilter('StringTrim')
+            ->addValidator('EmailAddress');
+
+    $submit = new Zend_Form_Element_Submit('submit');
+    $submit->setLabel('Set my account up on Beowulf');
+    $submit->clearDecorators();
+    $submit->addDecorators(array(
+        array('ViewHelper'),    // element's view helper
+        array('HtmlTag', array('tag' => 'div', 'class' => 'submit')),
+    ));
+            $submit->setAttrib('class','large');
+    $this->addElement($submit);
 
 
-		$this->addDisplayGroup(array(
-		'username', 'password', 'first_name',
-		'last_name', 'fullname', 'email',
-		'institution', 'research_outline', 'reference',
-		'reference_email'), 
-		'userdetails');
-	
-		$this->addDecorator('FormElements')
-     	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'))
-	 	->addDecorator('FieldSet') 
-	 	->addDecorator('Form');
-	
-	 	$this->userdetails->removeDecorator('DtDdWrapper');
-		$this->userdetails->removeDecorator('FieldSet');
+    $this->addDisplayGroup(array(
+        'username', 'password', 'first_name',
+        'last_name', 'fullname', 'email',
+        'institution', 'research_outline', 'reference',
+        'reference_email'),
+        'userdetails');
 
-		$this->userdetails->addDecorator(array('DtDdWrapper' => 'HtmlTag'),array('tag' => 'ul'));
 
-		$this->addDisplayGroup(array('submit'),'submit');		 
-		$this->setLegend('Edit account details: ');
-		parent::init();
+    $this->addDisplayGroup(array('submit'),'submit');
+    $this->setLegend('Edit account details: ');
+    parent::init();
     }
 }

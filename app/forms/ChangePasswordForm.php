@@ -18,15 +18,15 @@ class ChangePasswordForm extends Pas_Form
 
 
     public function init() {
-        
-		
+
+
 		$oldpassword = new Zend_Form_Element_Password('oldpassword');
 		$oldpassword->setLabel('Your old password: ');
 		$oldpassword->setRequired(true)
        	->addValidator('RightPassword')
        	->addFilters(array('StripTags','StringTrim'));
-		
-		
+
+
 		$password = new Zend_Form_Element_Password("password");
     	$password->setLabel("New password:")
 		->addValidator("NotEmpty")
@@ -37,8 +37,6 @@ class ChangePasswordForm extends Pas_Form
     // identical field validator with custom messages
    	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
 
@@ -50,27 +48,19 @@ class ChangePasswordForm extends Pas_Form
 
 
 	$submit = new Zend_Form_Element_Submit('submit');
-        
-	$submit->setAttrib('class','large')
-		->setLabel('Change password');
-		
-    $this->addElement($submit);
+
+        $this->addElement($submit);
 	$this->addElements(array( $oldpassword, $password, $password2, $submit));
 
 
 	$this->addDisplayGroup(array('oldpassword','password','password2'), 'userdetails');
-	$this->addDecorator('FormElements')
-	     ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'))
-		 ->addDecorator('FieldSet') ->addDecorator('Form');
-	$this->userdetails->removeDecorator('DtDdWrapper');
-	$this->userdetails->removeDecorator('FieldSet');
-	
-	$this->userdetails->addDecorator(array('DtDdWrapper' => 'HtmlTag'),array('tag' => 'ul'));
+
+
 	$this->addDisplayGroup(array('submit'),'submit');
-				 
+
 	$this->setLegend('Edit account details: ');
 
     parent::init();
 	}
-	
+
 }

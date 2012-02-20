@@ -1,6 +1,6 @@
 <?php
 /** Form for filtering finds
-* 
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -9,89 +9,67 @@
 */
 
 class FindFilterForm extends Pas_Form {
-	
+
 public function __construct($options = null) {
-	
-	$periods = new Periods();
-	$periodword_options = $periods->getPeriodFromWords();
-	
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
 
-parent::__construct($options);
+    $periods = new Periods();
+    $periodword_options = $periods->getPeriodFromWords();
 
-	$this->setAttrib('accept-charset', 'UTF-8');
- 	$this->setMethod('post');  
-	$this->setName('filterfinds');
-	$this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-	$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element'); 
-	$this->addPrefixPath('Pas_Form_Decorator', 'Pas/Form/Decorator/', 'decorator'); 
+    $counties = new Counties();
+    $county_options = $counties->getCountyName2();
 
-	$decorator =  array('TableDecInput');
+    parent::__construct($options);
 
-	$objecttype = new Zend_Form_Element_Text('objecttype');
-	$objecttype->setLabel('Filter by object type')
-	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Alpha', false, array('allowWhiteSpace' => true))
-	->addErrorMessage('Come on it\'s not that hard, enter a title!')
-	->setAttrib('size', 10)
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper');
+    $this->setName('filterfinds');
 
-	$oldfindID = new Zend_Form_Element_Text('old_findID');
-	$oldfindID->setLabel('Filter by find ID #')
-	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->setAttrib('size', 11)
-	->addValidator('stringLength', false, array(1,200))
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper');
+    $objecttype = new Zend_Form_Element_Text('objecttype');
+    $objecttype->setLabel('Filter by object type')
+    ->setRequired(false)
+    ->addFilters(array('StripTags','StringTrim'))
+    ->addValidator('Alpha', false, array('allowWhiteSpace' => true))
+    ->addErrorMessage('Come on it\'s not that hard, enter a title!')
+    ->setAttrib('size', 10);
 
-	$broadperiod = new Zend_Form_Element_Select('broadperiod');
-	$broadperiod->setLabel('Filter by broadperiod')
-	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('stringLength', false, array(1,200))
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->addMultiOptions(array(NULL => NULL ,'Choose period from' => $periodword_options))
-	->addValidator('InArray', false, array(array_keys($periodword_options)));
+    $oldfindID = new Zend_Form_Element_Text('old_findID');
+    $oldfindID->setLabel('Filter by find ID #')
+    ->setRequired(false)
+    ->addFilters(array('StripTags','StringTrim'))
+    ->setAttrib('size', 11)
+    ->addValidator('stringLength', false, array(1,200))
+    ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
+    ->removeDecorator('HtmlTag')
+    ->removeDecorator('DtDdWrapper');
 
-	$county = new Zend_Form_Element_Select('county');
-	$county->setLabel('Filter by county')
-	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('stringLength', false, array(1,200))
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
-	->addValidator('InArray', false, array(array_keys($county_options)));
+    $broadperiod = new Zend_Form_Element_Select('broadperiod');
+    $broadperiod->setLabel('Filter by broadperiod')
+    ->setRequired(false)
+    ->addFilters(array('StripTags','StringTrim'))
+    ->addValidator('stringLength', false, array(1,200))
+    ->addMultiOptions(array(NULL => NULL ,'Choose period from' => $periodword_options))
+    ->addValidator('InArray', false, array(array_keys($periodword_options)));
 
-	//Submit button 
-	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setLabel('Filter:')
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->setAttrib('class','largefilter');
+    $county = new Zend_Form_Element_Select('county');
+    $county->setLabel('Filter by county')
+    ->setRequired(false)
+    ->addFilters(array('StripTags','StringTrim'))
+    ->addValidator('stringLength', false, array(1,200))
+    ->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
+    ->addValidator('InArray', false, array(array_keys($county_options)));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
-	->setTimeout(60);
-	$this->addElement($hash);
-	
-	$this->addElements(array(
-	$objecttype, $oldfindID, $broadperiod,
-	$county, $submit));
-parent::init();
-	}
+    //Submit button
+    $submit = new Zend_Form_Element_Submit('submit');
+    $submit->setLabel('Filter:');
+
+    $hash = new Zend_Form_Element_Hash('csrf');
+    $hash->setValue($this->_salt)
+    ->setTimeout(60);
+    $this->addElement($hash);
+
+    $this->addElements(array(
+    $objecttype, $oldfindID, $broadperiod,
+    $county, $submit));
+
+    parent::init();
+
+    }
 }

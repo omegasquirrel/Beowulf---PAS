@@ -42,7 +42,7 @@ parent::__construct($options);
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
 	->setRequired(true)
-	->addValidator('EmailAddress')   
+	->addValidator('EmailAddress')
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addErrorMessage('Please enter a valid email address!')
 	->setDescription('* This will not be displayed to the public.');
@@ -58,47 +58,46 @@ parent::__construct($options);
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'))
 	->addErrorMessage('Please enter something in the comments box!');
 
-	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
+	$captcha = new Zend_Form_Element_Captcha('captcha', array(
                         		'captcha' => 'ReCaptcha',
 								'label' => 'Please fill in this reCaptcha to show you are not a spammer!',
-                                'captchaOptions' => array(  
-                                'captcha' => 'ReCaptcha',								  
+                                'captchaOptions' => array(
+                                'captcha' => 'ReCaptcha',
                                 'privKey' => $this->_privateKey,
                                 'pubKey' => $this->_pubKey,
 								'theme'=> 'clean')
                         ));
-                        
-                        
+
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
-				
+
 	$submit = new Zend_Form_Element_Submit('submit');
-			  
-			  
+
+
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()) {
 	$this->addElements(array(
 	$user_ip, $user_agent, $comment_author,
 	$comment_author_email, $comment_content,
 	$captcha, $submit));
-	
+
 	$this->addDisplayGroup(array(
-	'comment_author', 'comment_author_email', 'comment_content', 'captcha'), 'details')
-	->removeDecorator('HtmlTag');
+	'comment_author', 'comment_author_email', 'comment_content', 'captcha'), 'details');
 	$this->details->setLegend('Enter your comments: ');
-	
+
 	} else {
 	$user = $auth->getIdentity();
 	$comment_author->setValue($user->fullname);
 	$comment_author_email->setValue($user->email);
-	
+
 	$this->addElements(array(
 	$user_ip,	$user_agent, $comment_author,
 	$comment_author_email, $comment_content,
 	$submit));
-	
+
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_content'), 'details');
 	$this->details->setLegend('Enter your comments: ');

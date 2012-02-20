@@ -122,9 +122,9 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->setValue('PAS')
 	->addFilters(array('StripTags','StringTrim'))
-	->addMultioptions(array(NULL => 'Choose an organisation',
-	'Available institutions' =>
-	$orgs
+	->addMultioptions(array(
+            NULL => 'Choose an organisation',
+            'Available institutions' => $orgs
 	))
 	->addValidator('InArray', false, array(array_keys($orgs)));
 

@@ -31,26 +31,23 @@ public function __construct($options = null) {
 	->addFilter('BasicHtml')
 	->addFilter('EmptyParagraph')
 	->addFilter('WordChars');
-	
+
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
 	->setRequired(true);
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-	
+
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$this->addElements(array($term,	$termdesc, $valid,	$submit));
-	
+
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
 	$this->details->setLegend('Decoration style details: ');
-	
+
 	$this->addDisplayGroup(array('submit'), 'submit');
 parent::init();
 	}

@@ -101,7 +101,10 @@ parent::__construct($options);
 	$dynasty,
 	$submit));
 
-	$this->addDisplayGroup(array('name','reeceID','pasID','date_from','date_to','biography','dynasty','submit'), 'details');
+	$this->addDisplayGroup(array(
+            'name','reeceID','pasID',
+            'date_from','date_to','biography',
+            'dynasty','submit'), 'details');
 
 
 	parent::init();

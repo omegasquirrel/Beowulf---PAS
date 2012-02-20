@@ -38,29 +38,18 @@ parent::__construct($options);
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-	
+
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
+
 
 	$this->addElements(array($term, $termdesc, $valid, $submit));
 
-	$this->addDisplayGroup(array('term','termdesc','valid'), 'details')->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
-	
+	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+
 	$this->details->setLegend('Decoration method details: ');
-parent::init();
+        parent::init();
 	}
 }

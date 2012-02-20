@@ -112,16 +112,10 @@ parent::__construct($options);
 	                        ));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
-	->setTimeout(60);
+	$hash->setValue($this->_salt)->setTimeout(60);
 	$this->addElement($hash);
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper');
 
 	$auth = Zend_Auth::getInstance();
 
@@ -146,11 +140,10 @@ parent::__construct($options);
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
 	'comment_type', 'comment_content', 'submit'), 'details');
 	}
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('HtmlTag');
-	$this->details->removeDecorator('DtDdWrapper');
+
 	$this->details->setLegend('Enter your error report: ');
+
 	parent::init();
 	}
-	
+
 }

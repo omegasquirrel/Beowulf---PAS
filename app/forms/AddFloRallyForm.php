@@ -8,16 +8,16 @@
 * @license    GNU General Public License
 * @author     Daniel Pett
 * @version    1.1
-* @since	  7 October 2011    
+* @since	  7 October 2011
 */
 class AddFloRallyForm extends Pas_Form{
 
-	
+
 	public function __construct($options = null) {
-		
+
 	$staff = new Contacts();
 	$flos = $staff->getAttending();
-	
+
 	parent::__construct($options);
 
 	ZendX_JQuery::enableForm($this);
@@ -37,9 +37,7 @@ class AddFloRallyForm extends Pas_Form{
 	->addValidator('Date')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty')
-	->setAttrib('size', 20)
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-	->removeDecorator('DtDdWrapper');
+	->setAttrib('size', 20);
 
 
 	$dateTo = new ZendX_JQuery_Form_Element_DatePicker('dateTo');
@@ -47,35 +45,24 @@ class AddFloRallyForm extends Pas_Form{
 	->setRequired(true)
 	->addValidator('Date')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setAttrib('size', 20)
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-	->removeDecorator('DtDdWrapper');
+	->setAttrib('size', 20);
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
-	
+
 	$this->addElements(array($flo, $dateFrom, $dateTo, $submit));
 
 	$this->addDisplayGroup(array('staffID', 'dateFrom', 'dateTo'), 'details')
 	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+
 	$this->details->setLegend('Attending Finds Officers');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+
+
 	parent::init();
 	}
 }

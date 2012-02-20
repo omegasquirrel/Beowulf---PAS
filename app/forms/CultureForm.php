@@ -33,7 +33,7 @@ public function __construct($options = null)
 	->addFilter('EmptyParagraph')
 	->addFilter('StringTrim')
 	->addFilter('WordChars');
-	
+
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
 	->setRequired(true)
@@ -42,17 +42,13 @@ public function __construct($options = null)
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
+	
 	->setTimeout(60);
 	$this->addElement($hash);
-	
+
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
-	
+
+
 	$this->addElements(array($term, $termdesc, $valid, $submit));
 
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
@@ -61,5 +57,5 @@ public function __construct($options = null)
 	$this->addDisplayGroup(array('submit'), 'submit');
 	parent::init();
 	}
-	
+
 }

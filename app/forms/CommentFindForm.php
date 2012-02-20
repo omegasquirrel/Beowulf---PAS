@@ -82,10 +82,6 @@ parent::__construct($options);
 
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-              ->removeDecorator('HtmlTag')
-			  ->removeDecorator('DtDdWrapper')
-			  ->setAttrib('class', 'large');
 
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()) {
@@ -103,22 +99,20 @@ parent::__construct($options);
 	$comment_author_email->setValue($user->email);
 
 	$this->addElements(array(
-    $comment_author,
+        $comment_author,
 	$comment_author_email,
-	$comment_content, 
-	$comment_author_url, 
+	$comment_content,
+	$comment_author_url,
 	$submit));
 
 	$this->addDisplayGroup(array('comment_author','comment_author_email','comment_author_url',
 	'comment_content'), 'details');
 	}
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('HtmlTag');
-	$this->details->removeDecorator('DtDdWrapper');
+
 	$this->details->setLegend('Enter your comments: ');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	
+
 		parent::init();
 	}
 }

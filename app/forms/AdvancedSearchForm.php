@@ -531,16 +531,11 @@ class AdvancedSearchForm extends Pas_Form {
 	'treasure', 'TID', 'rally',
 	'rallyID', 'hoard', 'hID',
 	'workflow', 'otherRef', 'material',
-	'manufacture','surface'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
+	'manufacture','surface'), 'details');
 	$this->details->setLegend('Main details: ');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
 
@@ -550,19 +545,16 @@ class AdvancedSearchForm extends Pas_Form {
 	'from', 'fromend', 'to',
 	'toend'), 'Temporaldetails')
 	->removeDecorator('HtmlTag');
-	$this->Temporaldetails->addDecorators(array(
-            'FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->Temporaldetails->removeDecorator('DtDdWrapper');
 	$this->Temporaldetails->setLegend('Temporal details: ');
 
 	$this->addDisplayGroup(array(
 	'county', 'regionID', 'district',
 	'parish', 'fourFigure', 'elevation',
-	'woeid'), 'Spatial')
-	->removeDecorator('HtmlTag');
-	$this->Spatial->addDecorators(array(
+	'woeid'), 'Spatial');
+
+        $this->Spatial->addDecorators(array(
             'FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->Spatial->removeDecorator('DtDdWrapper');
+
 	$this->Spatial->setLegend('Spatial details: ');
 
 	if(in_array($this->getRole(),$this->restricted)) {
@@ -570,28 +562,24 @@ class AdvancedSearchForm extends Pas_Form {
 	'institution',
 	'idby', 'identifierID', 'recordby',
 	'recorderID', 'createdAfter', 'createdBefore',
-	'discovered'), 'Discovery')
-	->removeDecorator('HtmlTag');
+	'discovered'), 'Discovery');
 	} else {
 	$this->addDisplayGroup(array(
 	'institution',
 	'finder', 'idby', 'identifierID',
 	'recordby', 'recorderID', 'createdAfter',
-	'createdBefore','discovered'), 'Discovery')
-	->removeDecorator('HtmlTag');
-	}
+	'createdBefore','discovered'), 'Discovery');
 
-	$this->Discovery->addDecorators(array(
-            'FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->Discovery->removeDecorator('DtDdWrapper');
+        }
+
+
 	$this->Discovery->setLegend('Discovery details: ');
 
 
 	//$this->setLegend('Perform an advanced search on our database: ');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
+
 	parent::init();
 	}
 	}
