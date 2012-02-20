@@ -94,10 +94,11 @@ parent::__construct($options);
 	$organisationID, $primary, $submit));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(4800);
 	$this->addElement($hash);
+	parent::init();
 	}
 }

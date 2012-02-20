@@ -15,20 +15,12 @@ parent::__construct($options);
 
 	$this->setName('Decmethods');
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$term = new Zend_Form_Element_Text('term');
 	$term->setLabel('Decoration style term: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('Please enter a valid title for this decorative method!')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a valid title for this decorative method!');
 
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
 	$termdesc->setLabel('Description of decoration style: ')
@@ -42,11 +34,10 @@ parent::__construct($options);
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
-	->setRequired(true)
-	->setDecorators($decorators);
+	->setRequired(true);
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -70,5 +61,6 @@ parent::__construct($options);
 	$this->submit->removeDecorator('HtmlTag');
 	
 	$this->details->setLegend('Decoration method details: ');
+parent::init();
 	}
 }

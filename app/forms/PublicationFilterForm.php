@@ -68,6 +68,6 @@ public function __construct($options = null) {
 	$yearPub,
 	$place,
 	$submit));
-  
+  	parent::init();
 	}
 }

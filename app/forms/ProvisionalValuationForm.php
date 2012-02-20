@@ -16,13 +16,6 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$this->setName('provisionalvaluations');
 
@@ -33,15 +26,13 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,25))
 		->addValidator('InArray', false, array(array_keys($assigned)))
-		->addMultiOptions($assigned)
-		->setDecorators($decorators);
+		->addMultiOptions($assigned);
 
 	$value = new Zend_Form_Element_Text('value');
 	$value->setLabel('Estimated market value: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Float')
-		->setDecorators($decorators);
+		->addValidator('Float');
 	
 	$comments  = new Pas_Form_Element_RTE('comments');
 	$comments->setLabel('Valuation comments: ')
@@ -58,16 +49,9 @@ public function __construct($options = null) {
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
-		->addValidator('Date')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-		->removeDecorator('DtDdWrapper');
+		->addValidator('Date');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
-	
 	
 	$this->addElements(array(
 	$valuerID, $value, $dateOfValuation,
@@ -76,15 +60,9 @@ public function __construct($options = null) {
 	
 	$this->addDisplayGroup(array(
 	'valuerID', 'value', 'dateOfValuation',
-	'comments'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'comments'), 'details');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+	parent::init();
 	}
 }

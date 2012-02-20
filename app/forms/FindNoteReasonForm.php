@@ -13,13 +13,6 @@ class FindNoteReasonForm extends Pas_Form {
 	
 	parent::__construct($options);
 	
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 	$this->setName('FindNoteReason');
 	
 	$term = new Zend_Form_Element_Text('term');
@@ -27,8 +20,7 @@ class FindNoteReasonForm extends Pas_Form {
 	->setRequired(true)
 	->setAttrib('size',60)
 	->addFilters(array('BasicHtml','EmptyParagraph', 'StringTrim'))
-	->addErrorMessage('Please enter a valid title for the term!')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a valid title for the term!');
 	
 	$termdesc = new Zend_Form_Element_Textarea('termdesc');
 	$termdesc->setLabel('Description of reason: ')
@@ -40,26 +32,18 @@ class FindNoteReasonForm extends Pas_Form {
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
 	->setRequired(true)
-	->addValidator('NotEmpty','Digits')
-	->setDecorators($decorators);
+	->addValidator('NotEmpty','Digits');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 	
 	$this->addElements(array(
 	$term,	$termdesc,	$valid,
 	$submit));
 	
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	$this->details->setLegend('Find of note reasoning details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 	
+	parent::init();
 	}
 }

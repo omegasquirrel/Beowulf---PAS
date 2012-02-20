@@ -18,29 +18,19 @@ class IronAgeRegionForm extends Pas_Form {
 
 	$this->setName('ironageregion');
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 	$area = new Zend_Form_Element_Text('area');
 	$area->setLabel('Area: ')
 	->setRequired(true)
 	->setAttrib('size',60)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('You must enter an area name.')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter an area name.');
 
 	$region = new Zend_Form_Element_Text('region');
 	$region->setLabel('Region name: ')
 	->setRequired(true)
 	->setAttrib('size',60)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('You must enter a region name')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a region name');
 	
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Description: ')
@@ -59,22 +49,16 @@ class IronAgeRegionForm extends Pas_Form {
 	->addValidator('inArray', false, array(array_keys($tribes_options)))
 	->addErrorMessage('You must enter a tribe from the dropdown.')
 	->addValidator('Int')
-	->addErrorMessage('You must enter a tribe.')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a tribe.');
 	
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this area valid: ')
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->addErrorMessage('You must set the validity')
-	->setDecorators($decorators);
+	->addErrorMessage('You must set the validity');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->removeDecorator('label')
-	              ->removeDecorator('HtmlTag')
-				  ->removeDecorator('DtDdWrapper');
 	
 	$this->addElements(array(
 	$area, $region, $tribe,
@@ -84,12 +68,9 @@ class IronAgeRegionForm extends Pas_Form {
 	$this->addDisplayGroup(array(
 	'area', 'region', 'tribe',
 	'description','valid','submit'),
-	'details')
-	->removeDecorator('HtmlTag');
+	'details');
 	
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	
+	parent::init();
 	}
 }

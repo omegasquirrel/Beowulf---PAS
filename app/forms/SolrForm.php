@@ -6,15 +6,13 @@
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
 */
-class SolrForm extends Pas_Form
-{
-public function __construct($options = null)
-{
-    parent::__construct($options);
+class SolrForm extends Pas_Form {
+	
+//	public function __construct($options = null) {
+//    parent::__construct($options);
 
-
-
-	$this->setName('solr')->removeDecorator('HtmlTag');
+	public function init(){
+	$this->setName('solr');
 
 	$q = new Zend_Form_Element_Text('q');
 	$q->setLabel('Search content: ')
@@ -28,22 +26,17 @@ public function __construct($options = null)
                 ->setUnCheckedValue(null);
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setLabel('Search!')
-                ->setAttrib('class', 'btn btn-large btn-success span3 xlarge')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
+	$submit->setLabel('Search!');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
 		->setTimeout(4800);
 
 	$this->addElements(array($q, $thumbnail, $submit, $hash ));
-
-
-
+	parent::init();
 
 	}
 }

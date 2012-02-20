@@ -12,15 +12,6 @@ class ComplaintsForm extends Pas_Form {
 
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-    		array('Description', array('tag' => '','placement' => 'append')),
-            array('Errors',array('placement' => 'append','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-			
-
 	$this->setName('complaints');
 
 	$user_ip = new Zend_Form_Element_Hidden('user_ip');
@@ -44,12 +35,10 @@ class ComplaintsForm extends Pas_Form {
 	$comment_author->setLabel('Enter your name: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('Please enter a valid name!')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a valid name!');
 
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim', 'StringToLower'))
 	->addValidator('EmailAddress')   
@@ -58,7 +47,6 @@ class ComplaintsForm extends Pas_Form {
 
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')
-	->setDecorators($decorators)
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim', 'StringToLower'))
 	->addValidator('NotEmpty')
@@ -73,16 +61,14 @@ class ComplaintsForm extends Pas_Form {
 	->addFilters(array('HtmlBody','EmptyParagraph','WordChars'))
 	->addErrorMessage('Please enter something in the comments box!');
 
-	$privateKey = $this->_config->webservice->recaptcha->privatekey;
-	$pubKey = $this->_config->webservice->recaptcha->pubkey;
 
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
                         		'captcha' => 'ReCaptcha',
 								'label' => 'Please prove you are not a spammer',
                                 'captchaOptions' => array(  
                                 'captcha' => 'ReCaptcha',								  
-                                'privKey' => $privateKey,
-                                'pubKey' => $pubKey,
+                                'privKey' => $this->_privateKey,
+                                'pubKey' => $this->_pubKey,
 								'theme'=> 'clean')
                         ));
 					
@@ -96,9 +82,10 @@ class ComplaintsForm extends Pas_Form {
 				  
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
+	->removeDecorator('HtmlTag')
+	->removeDecorator('label')
 	->setTimeout(60);
 	$this->addElement($hash);
 	
@@ -139,5 +126,7 @@ class ComplaintsForm extends Pas_Form {
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
 	
+	parent::init();
 	}
+	
 }

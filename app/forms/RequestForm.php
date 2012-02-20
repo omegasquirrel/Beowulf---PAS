@@ -18,20 +18,11 @@ public function __construct($options = null) {
 	
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-    		array('Description', array('tag' => '','placement' => 'append')),
-            array('Errors',array('placement' => 'append','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 	$this->setName('request');
 
 
 	$email = new Zend_Form_Element_Text('email');
 	$email->setLabel('Enter your email address: ')
-		->setDecorators($decorators)
 		->addValidator('EmailAddress', false, array(
 		'allow' => Zend_Validate_Hostname::ALLOW_DNS,
         'mx' => true,
@@ -50,24 +41,21 @@ public function __construct($options = null) {
 		'Ms' => 'Ms', 'Dr' => 'Dr.', 'Prof' => 'Prof.',
 		'Sir' => 'Sir', 'Lady' => 'Lady', 'Other' => 'Other',
 		'Captain' => 'Captain', 'Master' => 'Master', 'Dame' => 'Dame',
-		'Duke' => 'Duke', 'Baron' => 'Baron','Duchess' => 'Duchess'))
-		->setDecorators($decorators);
+		'Duke' => 'Duke', 'Baron' => 'Baron','Duchess' => 'Duchess'));
 
 	$fullname = new Zend_Form_Element_Text('fullname');
 	$fullname->setLabel('Enter your name: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',50)
-		->addErrorMessage('Please enter a valid name!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid name!');
 
 	$address = new Zend_Form_Element_Text('address');
 	$address->SetLabel('Address: ')
 		->setRequired(true)
 		->setAttrib('size',50)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,200))
-		->setDecorators($decorators);
+		->addValidator('StringLength', false, array(1,200));
 
 	$town_city = new Zend_Form_Element_Text('town_city');
 	$town_city->SetLabel('Town: ')
@@ -75,8 +63,7 @@ public function __construct($options = null) {
 		->setAttrib('size',50)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-		->setDecorators($decorators);
+		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
 
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->SetLabel('Postcode: ')
@@ -85,15 +72,13 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-		->addValidator('ValidPostCode')
-		->setDecorators($decorators);
+		->addValidator('ValidPostCode');
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 		->addValidators(array('NotEmpty'))
 		->addMultiOptions(array(NULL => NULL,'Choose county' => $counties_options))
-		->addValidator('InArray', false, array(array_keys($counties_options)))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($counties_options)));
 
 	$country = new Zend_Form_Element_Select('country');
 	$country->SetLabel('Country: ')
@@ -103,23 +88,20 @@ public function __construct($options = null) {
 		->addValidator('InArray', false, array(array_keys($countries_options)))
 		->addMultiOptions(array(NULL => 'Please choose a country of residence',
 		'Valid countries' => $countries_options))
-		->setValue('GB')
-		->setDecorators($decorators);
+		->setValue('GB');
 
 	$tel = new Zend_Form_Element_Text('tel');
 	$tel->SetLabel('Contact number: ')
 		->setRequired(false)
 		->setAttrib('size',50)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,200))
-		->setDecorators($decorators);
+		->addValidator('StringLength', false, array(1,200));
 	
 	$leaflets = new Zend_Form_Element_MultiCheckbox('leaflets');
 	$leaflets->setLabel('Scheme leaflets: ')
 		->addMultiOptions(array('Advice for finders' => 'Advice for finders',
 		'Treasure Act' => 'Treasure Act'))
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 	
 	$message = new Pas_Form_Element_RawText('message');
 	$message->setValue('<p>Some of our literature is now rather bulky, and therefore we have to 
@@ -137,8 +119,7 @@ public function __construct($options = null) {
 		'Annual report 2004/5' => 'Annual report 2004 - 2005',
 		'AR 2005/6' => 'Annual Report 2005 -2006'
 		))
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 	
 	$treasure = new Zend_Form_Element_MultiCheckbox('treasure');
 	$treasure->setLabel('Treasure Reports: ')
@@ -149,15 +130,13 @@ public function __construct($options = null) {
 		'T Report 2002' => 'Report 2002',
 		'T report 2003' => 'Report 2003'
 		))
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 	
 	$combined = new Zend_Form_Element_MultiCheckbox('combined');
 	$combined->setLabel('Combined Treasure & PAS Reports: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array('Report 2007' => 'Annual report 2007'))
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 	
 	
 	$codes = new Zend_Form_Element_MultiCheckbox('codes');
@@ -166,32 +145,23 @@ public function __construct($options = null) {
 		->addMultiOptions(array(
 		'Responsible metal detecting' => 'Responsible Metal Detecting',
 		'Treasure CofP' => 'Treasure Code of Practice'))
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 	
 	
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-	              ->removeDecorator('HtmlTag')
-				  ->removeDecorator('DtDdWrapper')
-				  ->setAttrib('class','large')
-				  ->setLabel('Submit your request');
+	$submit->setLabel('Submit your request');
 				  
 				  
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()) {
-	
-	$privateKey = $this->_config->webservice->recaptcha->privatekey;
-	$pubKey = $this->_config->webservice->recaptcha->pubkey;
-	
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
 	                        		'captcha' => 'ReCaptcha',
 									'label' => 'Prove you are not a robot',
 	                                'captchaOptions' => array(  
 	                                'captcha' => 'ReCaptcha',								  
-	                                'privKey' => $privateKey,
-	                                'pubKey' => $pubKey,
+	                                'privKey' => $this->_privateKey,
+	                                'pubKey' => $this->_pubKey,
 									'theme'=> 'clean')
 	                        ));
 	
@@ -211,11 +181,7 @@ public function __construct($options = null) {
 	'postcode', 'country', 'tel',
 	'message', 'leaflets', 'reports',
 	'combined', 'treasure', 'codes',
-	'captcha'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'captcha'), 'details');
 	$this->details->setLegend('Enter your comments: ');
 	} else {
 	$this->addElements(array(
@@ -232,15 +198,10 @@ public function __construct($options = null) {
 	'postcode', 'country', 'tel',
 	'message', 'leaflets', 'reports',
 	'combined', 'treasure', 'codes'
-	), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
+	), 'details');
 	$this->details->setLegend('Enter your comments: ');
 	}
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+	parent::init();
 	}
 }

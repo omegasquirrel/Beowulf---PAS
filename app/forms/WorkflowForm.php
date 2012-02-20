@@ -7,17 +7,11 @@
 */
 
 class WorkflowForm extends Pas_Form {
-public function __construct($options = null) {
+
+	public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 	
 	$this->setName('workflow');
 
@@ -26,14 +20,12 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->setAttrib('size',60)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->setDecorators($decorators)
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Workflow stage is currently in use: ')
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->setDecorators($decorators)
 		->addValidator('Digits');
 	
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
@@ -56,7 +48,7 @@ public function __construct($options = null) {
 	$submit));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -72,6 +64,7 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array('submit'), 'submit');
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
-
+	
+	parent::init();
 	}
 }

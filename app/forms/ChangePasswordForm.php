@@ -19,25 +19,12 @@ class ChangePasswordForm extends Pas_Form
 
     public function init() {
         
-        $this->clearDecorators();
-        $this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-		$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element'); 
-		
-        $decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *', 'class' => 'leftalign')),
-            array('HtmlTag', array('tag' => 'li')),
-        );
-		
 		
 		$oldpassword = new Zend_Form_Element_Password('oldpassword');
 		$oldpassword->setLabel('Your old password: ');
 		$oldpassword->setRequired(true)
        	->addValidator('RightPassword')
        	->addFilters(array('StripTags','StringTrim'));
-        $oldpassword->setDecorators($decorators);
 		
 		
 		$password = new Zend_Form_Element_Password("password");
@@ -45,12 +32,11 @@ class ChangePasswordForm extends Pas_Form
 		->addValidator("NotEmpty")
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators)
 		->addValidator('IdenticalField', false, array('password2', ' confirm password field'));
 
     // identical field validator with custom messages
    	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -60,16 +46,10 @@ class ChangePasswordForm extends Pas_Form
     $password2->setLabel("Confirm password:")
               ->addValidator("NotEmpty")
               ->addFilters(array('StripTags','StringTrim'))
-			  ->setRequired(true)
-			  ->setDecorators($decorators);
+			  ->setRequired(true);
 
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->clearDecorators();
-	$submit->addDecorators(array(
-            array('ViewHelper'),    // element's view helper
-            array('HtmlTag', array('tag' => 'div', 'class' => 'submit')),
-        ));
         
 	$submit->setAttrib('class','large')
 		->setLabel('Change password');
@@ -90,5 +70,7 @@ class ChangePasswordForm extends Pas_Form
 				 
 	$this->setLegend('Edit account details: ');
 
-    }
+    parent::init();
+	}
+	
 }

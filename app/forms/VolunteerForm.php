@@ -15,20 +15,6 @@ public function __construct($options = null) {
 		  
 	$this->setName('activity');
 	
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
-				
-	$decorators2 = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 	
 	$title = new Zend_Form_Element_Text('title');
 	$title->setLabel('Project title: ')
@@ -36,8 +22,7 @@ public function __construct($options = null) {
 		->setAttrib('size',60)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Choose title for the project.')
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-		->setDecorators($decorators);
+		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
 	
 	$description = new Zend_Form_Element_Textarea('description');
 	$description->setLabel('Short description of project: ')
@@ -53,16 +38,14 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter a duration for this project in months')
-		->addValidator('Digits')
-		->setDecorators($decorators);
+		->addValidator('Digits');
 	
 	$managedBy = new Zend_Form_Element_Text('managedBy');
 	$managedBy->setLabel('Managed by: ')
 		->setAttrib('size',12)
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('You must enter a manager for this project.')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a manager for this project.');
 
 	$suitableFor = new Zend_Form_Element_Select('suitableFor');
 	$suitableFor->setLabel('Suitable for: ')
@@ -70,38 +53,34 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addValidator('InArray', false, array($projectype_list))
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('You must enter suitability for this task.')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter suitability for this task.');
 
 	$location = new Zend_Form_Element_Text('location');
 	$location->setLabel('Where would this be located?: ')
 		->setAttrib('size',12)
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('You must enter a location for the task.')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a location for the task.');
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Publish this task? ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators)
 		->removeDecorator('HtmlTag');
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')
 		->removeDecorator('label')
 		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setDecorators($decorators2);
-
+		->removeDecorator('DtDdWrapper');
+		
 	$this->addElements(array(
 	$title, $description, $length,
 	$valid, $managedBy, $suitableFor,
 	$location, $submit));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -122,6 +101,7 @@ public function __construct($options = null) {
 	    'FormElements',
 	    array('HtmlTag', array('tag' => 'ul'))
 	));
-
+	
+	parent::init();
 }
 }

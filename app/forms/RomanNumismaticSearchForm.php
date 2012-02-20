@@ -25,11 +25,7 @@ class RomanNumismaticSearchForm extends Pas_Form
 	protected $_restricted = array('public','member','research');
 
 
-	public function __construct($options = null)
-	{
-
-
-
+	public function __construct($options = null) {
 	//Get Rally data
 	$rallies = new Rallies();
 	$rally_options = $rallies->getRallies();
@@ -96,7 +92,7 @@ class RomanNumismaticSearchForm extends Pas_Form
 	}
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(4800);
@@ -330,6 +326,6 @@ class RomanNumismaticSearchForm extends Pas_Form
 	$this->details->setLegend('Artefact details');
 	$this->spatial->setLegend('Spatial details');
 
-
+	parent::init();
 	}
 }

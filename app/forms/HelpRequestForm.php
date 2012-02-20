@@ -14,15 +14,6 @@ public function __construct($options = null)
 
 parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-    		array('Description', array('tag' => '','placement' => 'append')),
-            array('Errors',array('placement' => 'append','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-			
-
 	$this->setName('comments');
 
 	$user_ip = new Zend_Form_Element_Hidden('user_ip');
@@ -46,12 +37,10 @@ parent::__construct($options);
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('NotEmpty')
 	->addErrorMessage('Please enter a valid name!')
-	->setDecorators($decorators)
 	->setDescription('If you are offering us SEO services, you will be added to the akismet spam list.');
 
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addValidator('EmailAddress')   
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
@@ -69,33 +58,23 @@ parent::__construct($options);
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'))
 	->addErrorMessage('Please enter something in the comments box!');
 
-	$privateKey = $this->_config->webservice->recaptcha->privatekey;
-	$pubKey = $this->_config->webservice->recaptcha->pubkey;
-
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
                         		'captcha' => 'ReCaptcha',
 								'label' => 'Please fill in this reCaptcha to show you are not a spammer!',
                                 'captchaOptions' => array(  
                                 'captcha' => 'ReCaptcha',								  
-                                'privKey' => $privateKey,
-                                'pubKey' => $pubKey,
+                                'privKey' => $this->_privateKey,
+                                'pubKey' => $this->_pubKey,
 								'theme'=> 'clean')
                         ));
                         
                         
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
 				
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->setAttrib('class','large')
-	->setLabel('Submit your query');
 			  
 			  
 	$auth = Zend_Auth::getInstance();
@@ -103,14 +82,11 @@ parent::__construct($options);
 	$this->addElements(array(
 	$user_ip, $user_agent, $comment_author,
 	$comment_author_email, $comment_content,
-	$comment_author_url, $captcha, $submit));
+	$captcha, $submit));
 	
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_content', 'captcha'), 'details')
 	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	$this->details->setLegend('Enter your comments: ');
 	
 	} else {
@@ -120,19 +96,13 @@ parent::__construct($options);
 	
 	$this->addElements(array(
 	$user_ip,	$user_agent, $comment_author,
-	$comment_author_email, $comment_content,$comment_author_url,
+	$comment_author_email, $comment_content,
 	$submit));
 	
 	$this->addDisplayGroup(array(
-	'comment_author', 'comment_author_email', 'comment_content'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'comment_author', 'comment_author_email', 'comment_content'), 'details');
 	$this->details->setLegend('Enter your comments: ');
 	}
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 	}
 }

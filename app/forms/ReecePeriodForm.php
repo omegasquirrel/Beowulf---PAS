@@ -12,14 +12,7 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
- 	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-      
+ 	
 	$this->setName('reeceperiods');
 
 	$period_name = new Zend_Form_Element_Text('period_name');
@@ -28,8 +21,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 		->setAttrib('size',60)
-		->addErrorMessage('You must enter a period name')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a period name');
 
 	$description = new Zend_Form_Element_Textarea('description');
 	$description->setLabel('Description of period: ')
@@ -43,38 +35,25 @@ public function __construct($options = null) {
 	$date_range->setLabel('Date range of period: ')
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addErrorMessage('You must enter a date range for this period')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a date range for this period');
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
+
 
 	$this->addElements(array(
 	$period_name, $description, $date_range,
 	$submit));
         
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 
-	$this->removeDecorator('HtmlTag');
 	$this->addDisplayGroup(array('period_name','description','date_range','submit'), 'details');
-	$this->details->addDecorators(array(
-	    'FormElements',
-	    array('HtmlTag', array('tag' => 'ul'))
-	));
 	
 	$this->details->setLegend('Reece Periods');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 
+	parent::init();
 	}
 }

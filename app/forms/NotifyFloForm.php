@@ -15,31 +15,17 @@ class NotifyFloForm extends Pas_Form {
 		
 	parent::__construct($options);
 
-	$this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-	$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element'); 
-	$this->addPrefixPath('Pas_Form_Decorator', 'Pas/Form/Decorator/', 'decorator'); 
-	$decorator =  array('SimpleInput');
-	$decoratorSelect =  array('SelectInput');
-	$decorators = array(
-	            array('ViewHelper'), 
-	    		array('Description', array('tag' => '','placement' => 'append')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
-
+	
 	$this->setName('notifyFlo');
 	
 	$flo = new Zend_Form_Element_Select('flo');
 	$flo->setLabel('Which flo is yours?: ')
 	->setRequired(true)
-	->setDecorators($decorators)
 	->addMultiOptions(array(null => 'Choose your FLO','Available FLOs' => $flos));
 	
 	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Message type: ')
 	->setRequired(true)
-	->setDecorators($decorators)
 	->addMultiOptions(array(
 	NULL => 'Choose reason',
 	'Choose error type' => array(
@@ -65,29 +51,20 @@ class NotifyFloForm extends Pas_Form {
 
 						
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
 		
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->removeDecorator('HtmlTag')
-	->setLabel('Send message')
-	->setAttrib('class','large')
-	->removeDecorator('DtDdWrapper');
-
 
 	$this->addElements(array($content, $flo, $type, $submit, $hash));
 
 	$this->addDisplayGroup(array('flo','type', 'content', ), 'details');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('HtmlTag');
-	$this->details->removeDecorator('DtDdWrapper');
+
 	$this->details->setLegend('Enter your error report: ');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
+	
+	parent::init();
 	}
 }

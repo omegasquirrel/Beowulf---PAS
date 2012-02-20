@@ -89,5 +89,6 @@ public function __construct($options = null) {
 	$this->addElements(array(
 	$old_findID, $label,$broadperiod, 
 	$county, $submit));
+	parent::init();
 	}
 }

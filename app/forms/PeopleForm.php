@@ -25,18 +25,8 @@ public function __construct($options = null) {
 
 parent::__construct($options);
 
-    $this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');    
     
     $this->setName('people');
-
-    $decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 
 	$title = new Zend_Form_Element_Select('title');
 	$title->setLabel('Title: ')
@@ -49,31 +39,27 @@ parent::__construct($options);
 		'Ms' => 'Ms', 'Dr' => 'Dr.', 'Prof' => 'Prof.',
 		'Sir' => 'Sir', 'Lady' => 'Lady', 'Other' => 'Other',
 		'Captain' => 'Captain', 'Master' => 'Master', 'Dame' => 'Dame',
-		'Duke' => 'Duke'))
-		->setDecorators($decorators);
+		'Duke' => 'Duke'));
 
 	$forename = new Zend_Form_Element_Text('forename');
 	$forename->setLabel('Forename: ')
             ->setRequired(true)
             ->addFilters(array('StripTags','StringTrim'))
             ->addErrorMessage('Please enter person\'s forename')
-            ->setDecorators($decorators)
             ->addFilter(new Zend_Filter_Callback(array('callback' => 'ucfirst')));
 
 	$surname = new Zend_Form_Element_Text('surname');
 	$surname->setLabel('Surname: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-                ->addFilter(new Zend_Filter_Callback(array('callback' => 'ucfirst')))
-		->addErrorMessage('Please enter person\'s surname')
-		->setDecorators($decorators);
+        ->addFilter(new Zend_Filter_Callback(array('callback' => 'ucfirst')))
+		->addErrorMessage('Please enter person\'s surname');
 
 	$fullname = new Zend_Form_Element_Text('fullname');
 	$fullname->setLabel('Fullname: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter person\'s fullname')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter person\'s fullname');
 
 	$email = new Zend_Form_Element_Text('email');
 	$email->SetLabel('Email address: ')
@@ -81,8 +67,7 @@ parent::__construct($options);
 		->addFilters(array('StringTrim', 'StringToLower', 'StripTags'))
 		->addValidator('StringLength', false, array(1,200))
 		->addValidator('EmailAddress', false, array('mx' => true) )
-		->setAttrib('size','60')
-		->setDecorators($decorators);
+		->setAttrib('size','60');
 
 	$dbaseID = new Zend_Form_Element_Select('dbaseID');
 	$dbaseID->setLabel('User account: ')
@@ -92,15 +77,13 @@ parent::__construct($options);
 		->addValidator('InArray', false, array(array_keys($users_options),null))
 		->addMultiOptions(array(NULL => 'Choose a user account',
 		'Existing accounts' => $users_options))
-		->addErrorMessage('You must enter a database account.')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a database account.');
 
 	$address = new Zend_Form_Element_Text('address');
 	$address->SetLabel('Address: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->setDecorators($decorators)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$town_city = new Zend_Form_Element_Text('town_city');
@@ -108,7 +91,6 @@ parent::__construct($options);
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->setDecorators($decorators)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 	
 	$county = new Zend_Form_Element_Select('county');
@@ -117,7 +99,6 @@ parent::__construct($options);
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Please choose a county',
 		'Valid counties' => $counties_options))
-		->setDecorators($decorators)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$postcode = new Zend_Form_Element_Text('postcode');
@@ -126,7 +107,6 @@ parent::__construct($options);
 		->addFilters(array('StripTags','StringTrim','StringToUpper'))
 		->addValidator('StringLength', false, array(1,200))
 		->addValidator('ValidPostCode')
-		->setDecorators($decorators)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$country = new Zend_Form_Element_Select('country');
@@ -137,15 +117,13 @@ parent::__construct($options);
 		->addValidator('InArray', false, array(array_keys($countries_options)))
 		->addMultiOptions(array(NULL => 'Please choose a country of residence',
 		'Valid countries' => $countries_options))
-		->setValue('GB')
-		->setDecorators($decorators);
+		->setValue('GB');
 
 	$hometel = new Zend_Form_Element_Text('hometel');
 	$hometel->SetLabel('Home telephone number: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,30))
-		->setDecorators($decorators)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$worktel = new Zend_Form_Element_Text('worktel');
@@ -153,14 +131,12 @@ parent::__construct($options);
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,30))
-		->setDecorators($decorators)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$fax = new Zend_Form_Element_Text('faxno');
 	$fax->SetLabel('Fax number: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,30))
-		->setDecorators($decorators)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$comments = new Pas_Form_Element_RTE('comments');
@@ -179,8 +155,7 @@ parent::__construct($options);
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Please choose an organisation',
 		'Valid organisations' => $organisations_options))
-		->addValidator('InArray', false, array(array_keys($organisations_options)))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($organisations_options)));
 
 	$primary_activity = new Zend_Form_Element_Select('primary_activity');
 	$primary_activity->SetLabel('Person\'s primary activity: ')
@@ -190,14 +165,9 @@ parent::__construct($options);
 		->addValidator('InArray', false, array(array_keys($activities_options)))
 		->addMultiOptions(array(NULL => 'Choose a primary activity',
                     'Valid activities' => $activities_options))
-		->addErrorMessage('You must enter an activity for this person.')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter an activity for this person.');
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setAttrib('class','large');
 
 	$this->addElements(array(
 	$title, $forename, $surname,
@@ -208,9 +178,7 @@ parent::__construct($options);
 	$organisationID, $primary_activity, $submit));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 	
@@ -224,12 +192,7 @@ parent::__construct($options);
 	'details');
 	$this->details->setLegend('Person details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->details->removeDecorator('DtDdWrapper');
 
-	$this->details->addDecorators(array(
-    'FormElements',
-    array('HtmlTag', array('tag' => 'ul'))
-	));
-
+	parent::init();
 	}
 }

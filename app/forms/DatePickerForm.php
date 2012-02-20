@@ -55,5 +55,6 @@ $this->addElements(array($datefrom,$dateto,$submit));
 $this->setLegend('Choose your own dates: ');
 $this->addDisplayGroup(array('submit'), 'submit');
 
-}
+parent::init();
+	}
 }

@@ -16,22 +16,6 @@ public function __construct($options = null)
 
 parent::__construct($options);
 
-	$this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-	$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element');
-	$this->addPrefixPath('Pas_Form_Decorator', 'Pas/Form/Decorator/', 'decorator');
-	$decorator =  array('SimpleInput');
-	$decoratorSelect =  array('SelectInput');
-	$decorators = array(
-	            array('ViewHelper'),
-	    		array('Description', array('tag' => '','placement' => 'append')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
-
-
-	$this->setAttrib('accept-charset', 'UTF-8');
-
 
 	$this->setName('comments');
 
@@ -71,12 +55,10 @@ parent::__construct($options);
 	$comment_author->setLabel('Enter your name: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('Please enter a valid name!')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a valid name!');
 
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-	->setDecorators($decorators)
 	->setRequired(true)
 	->setAttrib('size',40)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
@@ -87,7 +69,6 @@ parent::__construct($options);
 	$comment_type = new Zend_Form_Element_Select('comment_type');
 	$comment_type->setLabel('Error type: ')
 	->setRequired(true)
-	->setDecorators($decorators)
 	->addMultiOptions(array(NULL => NULL,'Choose error type' => array(
 	'Incorrect ID' => 'Incorrect identification',
 	'More info' => 'I have further information',
@@ -103,7 +84,6 @@ parent::__construct($options);
 
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')
-	->setDecorators($decorators)
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addErrorMessage('Please enter a valid address!')
@@ -119,9 +99,6 @@ parent::__construct($options);
 	->addFilters(array('StringTrim','WordChars','HtmlBody','EmptyParagraph'))
 	->addErrorMessage('Please enter something in the comments box!');
 
-	$config = Zend_registry::get('config');
-	$privateKey = $config->recaptcha->privatekey;
-	$pubKey = $config->recaptcha->pubkey;
 
 	$captcha = new Zend_Form_Element_Captcha(
                 'captcha', array(
@@ -129,13 +106,13 @@ parent::__construct($options);
                     'label' => 'Prove you are not a robot/spammer',
 	            'captchaOptions' => array(
                         'captcha' => 'ReCaptcha',
-                        'privKey' => $privateKey,
-                        'pubKey' => $pubKey,
+                        'privKey' => $this->_privateKey,
+                        'pubKey' => $this->_pubKey,
                         'theme'=> 'clean')
 	                        ));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -173,5 +150,7 @@ parent::__construct($options);
 	$this->details->removeDecorator('HtmlTag');
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->setLegend('Enter your error report: ');
+	parent::init();
 	}
+	
 }

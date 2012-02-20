@@ -62,7 +62,7 @@ public function __construct($options = null) {
 		->addMultiOptions($mints_options);
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -82,5 +82,6 @@ public function __construct($options = null) {
 	'details');
 	$this->setLegend('Active Roman Mints');
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
 }

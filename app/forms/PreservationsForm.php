@@ -11,13 +11,6 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$this->setName('preservations');
 
@@ -26,8 +19,7 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alpha',false,array('allowWhiteSpace' => true))
-		->addErrorMessage('Please enter a valid title for the state!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid title for the state!');
 
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
 	$termdesc->setLabel('Description of preservation state: ')
@@ -41,7 +33,6 @@ public function __construct($options = null) {
 	$valid->setLabel('Is this term valid?: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators)
 		->addValidator('Digits');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -57,12 +48,8 @@ public function __construct($options = null) {
 	
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
 	$this->details->setLegend('Preservation state details: ');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	  
+	parent::init();  
 	}
 }

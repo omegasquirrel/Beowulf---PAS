@@ -17,18 +17,6 @@ public function __construct($options = null) {
 	
 	parent::__construct($options);
 
-	$decorator =  array('SimpleInput');
-	
-	$decoratorSelect =  array('SelectInput');
-
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-	
 	$this->setName('vacancies');
 
 	$title = new Zend_Form_Element_Text('title');
@@ -37,8 +25,7 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 		->addErrorMessage('You must enter a title for this vacancy.')
-		->setAttrib('size', 60)
-		->setDecorators($decorators);
+		->setAttrib('size', 60);
 	
 	$salary = new Zend_Form_Element_Text('salary');
 	$salary->setLabel('Salary: ')
@@ -46,8 +33,7 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'StripTags'))
 		->setAttrib('size', 20)
 		->addValidator('Currency')
-		->addErrorMessage('You must enter a salary.')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a salary.');
 	
 	$specification = new Pas_Form_Element_RTE('specification');
 	$specification->setLabel('Job specification: ')
@@ -63,7 +49,6 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addValidator('InArray', false, array(array_keys($staffregions_options)))
 		->addMultiOptions(array(NULL => NULL,'Choose region' => $staffregions_options))
-		->setDecorators($decorators)
 		->addErrorMessage('You must choose a region');
 	
 	$live = new ZendX_JQuery_Form_Element_DatePicker('live');
@@ -96,10 +81,8 @@ public function __construct($options = null) {
 		->addMultiOptions(array(NULL => 'Choose a status','2' => 'Publish','1' => 'Draft'))
 		->setValue(2)
 		->addFilters(array('StringTrim', 'StripTags'))
-		->setDecorators($decorators)
 		->addErrorMessage('You must choose a status');
 	
-	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')
 		->removeDecorator('DtDdWrapper')
@@ -112,7 +95,7 @@ public function __construct($options = null) {
 	$status, $submit));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -135,5 +118,7 @@ public function __construct($options = null) {
 	
 	$this->setLegend('Vacancy details');
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
+	parent::init();
 	}
 }

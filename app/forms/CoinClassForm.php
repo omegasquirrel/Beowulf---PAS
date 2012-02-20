@@ -17,30 +17,19 @@ public function __construct($options = null)
 	$period_actives = $periods->getCoinsPeriod();
 
 	parent::__construct($options);
-
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-       
 	$this->setName('coinsclass');
 
 	$referenceName = new Zend_Form_Element_Text('referenceName');
 	$referenceName->setLabel('Reference volume title: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->setDecorators($decorators)
 	->setAttrib('size',60);
 
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->SetLabel('Is this volume currently valid: ')
 	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags','StringTrim'));
 
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
@@ -48,8 +37,7 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('inArray', false, array(array_keys($period_actives)))
 	->addMultiOptions(array(NULL=> NULL,'Choose period:' => $period_actives))
-	->addErrorMessage('You must enter a period for this mint')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a period for this mint');
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -59,7 +47,7 @@ public function __construct($options = null)
 	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -75,5 +63,7 @@ public function __construct($options = null)
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->addDisplayGroup(array('submit'),'submit');
 
+	parent::init();
 	}
+	
 }

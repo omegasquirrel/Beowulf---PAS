@@ -13,15 +13,6 @@ class DiscoMethodsForm extends Pas_Form
 public function __construct($options = null)
 {
 parent::__construct($options);
-
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-      
 	$this->setName('discoverymethods');
 
 	$method = new Zend_Form_Element_Text('method');
@@ -30,8 +21,7 @@ parent::__construct($options);
 	->addFilters(array('StripTags','StringTrim'))
 	->setAttrib('size',50)
 	->addValidator('NotEmpty')
-	->addErrorMessage('You must enter a valid term')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a valid term');
 
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
 	$termdesc->setLabel('Description of method: ')
@@ -47,23 +37,14 @@ parent::__construct($options);
 	$valid->setLabel('Is this term valid?: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('You must set a status for this term')
-	->setDecorators($decorators);;
+	->addErrorMessage('You must set a status for this term');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
-	->setTimeout(60);
+	$hash->setValue($this->_salt)->setTimeout(60);
 	$this->addElement($hash);
 	
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$this->addElements(array(
 	$method, 
@@ -73,11 +54,8 @@ parent::__construct($options);
 
 	$this->addDisplayGroup(array('method','termdesc','valid'), 'details');
 	$this->details->setLegend('Discovery methods');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-}
+	parent::init();
+	}
 
 }

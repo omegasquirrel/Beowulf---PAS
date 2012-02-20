@@ -15,15 +15,8 @@ public function __construct($options = null) {
 	$dynasties_options = $dynasties->getOptions();
 
 
-parent::__construct($options);
+	parent::__construct($options);
        
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 		    
 	$this->setName('MonarchDetails');
 
@@ -33,58 +26,50 @@ parent::__construct($options);
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
 		->setAttrib('size','50')
-		->addErrorMessage('You must enter a Monarch\'s name')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a Monarch\'s name');
 
 	$styled = new Zend_Form_Element_Text('styled');
 	$styled->setLabel('Styled as: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
-		->setDecorators($decorators);
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$alias = new Zend_Form_Element_Text('alias');
 	$alias->setLabel('Monarch\'s alias: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
-		->setDecorators($decorators);
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$dbaseID = new Zend_Form_Element_Select('dbaseID');
 	$dbaseID->setLabel('Database ID: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('InArray', false, array(array_keys($rulers_options)))
-		->addMultiOptions(array(NULL => NULL, 'Choose Database ID' => $rulers_options))
-		->setDecorators($decorators);
+		->addMultiOptions(array(NULL => NULL, 'Choose Database ID' => $rulers_options));
 
 	$date_from = new Zend_Form_Element_Text('date_from');
 	$date_from->setLabel('Issued coins from: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Digits')
-		->setDecorators($decorators);
+		->addValidator('Digits');
 
 	$date_to = new Zend_Form_Element_Text('date_to');
 	$date_to->setLabel('Issued coins until: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Digits')
-		->setDecorators($decorators);
+		->addValidator('Digits');
 
 	$born = new Zend_Form_Element_Text('born');
 	$born->setLabel('Born: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Digits')
-		->setDecorators($decorators);
+		->addValidator('Digits');
 
 	$died = new Zend_Form_Element_Text('died');
 	$died->setLabel('Died: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Digits')
-		->setDecorators($decorators);
+		->addValidator('Digits');
 
 	$biography = new Pas_Form_Element_RTE('biography');
 	$biography->setLabel('Biography: ')
@@ -99,8 +84,7 @@ parent::__construct($options);
 	$dynasty->setLabel('Dynastic grouping: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Digits')
-		->setDecorators($decorators);
+		->addValidator('Digits');
 
 	$publishState = new Zend_Form_Element_Select('publishState');
 	$publishState->setLabel('Publication status: ')
@@ -108,14 +92,9 @@ parent::__construct($options);
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Digits')
 		->addMultiOptions(array(NULL => NULL, 'Set status' => array('1' => 'Draft','2' => 'Published')))
-		->setValue(1)
-		->setDecorators($decorators);
+		->setValue(1);
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
 
 	$this->addElements(array(
 	$name, $styled, $alias, 
@@ -124,7 +103,7 @@ parent::__construct($options);
 	$publishState, $submit));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(4800);
@@ -132,20 +111,14 @@ parent::__construct($options);
 	
 	$this->addDisplayGroup(array('name','styled','alias'), 'names');
 	$this->names->setLegend('Nomenclature');
-	$this->names->removeDecorator('DtDdWrapper');
-	$this->names->removeDecorator('HtmlTag');
 	
 	$this->addDisplayGroup(array('dbaseID','date_from','date_to','born','died'),'periods');
 	$this->periods->setLegend('Dates');
-	$this->periods->removeDecorator('DtDdWrapper');
-	$this->periods->removeDecorator('HtmlTag');
 	
 	$this->addDisplayGroup(array('biography','dynasty','publishState'),'details');
 	$this->details->setLegend('Biographical details');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	  
+	parent::init();  
 	}
 }

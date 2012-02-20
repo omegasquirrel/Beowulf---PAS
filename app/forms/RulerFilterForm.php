@@ -24,7 +24,7 @@ public function __construct($options = null)
 		->removeDecorator('DtDdWrapper');
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -40,6 +40,6 @@ public function __construct($options = null)
 	
 	$this->addElements(array(
 	$ruler,	$submit, $hash));
-	  
+	parent::init();  
 	}
 }

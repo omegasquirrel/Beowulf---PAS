@@ -13,14 +13,6 @@ public function __construct($options = null)
 {
 
 	parent::__construct($options);
-	$this->setAttrib('accept-charset', 'UTF-8');
- 	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
       
 	$this->setName('dieaxis');
 
@@ -29,27 +21,19 @@ public function __construct($options = null)
 	->setRequired(true)
 	->setAttrib('size',70)
 	->addErrorMessage('Please enter a term.')
-	->addFilters(array('StripTags','StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags','StringTrim'));
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Die axis term is in use: ')
 	->setRequired(true)
 	->addValidator('Int')
-	->addFilters(array('StripTags','StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton');
-	$submit->removeDecorator('DtDdWrapper');
-	$submit->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
-	->setTimeout(60);
+	$hash->setValue($this->_salt)->setTimeout(60);
 	$this->addElement($hash);
 	
 	$this->addElements(array(
@@ -57,10 +41,7 @@ public function __construct($options = null)
 
 	$this->addDisplayGroup(array('die_axis_name','valid'), 'details');
 	$this->details->setLegend('Die axis details: ');
-	$this->details->removeDecorator('HtmlTag');
-	$this->details->removeDecorator('DtDdWrapper');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	      
-	
+	parent::init();
 	}
 }

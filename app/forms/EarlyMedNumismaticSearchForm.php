@@ -8,7 +8,7 @@
 */
 class EarlyMedNumismaticSearchForm extends Pas_Form {
 
-        protected function getRole(){
+    protected function getRole(){
 	$auth = Zend_Auth::getInstance();
 	if($auth->hasIdentity()){
 	$user = $auth->getIdentity();
@@ -20,7 +20,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	}
 	}
 
-        protected $higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
+    protected $higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
 
 	protected $restricted = array('public', 'member', 'research');
 
@@ -305,7 +305,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	$cat, $submit, $institution));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(60);
@@ -336,6 +336,6 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	$this->addDecorator('FormElements')
 		 ->addDecorator('Form')
 	     ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'));
-
+	parent::init();
 	}
 }

@@ -58,7 +58,7 @@ public function __construct($options = null) {
 		->addValidator('InArray', false, array(array_keys($county_options)));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -76,6 +76,6 @@ public function __construct($options = null) {
 	$this->addElements(array(
 	$monumentName, $county, $district,
 	$parish, $submit, $hash));
-	  
+	parent::init();  
 	}
 }

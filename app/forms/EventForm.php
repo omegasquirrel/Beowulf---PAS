@@ -33,15 +33,6 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$this->setAttrib('accept-charset', 'UTF-8');
-
-	$decorators = array(
-	            array('ViewHelper'),
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 
 	$this->setName('event');
 
@@ -50,8 +41,7 @@ public function __construct($options = null) {
 	->setRequired(true)
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 	->addFilters(array('StripTags','StringTrim'))
-	->setAttrib('size',70)
-	->setDecorators($decorators);
+	->setAttrib('size',70);
 
 	$eventDescription = new Pas_Form_Element_RTE('eventDescription');
 	$eventDescription->setLabel('Event description: ')
@@ -67,22 +57,19 @@ public function __construct($options = null) {
 	->setRequired(true)
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 	->setAttrib('size',70)
-	->addFilters(array('StripTags','StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags','StringTrim'));
 
 	$eventStartTime = new Zend_Form_Element_Text('eventStartTime');
 	$eventStartTime->setLabel('Event start time: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator(new Zend_Validate_Date('H:i:s'))
-	->setDecorators($decorators);
+	->addValidator(new Zend_Validate_Date('H:i:s'));
 
 	$eventEndTime = new Zend_Form_Element_Text('eventEndTime');
 	$eventEndTime->setLabel('Event end time: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator(new Zend_Validate_Date('H:i:s'))
-	->setDecorators($decorators);
+	->addValidator(new Zend_Validate_Date('H:i:s'));
 
 	$eventStartDate = new ZendX_JQuery_Form_Element_DatePicker('eventStartDate');
 	$eventStartDate->setLabel('Event start date: ')
@@ -91,9 +78,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Date')
 	->addErrorMessage('Come on it\'s not that hard, enter a title!')
-	->setAttrib('size', 20)
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-	->removeDecorator('DtDdWrapper');
+	->setAttrib('size', 20);
 
 	$eventEndDate = new ZendX_JQuery_Form_Element_DatePicker('eventEndDate');
 	$eventEndDate->setLabel('Event end date: ')
@@ -102,9 +87,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Date')
 	->addErrorMessage('Come on it\'s not that hard, enter a title!')
-	->setAttrib('size', 20)
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-	->removeDecorator('DtDdWrapper');
+	->setAttrib('size', 20);
 
 	$eventRegion = new Zend_Form_Element_Select('eventRegion');
 	$eventRegion->setLabel('Organising section: ')
@@ -112,8 +95,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('stringLength', false, array(1,10))
 	->addValidator('inArray', false, array(array_keys($staffregions_options)))
-	->addMultiOptions($staffregions_options)
-	->setDecorators($decorators);
+	->addMultiOptions($staffregions_options);
 
 	$eventType = new Zend_Form_Element_Select('eventType');
 	$eventType->setLabel('Type of event: ')
@@ -121,22 +103,19 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('stringLength', false, array(1,10))
 	->addValidator('inArray', false, array(array_keys($event_options)))
-	->addMultiOptions($event_options)
-	->setDecorators($decorators);
+	->addMultiOptions($event_options);
 
 	$adultsAttend = new Zend_Form_Element_Text('adultsAttend');
 	$adultsAttend->setLabel('Adults attending: ')
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Int')
-	->setDecorators($decorators);
+	->addValidator('Int');
 
 	$childrenAttend = new Zend_Form_Element_Text('childrenAttend');
 	$childrenAttend->setLabel('Children attending: ')
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Int')
-	->setDecorators($decorators);
+	->addValidator('Int');
 
 	$organisation = new Zend_Form_Element_Select('organisation');
 	$organisation->setLabel('Organised by: ')
@@ -147,20 +126,12 @@ public function __construct($options = null) {
 	'Available institutions' =>
 	$orgs
 	))
-	->addValidator('InArray', false, array(array_keys($orgs)))
-	->setDecorators($decorators);
+	->addValidator('InArray', false, array(array_keys($orgs)));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
+	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
 
@@ -176,15 +147,10 @@ public function __construct($options = null) {
             'eventTitle','eventDescription','eventLocation',
             'eventStartTime','eventEndTime','eventStartDate',
             'eventEndDate','eventRegion','organisation',
-            'childrenAttend','adultsAttend','eventType'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+            'childrenAttend','adultsAttend','eventType'), 'details');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 
+	parent::init();
 	}
 }

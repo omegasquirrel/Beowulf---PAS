@@ -21,14 +21,6 @@ class AddFloRallyForm extends Pas_Form{
 	parent::__construct($options);
 
 	ZendX_JQuery::enableForm($this);
-	
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 	$this->setName('addFlo');
 
 
@@ -37,7 +29,6 @@ class AddFloRallyForm extends Pas_Form{
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int')
-	->setDecorators($decorators)
 	->addMultiOptions(array(NULL => 'Choose attending officer', 'Our staff members' => $flos));
 
 	$dateFrom = new ZendX_JQuery_Form_Element_DatePicker('dateFrom');
@@ -67,7 +58,7 @@ class AddFloRallyForm extends Pas_Form{
 	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -85,8 +76,6 @@ class AddFloRallyForm extends Pas_Form{
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
 	
+	parent::init();
 	}
-
-
-
 }

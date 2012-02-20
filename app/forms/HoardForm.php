@@ -15,23 +15,14 @@ class HoardForm extends Pas_Form
 
 	parent::__construct($options);
 	
-	$this->setAttrib('accept-charset', 'UTF-8');
 
 	$this->setName('hoard');
 
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 
 	$term = new Zend_Form_Element_Text('term');
 	$term->setLabel('Hoard title: ')
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'))
-	->setDecorators($decorators)
 	->addErrorMessage('You must enter a title for this hoard');
 
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
@@ -50,14 +41,9 @@ class HoardForm extends Pas_Form
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL,'Choose reason' => $period_options))
 	->addValidator('inArray', false, array(array_keys($period_options)))
-	->setDecorators($decorators)
 	->addErrorMessage('You must choose a period');
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$this->addElements(array(
 	$term,$termdesc,$period,$submit)
@@ -67,9 +53,8 @@ class HoardForm extends Pas_Form
 	$this->addDisplayGroup(array('submit'), 'submit');
 
 	$this->setLegend('Hoards: ');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
 }

@@ -39,5 +39,7 @@ public function __construct($options = null) {
 	'form',array('HtmlTag', array('tag' => 'div'))
 	));
 	
+	parent::init();
 	}
+	
 }

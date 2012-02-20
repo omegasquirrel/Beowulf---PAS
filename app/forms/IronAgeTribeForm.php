@@ -14,22 +14,13 @@ public function __construct($options = null) {
 
 	$this->setName('ironagetribes');
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 	$tribe = new Zend_Form_Element_Text('tribe');
 	$tribe->setLabel('Tribe name: ')
 	->setRequired(true)
 	->setAttrib('size',60)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addErrorMessage('You must enter a name for the tribe.')
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true))
-	->setDecorators($decorators);
+	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Description of the tribe: ')
@@ -41,19 +32,13 @@ public function __construct($options = null) {
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper');
 
 	$this->addElements(array(
 	$tribe,	$description, $submit)
 	);
 
-	$this->addDisplayGroup(array('tribe', 'description', 'submit'), 'details')
-	->removeDecorator('HtmlTag');;
-	$this->details->addDecorators(array('FormElements', array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('tribe', 'description', 'submit'), 'details');
+	
+	parent::init();
 	}
 }

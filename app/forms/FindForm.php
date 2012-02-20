@@ -8,7 +8,7 @@
 * @license    GNU General Public License
 */
 
-class FindForm extends Twitter_Form {
+class FindForm extends Pas_Form {
 
 public function __construct($options = null) {
 
@@ -660,7 +660,7 @@ public function __construct($options = null) {
 	->addValidator('Int');
 
  	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(4800);
@@ -758,6 +758,6 @@ public function __construct($options = null) {
 
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-
+	parent::init();
 	}
 }

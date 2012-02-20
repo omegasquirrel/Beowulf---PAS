@@ -16,14 +16,6 @@ public function __construct($options = null) {
 	$this->setAttrib('enctype', 'multipart/form-data');
 	
 	$this->setName('AddRulerImage');
-	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 		
 	$image = new Zend_Form_Element_File('image');
 	$image->setLabel('Upload an image: ')
@@ -40,7 +32,6 @@ public function __construct($options = null) {
 	$caption->setLabel('Image caption')
 		->setRequired(true)
 		->setAttrib('size',60)
-		->setDecorators($decorators)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter a label');
 		
@@ -74,5 +65,7 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array('submit'), 'submit');
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
+	parent::init();
 	}
+	
 }

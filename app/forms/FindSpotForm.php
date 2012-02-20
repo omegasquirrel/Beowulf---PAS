@@ -25,28 +25,7 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$this->addPrefixPath('Pas_Form_Decorator', 'Pas/Form/Decorator/', 'decorator'); 
-	
-	$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element'); 
-
-	$this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-
-
-	$decorator =  array('SimpleInput');
-
-	$decoratorButton =  array('NormalDecButton');
-
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 	$this->setName('findspots');
-
-	
 
 	// Object specifics
 	$county = new Zend_Form_Element_Select('county');
@@ -54,14 +33,12 @@ public function __construct($options = null) {
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose county','Valid counties' => $county_options))
-	->addValidator('InArray', false, array(array_keys($county_options)))
-	->setDecorators($decorators);
+	->addValidator('InArray', false, array(array_keys($county_options)));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 	->setRequired(false)
 	->setRegisterInArrayValidator(false)
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose district after county'));
 
@@ -69,14 +46,12 @@ public function __construct($options = null) {
 	$parish->setLabel('Parish: ')
 	->setRequired(false)
 	->setRegisterInArrayValidator(false)
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose parish after district'));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
 	->setRegisterInArrayValidator(false)
-	->setDecorators($decorators)
 	->addValidator('Digits')
 	->addMultiOptions(array(NULL => 'Choose region after county'));
 
@@ -86,13 +61,11 @@ public function __construct($options = null) {
 	$gridref->setLabel('Grid reference: ')
 	->addValidators(array('NotEmpty','ValidGridRef'))
 	->addValidator('Alnum',array('allowWhiteSpace' => true))
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'));
 
 	$gridrefsrc = new Zend_Form_Element_Select('gridrefsrc');
 	$gridrefsrc->setLabel('Grid reference source: ')
 	->addMultioptions(array(NULL => NULL,'Choose source' => $origin_options))
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('InArray', false, array(array_keys($origin_options)))
 	->addValidator('Int');
@@ -103,51 +76,44 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
-	->setDecorators($decorators);
+	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));;
 
-	if($action == 'edit'){
+	if($action === 'edit'){
 	$fourFigure = new Zend_Form_Element_Text('fourFigure');
 	$fourFigure->setLabel('Four figure grid reference: ')
 	->addValidator('NotEmpty','ValidGridRef')
 	->addValidator('Alnum')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	$easting = new Zend_Form_Element_Text('easting');
 	$easting->setLabel('Easting: ')
 	->addValidator('NotEmpty','Digits')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	$northing = new Zend_Form_Element_Text('northing');
 	$northing->setLabel('Northing: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Digits')
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	$map10k = new Zend_Form_Element_Text('map10k');
 	$map10k->setLabel('10 km map: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Alnum')
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	$map25k = new Zend_Form_Element_Text('map25k');
 	$map25k->setLabel('25 km map: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Alnum')
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	$declong = new Zend_Form_Element_Text('declong');
 	$declong->setLabel('Longitude: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Float')
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	
@@ -155,28 +121,24 @@ public function __construct($options = null) {
 	$declat->setLabel('Latitude: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Float')
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	$woeid = new Zend_Form_Element_Text('woeid');
 	$woeid->setLabel('Where on Earth ID: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Digits')
-	->setDecorators($decorators)
 	->disabled = true;
 	
 	$elevation = new Zend_Form_Element_Text('elevation');
 	$elevation->setLabel('Elevation: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Digits')
-	->setDecorators($decorators)
 	->disabled = true;
 	}
 	
 	$depthdiscovery = new Zend_Form_Element_Select('depthdiscovery');
 	$depthdiscovery->setLabel('Depth of discovery')
 	->setRegisterInArrayValidator(false)
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Digits')
 	->addMultiOptions(array(NULL => NULL,'Approximate depth' => array(
@@ -187,7 +149,6 @@ public function __construct($options = null) {
 	$soiltype = new Zend_Form_Element_Select('soiltype');
 	$soiltype->setLabel('Type of soil around findspot: ')
 	->setRegisterInArrayValidator(false)
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Digits')
 	->addMultiOptions(array(NULL => NULL));
@@ -197,7 +158,6 @@ public function __construct($options = null) {
 	$landusevalue->setLabel('Landuse type: ')
 	->addValidators(array('NotEmpty'))
 	->setRegisterInArrayValidator(false)
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose landuse',
             'Valid landuses' => $landuse_options));
@@ -206,7 +166,6 @@ public function __construct($options = null) {
 	$landusecode->setLabel('Specific landuse: ')
 	->setRegisterInArrayValidator(false)
 	->addValidators(array('NotEmpty'))
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Specific landuse will be enabled after type'));
 
@@ -223,20 +182,17 @@ public function __construct($options = null) {
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->setLabel('Postcode: ')
 	->addValidators(array('NotEmpty', 'ValidPostcode'))
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim','StringToUpper'));
 
 	$knownas = new Zend_Form_Element_Text('knownas');
 	$knownas->setLabel('Findspot to be known as: ')
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->setDecorators($decorators)
 	->setAttrib('class','privatedata')
 	->addFilters(array('StripTags', 'StringTrim'));
 
 	$landownername = new Zend_Form_Element_Text('landownername');
 	$landownername->setLabel('Landowner: ')
 	->addValidators(array('NotEmpty'))
-	->setDecorators($decorators)
 	->setAttrib('class','privatedata')
 	->addFilters(array('StripTags', 'StringTrim'));
 
@@ -264,15 +220,9 @@ public function __construct($options = null) {
 
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->setAttrib('class','large');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 	->setTimeout(600);
 	$this->addElement($hash);
 	
@@ -325,15 +275,12 @@ public function __construct($options = null) {
 	}
 	
 	$this->spatial->setLegend('Spatial information');
-	$this->spatial->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->spatial->removeDecorator('DtDdWrapper');
 	
 	$this->addDisplayGroup(array('description','comments'),'commentary');
 	$this->commentary->setLegend('Findspot comments');
-	$this->commentary->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->commentary->removeDecorator('DtDdWrapper');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
 	
+parent::init();
 	}
 }

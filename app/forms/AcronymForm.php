@@ -18,13 +18,6 @@ public function __construct($options = null) {
 	  
 	$this->setName('acronym');
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$abbreviation = new Zend_Form_Element_Text('abbreviation');
 	$abbreviation->setLabel('Abbreviated term: ')
@@ -32,22 +25,19 @@ public function __construct($options = null) {
 		->addFilter('StringTrim')
 		->addFilter('StripTags')
 		->addErrorMessage('Enter a term.')
-		->setAttrib('size',20)
-		->setDecorators($decorators);
+		->setAttrib('size',20);
 
 	$expanded = new Zend_Form_Element_Text('expanded');
 	$expanded->setLabel('Expanded: ')
 		->setRequired(true)
 		->addFilter('StringTrim')
 		->addFilter('StripTags')
-		->setAttrib('size',60)
-		->setDecorators($decorators);
+		->setAttrib('size',60);
 
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
-		->setRequired(false)
-		->setDecorators($decorators);
+		->setRequired(false);
 		
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -67,5 +57,7 @@ public function __construct($options = null) {
 	$this->details->removeDecorator('HtmlTag');
 	$this->details->setLegend('Acronym details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
+	
 }

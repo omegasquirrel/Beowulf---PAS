@@ -10,6 +10,7 @@
 class RallyForm extends Pas_Form {
 	
 public function __construct($options = null) {
+	
 	$counties = new Counties();
 	$county_options = $counties->getCountyName2();
 
@@ -17,13 +18,6 @@ public function __construct($options = null) {
 		
 	ZendX_JQuery::enableForm($this);
 	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$this->setName('rally');
 
@@ -33,13 +27,11 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alnum',false,array('allowWhiteSpace' => true))
 		->setAttrib('size',60)
-		->addErrorMessage('Come on it\'s not that hard, enter a name for the rally!')
-		->setDecorators($decorators);
+		->addErrorMessage('Come on it\'s not that hard, enter a name for the rally!');
 	
 	$organisername = new Zend_Form_Element_Text('organisername');
 	$organisername->setLabel('Rally Organiser: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators);
+		->addFilters(array('StripTags','StringTrim'));
 	
 	$organiser = new Zend_Form_Element_Hidden('organiser');
 	$organiser->removeDecorator('Label')
@@ -51,14 +43,12 @@ public function __construct($options = null) {
 	$county->setLabel('County: ')
 		->addMultiOptions(array(NULL => 'Choose a county' ,'Valid counties' => $county_options))
 		->addValidator('InArray', false, array(array_keys($county_options)))
-		->setDecorators($decorators)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alpha',false,array('allowWhiteSpace' => true));;
 	
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 		->setRegisterInArrayValidator(false)
-		->setDecorators($decorators)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->addValidator('Alpha',false,array('allowWhiteSpace' => true));
@@ -66,7 +56,6 @@ public function __construct($options = null) {
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 		->setRegisterInArrayValidator(false)
-		->setDecorators($decorators)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose parish after district'))
 		->addValidator('Alpha',false,array('allowWhiteSpace' => true));
@@ -76,14 +65,13 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('maxlength',16)
-		->setDecorators($decorators)
 		->addValidators(array('NotEmpty','ValidGridRef'));
 	
 	$record_method = new Pas_Form_Element_RTE('record_method');
 	$record_method->setLabel('Recording methodology employed: ')
 		->setRequired(false)
 		->setAttrib('rows',10)
-		->setAttrib('cols',80)//->addFilter('StripTags')
+		->setAttrib('cols',80)
 		->addFilters(array('BasicHtml','EmptyParagraph','StringTrim'));
 	
 	$comments = new Zend_Form_Element_Textarea('comments');
@@ -99,8 +87,7 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Date')
-		->setDecorators($decorators);
+		->addValidator('Date');
 	
 	//Date found to
 	$date_to = new ZendX_JQuery_Form_Element_DatePicker('date_to');
@@ -108,14 +95,10 @@ public function __construct($options = null) {
 		->setRequired(false)
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Date')
-		->setDecorators($decorators);
+		->addValidator('Date');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setAttrib('class','large');
+
 	
 	$this->addElements(array(
 	$rally_name, $date_from, $date_to,
@@ -124,9 +107,7 @@ public function __construct($options = null) {
 	$record_method,	$submit));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 	
@@ -135,11 +116,9 @@ public function __construct($options = null) {
 	'date_from', 'date_to', 'organiser',
 	'organisername', 'county', 'district',
 	'parish', 'gridref'), 'details');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	
+
 	$this->details->setLegend('Rally details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	  
+	parent::init();  
 	}
 }

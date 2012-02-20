@@ -12,14 +12,6 @@ public function __construct($options = null)
 {
 	parent::__construct($options);
 	
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
-	      
 	$this->setName('dynasticDetails');
 
 	$dynasty = new Zend_Form_Element_Text('dynasty');
@@ -27,8 +19,7 @@ public function __construct($options = null)
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('NotEmpty')
-	->addErrorMessage('Come on it\'s not that hard, enter a name for this dynasty!')
-	->setDecorators($decorators);
+	->addErrorMessage('Come on it\'s not that hard, enter a name for this dynasty!');
 
 
 	$date_from = new Zend_Form_Element_Text('date_from');
@@ -36,16 +27,14 @@ public function __construct($options = null)
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
-	->addErrorMessage('You must enter a date for the start of reign')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a date for the start of reign');
 
 	$date_to = new Zend_Form_Element_Text('date_to');
 	$date_to->setLabel('Issued coins until: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
-	->addErrorMessage('You must enter a date for the end of reign')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a date for the end of reign');
 
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Description: ')
@@ -55,26 +44,16 @@ public function __construct($options = null)
 	->setAttrib('Height',400)
 	->setAttrib('ToolbarSet','Finds')
 	->addFilters(array('BasicHtml', 'EmptyParagraph', 'WordChars'))
-	->addErrorMessage('You must enter a description')
-	->addDecorator('Errors',array('placement' => 'append','class'=>'error','tag' => 'li'));
-
+	->addErrorMessage('You must enter a description');
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this dynasty valid?')
-	->setDecorators($decorators)
 	->addFilters(array('StripTags','StringTrim'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
+	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
 	
@@ -91,5 +70,6 @@ public function __construct($options = null)
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->removeDecorator('HtmlTag');
 
+	parent::init();
 	}
 }

@@ -30,22 +30,7 @@ class Database_IndexController extends Pas_Controller_Action_Admin {
 	$this->view->logins = $recent->todayVisitors();
 
 	$form = new SolrForm();
-        $form->q->setDecorators(array(
-			"ViewHelper",
-			array("Errors", array("placement" => "prepend")),
-			array("Description", array("tag" => "span", "class" => "help-block")),
-			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-			"Label",
-			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
-		));
-         $form->thumbnail->setDecorators(array(
-			"ViewHelper",
-			array("Errors", array("placement" => "prepend")),
-			array("Description", array("tag" => "span", "class" => "help-block")),
-			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-			"Label",
-			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
-		));
+
 	$form->setMethod('post');
 	$this->view->form = $form;
 	$values = $form->getValues();

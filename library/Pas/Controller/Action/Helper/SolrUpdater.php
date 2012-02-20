@@ -13,8 +13,9 @@
 class Pas_Controller_Action_Helper_SolrUpdater 
     extends Zend_Controller_Action_Helper_Abstract {
     
-    protected $_cores = array('beowulf', 'beopeople', 'beoimages',
-    'beopublications','beobiblio');
+    protected $_cores = array(
+    'beowulf', 'beopeople', 'beoimages',
+    'beopublications','beobiblio','beocontent');
   
     protected $_solr;
     

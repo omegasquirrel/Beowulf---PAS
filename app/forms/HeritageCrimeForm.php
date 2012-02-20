@@ -20,14 +20,6 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
-
 	$this->setName('rally');
 
 	$crimeType = new Zend_Form_Element_Select('crimeType');
@@ -36,22 +28,18 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addErrorMessage('You must set crime type or no point entering it!')
 	->addMultiOptions(array(NULL => 'Choose a crime type' ,'Valid types' => $crimeoptions))
-	->addValidator('inArray', false, array(array_keys($crimeoptions)))
-	->setDecorators($decorators);
+	->addValidator('inArray', false, array(array_keys($crimeoptions)));
 
 	$subject = new Zend_Form_Element_Text('subject');
 	$subject->setLabel('Title: ')
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->setDecorators($decorators)
 	->setAttrib('size',50)
 	->addErrorMessage('You must enter a subject for this crime');
 
 	$reporterID = new Zend_Form_Element_Hidden('reporterID');
 	$reporterID->removeDecorator('Label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addErrorMessage('You do not appear to have chosen a reporter');
@@ -60,7 +48,6 @@ public function __construct($options = null) {
 	$reporter->setLabel('Source: ')
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setDecorators($decorators)
 	->setDescription('Name and address of person providing intelligence.')
 	->addErrorMessage('You must enter a reporter name');
 
@@ -68,7 +55,6 @@ public function __construct($options = null) {
 	$reportingPerson->setLabel('Person making the report: ')
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setDecorators($decorators)
 	->setDescription('Name of person providing intelligence.')
 	->addErrorMessage('You must enter a reporter name');
 
@@ -77,7 +63,6 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->setDecorators($decorators)
 	->setDescription('Name of suspect if known.')
 	->addErrorMessage('You must enter a reporter name');
 
@@ -85,12 +70,10 @@ public function __construct($options = null) {
 	$county->setLabel('County: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose a county' ,'Valid counties' => $county_options))
-	->addValidator('inArray', false, array(array_keys($county_options)))
-	->setDecorators($decorators);
+	->addValidator('inArray', false, array(array_keys($county_options)));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
-	->setDecorators($decorators)
 	->addMultiOptions(array(NULL => 'Choose district after county'));
 
 	$reliability = new Zend_Form_Element_Select('reliability');
@@ -99,8 +82,7 @@ public function __construct($options = null) {
 	'4' => 'Unreliable', '5' => 'Don\'t know'))
 	->setValue(1)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setOptions(array('separator' => ''))
-	->setDecorators($decorators);
+	->setOptions(array('separator' => ''));
 
 	$intellEvaluation = new Zend_Form_Element_Select('intellEvaluation');
 	$intellEvaluation->setLabel('Intelligence Evaluation: ')
@@ -111,12 +93,10 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->setDescription('What you know about the intelligence itself.')
-	->setOptions(array('separator' => ''))
-	->setDecorators($decorators);
+	->setOptions(array('separator' => ''));
 	
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
-	->setDecorators($decorators)
 	->addMultiOptions(array(NULL => 'Choose parish after district'))
 	->addFilters(array('StripTags', 'StringTrim'));
 	
@@ -125,8 +105,7 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidators(array('NotEmpty','ValidGridRef'))
-	->setAttrib('maxlength',16)
-	->setDecorators($decorators);
+	->setAttrib('maxlength',16);
 	
 	
 	$description = new Pas_Form_Element_RTE('description');
@@ -165,30 +144,20 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidators(array('NotEmpty','Date'))
 	->addErrorMessage('Come on it\'s not that hard, enter a title!')
-	->setAttrib('size', 20)
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-	->removeDecorator('DtDdWrapper');
+	->setAttrib('size', 20);
 	
 	$sam = new Zend_Form_Element_Text('sam');
 	$sam->setLabel('Associated with scheduled monument: ')
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setDecorators($decorators)
 	->setAttrib('size',35);
 	
 	$samID = new Zend_Form_Element_Hidden('samID');
-	$samID->removeDecorator('Label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->setRequired(false)
+	$samID->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Int');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->setAttrib('class','large');
 	
 	$this->addElements(array(
 	$crimeType, $incidentDate, $samID,
@@ -208,13 +177,11 @@ public function __construct($options = null) {
 	'county', 'district', 'parish'), 
 	'details');
 	
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	
-	$this->details->removeDecorator('DtDdWrapper');
 	
 	$this->details->setLegend('Crime details: ');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
 	
+	parent::init();
 	}
 }

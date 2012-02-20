@@ -3,59 +3,40 @@
 class ByzantineNumismaticSearchForm extends Pas_Form
 {
 
-public function __construct($options = null)
-{
-$institutions = new Institutions();
-$inst_options = $institutions->getInsts();
-//Get data to form select menu for primary and secondary material
-
-//Get data to form select menu for periods
-//Get Rally data
-$rallies = new Rallies();
-$rally_options = $rallies->getRallies();
-//Get Hoard data
-$hoards = new Hoards();
-$hoard_options = $hoards->getHoards();
-
-$counties = new Counties();
-$county_options = $counties->getCountyName2();
-
-$rulers = new Rulers();
-$ruler_options = $rulers->getRulersByzantine();
-
-$denominations = new Denominations();
-$denomination_options = $denominations->getDenomsByzantine();
-$mints = new Mints();
-$mint_options = $mints->getMintsByzantine();
-$axis = new Dieaxes();
-$axis_options = $axis->getAxes();
-$reece = new Reeces();
-$reece_options = $reece->getReeces();
-
-
-$regions = new Regions();
-$region_options = $regions->getRegionName();
-
-parent::__construct($options);
-
-
-
-$this->setAttrib('accept-charset', 'UTF-8');
-
-
-
-
-    $decorators = array(
-            array('ViewHelper'),
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-            array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-			"Label",
-			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
-		    );
-
+	public function __construct($options = null)
+	{
+	$institutions = new Institutions();
+	$inst_options = $institutions->getInsts();
+	//Get data to form select menu for primary and secondary material
+	
+	//Get data to form select menu for periods
+	//Get Rally data
+	$rallies = new Rallies();
+	$rally_options = $rallies->getRallies();
+	//Get Hoard data
+	$hoards = new Hoards();
+	$hoard_options = $hoards->getHoards();
+	
+	$counties = new Counties();
+	$county_options = $counties->getCountyName2();
+	
+	$rulers = new Rulers();
+	$ruler_options = $rulers->getRulersByzantine();
+	
+	$denominations = new Denominations();
+	$denomination_options = $denominations->getDenomsByzantine();
+	$mints = new Mints();
+	$mint_options = $mints->getMintsByzantine();
+	$axis = new Dieaxes();
+	$axis_options = $axis->getAxes();
+	$reece = new Reeces();
+	$reece_options = $reece->getReeces();
+	
+	
+	$regions = new Regions();
+	$region_options = $regions->getRegionName();
+	
+	parent::__construct($options);
 
 
 	$this->setName('byzantine-search');
@@ -66,7 +47,6 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addErrorMessage('Please enter a valid number!')
-		->setDecorators($decorators)
 		->setDisableTranslator(true);
 
 	$description = new Zend_Form_Element_Text('description');
@@ -76,7 +56,6 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty')
 		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators)
 		->setDisableTranslator(true);
 
 
@@ -85,9 +64,11 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->setRequired(false)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
-		->addMultiOptions(array(NULL => NULL ,'Choose Worklow stage' => array('1'=> 'Quarantine','2' => 'On review',
-		 '3' => 'Awaiting validation', '4' => 'Published')))
-		->setDecorators($decorators)
+		->addMultiOptions(array(NULL => NULL ,'Choose Worklow stage' => array(
+		'1'=> 'Quarantine', 
+		'2' => 'On review',
+		'3' => 'Awaiting validation', 
+		'4' => 'Published')))
 		->setDisableTranslator(true);
 
 	//Rally details
@@ -97,7 +78,6 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->setUncheckedValue(NULL)
-		->setDecorators($decorators)
 		->setDisableTranslator(true);
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
@@ -106,7 +86,6 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $rally_options))
-		->setDecorators($decorators)
 		->setDisableTranslator(true);
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
@@ -114,15 +93,13 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->setRequired(false)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
-		->setUncheckedValue(NULL)
-		->setDecorators($decorators);
+		->setUncheckedValue(NULL);
 
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $hoard_options))
-		->setDecorators($decorators);
+		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $hoard_options));
 
 
 
@@ -130,22 +107,19 @@ $this->setAttrib('accept-charset', 'UTF-8');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidators(array('NotEmpty'))
-		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
-		->setDecorators($decorators);
+		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->setRegisterInArrayValidator(false)
-		->setDecorators($decorators)
-		->disabled =true;
+		->disabled = true;
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose parish after county'))
-		->setDecorators($decorators)
 		->disabled = true;
 
 	$regionID = new Zend_Form_Element_Select('regionID');
@@ -153,20 +127,17 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose a region for a wide result',
-		'Choose region' => $region_options))
-		->setDecorators($decorators);
+		'Choose region' => $region_options));
 
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidators(array('NotEmpty','ValidGridRef'))
-		->setDecorators($decorators);
+		->addValidators(array('NotEmpty','ValidGridRef'));
 
 	$fourFigure = new Zend_Form_Element_Text('fourFigure');
 	$fourFigure->setLabel('Four figure grid reference: ')
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidators(array('NotEmpty','ValidGridRef'))
-		->setDecorators($decorators);
+		->addValidators(array('NotEmpty','ValidGridRef'));
 	###
 	##Numismatic data
 	###
@@ -176,71 +147,62 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		->setRegisterInArrayValidator(false)
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $denomination_options))
-		->setDecorators($decorators);
+		->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $denomination_options));
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose primary ruler' => $ruler_options))
-		->setDecorators($decorators);
+		->addMultiOptions(array(NULL => NULL,'Choose primary ruler' => $ruler_options));
 
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
 	$mint->setLabel('Issuing mint: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $mint_options))
-		->setDecorators($decorators);
+		->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $mint_options));
 
 	//Obverse inscription
 	$obverseinsc = new Zend_Form_Element_Text('obverseLegend');
 	$obverseinsc->setLabel('Obverse inscription contains: ')
 		->setAttrib('size',60)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 
 	//Obverse description
 	$obversedesc = new Zend_Form_Element_Text('obverseDescription');
 	$obversedesc->setLabel('Obverse description contains: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 
 	//reverse inscription
 	$reverseinsc = new Zend_Form_Element_Text('reverseLegend');
 	$reverseinsc->setLabel('Reverse inscription contains: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 
 	//reverse description
 	$reversedesc = new Zend_Form_Element_Text('reverseDescription');
 	$reversedesc->setLabel('Reverse description contains: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 
 	//Die axis
 	$axis = new Zend_Form_Element_Select('axis');
 	$axis->setLabel('Die axis measurement: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose measurement' => $axis_options))
-		->setDecorators($decorators);
+		->addMultiOptions(array(NULL => NULL,'Choose measurement' => $axis_options));
 
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose institution' => $inst_options))
-	->setDecorators($decorators);
+	->addMultiOptions(array(NULL => NULL,'Choose institution' => $inst_options));
 
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin');
@@ -307,6 +269,6 @@ $this->setAttrib('accept-charset', 'UTF-8');
 		 ->addDecorator('Form')
 	     ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'));
 	$this->removeDecorator('DtDdWrapper');
-
+	parent::init();
 }
 }

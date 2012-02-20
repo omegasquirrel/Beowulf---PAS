@@ -9,22 +9,11 @@
 class HelpForm extends Pas_Form {
 
 public function __construct($options = null) {
+	
 	$authors = new Users();
 	$authorOptions = $authors->getAuthors();
 
 	parent::__construct($options);
-
-	$decorators = array(
-            array('ViewHelper'),
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
-	$this->setAttrib('enctype', 'multipart/form-data');
-
-	$this->setDecorators(array('FormElements','Form'));
 
 	$this->setName('help');
 
@@ -33,24 +22,21 @@ public function __construct($options = null) {
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'))
 	->setAttrib('size',60)
-	->addErrorMessage('You must enter a title')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a title');
 
 	$menuTitle = new Zend_Form_Element_Text('menuTitle');
 	$menuTitle->setLabel('Menu Title: ')
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'))
 	->setAttrib('size',60)
-	->addErrorMessage('You must enter a title')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a title');
 
 	$author = new Zend_Form_Element_Select('author');
 	$author->setLabel('Set the author of the article: ')
 	->addMultiOptions(array('Choose an author' => $authorOptions))
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'))
-	->addErrorMessage('You must choose an author')
-	->setDecorators($decorators);
+	->addErrorMessage('You must choose an author');
 
 	$excerpt = new Zend_Form_Element_Textarea('excerpt');
 	$excerpt->setLabel('Optional excerpt: ')
@@ -74,13 +60,11 @@ public function __construct($options = null) {
 	'databasehelp' => 'Database help',
 	'help' => 'Site help',
 	))
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addErrorMessage('You must choose a section for this to be filed under');
 
 	$parentcontent = new Zend_Form_Element_Select('parent');
 	$parentcontent->setLabel('Does this have a parent?: ')
-	->setDecorators($decorators)
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'));
 
@@ -101,41 +85,30 @@ public function __construct($options = null) {
 	$publishState = new Zend_Form_Element_Select('publishState');
 	$publishState->setLabel('Publishing status: ')
 	->addMultiOptions(array('Please choose publish state' => array('1' => 'Draft','2' => 'Admin to review', '3' => 'Published')))->setValue(1)
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'));
 
 	$slug = new Zend_Form_Element_Text('slug');
 	$slug->setLabel('Page slug: ')
 	->setAttrib('size',50)
-	->setDecorators($decorators)
 	->addFilters(array('StringTrim','StripTags','UrlSlug'))
 	->setRequired(true);
 
 	$frontPage = new Zend_Form_Element_Checkbox('frontPage');
 	$frontPage->setLabel('Appear on section\'s front page?: ')
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class','large');
-	$submit->removeDecorator('DtDdWrapper');
-	$submit->removeDecorator('HtmlTag');
 
 
 	$this->addElements(array($title,$author,$body,$section,$publishState,$excerpt,$metaKeywords,$metaDescription,$slug,$frontPage,$submit,$menuTitle ));
 	$this->addDisplayGroup(array('title','menuTitle','author','body','section','publishState','excerpt','metaKeywords','metaDescription','slug','frontPage'), 'details')->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
 
 
 	$this->addDisplayGroup(array('submit'), 'submit')->removeDecorator('HtmlTag');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 
 	$this->details->setLegend('Add new site content');
-
+	parent::init();
 	}
 }

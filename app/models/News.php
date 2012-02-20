@@ -223,4 +223,20 @@ class News extends Pas_Db_Table_Abstract {
 	$where[] =  $this->getAdapter()->quoteInto($this->_primary . ' = ?', $id);
 	return parent::update($data, $where);
 	}
+	
+	public function getSolrData($id){
+	$refs = $this->getAdapter();
+	$select = $refs->select()
+		->from($this->_name,array(
+			'identifier' => 'CONCAT("publications-",publications.id)','publications.id',
+			'title', 'authors','editors',
+			'inPublication' => 'in_publication','isbn',
+			'placePublished' => 'publication_place','yearPublished' => 'publication_year',
+			'created','updated','publisher'
+			 ))
+		->joinLeft('publicationtypes',$this->_name . '.publication_type = publicationtypes.id',
+		array('pubType' => 'term'))
+		->where('publications.id = ?',(int)$id);
+	return	$refs->fetchAll($select);		
+	}
 }

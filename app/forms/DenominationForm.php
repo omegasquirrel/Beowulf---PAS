@@ -20,13 +20,6 @@ public function __construct($options = null)
 	$material_options = $materials->getMetals();
 
 	parent::__construct($options);
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$this->setName('denomination');
 	 
@@ -34,8 +27,7 @@ public function __construct($options = null)
 	$denomination->setLabel('Denomination name: ')
 	->setRequired(true)
 	->setAttrib('size',70)
-	->addErrorMessage('Please enter a term.')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a term.');
 	
 	//Period from: Assigned via dropdown
 	$period = new Zend_Form_Element_Select('period');
@@ -44,7 +36,6 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('InArray', false, array(array_keys($period_options)))
 	->addMultiOptions(array(NULL => NULL, 'Choose period from' => $period_options))
-	->setDecorators($decorators)
 	->addErrorMessage('You must enter a period for this denomination');
 	
 	//Primary material
@@ -54,8 +45,7 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('InArray', false, array(array_keys($material_options)))
 	->addMultiOptions(array(NULL => NULL,'Choose material' => $material_options))
-	->addErrorMessage('You must enter a material for this denomination.')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a material for this denomination.');
 	
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Description: ')
@@ -78,35 +68,27 @@ public function __construct($options = null)
 	$weight->setLabel('Weight: ')
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim'))
-	->setAttrib('size',5)
-	->setDecorators($decorators);
+	->setAttrib('size',5);
 	
 	$diameter = new Zend_Form_Element_Text('diameter');
 	$diameter->setLabel('Diameter: ')
 	->setRequired(false)
 	->setAttrib('size',5)
-	->addFilters(array('StripTags','StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags','StringTrim'));
 	
 	$thickness = new Zend_Form_Element_Text('thickness');
 	$thickness->setLabel('Thickness: ')
 	->setRequired(false)
 	->setAttrib('size',5)
-	->addFilters(array('StripTags','StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags','StringTrim'));
 	
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Denomination in use: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('You must set a status')
-	->setDecorators($decorators);
+	->addErrorMessage('You must set a status');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 	
 	$this->addElements(array(
 	$denomination, $period,	$material,
@@ -115,21 +97,14 @@ public function __construct($options = null)
 	$submit));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
-	->setTimeout(60);
+	$hash->setValue($this->_salt)->setTimeout(60);
 	$this->addElement($hash);
 	
 	$this->addDisplayGroup(array('denomination','period','material','description','rarity','thickness','diameter','weight','valid'), 'details')->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 	
 	$this->details->setLegend('Denomination details: ');
+	parent::init();
 	}
 }

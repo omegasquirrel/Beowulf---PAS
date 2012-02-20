@@ -17,13 +17,6 @@ parent::__construct($options);
   
 	$this->setName('accountupgrades');
 	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 	
 	$researchOutline = new Pas_Form_Element_RTE('researchOutline');
 	$researchOutline->setLabel('Research outline: ')
@@ -51,7 +44,6 @@ parent::__construct($options);
 	$reference->setRequired(false)
 		->addFilter('StripTags')
 		->addFilter('StringTrim');
-	$reference->setDecorators($decorators);
 		
 	$referenceEmail = $this->addElement('Text','referenceEmail',
 		array('label' => 'Please provide an email address for your referee:', 'size' => '40'))->referenceEmail;
@@ -59,15 +51,13 @@ parent::__construct($options);
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addValidator('EmailAddress');
-	$referenceEmail->setDecorators($decorators);	
 
 
 	$already = new Zend_Form_Element_Radio('already');
 	$already->setLabel('Is your topic already listed on our research register?: ')
 		->addMultiOptions(array( 1 => 'Yes it is',0 => 'No it isn\'t' ))
 		->setRequired(true)
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 
 
 	//Submit button 
@@ -89,5 +79,7 @@ parent::__construct($options);
 	$this->details->removeDecorator('HtmlTag');
 	$this->details->setLegend('Details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
+	
 }

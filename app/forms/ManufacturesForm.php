@@ -13,15 +13,6 @@ public function __construct($options = null) {
 	
 	$this->setName('Manufactures');
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
-
 	$term = new Zend_Form_Element_Text('term');
 	$term->setLabel('Method of manufacture term: ')
 	->setRequired(true)
@@ -41,29 +32,21 @@ public function __construct($options = null) {
 	$valid->setLabel('Is this term valid?: ')
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Digits')
-	->setDecorators($decorators);
+	->addValidator('Digits');
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$this->addElements(array(
 	$term, 	$termdesc, 	$valid,
 	$submit)
 	);
 
-	$this->addDisplayGroup(array('term','termdesc','valid'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
 
 	$this->details->setLegend('Method of manufacture details: ');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
+	
+	parent::init();
 	}
 }

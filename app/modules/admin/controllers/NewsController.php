@@ -14,8 +14,6 @@ class Admin_NewsController extends Pas_Controller_Action_Admin {
 	*/		
 	public function init() {
 	$this->_helper->_acl->allow('flos',null);
-	$this->_helper->_acl->allow('fa',null);
-	$this->_helper->_acl->allow('admin',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_news = new News();
 	}
@@ -52,6 +50,7 @@ class Admin_NewsController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
 	$this->_news->updateNews($form->getValues(), $this->_getParam('id'));
+    $this->_helper->solrUpdater->update('beocontent', $this->_getParam('id'));  
 	$this->_flashMessenger->addMessage('News story information updated!');
 	$this->_redirect(self::REDIRECT);
 	} else {

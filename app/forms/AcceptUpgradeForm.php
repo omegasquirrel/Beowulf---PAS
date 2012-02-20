@@ -23,20 +23,11 @@ public function __construct($options = null) {
 	$this->setName('acceptupgrades');
 
 	ZendX_JQuery::enableForm($this);
-
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 	
 	$level = new Zend_Form_Element_Select('level');
 	$level->setLabel('Level of research: ')
 		->setRequired(true)
 		->addMultiOptions(array(NULL => NULL,'Choose type of research' => $projectype_list))
-		->setDecorators($decorators)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addErrorMessage('You must set the level of research');
@@ -47,8 +38,7 @@ public function __construct($options = null) {
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->setAttrib('size',60)
-		->addErrorMessage('This project needs a title.')
-		->setDecorators($decorators);
+		->addErrorMessage('This project needs a title.');
 
 	$researchOutline = new Pas_Form_Element_RTE('researchOutline');
 	$researchOutline->setLabel('Research outline: ')
@@ -66,18 +56,13 @@ public function __construct($options = null) {
 	$reference = new Zend_Form_Element_Text('reference');
 	$reference->setLabel('Referee\'s name: ')
 		->setAttrib('size',30)
-		->addFilter('StringTrim')
-		->addFilter('StripTags')
-		->setDecorators($decorators);
+		->addFilters(array('StringTrim', 'StripTags'));
 
 	$referenceEmail = new Zend_Form_Element_Text('referenceEmail');
 	$referenceEmail->setLabel('Referee\'s email address: ')
 		->setAttrib('size',30)
 		->addValidator('EmailAddress')
-		->addFilter('StringToLower')
-		->addFilter('StringTrim')
-		->addFilter('StripTags')
-		->setDecorators($decorators);
+		->addFilters(array('StringToLower', 'StringTrim', 'StripTags'));
 
 	$message = new Pas_Form_Element_RTE('message');
 	$message->setLabel('Message to user: ')
@@ -96,15 +81,12 @@ public function __construct($options = null) {
 	$fullname->setLabel('Fullname: ')
 		->setAttrib('size',30)
 		->addFilter('StringTrim')
-		->addFilter('StripTags')
-		->setDecorators($decorators);
+		->addFilter('StripTags');
 
 	$institution = $this->addElement('select', 'institution',array('label' => 'Recording institution: '))->institution;
-	$institution->setDecorators($decorators)
-			->addMultiOptions(array(NULL => NULL, 'Choose institution' => $inst_options));
+	$institution->addMultiOptions(array(NULL => NULL, 'Choose institution' => $inst_options));
 		
 	$role = $this->addElement('select', 'role',array('label' => 'Site role: '))->role;
-	$role->setDecorators($decorators);
 	$role->addMultiOptions(array(NULL => NULL,'Choose role' => $role_options));
 	$role->removeMultiOption('admin');
 
@@ -132,26 +114,23 @@ public function __construct($options = null) {
 	$email->addValidator('emailAddress')
 		->setRequired(true)
 		->addFilter('StringToLower')
-		->addErrorMessage('Please enter a valid address!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid address!');
 
 	$already = new Zend_Form_Element_Radio('already');
 	$already->setLabel('Is your topic already listed on our research register?: ')
 		->addMultiOptions(array( 1 => 'Yes it is', 0 => 'No it isn\'t' ))
-		->setRequired(true)->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setRequired(true)->setOptions(array('separator' => ''));
 
 	$insert = new Zend_Form_Element_Checkbox('insert');
 	$insert->setLabel('Insert details into research register: ')
-		->setCheckedValue(1)
-		->setDecorators($decorators);
+		->setCheckedValue(1);
 
 
 	$valid = new Zend_Form_Element_Radio('higherLevel');
 	$valid->setLabel('Approve?: ')
 		->addMultiOptions(array( 1 => 'Unauthorised', 0 => 'Authorised' ))
-		->setRequired(true)->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setRequired(true)
+		->setOptions(array('separator' => ''));
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submit')
@@ -181,6 +160,7 @@ public function __construct($options = null) {
 	$this->details->removeDecorator('HtmlTag');
 	$this->details->setLegend('Details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
 	
 }

@@ -162,4 +162,23 @@ class Content extends Pas_Db_Table_Abstract {
 	return $data;
 	}
 
+	public function getSolrData($id){
+	$contents = $this->getAdapter();
+	$select = $contents->select()
+		->from($this->_name,array(
+			'identifier' => 'CONCAT("content-",content.id)',
+			'id',
+			'title',
+			'excerpt',
+			'body',
+			'section',
+			'slug',
+			'created',
+			'updated',
+			'type' => 'CONCAT("sitecontent")',
+			 ))
+		->where($this->_name .  '.id = ?',(int)$id);
+		
+	return	$contents->fetchAll($select);		
+	}
 }

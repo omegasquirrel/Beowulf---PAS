@@ -36,41 +36,29 @@ public function __construct($options = null) {
 
 	$this->setName('earlymedievalcoin');
 	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 		
 	$denomination = new Zend_Form_Element_Select('denomination');
 	$denomination->setLabel('Denomination: ')
 	->addMultiOptions(array(NULL => NULL, 'Choose denomination' => $denomination_options))
 	->addValidator('InArray', false, array(array_keys($denomination_options)))
 	->addValidator('Digits')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags', 'StringTrim'));
 	
 	$denomination_qualifier = new Zend_Form_Element_Radio('denomination_qualifier');
 	$denomination_qualifier->setLabel('Denomination qualifier: ')
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
-	->setDecorators($decorators);
+	->setOptions(array('separator' => ''));
 
 	$categoryID = new Zend_Form_Element_Select('categoryID');
 	$categoryID->setLabel('Category of coin: ')
 	->addValidators(array('NotEmpty','Digits'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => NULL,'Choose category' => $cat_options))
-	->addValidator('InArray', false, array(array_keys($cat_options)))
-	->setDecorators($decorators);
+	->addValidator('InArray', false, array(array_keys($cat_options)));
 	
 	$ruler= new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler: ')
-	->setDecorators($decorators)
 	->addValidators(array('NotEmpty','Digits'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => NULL,'Choose a ruler' => $ro))
@@ -81,13 +69,11 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->setOptions(array('separator' => ''))
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
-	->setDecorators($decorators);
+	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
 	
 	$mint_id= new Zend_Form_Element_Select('mint_id');
 	$mint_id->setLabel('Issuing mint: ')
 	->setRegisterInArrayValidator(true)
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => NULL,'Choose a mint' => $mo))
 	->addValidator('InArray', false, array(array_keys($mo)));
@@ -97,7 +83,6 @@ public function __construct($options = null) {
 	->setRegisterInArrayValidator(true)
 	->setValue(1)
 	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $status_options))
-	->setDecorators($decorators)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('InArray', false, array(array_keys($status_options)))
 	->addValidator('Digits');
@@ -107,16 +92,13 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->setValue(1)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
-	->setDecorators($decorators);
+	->setOptions(array('separator' => ''));
 	
 	$degree_of_wear = new Zend_Form_Element_Select('degree_of_wear');
 	$degree_of_wear->setLabel('Degree of wear: ')
 	->setRegisterInArrayValidator(true)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $wear_options))
-	->setDecorators($decorators)
 	->addValidator('InArray', false, array(array_keys($wear_options)))
 	->addValidator('Digits');
 	
@@ -128,7 +110,6 @@ public function __construct($options = null) {
 	
 	$reverse_inscription = new Zend_Form_Element_Text('reverse_inscription');
 	$reverse_inscription->setLabel('Reverse inscription: ')
-	->setDecorators($decorators)
 	->setAttrib('size',60)
 	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'));
 	
@@ -167,30 +148,21 @@ public function __construct($options = null) {
 	$die_axis_measurement->setLabel('Die axis measurement: ')
 	->setRegisterInArrayValidator(false)
 	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $die_options))
-	->addValidator('InArray', false, array(array_keys($die_options)))
-	->setDecorators($decorators);
+	->addValidator('InArray', false, array(array_keys($die_options)));
 	
 	$die_axis_certainty = new Zend_Form_Element_Radio('die_axis_certainty');
 	$die_axis_certainty->setLabel('Die axis certainty: ')
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
-	->setDecorators($decorators);
+	->setOptions(array('separator' => ''));
 	
 	$type = new Zend_Form_Element_Select('typeID');
 	$type->setLabel('Coin type: ')
 	->setRegisterInArrayValidator(false)
 	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->setDecorators($decorators);
+	->addFilters(array('StripTags', 'StringTrim'));
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->setAttrib('class','large');
 	
 	$this->addElements(array(
 	$ruler, $ruler_qualifier, $denomination,
@@ -208,10 +180,9 @@ public function __construct($options = null) {
 	'reverse_description','reverse_inscription','reverse_mintmark',
 	'initial_mark','die_axis_measurement','die_axis_certainty'
 	), 'details');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
 	
 	$this->addDisplayGroup(array('submit'),'submit');
 	
+	parent::init();
 	}
 }

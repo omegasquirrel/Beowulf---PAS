@@ -11,26 +11,16 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-    		array('Description', array('tag' => '','placement' => 'append')),
-            array('Errors',array('placement' => 'append','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 	$this->setName('comments');
 
 	$comment_author = new Zend_Form_Element_Text('comment_author');
 	$comment_author->setLabel('Enter your name: ')
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addErrorMessage('Please enter a valid name!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid name!');
 
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-		->setDecorators($decorators)
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim', 'StringToLower'))
 		->addValidator('EmailAddress')   
@@ -56,10 +46,6 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setAttrib('class', 'large');
 
 	$this->addElements(array(
 		$comment_author, $comment_author_email,
@@ -71,11 +57,9 @@ public function __construct($options = null) {
 	'comment_content','messagetext'), 
 	'details');
 	
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('HtmlTag');
-	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->setLegend('Enter your comments: ');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
 }

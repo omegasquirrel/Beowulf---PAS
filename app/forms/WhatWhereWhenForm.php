@@ -9,33 +9,25 @@
 
 class WhatWhereWhenForm extends Pas_Form {
 
-public function __construct($options = null) {
+
+	public function __construct($options = null) {
 	$periods = new Periods();
 	$period_options = $periods->getPeriodFromWords();
 	
 	$counties = new Counties();
 	$counties_options = $counties->getCountyname2();
 
-parent::__construct($options);
+	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$this->setName('whatwherewhen');
-	$this->removeDecorator('HtmlTag');
 	
 	$old_findID = new Zend_Form_Element_Text('old_findID');
 	$old_findID->setLabel('Find number: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
-		->addErrorMessage('Please enter a valid string!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid string!');
 
 	//Objecttype - autocomplete from thesaurus
 	$objecttype = new Zend_Form_Element_Text('objecttype');
@@ -43,24 +35,21 @@ parent::__construct($options);
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
-		->addErrorMessage('Please enter a valid string!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid string!');
 
 	$broadperiod = new Zend_Form_Element_Select('broadperiod');
 	$broadperiod->setLabel('When: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => NULL,'Choose period from' => $period_options))
-		->addValidator('InArray', false, array($period_options))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array($period_options));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('Where: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => NULL,'Choose county' => $counties_options))
-		->addValidator('InArray', false, array($counties_options))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array($counties_options));
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -74,7 +63,7 @@ parent::__construct($options);
 	$broadperiod, $submit));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -89,5 +78,7 @@ parent::__construct($options);
 	$this->Search->addDecorators(array(array('HtmlTag', array('tag' => 'ul','id' => 'www'))
 	))->setLegend('What/Where/When search')
 	->addDecorator('FieldSet');
+	
+	parent::init();
 	}
 }

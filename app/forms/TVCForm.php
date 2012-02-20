@@ -14,14 +14,6 @@ public function __construct($options = null) {
 	
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-	
 	$this->setName('tvcdates');
 
 	$date = new ZendX_JQuery_Form_Element_DatePicker('date');
@@ -40,7 +32,6 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter a location')
-		->setDecorators($decorators)
 		->addValidator('Alnum',false,array('allowWhiteSpace' => true));
 
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -54,7 +45,7 @@ public function __construct($options = null) {
 	));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -69,5 +60,6 @@ public function __construct($options = null) {
 
 	$this->addDisplayGroup(array('submit'), 'submit');
 
+	parent::init();
 	}
 }

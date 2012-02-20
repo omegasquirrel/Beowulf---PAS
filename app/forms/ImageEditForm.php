@@ -19,21 +19,13 @@ class ImageEditForm extends Pas_Form {
 
 	$this->setName('imageeditfind');
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$imagelabel = new Zend_Form_Element_Text('label');
 	$imagelabel->setLabel('Image label')
 	->setRequired(true)
 	->setAttrib('size',70)
 	->addErrorMessage('You must enter a label')
-	->addFilters(array('StringTrim','StripTags'))
-	->setDecorators($decorators);
+	->addFilters(array('StringTrim','StripTags'));
 		
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
@@ -45,7 +37,6 @@ class ImageEditForm extends Pas_Form {
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 	->setRequired(true)
-	->setDecorators($decorators)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => NULL,'Choose a county' => $county_options))
 	->addValidator('inArray', false, array(array_keys($county_options)));
@@ -53,7 +44,6 @@ class ImageEditForm extends Pas_Form {
 	$copyright = new Zend_Form_Element_Text('imagerights');
 	$copyright->setLabel('Image copyright')
 	->setAttrib('size',70)
-	->setDecorators($decorators)
 	->addFilters(array('StringTrim','StripTags'));
 		
 	$type = new Zend_Form_Element_Select('type');
@@ -62,8 +52,7 @@ class ImageEditForm extends Pas_Form {
 	->addMultiOptions(array('Please choose publish state' => array(
 	'digital' => 'Digital image', 'illustration' => 'Scanned illustration')))
 	->setValue('digital')
-	->addFilters(array('StringTrim','StripTags'))
-	->setDecorators($decorators);
+	->addFilters(array('StringTrim','StripTags'));;
 
 	$rotate = new Zend_Form_Element_Radio('rotate');
 	$rotate->setLabel('Rotate the image: ')
@@ -75,27 +64,16 @@ class ImageEditForm extends Pas_Form {
 	'180' => '180 degrees clockwise', '270' => '270 degrees clockwise'));
 
 	$regenerate = new Zend_Form_Element_Checkbox('regenerate');
-	$regenerate->setLabel('Regenerate thumbnail: ')
-	->setDecorators($decorators);
+	$regenerate->setLabel('Regenerate thumbnail: ');
 
 	$filename = new Zend_Form_Element_Hidden('filename');
 	$filename->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->addFilters(array('StringTrim','StripTags'))
-	->removeDecorator('DtDdWrapper');
+	->addFilters(array('StringTrim','StripTags'));
 		   
 	$imagedir = new Zend_Form_Element_Hidden('imagedir');
-	$imagedir->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper');
 
 				
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->setAttrib('class','large')
-	->removeDecorator('DtDdWrapper');
 
 	$this->addElements(array(
 	$imagelabel, $county, $period,
@@ -110,16 +88,9 @@ class ImageEditForm extends Pas_Form {
 	'imagerights', 'type', 'rotate',
 	'regenerate'), 'details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit')
-	->removeDecorator('HtmlTag');
-	$this->submit->removeDecorator('DtDdWrapper');
+	$this->addDisplayGroup(array('submit'), 'submit');
 	$this->details->setLegend('Attach an image');
-	$this->details->setLegend('Attach an image')->addDecorators(array(
-			'FieldSet',
-			array('HtmlTag', array('tag' => 'ul')
-			)
-			));
 
-	$this->details->removeDecorator('DtDdWrapper');
+	parent::init();
 	}
 }

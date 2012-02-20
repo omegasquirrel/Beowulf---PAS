@@ -11,14 +11,6 @@ class AddDenomToRulerForm extends Pas_Form {
 	
 public function __construct($options = null){
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'class' => 'leftalign')),
-            array('HtmlTag', array('tag' => 'div')),
-			
-        );	  
 
 	parent::__construct($options);
 	
@@ -29,8 +21,7 @@ public function __construct($options = null){
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addValidator('Int')
-	->setAttribs(array('class'=> 'textInput'))
-	->setDecorators($decorators);
+	->setAttribs(array('class'=> 'textInput'));
 	
 	$ruler_id = new Zend_Form_Element_Hidden('ruler_id');
 	$ruler_id ->removeDecorator('label')
@@ -42,7 +33,7 @@ public function __construct($options = null){
 	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -66,5 +57,7 @@ public function __construct($options = null){
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
 	
+	parent::init();
 	}
+	
 }

@@ -16,16 +16,6 @@ class FinalValuationForm extends Pas_Form {
 	
 	parent::__construct($options);
 	
-	$this->setAttrib('accept-charset', 'UTF-8');
-	
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
-	
 	$this->setName('finalvaluation');
 
 
@@ -33,8 +23,7 @@ class FinalValuationForm extends Pas_Form {
 	$value->setLabel('Estimated market value: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Currency')
-	->setDecorators($decorators);
+	->addValidator('Currency');
 
 	$comments  = new Pas_Form_Element_RTE('comments');
 	$comments->setLabel('Valuation comments: ')
@@ -53,20 +42,12 @@ class FinalValuationForm extends Pas_Form {
 	->addValidator('Date')
 	->addErrorMessage('You must enter a chase date')
 	->setAttrib('size', 20)
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
 	->removeDecorator('DtDdWrapper');
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
+	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
 
@@ -77,15 +58,10 @@ class FinalValuationForm extends Pas_Form {
 	$this->addDisplayGroup(array(
 	'value',
 	'dateOfValuation',
-	'comments'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'comments'), 'details');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 	
+	parent::init();
 	}
 }

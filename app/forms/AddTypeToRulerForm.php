@@ -13,13 +13,6 @@ public function __construct($options = null)
 {
 parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'class' => 'leftalign')),
-            array('HtmlTag', array('tag' => 'div')),
-      );	  
 
 	$this->setAttrib('accept-charset', 'UTF-8');
 	$this->setName('TypeToRuler');
@@ -28,8 +21,7 @@ parent::__construct($options);
 	$type->setLabel('Medieval coin type: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->setAttribs(array('class'=> 'textInput'))
-	->setDecorators($decorators);
+	->setAttribs(array('class'=> 'textInput'));
 
 	$ruler_id = new Zend_Form_Element_Hidden('ruler_id');
 	$ruler_id->removeDecorator('DtDdWrapper')
@@ -39,7 +31,7 @@ parent::__construct($options);
 	->removeDecorator('Label');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')
 	->removeDecorator('label')
@@ -58,5 +50,7 @@ parent::__construct($options);
 	'form',array('HtmlTag', array('tag' => 'div'))
 	));
 	
+	parent::init();
 	}
+	
 }

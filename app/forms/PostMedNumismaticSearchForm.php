@@ -8,24 +8,14 @@
 */
 class PostMedNumismaticSearchForm extends Pas_Form {
 
-	protected function getRole() {
-	$auth = Zend_Auth::getInstance();
-	if($auth->hasIdentity()) {
-	$user = $auth->getIdentity();
-	$role = $user->role;
-	return $role;
-	} else {
-	$role = 'public';
-	return $role;
-	}
-	}
 
 	protected $_higherlevel = array('admin','flos','fa','heros','treasure','research'); 
 	
 	protected $_restricted = array('public','member');
 
 	public function __construct($options = null) {
-
+		
+	parent::__construct($options);
 	//Get data to form select menu for primary and secondary material
 	
 	$primaries = new Materials();
@@ -64,48 +54,33 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	$institutions = new Institutions();
 	$inst_options = $institutions->getInsts();
 
-	parent::__construct($options);
-		
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 	$this->setName('postmedsearch');
 
 	$old_findID = new Zend_Form_Element_Text('old_findID');
 	$old_findID->setLabel('Find number: ')
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter a valid number!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid number!');
 	
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Object description contains: ')
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 	
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
 		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators)
 		->addValidator('Digits');
-	if(in_array($this->getRole(),$this->_higherlevel)) {
+	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose Worklow stage',
 	'Available workflow stages' => array('1'=> 'Quarantine','2' => 'On review', '4' => 'Awaiting validation', '3' => 'Published')));
 	}
-	if(in_array($this->getRole(),$this->_restricted)) {
+	if(in_array($this->_role,$this->_restricted)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose Worklow stage',
 	'Available workflow stages' => array('4' => 'Awaiting validation', '3' => 'Published')));
 	}
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 	
@@ -115,44 +90,38 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setUncheckedValue(NULL)
-		->addValidators(array('Digits'))
-		->setDecorators($decorators);
+		->addValidators(array('Digits'));
 	
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose rally name','Available rallies' => $rally_options))
-		->addValidator('InArray', false, array(array_keys($rally_options)))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($rally_options)));
 	
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
 	$hoard->setLabel('Hoard find: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->setUncheckedValue(NULL)
-		->addValidator('Digits')
-		->setDecorators($decorators);
+		->addValidator('Digits');
 	
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose hoard',
 		'Available hoards' => $hoard_options))
-		->addValidator('InArray', false, array(array_keys($hoard_options)))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($hoard_options)));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose a county',
 		'Available counties' => $county_options))
-		->addValidator('InArray', false, array(array_keys($county_options)))	
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($county_options)));
 	
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->setRegisterInArrayValidator(false)
-		->setDecorators($decorators)
 		->disabled = true;
 	
 	$parish = new Zend_Form_Element_Select('parish');
@@ -160,27 +129,23 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose parish after county'))
-		->setDecorators($decorators)
 		->disabled = true;
 	
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
 		->addFilters(array('StripTags','StringTrim'))	
 		->addMultiOptions(array(NULL => 'Choose a region for a wide result',
-		'Choose region' => $region_options))
-		->setDecorators($decorators);
+		'Choose region' => $region_options));
 	
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')
 		->addFilters(array('StripTags','StringTrim'))	
-		->addValidators(array('NotEmpty','ValidGridRef','Alnum'))
-		->setDecorators($decorators);
+		->addValidators(array('NotEmpty','ValidGridRef','Alnum'));
 	
 	$fourFigure = new Zend_Form_Element_Text('fourFigure');
 	$fourFigure->setLabel('Four figure grid reference: ')
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidators(array('NotEmpty','ValidGridRef','Alnum'))
-		->setDecorators($decorators);
+		->addValidators(array('NotEmpty','ValidGridRef','Alnum'));
 	###
 	##Numismatic data
 	###
@@ -190,8 +155,7 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose denomination type',
 		'Available denominations' => $denomination_options))
-		->addValidator('InArray', false, array(array_keys($denomination_options)))	
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($denomination_options)));
 	
 	
 	$cat = new Zend_Form_Element_Select('category');
@@ -200,14 +164,12 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->addValidator('InArray', false, array(array_keys($cat_options)))	
 		->addMultiOptions(array(NULL => 'Choose category',
 		'Available categories' => $cat_options))
-		->setDecorators($decorators)
 		->addFilters(array('StripTags','StringTrim'));
 	
 	$type = new Zend_Form_Element_Select('typeID');
 	$type->setLabel('Coin type: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators)
 		->addMultiOptions(array(NULL => 'Available types depend on choice of ruler'));
 		
 	//Primary ruler
@@ -217,8 +179,7 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL =>'Choose primary ruler', 
 		'Available rulers' => $ruler_options))
-		->addValidator('InArray', false, array(array_keys($ruler_options)))	
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($ruler_options)));
 		
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
@@ -227,40 +188,35 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL =>'Choose active mint',
 		'Available mints' => $mint_options))
-		->addValidator('InArray', false, array(array_keys($mint_options)))	
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($mint_options)));	
 	
 	//Obverse inscription
 	$obverseinsc = new Zend_Form_Element_Text('obinsc');
 	$obverseinsc->setLabel('Obverse inscription contains: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 	
 	//Obverse description
 	$obversedesc = new Zend_Form_Element_Text('obdesc');
 	$obversedesc->setLabel('Obverse description contains: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 	
 	//reverse inscription
 	$reverseinsc = new Zend_Form_Element_Text('revinsc');
 	$reverseinsc->setLabel('Reverse inscription contains: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 	
 	//reverse description
 	$reversedesc = new Zend_Form_Element_Text('revdesc');
 	$reversedesc->setLabel('Reverse description contains: ')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please enter a valid term')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid term');
 	
 	//Die axis
 	$axis = new Zend_Form_Element_Select('axis');
@@ -268,38 +224,24 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose measurement',
 		'Available die axes' => $axis_options))
-		->addValidator('InArray', false, array(array_keys($axis_options)))	
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($axis_options)));	
 	
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin')
-	
-	->setAttrib('class', 'none')->removeDecorator('label')
-	              ->removeDecorator('HtmlTag')
-				  ->removeDecorator('DtDdWrapper');
+		->setAttrib('class', 'none');
 	
 	
 	$broadperiod = new Zend_Form_Element_Hidden('broadperiod');
 	$broadperiod->setValue('Post Medieval')
 		->setAttrib('class', 'none')
 		->addFilters(array('StripTags','StringTrim', 'StringToUpper'))
-		->addValidator('Alpha',false,array('allowWhiteSpace' => true))
-		->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->addValidator('Alpha',false,array('allowWhiteSpace' => true));
 		
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setLabel('Submit your search ..')
-		->setAttrib('class', 'large');
+
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 	
@@ -308,8 +250,7 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => 'Choose an institution',
-	'Available institutions' => $inst_options))
-	->setDecorators($decorators); 
+	'Available institutions' => $inst_options));
 	
 	$this->addElements(array(
 	$old_findID,$type,$description,
@@ -326,25 +267,16 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	'category','ruler','typeID',
 	'denomination','mint','moneyer',
 	'axis','obinsc','obdesc',
-	'revinsc','revdesc'), 'numismatics')
-	->removeDecorator('HtmlTag');
-	$this->numismatics->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->numismatics->removeDecorator('DtDdWrapper');
+	'revinsc','revdesc'), 'numismatics');
 	
 	$this->addDisplayGroup(array('old_findID','description','rally','rallyID','hoard','hID','workflow'), 'details')->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
 	
 	$this->addDisplayGroup(array('county','regionID','district','parish','gridref','fourFigure','institution'), 'spatial')->removeDecorator('HtmlTag');
-	$this->spatial->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->spatial->removeDecorator('DtDdWrapper');
 	
 	$this->numismatics->setLegend('Numismatic details');
 	$this->spatial->setLegend('Spatial details');
 	$this->details->setLegend('Object specific details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+	parent::init();
 	}
 }

@@ -14,15 +14,6 @@ public function __construct($options = null)
 
 parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'), 
-    		array('Description', array('tag' => '','placement' => 'append')),
-            array('Errors',array('placement' => 'append','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-			
-
 	$this->setName('comments');
 
 	$comment_author_IP = new Zend_Form_Element_Hidden('comment_author_IP');
@@ -46,12 +37,10 @@ parent::__construct($options);
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('NotEmpty')
 	->addErrorMessage('Please enter a valid name!')
-	->setDecorators($decorators)
 	->setDescription('If you are offering us SEO services, you will be added to the akismet spam list.');
 
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addValidator('EmailAddress')   
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
@@ -60,7 +49,6 @@ parent::__construct($options);
 
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')
-	->setDecorators($decorators)
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addValidator('NotEmpty')
@@ -77,22 +65,20 @@ parent::__construct($options);
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'))
 	->addErrorMessage('Please enter something in the comments box!');
 
-	$privateKey = $this->_config->webservice->recaptcha->privatekey;
-	$pubKey = $this->_config->webservice->recaptcha->pubkey;
 
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(  
-                        		'captcha' => 'ReCaptcha',
-								'label' => 'Please fill in this reCaptcha to prove human life exists at your end!',
-                                'captchaOptions' => array(  
-                                'captcha' => 'ReCaptcha',								  
-                                'privKey' => $privateKey,
-                                'pubKey' => $pubKey,
-								'theme'=> 'clean')
+                        	'captcha' => 'ReCaptcha',
+							'label' => 'Please fill in this reCaptcha to prove human life exists at your end!',
+                            'captchaOptions' => array(  
+                            'captcha' => 'ReCaptcha',								  
+                            'privKey' => $this->_privateKey,
+                            'pubKey' => $this->_pubKey,
+							'theme'=> 'clean')
                         ));
                         
                         
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -144,5 +130,7 @@ parent::__construct($options);
 	$this->addDisplayGroup(array('submit'), 'submit');
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
+	parent::init();
 	}
+	
 }

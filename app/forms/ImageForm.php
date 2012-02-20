@@ -34,29 +34,17 @@ public function __construct($options = null) {
 	$this->_copyright = 'The Portable Antiquities Scheme';
 	}	
 	
-        parent::__construct($options);
+	parent::__construct($options);
 
-	$this->setAttrib('enctype', 'multipart/form-data');
 	
 	$this->setName('imagetofind');
 	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$image = new Zend_Form_Element_File('image');
 	$image->setLabel('Upload an image: ')
 	->setRequired(true)
 	->setAttrib('size',20)
 	->addValidator('Extension', false, 'jpeg,tif,jpg,png,gif,tiff,JPG,JPEG,GIF,PNG,TIFF,TIF') 
-	->addDecorator('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li'))
-	->addDecorator('Label')
-	->addDecorator('HtmlTag', array('tag' => 'li'))
-	->addDecorator('file')
 	->setDescription('Filename should not include spaces,commas,( or )')
 	->addErrorMessage('You must upload a file with the correct file extension in this array - jpeg,tif,jpg,png,gif');
 
@@ -66,13 +54,11 @@ public function __construct($options = null) {
 	->setAttrib('size',60)
 	->addErrorMessage('You must enter a label')
 	->setDescription('This must be descriptive text about the image - NOT THE FILE or FIND NUMBER/NAME')
-	->setDecorators($decorators)
 	->addFilters(array('StripTags','StringTrim'));
 		
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
 	->setRequired(true)
-	->setDecorators($decorators)
 	->addErrorMessage('You must enter a period for the image')
 	->addMultiOptions(array(NULL => 'Select a period', 'Valid periods' => $period_options))
 	->addValidator('inArray', false, array(array_keys($period_options)));
@@ -80,7 +66,6 @@ public function __construct($options = null) {
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 	->setRequired(true)
-	->setDecorators($decorators)
 	->addErrorMessage('You must enter a county of origin')
 	->addMultiOptions(array(NULL => 'Select a county of origin','Valid counties' => $county_options))
 	->addValidator('inArray', false, array(array_keys($county_options)));
@@ -89,7 +74,6 @@ public function __construct($options = null) {
 	$copyright->setLabel('Image copyright: ')
 	->setRequired(true)
 	->addErrorMessage('You must enter a licence holder')
-	->setDecorators($decorators)
 	->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copy))
 	->setValue($this->_copyright);
 		
@@ -98,14 +82,9 @@ public function __construct($options = null) {
 	->setRequired(true)
 	->addMultiOptions(array(NULL => 'Select the type of image',
 	'Image types' => array('digital' => 'Digital image','illustration' => 'Scanned illustration')))
-	->setValue('digital')
-	->setDecorators($decorators);
+	->setValue('digital');
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->setAttrib('class','large')
-	->removeDecorator('DtDdWrapper');
 
 	$this->addElements(array(
 	$image, $imagelabel, $county,
@@ -115,16 +94,12 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array(
 	'image', 'label', 'county',
 	'period', 'copyrighttext', 'type'),
-	'details')->removeDecorator('HtmlTag');
+	'details');
 	
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	
 	$this->addDisplayGroup(array('submit'), 'submit')->removeDecorator('HtmlTag');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 	$this->details->setLegend('Attach an image');
 
+	parent::init();
 	}
 }

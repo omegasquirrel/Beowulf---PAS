@@ -30,24 +30,9 @@ class AccountForm extends Pas_Form
         $this->setAction($this->_actionUrl)
              ->setMethod('post')
              ->setAttrib('id', 'accountform');
-
-        $this->clearDecorators();
-        $this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-		$this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element'); 
 		
-		
-        $decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'prepend','class'=>'error','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *', 'class' => 'leftalign')),
-            array('HtmlTag', array('tag' => 'li')),
-			
-        );
-        
 		$username = $this->addElement('text','username',array('label' => 'Username: '))->username;
-		$username->setDecorators($decorators)
-				->addFilter('StripTags')
+		$username->addFilter('StripTags')
 				->addFilter('StringTrim')
 				->addValidator('StringLength', true, array('max' => 40))
 				->setRequired(true);
@@ -61,7 +46,6 @@ class AccountForm extends Pas_Form
 				 ->addErrorMessage('Please enter a valid password!');
         $password->getValidator('StringLength')->setMessage('Password is too short');
         $password->getValidator('Regex')->setMessage('Password does not contain letters and numbers');
-        $password->setDecorators($decorators);
 
         $firstName = $this->addElement('text', 'first_name', 
             array('label' => 'First Name', 'size' => '30'))->first_name;
@@ -69,7 +53,6 @@ class AccountForm extends Pas_Form
                   ->addFilter('StripTags')
                   ->addFilter('StringTrim')
 				  ->addErrorMessage('You must enter a firstname');
-		$firstName->setDecorators($decorators);
 
         $lastName = $this->addElement('text', 'last_name', 
             array('label' => 'Last Name', 'size' => '30'))->last_name;
@@ -77,7 +60,6 @@ class AccountForm extends Pas_Form
                  ->addFilter('StripTags')
                  ->addFilter('StringTrim')
 				 ->addErrorMessage('You must enter a surname');
-        $lastName->setDecorators($decorators);
 
         $fullname = $this->addElement('text', 'fullname', 
             array('label' => 'Preferred Name: ', 'size' => '30'))->fullname;
@@ -85,7 +67,6 @@ class AccountForm extends Pas_Form
                       ->addFilter('StripTags')
                       ->addFilter('StringTrim')
 					  ->addErrorMessage('You must enter your preferred name');
-        $fullname->setDecorators($decorators);
 
         $email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))->email;
         $email->addValidator('EmailAddress')
@@ -94,10 +75,8 @@ class AccountForm extends Pas_Form
 			  ->addFilter('StringTrim')
 			  ->addFilter('StripTags')
 			  ->addErrorMessage('Please enter a valid address!');
-        $email->setDecorators($decorators);
 		
 		$institution = $this->addElement('text', 'institution',array('label' => 'Recording institution: ', 'size' => '30'))->institution;
-        $institution->setDecorators($decorators);
 		
 		
 		$researchOutline = $this->addElement('textArea','research_outline', 
@@ -114,7 +93,6 @@ class AccountForm extends Pas_Form
 		$reference->setRequired(false)
 				  ->addFilter('StripTags')
 				  ->addFilter('StringTrim');
-		$reference->setDecorators($decorators);
 		
 		$referenceEmail = $this->addElement('text','reference_email',
 				array('label' => 'Please provide an email address for your referee:', 
@@ -124,7 +102,6 @@ class AccountForm extends Pas_Form
 				  ->addFilter('StripTags')
 				  ->addFilter('StringTrim')
 				  ->addValidator('EmailAddress');
-		$referenceEmail->setDecorators($decorators);		
 		
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('Set my account up on Beowulf');
@@ -146,7 +123,8 @@ class AccountForm extends Pas_Form
 	
 		$this->addDecorator('FormElements')
      	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'))
-	 	->addDecorator('FieldSet') ->addDecorator('Form');
+	 	->addDecorator('FieldSet') 
+	 	->addDecorator('Form');
 	
 	 	$this->userdetails->removeDecorator('DtDdWrapper');
 		$this->userdetails->removeDecorator('FieldSet');
@@ -155,5 +133,6 @@ class AccountForm extends Pas_Form
 
 		$this->addDisplayGroup(array('submit'),'submit');		 
 		$this->setLegend('Edit account details: ');
+		parent::init();
     }
 }

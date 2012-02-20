@@ -11,15 +11,6 @@ class OriginForm extends Pas_Form {
 public function __construct($options = null) {
 
 	parent::__construct($options);
-       
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-	
 	$this->setName('origingridref');
 
 	$term = new Zend_Form_Element_Text('term');
@@ -28,8 +19,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
 		->setAttrib('size',60)
-		->addErrorMessage('Please enter a valid grid reference origin term!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid grid reference origin term!');
 
 	$termdesc = new Zend_Form_Element_Textarea('termdesc');
 	$termdesc->setLabel('Description of term: ')
@@ -43,35 +33,23 @@ public function __construct($options = null) {
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
 		->setRequired(true)
-		->setDecorators($decorators)
 		->addValidator('Int')
 		->addErrorMessage('You must set the status of this term');
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
 	
 	$this->addElements(array(
 	$term, 	$termdesc,	$valid,
 	$submit));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 	
-	$this->addDisplayGroup(array('term','termdesc','valid'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
 	$this->details->setLegend('Ascribed culture');
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
+	parent::init();
 	}
 }

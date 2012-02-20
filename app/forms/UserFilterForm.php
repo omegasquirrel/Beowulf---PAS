@@ -17,7 +17,6 @@ public function __construct($options = null) {
 	
 	$this->setName('filterusers');
 	
-	$decorator =  array('TableDecInput');
 
 	$username = new Zend_Form_Element_Text('username');
 	$username->setLabel('Filter by username')
@@ -69,7 +68,6 @@ public function __construct($options = null) {
 		->removeDecorator('HtmlTag')
 		->removeDecorator('DtDdWrapper');
 	
-	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')
 		->setLabel('Filter')
@@ -78,7 +76,7 @@ public function __construct($options = null) {
 		->removeDecorator('DtDdWrapper');
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
@@ -89,6 +87,7 @@ public function __construct($options = null) {
 	$username, $name, $role,
 	$login, $visits, $submit)
 	);
-	  
+	 
+	parent::init(); 
 	}
 }

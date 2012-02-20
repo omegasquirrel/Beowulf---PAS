@@ -7,7 +7,7 @@
 * @license    GNU General Public License
 */
 
-class IronAgeNumismaticSearchForm extends Twitter_Form {
+class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	protected function getRole() {
 	$auth = Zend_Auth::getInstance();
@@ -78,8 +78,7 @@ class IronAgeNumismaticSearchForm extends Twitter_Form {
         $cci = new Zend_Form_Element_Text('cciNumber');
         $cci->setLabel('CCI number:')
                 ->setDescription('This is a unique number')
-                ->setFilters(array('StringTrim','StripTags'))
-                ->addValidator('Alnum');
+                ->setFilters(array('StringTrim','StripTags'));
 
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Object description contains: ')
@@ -352,7 +351,7 @@ class IronAgeNumismaticSearchForm extends Twitter_Form {
 	->addMultiOptions(array(NULL => NULL,'Choose institution' => $inst_options));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(4800);
@@ -413,6 +412,6 @@ class IronAgeNumismaticSearchForm extends Twitter_Form {
 	$this->submit->removeDecorator('DtDdWrapper');
 	$this->submit->removeDecorator('HtmlTag');
 
-
+	parent::init();
 	}
 }

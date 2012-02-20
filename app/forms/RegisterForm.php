@@ -24,19 +24,8 @@ public function init()
     $this->setAction($this->_actionUrl)
          ->setMethod('post')
          ->setAttrib('id', 'registerform');
-    $this->addElementPrefixPath('Pas_Validate', 'Pas/Validate/', 'validate');
-            $this->addPrefixPath('Pas_Form_Element', 'Pas/Form/Element/', 'element');
 
 
-    $decorators = array(
-
-        array('ViewHelper'),
-        array('Description', array('placement' => 'append','class' => 'info')),
-        array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-        array('Label', array('separator'=>' ', 'requiredSuffix' => ' *', 'class' => 'leftalign')),
-        array('HtmlTag', array('tag' => 'li')),
-
-    );
 
 $this->addElement('rawText', 'text1', array(
     'value' => '<p class="info">By registering you agree to these <a href="#toc" rel="facebox">terms and conditions</a> of the database.</p>',
@@ -55,7 +44,6 @@ $this->addElement('rawText', 'text1', array(
             ->setDescription('Username must be more than 3 characters and include only letters and numbers');
     $username->getValidator('Alnum')
             ->setMessage('Your username must be letters and digits only');
-    $username->setDecorators($decorators);
 
     $password = $this->addElement('Password', 'password', array('label' => 'Password'))->password;
     $password = $this->getElement('password');
@@ -67,21 +55,18 @@ $this->addElement('rawText', 'text1', array(
             ->addErrorMessage('Please enter a valid password!');
     $password->getValidator('StringLength')->setMessage('Password is too short');
     $password->getValidator('Regex')->setMessage('Password does not contain letters and numbers');
-    $password->setDecorators($decorators);
 
     $firstName = $this->addElement('Text', 'first_name', array('label' => 'First Name', 'size' => '30'))->first_name;
     $firstName = $this->getElement('first_name');
     $firstName->setRequired(true)
             ->addFilters(array('StringTrim', 'StripTags'))
             ->addErrorMessage('You must enter a firstname');
-    $firstName->setDecorators($decorators);
 
     $lastName = $this->addElement('Text', 'last_name', array('label' => 'Last Name', 'size' => '30'))->last_name;
     $lastName = $this->getElement('last_name');
     $lastName->setRequired(true)
             ->addFilters(array('StringTrim', 'StripTags'))
             ->addErrorMessage('You must enter a surname');
-    $lastName->setDecorators($decorators);
 
     $preferredName = $this->addElement('Text', 'preferred_name', array('label' => 'Preferred Name', 'size' => '30'))->preferred_name;
     $preferredName = $this->getElement('preferred_name');
@@ -89,7 +74,6 @@ $this->addElement('rawText', 'text1', array(
             ->setRequired(true)
             ->addFilters(array('StringToLower','StringTrim', 'StripTags'))
             ->addErrorMessage('You must enter your preferred name');
-    $preferredName->setDecorators($decorators);
 
     $email = $this->addElement('Text', 'email', array('label' => 'Email Address', 'size' => '30'))->email;
     $email = $this->getElement('email');
@@ -98,13 +82,9 @@ $this->addElement('rawText', 'text1', array(
             ->addFilters(array('StringToLower','StringTrim', 'StripTags'))
             ->addValidator('Db_NoRecordExists', false, array('table' => 'users',
                                                            'field' => 'email'));
-    $email->setDecorators($decorators);
 
     $hash = new Zend_Form_Element_Hash('csrf');
-    $hash->setValue($this->_config->form->salt)
-            ->removeDecorator('DtDdWrapper')
-            ->removeDecorator('HtmlTag')
-            ->removeDecorator('label')
+    $hash->setValue($this->_salt)
             ->setTimeout(4800);
     $this->addElement($hash);
 
@@ -113,8 +93,8 @@ $this->addElement('rawText', 'text1', array(
                   'label' => 'Prove you are not a robot by completing this.',
                   'captchaOptions' => array(
                   'captcha' => 'ReCaptcha',
-                  'privKey' => $this->_config->webservice->recaptcha->privatekey,
-                  'pubKey' => $this->_config->webservice->recaptcha->pubkey,
+                  'privKey' => $this->_privateKey,
+                  'pubKey' => $this->_pubKey,
                   'theme'=> 'clean')
                     ));
     $captcha->setDescription('Due to the surge in robotic activity, we have
@@ -125,25 +105,16 @@ $this->addElement('rawText', 'text1', array(
 
            //Submit button
     $submit = new Zend_Form_Element_Submit('submit');
-    $submit->setAttrib('id', 'submitbutton')
-            ->setAttrib('class', 'btn btn-large btn-success')
-            ->removeDecorator('DtDdWrapper')
-            ->removeDecorator('HtmlTag')
-            ->setLabel('Register!');
+   $submit->setLabel('Register!');
 
     $this->addElement($submit);
 
     $this->addDisplayGroup(array('username','password','first_name','last_name','preferred_name','email','text1','captcha'), 'details');
     $this->details->setLegend('Register with the Scheme: ');
-    $this->removeDecorator('DtDdWrapper');
-    $this->removeDecorator('HtmlTag');
-    $this->details->removeDecorator('DtDdWrapper');
 
 
     $this->addDisplayGroup(array('submit'), 'submit');
-    $this->submit->removeDecorator('DtDdWrapper');
-    $this->submit->removeDecorator('HtmlTag');
-
+	parent::init();
 
     }
 }

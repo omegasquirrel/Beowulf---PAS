@@ -15,13 +15,6 @@ public function __construct($options = null) {
 	$services = new WebServices();
 	$servicesListed = $services->getValidServices();      
 	
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 	$this->setName('socialweb');
 	
 	$username = new Zend_Form_Element_Text('account');
@@ -29,47 +22,30 @@ public function __construct($options = null) {
 	->setRequired(true)
 		->addFilters(array('StringTrim', 'StripTags'))
 	->setAttrib('size',30)
-	->addErrorMessage('Please enter a valid username!')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a valid username!');
 	
 	$service = new Zend_Form_Element_Select('accountName');
 	$service->setLabel('Social services: ')
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addMultiOptions(array( NULL => 'Choose a service', 'Valid services' => $servicesListed))
-		->addValidator('InArray', false, array(array_keys($servicesListed)))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($servicesListed)));
 	
 	$public = new Zend_Form_Element_Checkbox('public');
 	$public->setLabel('Show this to public users?: ')
 		->addFilters(array('StringTrim', 'StripTags'))
 		->setRequired(true)
-		->setDecorators($decorators)
 		->addErrorMessage('You must set the status of this account');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
-	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 		
 	$this->addElements(array( $service,$hash, $username, $public, $submit));
 	
-	$this->addDisplayGroup(array('accountName','account','public'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('accountName','account','public'), 'details');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
-	
+	parent::init();
 	}
 }

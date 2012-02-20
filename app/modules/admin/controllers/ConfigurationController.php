@@ -46,7 +46,7 @@ class Admin_ConfigurationController extends Pas_Controller_Action_Admin {
 	}
 
 	public function saltsAction(){
-	$this->view->salt = $this->_config->form->salt;
+	$this->view->salt = $this->_salt;
 	$this->view->authority = $this->_config->auth->salt;
 	}
 }

@@ -10,16 +10,7 @@ class QuoteForm extends Pas_Form {
 public function __construct($options = null) {
 
 	parent::__construct($options);
-	
- 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-      
+
 	$this->setName('quotes');
 
 	$quote = new Pas_Form_Element_RTE('quote');
@@ -43,15 +34,13 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->setAttrib('size',10)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Please provide expiry date.')
-		->setDecorators($decorators);
+		->addErrorMessage('Please provide expiry date.');
 
 	$valid = new Zend_Form_Element_Checkbox('status');
 	$valid->setLabel('Quote/Announcement is in use: ')
 		->setRequired(true)
 		->addValidator('Int')
-		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators);
+		->addFilters(array('StripTags','StringTrim'));
 
 	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Type: ')
@@ -59,21 +48,16 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->setValue('quote')
 		->addMultiOptions(array(NULL => 'Choose type', 'quote' => 'Quote', 
-		'announcement' => 'Announcement'))
-		->setDecorators($decorators);
+		'announcement' => 'Announcement'));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 	
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton');
-	$submit->removeDecorator('DtDdWrapper');
-	$submit->removeDecorator('HtmlTag');
+
 	
 	$this->addElements(array(
 	$quote,	$quotedBy, $valid,
@@ -83,9 +67,8 @@ public function __construct($options = null) {
 	'quote', 'quotedBy', 'status',
 	'expire', 'type', 'submit'),
 	 'details');
-	$this->details->removeDecorator('HtmlTag');
-	$this->details->removeDecorator('DtDdWrapper');
-	      
+
+	parent::init();      
 	
 	}
 }

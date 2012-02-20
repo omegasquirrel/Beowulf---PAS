@@ -24,15 +24,6 @@ public function __construct($options = null) {
 	$this->setName('acceptupgrades');
 	
 	ZendX_JQuery::enableForm($this);
-	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 
 	$researchOutline = new Zend_Form_Element_Textarea('researchOutline');
 	$researchOutline->setLabel('Research outline: ')
@@ -52,23 +43,20 @@ public function __construct($options = null) {
 	$reference->setLabel('Referee\'s name: ')
 		->setAttrib('size',30)
 		->addFilters(array('StringTrim', 'StripTags'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-		->setDecorators($decorators);
+		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
 
 	$referenceEmail = new Zend_Form_Element_Text('referenceEmail');
 	$referenceEmail->setLabel('Referee\'s email address: ')
 	->setAttrib('size',30)
 	->addFilters(array('StringTrim', 'StripTags','StringToLower'))
-	->addValidator('EmailAddress',false,array('mx' => true))
-	->setDecorators($decorators);
+	->addValidator('EmailAddress',false,array('mx' => true));
 
 
 	$fullname = new Zend_Form_Element_Text('fullname');
 	$fullname->setLabel('Fullname: ')
 		->setAttrib('size',30)
 		->addFilters(array('StringTrim', 'StripTags'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-		->setDecorators($decorators);
+		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
 
 
 	$email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))->email;
@@ -76,42 +64,28 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'StripTags','StringToLower'))
 		->addValidator('EmailAddress',false,array('mx' => true))
 		->addErrorMessage('Please enter a valid address!');
-	$email->setDecorators($decorators);
 
 	$already = new Zend_Form_Element_Radio('already');
 	$already->setLabel('Is your topic already listed on our research register?: ')
 		->addMultiOptions(array( 1 => 'Yes it is',0 => 'No it isn\'t' ))
-		->setRequired(true)
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setRequired(true);
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->setLabel('Reject application');
+	$submit->setLabel('Reject application');
 
 	$this->addElements(array(
 	$researchOutline, $fullname, $reference,
 	$referenceEmail, $submit, $message));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 	
-	$this->addDisplayGroup(array('fullname','email','messageToUser','reference','referenceEmail','researchOutline'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('fullname','email','messageToUser','reference','referenceEmail','researchOutline'), 'details');
 	$this->details->setLegend('Details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
-
+	parent::init();
 	}
 }

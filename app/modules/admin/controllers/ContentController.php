@@ -38,6 +38,7 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $insertData = $form->getValues();
     $content = new Content();
     $insert = $content->add($insertData);
+
     $this->_helper->solrUpdater->update('beocontent', $insert);
     $this->_flashMessenger->addMessage('Static content added');
     $this->_redirect('/admin/content');
@@ -63,7 +64,8 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $where[] = $this->_content->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
     $this->_content->update($updateData, $where);
     $this->_helper->solrUpdater->update('beocontent', $this->_getParam('id'));  
-    $oldData = $this->_content->fetchRow('id=' . (int)$id)->toArray();
+    $oldData = $this->_content->fetchRow($this->_content->select()->where('id= ?' , (int)$this->_getParam('id')))->toArray();
+
     $this->_helper->audit($updateData, $oldData, 'ContentAudit', 
             $this->_getParam('id'), $this->_getParam('id'));
     $cache = Zend_Registry::get('rulercache');

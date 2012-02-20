@@ -24,13 +24,6 @@ parent::__construct($options);
   
 	$this->setName('emailsearch');
 	ZendX_JQuery::enableForm($this);
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 
 
 	$message = new Zend_Form_Element_Textarea('messageToUser');
@@ -45,29 +38,19 @@ parent::__construct($options);
 	$fullname->setLabel('Send this to: ')
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->setAttrib('size',30)
-	->setDecorators($decorators);
+	->setAttrib('size',30);
 
 	$email = $this->addElement('text', 'email',array('label' => 'Their email Address', 'size' => '30'))->email;
 	$email->addValidator('EmailAddress')
 	->addFilters(array('StringTrim','StripTags','StringToLower'))
 	->setRequired(true)
 	->addErrorMessage('Please enter a valid address!');
-	$email->setDecorators($decorators);
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->setLabel('Send to a friend');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
+	$hash->setValue($this->_salt)
 	->setTimeout(60);
 	$this->addElement($hash);
 
@@ -76,13 +59,10 @@ parent::__construct($options);
 	$submit,
 	$message));
 
-	$this->addDisplayGroup(array('fullname','email','messageToUser'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('fullname','email','messageToUser'), 'details');
 	$this->details->setLegend('Details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
 
-}
+	parent::init();
+	}
 }

@@ -10,19 +10,11 @@
 class CommentFindForm extends Pas_Form
 {
 
+
 public function __construct($options = null)
 {
 
 parent::__construct($options);
-
-	$decorators = array(
-            array('ViewHelper'),
-            array('Description', array('tag' => '','placement' => 'append')),
-            array('Errors',array('placement' => 'append','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-        );
-
 
 	$this->setName('comments');
 
@@ -31,7 +23,7 @@ parent::__construct($options);
 	 * Form hash to prevent CSRF
      */
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(1800);
@@ -44,15 +36,13 @@ parent::__construct($options);
 	$comment_author->setLabel('Enter your name: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('Please enter a valid name!')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a valid name!');
 
 	/**
 	 * Email address element
      */
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addValidator('EmailAddress')
@@ -64,7 +54,6 @@ parent::__construct($options);
      */
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')
-	->setDecorators($decorators)
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addErrorMessage('Please enter a valid address!')
@@ -81,17 +70,13 @@ parent::__construct($options);
 	->setDescription('The following HTML tags can be used - a,p,ul,li,em,strong,br,img,a - and
 	paragraphs will be automatically created');
 
-
-	$privateKey = $this->_config->webservice->recaptcha->privatekey;
-	$pubKey = $this->_config->webservice->recaptcha->pubkey;
-
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(
                         	'captcha' => 'ReCaptcha',
 				'label' => 'Prove you are not a robot/spammer',
                                 'captchaOptions' => array(
                                 'captcha' => 'ReCaptcha',
-                                'privKey' => $privateKey,
-                                'pubKey' => $pubKey,
+                                'privKey' => $this->_privateKey,
+                                'pubKey' => $this->_pubKey,
 				'theme'=> 'clean')
                         ));
 
@@ -118,10 +103,11 @@ parent::__construct($options);
 	$comment_author_email->setValue($user->email);
 
 	$this->addElements(array(
-
-        $comment_author,
+    $comment_author,
 	$comment_author_email,
-        $comment_content, $comment_author_url, $submit));
+	$comment_content, 
+	$comment_author_url, 
+	$submit));
 
 	$this->addDisplayGroup(array('comment_author','comment_author_email','comment_author_url',
 	'comment_content'), 'details');
@@ -132,5 +118,7 @@ parent::__construct($options);
 	$this->details->setLegend('Enter your comments: ');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
+		parent::init();
 	}
 }

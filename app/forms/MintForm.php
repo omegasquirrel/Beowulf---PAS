@@ -15,16 +15,6 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$this->setAttrib('accept-charset', 'UTF-8');
-	
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-       
 	$this->setName('people');
 
 	$mint_name = new Zend_Form_Element_Text('mint_name');
@@ -32,7 +22,6 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
 		->addFilters(array('StripTags','StringTrim'))
-		->setDecorators($decorators)
 		->setAttrib('size',70);
 
 
@@ -40,8 +29,7 @@ public function __construct($options = null) {
 	$valid->SetLabel('Is this ruler or issuer currently valid: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Int')
-		->setDecorators($decorators);
+		->addValidator('Int');
 	
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
@@ -49,8 +37,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL=> NULL,'Choose period:' => $period_actives))
 		->addValidator('InArray', false, array(array_keys($period_actives)))
-		->addErrorMessage('You must enter a period for this mint')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a period for this mint');
 
 		//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -64,7 +51,7 @@ public function __construct($options = null) {
 	$submit));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 		->removeDecorator('DtDdWrapper')
 		->removeDecorator('HtmlTag')->removeDecorator('label')
 		->setTimeout(4800);
@@ -78,6 +65,6 @@ public function __construct($options = null) {
 	$this->details->setLegend('Mint details: ');
 	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->removeDecorator('HtmlTag');
-	
+	parent::init();
 	}
 }

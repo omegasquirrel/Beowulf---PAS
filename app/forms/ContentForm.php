@@ -14,14 +14,6 @@ public function __construct($options = null)
 	$authorOptions = $authors->getAuthors();
 	
 	parent::__construct($options);
-	 $decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
-	
 	$this->setAttrib('enctype', 'multipart/form-data');
 	$this->setDecorators(array('FormElements','Form'));
 	$this->setName('addcontent');
@@ -32,8 +24,7 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'))
 	->setAttrib('size',60)
 	->addValidator('NotEmpty')
-	->addErrorMessage('You must enter a title')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a title');
 	
 	$menuTitle = new Zend_Form_Element_Text('menuTitle');
 	$menuTitle->setLabel('Menu Title: ')
@@ -41,8 +32,7 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'))
 	->setAttrib('size',60)
 	->addValidator('NotEmpty')
-	->addErrorMessage('You must enter a title')
-	->setDecorators($decorators);
+	->addErrorMessage('You must enter a title');
 	
 	$author = new Zend_Form_Element_Select('author');
 	$author->setLabel('Set the author of the article: ')
@@ -50,8 +40,7 @@ public function __construct($options = null)
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('NotEmpty')
-	->addErrorMessage('You must choose an author')
-	->setDecorators($decorators);
+	->addErrorMessage('You must choose an author');
 	
 	$excerpt = new Zend_Form_Element_Textarea('excerpt');
 	$excerpt->setLabel('Optional excerpt: ')
@@ -102,13 +91,11 @@ public function __construct($options = null)
 	'database' => 'Database front page',
 	'oai' => 'OAI instructions',
 	'bronzeage' => 'Bronze Age guide'))
-	->setDecorators($decorators)
 	->setRequired(true)
 	->addErrorMessage('You must choose a section for this to be filed under');
 	
 	$parentcontent = new Zend_Form_Element_Select('parent');
 	$parentcontent->setLabel('Does this have a parent?: ')
-	->setDecorators($decorators)
 	->setRequired(false);
 	
 	$metaKeywords = new Zend_Form_Element_Textarea('metaKeywords');
@@ -130,13 +117,11 @@ public function __construct($options = null)
 	->addMultiOptions(array('Please choose publish state' => array('1' => 'Draft',
 	'2' => 'Admin to review', '3' => 'Published')))
 	->setValue(1)
-	->setDecorators($decorators)
 	->setRequired(true);
 	
 	$slug = new Zend_Form_Element_Text('slug');
 	$slug->setLabel('Page slug: ')
 	->setAttrib('size',50)
-	->setDecorators($decorators)
 	->addFilter('UrlSlug')
 	->addFilters(array('StripTags','StringTrim'))
 	->setRequired(true);
@@ -144,8 +129,7 @@ public function __construct($options = null)
 	
 	$frontPage = new Zend_Form_Element_Checkbox('frontPage');
 	$frontPage->setLabel('Appear on section\'s front page?: ')
-	->setDecorators($decorators)
-	->addValidator('NotEmpty','Integer')
+	->addValidators(array('NotEmpty','Int'))
 	->setRequired(true);
 	
 	
@@ -156,7 +140,7 @@ public function __construct($options = null)
 	$submit->removeDecorator('HtmlTag');
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')->removeDecorator('label')
 	->setTimeout(60);
@@ -173,15 +157,13 @@ public function __construct($options = null)
 	'body', 'section', 'publishState',
 	'excerpt', 'metaKeywords', 'metaDescription',
 	'slug','frontPage'), 'details')->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
 	
 	
 	$this->addDisplayGroup(array('submit'), 'submit')->removeDecorator('HtmlTag');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
 	
 	$this->details->setLegend('Add new site content');
 
-}
+	parent::init();
+	}
+	
 }

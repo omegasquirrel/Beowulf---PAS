@@ -66,7 +66,7 @@ parent::__construct($options);
 	->setAttrib('class','largefilter');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
+	$hash->setValue($this->_salt)
 	->removeDecorator('DtDdWrapper')
 	->removeDecorator('HtmlTag')
 	->removeDecorator('label')
@@ -76,5 +76,7 @@ parent::__construct($options);
 	$this->addElements(array(
 	$objectType, $broadperiod,
 	$county, $submit));
+	parent::init();
 	}
+	
 }

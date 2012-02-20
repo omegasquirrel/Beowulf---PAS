@@ -11,48 +11,25 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-	$decorators = array(
-            array('ViewHelper'),
-    		array('Description', array('tag' => '','placement' => 'append')),
-            array('Errors',array('placement' => 'append','tag' => 'li')),
-            array('Label', array('separator'=>' ', 'requiredSuffix' => ' *')),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
 
 	$this->setName('comments');
 
 
         $commentType = new Zend_Form_Element_Hidden('comment_type');
-        $commentType->addFilters(array('StripTags','StringTrim'))
-		->setDecorators(array(
-	    array('ViewHelper'),
-	    array('Description', array('tag' => '')),
-	    array('Errors'),
-	    array('HtmlTag', array('tag' => 'p')),
-	    array('Label', array('tag' => ''))
-	));
+        $commentType->addFilters(array('StripTags','StringTrim'));
 
 	$comment_findID = new Zend_Form_Element_Hidden('contentID');
-	$comment_findID->addFilters(array('StripTags','StringTrim'))
-		->setDecorators(array(
-	    array('ViewHelper'),
-	    array('Description', array('tag' => '')),
-	    array('Errors'),
-	    array('HtmlTag', array('tag' => 'p')),
-	    array('Label', array('tag' => ''))
-	));
+	$comment_findID->addFilters(array('StripTags','StringTrim'));
 
 	$comment_author = new Zend_Form_Element_Text('comment_author');
 	$comment_author->setLabel('Enter your name: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alnum',false,array('allowWhiteSpace' => true))
-		->addErrorMessage('Please enter a valid name!')
-		->setDecorators($decorators);
+		->addErrorMessage('Please enter a valid name!');
 
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-		->setDecorators($decorators)
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim','StringToLower'))
 		->addValidator('EmailAddress',false,array('mx' => true))
@@ -61,7 +38,6 @@ public function __construct($options = null) {
 
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')
-		->setDecorators($decorators)
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim','StringToLower'))
 		->addErrorMessage('Please enter a valid address!')
@@ -79,16 +55,9 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setAttrib('class', 'large');
 
-        $hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
+    $hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 	$this->addElement($hash);
 
@@ -99,16 +68,14 @@ public function __construct($options = null) {
                     'notspam' => 'Spam free'))
 		->setValue('notSpam')
 		->addFilters(array('StripTags','StringTrim','StringToLower'))
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 
        $commentApproval = new Zend_Form_Element_Radio('comment_approved');
        $commentApproval->setLabel('Approval:')
 		->addMultiOptions(array('moderation' => 'Moderation','approved' => 'Approved'))
 		->setValue('approved')
 		->addFilters(array('StripTags','StringTrim','StringToLower'))
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 
 	$this->addElements(array(
 	$comment_author, $comment_author_email, $comment_content,
@@ -122,11 +89,9 @@ public function __construct($options = null) {
         'contentID', 'comment_type'),
         'details');
 
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('HtmlTag');
-	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->setLegend('Enter your comments: ');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
 }

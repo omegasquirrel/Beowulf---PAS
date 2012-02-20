@@ -18,31 +18,21 @@ public function __construct($options = null) {
 	
 	$this->setName('medievaltype');
 
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-
 	$category = new Zend_Form_Element_Text('category');
 	$category->setLabel('Medieval coin category: ')
 		->setRequired(true)
 		->setAttrib('size',60)
 		->addFilter(array('StringTrim', 'StripTags'))
-		->addErrorMessage('You must enter a category name.')
-		->setDecorators($decorators);
+		->addErrorMessage('You must enter a category name.');
 
 	$periodID = new Zend_Form_Element_Select('periodID');
 	$periodID->setLabel('Medieval period: ')
 		->setRequired(true)
 		->addFilter(array('StringTrim', 'StripTags'))
 		->addErrorMessage('You must enter a period for this type')
-		->addMultioptions(array(NULL => NULL,'Choose a period' => $period_options))
-		->setDecorators($decorators);
+		->addMultioptions(array(NULL => NULL,'Choose a period' => $period_options));
 
-	$description = new Zend_Form_Element_RTE('description');
+	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Description: ')
 		->setRequired(true)
 		->setAttrib('rows',10)
@@ -52,19 +42,12 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
-
+	
 	$this->addElements(array(
 	$category, $description, $periodID,
 	$submit));
 	
-	$this->addDisplayGroup(array('category','periodID','description','submit'), 'details')
-	->removeDecorator('HtmlTag');
-	
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('category','periodID','description','submit'), 'details');
+	parent::init();
 	}
 }

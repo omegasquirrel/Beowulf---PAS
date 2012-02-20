@@ -13,14 +13,6 @@ public function __construct($options = null)
 {
 
 	parent::__construct($options);
-	$this->setAttrib('accept-charset', 'UTF-8');
-	$decorators = array(
-	            array('ViewHelper'), 
-	            array('Description', array('placement' => 'append','class' => 'info')),
-	            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-	            array('Label'),
-	            array('HtmlTag', array('tag' => 'li')),
-			    );
 	$this->setName('degreeofwear');
 
 	$term = new Zend_Form_Element_Text('term');
@@ -28,8 +20,7 @@ public function __construct($options = null)
 	->setRequired(true)
 	->setAttrib('size',70)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('Please enter a valid title for this surface treatment')
-	->setDecorators($decorators);
+	->addErrorMessage('Please enter a valid title for this surface treatment');
 
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
 	$termdesc->setLabel('Description of decoration style: ')
@@ -45,21 +36,12 @@ public function __construct($options = null)
 	$valid->setLabel('Period is currently in use: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addErrorMessage('You must set a status for this treatment term')
-	->setDecorators($decorators);
+	->addErrorMessage('You must set a status for this treatment term');
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
-	->setTimeout(60);
+	$hash->setValue($this->_salt)->setTimeout(60);
 	$this->addElement($hash);
 
 	$this->addElements(array(
@@ -67,10 +49,9 @@ public function __construct($options = null)
 	$submit));
 
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
 	
 	$this->details->setLegend('Surface treatment details: ');
 	$this->addDisplayGroup(array('submit'), 'submit');
+	parent::init();
 	}
 }

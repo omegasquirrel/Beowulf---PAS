@@ -15,15 +15,6 @@ public function __construct($options = null) {
 	$reeces_options = $reeces->getRevTypes();
 	
 	parent::__construct($options);
-
-	$decorators = array(
-            array('ViewHelper'), 
-            array('Description', array('placement' => 'append','class' => 'info')),
-            array('Errors',array('placement' => 'append','class'=>'error','tag' => 'li')),
-            array('Label'),
-            array('HtmlTag', array('tag' => 'li')),
-		    );
-			
 	$this->setName('reversetype');
 
 	$type = new Zend_Form_Element_Text('type');
@@ -31,21 +22,18 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter an inscription.')
-		->setDecorators($decorators)
 		->setAttrib('size',70);
 
 	$translation = new Zend_Form_Element_Text('translation');
 	$translation->setLabel('Translation: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('You must enter a translation.')
-		->setDecorators($decorators)
 		->setAttrib('size',70);
 
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Description: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('You must enter a translation.')
-		->setDecorators($decorators)
 		->setAttrib('size',70);
 
 	$gendate = new Zend_Form_Element_Text('gendate');
@@ -54,15 +42,13 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Digits')
 		->addErrorMessage('You must enter a general date for this reverse type.')
-		->setDecorators($decorators)
 		->setAttrib('size',30);
 
 	$reeceID = new Zend_Form_Element_Select('reeceID');
 	$reeceID->setLabel('Reece period: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL,'Choose reason' => $reeces_options))
-		->addValidator('InArray', false, array(array_keys($reeces_options)))
-		->setDecorators($decorators);
+		->addValidator('InArray', false, array(array_keys($reeces_options)));
 
 	$common = new Zend_Form_Element_Radio('common');
 	$common->setLabel('Is this reverse type commonly found: ')
@@ -71,21 +57,13 @@ public function __construct($options = null) {
 		->setValue(1)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Digits')
-		->setOptions(array('separator' => ''))
-		->setDecorators($decorators);
+		->setOptions(array('separator' => ''));
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_config->form->salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
+	$hash->setValue($this->_salt)
 		->setTimeout(4800);
 
 	$this->addElements(array(
@@ -98,12 +76,7 @@ public function __construct($options = null) {
 	'gendate', 'reeceID', 'common',
 	'submit'), 'details');
 	$this->details->setLegend('Reverse type details: ');
-	$this->details->addDecorators(array(
-	    'FormElements',
-	    array('HtmlTag', array('tag' => 'ul'))
-	));
 	$this->details->setLegend('Issuer or ruler details: ');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	parent::init();
 	}
 }
