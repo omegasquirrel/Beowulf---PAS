@@ -1,6 +1,47 @@
-<?php echo $this->cal;?>
-
+<div class="row-fluid">
 <?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?>
-<div id="infoboard">
-<p><?php echo $this->year;?> Scheme events attended by: <?php echo $this->partial('partials/events/adults.phtml',$this->adults['0']);?></p></div>
+</div>
+<section id="carousel">
+        <div class="span10">
+
+          <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="http://farm2.staticflickr.com/1411/971953847_012aab06ac_o.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The Viking hoard from Cumbria</h4>
+                  <p>Ian Richardson cradles the hoard in his gloved palms at the 2011 Treasure Launch</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="http://farm2.staticflickr.com/1149/971947585_d4de864f95_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The Hackney Hoard</h4>
+                  <p>An interesting Treasure case, with a human touch. The Hackney hoard relates to the sad
+                  story of the Sulzbacher family</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="http://farm5.staticflickr.com/4131/5200670881_373ed82088_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The magnificent Frome hoard</h4>
+                  <p>150 kg of Roman coins were found by detectorist Dave Crisp.</p>
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          </div>
+
+
+
+        </div>
+      </div>
+    </section>
+ <?php $this->jQuery()->javascriptCaptureStart()?>
+    $('.myCarousel').carousel({
+  interval: 2000
+});
+<?php $this->jQuery()->javascriptCaptureEnd()?>
+
 

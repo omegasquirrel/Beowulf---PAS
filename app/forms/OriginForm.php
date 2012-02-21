@@ -11,6 +11,7 @@ class OriginForm extends Pas_Form {
 public function __construct($options = null) {
 
 	parent::__construct($options);
+	
 	$this->setName('origingridref');
 
 	$term = new Zend_Form_Element_Text('term');
@@ -27,8 +28,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim','WordChars','BasicHtml', 'EmptyParagraph'))
 		->setAttrib('rows',10)
 		->setAttrib('cols',80)
-		->addErrorMessage('You must enter a descriptive term or David Williams will eat you.')
-		->addDecorator('Errors',array('placement' => 'apppend','class'=>'error','tag' => 'li'));
+		->addErrorMessage('You must enter a descriptive term or David Williams will eat you.');
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Is this term valid?: ')
@@ -38,18 +38,19 @@ public function __construct($options = null) {
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$term, 	$termdesc,	$valid,
-	$submit));
-	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$submit, $hash));
 	
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
+	
 	$this->details->setLegend('Ascribed culture');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
 	parent::init();
 	}
 }

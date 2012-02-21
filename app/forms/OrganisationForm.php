@@ -30,7 +30,6 @@ public function __construct($options = null) {
 
 	$website = new Zend_Form_Element_Text('website');
 	$website->setLabel('Organisation website: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator(new Pas_Validate_Url())
 		->addErrorMessage('Please enter a valid URL')
@@ -39,42 +38,36 @@ public function __construct($options = null) {
 
 	$address1 = new Zend_Form_Element_Text('address1');
 	$address1->setLabel('Address line one: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$address2 = new Zend_Form_Element_Text('address2');
 	$address2->setLabel('Address line two: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$address3 = new Zend_Form_Element_Text('address3');
 	$address3->setLabel('Address line three: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$address = new Zend_Form_Element_Text('address');
 	$address->setLabel('Full address: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$town_city = new Zend_Form_Element_Text('town_city');
 	$town_city->setLabel('Town or city: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',60)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Please choose a county',
 		'Valid counties' => $counties_options))
@@ -91,7 +84,6 @@ public function __construct($options = null) {
 
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->setLabel('Postcode: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,10))
 		->addValidator('ValidPostCode')
@@ -101,31 +93,26 @@ public function __construct($options = null) {
 
 	$contactperson = new Zend_Form_Element_Text('contact');
 	$contactperson->setLabel('Organisation\'s lead contact: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
 		->setAttrib('size',50)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$contactpersonID = new Zend_Form_Element_Hidden('contactpersonID');
-	$contactpersonID->setRequired(false)
-		->addFilters(array('StripTags','StringTrim'));
+	$contactpersonID->addFilters(array('StripTags','StringTrim'));
 
 	$submit = $this->addElement('submit', 'submit' , array('label' => 'Login...'));
 	
-
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	$this->addElements(array(
 		$name, $website, $address1, 
 		$address2, $address3, $address, 
 		$town_city, $county, $country, 
 		$postcode, $contactperson, $contactpersonID, 
+		$hash
 	));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
-	
 	$this->addDisplayGroup(array(
 		'name', 'website', 'address1',
 		'address2', 'address3', 'address',

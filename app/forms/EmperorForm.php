@@ -71,9 +71,7 @@ parent::__construct($options);
 	->addFilters(array('StringTrim','WordChars','BasicHtml','EmptyParagraph'))
 	->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400))
 	->setAttrib('ToolbarSet','Finds')
-	->addErrorMessage('You must enter a biography')
-	->addDecorator('Errors',array('placement' => 'append','class'=>'error','tag' => 'li'));
-
+	->addErrorMessage('You must enter a biography');
 
 	$dynasty = new Zend_Form_Element_Select('dynasty');
 	$dynasty->setLabel('Dynastic grouping: ')
@@ -82,14 +80,12 @@ parent::__construct($options);
 	->addValidator('InArray', false, array(array_keys($dynasties_options)))
 	->addMultiOptions(array(NULL => NULL, 'Choose a dynasty' => $dynasties_options))
 	->addErrorMessage('You must select a dynastic grouping');
-
+	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
 
 	$this->addElements(array(
 	$name,
@@ -99,7 +95,8 @@ parent::__construct($options);
 	$date_to,
 	$biography,
 	$dynasty,
-	$submit));
+	$submit,
+	$hash));
 
 	$this->addDisplayGroup(array(
             'name','reeceID','pasID',

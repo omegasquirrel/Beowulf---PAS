@@ -45,8 +45,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->setValue(1)
 	->addFilters(array('StringTrim','StripTags'))
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$ruler= new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler: ')
@@ -59,8 +58,7 @@ public function __construct($options = null) {
 	$ruler_qualifier->setLabel('Issuer qualifier: ')
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StringTrim','StripTags'))
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$mint_ID= new Zend_Form_Element_Select('mint_id');
 	$mint_ID->setLabel('Issuing mint: ')

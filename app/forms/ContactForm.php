@@ -183,12 +183,10 @@ class ContactForm extends Pas_Form
 	->addFilters(array('StripTags','StringTrim'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setLabel('Submit:')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->setAttrib('class','large');
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$firstname, $lastname, $role,
 	$dbaseID, $email_one, $email_two,
@@ -196,20 +194,16 @@ class ContactForm extends Pas_Form
 	$postcode, $county,	$identifier,
 	$telephone,	$fax, $region,
 	$profile, $website, $alumni,
-	$submit));
+	$submit, $hash));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+
 
 	$this->addDisplayGroup(array('firstname', 'lastname', 'role',
 	'dbaseID', 'identifier', 'region',
 	'profile', 'email_one', 'email_two',
 	'address_1', 'address_2', 'town',
 	'postcode', 'county', 'telephone',
-	'fax', 'website', 'alumni'), 'details')
-	->removeDecorator('HtmlTag');
+	'fax', 'website', 'alumni'), 'details');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
 

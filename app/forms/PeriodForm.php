@@ -40,7 +40,6 @@ parent::__construct($options);
 
 	$notes = new Pas_Form_Element_RTE('notes');
 	$notes->setLabel('Period notes: ')
-		->setRequired(false)
 		->setAttrib('rows',10)
 		->setAttrib('cols',40)
 		->setAttrib('Height',400)
@@ -56,32 +55,30 @@ parent::__construct($options);
 
 	$parent = new Zend_Form_Element_Select('parent');
 	$parent->setLabel('Period belongs to: ')
-		->setRequired(false)
 		->addMultiOptions(array(NULL => NULL,'Choose period to' => $period_options))
 		->addValidator('InArray', false, array(array_keys($period_options)))
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Int');
-
+		
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$this->addElements(array(
 		$term, $fromdate, $todate,
 		$valid,	$notes, $parent,
-		$submit));
+		$submit, $hash));
 
 	$this->addDisplayGroup(array(
 		'term', 'fromdate', 'todate',
 		'parent', 'notes', 'valid'),
 	'details');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
-
 	$this->details->setLegend('Period details: ');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
 	parent::init();
 	}
 }

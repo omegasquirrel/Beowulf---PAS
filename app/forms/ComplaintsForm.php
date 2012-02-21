@@ -15,21 +15,14 @@ class ComplaintsForm extends Pas_Form {
 	$this->setName('complaints');
 
 	$user_ip = new Zend_Form_Element_Hidden('user_ip');
-	$user_ip->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
-	->addFilters(array('StripTags','StringTrim','StringToLower'))
+	$user_ip->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->setValue($_SERVER['REMOTE_ADDR'])
 	->addValidator('Ip')
 	->setRequired(true);
 
 	$user_agent = new Zend_Form_Element_Hidden('user_agent');
-	$user_agent->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->addFilters(array('StripTags','StringTrim'))
-	->removeDecorator('Label')
-	->setValue($_SERVER['HTTP_USER_AGENT'])
-	->setRequired(false);
+	$user_agent->addFilters(array('StripTags','StringTrim'))
+	->setValue($_SERVER['HTTP_USER_AGENT']);;
 
 	$comment_author = new Zend_Form_Element_Text('comment_author');
 	$comment_author->setLabel('Enter your name: ')
@@ -47,7 +40,6 @@ class ComplaintsForm extends Pas_Form {
 
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')
-	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim', 'StringToLower'))
 	->addValidator('NotEmpty')
 	->addErrorMessage('Please enter a valid address!')
@@ -63,8 +55,8 @@ class ComplaintsForm extends Pas_Form {
 
 
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(
-                        	'captcha' => 'ReCaptcha',
-				'label' => 'Please prove you are not a spammer',
+                        		'captcha' => 'ReCaptcha',
+								'label' => 'Please prove you are not a spammer',
                                 'captchaOptions' => array(
                                 'captcha' => 'ReCaptcha',
                                 'privKey' => $this->_privateKey,
@@ -74,27 +66,18 @@ class ComplaintsForm extends Pas_Form {
 
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
-	              ->removeDecorator('HtmlTag')
-				  ->removeDecorator('DtDdWrapper')
-				  ->setAttrib('class','large')
-				  ->setLabel('Submit your query');
+	$submit->setLabel('Submit your query');
 
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('label')
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()){
 	$this->addElements(array(
 	$user_ip, $user_agent, $comment_author,
 	$comment_author_email, $comment_content, $comment_author_url,
-	$captcha, $submit));
+	$captcha, $submit, $hash));
 
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
 	'comment_content','captcha'), 'details');
@@ -107,7 +90,7 @@ class ComplaintsForm extends Pas_Form {
 	$this->addElements(array(
 	$comment_author_IP, $comment_agent, $comment_author,
 	$comment_author_email, $comment_content, $comment_author_url,
-	$submit));
+	$submit, $hash));
 
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
 	'comment_content'), 'details');

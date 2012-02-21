@@ -17,19 +17,12 @@ parent::__construct($options);
 	$this->setName('comments');
 
 	$user_ip = new Zend_Form_Element_Hidden('user_ip');
-	$user_ip->removeDecorator('HtmlTag')
-	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
+	$user_ip->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->setValue($_SERVER['REMOTE_ADDR'])
 	->addValidator('Ip');
 
 	$user_agent = new Zend_Form_Element_Hidden('user_agent');
-	$user_agent->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
-	->setValue($_SERVER['HTTP_USER_AGENT'])
-	->setRequired(false);
+	$user_agent->setValue($_SERVER['HTTP_USER_AGENT']);
 
 	$comment_author = new Zend_Form_Element_Text('comment_author');
 	$comment_author->setLabel('Enter your name: ')
@@ -47,8 +40,6 @@ parent::__construct($options);
 	->addErrorMessage('Please enter a valid email address!')
 	->setDescription('* This will not be displayed to the public.');
 
-
-
 	$comment_content = new Pas_Form_Element_RTE('comment_content');
 	$comment_content->setLabel('Enter your comment: ')
 	->setRequired(true)
@@ -59,30 +50,27 @@ parent::__construct($options);
 	->addErrorMessage('Please enter something in the comments box!');
 
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(
-                        		'captcha' => 'ReCaptcha',
-								'label' => 'Please fill in this reCaptcha to show you are not a spammer!',
+                        	'captcha' => 'ReCaptcha',
+							'label' => 'Please fill in this reCaptcha to show you are not a spammer!',
                                 'captchaOptions' => array(
                                 'captcha' => 'ReCaptcha',
                                 'privKey' => $this->_privateKey,
                                 'pubKey' => $this->_pubKey,
-								'theme'=> 'clean')
+							'theme'=> 'clean')
                         ));
 
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
 	$submit = new Zend_Form_Element_Submit('submit');
-
 
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()) {
 	$this->addElements(array(
 	$user_ip, $user_agent, $comment_author,
 	$comment_author_email, $comment_content,
-	$captcha, $submit));
+	$captcha, $submit, $hash));
 
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_content', 'captcha'), 'details');
@@ -96,7 +84,7 @@ parent::__construct($options);
 	$this->addElements(array(
 	$user_ip,	$user_agent, $comment_author,
 	$comment_author_email, $comment_content,
-	$submit));
+	$submit, $hash));
 
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_content'), 'details');

@@ -32,12 +32,7 @@ public function __construct($options = null) {
 	$submit->setLabel('Upload an avatar')
 	->setAttribs(array('class'=> 'large'));
 
-	$this->addElements(array($avatar,$submit))
-	->setLegend('Add an avatar')
-	->setMethod('post')
-	->addDecorators(array('FieldSet',
-	'form',array('HtmlTag', array('tag' => 'div'))
-	));
+	$this->addElements(array($avatar,$submit));
 	
 	parent::init();
 	}

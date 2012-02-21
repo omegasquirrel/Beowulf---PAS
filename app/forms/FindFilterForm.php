@@ -35,10 +35,7 @@ public function __construct($options = null) {
     ->setRequired(false)
     ->addFilters(array('StripTags','StringTrim'))
     ->setAttrib('size', 11)
-    ->addValidator('stringLength', false, array(1,200))
-    ->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-    ->removeDecorator('HtmlTag')
-    ->removeDecorator('DtDdWrapper');
+    ->addValidator('stringLength', false, array(1,200));
 
     $broadperiod = new Zend_Form_Element_Select('broadperiod');
     $broadperiod->setLabel('Filter by broadperiod')

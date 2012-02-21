@@ -23,9 +23,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter a chase date')
 		->addValidator('Date')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 
 	$location = new Zend_Form_Element_Text('location');
 	$location->setLabel('Location of meeting: ')
@@ -35,28 +33,17 @@ public function __construct($options = null) {
 		->addValidator('Alnum',false,array('allowWhiteSpace' => true));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag');
-
-	$this->addElements(array(
-	$date, $location, $submit
-	));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
+	$this->addElements(array(
+	$date, $location, $submit,
+	$hash
+	));
 
-	$this->addDisplayGroup(array('date','location'), 'details')
-		->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+
+	$this->addDisplayGroup(array('date','location'), 'details');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
 

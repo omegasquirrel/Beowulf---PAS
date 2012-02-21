@@ -8,7 +8,7 @@
 */
 class MintForm extends Pas_Form {
 
-public function __construct($options = null) {
+	public function __construct($options = null) {
 	
 	$periods = new Periods();
 	$period_actives = $periods->getMintsActive();
@@ -24,7 +24,6 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size',70);
 
-
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->SetLabel('Is this ruler or issuer currently valid: ')
 		->setRequired(true)
@@ -35,36 +34,27 @@ public function __construct($options = null) {
 	$period->setLabel('Period: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL=> NULL,'Choose period:' => $period_actives))
+		->addMultiOptions(array(
+		NULL => 'Choose period',
+		'Available periods:' => $period_actives))
 		->addValidator('InArray', false, array(array_keys($period_actives)))
 		->addErrorMessage('You must enter a period for this mint');
 
 		//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submit')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag');
+
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	$this->addElements(array(
-	$mint_name, $valid, $period,
+	$mint_name, $valid, $period, $hash,
 	$submit));
 	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
-	
 	$this->addDisplayGroup(array('mint_name', 'period', 'valid', 
-	'submit'), 'details')
-	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
+	'submit'), 'details');
 	
 	$this->details->setLegend('Mint details: ');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	
 	parent::init();
 	}
 }

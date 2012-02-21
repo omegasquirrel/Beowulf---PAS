@@ -21,16 +21,20 @@ $('a[rel*=lightbox]').lightBox()
 <?php endif;?>
 <?php echo $this->form;?>
 <div class="row-fluid">
-<?php if ($this->results): ?>
-    <div class="stripeMe">
+		
+    	<?php if ($this->results): ?>
+		<div class="span9">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->results);?>
-    </div>
-<?php else:?>
-    <p>No records are available.
-<?php endif; ?>
-        <?php
-echo $this->facetCreator($this->facets);
-?>
+        </div>
+        <div class="span3">
+        <?php echo $this->facetCreator($this->facets); ?>
+		</div>
+        <?php else:?>
+    
+    	<p>No records are available.
+
+        <?php endif; ?>
+        
 </div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 

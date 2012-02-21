@@ -34,10 +34,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'));
 	
 	$organiser = new Zend_Form_Element_Hidden('organiser');
-	$organiser->removeDecorator('Label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->addFilters(array('StripTags','StringTrim'));
+	$organiser->addFilters(array('StripTags','StringTrim'));
 	
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
@@ -69,14 +66,12 @@ public function __construct($options = null) {
 	
 	$record_method = new Pas_Form_Element_RTE('record_method');
 	$record_method->setLabel('Recording methodology employed: ')
-		->setRequired(false)
 		->setAttrib('rows',10)
 		->setAttrib('cols',80)
 		->addFilters(array('BasicHtml','EmptyParagraph','StringTrim'));
 	
 	$comments = new Zend_Form_Element_Textarea('comments');
 	$comments->setLabel('Comments on rally: ')
-		->setRequired(false)
 		->setAttrib('rows',10)
 		->setAttrib('cols',80)
 		->addFilters(array('BasicHtml','EmptyParagraph','StringTrim'));
@@ -84,7 +79,6 @@ public function __construct($options = null) {
 	//Date found from
 	$date_from = new ZendX_JQuery_Form_Element_DatePicker('date_from');
 	$date_from->setLabel('Start date of rally: ')
-		->setRequired(false)
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Date');
@@ -92,24 +86,20 @@ public function __construct($options = null) {
 	//Date found to
 	$date_to = new ZendX_JQuery_Form_Element_DatePicker('date_to');
 	$date_to->setLabel('End date of rally: ')
-		->setRequired(false)
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Date');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	$this->addElements(array(
 	$rally_name, $date_from, $date_to,
 	$organiser, $organisername, $county,
 	$district, $parish, $gridref, $comments,
-	$record_method,	$submit));
-	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$record_method,	$submit, $hash));
 	
 	$this->addDisplayGroup(array(
 	'rally_name', 'comments','record_method',
@@ -118,7 +108,9 @@ public function __construct($options = null) {
 	'parish', 'gridref'), 'details');
 
 	$this->details->setLegend('Rally details: ');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
 	parent::init();  
 	}
 }

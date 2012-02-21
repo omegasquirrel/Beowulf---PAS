@@ -47,21 +47,18 @@ class AddFloRallyForm extends Pas_Form{
 	->addFilters(array('StripTags', 'StringTrim'))
 	->setAttrib('size', 20);
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$this->addElements(array($flo, $dateFrom, $dateTo, $submit, $hash));
 
-	$this->addElements(array($flo, $dateFrom, $dateTo, $submit));
-
-	$this->addDisplayGroup(array('staffID', 'dateFrom', 'dateTo'), 'details')
-	->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('staffID', 'dateFrom', 'dateTo'), 'details');
 
 	$this->details->setLegend('Attending Finds Officers');
-	$this->addDisplayGroup(array('submit'), 'submit');
 
+	$this->addDisplayGroup(array('submit'), 'submit');
 
 	parent::init();
 	}

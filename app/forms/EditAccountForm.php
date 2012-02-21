@@ -23,13 +23,12 @@ class EditAccountForm extends Pas_Form
         return $this;
     }
 
-    public function init()
-    {
+    public function init() {
         $roles = new Roles();
-	$role_options = $roles->getRoles();
+		$role_options = $roles->getRoles();
 
         $inst = new Institutions();
-	$inst_options = $inst->getInsts();
+		$inst_options = $inst->getInsts();
 
         $this->setAction($this->_actionUrl)
              ->setMethod('post')
@@ -88,15 +87,14 @@ class EditAccountForm extends Pas_Form
 
         $peopleID = $this->addElement('hidden', 'peopleID',array())->peopleID;
 
+        $hash = new Zend_Form_Element_Hash('csrf');
+		$hash->setValue($this->_salt)->setTimeout(4800);
+	
         $submit = new Zend_Form_Element_Submit('submit');
         $this->addElement($submit);
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
 
-	$this->addDisplayGroup(array(
+		$this->addDisplayGroup(array(
             'username','first_name','last_name',
             'fullname','email','institution',
             'role','password','person','peopleID'), 'userdetails');

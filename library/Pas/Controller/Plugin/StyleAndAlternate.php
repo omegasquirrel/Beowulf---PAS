@@ -24,7 +24,9 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	$module = strtolower($request->getModuleName());
 //	if($module == 'default') {
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap.css', $type='screen');
-        $view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.css', $type='screen');
+	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/custom-bootstrap.css', $type='screen');
+	
+	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.css', $type='screen');
 //	} else {
 //	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/default.css', $type='screen');
 //	}

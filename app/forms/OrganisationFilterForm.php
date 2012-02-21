@@ -18,70 +18,46 @@ public function __construct($options = null) {
 	$counties = new Counties();
 	$county_options = $counties->getCountyName2();
 
-parent::__construct($options);
+	parent::__construct($options);
 
  	$this->setName('filterpeople');
 
-	$decorator =  array('TableDecInput');
-
 	$name = new Zend_Form_Element_Text('organisation');
 	$name->setLabel('Filter by name')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Come on it\'s not that hard, enter a title!')
 		->setAttrib('size', 40)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 	
 	$contact = new Zend_Form_Element_Text('contact');
 	$contact->setLabel('Filter by contact person: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Enter a valid organisation')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 	
 	$contactpersonID = new Zend_Form_Element_Hidden('contactpersonID');
-	$contactpersonID->removeDecorator('Label')
-		->removeDecorator('DtDdWrapper')
-		->addFilters(array('StripTags','StringTrim'))
-		->removeDecorator('HtmlTag')
+	$contactpersonID->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alnum');
 					
 	
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('Filter by county')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
 		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
 		->addValidator('InArray', false, array(array_keys($county_options)));
 	
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setLabel('Filter')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+	$submit->setLabel('Filter');
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	$this->addElements(array(
 	$name, $county, $contact,
-	$contactpersonID, $submit));
-	  parent::init();
+	$contactpersonID, $submit, $hash));
+	
+	parent::init();
 	}
 }

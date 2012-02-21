@@ -37,7 +37,6 @@ class TokenJettonForm extends Pas_Form {
 		->setValue(1)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->setOptions(array('separator' => ''))
-		->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
 		->addValidator('Int');
 	
 	

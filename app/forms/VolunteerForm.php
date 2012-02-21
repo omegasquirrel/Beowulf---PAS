@@ -7,7 +7,8 @@
 */
 class VolunteerForm extends Pas_Form {
 
-public function __construct($options = null) {
+	public function __construct($options = null) {
+		
 	$projecttypes = new ProjectTypes();
 	$projectype_list = $projecttypes->getTypes();
 	
@@ -29,8 +30,7 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->setAttrib('rows',10)
 		->setAttrib('cols',40)
-		->addFilters(array('BasicHtml', 'EmptyParagraph', 'StringTrim'))
-		->addDecorator('HtmlTag',array('tag' => 'li'));
+		->addFilters(array('BasicHtml', 'EmptyParagraph', 'StringTrim'));
 		
 	$length = new Zend_Form_Element_Text('length');
 	$length->setLabel('Length of project: ')
@@ -65,42 +65,26 @@ public function __construct($options = null) {
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Publish this task? ')
 		->setRequired(true)
-		->addFilters(array('StripTags','StringTrim'))
-		->removeDecorator('HtmlTag');
+		->addFilters(array('StripTags','StringTrim'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
-		
+
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(480);
+	
 	$this->addElements(array(
 	$title, $description, $length,
 	$valid, $managedBy, $suitableFor,
-	$location, $submit));
+	$location, $submit, $hash));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
 	
 	$this->addDisplayGroup(array(
 	'title', 'description', 'length',
 	'location', 'suitableFor', 'managedBy',
-	'valid','submit'), 'details')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'div'))
-		->removeDecorator('HtmlTag');
-	$this->details->setLegend('Activity details: ');
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
+	'valid','submit'), 'details');
 
-	$this->details->addDecorators(array(
-	    'FormElements',
-	    array('HtmlTag', array('tag' => 'ul'))
-	));
+	$this->details->setLegend('Activity details: ');
+
 	
 	parent::init();
 }

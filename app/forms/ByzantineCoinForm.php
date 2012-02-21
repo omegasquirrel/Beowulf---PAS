@@ -135,16 +135,12 @@ public function __construct($options = null)
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidators(array('NotEmpty','Int'))
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
 	$submit = new Zend_Form_Element_Submit('submit');
-
 
 	$this->addElements(array(
 	$ruler,	$denomination, $mint_ID,
@@ -152,7 +148,7 @@ public function __construct($options = null)
 	$obverse_inscription, $reverse_description, $reverse_inscription,
 	$die_axis_measurement, $die_axis_certainty, $mint_qualifier,
 	$ruler_qualifier, $denomination_qualifier,$status_qualifier,
-	$submit));
+	$submit, $hash));
 
 	$this->addDisplayGroup(array('denomination', 'denomination_qualifier', 'ruler',
 	'ruler_qualifier', 'mint_id', 'mint_qualifier',

@@ -102,17 +102,17 @@ class NewsStoryForm extends Pas_Form {
 	
 	$submit = new Zend_Form_Element_Submit('submit');
 
+	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$this->addElements(array( 
 	$title, $summary, $contents,
 	$author, $contactEmail, $contactTel,
 	$contactName, $keywords, $address,
-	$golive, $publishstate, $submit));
+	$golive, $publishstate, $submit, $hash));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+
 	
 	$this->addDisplayGroup(array(
 	'title', 'summary', 'contents', 

@@ -23,11 +23,7 @@ parent::__construct($options);
 	 * Form hash to prevent CSRF
      */
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
-	->setTimeout(1800);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	/**
 	 * The name of the author
@@ -87,7 +83,7 @@ parent::__construct($options);
 	if(!$auth->hasIdentity()) {
 	$this->addElements(array( $comment_author,
 	$comment_author_email, $comment_content, $comment_author_url,
-	$captcha, $submit));
+	$captcha, $submit, $hash));
 
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
 	'comment_content', 'captcha'), 'details');
@@ -103,7 +99,7 @@ parent::__construct($options);
 	$comment_author_email,
 	$comment_content,
 	$comment_author_url,
-	$submit));
+	$submit, $hash));
 
 	$this->addDisplayGroup(array('comment_author','comment_author_email','comment_author_url',
 	'comment_content'), 'details');

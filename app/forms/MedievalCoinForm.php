@@ -68,8 +68,7 @@ public function __construct($options = null) {
 	$ruler_qualifier->setLabel('Issuer qualifier: ')
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->setOptions(array('separator' => ''))
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->addFilters(array('StripTags', 'StringTrim'));
 	
 	$mint_id= new Zend_Form_Element_Select('mint_id');
 	$mint_id->setLabel('Issuing mint: ')
@@ -162,6 +161,9 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'));
 	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$submit = new Zend_Form_Element_Submit('submit');
 	
 	$this->addElements(array(
@@ -170,7 +172,8 @@ public function __construct($options = null) {
 	$status, $categoryID, $status_qualifier,
 	$degree_of_wear, $obverse_description, $obverse_inscription,	
 	$reverse_description, $reverse_inscription, $die_axis_measurement,
-	$die_axis_certainty, $rev_mm, $submit, $initial));
+	$die_axis_certainty, $rev_mm, $submit, $initial,
+	$hash));
 	
 	$this->addDisplayGroup(array(
 	'categoryID','ruler','typeID',

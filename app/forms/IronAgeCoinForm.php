@@ -60,8 +60,7 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$geographyID = new Zend_Form_Element_Select('geographyID');
 	$geographyID->setLabel('Geographic area: ')
@@ -73,23 +72,20 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$ruler_id= new Zend_Form_Element_Select('ruler');
 	$ruler_id->setLabel('Ruler: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->addMultiOptions(array(NULL => 'Choose primary ruler','Available rulers' => $ro))
-	->addValidator('InArray', false, array(array_keys($ro)));
+	->addMultiOptions(array(NULL => 'Choose primary ruler','Available rulers' => $ro));
 	
 	$ruler_qualifier = new Zend_Form_Element_Radio('ruler_qualifier');
 	$ruler_qualifier->setLabel('Issuer qualifier: ')
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$ruler2_id= new Zend_Form_Element_Select('ruler2_id');
 	$ruler2_id->setLabel('Secondary ruler: ')
@@ -103,8 +99,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$mint_id= new Zend_Form_Element_Select('mint_id');
 	$mint_id->setLabel('Issuing mint: ')
@@ -127,8 +122,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$status = new Zend_Form_Element_Select('status');
 	$status->setLabel('Status: ')
@@ -144,8 +138,7 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$degree_of_wear = new Zend_Form_Element_Select('degree_of_wear');
 	$degree_of_wear->setLabel('Degree of wear: ')
@@ -186,8 +179,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->setOptions(array('separator' => ''));
 	
 	$mack_type = new Zend_Form_Element_Select('mack_type');
 	$mack_type->setLabel('Mack Type: ')

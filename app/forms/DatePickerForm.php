@@ -18,14 +18,8 @@ class My_Decorator_SimpleInput extends Zend_Form_Decorator_Abstract
 class DatePickerForm extends Pas_Form
 {
 public function __construct($options = null) {
-	$decorator = new My_Decorator_SimpleInput();
 	parent::__construct($options);
 	       
-	$this->setDecorators(array(
-	            'FormElements',
-	            'Fieldset',
-	            'Form'
-	        ));
 	$this->setName('datepicker');
 
 
@@ -34,23 +28,18 @@ $datefrom->setLabel('Date from: ')
 ->setRequired(true)
 ->addFilters(array('StripTags', 'StringTrim'))
 ->addValidator('Date');
-$datefrom->addDecorators(
-array($decorator));
 
 $dateto = new Zend_Form_Element_Text('dateto');
 $dateto->setLabel('Date to: ')
 ->setRequired(true)
 ->addFilters(array('StripTags', 'StringTrim'))
 ->addValidator('Date');
-$dateto->addDecorators(array($decorator));
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 //Submit button 
 $submit = new Zend_Form_Element_Submit('submit');
-$submit->setAttrib('id', 'submitbutton');
-$submit->setAttrib('class','datepick');
-$submit->removeDecorator('DtDdWrapper');
-$submit->removeDecorator('Label');
-$this->addElements(array($datefrom,$dateto,$submit));
+$this->addElements(array($datefrom,$dateto,$submit, $hash));
 
 $this->setLegend('Choose your own dates: ');
 $this->addDisplayGroup(array('submit'), 'submit');

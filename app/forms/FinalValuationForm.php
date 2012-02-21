@@ -41,18 +41,16 @@ class FinalValuationForm extends Pas_Form {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Date')
 	->addErrorMessage('You must enter a chase date')
-	->setAttrib('size', 20)
-	->removeDecorator('DtDdWrapper');
+	->setAttrib('size', 20);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
 	->setTimeout(60);
-	$this->addElement($hash);
 
 	$this->addElements(array(
-	$value,	$dateOfValuation, $comments, $submit
+	$value,	$dateOfValuation, $comments, $submit, $hash
 	));
 	
 	$this->addDisplayGroup(array(

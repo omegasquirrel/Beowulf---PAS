@@ -9,18 +9,6 @@
 
 class IronAgeNumismaticSearchForm extends Pas_Form {
 
-	protected function getRole() {
-	$auth = Zend_Auth::getInstance();
-	if($auth->hasIdentity()) {
-	$user = $auth->getIdentity();
-	$role = $user->role;
-	return $role;
-	} else {
-	$role = 'public';
-	return $role;
-	}
-	}
-
 	protected $_higherlevel = array('admin','flos','fa','heros', 'treasure', 'research');
 
 	protected $_restricted = array('public','member');
@@ -65,8 +53,6 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	parent::__construct($options);
 
-
-
 	$this->setName('IronAgeSearch');
 
 	$old_findID = new Zend_Form_Element_Text('old_findID');
@@ -75,10 +61,10 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addErrorMessage('Please enter a valid number!');
 
-        $cci = new Zend_Form_Element_Text('cciNumber');
-        $cci->setLabel('CCI number:')
-                ->setDescription('This is a unique number')
-                ->setFilters(array('StringTrim','StripTags'));
+    $cci = new Zend_Form_Element_Text('cciNumber');
+    $cci->setLabel('CCI number:')
+    ->setDescription('This is a unique number')
+    ->setFilters(array('StringTrim','StripTags'));
 
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Object description contains: ')
@@ -91,12 +77,12 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'));
 
-	if(in_array($this->getRole(),$this->_higherlevel)) {
+	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose a workflow stage',
 	'Available workflow stages' => array('1'=> 'Quarantine','2' => 'On review',
 	'4' => 'Awaiting validation', '3' => 'Published')));
 	}
-	if(in_array($this->getRole(),$this->_restricted)) {
+	if(in_array($this->_role,$this->_restricted)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose a workflow stage',
 	'Available workflow stages' => array('4' => 'Awaiting validation', '3' => 'Published')));
 	}
@@ -270,22 +256,14 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('COIN')
-	->setAttrib('class', 'none')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alpha', false, array('allowWhiteSpace' => true))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('Label');
+	->addFilters(array('StripTags', 'StringTrim', 'StringToUpper'))
+	->addValidator('Alpha', false, array('allowWhiteSpace' => true));
 
 	$broadperiod = new Zend_Form_Element_Hidden('broadperiod');
 	$broadperiod->setValue('IRON AGE')
 	->addValidator('Alnum',false, array('allowWhiteSpace' => true))
-	->setAttrib('class', 'none')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('Label');
-
+	->addFilters(array('StripTags', 'StringTrim'));
+	
 	$mack_type = new Zend_Form_Element_Text('mackType');
 	$mack_type->setLabel('Mack Type: ')
 	->addFilters(array('StripTags', 'StringTrim'))
@@ -338,11 +316,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->setLabel('Submit your search');
+	$submit->setLabel('Submit your search');
 
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
@@ -351,11 +325,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	->addMultiOptions(array(NULL => NULL,'Choose institution' => $inst_options));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
-	->setTimeout(4800);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$this->addElements(array(
 	$old_findID, $description, $workflow,
@@ -370,22 +340,19 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$mack_type, $allen_type, $va_type,
 	$rudd_type, $numChiab, $context,
 	$depositionDate, $phase_date_1, $phase_date_2,
-	 $institution, $cci,$submit));
+	$institution, $cci,$submit, $hash));
 
 	$this->addDisplayGroup(array(
-        'cciNumber', 'denomination', 'geographyID','ruler',
+    'cciNumber', 'denomination', 'geographyID','ruler',
 	'ruler2', 'tribe', 'mint',
 	'axis', 'obverseLegend', 'obverseDescription',
 	'reverseLegend', 'reverseDescription', 'bmc',
 	'vaType', 'allenType', 'ruddType',
 	'mackType', 'numChiab', 'context',
-	'phase_date_1', 'phase_date_2',
-	'depositionDate'),
+	'phase_date_1', 'phase_date_2','depositionDate'),
 	'numismatics')
 	->removeDecorator('HtmlTag');
 
-	$this->numismatics->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->numismatics->removeDecorator('DtDdWrapper');
 	$this->numismatics->setLegend('Numismatic details: ');
 
 	$this->addDisplayGroup(array(
@@ -393,24 +360,17 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	'rallyID','hoard','hID',
 	'workflow'), 'details')
 	->removeDecorator('HtmlTag');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->details->removeDecorator('DtDdWrapper');
 	$this->details->setLegend('Object details: ');
 
 	$this->addDisplayGroup(array(
 	'county', 'regionID', 'district',
 	'parish', 'gridref', 'fourFigure',
 	'institution'),
-	'spatial')
-	->removeDecorator('HtmlTag');
+	'spatial');
 
-	$this->spatial->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
-	$this->spatial->removeDecorator('DtDdWrapper');
 	$this->spatial->setLegend('Spatial details: ');
 
-        $this->addDisplayGroup(array('submit'), 'submit');
-	$this->submit->removeDecorator('DtDdWrapper');
-	$this->submit->removeDecorator('HtmlTag');
+    $this->addDisplayGroup(array('submit'), 'submit');
 
 	parent::init();
 	}

@@ -8,16 +8,15 @@
 class MonarchForm extends Pas_Form {
 	
 public function __construct($options = null) {
+	
 	$rulers = new Rulers();
 	$rulers_options = $rulers-> getAllMedRulers();
 	
 	$dynasties = new Dynasties();
 	$dynasties_options = $dynasties->getOptions();
 
-
 	parent::__construct($options);
        
-		    
 	$this->setName('MonarchDetails');
 
 	$name = new Zend_Form_Element_Text('name');
@@ -96,18 +95,14 @@ public function __construct($options = null) {
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$name, $styled, $alias, 
 	$dbaseID, $date_from, $date_to,
 	$born, $died, $biography, $dynasty, 
-	$publishState, $submit));
-	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$publishState, $submit, $hash));
 	
 	$this->addDisplayGroup(array('name','styled','alias'), 'names');
 	$this->names->setLegend('Nomenclature');

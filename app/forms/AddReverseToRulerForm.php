@@ -24,15 +24,13 @@ public function __construct($options = null) {
 	$rulerID->addValidator('Int');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Add a reverse type for this ruler');
 
-	$this->addElements(array($reverseID,$rulerID,$submit));
+	$this->addElements(array($reverseID, $rulerID, $submit, $hash));
 	$this->addDisplayGroup(array('reverseID'), 'details');
 
 	$this->details->setLegend('Add an active Mint');

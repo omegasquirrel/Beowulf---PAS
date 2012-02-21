@@ -329,7 +329,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	} else {
 	$private = NULL;
 	}
-	if($this->_getParam('by') == 'me'){
+	if($this->_getParam('by') === 'me'){
 	$this->view->data = $this->_searches->getAllSavedSearches($this->_helper->identity->getPerson()->id,
 		$this->_getParam('page'),$private);
 	} else {

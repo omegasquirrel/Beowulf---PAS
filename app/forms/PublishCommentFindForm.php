@@ -15,8 +15,8 @@ public function __construct($options = null) {
 	$this->setName('comments');
 
 
-        $commentType = new Zend_Form_Element_Hidden('comment_type');
-        $commentType->addFilters(array('StripTags','StringTrim'));
+    $commentType = new Zend_Form_Element_Hidden('comment_type');
+    $commentType->addFilters(array('StripTags','StringTrim'));
 
 	$comment_findID = new Zend_Form_Element_Hidden('contentID');
 	$comment_findID->addFilters(array('StripTags','StringTrim'));
@@ -38,7 +38,6 @@ public function __construct($options = null) {
 
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim','StringToLower'))
 		->addErrorMessage('Please enter a valid address!')
 		->addValidator('Url')
@@ -59,7 +58,6 @@ public function __construct($options = null) {
     $hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
 		->setTimeout(4800);
-	$this->addElement($hash);
 
 	$status = new Zend_Form_Element_Radio('commentStatus');
 	$status->setLabel('Message status:')

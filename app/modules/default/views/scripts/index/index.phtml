@@ -5,12 +5,12 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 ?>
 
 <div class="container">
-
-
-<section id="carousel">
 <div class="span10">
     <?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?>
 </div>
+
+<section id="carousel">
+
         <div class="span10">
 
           <div id="myCarousel" class="carousel slide">
@@ -42,65 +42,55 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
             <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
           </div>
 
-
-
         </div>
       </div>
 
-<div class="hero-unit span9">
-    <?php echo $this->partialLoop('partials/index/quotes.phtml',$this->quotes);?>
-</div>
-    </section>
-    <?php $this->jQuery()->javascriptCaptureStart()?>
-    $('.myCarousel').carousel({
-  interval: 2000
-});
-<?php $this->jQuery()->javascriptCaptureEnd()?>
-</div>
 
-
-
-<div class="row-fluid">
-
- <div id="tweets" class="well span4">
-        <h3>Latest tweets</h3>
-
-        <?php echo $this->LatestTweets();?>
-        <a href="http://twitter.com/findsorguk" title="View our twitter profile"><img class="twitterbird" src="/images/logos/twitter_logo_withbird.png" height="37" width="200" alt="The twitter logo with the tweetie bird" /></a>
-
-    </div>
-
-
-<div  class="span3 well">
-<h3>Numismatic guides</h3>
-<p class="indent">Learn about each numismatic study area.</p>
-<ul>
-<li><a href="<?php echo $this->url(array('module' => 'ironagecoins'),null,true);?>" title="Learn about Iron age coins">Iron Age</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'romancoins'),null,true);?>" title="Learn about Roman coins">Roman</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'byzantinecoins'),null,true);?>" title="Learn about Byzantine coins">Byzantine</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'greekromancoins'),null,true);?>" title="Learn about Greek and roman provincial coins">Greek &amp; Roman Provincial</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'earlymedievalcoins'),null,true);?>" title="Learn about Early Medieval coins">Early Medieval</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'medievalcoins'),null,true);?>" title="Learn about Medieval coins">Medieval</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'postmedievalcoins'),null,true);?>" title="Learn about Post medieval coins">Post Medieval</a></li>
-</ul>
-</div>
-
-
-</div>
-
-
-
-<div class="row-fluid">
-
-<div class="well span8"><h3>Latest news</h3>
+	<div class=" span10"><h3>Latest news</h3>
         <ul>
         <?php
         echo $this->partialLoop('partials/index/headlines.phtml',$this->news);
         ?>
         </ul>
     </div>
+    </section>
+    
+    <div class="span10">
+    <?php echo $this->partialLoop('partials/index/quotes.phtml',$this->quotes);?>
+	</div>
+	
+	<div id="tweets" class="well span5">
+ 	<h3>Latest tweets</h3>
+    	<?php echo $this->LatestTweets();?>
+    <a href="http://twitter.com/findsorguk" title="View our twitter profile"><img class="twitterbird" src="/images/logos/twitter_logo_withbird.png" height="37" width="200" alt="The twitter logo with the tweetie bird" /></a>
+    </div>
 
-</div>
+
+	<div  class="span4 well">
+	<h3>Numismatic guides</h3>
+	<p class="indent">Learn about each numismatic study area.</p>
+	<ul>
+	<li><a href="<?php echo $this->url(array('module' => 'ironagecoins'),null,true);?>" title="Learn about Iron age coins">Iron Age</a></li>
+	<li><a href="<?php echo $this->url(array('module' => 'romancoins'),null,true);?>" title="Learn about Roman coins">Roman</a></li>
+	<li><a href="<?php echo $this->url(array('module' => 'byzantinecoins'),null,true);?>" title="Learn about Byzantine coins">Byzantine</a></li>
+	<li><a href="<?php echo $this->url(array('module' => 'greekromancoins'),null,true);?>" title="Learn about Greek and roman provincial coins">Greek &amp; Roman Provincial</a></li>
+	<li><a href="<?php echo $this->url(array('module' => 'earlymedievalcoins'),null,true);?>" title="Learn about Early Medieval coins">Early Medieval</a></li>
+	<li><a href="<?php echo $this->url(array('module' => 'medievalcoins'),null,true);?>" title="Learn about Medieval coins">Medieval</a></li>
+	<li><a href="<?php echo $this->url(array('module' => 'postmedievalcoins'),null,true);?>" title="Learn about Post medieval coins">Post Medieval</a></li>
+	</ul>
+	</div>
+	
+	
+	<?php $this->jQuery()->javascriptCaptureStart()?>
+	$('.myCarousel').carousel({
+		interval: 2000
+	});
+	<?php $this->jQuery()->javascriptCaptureEnd()?>
+	</div>
+
+
+
+
 
 <?php $this->placeholder('searchForm')->captureStart();?>
 <h4>Search content</h4>

@@ -36,9 +36,7 @@ class ChangePasswordForm extends Pas_Form
 
     // identical field validator with custom messages
    	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
     $password2 = new Zend_Form_Element_Password("password2");
     $password2->setLabel("Confirm password:")
@@ -46,11 +44,10 @@ class ChangePasswordForm extends Pas_Form
               ->addFilters(array('StripTags','StringTrim'))
 			  ->setRequired(true);
 
-
 	$submit = new Zend_Form_Element_Submit('submit');
 
         $this->addElement($submit);
-	$this->addElements(array( $oldpassword, $password, $password2, $submit));
+	$this->addElements(array( $oldpassword, $password, $password2, $submit, $hash));
 
 
 	$this->addDisplayGroup(array('oldpassword','password','password2'), 'userdetails');

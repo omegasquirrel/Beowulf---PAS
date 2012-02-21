@@ -47,7 +47,6 @@ parent::__construct($options);
 		->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 		->addFilters(array('StripTags','StringTrim'))
 		->setOptions(array('separator' => ''))
-		->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
 		->addValidator('Digits');
 
 	$categoryID = new Zend_Form_Element_Select('categoryID');
@@ -149,6 +148,8 @@ parent::__construct($options);
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('class','expanding');
 	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	$submit = new Zend_Form_Element_Submit('submit');
 	
@@ -158,12 +159,8 @@ parent::__construct($options);
 	$status, $categoryID, $status_qualifier, $degree_of_wear,
 	$obverse_description, $obverse_inscription,	$reverse_description,
 	$reverse_inscription, $die_axis_measurement, $die_axis_certainty,
-	$submit, $rev_mm, $initial));
-	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$submit, $rev_mm, $initial,
+	$hash));
 	
 	$this->addDisplayGroup(array(
 	'categoryID', 'ruler_id', 'typeID',

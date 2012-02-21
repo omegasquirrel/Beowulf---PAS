@@ -90,15 +90,14 @@ public function __construct($options = null)
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$denomination, $period,	$material,
 	$description, $weight, $rarity,
 	$thickness, $diameter, $valid,
-	$submit));
-
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(60);
-	$this->addElement($hash);
+	$submit, $hash));
 
 	$this->addDisplayGroup(array(
             'denomination','period','material',
