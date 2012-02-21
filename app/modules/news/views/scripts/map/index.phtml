@@ -17,7 +17,7 @@ $this->inlineScript()->captureStart();
       }
     };
     function load() {
-      var map = new google.maps.Map(document.getElementById("mapevents"), {
+      var map = new google.maps.Map(document.getElementById("map"), {
         center: new google.maps.LatLng(54.70235509327093, -3.2080078125),
         zoom: 6,
 		scrollwheel:false,
@@ -91,4 +91,4 @@ $this->inlineScript()->captureStart();
 <?php 
 $this->inlineScript()->captureEnd();?>
 <h2>Map of where our news comes from</h2>
-<div id="mapevents"></div>
+<div id="map"></div>

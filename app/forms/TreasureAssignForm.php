@@ -31,13 +31,10 @@ public function __construct($options = null)
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StringTrim','StripTags'))
 		->addErrorMessage('You must enter a chase date')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 		
 	$submit = new Zend_Form_Element_Submit('submit');
 	$this->addElements(array(

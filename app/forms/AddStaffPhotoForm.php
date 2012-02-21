@@ -15,6 +15,7 @@ public function __construct($options = null) {
 	parent::__construct($options);
 
 	$this->setAttrib('enctype', 'multipart/form-data');
+	
 	$this->setName('AddAvatar');
 
 	$avatar = new Zend_Form_Element_File('image');
@@ -29,20 +30,17 @@ public function __construct($options = null) {
 		->addValidator('Count', false, array('min' => 1, 'max' => 1));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setLabel('Upload a photo')
-	->setAttribs(array('class'=> 'large'));
+	$submit->setLabel('Upload a photo');
 
-	$this->addElements(array($avatar,$submit))
+	$this->addElements(array($avatar,$submit, $hash))
 	->setLegend('Add an active denomination');
+	
 	$this->addDisplayGroup(array('image'), 'details');
+	
 	$this->details->setLegend('Add a staff photograph: ');
 
 	$this->addDisplayGroup(array('submit'), 'submit');

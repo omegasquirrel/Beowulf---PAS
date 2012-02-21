@@ -42,16 +42,14 @@ public function __construct($options = null) {
 		->setRequired(true);
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->config->form->salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Upload an image of a ruler')
 	->setAttribs(array('class'=> 'large'));
 
-	$this->addElements(array($image,$rulerID,$caption,$submit))
+	$this->addElements(array($image, $rulerID, $caption, $submit, $hash))
 	->setLegend('Add an image to a ruler profile');
 
 	$this->addDisplayGroup(array('image','caption'), 'details');

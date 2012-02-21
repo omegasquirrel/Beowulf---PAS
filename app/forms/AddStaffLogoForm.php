@@ -15,6 +15,7 @@ public function __construct($options = null) {
 parent::__construct($options);
 
 	$this->setAttrib('enctype', 'multipart/form-data');
+	
 	$this->setName('Addlogo');
 
 	$avatar = new Zend_Form_Element_File('logo');
@@ -34,16 +35,13 @@ parent::__construct($options);
 	->addValidator('Int');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setLabel('Upload a logo')
-	->setAttribs(array('class'=> 'large'));
+	$submit->setLabel('Upload a logo');
 
-	$this->addElements(array($avatar,$replace,$submit));
+	$this->addElements(array($avatar,$replace,$submit, $hash));
 	$this->addDisplayGroup(array('logo','replace'), 'details');
 	$this->addDisplayGroup(array('submit'), 'submit');
 

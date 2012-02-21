@@ -27,36 +27,23 @@ public function __construct($options = null) {
 	$objecttype = new Zend_Form_Element_Text('objecttype');
 	$objecttype->setLabel('Filter by object type')
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size', 15)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 15);
 		
 	$oldfindID = new Zend_Form_Element_Text('old_findID');
 	$oldfindID->setLabel('Filter by find ID #')
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 15)
-		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->addValidator('StringLength', false, array(1,200));
 	
 	$TID = new Zend_Form_Element_Text('TID');
 	$TID->setLabel('Filter by treasure ID #')
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size', 15)
-		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 15);
 	
 	$broadperiod = new Zend_Form_Element_Select('broadperiod');
 	$broadperiod->setLabel('Filter by broadperiod')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
 		->addMultiOptions(array(NULL => NULL ,'Choose period from' => $periodword_options))
 		->addValidator('InArray', false, array(array_keys($periodword_options)));
 	
@@ -64,31 +51,20 @@ public function __construct($options = null) {
 	$county->setLabel('Filter by county')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
 		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
 		->addValidator('InArray', false, array(array_keys($county_options)));
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
-		->setTimeout(4800);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 		
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setLabel('Filter')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+	$submit->setLabel('Filter');
 	
 	$this->addElements(array(
 	$objecttype, $oldfindID, $TID,
 	$broadperiod, $county, $submit,
-	 $hash));
+	$hash));
 	
 	parent::init(); 
 	}

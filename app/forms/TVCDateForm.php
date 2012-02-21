@@ -21,7 +21,6 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must choose a TVC date')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
 		->addMultiOptions(array('NULL' => 'Select a TVC','Valid dates' => $list))
 		->addValidator('InArray', false, array(array_keys($list)));
 	

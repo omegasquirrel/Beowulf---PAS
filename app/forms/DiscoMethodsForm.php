@@ -19,7 +19,6 @@ parent::__construct($options);
 	$method->setLabel('Discovery method term: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->setAttrib('size',50)
 	->addValidator('NotEmpty')
 	->addErrorMessage('You must enter a valid term');
 
@@ -41,20 +40,18 @@ parent::__construct($options);
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(60);
-	$this->addElement($hash);
 	
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$this->addElements(array(
-	$method, 
-	$termdesc,
-	$valid,
-	$submit));
+	$this->addElements(array($method, $termdesc, $valid, $submit, $hash));
 
 	$this->addDisplayGroup(array('method','termdesc','valid'), 'details');
+	
 	$this->details->setLegend('Discovery methods');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
 	parent::init();
 	}
 

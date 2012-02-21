@@ -20,72 +20,43 @@ public function __construct($options = null) {
 
 	$username = new Zend_Form_Element_Text('username');
 	$username->setLabel('Filter by username')
-		->setRequired(false)
 		->addFilters(array('StringTrim', 'StripTags'))
-		->setAttrib('size', 15)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 15);
 
 	$name = new Zend_Form_Element_Text('fullname');
 	$name->setLabel('Filter by name')
-		->setRequired(false)
 		->addFilters(array('StringTrim', 'StripTags'))
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 
 	$role = new Zend_Form_Element_Select('role');
 	$role->setLabel('Filter by role')
-		->setRequired(false)
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
 		->addMultiOptions(array(NULL => NULL,'Choose role' => array(
 		'admin' => 'Admin', 'hero' => 'HER officer', 'flos' => 'Finds Liaison',
-		'member' => 'Member', 'fa' => 'Finds Adviser', 'research' => 'Researcher')))
-		->setDisableTranslator(true);
+		'member' => 'Member', 'fa' => 'Finds Adviser', 'research' => 'Researcher')));
 
 	$login = new ZendX_JQuery_Form_Element_DatePicker('lastLogin');
 	$login->setLabel('Filter last login: ')
-		->setRequired(false)
 		->addFilters(array('StringTrim', 'StripTags'))
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 
 	$visits = new Zend_Form_Element_Text('visits');
 	$visits->setLabel('Filter by visit count: ')
-		->setRequired(false)
 		->addFilters(array('StringTrim', 'StripTags'))
 		->setAttribs(array('size' => 5, 'maxlength' => '6'))
-		->addValidator('Int')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->addValidator('Int');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setLabel('Filter')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+	$submit->setLabel('Filter');
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 		
 	$this->addElements(array(
 	$username, $name, $role,
-	$login, $visits, $submit)
+	$login, $visits, $submit,
+	$hash)
 	);
 	 
 	parent::init(); 

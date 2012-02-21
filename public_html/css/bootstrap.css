@@ -8,12 +8,7 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
- .flow {
-     float:right;
- }
- .forRDFOnly {
-     display: none;
- }
+
 article,
 aside,
 details,
@@ -102,7 +97,6 @@ textarea {
   vertical-align: top;
 }
 body {
-  margin-top: 96px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;

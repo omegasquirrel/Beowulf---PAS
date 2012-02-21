@@ -8,21 +8,11 @@
 */
 class EarlyMedNumismaticSearchForm extends Pas_Form {
 
-    protected function getRole(){
-	$auth = Zend_Auth::getInstance();
-	if($auth->hasIdentity()){
-	$user = $auth->getIdentity();
-	$role = $user->role;
-	return $role;
-	} else {
-	$role = 'public';
-	return $role;
-	}
-	}
+   
 
-    protected $higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
+    protected $_higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
 
-	protected $restricted = array('public', 'member', 'research');
+	protected $_restricted = array('public', 'member', 'research');
 
 	public function __construct($options = null) {
 
@@ -81,7 +71,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int');
 
-	if(in_array($this->getRole(),$this->higherlevel)) {
+	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
             'Choose Worklow stage' => array(
                 '1' => 'Quarantine',
@@ -89,7 +79,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
                 '4' => 'Awaiting validation',
                 '3' => 'Published')));
 	}
-	if(in_array($this->getRole(),$this->restricted)) {
+	if(in_array($this->_role,$this->_restricted)) {
 	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
             'Choose Worklow stage' => array(
                 '4' => 'Awaiting validation',
@@ -263,25 +253,13 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin')
-		->setAttrib('class', 'none')
-		->removeDecorator('label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->addFilter('StringToUpper');
 
 	$broadperiod = new Zend_Form_Element_Hidden('broadperiod');
-	$broadperiod->setValue('Early Medieval')
-		->setAttrib('class', 'none')
-		->removeDecorator('label')
-		->addFilter('StringToUpper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+	$broadperiod->setValue('Early Medieval')->addFilter('StringToUpper');
+	
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setAttrib('class', 'large')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->setLabel('Submit');
 
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
@@ -292,6 +270,8 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
             null => 'Choose an institution',
             'Available institutions' => $inst_options));
 
+    $hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$this->addElements(array(
 	$old_findID, $type, $description,
@@ -302,12 +282,9 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	$ruler, $mint, $axis,
 	$obverseinsc, $obversedesc, $reverseinsc,
 	$reversedesc, $objecttype, $broadperiod,
-	$cat, $submit, $institution));
+	$cat, $submit, $institution,
+	$hash));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(60);
-	$this->addElement($hash);
 
 	$this->addDisplayGroup(array(
             'category', 'ruler', 'typeID',

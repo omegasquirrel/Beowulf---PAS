@@ -51,17 +51,15 @@ public function __construct($options = null) {
 		'announcement' => 'Announcement'));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	
 	$this->addElements(array(
 	$quote,	$quotedBy, $valid,
-	$expire, $type, $submit));
+	$expire, $type, $submit,
+	$hash));
 	
 	$this->addDisplayGroup(array(
 	'quote', 'quotedBy', 'status',

@@ -28,13 +28,11 @@ public function __construct($options = null) {
 
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$this->addElements(array($mint,$ruler_id,$submit));
+	$this->addElements(array($mint,$ruler_id,$submit, $hash));
 
 	$this->addDisplayGroup(array('mint_id'), 'details');
 

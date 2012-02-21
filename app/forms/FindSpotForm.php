@@ -37,14 +37,12 @@ public function __construct($options = null) {
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
-	->setRequired(false)
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose district after county'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
-	->setRequired(false)
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose parish after district'));
@@ -75,8 +73,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->setValue(1)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));;
+	->setOptions(array('separator' => ''));
 
 	if($action === 'edit'){
 	$fourFigure = new Zend_Form_Element_Text('fourFigure');
@@ -141,7 +138,7 @@ public function __construct($options = null) {
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Digits')
-	->addMultiOptions(array(NULL => NULL,'Approximate depth' => array(
+	->addMultiOptions(array(NULL => 'Depth levels','Approximate depth' => array(
 	'10' => '0 - 10cm', '20' => '10 - 20cm', '30' => '20 - 30cm',
 	'40' => '30 - 40cm', '50' => '40 - 50cm',
 	'60' => 'Over 60 cm')));
@@ -197,10 +194,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags', 'StringTrim'));
 
 	$landowner = new Zend_Form_Element_Hidden('landowner');
-	$landowner->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
-	->addFilters(array('StripTags', 'StringTrim'));;
+	$landowner->addFilters(array('StripTags', 'StringTrim'));;
 
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Findspot description: ')
@@ -222,9 +216,7 @@ public function __construct($options = null) {
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(600);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(600);
 
 	if($action == 'edit') {
 	$this->addElements(array(
@@ -256,7 +248,9 @@ public function __construct($options = null) {
 	'address', 'postcode', 'landownername',
 	'landowner'),
 	'details');
+	
 	$this->details->setLegend('Findspot information');
+	
 	if($action == 'edit') {
 	$this->addDisplayGroup(array(
 	'gridref', 'gridrefcert', 'gridrefsrc',
@@ -275,6 +269,7 @@ public function __construct($options = null) {
 	$this->spatial->setLegend('Spatial information');
 
 	$this->addDisplayGroup(array('description','comments'),'commentary');
+	
 	$this->commentary->setLegend('Findspot comments');
 
 	$this->addDisplayGroup(array('submit'), 'submit');

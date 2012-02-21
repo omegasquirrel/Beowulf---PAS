@@ -51,21 +51,16 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'));
 
 	$submit = new Zend_Form_Element_Submit('submit');
-
+	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
-
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$dynasty, $date_from, $date_to,
-	$description, $valid, $submit));
+	$description, $valid, $submit, 
+	$hash));
 	$this->addDisplayGroup(array('dynasty','date_from','date_to','description','valid','submit'), 'details');
 	
-
-	$this->details->removeDecorator('DtDdWrapper');
-	$this->details->removeDecorator('HtmlTag');
-
 	parent::init();
 	}
 }

@@ -21,9 +21,9 @@ class SolrForm extends Pas_Form {
 		->setAttrib('class', 'span6 ')
 		->addErrorMessage('Please enter a search term');
 
-        $thumbnail = new Zend_Form_Element_Checkbox('thumbnail');
-        $thumbnail->setLabel('Only with images?')
-                ->setUnCheckedValue(null);
+    $thumbnail = new Zend_Form_Element_Checkbox('thumbnail');
+    $thumbnail->setLabel('Only with images?')
+         ->setUnCheckedValue(null);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Search!');

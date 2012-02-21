@@ -18,25 +18,14 @@ public function __construct($options = null)
 		->setRequired(false)
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addErrorMessage('Come on it\'s not that hard, enter a title!')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
-		->setTimeout(4800);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setLabel('Filter')
-	->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper');
+	$submit->setLabel('Filter');
 	
 	$this->addElements(array(
 	$ruler,	$submit, $hash));

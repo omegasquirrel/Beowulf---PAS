@@ -30,7 +30,6 @@ parent::__construct($options);
 
 	$title = new Zend_Form_Element_Select('title');
 	$title->setLabel('Title: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setValue('Mr')
 		->addErrorMessage('Choose title of person')
@@ -63,7 +62,6 @@ parent::__construct($options);
 
 	$email = new Zend_Form_Element_Text('email');
 	$email->SetLabel('Email address: ')
-		->setRequired(false)
 		->addFilters(array('StringTrim', 'StringToLower', 'StripTags'))
 		->addValidator('StringLength', false, array(1,200))
 		->addValidator('EmailAddress', false, array('mx' => true) )
@@ -71,7 +69,6 @@ parent::__construct($options);
 
 	$dbaseID = new Zend_Form_Element_Select('dbaseID');
 	$dbaseID->setLabel('User account: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Int')
 		->addValidator('InArray', false, array(array_keys($users_options),null))
@@ -81,21 +78,18 @@ parent::__construct($options);
 
 	$address = new Zend_Form_Element_Text('address');
 	$address->SetLabel('Address: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$town_city = new Zend_Form_Element_Text('town_city');
 	$town_city->SetLabel('Town: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 	
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Please choose a county',
 		'Valid counties' => $counties_options))
@@ -111,7 +105,6 @@ parent::__construct($options);
 
 	$country = new Zend_Form_Element_Select('country');
 	$country->SetLabel('Country: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,4))
 		->addValidator('InArray', false, array(array_keys($countries_options)))
@@ -121,14 +114,12 @@ parent::__construct($options);
 
 	$hometel = new Zend_Form_Element_Text('hometel');
 	$hometel->SetLabel('Home telephone number: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,30))
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$worktel = new Zend_Form_Element_Text('worktel');
 	$worktel->SetLabel('Work telephone number: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,30))
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
@@ -141,7 +132,6 @@ parent::__construct($options);
 
 	$comments = new Pas_Form_Element_RTE('comments');
 	$comments->SetLabel('Comments: ')
-		->setRequired(false)
 		->setAttrib('rows',10)
 		->setAttrib('cols',40)
 		->setAttrib('Height',400)
@@ -151,7 +141,6 @@ parent::__construct($options);
 
 	$organisationID = new Zend_Form_Element_Select('organisationID');
 	$organisationID->SetLabel('Organisation attached to: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Please choose an organisation',
 		'Valid organisations' => $organisations_options))
@@ -169,19 +158,18 @@ parent::__construct($options);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$title, $forename, $surname,
 	$fullname, $email, $address,
 	$town_city, $county, $postcode,
 	$country, $dbaseID, $hometel,
 	$worktel, $fax, $comments,
-	$organisationID, $primary_activity, $submit));
+	$organisationID, $primary_activity, $submit,
+	$hash));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
-	
 	$this->addDisplayGroup(array(
 	'title','forename','surname',
 	'fullname','email','address',
@@ -191,6 +179,7 @@ parent::__construct($options);
 	'organisationID','primary_activity'), 
 	'details');
 	$this->details->setLegend('Person details: ');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
 
 	parent::init();

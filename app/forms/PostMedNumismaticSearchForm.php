@@ -72,22 +72,23 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		->addValidator('Digits');
 	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose Worklow stage',
-	'Available workflow stages' => array('1'=> 'Quarantine','2' => 'On review', '4' => 'Awaiting validation', '3' => 'Published')));
+	'Available workflow stages' => array(
+		'1'=> 'Quarantine',
+		'2' => 'On review', 
+		'4' => 'Awaiting validation', 
+		'3' => 'Published')));
 	}
 	if(in_array($this->_role,$this->_restricted)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose Worklow stage',
-	'Available workflow stages' => array('4' => 'Awaiting validation', '3' => 'Published')));
+	'Available workflow stages' => array(
+		'4' => 'Awaiting validation', 
+		'3' => 'Published')));
 	}
-	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+
 	
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
 	$rally->setLabel('Rally find: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->setUncheckedValue(NULL)
 		->addValidators(array('Digits'));
@@ -160,7 +161,6 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	
 	$cat = new Zend_Form_Element_Select('category');
 	$cat->setLabel('Category: ')
-		->setRegisterInArrayValidator(false)
 		->addValidator('InArray', false, array(array_keys($cat_options)))	
 		->addMultiOptions(array(NULL => 'Choose category',
 		'Available categories' => $cat_options))
@@ -175,7 +175,6 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL =>'Choose primary ruler', 
 		'Available rulers' => $ruler_options))
@@ -184,7 +183,6 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
 	$mint->setLabel('Issuing mint: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL =>'Choose active mint',
 		'Available mints' => $mint_options))
@@ -193,28 +191,24 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	//Obverse inscription
 	$obverseinsc = new Zend_Form_Element_Text('obinsc');
 	$obverseinsc->setLabel('Obverse inscription contains: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 	
 	//Obverse description
 	$obversedesc = new Zend_Form_Element_Text('obdesc');
 	$obversedesc->setLabel('Obverse description contains: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 	
 	//reverse inscription
 	$reverseinsc = new Zend_Form_Element_Text('revinsc');
 	$reverseinsc->setLabel('Reverse inscription contains: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 	
 	//reverse description
 	$reversedesc = new Zend_Form_Element_Text('revdesc');
 	$reversedesc->setLabel('Reverse description contains: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 	
@@ -228,12 +222,11 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin')
-		->setAttrib('class', 'none');
+		->addFilter('StringToUpper');
 	
 	
 	$broadperiod = new Zend_Form_Element_Hidden('broadperiod');
 	$broadperiod->setValue('Post Medieval')
-		->setAttrib('class', 'none')
 		->addFilters(array('StripTags','StringTrim', 'StringToUpper'))
 		->addValidator('Alpha',false,array('allowWhiteSpace' => true));
 		
@@ -241,13 +234,10 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => 'Choose an institution',
 	'Available institutions' => $inst_options));
@@ -264,19 +254,31 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	$cat,$submit, $hash, $institution));
 	
 	$this->addDisplayGroup(array(
-	'category','ruler','typeID',
-	'denomination','mint','moneyer',
-	'axis','obinsc','obdesc',
-	'revinsc','revdesc'), 'numismatics');
+		'category','ruler','typeID',
+		'denomination','mint','moneyer',
+		'axis','obinsc','obdesc',
+		'revinsc','revdesc')
+	, 'numismatics');
 	
-	$this->addDisplayGroup(array('old_findID','description','rally','rallyID','hoard','hID','workflow'), 'details')->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array(
+		'old_findID','description','rally',
+		'rallyID','hoard','hID','workflow'), 
+	'details');
 	
-	$this->addDisplayGroup(array('county','regionID','district','parish','gridref','fourFigure','institution'), 'spatial')->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array(
+		'county','regionID','district',
+		'parish','gridref','fourFigure',
+		'institution'), 
+	'spatial');
 	
 	$this->numismatics->setLegend('Numismatic details');
+	
 	$this->spatial->setLegend('Spatial details');
+	
 	$this->details->setLegend('Object specific details: ');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
 	parent::init();
 	}
 }

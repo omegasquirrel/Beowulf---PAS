@@ -18,87 +18,54 @@ public function __construct($options = null) {
 	$counties = new Counties();
 	$county_options = $counties->getCountyName2();
 
-parent::__construct($options);
-
-	$decorator =  array('TableDecInput');
+	parent::__construct($options);
 
 	$name = new Zend_Form_Element_Text('fullname');
 	$name->setLabel('Filter by name')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
 		->addErrorMessage('Come on it\'s not that hard, enter a title!')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->addDecorator('Label', array('tag' => 'span'));
+		->setAttrib('size', 20);
 	
 	$organisation = new Zend_Form_Element_Text('organisation');
 	$organisation->setLabel('Filter by organisation')
-		->setRequired(false)
 		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Enter a valid organisation')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->addDecorator('Label', array('tag' => 'span'));
+		->setAttrib('size', 20);;
 
 	$organisationID = new Zend_Form_Element_Hidden('organisationID');
-	$organisationID->removeDecorator('Label')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->addValidator('Alnum',false, array('allowWhiteSpace' => false))
+	$organisationID->addValidator('Alnum',false, array('allowWhiteSpace' => false))
 		->addFilters(array('StripTags','StringTrim'));
 				
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('Filter by county')
-		->setRequired(false)
 		->addValidator('Alpha',false, array('allowWhiteSpace' => true))
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
 		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
-		->addValidator('InArray', false, array(array_keys($county_options)))
-		->addDecorator('Label', array('tag' => 'span'));
+		->addValidator('InArray', false, array(array_keys($county_options)));
 
 	$primary = new Zend_Form_Element_Select('primary_activity');
 	$primary->setLabel('Filter by activity')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
 		->addMultiOptions(array(NULL => NULL,'Choose activity' => $activities_options))
-		->addValidator('InArray', false, array(array_keys($county_options)))
-		->addDecorator('Label', array('tag' => 'span'));
+		->addValidator('InArray', false, array(array_keys($county_options)));
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setLabel('Filter')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper')
-		->setAttrib('class','buttonfilter');
+	$submit->setLabel('Filter');
 
 	$this->addElements(array(
 	$name, $county, $organisation,
-	$organisationID, $primary, $submit));
+	$organisationID, $primary, $submit,
+	$hash));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
 	parent::init();
 	}
 }

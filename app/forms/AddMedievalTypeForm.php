@@ -19,8 +19,6 @@ class AddMedievalTypeForm extends Pas_Form {
 
 	parent::__construct($options);
 
-	$this->setAttrib('accept-charset', 'UTF-8');
-	$this->setDecorators(array('FormElements','Form'));
 	$this->setName('MedievalType');
 
 	$type = new Zend_Form_Element_Text('type');
@@ -34,7 +32,9 @@ class AddMedievalTypeForm extends Pas_Form {
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->setAttribs(array('class'=> 'textInput'))
-	->addMultioptions(array(NULL => NULL, 'Choose broadperiod' => array('47' => 'Early Medieval','29' => 'Medieval','36' => 'Post Medieval')));
+	->addMultioptions(array(NULL => NULL, 'Choose broadperiod' => array(
+		'47' => 'Early Medieval','29' => 'Medieval','36' => 'Post Medieval')
+	));
 
 	$category = new Zend_Form_Element_Select('categoryID');
 	$category->setLabel('Coin category: ')
@@ -70,11 +70,12 @@ class AddMedievalTypeForm extends Pas_Form {
 	->setAttribs(array('class'=> 'large'));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
-	$this->addElements(array($type,$broadperiod,$category,$ruler,$datefrom,$dateto,$submit))
+	$this->addElements(array(
+		$type,$broadperiod,$category,
+		$ruler,$datefrom,$dateto,
+		$submit, $hash))
 	->setLegend('Add an active type of Medieval coin')
 	->setMethod('post');
 

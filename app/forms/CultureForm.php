@@ -40,19 +40,14 @@ public function __construct($options = null)
 	->addErrorMessage('You must set the status of this term');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
 
-	$this->addElements(array($term, $termdesc, $valid, $submit));
+	$this->addElements(array($term, $termdesc, $valid, $submit, $hash));
 
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
 
 	$this->addDisplayGroup(array('submit'), 'submit');
 	parent::init();

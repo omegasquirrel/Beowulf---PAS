@@ -78,11 +78,7 @@ parent::__construct($options);
 
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')->removeDecorator('label')
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setAttrib('id', 'submitbutton')->removeDecorator('label')
@@ -97,7 +93,7 @@ parent::__construct($options);
 	$this->addElements(array(
 	$comment_author_IP, $comment_agent,	$comment_author,
 	$comment_author_email, $comment_content,	$comment_author_url,
-	$captcha, $submit));
+	$captcha, $submit, $hash));
 
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_author_url',
@@ -112,7 +108,7 @@ parent::__construct($options);
 	$this->addElements(array(
 	$comment_author_IP,	$comment_agent, $comment_author,
 	$comment_author_email, $comment_content,$comment_author_url,
-	$submit));
+	$submit, $hash));
 
 	$this->addDisplayGroup(array(
 	'comment_author', 'comment_author_email', 'comment_author_url',

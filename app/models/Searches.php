@@ -107,7 +107,7 @@ class Searches extends Pas_Db_Table_Abstract {
     * @param integer $page
     * @return array
     */
-    public function getAllSavedSearches($userid, $page) {
+    public function getAllSavedSearches($userid, $page, $private) {
     $search = $this->getAdapter();
     $select = $search->select()
             ->from('savedSearches')
@@ -115,14 +115,17 @@ class Searches extends Pas_Db_Table_Abstract {
     if(!is_null($userid)){
     $select->where('savedSearches.createdBy = ?',$userid)
             ->where('public = ?', 1);
+    } else {
+    	$select->where('public = ?', 1);
     }
+
     $paginator = Zend_Paginator::factory($select);
-    Zend_Paginator::setCache($this->_cache);
     if(isset($page) && ($page != "")) {
     $paginator->setCurrentPageNumber((int)$page);
     }
     $paginator->setItemCountPerPage(10)
             ->setPageRange(10);
+	$paginator->setCache($this->_cache);
     return $paginator;
     }
 

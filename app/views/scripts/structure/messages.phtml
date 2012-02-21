@@ -1,18 +1,16 @@
 <?php
-if (!empty($this->messages[0])) {?>
+if (!empty($this->messages[0])) :?>
 <?php
 $this->jQuery()->javascriptCaptureStart();?>
 $(document).ready(function(){
 setTimeout(function(){ 
-$('.flashmessenger').fadeOut('slow'); }, 8000);
+$('#flashmessenger').fadeOut('slow'); }, 8000);
 }); 
 <?php $this->jQuery()->javascriptCaptureEnd();?>
-<?php
-echo '<div class="flashmessenger">';
-foreach($this->messages as $message){
-echo $message;
-}
-echo '</div>';
-}
-?>
-
+<div class="alert alert-info" id="flashmessenger">
+<a class="close" data-dismiss="alert"><i class="icon-eject"></i></a>
+<?php foreach($this->messages as $message):?>
+<?php echo $message; ?>
+<?php endforeach;?>
+</div>
+<?php endif;?>

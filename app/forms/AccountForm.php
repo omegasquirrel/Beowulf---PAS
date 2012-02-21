@@ -101,12 +101,7 @@ class AccountForm extends Pas_Form
 
     $submit = new Zend_Form_Element_Submit('submit');
     $submit->setLabel('Set my account up on Beowulf');
-    $submit->clearDecorators();
-    $submit->addDecorators(array(
-        array('ViewHelper'),    // element's view helper
-        array('HtmlTag', array('tag' => 'div', 'class' => 'submit')),
-    ));
-            $submit->setAttrib('class','large');
+    
     $this->addElement($submit);
 
 

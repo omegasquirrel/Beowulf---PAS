@@ -102,23 +102,21 @@
 
       </div><!--/row-->
 
-      <hr />
+    <hr />
 
-
-    <div class="row-fluid span12  muted">
+    <div class="row span16 muted">
 
             <?php echo $this->layout()->footer; ?>
 
     </div>
 
+    </div><!--/.fluid-container-->
 
+    <?php echo $this->jQuery(); ?>
 
-	<?php echo $this->JQuery(); ?>
+    <?php echo $this->inlineScript(); ?>
 
-	<?php echo $this->inlineScript(); ?>
+    <?php echo $this->layout()->analytics; ?>
 
-	<?php echo $this->layout()->analytics; ?>
-
-</body>
-
+  </body>
 </html>

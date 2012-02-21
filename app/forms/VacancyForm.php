@@ -10,6 +10,7 @@
 class VacancyForm extends Pas_Form {
 	
 public function __construct($options = null) {
+	
 	$staffregions = new StaffRegions();
 	$staffregions_options = $staffregions->getOptions();
 
@@ -59,9 +60,7 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addValidator('Date')
 		->addErrorMessage('Come on it\'s not that hard, enter a title!')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 	
 	$expire = new ZendX_JQuery_Form_Element_DatePicker('expire');
 	$expire->setLabel('Date for advert to expire: ')
@@ -71,9 +70,7 @@ public function __construct($options = null) {
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addValidator('Date')
 		->addErrorMessage('Come on it\'s not that hard, enter a title!')
-		->setAttrib('size', 20)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'li'))
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 20);
 	
 	$status = new Zend_Form_Element_Select('status');
 	$status->SetLabel('Publish status: ')
@@ -84,39 +81,30 @@ public function __construct($options = null) {
 		->addErrorMessage('You must choose a status');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->setAttrib('class','large');
+
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);	
 	
 	$this->addElements(array(
 	$title, $salary, $specification,
 	$regionID, $live, $expire,
-	$status, $submit));
+	$status, $submit, $hash));
 	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->removeDecorator('DtDdWrapper')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('label')
-		->setTimeout(4800);
-	$this->addElement($hash);
-	
-	$this->removeDecorator('DtDdWrapper');
 	
 	$this->addDisplayGroup(array(
 	'title', 'salary', 'specification',
 	'regionID'), 'details');
+	
 	$this->details->setLegend('Vacancy details');
-	$this->details->removeDecorator('DtDdWrapper');
 	
 	$this->addDisplayGroup(array(
 	'live', 'expire', 'status'),
 	'dates');
+	
 	$this->dates->setLegend('Publication details');
-	$this->dates->removeDecorator('DtDdWrapper');
 	
 	$this->setLegend('Vacancy details');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
 	
 	parent::init();

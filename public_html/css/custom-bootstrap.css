@@ -1,0 +1,19 @@
+body {
+	padding-top: 60px;
+    padding-bottom: 40px;
+}
+.form-horizontal .form-actions {
+  padding-left: 50px;
+}
+.flow {
+	float:right;
+}
+.forRDFOnly {
+	display: none;
+}
+#map img {
+   max-width:none;
+}
+#map {
+	min-height:700px;
+}

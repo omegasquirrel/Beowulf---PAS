@@ -20,37 +20,25 @@ parent::__construct($options);
 	$this->setName('comments');
 
 	$comment_author_IP = new Zend_Form_Element_Hidden('user_ip');
-	$comment_author_IP->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
-	->addFilters(array('StripTags','StringTrim'))
+	$comment_author_IP->addFilters(array('StripTags','StringTrim'))
 	->setRequired(true)
 	->addValidator('Ip')
 	->setValue($_SERVER['REMOTE_ADDR']);
 
 	$comment_agent = new Zend_Form_Element_Hidden('user_agent');
-	$comment_agent->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
-	->addFilters(array('StripTags','StringTrim'))
+	$comment_agent->addFilters(array('StripTags','StringTrim'))
 	->setValue($_SERVER['HTTP_USER_AGENT'])
 	->setRequired(true);
 
 	$comment_subject = new Zend_Form_Element_Hidden('comment_subject');
-	$comment_subject->removeDecorator('HtmlTag')
-	->addFilters(array('StripTags','StringTrim'))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
+	$comment_subject->addFilters(array('StripTags','StringTrim'))
 	->setRequired(true);
 
 	$comment_findID = new Zend_Form_Element_Hidden('comment_findID');
 	$comment_findID->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidators(array('Int'))
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label');
-
+	->addValidators(array('Int'));
+	
 	$comment_author = new Zend_Form_Element_Text('comment_author');
 	$comment_author->setLabel('Enter your name: ')
 	->setRequired(true)
@@ -101,10 +89,10 @@ parent::__construct($options);
 
 
 	$captcha = new Zend_Form_Element_Captcha(
-                'captcha', array(
-                    'captcha' => 'ReCaptcha',
-                    'label' => 'Prove you are not a robot/spammer',
-	            'captchaOptions' => array(
+                		'captcha', array(
+                   		'captcha' => 'ReCaptcha',
+                    	'label' => 'Prove you are not a robot/spammer',
+	            		'captchaOptions' => array(
                         'captcha' => 'ReCaptcha',
                         'privKey' => $this->_privateKey,
                         'pubKey' => $this->_pubKey,
@@ -113,7 +101,6 @@ parent::__construct($options);
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(60);
-	$this->addElement($hash);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
@@ -124,7 +111,7 @@ parent::__construct($options);
 	$comment_findID, $comment_author_IP, $comment_agent,
 	$comment_subject, $comment_author, $comment_author_email,
 	$comment_content, $comment_author_url, $comment_type,
-	$captcha, $submit));
+	$captcha, $submit, $hash));
 
 
 	$this->addDisplayGroup(array('comment_author','comment_author_email','comment_author_url',
@@ -135,7 +122,7 @@ parent::__construct($options);
 	$comment_findID, $comment_subject, $comment_author_IP,
 	$comment_agent, $comment_author, $comment_author_email,
 	$comment_content, $comment_author_url, $comment_type,
-	$submit));
+	$submit, $hash));
 
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
 	'comment_type', 'comment_content', 'submit'), 'details');

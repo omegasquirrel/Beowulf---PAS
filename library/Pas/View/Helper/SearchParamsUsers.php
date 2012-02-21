@@ -359,13 +359,13 @@ class Pas_View_Helper_SearchParamsUsers
     }
     if(array_key_exists('createdBefore',$params)) {
     if (!is_null($params['createdBefore'])){
-    echo 'Finds entered on or before: '.$this->view->niceShortDate($this->view->escape($params['createdBefore'])).' &raquo; ';
+    echo 'Finds entered on or before: '.$this->view->niceshortdate($this->view->escape($params['createdBefore'])).' &raquo; ';
     }
     }
 
     if(array_key_exists('createdAfter',$params)) {
     if (!is_null($params['createdAfter'])){
-    echo 'Finds entered on or after: '.$this->view->niceShortDate($this->view->escape($params['createdAfter'])).' &raquo; ';
+    echo 'Finds entered on or after: '.$this->view->niceshortdate($this->view->escape($params['createdAfter'])).' &raquo; ';
     }
     }
 
@@ -507,9 +507,6 @@ class Pas_View_Helper_SearchParamsUsers
     }
     }
 
-
-            //End of function
-    echo '</ul>';
             }
     }
 

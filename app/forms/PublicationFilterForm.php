@@ -19,55 +19,43 @@ public function __construct($options = null) {
 	$title->setLabel('Filter by title')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size', 30)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 30);
 
 	$authorEditor = new Zend_Form_Element_Text('authorEditor');
 	$authorEditor->setLabel('Filter by author')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->setAttrib('size', 15)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 15);
 
 	$yearPub = new Zend_Form_Element_Text('pubYear');
 	$yearPub->setLabel('Filter by pub. year')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->setAttrib('size', 15)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 15);
 
 	$place = new Zend_Form_Element_Text('place');
 	$place->setLabel('Filter by place of pub.')
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('StringLength', false, array(1,200))
-		->setAttrib('size', 15)
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+		->setAttrib('size', 15);
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-		->setLabel('Filter')
-		->addDecorator(array('ListWrapper' => 'HtmlTag'), array('tag' => 'td'))
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DtDdWrapper');
+	$submit->setLabel('Filter');
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$title, 
 	$authorEditor,
 	$yearPub,
 	$place,
-	$submit));
+	$submit,
+	$hash));
   	parent::init();
 	}
 }

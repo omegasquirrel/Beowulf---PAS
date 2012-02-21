@@ -46,7 +46,6 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags','StringTrim'))
 	->setOptions(array('separator' => ''))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'))
 	->addValidator('Int');
 
 	$categoryID = new Zend_Form_Element_Select('categoryID');
@@ -164,9 +163,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$this->addElements(array(
             $ruler_id, $ruler_qualifier, $denomination,
@@ -175,7 +172,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
             $degree_of_wear, $obverse_description, $obverse_inscription,
             $reverse_description, $reverse_inscription, $die_axis_measurement,
             $die_axis_certainty, $submit, $rev_mm,
-            $initial));
+            $initial, $hash));
 
 	$this->addDisplayGroup(array(
             'categoryID', 'ruler', 'typeID',
@@ -185,11 +182,13 @@ class EarlyMedievalCoinForm extends Pas_Form {
             'reverse_description', 'reverse_inscription', 'reverse_mintmark',
             'initial_mark', 'die_axis_measurement', 'die_axis_certainty') ,
                 'details');
-	$this->details->addDecorators(array('FormElements',array('HtmlTag', array('tag' => 'ul'))));
+	
 	$this->addDisplayGroup(array('submit'),'submit');
+
 	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
 
 	if($action === 'editcoin') {
+		
 		$rulers = new Rulers();
 		$ruler_options = $rulers->getEarlyMedRulers();
 
@@ -197,8 +196,9 @@ class EarlyMedievalCoinForm extends Pas_Form {
                     NULL => 'Choose ruler',
                     'Available rulers' => $ruler_options));
 
-                $mints = new Mints();
+        $mints = new Mints();
 		$mint_options = $mints->getEarlyMedievalMints();
+
 		$mint_id->addMultiOptions(array(
                     NULL => 'Choose Early Medieval mint',
                     'Available mints' => $mint_options));

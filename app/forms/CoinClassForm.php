@@ -17,6 +17,7 @@ public function __construct($options = null)
 	$period_actives = $periods->getCoinsPeriod();
 
 	parent::__construct($options);
+
 	$this->setName('coinsclass');
 
 	$referenceName = new Zend_Form_Element_Text('referenceName');
@@ -43,15 +44,14 @@ public function __construct($options = null)
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 
-	$this->addElements(array($referenceName, $valid, $period,$submit));
+	$this->addElements(array($referenceName, $valid, $period,$submit, $hash));
 
 	$this->addDisplayGroup(array('referenceName','period','valid'), 'details');
 
 	$this->details->setLegend('Mint details: ');
+	
 	$this->addDisplayGroup(array('submit'),'submit');
 
 	parent::init();

@@ -34,14 +34,15 @@ public function __construct($options = null)
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(60);
-	$this->addElement($hash);
 	
-	$this->addElements(array(
-	$die_axis_name,	$valid, $submit));
+	$this->addElements(array($die_axis_name, $valid, $submit, $hash));
 
 	$this->addDisplayGroup(array('die_axis_name','valid'), 'details');
+
 	$this->details->setLegend('Die axis details: ');
+	
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
 	parent::init();
 	}
 }

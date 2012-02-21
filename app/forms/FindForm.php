@@ -75,16 +75,12 @@ public function __construct($options = null) {
 
 
 	$secuid = new Zend_Form_Element_Hidden('secuid');
-	$secuid->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->addFilters(array('StripTags','StringTrim'))
+	$secuid->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Alnum');
 
 	// Object specifics
 	$old_findID = new Zend_Form_Element_Hidden('old_findID');
-	$old_findID->removeDecorator('label')
-	->removeDecorator('HtmlTag')
-	->addFilters(array('StripTags','StringTrim'));
+	$old_findID->addFilters(array('StripTags','StringTrim'));
 
 
 	//Objecttype - autocomplete from thesaurus
@@ -432,8 +428,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array('4' => 'Complete','2' => 'Incomplete','1' => 'Fragment','3' => 'Uncertain'))
 	->setValue('4')
 	->setOptions(array('separator' => ''))
-	->addFilters(array('StripTags','StringTrim'))
-	->addDecorator('HtmlTag', array('placement' => 'prepend','tag'=>'div','id'=>'radios'));
+	->addFilters(array('StripTags','StringTrim'));
 
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
@@ -461,56 +456,34 @@ public function __construct($options = null) {
 
 
 	$finderID = new Zend_Form_Element_Hidden('finderID');
-	$finderID->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->removeDecorator('Label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DdDtWrapper');
+	$finderID->setRequired(false)->addFilters(array('StripTags','StringTrim'));
 
 	$secondfinder = new Zend_Form_Element_Text('secondfinder');
-	$secondfinder->setLabel('Secondary finder: ')
-	->addFilters(array('StripTags','StringTrim'));
+	$secondfinder->setLabel('Secondary finder: ')->addFilters(array('StripTags','StringTrim'));
 
 	//Secondary finder
 	$finder2ID = new Zend_Form_Element_Hidden('finder2ID');
-	$finder2ID->addFilters(array('StripTags','StringTrim'))
-	->removeDecorator('Label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DdDtWrapper');
+	$finder2ID->addFilters(array('StripTags','StringTrim'));
 
 	$recordername = new Zend_Form_Element_Text('recordername');
-	$recordername->setLabel('Recorded by: ')
-	->addFilters(array('StripTags','StringTrim'));
+	$recordername->setLabel('Recorded by: ')->addFilters(array('StripTags','StringTrim'));
 
 	//recorder information
 	$recorderID = new Zend_Form_Element_Hidden('recorderID');
-	$recorderID->addFilters(array('StripTags','StringTrim'))
-	->removeDecorator('Label')
-	->removeDecorator('HtmlTag')
-	->removeDecorator('DdDtWrapper');
+	$recorderID->addFilters(array('StripTags','StringTrim'));
 
 	$idBy = new Zend_Form_Element_Text('idBy');
-	$idBy->setLabel('Primary identifier: ')
-	->addFilters(array('StripTags','StringTrim'));
+	$idBy->setLabel('Primary identifier: ')->addFilters(array('StripTags','StringTrim'));
 
 	$identifier1ID = new Zend_Form_Element_Hidden('identifier1ID');
-	$identifier1ID->removeDecorator('HtmlTag')
-	->addFilters(array('StripTags','StringTrim'))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label');
+	$identifier1ID->addFilters(array('StripTags','StringTrim'));
 
 	$id2by = new Zend_Form_Element_Text('id2by');
-	$id2by->setLabel('Secondary Identifier: ')
-	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'));
+	$id2by->setLabel('Secondary Identifier: ')->addFilters(array('StripTags','StringTrim'));
 
 	//Secondary Identifier
 	$identifier2ID = new Zend_Form_Element_Hidden('identifier2ID');
-	$identifier2ID->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-		->removeDecorator('Label')
-		->removeDecorator('HtmlTag')
-		->removeDecorator('DdDtWrapper');
+	$identifier2ID->setRequired(false)->addFilters(array('StripTags','StringTrim'));
 
 	##DISCOVERY INFORMATION
 	//Discovery method
@@ -580,12 +553,7 @@ public function __construct($options = null) {
 	->addValidator('Int');
 
  	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(4800);
-	$this->addElement($hash);
-
-
-
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -612,13 +580,13 @@ public function __construct($options = null) {
 	$completeness, $findofnotereason, $rally,
 	$objecttypecert, $rallyID, $objdate1cert,
 	$objdate2cert, $submit,	$subs_action,
-	$numdate1qual, $numdate2qual));
+	$numdate1qual, $numdate2qual, $hash));
 
-	$this->removeDecorator('DtDdWrapper');
 	$this->addDisplayGroup(array('objecttype','objecttypecert','classification',
 	'subclass','description','notes',
 	'inscription','findofnote','findofnotereason',
 	'treasure','treasureID'), 'objectdetails');
+	
 	$this->objectdetails->setLegend('Object details');
 
 	$this->addDisplayGroup(array('broadperiod','objdate1period','objdate1cert',

@@ -51,9 +51,7 @@ class NotifyFloForm extends Pas_Form {
 
 						
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(60);
 		
 	$submit = new Zend_Form_Element_Submit('submit');
 

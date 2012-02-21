@@ -74,18 +74,21 @@ public function __construct($options = null) {
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Reject application');
 
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 	$this->addElements(array(
 	$researchOutline, $fullname, $reference,
 	$referenceEmail, $submit, $message));
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
+	$this->addDisplayGroup(array(
+		'fullname','email','messageToUser',
+		'reference','referenceEmail','researchOutline'), 'details');
 	
-	$this->addDisplayGroup(array('fullname','email','messageToUser','reference','referenceEmail','researchOutline'), 'details');
 	$this->details->setLegend('Details: ');
+
 	$this->addDisplayGroup(array('submit'), 'submit');
+	
 	parent::init();
 	}
 }

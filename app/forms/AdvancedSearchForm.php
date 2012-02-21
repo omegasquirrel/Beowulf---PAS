@@ -10,22 +10,9 @@
 */
 class AdvancedSearchForm extends Pas_Form {
 
-	protected function getRole(){
-	$auth = Zend_Auth::getInstance();
-	if($auth->hasIdentity()){
-	$user = $auth->getIdentity();
-	$role = $user->role;
-	return $role;
-	} else {
-	$role = 'public';
-	return $role;
-	}
-	}
+	protected $_higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
 
-	protected $higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
-
-	protected $restricted = array('public', 'member', 'research');
-
+	protected $_restricted = array('public', 'member', 'research');
 
 	public function __construct($options = null) {
 
@@ -98,7 +85,7 @@ class AdvancedSearchForm extends Pas_Form {
 
 	//Set up year of discovery dropdown
 	$current_year = date('Y');
-	$years = range(1950, $current_year);
+	$years = range(1850, $current_year);
 	$years_list = array_combine($years,$years);
 
 
@@ -114,27 +101,23 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$objecttype = new Zend_Form_Element_Text('objecttype');
 	$objecttype->setLabel('Object type: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addErrorMessage('Please enter a valid object type!');
 
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Object description contains: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addErrorMessage('Please enter a valid term');
 
 	//Find of note
 	$findofnote = new Zend_Form_Element_Checkbox('note');
 	$findofnote->setLabel('Find of Note: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->setUncheckedValue(NULL);
 
 	//Reason for find of note
 	$findofnotereason = new Zend_Form_Element_Select('reason');
 	$findofnotereason->setLabel('Reason for noteworthy status: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose reason',
@@ -143,21 +126,17 @@ class AdvancedSearchForm extends Pas_Form {
 	//Institution
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose institution',
             'Available institutions' => $inst_options));
 
 	$notes = new Zend_Form_Element_Text('notes');
-	$notes->setLabel('Notes: ')
-	->setRequired(false)
-	->addFilters(array('StringTrim','StripTags'));
+	$notes->setLabel('Notes: ')->addFilters(array('StringTrim','StripTags'));
 
 
 	$broadperiod = new Zend_Form_Element_Select('broadperiod');
 	$broadperiod->setLabel('Broad period: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose period from',
@@ -166,7 +145,6 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$objdate1subperiod = new Zend_Form_Element_Select('fromsubperiod');
 	$objdate1subperiod->setLabel('Sub period from: ')
-	->setRequired(false)
 	->addMultiOptions(array(
             NULL => 'Choose sub-period from',
             'Available sub period from' => array('1' => 'Early',
@@ -178,7 +156,6 @@ class AdvancedSearchForm extends Pas_Form {
 	//Period from: Assigned via dropdown
 	$objdate1period = new Zend_Form_Element_Select('periodFrom');
 	$objdate1period->setLabel('Period from: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose period from' ,
@@ -201,7 +178,6 @@ class AdvancedSearchForm extends Pas_Form {
 	//Period to: Assigned via dropdown
 	$objdate2period = new Zend_Form_Element_Select('periodTo');
 	$objdate2period->setLabel('Period to: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose period to',
@@ -209,7 +185,6 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$culture = new Zend_Form_Element_Select('culture');
 	$culture->setLabel('Ascribed culture: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose ascribed culture',
@@ -218,40 +193,34 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$from = new Zend_Form_Element_Text('from');
 	$from->setLabel('Start date greater than: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidators(array('NotEmpty','Int'))
 	->addErrorMessage('Please enter a valid date');
 
 	$fromend = new Zend_Form_Element_Text('fromend');
 	$fromend->setLabel('Start date smaller than: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidators(array('NotEmpty','Int'))
 	->addErrorMessage('Please enter a valid date');
 
 	$to = new Zend_Form_Element_Text('to');
 	$to->setLabel('End date greater than: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidators(array('NotEmpty','Int'))
 	->addErrorMessage('Please enter a valid date');
 
 	$toend= new Zend_Form_Element_Text('toend');
 	$toend->setLabel('End date smaller than: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidators(array('NotEmpty','Int'))
 	->addErrorMessage('Please enter a valid date');
 
-
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int');
 
-	if(in_array($this->getRole(),$this->higherlevel)) {
+	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
             'Choose Worklow stage' => array(
                 '1' => 'Quarantine',
@@ -259,7 +228,7 @@ class AdvancedSearchForm extends Pas_Form {
                 '4' => 'Awaiting validation',
                 '3' => 'Published')));
 	}
-	if(in_array($this->getRole(),$this->restricted)) {
+	if(in_array($this->_role,$this->_restricted)) {
 	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
             'Choose Worklow stage' => array(
                 '4' => 'Awaiting validation',
@@ -269,14 +238,11 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$treasure = new Zend_Form_Element_Checkbox('treasure');
 	$treasure->setLabel('Treasure find: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->setUncheckedValue(NULL);
 
 	$treasureID =  new Zend_Form_Element_Text('TID');
-	$treasureID->setLabel('Treasure ID number: ')
-	->setRequired(false)
-	->addFilters(array('StringTrim','StripTags'));
+	$treasureID->setLabel('Treasure ID number: ')->addFilters(array('StringTrim','StripTags'));
 
 
 	//Rally details
@@ -403,8 +369,7 @@ class AdvancedSearchForm extends Pas_Form {
 	$fourFigure = new Zend_Form_Element_Text('fourFigure');
 	$fourFigure->setLabel('Four figure grid reference: ')
 	->addValidators(array('NotEmpty'))
-	->addFilters(array('StringTrim','StripTags'))
-	;
+	->addFilters(array('StringTrim','StripTags'));
 
 	$idBy = new Zend_Form_Element_Text('idby');
 	$idBy->setLabel('Primary identifier: ')
@@ -412,34 +377,24 @@ class AdvancedSearchForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'));
 
 	$identifierID = new Zend_Form_Element_Hidden('identifierID');
-	$identifierID->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->addFilters(array('StringTrim','StripTags'))
-	->removeDecorator('Label');
+	$identifierID->addFilters(array('StringTrim','StripTags'));
 
 
 	$created = new Zend_Form_Element_Text('createdBefore');
 	$created->setLabel('Date record created on or before: ')
 	->addValidator('Date')
-	->addFilters(array('StringTrim','StripTags'))
-	;
+	->addFilters(array('StringTrim','StripTags'));
 
 	$created2 = new Zend_Form_Element_Text('createdAfter');
 	$created2->setLabel('Date record created on or after: ')
 	->addValidator('Date')
-	->addFilters(array('StringTrim','StripTags'))
-	;
+	->addFilters(array('StringTrim','StripTags'));
 
 	$finder = new Zend_Form_Element_Text('finder');
-	$finder->setLabel('Found by: ')
-	->addFilters(array('StringTrim','StripTags'))
-	;
+	$finder->setLabel('Found by: ')->addFilters(array('StringTrim','StripTags'));
 
 	$finderID = new Zend_Form_Element_Hidden('finderID');
-	$finderID->removeDecorator('HtmlTag')
-	->addFilters(array('StringTrim','StripTags'))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label');
+	$finderID->addFilters(array('StringTrim','StripTags'));
 
 
 	$recordby = new Zend_Form_Element_Text('recordby');
@@ -449,10 +404,7 @@ class AdvancedSearchForm extends Pas_Form {
 	->setAttrib('autoComplete', 'true');
 
 	$recorderID = new Zend_Form_Element_Hidden('recorderID');
-	$recorderID->removeDecorator('HtmlTag')
-	->addFilters(array('StringTrim','StripTags'))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label');
+	$recorderID->addFilters(array('StringTrim','StripTags'));
 
 
 	$discoverydate = new Zend_Form_Element_Select('discovered');
@@ -465,11 +417,7 @@ class AdvancedSearchForm extends Pas_Form {
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton')
-	->setAttrib('class', 'large')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->setLabel('Submit your search');
+	$submit->setLabel('Submit your search');
 
 	$material1 = new Zend_Form_Element_Select('material');
 	$material1->setLabel('Primary material: ')
@@ -489,7 +437,10 @@ class AdvancedSearchForm extends Pas_Form {
 	->addValidator('Int')
 	->addFilters(array('StripTags','StringTrim'));
 
-	if(in_array($this->getRole(),$this->restricted)) {
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(60);
+	
+	if(in_array($this->_role,$this->_restricted)) {
 	$this->addElements(array(
 	$old_findID, $objecttype, $broadperiod,
 	$description, $from, $to,
@@ -505,7 +456,7 @@ class AdvancedSearchForm extends Pas_Form {
 	$recordby, $recorderID, $identifierID,
 	$culture, $surftreat, $submit,
 	$material1, $elevation, $woeid,
-	$institution));
+	$institution, $hash));
 	} else {
 	$this->addElements(array(
 	$old_findID, $objecttype, $broadperiod,
@@ -522,7 +473,7 @@ class AdvancedSearchForm extends Pas_Form {
 	$created2, $idBy, $finder,
 	$finderID, $recordby, $recorderID,
 	$identifierID, $culture, $surftreat,
-	$submit, $material1,$institution));
+	$submit, $material1, $institution, $hash));
 	}
 
 	$this->addDisplayGroup(array(
@@ -534,17 +485,13 @@ class AdvancedSearchForm extends Pas_Form {
 	'manufacture','surface'), 'details');
 	$this->details->setLegend('Main details: ');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	
 
 	$this->addDisplayGroup(array(
 	'broadperiod', 'fromsubperiod', 'periodFrom',
 	'tosubperiod', 'periodTo', 'culture',
 	'from', 'fromend', 'to',
-	'toend'), 'Temporaldetails')
-	->removeDecorator('HtmlTag');
+	'toend'), 'Temporaldetails');
 	$this->Temporaldetails->setLegend('Temporal details: ');
 
 	$this->addDisplayGroup(array(
@@ -552,12 +499,10 @@ class AdvancedSearchForm extends Pas_Form {
 	'parish', 'fourFigure', 'elevation',
 	'woeid'), 'Spatial');
 
-        $this->Spatial->addDecorators(array(
-            'FormElements',array('HtmlTag', array('tag' => 'ul'))));
 
 	$this->Spatial->setLegend('Spatial details: ');
 
-	if(in_array($this->getRole(),$this->restricted)) {
+	if(in_array($this->_role,$this->_restricted)) {
 	$this->addDisplayGroup(array(
 	'institution',
 	'idby', 'identifierID', 'recordby',
@@ -569,14 +514,9 @@ class AdvancedSearchForm extends Pas_Form {
 	'finder', 'idby', 'identifierID',
 	'recordby', 'recorderID', 'createdAfter',
 	'createdBefore','discovered'), 'Discovery');
-
-        }
-
+    }
 
 	$this->Discovery->setLegend('Discovery details: ');
-
-
-	//$this->setLegend('Perform an advanced search on our database: ');
 
 	$this->addDisplayGroup(array('submit'), 'submit');
 

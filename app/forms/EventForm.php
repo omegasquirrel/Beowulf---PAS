@@ -128,19 +128,17 @@ public function __construct($options = null) {
 	))
 	->addValidator('InArray', false, array(array_keys($orgs)));
 
-	$submit = new Zend_Form_Element_Submit('submit');
-
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	
+	$submit = new Zend_Form_Element_Submit('submit');
 
 	$this->addElements(array(
             $eventTitle,$eventDescription,$eventStartTime,
             $eventEndTime,$eventStartDate,$eventEndDate,
             $organisation,$childrenAttend,$eventRegion,
             $adultsAttend,$address,$eventType,
-            $submit
+            $submit, $hash
 	));
 
 	$this->addDisplayGroup(array(

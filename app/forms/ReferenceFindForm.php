@@ -8,10 +8,10 @@
 class ReferenceFindForm extends Pas_Form {
 	
 public function __construct($options = null) {
+	
 	parent::__construct($options);
+	
 	$this->setName('addreference');
-
-
 
 	$title = new Zend_Form_Element_Text('publicationtitle');
 	$title->setLabel('Publication title: ')
@@ -39,16 +39,14 @@ public function __construct($options = null) {
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
-
+	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$this->addElements(array(
 	$title, $id, $pages,
-	$reference, $submit));
+	$reference, $submit, $hash));
 	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
-	$this->addElement($hash);
 	
 	$this->addDisplayGroup(array('publicationtitle','pubID','pages_plates',
             'reference'), 'details');

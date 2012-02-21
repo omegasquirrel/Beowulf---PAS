@@ -24,25 +24,20 @@ public function __construct($options = null){
 	->setAttribs(array('class'=> 'textInput'));
 
 	$ruler_id = new Zend_Form_Element_Hidden('ruler_id');
-	$ruler_id ->removeDecorator('label')
-	->addValidator('Int');
+	$ruler_id->addValidator('Int');
 
 	$period_id = new Zend_Form_Element_Hidden('period_id');
 
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('HtmlTag')
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Add denomination');
 
-	$this->addElements(array($denomination_id,$ruler_id,$period_id,$submit))
+	$this->addElements(array($denomination_id,$ruler_id,$period_id,$submit, $hash))
 	->setLegend('Add an active denomination');
 	$this->addDisplayGroup(array('denomination_id'), 'details');
 

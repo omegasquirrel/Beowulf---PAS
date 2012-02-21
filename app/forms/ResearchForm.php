@@ -47,8 +47,7 @@ public function __construct($options = null) {
 	'label' => 'Short description of project: '));
 	$description = $this->getElement('description')->setRequired(false)
 		->setAttribs(array('cols' => 80, 'rows' => 10))
-		->addFilters(array('BasicHtml', 'StringTrim', 'EmptyParagraph'))
-		->addDecorator('HtmlTag',array('tag' => 'li'));
+		->addFilters(array('BasicHtml', 'StringTrim', 'EmptyParagraph'));
 
 	$startDate = new ZendX_JQuery_Form_Element_DatePicker('startDate');
 	$startDate->setLabel('Start date of project')

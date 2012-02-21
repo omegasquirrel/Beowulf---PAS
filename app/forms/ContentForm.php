@@ -14,8 +14,7 @@ public function __construct($options = null)
 	$authorOptions = $authors->getAuthors();
 
 	parent::__construct($options);
-	$this->setAttrib('enctype', 'multipart/form-data');
-	$this->setDecorators(array('FormElements','Form'));
+
 	$this->setName('addcontent');
 
 	$title = new Zend_Form_Element_Text('title');
@@ -135,26 +134,23 @@ public function __construct($options = null)
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-	->setTimeout(60);
-	$this->addElement($hash);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	$this->addElements(array(
 	$title, $author, $body,
 	$section, $publishState, $excerpt,
 	$metaKeywords, $metaDescription,
 	$slug, $frontPage, $submit,
-	$menuTitle ));
+	$menuTitle, $hash ));
 
 	$this->addDisplayGroup(array('title', 'menuTitle', 'author',
 	'body', 'section', 'publishState',
 	'excerpt', 'metaKeywords', 'metaDescription',
-	'slug','frontPage'), 'details')->removeDecorator('HtmlTag');
+	'slug','frontPage'), 'details');
 
 
-	$this->addDisplayGroup(array('submit'), 'submit')->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('submit'), 'submit');
 
 	$this->details->setLegend('Add new site content');
 
