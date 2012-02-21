@@ -1,6 +1,6 @@
 <?php
 /** Form for entering and editing research projects
-* 
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -9,17 +9,17 @@
 class ResearchForm extends Pas_Form {
 
 public function __construct($options = null) {
-	
+
 	$projecttypes = new ProjectTypes();
 	$projectype_list = $projecttypes->getTypes();
 
 	ZendX_JQuery::enableForm($this);
-	
+
 	parent::__construct($options);
-       
+
 	$this->setName('research');
 
-			
+
 	$investigator = new Zend_Form_Element_Text('investigator');
 	$investigator->setLabel('Principal work conducted by: ')
 		->setRequired(true)
@@ -44,9 +44,8 @@ public function __construct($options = null) {
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true));;
 
 	$description = $this->addElement('RTE', 'description',array(
-	'label' => 'Short description of project: ')); 
+	'label' => 'Short description of project: '));
 	$description = $this->getElement('description')->setRequired(false)
-		->addFilter('stringTrim')
 		->setAttribs(array('cols' => 80, 'rows' => 10))
 		->addFilters(array('BasicHtml', 'StringTrim', 'EmptyParagraph'))
 		->addDecorator('HtmlTag',array('tag' => 'li'));
@@ -78,7 +77,7 @@ public function __construct($options = null) {
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
 		->setTimeout(4800);
-		
+
 	$this->addElements(array(
 		$title, $description, $level,
 		$startDate, $endDate, $valid,

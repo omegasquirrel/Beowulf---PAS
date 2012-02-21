@@ -1,7 +1,7 @@
 <?php
 /** Form for adding and editing Roman mints
-* This is one of the most important forms of the entire site. 
-* 
+* This is one of the most important forms of the entire site.
+*
 * @category   Pas
 * @package    Pas_Form
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
@@ -16,8 +16,7 @@ public function __construct($options = null) {
 	$mints = new Mints();
 	$mints_options = $mints->getRomanMints();
 
-	$this->setDecorators(array('FormElements', 'Fieldset', 'Form'));
-	
+
 	$this->setName('romanmints');
 
 	$id = new Zend_Form_Element_Hidden('ID');
@@ -67,10 +66,9 @@ public function __construct($options = null) {
 		->removeDecorator('HtmlTag')
 		->removeDecorator('label')
 		->setTimeout(4800);
-	//Submit button 
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setAttrib('id', 'submitbutton');
-
+	
 	$this->addElements(array(
 	$id, $name, $description,
 	$latitude, $longitude, $pasID,
