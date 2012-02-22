@@ -61,10 +61,10 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addErrorMessage('Please enter a valid number!');
 
-    $cci = new Zend_Form_Element_Text('cciNumber');
-    $cci->setLabel('CCI number:')
-    ->setDescription('This is a unique number')
-    ->setFilters(array('StringTrim','StripTags'));
+        $cci = new Zend_Form_Element_Text('cciNumber');
+        $cci->setLabel('CCI number:')
+        ->setDescription('This is a unique number')
+        ->setFilters(array('StringTrim','StripTags'));
 
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Object description contains: ')
@@ -136,14 +136,12 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose district after county'))
-	->disabled = true;
+	->addMultiOptions(array(NULL => 'Choose district after county'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose parish after county'))
-	->disabled = true;
+	->addMultiOptions(array(NULL => 'Choose parish after county'));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
@@ -263,7 +261,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$broadperiod->setValue('IRON AGE')
 	->addValidator('Alnum',false, array('allowWhiteSpace' => true))
 	->addFilters(array('StripTags', 'StringTrim'));
-	
+
 	$mack_type = new Zend_Form_Element_Text('mackType');
 	$mack_type->setLabel('Mack Type: ')
 	->addFilters(array('StripTags', 'StringTrim'))
@@ -343,7 +341,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$institution, $cci,$submit, $hash));
 
 	$this->addDisplayGroup(array(
-    'cciNumber', 'denomination', 'geographyID','ruler',
+        'cciNumber', 'denomination', 'geographyID','ruler',
 	'ruler2', 'tribe', 'mint',
 	'axis', 'obverseLegend', 'obverseDescription',
 	'reverseLegend', 'reverseDescription', 'bmc',

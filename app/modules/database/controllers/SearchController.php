@@ -189,17 +189,28 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	*/
 	public function ironagenumismaticsAction() {
 	$form = new IronAgeNumismaticSearchForm();
-	$this->view->formIronAge = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)){
-	if ($form->isValid($form->getValues())) {
+	$this->view->form = $form;
+
+	if($this->getRequest()->isPost()){
+        $this->_helper->geoFormLoaderOptions($this->getRequest()->getPost());
+        if ($form->isValid($this->getRequest()->getPost())) {
+
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
-	} else {
+        }
+        else {
 	$form->populate($form->getValues());
+
+        $this->_helper->geoFormLoaderOptions($form->getValues());
 	}
-	}
+        }  else {
+            $form->populate($form->getValues());
+
+        $this->_helper->geoFormLoaderOptions($form->getValues());
+        }
+
 	}
 	/** Display the greek and roman provincial pages
 	*/
