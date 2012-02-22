@@ -1,1 +1,16 @@
-<?php $this->json( array('meta' => $this->params,'counts' => $this->json($this->data)));?>
+<?php 
+$paginator = $this->paginator;
+$results = array();
+foreach($this->results as $result){
+	
+	if(isset($result['knownas'])){
+		unset($result['parish']);
+		unset($result['fourFigure']);
+	}
+	$description = trim(preg_replace( '/\s+/', ' ',$result['description']));
+	$result['description'] = $description;
+	$results[] = $result;
+}
+
+$meta = array( 'currentPage' => $paginator->getCurrentPageNumber(), 'totalResults' => $paginator->getTotalItemCount(), 'resultsPerPage' => $paginator->getItemCountPerPage());
+echo Zend_Json::prettyPrint(Zend_Json::encode(( array('meta' => $meta, 'results' => $results, 'facets' => $this->facets))));

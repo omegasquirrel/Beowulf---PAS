@@ -9,29 +9,36 @@ $this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
 <h2>People registered with the Scheme</h2>
 <div class="row-fluid">
 <?php echo $this->peopleToolbox();?>
+
 <?php echo $this->form;?>
 
 <?php if ($this->results): ?>
 
+<div >
 
-<table class="table table-striped span8" summary="All people registered on our database">
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>County</th>
-        <th>Organisation</th>
-        <th>Primary activity</th>
-        <th>Actions</th>
-    </tr>
-</thead>
+	<table class="table table-striped span8" summary="All people registered on our database">
+	<thead>
+	    <tr>
+	        <th>Name</th>
+	        <th>County</th>
+	        <th>Organisation</th>
+	        <th>Primary activity</th>
+	        <th>Actions</th>
+	    </tr>
+	</thead>
+	
+	<tbody>
+	<?php echo $this->partialLoop('partials/database/peopleTableList.phtml',
+	        $this->results);?>
+	</tbody>
+	</table>
+	
+</div>
 
-<tbody>
-<?php echo $this->partialLoop('partials/database/peopleTableList.phtml',
-        $this->results);?>
-</tbody>
-</table>
-        <?php echo $this->facetCreator($this->facets);
-    ?>
+		<div class="span2">
+        <?php echo $this->facetCreator($this->facets); ?>
+        
+        </div>
 <?php else :?>
 <p>There are no people registered or available to you.</p>
 <?php endif; ?>

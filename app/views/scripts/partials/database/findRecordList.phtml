@@ -26,13 +26,22 @@
     	'id' => $this->id),
     	'default',true);?>
         Record ID: <a href="<?php echo $url; ?>" title="View details for <?php echo $this->old_findID;?>"><?php echo $this->old_findID;?></a><br />
+        <?php if(!is_null($this->objecttype)):?>
         Object type: <?php echo $this->escape($this->objecttype);?><br />
+        <?php endif;?>
+       	<?php if(!is_null($this->broadperiod)):?>
         Broad period: <?php echo $this->broadperiod;?><br />
+        <?php endif;?>
+        <?php if(!is_null($this->county)):?>
         County: <?php echo $this->county;?><br />
+        <?php endif;?>
+        <?php if(!is_null($this->workflow)):?>
         Workflow stage: <?php echo $this->workflowStatus($this->workflow);?>
         <?php echo $this->workflow($this->workflow);?><br />
+        <?php endif;?>
+        <?php if(!is_null($this->description)):?>
         Description: <?php echo $this->ellipsisstring($this->description,600);?><br />
-
+		<?php endif;?>
     </p>
 
     </div>

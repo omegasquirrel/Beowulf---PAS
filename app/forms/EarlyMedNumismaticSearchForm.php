@@ -307,7 +307,6 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 
 	$this->addDisplayGroup(array('submit'), 'submit');
-
 	parent::init();
 	}
 }

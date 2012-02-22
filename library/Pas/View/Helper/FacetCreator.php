@@ -51,6 +51,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
      */
     protected function _processFacet(array $facet, $facetName){
         if(is_array($facet)){
+        	if(count($facet)){
         $html = '<div id="facet-' . $facetName .'">';
         $html .= '<h4>' . $this->_prettyName($facetName) . '</h4>';
         $html .= '<ul class="navpills nav-stacked nav">';
@@ -60,10 +61,10 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         }
         foreach($facet as $key => $value){
 
-        $url = $this->view->url(array('fq' . $facetName => $key),'default',false);
+        $url = $this->view->url(array($facetName => $key),'default',false);
         $html .= '<li>';
         if($facetName !== 'workflow'){
-        $html .= '<a href="' . $url . '" title="Facet query for ' . $key;
+        $html .= '<a href="' . $url . '" title="Facet query for ' . $this->view->facetContentSection($key);
         $html .= '">';
         $html .= $key . ' ('. number_format($value) .')';
         } else {
@@ -83,15 +84,16 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
             unset($request['page']);
         }
 
-        $facet = $request['fq' . $facetName];
+        $facet = $request[$facetName];
         if(isset($facet)){
-            unset($request['fq' . $facetName]);
+            unset($request[$facetName]);
             $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
                     . '" title="Clear the facet">Clear this facet</a></p>';
         }
 
         $html .= '</div>';
         return $html;
+        	}
         } else {
             throw new Pas_Exception_BadJuJu('The facet is not an array');
         }
@@ -113,6 +115,12 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
             case 'county':
                 $clean = 'County of origin';
                 break;
+            case 'denominationName':
+            	$clean = 'Denomination';
+            	break;
+            case 'mintName':
+            	$clean = 'Mint';
+            	break;
             default:
                 $clean = ucfirst($name);
                 break;

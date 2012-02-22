@@ -15,7 +15,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	protected $_contexts = array(
 	'xml', 'rss', 'json',
 	'atom', 'kml', 'georss',
-	'ics', 'rdf', 'xcs');
+	'ics', 'rdf', 'xcs',
+	'csv','n3', 'midas');
 
 	/** Setup the contexts by action and the ACL.
 	*/
@@ -28,7 +29,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addContext('kml',array('suffix' => 'kml'))
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
-		->addActionContext('results', array('rss','atom'));
+		->addActionContext('results', array('json','rss','atom'))
+		->setAutoJsonSerialization(false);
 	$her = array('her');
 	$herroles = array('hero','flos','admin','fa');
 	$role = $this->getAccount();
@@ -189,28 +191,23 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	*/
 	public function ironagenumismaticsAction() {
 	$form = new IronAgeNumismaticSearchForm();
+
 	$this->view->form = $form;
-
 	if($this->getRequest()->isPost()){
-        $this->_helper->geoFormLoaderOptions($this->getRequest()->getPost());
-        if ($form->isValid($this->getRequest()->getPost())) {
-
+    $this->_helper->geoFormLoaderOptions($this->getRequest()->getPost());
+    if ($form->isValid($this->getRequest()->getPost())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
-        }
-        else {
+	} else {
+    $this->_helper->geoFormLoaderOptions($form->getValues());
 	$form->populate($form->getValues());
-
-        $this->_helper->geoFormLoaderOptions($form->getValues());
 	}
-        }  else {
-            $form->populate($form->getValues());
-
-        $this->_helper->geoFormLoaderOptions($form->getValues());
-        }
-
+    }  else {
+    $this->_helper->geoFormLoaderOptions($form->getValues());
+    $form->populate($form->getValues());
+    }
 	}
 	/** Display the greek and roman provincial pages
 	*/
@@ -395,18 +392,20 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	public function resultsAction(){
 	$params = $this->_getAllParams();
 	$search = new Pas_Solr_Handler('beowulf');
-	$search->setFields(array(
-	'id','identifier','objecttype',
-        'title','broadperiod','description',
-        'old_findID','thumbnail', 'county',
-        'imagedir','filename'));
-        $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow'));
+	$context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$search->setFields($fields->getFields());
+    $search->setFacets(array(
+    	'objectType','county','broadperiod',
+    	'institution', 'rulerName', 'denominationName', 'mintName', 
+    	'workflow'));
 	$search->setParams($params);
 	$search->execute();
-        $this->view->facets = $search->_processFacets();
+    $this->view->facets = $search->_processFacets();
 	$this->view->paginator = $search->_createPagination();
-	$this->view->results = $search->_processResults();
-
+	$this->view->results = $search->_processResults();	
 	}
+
+	
 //EOS
 }

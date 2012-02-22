@@ -128,6 +128,9 @@ class Pas_View_Helper_Breadcrumb
 		case $controller == 'her':
 			$nicename = 'Historic Enviroment Signatories';
 			break;
+		case 'myscheme':
+			$nicename = 'My scheme';
+			break;
 		default:
 			$nicename = $controller;
 			break;

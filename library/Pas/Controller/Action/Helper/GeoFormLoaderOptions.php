@@ -36,15 +36,14 @@ class Pas_Controller_Action_Helper_GeoFormLoaderOptions
     public function optionsGeoLoader($values){
     if(array_key_exists('county', $values)){
         $districts = $this->_places->getDistrictList($values['county']);
-        $parishes  = $this->_places->getParishByCounty($county);
+        $parishes  = $this->_places->getParishByCounty($values['county']);
+      
         $this->_view->form->district->addValidator('inArray', false, array(array_keys($districts)));
         $this->_view->form->district->addMultiOptions(array(NULL => 'Choose district',
                 'Available districts' => $districts));
-        $this->_view->form->district->disabled = false;
         $this->_view->form->parish->addValidator('inArray', false, array(array_keys($parishes)));
         $this->_view->form->parish->addMultiOptions(array(NULL => 'Choose parishes',
                 'Available parishes' => $parishes));
-        $this->_view->form->parish->disabled = false;
     }
     }
 

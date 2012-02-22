@@ -17,3 +17,9 @@ body {
 #map {
 	min-height:700px;
 }
+.menuindent {
+	margin-left:30px;
+}
+.footer {
+	background-color: F7F7F7;
+}

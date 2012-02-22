@@ -1,6 +1,6 @@
 
 <?php if ($this->pageCount): ?>
-<div class="row span12">
+
 <p><?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?> of <?php echo number_format($this->totalItemCount,0);?> records.</p>
 <?php $this->headTitle(' Page: ' . $this->current);?>
 <div class="pagination">
@@ -31,5 +31,5 @@
 </li>
 </ul>
     </div>
-</div>
+
 <?php endif; ?>

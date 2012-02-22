@@ -31,10 +31,10 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 <div class="row-fluid">
 		
     	<?php if ($this->data): ?>
-		<div class="span9">
+		<div class="span8">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->data);?>
         </div>
-        <div class="span3">
+        <div class="span2">
         <?php echo $this->facetCreator($this->facets); ?>
 		</div>
         <?php else:?>

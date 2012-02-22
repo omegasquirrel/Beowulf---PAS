@@ -102,14 +102,12 @@ public function __construct($options = null) {
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
-	->addFilters(array('StringTrim','StripTags'))
-	->disabled = true;
+	->addFilters(array('StringTrim','StripTags'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => 'Choose parish after county'))
-	->disabled = true;
+	->addMultiOptions(array(NULL => 'Choose parish after county'));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')

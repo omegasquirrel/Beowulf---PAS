@@ -40,21 +40,21 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 
 
 <h2>All images on the database</h2>
-<div id="imagefilter">
 <?php echo $this->form;?>
-</div>
+
 <?php if ($this->results): ?>
 <div class="row-fluid ">
-    <div class="span10">
+    <div class="span9">
     <ul class="thumbnails">
 <?php echo $this->partialLoop('partials/database/myimagesList.phtml',
         $this->results);?>
     </ul>
     </div>
-<?php
-echo $this->facetCreator($this->facets);
-?>
+    <div class="span3">
+	<?php echo $this->facetCreator($this->facets); ?>
+	</div>
 </div>
+
 <?php echo $this->paginationControl($this->paginator, 'Elastic',
         'structure/pagination.phtml'); ?>
 

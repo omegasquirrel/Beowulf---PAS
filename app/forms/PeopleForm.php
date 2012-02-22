@@ -23,12 +23,13 @@ public function __construct($options = null) {
     $organisations = new Organisations;
     $organisations_options = $organisations->getOrgs();
 
-parent::__construct($options);
+	parent::__construct($options);
 
     
     $this->setName('people');
 
 	$title = new Zend_Form_Element_Select('title');
+	
 	$title->setLabel('Title: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->setValue('Mr')
@@ -38,7 +39,24 @@ parent::__construct($options);
 		'Ms' => 'Ms', 'Dr' => 'Dr.', 'Prof' => 'Prof.',
 		'Sir' => 'Sir', 'Lady' => 'Lady', 'Other' => 'Other',
 		'Captain' => 'Captain', 'Master' => 'Master', 'Dame' => 'Dame',
-		'Duke' => 'Duke'));
+		'Duke' => 'Duke', 'Admiral' => 'Admiral', 'Baron' => 'Baron',
+		'Baroness' => 'Baroness', 'Brigadier' => 'Brigadier', 'Captain' => 'Captain',
+		'Colonel' => 'Colonel', 'Colonel Sir' => 'Colonel Sir', 'Commander' => 'Commander',
+		'Commodore' => 'Commodore', 'Countess' => 'Countess', 'Earl' => 'Earl',
+		'Field Marshal Lord' => 'Field Marshal Lord', 'General' => 'General',
+		'Group Captain' => 'Group Captain', 'Lieutenant' => 'Lieutenant', 
+		'Lieutenant Commander' => 'Lieutenant Commander',
+		'Lt-Col' => 'Lt-Col', 'Lt-Gen Sir' => 'Lt-Gen Sir', 'Maj-Gen' => 'Maj-Gen',
+		'Major' => 'Major', 'Prince' => 'Prince', 'Princesss' => 'Princess',
+		'Rear Admiral' => 'Rear Admiral', 'Squadron Leader' => 'Squadron Leader',
+		'The Baroness' => 'The Baroness', 'The Countess' => 'The Countess',
+		'The Countess of' => 'The Countess of', 'The Duchess of' => 'The Duchess of',
+		'The Duke of' => 'The Duke of', 'The Earl of' => 'The Earl of',
+		'The Hon' => 'The Hon', 'His Honour Judge' => 'His Honour Judge', 'The Hon Mrs' => 'The Hon Mrs',
+		'The Marchioness of' => 'The Marchioness of', 'The Marquess of' => 'The Marquess of',
+		'The Viscount' => 'The Viscount', 'The Viscountess' => 'The Viscountess',
+		'Wing Commander' => 'Wing Commander', 'The Reverend' => 'The Reverend',
+		'Archbishop' => 'Archbishop', 'Canon' => 'Canon', 'Bishop' => 'Bishop'));
 
 	$forename = new Zend_Form_Element_Text('forename');
 	$forename->setLabel('Forename: ')

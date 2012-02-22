@@ -141,7 +141,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose parish after county'));
+	->addMultiOptions(array(NULL => 'Choose parish after county', 'Available districts' => null));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')

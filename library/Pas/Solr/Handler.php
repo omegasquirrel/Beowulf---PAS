@@ -433,10 +433,10 @@ class Pas_Solr_Handler {
     public function execute(){
     $select = array(
     'query'         => '*:*',
-    'fields'        => array('*'),
+//    'fields'        => array('*'),
     'filterquery' => array(),
     );
-
+	$select['fields'] = $this->getFields();
     $select['sort'] = $this->_getSort($this->_core, $this->_params);
     $select['rows'] = $this->_getRows($this->_params);
     $select['start'] = $this->_getStart($this->_params);
@@ -473,6 +473,7 @@ class Pas_Solr_Handler {
     }
 
     $this->_createFilters($this->_params);
+    
     if(array_key_exists('format', $this->_params)){
     $this->_processFormats($this->_params);
     }
@@ -512,7 +513,9 @@ class Pas_Solr_Handler {
         }
     }
 
-
+	public function getFields(){
+		return $this->_fields;
+	}
 
     /** Process format key
      * @access protected

@@ -31,7 +31,7 @@ else
 ?>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts'),NULL,true);?>" title="All finds recorded on the database">All artefacts &amp; coins <i class="icon-list"></i></a></li>
 <li<?php if($controller == 'search') { echo ' class="expandfirst"';};?>><a href="#">Search database <i class="icon-search"></i></a>
-<ul class="nav nav-stacked nav-pills">
+<ul class="nav nav-stacked nav-pills menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'advanced'),NULL,true);?>" title="Advanced search our database" accesskey="4">Advanced search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'ironagenumismatics'),NULL,true);?>" title="Numismatic search our database">Iron Age numismatic search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'romannumismatics'),NULL,true);?>" title="Numismatic search our database">Roman numismatic search</a></li>
@@ -87,7 +87,7 @@ echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'sm
 ?>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller'=>  'publications'),NULL,true);?>" title="Reference works cited on database">Reference works cited  <i class="icon-book"></i></a></li>
 <li><a href="#">Numismatics <i class="icon-folder-open"></i></a>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked  menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'ironagecoins'),NULL,true);?>" title="Iron Age coin guide">Iron Age</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'romancoins'),NULL,true);?>" title="Roman coin guide">Roman</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'greekromancoins'),NULL,true);?>" title="Greek and Roman Provincial coins guide">Greek &amp; Roman Provincial</a></li>
@@ -100,7 +100,7 @@ echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'sm
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'hoards'),null,true);?>" title="List of hoards on the database">Hoards</a></li>
 <li <?php if($controller == 'terminology') { echo 'class="expandfirst"';};?>>
     <a href="#" title="Click to view controlled lists">Controlled vocabulary <i class="icon-folder-open"></i></a>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked  menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'terminology','action' => 'objects'),NULL,true);?>" title="Learn about object terms in use">Object terms</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'terminology', 'action' => 'periods'),null,true);?>" title="View a list of the temporal terms we use">Periods</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'terminology', 'action' => 'denominations'),null,true);?>" title="View a list of active denoinations">Denominations</a></li>
@@ -121,7 +121,7 @@ echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'sm
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'rallies'),null,true);?>" title="View list of rallies we have recorded at">Rallies</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'comments'),null,true);?>" title="View comments attached to finds">Commentary  <i class="icon-comment"></i></a></li>
 <li <?php if($controller == 'statistics') { echo 'class="expandfirst"';};?>><a href="#">Statistics <i class="icon-folder-open"></i></a>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked  menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'statistics'),null,true);?>" title="Find out what was recorded daily">Archives by day</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database', 'controller' => 'statistics','action' => 'annual'),null,true);?>" title="View annual archived statistics">Overall statistics</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'statistics','action' => 'regional'),null,true);?>" title="View annual regional archived statistics">Regional statistics</a></li>

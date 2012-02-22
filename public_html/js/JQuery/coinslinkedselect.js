@@ -20,7 +20,7 @@
 
             var $$ = $(this);
 
-            $dest.attr('disabled','false')
+            $dest.attr('active','false')
                  .append('<option value="">' +params.loadingText+ '</option>')
                  .ajaxStart(function(){
 
