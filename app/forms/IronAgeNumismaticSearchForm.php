@@ -149,6 +149,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	'Available regions' => $region_options))
 	->addValidator('Int');
 
+
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')
 	->addValidator('ValidGridRef')
@@ -368,7 +369,10 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	$this->spatial->setLegend('Spatial details: ');
 
-    $this->addDisplayGroup(array('submit'), 'submit');
+        $this->addDisplayGroup(array('submit'), 'submit');
+
+
+        
 
 	parent::init();
 	}

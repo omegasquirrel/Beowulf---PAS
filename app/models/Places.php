@@ -32,7 +32,7 @@ class Places extends Pas_Db_Table_Abstract {
 		->group('district');
 	return $districts->fetchAll($select);
 	}
-	
+
 	/** Get the district by county as dropdown list
 	* @param string $county
 	* @return array
@@ -47,6 +47,14 @@ class Places extends Pas_Db_Table_Abstract {
 		->where('county IS NOT NULL')
 		->order('district')
 		->group('district');
+	return $districts->fetchPairs($select);
+	}
+
+        public function getParishCList($county) {
+	$districts = $this->getAdapter();
+	$select = $districts->select()
+		->from($this->_name, array('id' => 'parish','term' => 'parish'))
+		->where('county = ?', (string)$county);
 	return $districts->fetchPairs($select);
 	}
 
@@ -140,7 +148,7 @@ class Places extends Pas_Db_Table_Abstract {
 			->group('district');
 	   return $districts->fetchAll($select);
 	}
-	
+
 	/** Get the stuff to update for districts
 	* @param string $county The county to choose from
 	* @param string $parish The parish to choose from

@@ -1,6 +1,6 @@
 <?php
 /** Controller for administering users and accounts
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -18,7 +18,7 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 
 	const IMAGEPATH = './images/';
 	/** Display a list of users in paginated format
-	*/	
+	*/
 	public function indexAction() {
 	$users = new Users();
 	$this->view->paginator = $users->getUsersAdmin($this->_getAllParams());
@@ -54,7 +54,7 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** View a user's account
-	*/	
+	*/
 	public function accountAction() {
 	if($this->_getParam('username',false)) {
 	$users = new Users();
@@ -66,7 +66,7 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit a user's account
-	*/		
+	*/
 	public function editAction() {
 	if($this->_getParam('id',false)) {
 	$form = new EditAccountForm();
@@ -148,19 +148,19 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Add a new user
-	*/		
+	*/
 	public function addAction() {
 	$form = new EditAccountForm();
 	$form->setLegend('New account: ');
 	$form->submit->setLabel('Create account details');
 	$form->username->addValidator('Db_NoRecordExists', false, array('table' => 'users',
                                                                'field' => 'username'));
-	$form->password->setLabel('Your password: ');	
-	$form->institution->setRequired(true);	
-	$form->password->setRequired(true);												   
-	$form->role->setRequired(true);												   
-	$form->institution->setRequired(true);												   
-	$form->email->setRequired(true);												   
+	$form->password->setLabel('Your password: ');
+	$form->institution->setRequired(true);
+	$form->password->setRequired(true);
+	$form->role->setRequired(true);
+	$form->institution->setRequired(true);
+	$form->email->setRequired(true);
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
@@ -174,33 +174,28 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	'first_name' => $form->getValue('first_name'),
 	'last_name' => $form->getValue('last_name'),
 	'fullname' => $form->getValue('fullname'),
+        'imagedir' => 'images/' . $form->getValue('username'),
 	'email' => $form->getValue('email'),
 	'institution' => $form->getValue('institution'),
 	'role' => $form->getValue('role'),
 	'password' => $password,
-	'peopleID' => $form->getValue('peopleID'),
-	'created' => $this->getTimeForForms(),
-	'createdBy' => $this->getIdentityForForms()
+	'peopleID' => $form->getValue('peopleID')
 	);
 
-	foreach ($insertData as $key => $value) {
-      if (is_null($value) || $value=="") {
-        unset($insertData[$key]);
-      }
-    }
+
 	$username = $form->getValue('username');
-	$users->insert($insertData);
+	$users->add($insertData);
+        $directories = array(
+	self::IMAGEPATH . $username,
+	self::IMAGEPATH . $username . '/small/',
+	self::IMAGEPATH . $username . '/medium/',
+	self::IMAGEPATH . $username . '/display/',
+        self::IMAGEPATH . $username . '/zoom/');
+        foreach ($directories as $dir){
+            mkdir($dir, 0777);
+        }
 	
-	$imagepath        = self::IMAGEPATH . $username;
-	$smallimagepath   = self::IMAGEPATH . $username . '/small/';
-	$mediumimagepath  = self::IMAGEPATH . $username . '/medium/';
-	$displayimagepath = self::IMAGEPATH . $username . '/display/';
-	
-	mkdir($imagepath);
-	mkdir($smallimagepath);
-	mkdir($mediumimagepath);
-	mkdir($displayimagepath);
-	
+
 	$this->_flashMessenger->addMessage('You successfully added a new account');
 	$this->_redirect('/admin/users/account/username/' . $form->getValue('username'));
 	} else {
@@ -209,23 +204,23 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** List people wanting an upgrade, paginated
-	*/		
+	*/
 	public function upgradesAction() {
 	$users = new Users();
 	$this->view->users = $users->getUpgrades($this->_getParam('page'));
 	}
 	/** Upgrade a user's account to research status
-	*/		
+	*/
 	public function upgradeAction() {
 	if($this->_getParam('id',false)) {
 	$id = $this->_getParam('id');
 	$form = new AcceptUpgradeForm();
 	$form->role->removeMultiOption('admin');
 	$this->view->form = $form;
-	if($this->getRequest()->isPost() 
+	if($this->getRequest()->isPost()
         && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
-	
+        if ($form->isValid($form->getValues())) {
+
 	$approvalData = array(
 	'status' => 'approved',
 	'message' => $form->getValue('message'),
@@ -247,24 +242,24 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	$research = new ResearchProjects();
 	$research->insert($researchData);
 	}
-	
+
 	$userData = array(
 	'higherLevel' => '0',
 	'updatedBy' => $this->getIdentityForForms(),
 	'created' => $this->getTimeForForms(),
 	'researchOutline' => $form->getValue('researchOutline')
 	);
-	
+
 	$users = new Users();
 	$where=array();
 	$where[] = $users->getAdapter()->quoteInto('id = ?', $id);
 	$users->update($userData,$where);
-	
+
 	$approvals = new ApproveReject();
 	$approvals->insert($approvalData);
-	
+
 	$to = array(array(
-		'email' => $form->getValue('email') , 
+		'email' => $form->getValue('email') ,
 		'name' => $form->getValue('fullname'))
 	);
 	$this->_helper->mailer($form->getValues(), 'upgradeAccount', $to);
@@ -291,7 +286,7 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Reject a user's account
-	*/		
+	*/
 	public function rejectAction() {
 	if($this->_getParam('id',false)) {
 	$id = $this->_getParam('id');
@@ -306,7 +301,7 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	$userUpdateData['updated'] = $this->getTimeForForms();
 	$userUpdateData['updatedBy'] = $this->getIdentityForForms();
 	$userUpdateData['higherLevel'] = 0;
-	
+
 	$rejectData = array(
 	'status' => 'reject',
 	'message' => $form->getValue('message'),
@@ -317,18 +312,18 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	$where=array();
 	$where[] = $users->getAdapter()->quoteInto('id = ?', $id);
 	$users->update($userUpdateData,$where);
-	
+
 	$approvals = new ApproveReject();
 	$approvals->insert($rejectData);
 	$message = $form->getValue('message');
 	$researchOutline = $form->getValue('researchOutline');
 	$role = $form->getValue('role');
 	$to = array(array(
-		'email' => $form->getValue('email') , 
+		'email' => $form->getValue('email') ,
 		'name' => $form->getValue('fullname'))
 	);
 	$this->_helper->mailer($form->getValues(), 'upgradeRejected', $to);
-	
+
 	$this->_flashMessenger->addMessage('Account rejected');
 	$this->_redirect('/admin/users/upgrades');
 	} else {

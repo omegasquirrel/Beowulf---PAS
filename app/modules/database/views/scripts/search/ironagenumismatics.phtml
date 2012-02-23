@@ -8,6 +8,11 @@ $this->headTitle('Perform an advanced numismatic search on the database');
 <div>
 <h2>Iron age numismatic search</h2>
 <?php
+foreach($this->form->getMessages() as $message){
+    foreach($message as $k => $v){
+        echo $v;
+    }
+}
 echo $this->form;
 ?>
 </div>
