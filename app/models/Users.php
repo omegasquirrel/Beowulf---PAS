@@ -382,5 +382,17 @@ class Users extends Pas_Db_Table_Abstract {
 	return $accounts; 	
 	}
 	
+	public function updateVisits($data, $where){
+	if(array_key_exists('csrf', $data)){
+    unset($data['csrf']);
+    }
+    foreach($data as $k => $v) {
+    if ( $v == "") {
+	    $data[$k] = NULL;
+    	}
+    }
+	$tableSpec = ($this->_schema ? $this->_schema . '.' : '') . $this->_name;
+	return $this->_db->update($tableSpec, $data, $where);
+	}
 	
 }

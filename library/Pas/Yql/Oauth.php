@@ -36,7 +36,7 @@ class Pas_Yql_Oauth {
 	$this->_config = Zend_Registry::get('config');
 	$this->_consumerKey = $this->_config->webservice->ydnkeys->consumerKey; 
 	$this->_consumerSecret = $this->_config->webservice->ydnkeys->consumerSecret;
-	$this->_now = new Zend_Date(NULL,'yyyy-MM-dd HH:mm:ss');
+	$this->_now = Zend_Date::now()->toString('yyyy-MM-dd HH:mm:ss');
 	}
 	/** Execute the YQL call
 	 * 
@@ -68,10 +68,11 @@ class Pas_Yql_Oauth {
 	 * @param string $access_token_expiry
 	 */
 	private function hasExpired($access_token_expiry) {
-//	$now = new Zend_Date(NULL,'yyyy-MM-dd HH:mm:ss');
+	$now = new Zend_Date(NULL,'yyyy-MM-dd HH:mm:ss');
   	$tokenDate = new Zend_Date($access_token_expiry,'YYYY-MM-dd HH:mm:ss');
-	$difference = $tokenDate->isLater($this->_now); 
- 	if(($this->_now > $tokenDate)){
+  	$difference = $tokenDate->isLater($now); 
+
+ 	if(($now > $tokenDate)){
  	return true;
  	} else {
  	return false;
@@ -410,7 +411,7 @@ class Pas_Yql_Oauth {
  	$tokens = new OauthTokens();
 	$where = array();
 	$where[] = $tokens->getAdapter()->quoteInto('service = ?','yahooAccess'); 
- 	$where[] = $tokens->getAdapter()->quoteInto('expires <= ?', time());
+ 	$where[] = $tokens->getAdapter()->quoteInto('expires <= ?', $this->_now);
  	$delete = $tokens->delete($where);
  	}
  

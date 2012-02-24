@@ -8,7 +8,7 @@ if(in_array($user->role,$allowed)) {
 <ul id="menu1" class="menu collapsible nav nav-pills nav-stacked">
 <li><a href="<?php echo $this->url(array('controller' => 'admin'),null,true);?>" title="Go to administration centre">Administration home</a></li>
 <li><a href="#" title="Administer the contacts on the site">Contacts management <i class="icon-folder-open"></i></a>
-<ul class="nav nav-stacked nav-pills">
+<ul class="nav nav-stacked nav-pills menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'contacts'),null,true);?>" title="Edit current staff">Current staff</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'coroners'),null,true);?>" title="Edit coroners">Coroners</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'institutions'),null,true);?>" title="Edit institutions">Institutions</a></li>
@@ -18,7 +18,7 @@ if(in_array($user->role,$allowed)) {
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'news'),null,true);?>" title="Manage news listings">News management</a></li>
 
 <li><a href="#">Administer research <i class="icon-folder-open"></i></a>
-    <ul class="nav nav-pills nav-stacked">
+    <ul class="nav nav-pills nav-stacked menuindent">
         <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'research'),null,true);?>" title="Manage research listings">Research management</a></li>
         <li><a title="Administer suggested research" href="<?php echo $this->url(array('module' => 'admin','controller' => 'research', 'action' => 'suggested'),null,true);?>">Suggested research projects</a></li>
     </ul>
@@ -26,7 +26,12 @@ if(in_array($user->role,$allowed)) {
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'her'),null,true);?>" title="Manage the list of signed up HER officers">Manage HER sign ups</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'content'),null,true);?>" title="Go to content administration centre">Content management</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'quotes'),null,true);?>" title="Administer quotes and announcements">Quotes &amp; announcements</a></li>
+<li><a href="#">Volunteers and vacancies <i class="icon-folder-open"></i></a>
+<ul class="nav nav-pills nav-stacked menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'vacancies'),null,true);?>" title="Administer vacancies">Vacancies management</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'volunteers'),null,true);?>" title="Administer volunteers">Volunteers management</a></li>
+</ul>
+</li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'events'),null,true);?>" title="Go to events administration centre">Event management <i class="icon-calendar"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'numismatics'),null,true);?>" title="Administer the numismatic options">Numismatics</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'terminology'),null,true);?>" title="Administer controlled terms">Controlled terminology</a></li>

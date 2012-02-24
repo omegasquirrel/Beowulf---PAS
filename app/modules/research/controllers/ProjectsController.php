@@ -32,6 +32,7 @@ class Research_ProjectsController extends Pas_Controller_Action_Admin {
 	/** Set up index pages
 	*/ 
 	public function indexAction() {
+		
 	$projects = new ResearchProjects();
 	$project = $projects->getAllProjects($this->_getAllParams());
 	$contexts = array('json','xml');

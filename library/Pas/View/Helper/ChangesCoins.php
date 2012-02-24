@@ -12,6 +12,8 @@
 class Pas_View_Helper_ChangesCoins
 	extends Zend_View_Helper_Abstract {
 
+	const NOTHING = '<p>No changes made so far.</p>';
+	
 	protected function _getRole(){
 	$role = new Pas_User_Details();
 	return $role->getPerson()->role;
@@ -58,7 +60,7 @@ class Pas_View_Helper_ChangesCoins
 	$html .= '</ul>';
 	return $html;
 	} else {
-		return false;
+		return self::NOTHING;
 	}
 	}
 

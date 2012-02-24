@@ -53,7 +53,7 @@ class Pas_View_Helper_DomesdayNear
 	public function buildHtml($response, $radius){
 
 	if($response){
-	$html = '<h4>Domesday Book places within ' . $radius . ' km of discovery point</h4>';
+	$html = '<h3>Adjacent Domesday Book places</h3>';
 	$html .= '<a  href="' . $this->_url . '"><img class="dec flow" src="http://domesdaymap.co.uk/media/images/lion1.gif" width="67" height="93"/></a>';
 	$html .= '<ul>';
 	foreach($response as $domesday){
@@ -61,7 +61,7 @@ class Pas_View_Helper_DomesdayNear
 		. '">'. $domesday->vill . '</a></li>';
 	}
 	$html .= '</ul>';
-	$html .= '<p>Domesday data is surfaced via the excellent <a href="http://domesdaymap.co.uk">
+	$html .= '<p>Domesday data  within ' . $radius . ' km of discovery point is surfaced via the excellent <a href="http://domesdaymap.co.uk">
 	Open Domesday</a> website.</p>';
 	return $html;
 	}

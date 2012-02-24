@@ -43,9 +43,9 @@ echo $this->Href(array(
     'checkAcl' => true,
     'acl'=>'Zend_Acl',
     'attribs' => array('title' => 'Edit a discovery method',
-        'class' => 'btn btn-large btn-primary'),
+        'class' => 'btn btn-small btn-primary'),
     'params' => array('id' => $this->id),
-    'content'=> 'Edit', 'wrapper' => array('tag' => 'p'))
+    'content'=> 'Add a new HER signatory', 'wrapper' => array('tag' => 'p'))
     );
 
 ?>
@@ -54,17 +54,14 @@ echo $this->Href(array(
 <table class="table-striped table" summary="This table lists all the HERs that have signed up to our data transfer agreement">
 <caption>Signed up HER offices</caption>
 <thead>
-<tr>
-<th>Authority</th>
-<th>Signatory</th>
-<?php
-$string = '<th>Actions</th>';
-echo $this->allowedtest($string);?>
-
-</tr>
+	<tr>
+		<th>Authority</th>
+		<th>Signatory</th>
+		<th>Actions</th>
+	</tr>
 </thead>
 <tbody>
-<?php echo $this->partialLoop('partials/research/hers.phtml', $this->hers);?>
+	<?php echo $this->partialLoop('partials/admin/hers.phtml', $this->hers);?>
 </tbody>
 </table>
 <?php else:?>

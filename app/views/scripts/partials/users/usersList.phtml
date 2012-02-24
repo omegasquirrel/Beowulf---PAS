@@ -1,4 +1,5 @@
-<div class="thumbnail" id="thumbnail">
+<li >
+<div class="thumbnail" >
 <a href="<?php echo $this->url(array('module' => 'users','controller' => 'named','action' => 'person','as' => urlencode($this->username)),null,true);?>" title="View <?php echo $this->escape($this->username);?>'s profile on our site">
 <?php
 echo $this->gravatar($this->email, array(
@@ -9,8 +10,9 @@ echo $this->gravatar($this->email, array(
 
 ?>
 </a>
-<p>Username: <?php echo $this->escape($this->username);?><br />
-Last visit: <?php echo $this->timeagoinwords($this->lastLogin);?><br />
+<p style="word-wrap: break-word;">Username: <?php echo $this->escape($this->username);?><br />
+Last visit: <?php echo $this->lastLogin;?><br />
 Institution: <?php echo $this->institution;?>
 </p>
 </div>
+</li>

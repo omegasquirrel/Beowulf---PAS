@@ -25,8 +25,7 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->setAttrib('size',60)
 		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('You must enter a lead for this project.')
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addErrorMessage('You must enter a lead for this project.');
 
 	$level = new Zend_Form_Element_Select('level');
 	$level->setLabel('Level of research: ')
@@ -53,7 +52,7 @@ public function __construct($options = null) {
 	$startDate->setLabel('Start date of project')
 		->setAttrib('size',20)
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
-		->addValidator('Date')
+		->addValidator('Datetime')
 		->setRequired(false)
 		->addErrorMessage('You must enter a start date for this project');
 
@@ -62,7 +61,7 @@ public function __construct($options = null) {
 		->setAttrib('size',20)
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->setRequired(false)
-		->addValidator('Date')
+		->addValidator('Datetime')
 		->addErrorMessage('You must enter an end date for this project');
 
 	$valid = new Zend_Form_Element_Checkbox('valid');

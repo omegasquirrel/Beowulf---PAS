@@ -30,7 +30,9 @@ foreach($this->results as $result){
 <?php echo $this->facetCreatorContent($this->facets);?>
 
 </div>
+<div class="span12">
 <?php echo  $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml');?>
+</div>
 <?php else :?>
 <p>Your search has produced no results. Perhaps try something else?</p>
 <p><a href="<?php echo $this->url(array('module' => 'search'),'default',true);?>">Back to search</a></p>

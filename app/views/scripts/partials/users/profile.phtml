@@ -8,7 +8,7 @@ $this->headTitle('User account details for ' . $this->fullname . ' - '
 <div id="gravatar"><?php 
 echo $this->gravatar($this->email,array(
 'imgSize' => 80, 'defaultImg' => 'monsterid', 'secure' => true),
-array('class' => 'avatar', 'title' => $this->fullname 
+array('class' => 'avatar flow', 'title' => $this->fullname 
       . '\'s gravatar representation',
       'rating' => 'G'));
 ?>
@@ -17,8 +17,8 @@ array('class' => 'avatar', 'title' => $this->fullname
 <p>
 <?php 
 if(!is_null($this->institution)) {
-echo 'Your recording institution is <strong>' . $this->acronyms($this->institution) 
-. '</strong>  and your username is set as <strong>' . $this->username . '</strong><br/>';
+echo 'Your recording institution is ' . $this->acronyms($this->institution) 
+. ' and your username is set as ' . $this->username . '<br/>';
 } else { 
 echo 'Your username is currently '.$this->username;
 } 

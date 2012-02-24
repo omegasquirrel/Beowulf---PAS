@@ -74,7 +74,7 @@ class Pas_View_Helper_ImageEditDeleteLink extends Zend_View_Helper_Abstract {
 	$unlink = $this->view->url(array('module' => 'database','controller' => 'images',
 	'action' => 'unlink',
 	'id' => $returnID,'returnID' => $id, 'secuid' => $secuid),null,true);
-	$string = '| <a href="' . $unlink . '" title="Unlink this image">Unlink</a>';
+	$string = ' <a class="btn btn-small" href="' . $unlink . '" title="Unlink this image">Unlink</a>';
 	return $string;
 	}
 	

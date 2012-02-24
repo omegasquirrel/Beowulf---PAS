@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>parish_region_NAME__Marks_Tey_CP__DET_</name>
+<Schema name="parish_region_NAME__Marks_Tey_CP__DET_" id="parish_region_NAME__Marks_Tey_CP__DET_">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="AREA_CODE" type="string"></SimpleField>
+	<SimpleField name="DESCRIPTIO" type="string"></SimpleField>
+	<SimpleField name="FILE_NAME" type="string"></SimpleField>
+	<SimpleField name="NUMBER" type="float"></SimpleField>
+	<SimpleField name="NUMBER0" type="float"></SimpleField>
+	<SimpleField name="POLYGON_ID" type="float"></SimpleField>
+	<SimpleField name="UNIT_ID" type="float"></SimpleField>
+	<SimpleField name="CODE" type="string"></SimpleField>
+	<SimpleField name="HECTARES" type="float"></SimpleField>
+	<SimpleField name="AREA" type="float"></SimpleField>
+	<SimpleField name="TYPE_CODE" type="string"></SimpleField>
+	<SimpleField name="DESCRIPT0" type="string"></SimpleField>
+	<SimpleField name="TYPE_COD0" type="string"></SimpleField>
+	<SimpleField name="DESCRIPT1" type="string"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Marks Tey CP (DET)</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#parish_region_NAME__Marks_Tey_CP__DET_">
+		<SimpleData name="Name">Marks Tey CP (DET)</SimpleData>
+		<SimpleData name="AREA_CODE">CPC</SimpleData>
+		<SimpleData name="DESCRIPTIO">Civil Parish or Community</SimpleData>
+		<SimpleData name="FILE_NAME">ESSEX_COUNTY</SimpleData>
+		<SimpleData name="NUMBER">654</SimpleData>
+		<SimpleData name="NUMBER0">1059</SimpleData>
+		<SimpleData name="POLYGON_ID">65896</SimpleData>
+		<SimpleData name="UNIT_ID">19817</SimpleData>
+		<SimpleData name="CODE">22UG022</SimpleData>
+		<SimpleData name="HECTARES">0.893</SimpleData>
+		<SimpleData name="AREA">0.000</SimpleData>
+		<SimpleData name="TYPE_CODE">AA</SimpleData>
+		<SimpleData name="DESCRIPT0">CIVIL ADMINISTRATION AREA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.748704544458389,51.861173044948636 0.749021580507437,51.860917416248412 0.747987733809151,51.860422666911056 0.747319277128723,51.860083949841886 0.746865873005735,51.85984183001257 0.746645986735689,51.859737247941609 0.746461266436728,51.859661522101973 0.746347698071321,51.859609315423363 0.746154140158385,51.859507714809517 0.745845554153866,51.85973525902444 0.746038373201359,51.859848568762779 0.746720144376706,51.860191478652553 0.747409451723614,51.860538705243343 0.748704544458389,51.861173044948636</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

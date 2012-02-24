@@ -121,7 +121,7 @@ class Pas_View_Helper_CoinRefAddLink
 	public function buildHtml($id,$broadperiod,$secuid,$returnID) {
 	$url = $this->view->url(array('module' => 'database','controller' => 'coins',
 	'action' => 'coinref','findID' => $secuid,'returnID' => $returnID),null,true);
-	$string = '<div id="coinrefs" class="btn btn-large btn-primary noprint"><a href="'. $url
+	$string = '<div id="coinrefs" class="noprint"><a class="btn btn-small btn-primary" href="'. $url
 	. '" title="Add a reference for this coin">Add a coin reference</a></div>';
 	return $string;
 	}

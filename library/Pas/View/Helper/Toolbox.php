@@ -31,7 +31,7 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 	});
 	});';
 	$this->view->inlineScript()->captureEnd();
-        $class = 'btn btn-large btn-primary';
+    $class = 'btn btn-small btn-primary';
 	echo '<div id="toolBox"><p>';
 	echo '<a class="' . $class . '" href="'
 	. $this->view->url(array('module' => 'database','controller' => 'ajax','action' => 'webcite','id' => $id),null,true)
@@ -50,7 +50,7 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
             'attribs' => array(
                 'title' => 'Add new object',
                 'accesskey' => 'a',
-                'class' => 'btn btn-large btn-primary')
+                'class' => 'btn btn-small btn-primary')
             ));
 	echo ' | <a class="' . $class . '" href="'.$this->view->url(array('module' => 'database','controller' => 'artefacts','action' => 'record','id' => $id,'format' => 'pdf'),null,true)
 	. '" title="Report format">Report</a>';

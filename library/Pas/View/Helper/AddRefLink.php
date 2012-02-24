@@ -142,7 +142,7 @@ class Pas_View_Helper_AddRefLink
 	public function buildHtml($findID, $secuid) {
 	$url = $this->view->url(array('module' => 'database','controller' => 'references','action' => 'add',
 	'findID' => $findID,'secID' => $secuid), null, true);
-	$string = '<div id="addref" class="btn btn-large btn-primary"><a href="' . $url
+	$string = '<div id="addref" class="noprint"><a class="btn btn-small btn-primary" href="' . $url
 	. '" title="Add a reference" accesskey="r">Add a reference</a></div>';
 
 	return $string;

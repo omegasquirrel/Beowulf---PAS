@@ -62,10 +62,12 @@ class Pas_Validate_Authorise extends Zend_Validate_Abstract {
 		}
 	//Updated the user table - this needs moving to the users model
 	$users = new Users();
-	$updateArray = array('visits' => new Zend_Db_Expr('visits + 1'), 'lastLogin' => Zend_Date::now()->toString('yyyy-MM-dd HH:mm'));
+	$updateArray = array(
+		'visits' => new Zend_Db_Expr('visits + 1'), 
+		'lastLogin' => Zend_Date::now()->toString('yyyy-MM-dd HH:mm')
+	);
 	$where = array();
 	$where[] = $users->getAdapter()->quoteInto('username = ?', $value);
-	$users->update($updateArray,$where);
 		//Update login table needs moving to the login model
 	$logins = new Logins();
 	$data['loginDate'] =  Zend_Date::now()->toString('yyyy-MM-dd HH:mm');

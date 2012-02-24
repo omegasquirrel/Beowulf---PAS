@@ -144,8 +144,8 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	 * @return string $html
 	 */
 	public function buildHtml($ID) {
-        $editClass = 'btn btn-large btn-warning';
-        $deleteClass = 'btn btn-large btn-danger';
+        $editClass = 'btn btn-small btn-warning';
+        $deleteClass = 'btn btn-small btn-danger';
 	$editurl = $this->view->url(array('module' => 'database','controller' => 'findspots','action' => 'edit',
 	'id' => $ID),null,true);
 	$deleteurl = $this->view->url(array('module' => 'database','controller' => 'findspots','action' => 'delete',

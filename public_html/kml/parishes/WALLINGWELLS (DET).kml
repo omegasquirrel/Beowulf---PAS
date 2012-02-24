@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>parish_region_NAME__Wallingwells_CP__DET_</name>
+<Schema name="parish_region_NAME__Wallingwells_CP__DET_" id="parish_region_NAME__Wallingwells_CP__DET_">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="AREA_CODE" type="string"></SimpleField>
+	<SimpleField name="DESCRIPTIO" type="string"></SimpleField>
+	<SimpleField name="FILE_NAME" type="string"></SimpleField>
+	<SimpleField name="NUMBER" type="float"></SimpleField>
+	<SimpleField name="NUMBER0" type="float"></SimpleField>
+	<SimpleField name="POLYGON_ID" type="float"></SimpleField>
+	<SimpleField name="UNIT_ID" type="float"></SimpleField>
+	<SimpleField name="CODE" type="string"></SimpleField>
+	<SimpleField name="HECTARES" type="float"></SimpleField>
+	<SimpleField name="AREA" type="float"></SimpleField>
+	<SimpleField name="TYPE_CODE" type="string"></SimpleField>
+	<SimpleField name="DESCRIPT0" type="string"></SimpleField>
+	<SimpleField name="TYPE_COD0" type="string"></SimpleField>
+	<SimpleField name="DESCRIPT1" type="string"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Wallingwells CP (DET)</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#parish_region_NAME__Wallingwells_CP__DET_">
+		<SimpleData name="Name">Wallingwells CP (DET)</SimpleData>
+		<SimpleData name="AREA_CODE">CPC</SimpleData>
+		<SimpleData name="DESCRIPTIO">Civil Parish or Community</SimpleData>
+		<SimpleData name="FILE_NAME">NOTTINGHAMSHIRE_COUNTY</SimpleData>
+		<SimpleData name="NUMBER">450</SimpleData>
+		<SimpleData name="NUMBER0">546</SimpleData>
+		<SimpleData name="POLYGON_ID">71080</SimpleData>
+		<SimpleData name="UNIT_ID">8201</SimpleData>
+		<SimpleData name="CODE">37UC061</SimpleData>
+		<SimpleData name="HECTARES">9.589</SimpleData>
+		<SimpleData name="AREA">0.000</SimpleData>
+		<SimpleData name="TYPE_CODE">AA</SimpleData>
+		<SimpleData name="DESCRIPT0">CIVIL ADMINISTRATION AREA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.13926992983174,53.359972523276461 -1.139127600624217,53.35995172149898 -1.138556474753469,53.359883780778759 -1.137742377707301,53.359868016257352 -1.137427111377642,53.359854053370128 -1.137096113452707,53.359875032698426 -1.136825029328267,53.359905433199202 -1.136501669841758,53.359920173867827 -1.135522164422647,53.359910388898591 -1.135359753351665,53.359991011905727 -1.134850542603816,53.360056537697126 -1.134557666221272,53.360049920603615 -1.134173708367029,53.360014776676913 -1.133942357717219,53.360012199805809 -1.133721906539048,53.359990824855792 -1.133637644889517,53.359996505679547 -1.133630060019218,53.36000004620454 -1.13354793101496,53.360419232381844 -1.133489448621638,53.360783757743988 -1.132593926055908,53.360707141458668 -1.13127626447036,53.36062564982349 -1.130495355988794,53.36060288625896 -1.129556969651007,53.360565486199562 -1.128553853038971,53.36053389854424 -1.128721266587365,53.359840277250797 -1.128810257557353,53.359381593045704 -1.130115946342594,53.359384821267405 -1.131159469687546,53.35934927308228 -1.132070435971831,53.359329831140876 -1.133068192489362,53.359328091427372 -1.133850745578806,53.359342760142553 -1.133930628675822,53.359034121040679 -1.134017840188574,53.35873452394322 -1.134132310218473,53.35872097192442 -1.134574638234285,53.358692717869673 -1.135298788745915,53.358697065963575 -1.135767649063827,53.358694168607336 -1.136474116715393,53.358681302633165 -1.137001441391354,53.358685115517112 -1.137531045225196,53.358724898180512 -1.137798554448911,53.358722335903366 -1.138308214099901,53.358708037616424 -1.138548862074285,53.358696290874391 -1.139028384424356,53.358611658555056 -1.139053723655353,53.358770944996479 -1.139133290429798,53.359221863122201 -1.139178974487332,53.3595646699575 -1.13926992983174,53.359972523276461</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

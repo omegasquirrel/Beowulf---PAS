@@ -60,7 +60,6 @@ class Pas_View_Helper_WhatYouWantToDo extends Zend_View_Helper_Abstract {
 	if(in_array($this->getRole(),$this->_upgrades)) {
 	$html .= $this->buildUpgrade();
 	}
-	$html .=  $this->view->facebookPage();;
 	$html .= '</ul>';
 	$html .= '</div><div id="clear"></div>';
 	return $html;

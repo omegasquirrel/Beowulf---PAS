@@ -12,6 +12,9 @@ class VolunteerForm extends Pas_Form {
 	$projecttypes = new ProjectTypes();
 	$projectype_list = $projecttypes->getTypes();
 	
+	$authors = new Users();
+	$authorOptions = $authors->getAuthors();
+	
 	parent::__construct($options);
 		  
 	$this->setName('activity');
@@ -25,11 +28,13 @@ class VolunteerForm extends Pas_Form {
 		->addErrorMessage('Choose title for the project.')
 		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
 	
-	$description = new Zend_Form_Element_Textarea('description');
+	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Short description of project: ')
 		->setRequired(true)
 		->setAttrib('rows',10)
 		->setAttrib('cols',40)
+		->setAttrib('Height',400)
+		->setAttrib('ToolbarSet','Basic')
 		->addFilters(array('BasicHtml', 'EmptyParagraph', 'StringTrim'));
 		
 	$length = new Zend_Form_Element_Text('length');
@@ -38,20 +43,24 @@ class VolunteerForm extends Pas_Form {
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter a duration for this project in months')
-		->addValidator('Digits');
+		->addValidator('Digits')
+		->setDescription('Enter length in months');
 	
-	$managedBy = new Zend_Form_Element_Text('managedBy');
+	$managedBy = new Zend_Form_Element_Select('managedBy');
 	$managedBy->setLabel('Managed by: ')
-		->setAttrib('size',12)
+		->addMultiOptions(array('Choose an author' => $authorOptions))
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
+		->addFilters(array('StripTags','StringTrim'))
+		->addValidator('InArray', false, array(array_keys($authorOptions)))
 		->addErrorMessage('You must enter a manager for this project.');
+		
 
 	$suitableFor = new Zend_Form_Element_Select('suitableFor');
 	$suitableFor->setLabel('Suitable for: ')
 		->addMultiOptions(array(NULL => NULL,'Choose type of research' => $projectype_list))
 		->setRequired(true)
-		->addValidator('InArray', false, array($projectype_list))
+		->addValidator('InArray', false, array(array_keys($projectype_list)))
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter suitability for this task.');
 
@@ -62,7 +71,7 @@ class VolunteerForm extends Pas_Form {
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter a location for the task.');
 
-	$valid = new Zend_Form_Element_Checkbox('valid');
+	$valid = new Zend_Form_Element_Checkbox('status');
 	$valid->setLabel('Publish this task? ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'));
@@ -81,7 +90,7 @@ class VolunteerForm extends Pas_Form {
 	$this->addDisplayGroup(array(
 	'title', 'description', 'length',
 	'location', 'suitableFor', 'managedBy',
-	'valid','submit'), 'details');
+	'status','submit'), 'details');
 
 	$this->details->setLegend('Activity details: ');
 

@@ -29,7 +29,8 @@ class Volunteers extends Pas_Db_Table_Abstract {
 	$select = $vols->select()
 		->from($this->_name)
 		->joinLeft('projecttypes',$this->_name . '.suitableFor = projecttypes.id', array('type' => 'title'))
-		->joinLeft('people',$this->_name . '.managedBy = people.secuid', array('fullname'))
+//		->joinLeft('people',$this->_name . '.managedBy = people.secuid', array('fullname'))
+		->joinLeft('users', $this->_name .  '.managedBy = users.id', array('fullname'))
 		->where($this->_name . '.status = ?', (int)1)
 		->order(array($this->_name . '.created'));
 	$data = $vols->fetchAll($select);

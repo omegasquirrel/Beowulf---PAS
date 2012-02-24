@@ -167,8 +167,8 @@ class Pas_View_Helper_ImageLink extends Zend_View_Helper_Abstract {
 	public function buildHtml($findID, $secuid) {
 	$url = $this->view->url(array('module' => 'database','controller' => 'images','action' => 'add',
 	'id' => $findID, 'findID' => $secuid),null,TRUE);
-        $class = 'btn btn-large btn-success';
-	$string = '<div class="addpanel noprint"><a href="' . $url
+        $class = 'btn btn-small btn-success';
+	$string = '<div class="noprint"><a href="' . $url
 	. '" title="Add an image to this find" accesskey="i" class="' . $class .'">Add an image</a></div>';
 	return $string;
 	}

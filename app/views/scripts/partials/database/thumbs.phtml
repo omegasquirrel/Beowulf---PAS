@@ -50,7 +50,7 @@ echo '<img src="/'. $imagedir .'display/' . strtolower($name).$ext.'" alt="A res
 }?>
 </a><br />
 
-<a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'image','id' => $this->i),null,true);?>" title="View and edit image meta data">View</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'zoom','id' => $this->i),null,true);?>" title="View high resolution zoom">Zoom</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax','action' => 'download','id' => $this->thumbnail),null,true);?>" title="Download image">Download</a>
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'image','id' => $this->i),null,true);?>" title="View and edit image meta data">View</a> <a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'zoom','id' => $this->i),null,true);?>" title="View high resolution zoom">Zoom</a> <a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax','action' => 'download','id' => $this->thumbnail),null,true);?>" title="Download image">Download</a>
 <?php
  echo $this->ImageEditDeleteLink($this->id,$this->i,$this->secuid,$this->createdBy);
 ?><br />

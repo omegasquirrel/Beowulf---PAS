@@ -106,8 +106,8 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	 * @return string $html The code for the strings of links
 	 */
 	private function buildHtml($findID, $oldfindID) {
-        $class = 'btn btn-large btn-warning';
-        $classDanger = 'btn btn-large btn-danger';
+        $class = 'btn btn-small btn-warning';
+        $classDanger = 'btn btn-small btn-danger';
 	$editurl = $this->view->url(array('module' => 'database', 'controller' => 'artefacts', 'action' => 'edit',
 	'id' => $findID),null,true);
 	$deleteurl = $this->view->url(array('module' => 'database', 'controller' => 'artefacts', 'action' => 'delete',

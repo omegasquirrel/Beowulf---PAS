@@ -8,24 +8,28 @@ $this->headTitle('User administration section');
 <h2>User administration</h2>
 <?php
 echo $this->Href(array('module' => 'admin','controller'=>'users', 'action'=>'add', 'checkAcl'=>true,
-'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'div','class' => 'btn btn-large btn-danger'),
-'content'=>'Add an account','attribs' => array('title' => 'Add a new user')));
+'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'p'),
+'content'=>'Add an account','attribs' => array('title' => 'Add a new user','class' => 'btn btn-large btn-danger')));
 ?>
 
 <div id="findsList">
 <?php if ($this->paginator): ?>
 
-<table class="table table-striped table-bordered" summary="List of users registered on the database">
-<tr>
-<th>Username</th>
-<th>Fullname</th>
-<th>Role assigned</th>
-<th>Last login</th>
-<th>Visits</th>
-<th>Actions</th>
-</tr>
-
-<?php echo $this->partialLoop('partials/admin/userAdminTable.phtml',$this->paginator);?>
+<table class="table table-striped " summary="List of users registered on the database">
+<caption>All users</caption>
+	<thead>
+	<tr>
+		<th>Username</th>
+		<th>Fullname</th>
+		<th>Role assigned</th>
+		<th>Last login</th>
+		<th>Visits</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+		<?php echo $this->partialLoop('partials/admin/userAdminTable.phtml',$this->paginator);?>
+	</tbody>
 </table>
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'structure/pagination.phtml'); ?>
 <?php else:?>

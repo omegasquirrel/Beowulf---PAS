@@ -132,8 +132,8 @@ class Pas_View_Helper_CoinEditDeleteLink
 	 * @param int $returnID The find number to return to
 	 */
 	public function buildHtml($id, $broadperiod, $secuid, $returnID) {
-        $editClass = 'btn btn-large btn-warning';
-        $deleteClass = 'btn btn-large btn-danger';
+        $editClass = 'btn btn-small btn-warning';
+        $deleteClass = 'btn btn-small btn-danger';
 	$editurl = $this->view->url(array('module' => 'database','controller' => 'coins','action' => 'edit',
 	'broadperiod' => $broadperiod,'findID' => $secuid,'id' => $id,'returnID' => $returnID),null,TRUE);
 	$deleteurl = $this->view->url(array('module' => 'database','controller' => 'coins','action' => 'delete',
