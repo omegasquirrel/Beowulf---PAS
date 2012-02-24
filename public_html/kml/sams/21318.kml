@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21318</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21318" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21318">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Lymball's Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21318">
+		<SimpleData name="Name">Moated site at Lymball's Farm</SimpleData>
+		<SimpleData name="ListEntry">1007682</SimpleData>
+		<SimpleData name="SchedDate">1996/03/31</SimpleData>
+		<SimpleData name="AmendDate">1994/05/03</SimpleData>
+		<SimpleData name="LegacyUID">21318</SimpleData>
+		<SimpleData name="NGR">TM 42495 70772</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">642497.77463000000</SimpleData>
+		<SimpleData name="Northing">270769.83958999999</SimpleData>
+		<SimpleData name="AREA_HA">0.35026471133</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>1.554011734829419,52.281254372507298 1.553944562704423,52.281154334538058 1.553856203728649,52.281159263404028 1.553495617338537,52.281274464426048 1.553301097710149,52.281339293005111 1.553226531374567,52.281377832484601 1.553256339830666,52.281426836644378 1.553423120566175,52.281662238390084 1.553562435675118,52.281878058609543 1.553594315008612,52.28190658253174 1.553642997017322,52.281914182463069 1.553854078290599,52.281871538770709 1.553907778005619,52.281849503080153 1.553957081000883,52.281818533272897 1.554039216678613,52.281782031899354 1.554177227310303,52.281750655802199 1.554142404699127,52.281592932192645 1.554088409508678,52.281426719663202 1.554011734829419,52.281254372507298</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

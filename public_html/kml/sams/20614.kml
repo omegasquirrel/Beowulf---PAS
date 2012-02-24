@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20614</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20614" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20614">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Colney Chapel moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20614">
+		<SimpleData name="Name">Colney Chapel moated site</SimpleData>
+		<SimpleData name="ListEntry">1010718</SimpleData>
+		<SimpleData name="SchedDate">1992/01/30</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20614</SimpleData>
+		<SimpleData name="NGR">TL 17437 03123</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">517432.97256999998</SimpleData>
+		<SimpleData name="Northing">203122.87260500001</SimpleData>
+		<SimpleData name="AREA_HA">0.32805551848</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.301935733921551,51.714382707080759 -0.302226620056336,51.714376183214803 -0.302280074945144,51.714409138178567 -0.302318800211529,51.714450809355398 -0.30234314423932,51.714492281747283 -0.302350510484138,51.714526351143277 -0.302343347293427,51.714563789428112 -0.302315791692566,51.714608081720733 -0.302242682151483,51.714639198892684 -0.302103491952791,51.714667580632288 -0.301920943235502,51.714700694875603 -0.301782421896804,51.714711209724385 -0.301603889826882,51.714713988405315 -0.301385294231164,51.714710828354143 -0.301161074499681,51.71470400775268 -0.301000404849642,51.714690965988851 -0.300848707769936,51.714669106685733 -0.300760278835414,51.714648162212896 -0.300717939369219,51.714626094868784 -0.3007192786878,51.714590361841886 -0.300755004195321,51.714558704987695 -0.300845910637154,51.71451353980158 -0.300953325922204,51.714488278854105 -0.301124573274306,51.714449643472946 -0.301336204156579,51.714408003851311 -0.301463155385937,51.714399120652629 -0.301673461303469,51.714393222652951 -0.301935733921551,51.714382707080759</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

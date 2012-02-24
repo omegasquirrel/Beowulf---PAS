@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15242</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15242" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15242">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Tor cairn on Newel Tor, 1.5km north of Siblyback Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15242">
+		<SimpleData name="Name">Tor cairn on Newel Tor, 1.5km north of Siblyback Farm</SimpleData>
+		<SimpleData name="ListEntry">1011314</SimpleData>
+		<SimpleData name="SchedDate">1993/11/11</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15242</SimpleData>
+		<SimpleData name="NGR">SX 23639 74128</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">223639.00500700000</SimpleData>
+		<SimpleData name="Northing">74127.23227300000</SimpleData>
+		<SimpleData name="AREA_HA">0.01362975520</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.490138488026575,50.540223396517831 -4.49040635792323,50.540217664029242 -4.490403365485183,50.540236139981765 -4.490398822697559,50.540246356104404 -4.490392283883785,50.540256192191329 -4.49038395992461,50.540265364912969 -4.490373808547239,50.540273875173689 -4.490362086217676,50.540281501595771 -4.490348983265203,50.54028810519236 -4.490334721934505,50.540293618245038 -4.490319512695737,50.540298018304185 -4.490303574110822,50.540301165710304 -4.490287128371693,50.540302992746355 -4.490270401095715,50.540303494652456 -4.490253818530721,50.540302725199872 -4.490237391508494,50.540300621195158 -4.490221767999953,50.540297159816632 -4.490206536487389,50.540292565759415 -4.490192556984517,50.540286820551216 -4.490179843530614,50.540279923926306 -4.490168410803237,50.540272154421316 -4.490158682317032,50.540263511929112 -4.490150692775079,50.540254121665278 -4.490144655282884,50.540244275865156 -4.490140583405029,50.54023396528347 -4.490138488026575,50.540223396517831</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

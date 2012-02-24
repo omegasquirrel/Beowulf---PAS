@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19025</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19025" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19025">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Round barrow at Ufton Nervet 190m south-west of Island Farm Cottage</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19025">
+		<SimpleData name="Name">Round barrow at Ufton Nervet 190m south-west of Island Farm Cottage</SimpleData>
+		<SimpleData name="ListEntry">1007946</SimpleData>
+		<SimpleData name="SchedDate">1992/09/03</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">19025</SimpleData>
+		<SimpleData name="NGR">SU 63548 66630</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">463548.39940100000</SimpleData>
+		<SimpleData name="Northing">166630.41767100000</SimpleData>
+		<SimpleData name="AREA_HA">0.24226800824</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.087866264371718,51.394920008207791 -1.087990864119847,51.394908658799729 -1.088114959800822,51.394921943061306 -1.088226417233245,51.394958570734318 -1.088314340720098,51.395014959242317 -1.088370101096486,51.395085574489059 -1.088388258401623,51.395163522397056 -1.088367009485657,51.395241154867207 -1.088308459770016,51.395310890106863 -1.088218322007221,51.395365884728442 -1.0881054421604,51.395400767391656 -1.087980855285483,51.395412126011408 -1.087856744135702,51.395398832505187 -1.087745285937499,51.395362204479483 -1.087657362316755,51.39530582453358 -1.087601602902521,51.395235199968489 -1.087583461148715,51.395157261043842 -1.087604697108943,51.395079619623303 -1.087663247466604,51.395009893722346 -1.087753385363163,51.394954890538699 -1.087866264371718,51.394920008207791</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

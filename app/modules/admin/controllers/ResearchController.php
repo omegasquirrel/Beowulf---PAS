@@ -100,9 +100,9 @@ class Admin_ResearchController extends Pas_Controller_Action_Admin {
 	$form->submit->setLabel('Submit changes to project');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
-        if ($form->isValid($form->getValues())) {
+    if ($form->isValid($form->getValues())) {
 	$where =  $this->_suggested->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-        $this->_suggested->update($form->getValues(), $where);
+    $this->_suggested->update($form->getValues(), $where);
 	$this->_flashMessenger->addMessage('Suggested research project details updated.');
 	$this->_redirect(self::REDIRECT . 'suggested/');
 	} else {

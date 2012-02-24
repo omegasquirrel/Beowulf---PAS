@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13610</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13610" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13610">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Blackfriars Friary, preaching cross and cemetery, and hospital and chapel of St John in Hereford</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13610">
+		<SimpleData name="Name">Blackfriars Friary, preaching cross and cemetery, and hospital and chapel of St John in Hereford</SimpleData>
+		<SimpleData name="ListEntry">1010797</SimpleData>
+		<SimpleData name="SchedDate">1928/11/26</SimpleData>
+		<SimpleData name="AmendDate">1991/03/11</SimpleData>
+		<SimpleData name="LegacyUID">13610</SimpleData>
+		<SimpleData name="NGR">SO 51187 40444</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">351187.47404100001</SimpleData>
+		<SimpleData name="Northing">240441.68000100000</SimpleData>
+		<SimpleData name="AREA_HA">1.10688826227</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.712602322934756,52.060350816671303 -2.712537819308618,52.060349624447028 -2.712518614447373,52.060352680576464 -2.712499876418969,52.060356659934548 -2.712481692363559,52.060361535002727 -2.71246419318404,52.060367287052301 -2.712452945886331,52.060395604053355 -2.712245196163517,52.060346943464509 -2.712559687302647,52.059751516010671 -2.712527831789101,52.059729519467759 -2.712575830304967,52.059634933963316 -2.714079567452911,52.059975282449855 -2.714540016964662,52.060069564059908 -2.714422703245982,52.060330980893156 -2.714328054754501,52.060603354793791 -2.713130054793422,52.060616069880879 -2.713106803119779,52.060613234666199 -2.71289325358189,52.060482596503284 -2.712799485698464,52.060424337259398 -2.712739613422502,52.060389734383257 -2.712705895461306,52.060377216416263 -2.71264630149995,52.060360089868659 -2.712602322934756,52.060350816671303</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

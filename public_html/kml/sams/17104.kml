@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17104</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17104" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17104">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated lodge 200m west of ruins of Bradgate House</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17104">
+		<SimpleData name="Name">Moated lodge 200m west of ruins of Bradgate House</SimpleData>
+		<SimpleData name="ListEntry">1008813</SimpleData>
+		<SimpleData name="SchedDate">1994/07/21</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">17104</SimpleData>
+		<SimpleData name="NGR">SK 53153 10096</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">453153.06170500000</SimpleData>
+		<SimpleData name="Northing">310095.75949000003</SimpleData>
+		<SimpleData name="AREA_HA">0.21908435494</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.214803147634939,52.685737610837187 -1.215297851149499,52.68568357510464 -1.215321409102729,52.685684854727036 -1.2153342564437,52.685689443657246 -1.215344307403335,52.685696531233923 -1.215349239737052,52.685705275066923 -1.215477855388854,52.686138763315995 -1.215475749859201,52.686153070228002 -1.215468198188272,52.686160886399229 -1.21545653490003,52.686166994260347 -1.215442146228823,52.686169982608725 -1.214946973701537,52.686224303503636 -1.21492341541343,52.686223023805496 -1.214910567798924,52.686218443814646 -1.214900975533294,52.686211350253842 -1.214895589543185,52.686202333714284 -1.214766994210934,52.685768844957167 -1.214769075336949,52.6857550862496 -1.214776632057811,52.685746991485757 -1.214788295223069,52.685740892675263 -1.214803147634939,52.685737610837187</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

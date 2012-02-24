@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20019</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20019" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20019">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Platform barrow on Bepton Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20019">
+		<SimpleData name="Name">Platform barrow on Bepton Down</SimpleData>
+		<SimpleData name="ListEntry">1009761</SimpleData>
+		<SimpleData name="SchedDate">1958/01/07</SimpleData>
+		<SimpleData name="AmendDate">1992/06/03</SimpleData>
+		<SimpleData name="LegacyUID">20019</SimpleData>
+		<SimpleData name="NGR">SU 85541 16920</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">485541.16331300000</SimpleData>
+		<SimpleData name="Northing">116919.77578200000</SimpleData>
+		<SimpleData name="AREA_HA">0.12360704491</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.783671700505457,50.945208244738957 -0.783759890725254,50.945200359202495 -0.783847607453116,50.945210076449975 -0.783926278071538,50.945236434931843 -0.783988211710288,50.945276872626721 -0.784027334074789,50.945327414402385 -0.78403981656405,50.945383128455305 -0.784024435262911,50.945438543441156 -0.783982697898747,50.945488243432578 -0.783918688359951,50.945527369862276 -0.783838684778763,50.945552085267238 -0.783750508128651,50.945559970972113 -0.783662776541002,50.94555025353403 -0.783584105729057,50.945523885853184 -0.783522172173427,50.945483447980664 -0.783483064455574,50.945432906153826 -0.783470568163076,50.945377200883527 -0.783485964557554,50.945321777137274 -0.783504504967305,50.945299695253496 -0.783527688072341,50.945272077210745 -0.783591697528017,50.945232950958683 -0.783671700505457,50.945208244738957</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

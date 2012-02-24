@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13333</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13333" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13333">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Burton Agnes 12th-century manor house</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13333">
+		<SimpleData name="Name">Burton Agnes 12th-century manor house</SimpleData>
+		<SimpleData name="ListEntry">1011581</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1993/09/23</SimpleData>
+		<SimpleData name="LegacyUID">13333</SimpleData>
+		<SimpleData name="NGR">TA 10248 63254</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">510246.55249500001</SimpleData>
+		<SimpleData name="Northing">463253.05938100000</SimpleData>
+		<SimpleData name="AREA_HA">0.03043463031</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.317244328296232,54.053433098855464 -0.317517821860188,54.053329680183474 -0.317556604832516,54.053514294805417 -0.317412893972535,54.053569911327152 -0.317244328296232,54.053433098855464</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

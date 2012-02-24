@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15560</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15560" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15560">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Iron Age to Romano-British fogou on northern Peninnis Head, 170m south of Carn Gwavel Farm, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15560">
+		<SimpleData name="Name">Iron Age to Romano-British fogou on northern Peninnis Head, 170m south of Carn Gwavel Farm, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1020142</SimpleData>
+		<SimpleData name="SchedDate">2001/04/05</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15560</SimpleData>
+		<SimpleData name="NGR">SV 90971 10183</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">90971.33636750000</SimpleData>
+		<SimpleData name="Northing">10183.14587230000</SimpleData>
+		<SimpleData name="AREA_HA">0.01979778747</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.306030307167404,49.91175101511039 -6.30606742825255,49.91174414517522 -6.306094177706473,49.911744877712188 -6.306119850052878,49.911753685752402 -6.306143163298777,49.911779471336693 -6.30616176985599,49.91180122980029 -6.306160469526114,49.911817268112827 -6.306146435227793,49.911835201902832 -6.306129112748325,49.911847517083224 -6.306041573264253,49.911882924610495 -6.306011742329593,49.911887480711158 -6.305984891187472,49.911885609166369 -6.305961187397236,49.911879031425435 -6.305917572961206,49.911838730973464 -6.305912464987269,49.911821302374236 -6.305920964451706,49.911803178602476 -6.305946054036598,49.911785616437122 -6.306030307167404,49.91175101511039</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

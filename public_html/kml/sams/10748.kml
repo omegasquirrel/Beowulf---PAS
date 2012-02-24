@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10748</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10748" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10748">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Yellowmead stone circles, cairn and stone alignment</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10748">
+		<SimpleData name="Name">Yellowmead stone circles, cairn and stone alignment</SimpleData>
+		<SimpleData name="ListEntry">1010212</SimpleData>
+		<SimpleData name="SchedDate">1963/02/16</SimpleData>
+		<SimpleData name="AmendDate">1993/01/15</SimpleData>
+		<SimpleData name="LegacyUID">10748</SimpleData>
+		<SimpleData name="NGR">SX 57482 67841</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">257484.66819299999</SimpleData>
+		<SimpleData name="Northing">67839.70536280000</SimpleData>
+		<SimpleData name="AREA_HA">0.08969872612</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.01035345724306,50.492908233623318 -4.01040198165784,50.492875565180313 -4.010463950961464,50.492854050853332 -4.010533322011442,50.492845809813282 -4.010603276631401,50.492851643317685 -4.010666980943811,50.492870986014047 -4.010685037829912,50.492895785427415 -4.010742141116854,50.492878879081722 -4.010796729916735,50.492864516515475 -4.01083900649397,50.492869659006821 -4.010868529354544,50.492884240844568 -4.010886530093131,50.492905722388322 -4.010887561866599,50.492930015534569 -4.010867430493909,50.49295131964044 -4.010764852272798,50.492985713967123 -4.010755707708624,50.493030338678281 -4.010725386060963,50.49307098527774 -4.010676861730614,50.493103653853353 -4.010614892149865,50.493125168296459 -4.010545534790344,50.493133409180416 -4.010475565676454,50.493127575855354 -4.010411861144697,50.493108233057278 -4.010360635417625,50.493077288157458 -4.010326922802935,50.493037748063834 -4.01031400442958,50.492993504594409 -4.010323149457219,50.49294887987763 -4.01035345724306,50.492908233623318</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

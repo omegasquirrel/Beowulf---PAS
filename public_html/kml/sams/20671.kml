@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20671</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20671" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20671">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bury Hill: a motte and bailey castle west of Castle Lane</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20671">
+		<SimpleData name="Name">Bury Hill: a motte and bailey castle west of Castle Lane</SimpleData>
+		<SimpleData name="ListEntry">1009307</SimpleData>
+		<SimpleData name="SchedDate">1929/12/13</SimpleData>
+		<SimpleData name="AmendDate">1992/07/28</SimpleData>
+		<SimpleData name="LegacyUID">20671</SimpleData>
+		<SimpleData name="NGR">TL 53864 38688</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">553869.40251900000</SimpleData>
+		<SimpleData name="Northing">238690.22269699999</SimpleData>
+		<SimpleData name="AREA_HA">1.24841093451</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.242324003071728,52.025713308549399 0.242499359572451,52.025266540551897 0.242485370327454,52.025223805605528 0.242436815927836,52.025181881647896 0.241927845469487,52.02496971242936 0.241618692086608,52.024863201770316 0.241443339884762,52.025027168837973 0.241199506611017,52.024931742387594 0.241056796588558,52.024894963650986 0.240742325736879,52.024837739854995 0.240617590269367,52.024819052872658 0.240423647386851,52.024867506004497 0.240232430777913,52.024916266693225 0.240203663368632,52.024992825930248 0.240162935973588,52.025117370851859 0.240089125685537,52.025092436190761 0.239980274218713,52.025049742693298 0.23994008825922,52.025100549202506 0.239873417777781,52.025151976274771 0.24013289066884,52.025199574572341 0.240127204430515,52.025341878290426 0.240173527353158,52.025414734220462 0.240253840541797,52.025484308910066 0.240331964798613,52.02552233516267 0.240804157097444,52.025647643750467 0.241143051347774,52.025680689963764 0.241191201219745,52.025619210467482 0.241277682427849,52.025641268549862 0.24122107264273,52.025684276991157 0.241372876078333,52.025695587101417 0.242324003071728,52.025713308549399</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

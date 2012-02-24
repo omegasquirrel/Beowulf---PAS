@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17071</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17071" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17071">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Cotes de Val, Gilmorton</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17071">
+		<SimpleData name="Name">Moated site at Cotes de Val, Gilmorton</SimpleData>
+		<SimpleData name="ListEntry">1010194</SimpleData>
+		<SimpleData name="SchedDate">1954/10/07</SimpleData>
+		<SimpleData name="AmendDate">1992/02/20</SimpleData>
+		<SimpleData name="LegacyUID">17071</SimpleData>
+		<SimpleData name="NGR">SP 55370 88613</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">455370.10424900003</SimpleData>
+		<SimpleData name="Northing">288613.14870100003</SimpleData>
+		<SimpleData name="AREA_HA">0.29836501575</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.185419007707464,52.492475681238901 -1.186259471840158,52.492350988099815 -1.186400055576052,52.492668759196825 -1.186404842668304,52.49268311346701 -1.186406517678631,52.492692115152465 -1.186406817807401,52.492701395051824 -1.18640664681995,52.492710662761894 -1.186405096622975,52.492719642277798 -1.186402628270972,52.492728894161843 -1.186399237214121,52.492737861023855 -1.186394938283077,52.492746542965698 -1.186389711671582,52.492755209511017 -1.186382166793711,52.492764992911354 -1.186374652927634,52.492773095325504 -1.186366687858445,52.492780906972875 -1.186357805389554,52.492788145935016 -1.18634801504423,52.492795099976036 -1.186337301991767,52.492801768959481 -1.186326142712049,52.492807877481326 -1.186314532229591,52.492813695201306 -1.186302009323131,52.492818670575033 -1.1862890352136,52.49282335518086 -1.185594568726719,52.492868303451431 -1.185572530162703,52.49286534687333 -1.185557409115395,52.492861862526986 -1.185542308547692,52.49285727251857 -1.185528588188559,52.49285211664219 -1.185515816376836,52.492845843519973 -1.185504444307645,52.492838743956 -1.18549399566454,52.492831093318117 -1.185485403603267,52.492822601412449 -1.185477749685687,52.492813558569054 -1.185472398286231,52.492804252890949 -1.185468436499331,52.492794669076574 -1.185465854642498,52.492784537365281 -1.185419007707464,52.492475681238901</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

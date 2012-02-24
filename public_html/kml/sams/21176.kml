@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21176</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21176" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21176">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Hall Garth moated site south of Beverley Minster</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21176">
+		<SimpleData name="Name">Hall Garth moated site south of Beverley Minster</SimpleData>
+		<SimpleData name="ListEntry">1008122</SimpleData>
+		<SimpleData name="SchedDate">1955/08/17</SimpleData>
+		<SimpleData name="AmendDate">1994/01/12</SimpleData>
+		<SimpleData name="LegacyUID">21176</SimpleData>
+		<SimpleData name="NGR">TA 03744 39119</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">503741.23632700002</SimpleData>
+		<SimpleData name="Northing">439111.90108400001</SimpleData>
+		<SimpleData name="AREA_HA">1.53605496279</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.424027731289951,53.837457515194814 -0.425076195322294,53.837327936393201 -0.425097743250438,53.837413056708584 -0.425887712762537,53.837318109545173 -0.42595627906168,53.837468207256187 -0.425985619305362,53.837609008159198 -0.425973210727963,53.83780777022681 -0.425947855305037,53.837956635703122 -0.425899855346248,53.838181259334448 -0.425642567207002,53.83831537803924 -0.425456146818494,53.838406542303154 -0.425305975353698,53.83845430714581 -0.424589578228132,53.83869648442608 -0.424529272684231,53.838590378340356 -0.424496519173962,53.838540212557213 -0.424430274088,53.838460356950542 -0.42426361931711,53.838288502381026 -0.424137491870354,53.83822248512849 -0.424020500488967,53.838177064515776 -0.423986555290943,53.838159063261941 -0.423963581768452,53.838111956148531 -0.423922821915925,53.838011958283204 -0.423902498729181,53.837894682458007 -0.423865483768211,53.837826905111804 -0.423845259927972,53.837575057407236 -0.424048932431395,53.837551413344706 -0.424027731289951,53.837457515194814</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

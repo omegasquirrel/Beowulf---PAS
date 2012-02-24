@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15342</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15342" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15342">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Two 19th century gig-sheds ENE of Porth Askin</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15342">
+		<SimpleData name="Name">Two 19th century gig-sheds ENE of Porth Askin</SimpleData>
+		<SimpleData name="ListEntry">1009281</SimpleData>
+		<SimpleData name="SchedDate">1976/10/07</SimpleData>
+		<SimpleData name="AmendDate">1994/10/04</SimpleData>
+		<SimpleData name="LegacyUID">15342</SimpleData>
+		<SimpleData name="NGR">SV 88249 07402</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">88248.62334380001</SimpleData>
+		<SimpleData name="Northing">7401.65432784000</SimpleData>
+		<SimpleData name="AREA_HA">0.01960137483</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.341496265096501,49.885511263874363 -6.341524902037751,49.885386857955098 -6.341717400710249,49.885405335398339 -6.341688874430265,49.885529728191081 -6.341496265096501,49.885511263874363</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

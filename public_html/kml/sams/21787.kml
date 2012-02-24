@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21787</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21787" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21787">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Lee's Rest Earthwork: a probable Romano-Celtic temple 200m north east of Lee's Rest Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21787">
+		<SimpleData name="Name">Lee's Rest Earthwork: a probable Romano-Celtic temple 200m north east of Lee's Rest Farm</SimpleData>
+		<SimpleData name="ListEntry">1011226</SimpleData>
+		<SimpleData name="SchedDate">1949/08/12</SimpleData>
+		<SimpleData name="AmendDate">1994/03/30</SimpleData>
+		<SimpleData name="LegacyUID">21787</SimpleData>
+		<SimpleData name="NGR">SP 37813 19315</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">437813.62641000003</SimpleData>
+		<SimpleData name="Northing">219314.36772099999</SimpleData>
+		<SimpleData name="AREA_HA">0.68457840531</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.451387263040473,51.871314639583737 -1.451885724151467,51.870635327636045 -1.452983106544046,51.870944021764402 -1.452471544250782,51.871619618022827 -1.452190202386957,51.871540483165667 -1.451387263040473,51.871314639583737</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

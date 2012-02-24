@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13645</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13645" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13645">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Saffron moat at Higham Ferrers</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13645">
+		<SimpleData name="Name">Saffron moat at Higham Ferrers</SimpleData>
+		<SimpleData name="ListEntry">1010663</SimpleData>
+		<SimpleData name="SchedDate">1954/09/13</SimpleData>
+		<SimpleData name="AmendDate">1992/06/08</SimpleData>
+		<SimpleData name="LegacyUID">13645</SimpleData>
+		<SimpleData name="NGR">SP 95830 68695</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">495830.02202300000</SimpleData>
+		<SimpleData name="Northing">268693.94425100001</SimpleData>
+		<SimpleData name="AREA_HA">0.21568627189</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.595471326513959,52.307933682477056 -0.595441784696226,52.307781205198161 -0.596262643897349,52.307878794804537 -0.596272032725497,52.308017420157469 -0.596258345080263,52.308151518623184 -0.596166289193906,52.308192286256642 -0.595599055312711,52.308199308808383 -0.595508337640008,52.308198230228186 -0.595471326513959,52.307933682477056</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

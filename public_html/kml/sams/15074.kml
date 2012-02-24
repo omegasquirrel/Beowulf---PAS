@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15074</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15074" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15074">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Stone hut circle 425m south east of Sparretts Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15074">
+		<SimpleData name="Name">Stone hut circle 425m south east of Sparretts Farm</SimpleData>
+		<SimpleData name="ListEntry">1013211</SimpleData>
+		<SimpleData name="SchedDate">1997/04/15</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15074</SimpleData>
+		<SimpleData name="NGR">SX 24027 71511</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">224026.62793100000</SimpleData>
+		<SimpleData name="Northing">71511.17990950000</SimpleData>
+		<SimpleData name="AREA_HA">0.04449904324</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.48351664971405,50.516767068953051 -4.483568624067398,50.516760679704966 -4.483621152282027,50.516764838233897 -4.48366910685931,50.51677915036899 -4.48370775786463,50.516802196942891 -4.483733362061951,50.516831737306461 -4.483743383757456,50.516864884333756 -4.483736861480678,50.516898375544052 -4.483714413631037,50.5169289416583 -4.483678267307068,50.516953593963059 -4.483631921360078,50.516969919073524 -4.483579946789184,50.516976308387143 -4.483527418340158,50.516972149808822 -4.483479477691524,50.516957837351626 -4.483440812107744,50.516934781989384 -4.483415207980801,50.516905241595516 -4.483405187029987,50.516872103515382 -4.483411709014075,50.516838603341739 -4.483434157072607,50.516808037247841 -4.483470317975035,50.516783393731387 -4.48351664971405,50.516767068953051</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

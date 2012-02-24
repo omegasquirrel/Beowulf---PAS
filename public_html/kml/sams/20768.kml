@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20768</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20768" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20768">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Ashen House moat and fishpond, 500m north of St Augustine's Church.</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20768">
+		<SimpleData name="Name">Ashen House moat and fishpond, 500m north of St Augustine's Church.</SimpleData>
+		<SimpleData name="ListEntry">1013762</SimpleData>
+		<SimpleData name="SchedDate">1996/01/22</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20768</SimpleData>
+		<SimpleData name="NGR">TL 74824 42799</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">574824.28874999995</SimpleData>
+		<SimpleData name="Northing">242806.16980199999</SimpleData>
+		<SimpleData name="AREA_HA">0.35427245386</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.548380068965437,52.056482014503239 0.54834087147608,52.05643410373596 0.548346607592958,52.056422882550329 0.548353538622068,52.056224325099613 0.548935771109391,52.056242015137883 0.548958355870715,52.055765817733509 0.548120705868728,52.055757996949382 0.548060861567384,52.056208174664114 0.548230876224416,52.056215737783781 0.548225051431919,52.056438093125337 0.548133121535432,52.056437383997405 0.54801767959398,52.056407525238527 0.548021359161988,52.056472166599299 0.54805362831691,52.056501135714988 0.54815817973417,52.05652418871739 0.54827970928257,52.056529005666071 0.548401479314872,52.056650021877886 0.548406582641541,52.056627429542687 0.548402963346613,52.056563857021622 0.54839381735535,52.056515439954204 0.548380068965437,52.056482014503239</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

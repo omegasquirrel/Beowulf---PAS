@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21754</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21754" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21754">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 300m south of Fox Covert forming part of the Fox Covert round barrow cemetery on West Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21754">
+		<SimpleData name="Name">Bowl barrow 300m south of Fox Covert forming part of the Fox Covert round barrow cemetery on West Down</SimpleData>
+		<SimpleData name="ListEntry">1008349</SimpleData>
+		<SimpleData name="SchedDate">1957/05/07</SimpleData>
+		<SimpleData name="AmendDate">1994/02/04</SimpleData>
+		<SimpleData name="LegacyUID">21754</SimpleData>
+		<SimpleData name="NGR">SU 07728 68475</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">407727.73160100001</SimpleData>
+		<SimpleData name="Northing">168474.63700100000</SimpleData>
+		<SimpleData name="AREA_HA">0.04449849644</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.890215007791591,51.415135621188945 -1.890268339357051,51.415130392920723 -1.890321660082739,51.415135720787134 -1.890369722740913,51.415151096330831 -1.890407843202084,51.415175004573406 -1.89043227403969,51.415205104264032 -1.890440635305329,51.415238452873965 -1.890432115020453,51.415271785777222 -1.890407540663103,51.415301839766848 -1.890369306170128,51.415325676782494 -1.890321170134839,51.415340962553103 -1.890267823958765,51.415346190797251 -1.890214517366109,51.415340862954196 -1.890166454561212,51.415325487347239 -1.890128334101038,51.41530157902676 -1.890103903411791,51.415271479273379 -1.890095528013729,51.41523813059203 -1.890104062908525,51.415204797760907 -1.890128637412659,51.415174743834513 -1.890166871904652,51.415150906896777 -1.890215007791591,51.415135621188945</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

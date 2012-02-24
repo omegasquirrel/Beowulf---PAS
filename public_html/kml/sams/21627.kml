@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21627</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21627" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21627">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Univallate hillfort 250m south and a bowl barrow 300m south east of Castle Dykes Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21627">
+		<SimpleData name="Name">Univallate hillfort 250m south and a bowl barrow 300m south east of Castle Dykes Farm</SimpleData>
+		<SimpleData name="ListEntry">1018857</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1999/04/16</SimpleData>
+		<SimpleData name="LegacyUID">21627</SimpleData>
+		<SimpleData name="NGR">SP 61919 56297</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">461919.09900100000</SimpleData>
+		<SimpleData name="Northing">256297.32349800001</SimpleData>
+		<SimpleData name="AREA_HA">0.12360637562</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.095329965276538,52.201265322542874 -1.095420557031572,52.201257223959558 -1.095510791876568,52.201266708318634 -1.095591850367975,52.20129287189279 -1.095655766226882,52.201333145312283 -1.095696313100333,52.201383578870363 -1.095709508577682,52.201439242255695 -1.095694058245931,52.201494695166119 -1.095651477228166,52.201544491881393 -1.09558594648324,52.201583773464883 -1.095503850751748,52.201608686873854 -1.095413258295598,52.201616785517388 -1.095323022764094,52.201607301081104 -1.09524196386298,52.201581137321767 -1.095178048027153,52.201540863714158 -1.095137501602323,52.201490429947135 -1.095124307008519,52.201434757517212 -1.095139757844424,52.201379313668333 -1.095182339271084,52.201329517172518 -1.095247869993095,52.20129023577713 -1.095329965276538,52.201265322542874</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Univallate hillfort 250m south and a bowl barrow 300m south east of Castle Dykes Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21627">
+		<SimpleData name="Name">Univallate hillfort 250m south and a bowl barrow 300m south east of Castle Dykes Farm</SimpleData>
+		<SimpleData name="ListEntry">1018857</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1999/04/16</SimpleData>
+		<SimpleData name="LegacyUID">21627</SimpleData>
+		<SimpleData name="NGR">SP 61735 56331</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">461734.76792800002</SimpleData>
+		<SimpleData name="Northing">256326.08149400001</SimpleData>
+		<SimpleData name="AREA_HA">4.22044921855</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.099809186675119,52.200846888024373 -1.099908172307059,52.200842572161193 -1.099998716586825,52.200848333301479 -1.100088954236916,52.200869277251726 -1.100121199579704,52.200904973265501 -1.100127712650588,52.200991117479475 -1.100163491755842,52.20125978840661 -1.100144825923771,52.201776204399984 -1.100144371619044,52.202206664676304 -1.099839358919964,52.202209409754701 -1.099302149622094,52.202281273835432 -1.098831184904834,52.20233844700774 -1.098439163780769,52.202391914766416 -1.097968159121513,52.202454559516376 -1.097605620777924,52.20248490110275 -1.097227963554645,52.202500938659362 -1.096835010699363,52.202512128879064 -1.096389477800872,52.202510562151339 -1.096227502647702,52.20250942095528 -1.096171094827285,52.202500708671373 -1.096128348315694,52.20248217524869 -1.096099292676532,52.202453802991187 -1.096083797512218,52.202420580729296 -1.096086633184209,52.202306034461834 -1.096087668272804,52.201747884187007 -1.096071118890623,52.201471609289918 -1.09608594350614,52.201147609467888 -1.096819987919617,52.201122839998298 -1.097644576043846,52.201103828940333 -1.098032298981118,52.201086536358417 -1.098197324826406,52.201077664812559 -1.099057022605652,52.200952561578681 -1.099470286751746,52.200894947338391 -1.099676918549241,52.200866135164333 -1.099809186675119,52.200846888024373</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

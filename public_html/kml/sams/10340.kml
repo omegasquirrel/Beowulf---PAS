@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10340</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10340" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10340">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow located south of The Cursus and east of Fargo Plantation forming part of The Cursus round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10340">
+		<SimpleData name="Name">Bowl barrow located south of The Cursus and east of Fargo Plantation forming part of The Cursus round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1012399</SimpleData>
+		<SimpleData name="SchedDate">1925/03/10</SimpleData>
+		<SimpleData name="AmendDate">1995/05/01</SimpleData>
+		<SimpleData name="LegacyUID">10340</SimpleData>
+		<SimpleData name="NGR">SU 11470 42675</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">411469.92099999997</SimpleData>
+		<SimpleData name="Northing">142674.98977799999</SimpleData>
+		<SimpleData name="AREA_HA">0.12360581833</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.837190569204699,51.183020875465843 -1.837279017850515,51.183012195175664 -1.837367404610602,51.183021120994596 -1.837447091116784,51.183046768720004 -1.837510246024517,51.183086645721602 -1.83755071655131,51.183136832016309 -1.837564528190425,51.183192430469184 -1.837550326508646,51.183247981105879 -1.83750950396547,51.183298054701751 -1.837446069333766,51.183337756152994 -1.837366202862296,51.183363191505634 -1.837277753560811,51.183371871860615 -1.837189366147572,51.18336294597389 -1.837109679217123,51.183337289086943 -1.837046524368073,51.183297411870946 -1.837006054248945,51.183247225403605 -1.836992243233935,51.183191635872902 -1.837006445600535,51.18313607631702 -1.837047268544887,51.183086002895614 -1.837110703118064,51.183046301658791 -1.837190569204699,51.183020875465843</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

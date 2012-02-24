@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13461</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13461" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13461">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Peel Hall moated site, Kingsley</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13461">
+		<SimpleData name="Name">Peel Hall moated site, Kingsley</SimpleData>
+		<SimpleData name="ListEntry">1010795</SimpleData>
+		<SimpleData name="SchedDate">1991/06/27</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13461</SimpleData>
+		<SimpleData name="NGR">SJ 54038 75529</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">354037.90655999997</SimpleData>
+		<SimpleData name="Northing">375532.69166999997</SimpleData>
+		<SimpleData name="AREA_HA">0.33724067148</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.690519271112468,53.275038846219957 -2.690054717525179,53.274805999338874 -2.690676069858049,53.274419427380842 -2.691351809207671,53.27477475293955 -2.691147639863838,53.274911498979485 -2.690999398288465,53.275010652334707 -2.690874266472398,53.274963925051161 -2.690728776038522,53.275057974404163 -2.690671781276663,53.275029495132209 -2.690540224006773,53.27511159813654 -2.690471841140471,53.275078096985752 -2.690519271112468,53.275038846219957</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

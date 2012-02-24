@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19066</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19066" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19066">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>A medieval manorial complex comprising a twin moated site, fishpond and associated earthworks 750m west of St Mary's Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19066">
+		<SimpleData name="Name">A medieval manorial complex comprising a twin moated site, fishpond and associated earthworks 750m west of St Mary's Church</SimpleData>
+		<SimpleData name="ListEntry">1011310</SimpleData>
+		<SimpleData name="SchedDate">1968/03/01</SimpleData>
+		<SimpleData name="AmendDate">1993/11/04</SimpleData>
+		<SimpleData name="LegacyUID">19066</SimpleData>
+		<SimpleData name="NGR">SP 82400 36676</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">482417.17421700002</SimpleData>
+		<SimpleData name="Northing">236658.03220399999</SimpleData>
+		<SimpleData name="AREA_HA">2.69552394369</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.798912092188145,52.022239510611108 -0.799044712741224,52.021606708453596 -0.799073852565675,52.021607005449383 -0.799125753847526,52.0216079570056 -0.799270680808262,52.02160562170311 -0.79936811893079,52.021611173092673 -0.799463781586818,52.02161989816161 -0.799561360141734,52.021618572607323 -0.799662914246797,52.021609195433832 -0.799787304866594,52.021587319366631 -0.800069048427966,52.021503388379735 -0.800346410007007,52.021421417162216 -0.800408404761621,52.021510314328367 -0.800464712647614,52.021579175259795 -0.800537072034784,52.021679434760173 -0.800576170990818,52.021727494765173 -0.800640584554857,52.021806634055281 -0.800988258415702,52.021712960226957 -0.801145053789439,52.021671730840886 -0.8011999380863,52.02165377650968 -0.801291219021091,52.021607258930302 -0.801321604270945,52.02159367671694 -0.801391944728169,52.02155851764806 -0.801475674609946,52.021514233836484 -0.802232887982045,52.021810009438084 -0.80037870225047,52.023189529097444 -0.798862022714081,52.022680545933362 -0.798891778204557,52.022453823051713 -0.798912092188145,52.022239510611108</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

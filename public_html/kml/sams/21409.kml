@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21409</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21409" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21409">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Priory of the Canons of the Holy Sepulchre and part of Saxon town</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21409">
+		<SimpleData name="Name">Priory of the Canons of the Holy Sepulchre and part of Saxon town</SimpleData>
+		<SimpleData name="ListEntry">1014861</SimpleData>
+		<SimpleData name="SchedDate">1936/03/17</SimpleData>
+		<SimpleData name="AmendDate">1996/08/30</SimpleData>
+		<SimpleData name="LegacyUID">21409</SimpleData>
+		<SimpleData name="NGR">TL 86540 83011</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">586544.80054400000</SimpleData>
+		<SimpleData name="Northing">283015.61781600001</SimpleData>
+		<SimpleData name="AREA_HA">0.54875765245</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.74205270915634,52.412898158534368 0.741974486770491,52.412884398351785 0.741050058873117,52.413228260978599 0.740575372278284,52.413399655957704 0.740306875760085,52.413486592292081 0.740356879560163,52.413596654207367 0.740288868395687,52.413611441683905 0.740354509604276,52.41367676207102 0.740361790611828,52.413794154591571 0.740655986060547,52.413788149822274 0.740655543479408,52.413749482551424 0.740840509269586,52.413737224837533 0.740793632238342,52.413475365983331 0.741008215474332,52.413457897710465 0.742406382184135,52.41340129318808 0.74231052464193,52.413189662664003 0.74205270915634,52.412898158534368</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

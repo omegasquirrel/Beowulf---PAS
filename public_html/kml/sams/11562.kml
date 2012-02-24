@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__11562</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__11562" id="20110413_SCHEDULEDMONUMENT_LegacyUID__11562">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Morley Ponds moated site, Ware</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__11562">
+		<SimpleData name="Name">Morley Ponds moated site, Ware</SimpleData>
+		<SimpleData name="ListEntry">1012332</SimpleData>
+		<SimpleData name="SchedDate">1991/01/23</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">11562</SimpleData>
+		<SimpleData name="NGR">TL 38725 15387</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">538727.31178600003</SimpleData>
+		<SimpleData name="Northing">215386.14179100000</SimpleData>
+		<SimpleData name="AREA_HA">0.56149150462</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.011569926090107,51.819464361078374 0.011498287782833,51.81945778134034 0.011331042448918,51.81947104640183 0.011114744354566,51.819513754616317 0.010974042303323,51.819557759345145 0.010800484462744,51.819617945391535 0.010706365765565,51.819671557223742 0.010826259586906,51.81991395283584 0.010956526669516,51.820106758391347 0.010965717046882,51.8201248015896 0.010974690588278,51.820137650935976 0.01102324224977,51.820191430612873 0.011075058333912,51.820224346361137 0.011147956258787,51.820259509234745 0.01124170397389,51.820291707664069 0.011317996428578,51.820308603039372 0.011498408856975,51.820308115586379 0.011636658397705,51.82030315170779 0.011703167050946,51.820289010986045 0.011779452444297,51.820250046168091 0.01179277760242,51.820243640486261 0.01180514960686,51.820236684600374 0.01181661833693,51.820229321557527 0.011828074651414,51.820221679912834 0.011837678865517,51.820213503480034 0.01184819051097,51.820205176641593 0.011856870949101,51.820196458455335 0.011864619131557,51.820187333609077 0.011872375397477,51.820178064758011 0.011898062312036,51.820142654293797 0.011839748736854,51.81996422923531 0.011779481849225,51.819741622524518 0.011733702008279,51.819639003664882 0.011714177451439,51.819594511223222 0.011656319429826,51.819520091883689 0.011612768068406,51.819484427263127 0.011569926090107,51.819464361078374</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10464</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10464" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10464">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow east of the A360 forming part of the Winterbourne Stoke crossroads round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10464">
+		<SimpleData name="Name">Bowl barrow east of the A360 forming part of the Winterbourne Stoke crossroads round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1011843</SimpleData>
+		<SimpleData name="SchedDate">1923/07/09</SimpleData>
+		<SimpleData name="AmendDate">1995/04/13</SimpleData>
+		<SimpleData name="LegacyUID">10464</SimpleData>
+		<SimpleData name="NGR">SU 09979 41612</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">409979.36800100002</SimpleData>
+		<SimpleData name="Northing">141611.99100099999</SimpleData>
+		<SimpleData name="AREA_HA">0.08930384898</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.858558413561999,51.17351581128846 -1.858633576036667,51.173508420632245 -1.858708692901181,51.173515992530774 -1.858776414007447,51.17353778976738 -1.858830108870524,51.17357167327593 -1.858864523538189,51.173614327668602 -1.858876280711241,51.1736615766483 -1.858864235692804,51.17370879700384 -1.858829561210928,51.173751368197706 -1.858775659920248,51.173785122096064 -1.858707805971371,51.173806755949286 -1.858632642968929,51.173814146618078 -1.858557525687069,51.173806574705111 -1.85848980423624,51.173784777342497 -1.858436109430255,51.173750893679063 -1.858401695002136,51.173708239161549 -1.85838993830253,51.173660990100593 -1.85840198379264,51.173613769828179 -1.858436658619081,51.173571198760342 -1.85849055985267,51.173537445016834 -1.858558413561999,51.17351581128846</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21842</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21842" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21842">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 500m south west of Hill Farm, Lidstone</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21842">
+		<SimpleData name="Name">Bowl barrow 500m south west of Hill Farm, Lidstone</SimpleData>
+		<SimpleData name="ListEntry">1009430</SimpleData>
+		<SimpleData name="SchedDate">1949/03/22</SimpleData>
+		<SimpleData name="AmendDate">1994/11/15</SimpleData>
+		<SimpleData name="LegacyUID">21842</SimpleData>
+		<SimpleData name="NGR">SP 35303 24157</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">435302.59631800000</SimpleData>
+		<SimpleData name="Northing">224156.77492900001</SimpleData>
+		<SimpleData name="AREA_HA">0.19313378200</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.48804818268003,51.91461319963436 -1.488160627315289,51.914602683486521 -1.488272807367626,51.91461417588107 -1.488373773715364,51.91464654126402 -1.488453603525748,51.914696607764348 -1.488504515947727,51.914759495551756 -1.488521521641918,51.914829024174836 -1.488502938474276,51.914898398264505 -1.488450602551909,51.914960828578728 -1.48836964262959,51.915010205629329 -1.488267950005423,51.915041690507152 -1.488155518772176,51.915052206782477 -1.488043323184792,51.915040714245521 -1.487942370724513,51.915008348642793 -1.487862526507323,51.914958272715445 -1.487811614658716,51.914895393674065 -1.487802821048767,51.914859391789626 -1.487794624512255,51.914825864980791 -1.487813194265108,51.914756490976224 -1.487865530932495,51.914694051925188 -1.487946505261652,51.914644684301614 -1.48804818268003,51.91461319963436</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

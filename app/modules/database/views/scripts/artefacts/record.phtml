@@ -48,20 +48,18 @@
 		
 		<?php echo $this->partial('partials/database/datefound.phtml',$this->finds['0']);?>
 
-
-<?php if (count($this->rallyfind)) : ?>
-	<?php echo $this->partialLoop('partials/database/rallyfind.phtml', $this->rallyfind) ?>
-<?php endif;?>
-
-<?php if (count($this->peoples) > 0) : ?>
-<h4>Personal details</h4>
-<?php echo $this->partialLoop('partials/database/personal.phtml', $this->peoples) ?>
-<?php endif;?>
-
-<?php if ($this->findotherrefs) : ?>
-<?php echo $this->partialLoop('partials/database/otherrefs.phtml', $this->findotherrefs) ;?>
-<?php endif;?>
+		<?php if (count($this->rallyfind)) : ?>
+			<?php echo $this->partialLoop('partials/database/rallyfind.phtml', $this->rallyfind) ?>
+		<?php endif;?>
 		
+		<?php if (count($this->peoples) > 0) : ?>
+		<h4>Personal details</h4>
+		<?php echo $this->partialLoop('partials/database/personal.phtml', $this->peoples) ?>
+		<?php endif;?>
+		
+		<?php if ($this->findotherrefs) : ?>
+		<?php echo $this->partialLoop('partials/database/otherrefs.phtml', $this->findotherrefs) ;?>
+		<?php endif;?>
 		
 <?php
 
@@ -168,7 +166,7 @@ if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$jettonArr
 		echo $this->ImageLink($this->finds['0']['old_findID'],$this->finds['0']['id'],$this->finds['0']['secuid'],$this->finds['0']['createdBy']);
 		?>
 	</div>
-<div class="span3 well">
+<div class="span3 well" id="qrcode">
 <h4>QR barcode</h4>
 <img class="flow" src="http://chart.apis.google.com/chart?chs=150x150&amp;cht=qr&amp;chl=<?php echo $this->CurUrl();?>" alt="QR code for this URL" width="150" height="150" style="float:right;"/>
 <p>If you have a mobile phone equipped with QR recognition software, you can go directly to the webpage that this record resides at. Every record has an individual one of these.</p>

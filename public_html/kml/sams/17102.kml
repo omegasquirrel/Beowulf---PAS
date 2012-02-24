@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17102</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17102" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17102">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site and fishpond at Wyfordby</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17102">
+		<SimpleData name="Name">Moated site and fishpond at Wyfordby</SimpleData>
+		<SimpleData name="ListEntry">1017619</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1993/02/03</SimpleData>
+		<SimpleData name="LegacyUID">17102</SimpleData>
+		<SimpleData name="NGR">SK 79292 18878</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">479297.34784900001</SimpleData>
+		<SimpleData name="Northing">318880.69326700002</SimpleData>
+		<SimpleData name="AREA_HA">0.40736981065</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.825873025876185,52.761959078724537 -0.825685923708387,52.76157839613041 -0.826369502937453,52.76140563793966 -0.826387195007528,52.761401875312714 -0.826401611798174,52.761399770409149 -0.826416457707727,52.761398793502231 -0.826431288397597,52.761398382812402 -0.826446548449736,52.761399091136312 -0.826462711394424,52.761400941127668 -0.82647699996678,52.761403608671444 -0.826490791709578,52.761407116343932 -0.826504101431092,52.761411464291854 -0.826516470167914,52.761416639025185 -0.826527890247029,52.761422370744015 -0.826538369100473,52.76142893823156 -0.826698385033792,52.761626620259356 -0.826998206353119,52.761550922034985 -0.827098114080241,52.761693502692395 -0.826783185779158,52.761831703290184 -0.826155095090982,52.762076924117402 -0.825873025876185,52.761959078724537</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

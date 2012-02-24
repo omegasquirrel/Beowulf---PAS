@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20890</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20890" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20890">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Cairn 570m east-north-east of Wittondean Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20890">
+		<SimpleData name="Name">Cairn 570m east-north-east of Wittondean Farm</SimpleData>
+		<SimpleData name="ListEntry">1008699</SimpleData>
+		<SimpleData name="SchedDate">1993/02/25</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20890</SimpleData>
+		<SimpleData name="NGR">NU 06010 00048</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">406009.21504200000</SimpleData>
+		<SimpleData name="Northing">600047.05429200002</SimpleData>
+		<SimpleData name="AREA_HA">0.02012950409</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.906772512277413,55.294462595671114 -1.907022082280851,55.29443582820592 -1.907031904983961,55.294444255285136 -1.907040246116764,55.294453247337152 -1.907046130573738,55.294462237524272 -1.907050043947603,55.294472349430507 -1.907051988854995,55.294482459842875 -1.907051965294443,55.294492568761477 -1.907049485051837,55.294502675815814 -1.907044533744754,55.294512223877675 -1.907037629724963,55.294521761476474 -1.907029232323354,55.294530174726255 -1.907018393952072,55.294538595103255 -1.907006077897736,55.294545882161472 -1.906992284178757,55.294552053862084 -1.906977499670316,55.29455765871073 -1.906961254578822,55.294561573135041 -1.906944506810648,55.294564939038899 -1.906927290528823,55.294566606290495 -1.90690957297493,55.294567149943646 -1.906891858021972,55.294566579361756 -1.906874145692394,55.294564885564213 -1.90685741237531,55.29456206031255 -1.906841186938229,55.29455755511259 -1.906826444387744,55.294551927823299 -1.906812663791341,55.294545735166118 -1.906800381800497,55.294538429413308 -1.906789581455236,55.294530558688798 -1.906781240423037,55.294521566619828 -1.90677436521501,55.29451201854878 -1.906769458500684,55.294502462994828 -1.906767025451677,55.294492352206419 -1.906766560932365,55.294482242916317 -1.906768553033361,55.294472135496122 -1.906772512277413,55.294462595671114</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

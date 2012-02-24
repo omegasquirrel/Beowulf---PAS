@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15574</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15574" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15574">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Medieval bridge at Starabridge</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15574">
+		<SimpleData name="Name">Medieval bridge at Starabridge</SimpleData>
+		<SimpleData name="ListEntry">1020637</SimpleData>
+		<SimpleData name="SchedDate">1952/05/01</SimpleData>
+		<SimpleData name="AmendDate">2002/07/24</SimpleData>
+		<SimpleData name="LegacyUID">15574</SimpleData>
+		<SimpleData name="NGR">SX 28950 73816</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">228948.67928600000</SimpleData>
+		<SimpleData name="Northing">73815.30474399999</SimpleData>
+		<SimpleData name="AREA_HA">0.05849489894</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.414995400970445,50.539065640032113 -4.415086686110368,50.538928864286767 -4.415173772916516,50.538953815494018 -4.415275953771499,50.538960662228988 -4.415375182930444,50.538953385877385 -4.415487961095677,50.538941411902314 -4.415522191923583,50.539093940367039 -4.415432074459001,50.53910552495644 -4.41532549093354,50.539114995791991 -4.415203503099824,50.539116061547396 -4.415082702394415,50.539097548568456 -4.414995400970445,50.539065640032113</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

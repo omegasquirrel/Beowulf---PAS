@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20941</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20941" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20941">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Chipchase Tower</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20941">
+		<SimpleData name="Name">Chipchase Tower</SimpleData>
+		<SimpleData name="ListEntry">1011411</SimpleData>
+		<SimpleData name="SchedDate">1951/04/09</SimpleData>
+		<SimpleData name="AmendDate">1993/11/25</SimpleData>
+		<SimpleData name="LegacyUID">20941</SimpleData>
+		<SimpleData name="NGR">NY 88239 75734</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">388238.73717199999</SimpleData>
+		<SimpleData name="Northing">575734.66397200001</SimpleData>
+		<SimpleData name="AREA_HA">0.02196438316</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.185580534764612,55.075954022495203 -2.185737216475609,55.075829227572974 -2.185901656671548,55.075901556723011 -2.185732991384949,55.0760224432467 -2.185580534764612,55.075954022495203</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

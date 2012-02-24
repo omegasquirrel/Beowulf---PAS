@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21443</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21443" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21443">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Greyfriars Franciscan friary</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21443">
+		<SimpleData name="Name">Greyfriars Franciscan friary</SimpleData>
+		<SimpleData name="ListEntry">1017910</SimpleData>
+		<SimpleData name="SchedDate">1924/06/26</SimpleData>
+		<SimpleData name="AmendDate">1998/07/24</SimpleData>
+		<SimpleData name="LegacyUID">21443</SimpleData>
+		<SimpleData name="NGR">TG 52398 07317</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">652397.95045300003</SimpleData>
+		<SimpleData name="Northing">307343.14953499998</SimpleData>
+		<SimpleData name="AREA_HA">0.20679318481</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>1.726017145840736,52.605554554087739 1.726652157586018,52.605050372767877 1.726074606591979,52.604812205826754 1.725918145483378,52.604962911875717 1.726238017911948,52.605083530598954 1.726040163931241,52.605260375115584 1.7259387578806,52.60521887411165 1.725717228835246,52.605426263355412 1.726017145840736,52.605554554087739</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15280</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15280" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15280">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Prehistoric stone setting 62m north-west of the Stannon Stone Circle</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15280">
+		<SimpleData name="Name">Prehistoric stone setting 62m north-west of the Stannon Stone Circle</SimpleData>
+		<SimpleData name="ListEntry">1007765</SimpleData>
+		<SimpleData name="SchedDate">1994/03/21</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15280</SimpleData>
+		<SimpleData name="NGR">SX 12506 80070</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">212505.81655600001</SimpleData>
+		<SimpleData name="Northing">80069.64977069999</SimpleData>
+		<SimpleData name="AREA_HA">0.00529098992</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.650208027926306,50.590133445855031 -4.650226872358881,50.590126576568046 -4.650249315083804,50.590129933313015 -4.650264069146576,50.590140543961191 -4.650270859840762,50.590153269829614 -4.650266530710706,50.590166248851219 -4.650255348170893,50.590183242665979 -4.650236043886609,50.590199782749067 -4.650224355594461,50.590207775362792 -4.650214563160032,50.59021379993009 -4.650199674337456,50.590218645282711 -4.650182450576,50.590218398821008 -4.650167948916987,50.59021227978252 -4.650160264791517,50.590201508119151 -4.65015643588321,50.590187428618179 -4.650163907544067,50.590176311886189 -4.650181230263257,50.59016046454019 -4.650192629349202,50.590147324550671 -4.650208027926306,50.590133445855031</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

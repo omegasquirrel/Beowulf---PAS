@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13512</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13512" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13512">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bagot's Bromley moated manorial enclosure</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13512">
+		<SimpleData name="Name">Bagot's Bromley moated manorial enclosure</SimpleData>
+		<SimpleData name="ListEntry">1009841</SimpleData>
+		<SimpleData name="SchedDate">1976/08/12</SimpleData>
+		<SimpleData name="AmendDate">1992/03/09</SimpleData>
+		<SimpleData name="LegacyUID">13512</SimpleData>
+		<SimpleData name="NGR">SK 06678 25999</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">406684.70525000000</SimpleData>
+		<SimpleData name="Northing">325995.96170799999</SimpleData>
+		<SimpleData name="AREA_HA">1.90440191785</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.900777165532331,52.831665562875259 -1.901054910535705,52.831085697476276 -1.90116189029724,52.830956851037726 -1.901332322265912,52.830866810498442 -1.901560287857182,52.830820595833138 -1.901776379754434,52.830787225780043 -1.901948068912797,52.830797426521109 -1.902098649550771,52.830828680816296 -1.903879954932066,52.831332398605362 -1.903741015073177,52.831540274665208 -1.903447627570681,52.831462880841123 -1.902947167536192,52.832208685949652 -1.902138663411883,52.832014751439502 -1.902138778614068,52.831963350022505 -1.901011281013843,52.831717455966526 -1.900777165532331,52.831665562875259</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

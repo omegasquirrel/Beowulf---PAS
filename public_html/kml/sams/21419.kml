@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21419</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21419" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21419">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Creake Abbey</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21419">
+		<SimpleData name="Name">Creake Abbey</SimpleData>
+		<SimpleData name="ListEntry">1015271</SimpleData>
+		<SimpleData name="SchedDate">1928/11/12</SimpleData>
+		<SimpleData name="AmendDate">1997/01/31</SimpleData>
+		<SimpleData name="LegacyUID">21419</SimpleData>
+		<SimpleData name="NGR">TF 85532 39453</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">585549.20694299997</SimpleData>
+		<SimpleData name="Northing">339484.53716000001</SimpleData>
+		<SimpleData name="AREA_HA">10.08843879150</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.76055351582753,52.920943340786629 0.760646582948086,52.920177601404376 0.760699307348198,52.919790685144086 0.760873331023853,52.919385374180301 0.759925246994913,52.919356743581247 0.759945620381118,52.919267751496179 0.760107188100599,52.918588965760399 0.75933958278292,52.918579532886376 0.757811052781642,52.918564399618916 0.757637239644726,52.919378761755041 0.757794088958614,52.919371693036076 0.757771878069746,52.919671718619504 0.75768642715082,52.920558042621458 0.756465519159414,52.920516269851369 0.756253322922559,52.920468825383423 0.756035533568215,52.920545727470866 0.755726658702635,52.922278735447435 0.760388384028893,52.922353287765723 0.76046587637619,52.921389499471587 0.76055351582753,52.920943340786629</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15191</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15191" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15191">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Prehistoric embanked platform cairn and medieval transhumance hut 1.49km NW of Tresellern Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15191">
+		<SimpleData name="Name">Prehistoric embanked platform cairn and medieval transhumance hut 1.49km NW of Tresellern Farm</SimpleData>
+		<SimpleData name="ListEntry">1012230</SimpleData>
+		<SimpleData name="SchedDate">1993/02/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15191</SimpleData>
+		<SimpleData name="NGR">SX 22364 77686</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">222365.41579800000</SimpleData>
+		<SimpleData name="Northing">77685.77555090000</SimpleData>
+		<SimpleData name="AREA_HA">0.10798785627</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.509856179727429,50.571696629779645 -4.509881061312162,50.571694950929867 -4.509952652666513,50.571700224968971 -4.510004756316842,50.571707682151121 -4.510050500949339,50.57171667062773 -4.510112112853419,50.571729760200654 -4.510165048163061,50.571743027842913 -4.510206088800705,50.571762092691074 -4.510233704539988,50.571790315671258 -4.510244279189565,50.571825562170517 -4.510218402027721,50.571862701176521 -4.510182099290416,50.571900064988775 -4.510129117811437,50.57193374096321 -4.51008573968008,50.571956245417724 -4.510029562272395,50.571977631732445 -4.509966253882449,50.571989484656321 -4.509925600665021,50.571996036907834 -4.509855953374094,50.571994129881773 -4.509796698810417,50.571986332091946 -4.509754764652437,50.571969058317592 -4.509721626731797,50.571949337226187 -4.509695613226214,50.57192946250467 -4.509668861445827,50.571895967913505 -4.509651508710159,50.571871364204995 -4.50964122012763,50.571845474831314 -4.50964112812238,50.571810272078331 -4.509657303619163,50.571779260825863 -4.509677531218583,50.571757255716214 -4.509734448028579,50.57172082369663 -4.509765957852966,50.571709926441564 -4.509801157290416,50.571701216202733 -4.509827742564232,50.571698376306259 -4.509856179727429,50.571696629779645</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

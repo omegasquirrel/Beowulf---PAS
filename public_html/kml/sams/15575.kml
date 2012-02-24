@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15575</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15575" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15575">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Temple Old Bridge with adjacent ford and causeway</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15575">
+		<SimpleData name="Name">Temple Old Bridge with adjacent ford and causeway</SimpleData>
+		<SimpleData name="ListEntry">1020638</SimpleData>
+		<SimpleData name="SchedDate">1955/01/15</SimpleData>
+		<SimpleData name="AmendDate">2002/07/24</SimpleData>
+		<SimpleData name="LegacyUID">15575</SimpleData>
+		<SimpleData name="NGR">SX 15095 73754</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">215094.41137500000</SimpleData>
+		<SimpleData name="Northing">73754.34369199999</SimpleData>
+		<SimpleData name="AREA_HA">0.07849790754</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.610183022874394,50.534258897960747 -4.610261060522397,50.534123350460447 -4.610461955446151,50.534170878093548 -4.610705983537039,50.534224867255013 -4.610898580027162,50.534262668112035 -4.610840213087144,50.534402739786287 -4.610596744878124,50.534358650526123 -4.610438967707591,50.53431758543843 -4.610183022874394,50.534258897960747</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

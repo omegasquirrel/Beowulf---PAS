@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15551</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15551" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15551">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Prehistoric cairns and field boundary 450m south of the Louden Stone Circle</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15551">
+		<SimpleData name="Name">Prehistoric cairns and field boundary 450m south of the Louden Stone Circle</SimpleData>
+		<SimpleData name="ListEntry">1019886</SimpleData>
+		<SimpleData name="SchedDate">2001/05/09</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15551</SimpleData>
+		<SimpleData name="NGR">SX 13231 79033</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">213230.99582800001</SimpleData>
+		<SimpleData name="Northing">79035.64990880000</SimpleData>
+		<SimpleData name="AREA_HA">0.17705197900</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.63949999482817,50.580867922872528 -4.639576018004253,50.580840266968089 -4.6397290419283,50.580871372269371 -4.639835699826133,50.580940569296118 -4.639820537373033,50.581016244057068 -4.639795833875128,50.581094599750159 -4.639698908149741,50.581155686526671 -4.639584577114692,50.581217770573048 -4.63949356099802,50.581265815702977 -4.639420019681318,50.581310577182919 -4.639359832096393,50.581344044238591 -4.639311270806562,50.581377256612967 -4.639254741950686,50.581406934829708 -4.639196847844268,50.581411953420172 -4.63913181579648,50.581393666608413 -4.639083533179295,50.581362659199108 -4.639079461814579,50.58132446994356 -4.639081065744605,50.58128368746501 -4.639117380729798,50.581239644370761 -4.639221382328671,50.581122441421591 -4.639340889797912,50.58100085713496 -4.639444894886121,50.580906464557962 -4.63949999482817,50.580867922872528</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

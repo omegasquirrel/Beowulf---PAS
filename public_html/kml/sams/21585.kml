@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21585</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21585" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21585">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>St Leonard's Priory: a Benedictine nunnery, post Dissolution house and 19th century garden remains</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21585">
+		<SimpleData name="Name">St Leonard's Priory: a Benedictine nunnery, post Dissolution house and 19th century garden remains</SimpleData>
+		<SimpleData name="ListEntry">1013657</SimpleData>
+		<SimpleData name="SchedDate">1995/07/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21585</SimpleData>
+		<SimpleData name="NGR">SP 22189 70723</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">422188.30904199998</SimpleData>
+		<SimpleData name="Northing">270717.51598099997</SimpleData>
+		<SimpleData name="AREA_HA">0.42790873873</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.675653892691797,52.334509408080031 -1.675581662358185,52.33429006438169 -1.675234218654821,52.334327606790247 -1.675172982483609,52.334108302046339 -1.675351940449477,52.334095865567576 -1.675321321636683,52.333954185574491 -1.675374111973589,52.333947875545697 -1.675343273581755,52.333838218076302 -1.676153597352487,52.33378228234676 -1.676153078600882,52.333853366591207 -1.676363660539341,52.333841015149524 -1.676403549317036,52.334156905699743 -1.676140222632849,52.334169103750853 -1.676150720669484,52.334206639695957 -1.675985122132662,52.334226459010537 -1.676033652861505,52.33438149341319 -1.6760390638818,52.334394148466409 -1.676040359033995,52.334403699627401 -1.676040289268339,52.334413256034317 -1.676037930098464,52.334422806203463 -1.676033285780088,52.334431774677014 -1.676027247261447,52.334440748350268 -1.676019395020458,52.334448880977291 -1.676010167511983,52.334456434434991 -1.675999111602928,52.334463155825169 -1.675986680426082,52.334469298010937 -1.675973349545532,52.334474035306449 -1.675959100271534,52.334477933972813 -1.675653892691797,52.334509408080031</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

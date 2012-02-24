@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20696</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20696" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20696">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site and fishpond at Maynards Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20696">
+		<SimpleData name="Name">Moated site and fishpond at Maynards Farm</SimpleData>
+		<SimpleData name="ListEntry">1011607</SimpleData>
+		<SimpleData name="SchedDate">1993/10/08</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20696</SimpleData>
+		<SimpleData name="NGR">TL 65736 35113</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">565736.65116000001</SimpleData>
+		<SimpleData name="Northing">235113.48521700001</SimpleData>
+		<SimpleData name="AREA_HA">0.01461801293</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.412202052278083,51.989634620857721 0.412185594924022,51.989628968955657 0.412176119129582,51.98963315583287 0.412205488680665,51.989668470643437 0.412253412073879,51.989718360053267 0.412300746451343,51.989757290493486 0.412352712152223,51.989792142276251 0.412412538653872,51.98982284023355 0.41245390296,51.989840940100009 0.412478596430371,51.989849417744544 0.412496400859451,51.989850051090471 0.412502271840175,51.989838959800274 0.412493125034009,51.9898191925693 0.412457563088196,51.989788995630285 0.412378178788233,51.989724778216107 0.412316523489136,51.989690133971799 0.412253481709851,51.989659501846084 0.412202052278083,51.989634620857721</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Moated site and fishpond at Maynards Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20696">
+		<SimpleData name="Name">Moated site and fishpond at Maynards Farm</SimpleData>
+		<SimpleData name="ListEntry">1011607</SimpleData>
+		<SimpleData name="SchedDate">1993/10/08</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20696</SimpleData>
+		<SimpleData name="NGR">TL 65718 35177</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">565719.89346299996</SimpleData>
+		<SimpleData name="Northing">235179.25043900000</SimpleData>
+		<SimpleData name="AREA_HA">0.73422489259</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.41246795975863,51.990743440135532 0.412555231988532,51.990649000737015 0.412613417979053,51.990586038022997 0.412695955352281,51.990475068177744 0.412815529932066,51.990337206666986 0.412899852553804,51.99025945480912 0.412952141884649,51.990229876518157 0.412911148474368,51.99018319961808 0.412847476528914,51.99014411863719 0.412753188083996,51.990108039155395 0.412592775892034,51.990059061293586 0.412435709325123,51.990000509458255 0.412294263378188,51.989946394450591 0.412195624215075,51.98990089843592 0.412111839560515,51.98984559279728 0.412047403433298,51.989792273738125 0.411962839563567,51.989794006218759 0.411948608497452,51.98981568222564 0.411882867640613,51.989881173442384 0.411637195170953,51.990107145970015 0.41142546809144,51.990320543432162 0.411377416178238,51.990357165426794 0.411332170480748,51.990374719491143 0.411271687728868,51.990394968648097 0.411379044047316,51.990459288305445 0.411643977704031,51.990591646754382 0.411640774207564,51.9906035916284 0.411695743246328,51.990623850083942 0.411707139504509,51.990621242583956 0.41180963557671,51.990666660001963 0.411793235415768,51.990719261120695 0.411888814432337,51.990707797918731 0.41218489309606,51.990846648273241 0.412334534803915,51.990910100698642 0.41246795975863,51.990743440135532</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

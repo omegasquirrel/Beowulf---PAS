@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15534</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15534" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15534">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>World War II pillbox between Thomas' Porth and Porthaloo, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15534">
+		<SimpleData name="Name">World War II pillbox between Thomas' Porth and Porthaloo, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1016517</SimpleData>
+		<SimpleData name="SchedDate">1999/07/02</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15534</SimpleData>
+		<SimpleData name="NGR">SV9083211179</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">90831.98200000000</SimpleData>
+		<SimpleData name="Northing">11178.55382170000</SimpleData>
+		<SimpleData name="AREA_HA">0.00772532270</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.308774426148422,49.920715990731985 -6.308752768832361,49.920714592318326 -6.308732836621292,49.920708945489594 -6.308716587801005,49.920699598233902 -6.308705609056438,49.920687463304972 -6.308700968556083,49.920673733707098 -6.308703134487418,49.920659750752932 -6.308711880503357,49.920646881606494 -6.308726357857648,49.920636390622782 -6.308745152046724,49.920629293267602 -6.308766417712622,49.920626306105405 -6.308788074188257,49.920627695549129 -6.308808007171904,49.920633351337571 -6.308824255985961,49.92064269858065 -6.308835234748783,49.920654833497871 -6.308839875284818,49.920668563089372 -6.308837709393094,49.920682546045114 -6.308828963405444,49.920695415200285 -6.308814486057387,49.920705906196616 -6.308795691049193,49.92071299459505 -6.308774426148422,49.920715990731985</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

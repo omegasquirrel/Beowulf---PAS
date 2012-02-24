@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21775</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21775" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21775">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Wayland's Smithy chambered long barrow, including an earlier barrow and Iron Age and Roman boundary ditches</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21775">
+		<SimpleData name="Name">Wayland's Smithy chambered long barrow, including an earlier barrow and Iron Age and Roman boundary ditches</SimpleData>
+		<SimpleData name="ListEntry">1008409</SimpleData>
+		<SimpleData name="SchedDate">1882/08/18</SimpleData>
+		<SimpleData name="AmendDate">1995/10/31</SimpleData>
+		<SimpleData name="LegacyUID">21775</SimpleData>
+		<SimpleData name="NGR">SU 28093 85394</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">428091.12498999998</SimpleData>
+		<SimpleData name="Northing">185396.54835500001</SimpleData>
+		<SimpleData name="AREA_HA">0.37320366408</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.596024858859048,51.56635957249317 -1.596073257383958,51.566338923861281 -1.596114843342505,51.566364224859939 -1.596130555203435,51.566380445454868 -1.596196493228248,51.566423804004458 -1.596259531590577,51.566467152513667 -1.596302512818189,51.566497844088474 -1.59639683724426,51.566592515170477 -1.596438248769594,51.566637578592264 -1.59649542009445,51.56669348581427 -1.596543871855867,51.566756547188099 -1.59659784670974,51.566849281223497 -1.596641826271479,51.56693029204164 -1.596580926781858,51.566969618088692 -1.596533084404884,51.566999107411036 -1.596508485572254,51.567008904450532 -1.596431659060092,51.56705625899486 -1.596402716155864,51.567067848359663 -1.596287156277955,51.567093499278229 -1.596175917875174,51.567118274801956 -1.59615011095599,51.567117853355477 -1.596102598224682,51.56710517393217 -1.59601958053776,51.567085880562374 -1.596004384817379,51.567079777067434 -1.59594257747534,51.567013027979421 -1.595772290033715,51.566827524632679 -1.595548436852989,51.566586539338701 -1.595608255355337,51.566563412643355 -1.595893710573228,51.566425280111623 -1.595899739040694,51.566422261746858 -1.596024858859048,51.56635957249317</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

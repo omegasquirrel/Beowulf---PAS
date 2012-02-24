@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__11508</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__11508" id="20110413_SCHEDULEDMONUMENT_LegacyUID__11508">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Thorpe End Iron Age, Saxon and Medieval settlement</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__11508">
+		<SimpleData name="Name">Thorpe End Iron Age, Saxon and Medieval settlement</SimpleData>
+		<SimpleData name="ListEntry">1013134</SimpleData>
+		<SimpleData name="SchedDate">1990/01/05</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">11508</SimpleData>
+		<SimpleData name="NGR">SP 99768 72234</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">499776.89675100002</SimpleData>
+		<SimpleData name="Northing">272241.98422200000</SimpleData>
+		<SimpleData name="AREA_HA">4.36098057292</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.535009651685559,52.339524391474583 -0.534617627993456,52.33928377944747 -0.53635712169627,52.338064288007345 -0.536372090234768,52.338055491498714 -0.536383734577955,52.338050016418094 -0.536398137327998,52.338044575505009 -0.536411560195531,52.338040803756058 -0.53642727711075,52.33803734811007 -0.536443857413043,52.338035305757757 -0.536458576106486,52.338034076520117 -0.536475082233237,52.338034280973496 -0.536489735654724,52.338035028901601 -0.536504351991039,52.338036900233 -0.53651846206612,52.338039880170371 -0.536532113250777,52.338043420847498 -0.536546627831815,52.338048374783781 -0.53753051926959,52.338437617955904 -0.538112195700929,52.33865862912203 -0.539182890782657,52.339087143670291 -0.539485114190138,52.339423255762185 -0.539171756187685,52.339745302498365 -0.538801275078423,52.339963246541423 -0.53776556808978,52.339363498203582 -0.537257290041565,52.339906776502772 -0.537121567225412,52.339905096229742 -0.536639422054354,52.340295292491582 -0.536110063115063,52.340212024823167 -0.535690519111105,52.339970536050025 -0.535705943063893,52.33992131311566 -0.535342399554339,52.339731909120054 -0.535009651685559,52.339524391474583</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19015</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19015" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19015">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Montem Mound: a motte at Salt Hill, Upton-cum Chalvey</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19015">
+		<SimpleData name="Name">Montem Mound: a motte at Salt Hill, Upton-cum Chalvey</SimpleData>
+		<SimpleData name="ListEntry">1007928</SimpleData>
+		<SimpleData name="SchedDate">1976/01/12</SimpleData>
+		<SimpleData name="AmendDate">1992/09/03</SimpleData>
+		<SimpleData name="LegacyUID">19015</SimpleData>
+		<SimpleData name="NGR">SU 96661 80042</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">496659.41694299999</SimpleData>
+		<SimpleData name="Northing">180043.31375000000</SimpleData>
+		<SimpleData name="AREA_HA">0.11797249244</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.608416634018795,51.510871019695777 -0.608567781963836,51.510869737312859 -0.60881303125207,51.511054851734478 -0.608822510324888,51.511148634237678 -0.608585807265725,51.511290832598156 -0.608187419067662,51.51100252464903 -0.608416634018795,51.510871019695777</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

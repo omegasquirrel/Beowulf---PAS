@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17155</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17155" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17155">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Geddington Cross: Eleanor cross and conduit house</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17155">
+		<SimpleData name="Name">Geddington Cross: Eleanor cross and conduit house</SimpleData>
+		<SimpleData name="ListEntry">1013313</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1995/08/30</SimpleData>
+		<SimpleData name="LegacyUID">17155</SimpleData>
+		<SimpleData name="NGR">SP 89445 83022</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">489445.22941299999</SimpleData>
+		<SimpleData name="Northing">283022.53876700002</SimpleData>
+		<SimpleData name="AREA_HA">0.01463819688</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.685630623848846,52.437819741342487 -0.685660978243948,52.437788899186188 -0.685761925278227,52.437825983454943 -0.685731585358108,52.437856834783325 -0.685729981255808,52.437910751735345 -0.685652883031019,52.437936875847072 -0.685551936105394,52.437899782502058 -0.685553540691657,52.43784585657108 -0.685613756897511,52.437825451733744 -0.685630623848846,52.437819741342487</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

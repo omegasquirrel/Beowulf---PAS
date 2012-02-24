@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19220</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19220" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19220">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Castell Brogyntyn ringwork castle 300m north east of Brogyntyn Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19220">
+		<SimpleData name="Name">Castell Brogyntyn ringwork castle 300m north east of Brogyntyn Farm</SimpleData>
+		<SimpleData name="ListEntry">1013488</SimpleData>
+		<SimpleData name="SchedDate">1953/02/18</SimpleData>
+		<SimpleData name="AmendDate">1995/11/21</SimpleData>
+		<SimpleData name="LegacyUID">19220</SimpleData>
+		<SimpleData name="NGR">SJ 27343 31376</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">327345.17899699998</SimpleData>
+		<SimpleData name="Northing">331379.49613099999</SimpleData>
+		<SimpleData name="AREA_HA">0.76584793879</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.080511539706914,52.875372820339599 -3.080494289035285,52.875324405513645 -3.080470076929525,52.875273285194517 -3.080384016655344,52.875181797170335 -3.080279761334066,52.875062453466121 -3.080241538882853,52.874929455720874 -3.080273134399455,52.874795831709122 -3.080371410113339,52.874674645124543 -3.080526794644524,52.874577759544188 -3.080724041975676,52.874514671862592 -3.080943841810599,52.87449155390604 -3.081164706594926,52.874510659854337 -3.08136500187849,52.874570128123636 -3.081525119223348,52.874664141218148 -3.081629391766894,52.874783483689377 -3.081667603309327,52.874916472121569 -3.081636027015482,52.875050105327716 -3.081537739217973,52.875171293071951 -3.081382369479456,52.875268170846766 -3.081185119716044,52.875331259626783 -3.080965300929751,52.875354378183367 -3.080820619845919,52.87535058015996 -3.080765976501172,52.87536634222495 -3.080725522519313,52.875400017643273 -3.080707969955907,52.875432091152071 -3.080695145710506,52.875469677308317 -3.080691348841853,52.875501625605317 -3.080694498930487,52.875536288530739 -3.08070221969704,52.875569525431111 -3.080721669743546,52.875613757923908 -3.080529319728705,52.875626602035979 -3.080516920509863,52.875589254439355 -3.080509042228203,52.875549078851471 -3.080510309966455,52.875507435606892 -3.080518165018743,52.875454639039326 -3.080517026783009,52.875408855407571 -3.080511539706914,52.875372820339599</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

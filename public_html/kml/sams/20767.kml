@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20767</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20767" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20767">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>West End House moated site, 640m west of St Lawrence's Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20767">
+		<SimpleData name="Name">West End House moated site, 640m west of St Lawrence's Church</SimpleData>
+		<SimpleData name="ListEntry">1012097</SimpleData>
+		<SimpleData name="SchedDate">1998/02/23</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20767</SimpleData>
+		<SimpleData name="NGR">TL 73359 40833</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">573363.49870500003</SimpleData>
+		<SimpleData name="Northing">240826.94990700000</SimpleData>
+		<SimpleData name="AREA_HA">0.46814816472</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.526058692000437,52.039202093106262 0.526119725918729,52.039130856368288 0.526164552066189,52.039134481195603 0.526247859034644,52.039161345248473 0.526321164157791,52.039175824926829 0.526362276365382,52.039179529378359 0.526446230885688,52.039086020343213 0.526629100571914,52.038867728089592 0.526689551484095,52.038786179875352 0.526739965000339,52.0386911060383 0.526732126042595,52.038651148553924 0.526739392315723,52.038582207053047 0.52674633582177,52.03850754411463 0.526764679468967,52.038437222886131 0.525879555567107,52.038449725328164 0.525846888676179,52.038419931495397 0.52575729061377,52.038420081450077 0.525760292981151,52.038473326091619 0.525717709361567,52.038511010694457 0.525642163130995,52.038545724114151 0.525582609084747,52.038547001209253 0.525548367064254,52.038525217654701 0.525525115192959,52.038508522090673 0.525470269540296,52.038510804283092 0.525494651469962,52.038528662634583 0.525520704786726,52.03855935380431 0.525606244966439,52.038661538658125 0.525699698885383,52.038769587927035 0.525810002563256,52.038879568894153 0.52595449835476,52.039009652632942 0.526019923564105,52.039059723984664 0.526066736672304,52.039102460687104 0.526081502975559,52.039112188889661 0.526018798210631,52.039186896675304 0.526058692000437,52.039202093106262</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

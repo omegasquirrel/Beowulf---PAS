@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10484</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10484" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10484">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bronze Age enclosure and bowl barrow 100m west of Longbarrow Cross Roads on Winterbourne Stoke Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10484">
+		<SimpleData name="Name">Bronze Age enclosure and bowl barrow 100m west of Longbarrow Cross Roads on Winterbourne Stoke Down</SimpleData>
+		<SimpleData name="ListEntry">1011048</SimpleData>
+		<SimpleData name="SchedDate">1995/03/21</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10484</SimpleData>
+		<SimpleData name="NGR">SU 09755 41369</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">409759.34336699999</SimpleData>
+		<SimpleData name="Northing">141369.69783100000</SimpleData>
+		<SimpleData name="AREA_HA">0.14728286225</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.861289399662753,51.171442503982206 -1.862387654390788,51.171351280021426 -1.862453040137642,51.17145579855805 -1.861866023101816,51.171561006790796 -1.861627770960799,51.171593591484616 -1.861279086624583,51.171647949483827 -1.86123124208406,51.17165237985418 -1.861289399662753,51.171442503982206</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Bronze Age enclosure and bowl barrow 100m west of Longbarrow Cross Roads on Winterbourne Stoke Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10484">
+		<SimpleData name="Name">Bronze Age enclosure and bowl barrow 100m west of Longbarrow Cross Roads on Winterbourne Stoke Down</SimpleData>
+		<SimpleData name="ListEntry">1011048</SimpleData>
+		<SimpleData name="SchedDate">1995/03/21</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10484</SimpleData>
+		<SimpleData name="NGR">SU 09751 41408</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">409743.74418799998</SimpleData>
+		<SimpleData name="Northing">141407.00157800000</SimpleData>
+		<SimpleData name="AREA_HA">0.27216619463</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.862181944964716,51.171662484436197 -1.862537957803269,51.171596451765033 -1.862676857553967,51.171901307710179 -1.862671684391717,51.171918988858486 -1.862653723795937,51.171936655024382 -1.862625564650268,51.171944669850049 -1.862597424590896,51.171946246439944 -1.861351713789058,51.171956028580809 -1.861318067464363,51.171952580804955 -1.861281979831531,51.171942808813327 -1.861129457550903,51.171805059971682 -1.86143013172149,51.171772658015051 -1.861825639641363,51.171725530370402 -1.862181944964716,51.171662484436197</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

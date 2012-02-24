@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19046</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19046" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19046">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow on 'The Cop' hill, 270m north of Thickthorne Wood trig pillar</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19046">
+		<SimpleData name="Name">Bowl barrow on 'The Cop' hill, 270m north of Thickthorne Wood trig pillar</SimpleData>
+		<SimpleData name="ListEntry">1009353</SimpleData>
+		<SimpleData name="SchedDate">1924/06/26</SimpleData>
+		<SimpleData name="AmendDate">1992/10/12</SimpleData>
+		<SimpleData name="LegacyUID">19046</SimpleData>
+		<SimpleData name="NGR">SP 77338 01086</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">477338.18750000000</SimpleData>
+		<SimpleData name="Northing">201086.46660099999</SimpleData>
+		<SimpleData name="AREA_HA">0.07423979639</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.882187442287077,51.703067012320588 -0.882256910879947,51.703060857526488 -0.882326029306883,51.703068330533348 -0.882388057012191,51.703088719855586 -0.882436907796337,51.703120016466201 -0.882467809084603,51.703159162800674 -0.882477715005018,51.703202326514806 -0.882465687911896,51.703245272659998 -0.882432872825959,51.703283813041907 -0.882382503117297,51.703314166016135 -0.882319499754907,51.7033333661713 -0.882250044935359,51.70333953012117 -0.882180911925682,51.703332047946105 -0.882118883928871,51.703311658513364 -0.882070033217038,51.703280361772123 -0.88203913213758,51.703241215334856 -0.882029226405745,51.703198060570898 -0.882041254119706,51.703155105487959 -0.882074069497092,51.70311656521659 -0.882124439133442,51.703086212372973 -0.882187442287077,51.703067012320588</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

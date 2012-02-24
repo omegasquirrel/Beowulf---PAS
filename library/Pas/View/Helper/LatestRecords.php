@@ -83,12 +83,10 @@ class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
 	$html = '<h3>Latest examples recorded with images</h3>';
 	$html .= '<p>We have recorded ' . number_format($data['numberFound'])
                 . ' examples.</p>';
-	$html .= '<div class="row-fluid ">
-    <div class="span12">
-    <ul class="thumbnails">';
+	$html .= '<div class="row-fluid ">';
 	$html .= $this->view->partialLoop('partials/database/imagesPaged.phtml',
                 $data['images']);
-	$html .= '</ul></div></div>';
+	$html .= '</div>';
 	return $html;
 	} else {
 		return false;

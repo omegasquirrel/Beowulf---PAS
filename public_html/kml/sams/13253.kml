@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13253</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13253" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13253">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Cusworth Motte Castle</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13253">
+		<SimpleData name="Name">Cusworth Motte Castle</SimpleData>
+		<SimpleData name="ListEntry">1010767</SimpleData>
+		<SimpleData name="SchedDate">1962/06/27</SimpleData>
+		<SimpleData name="AmendDate">1991/03/08</SimpleData>
+		<SimpleData name="LegacyUID">13253</SimpleData>
+		<SimpleData name="NGR">SE 54185 03344</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">454186.01018400001</SimpleData>
+		<SimpleData name="Northing">403342.43622199999</SimpleData>
+		<SimpleData name="AREA_HA">0.24913846382</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.183953440193757,53.52371707003671 -1.184030624618305,53.523693534038458 -1.184103166075404,53.523701246800393 -1.18419579499928,53.523713905452745 -1.18432046731728,53.523741227291431 -1.184440774431658,53.523785363941577 -1.184524641511315,53.523834069924732 -1.18456028119203,53.523870411263452 -1.184575602594242,53.523913831955774 -1.184574863548609,53.523952325249574 -1.18456610164963,53.523988363861001 -1.184557463167407,53.524017185460941 -1.184544982641724,53.524036354010818 -1.184508034193494,53.524067382538348 -1.184507987944918,53.524069791191167 -1.184312103069091,53.524176741533218 -1.184238590199901,53.524219556395849 -1.184185765604663,53.524236040767256 -1.184104923007911,53.524240307254956 -1.184032380572968,53.524232594490933 -1.183948004714329,53.524210356222476 -1.183863937463134,53.524171275292744 -1.183812283847722,53.524127606581594 -1.183765212037079,53.524055097637124 -1.183746003392121,53.524004423440125 -1.183738751609609,53.523961066696181 -1.183747760561461,53.523912994039719 -1.18377309216053,53.523855414938268 -1.183818618659955,53.523797964659693 -1.183879974049646,53.523757476031179 -1.183953440193757,53.52371707003671</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

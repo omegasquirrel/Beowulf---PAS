@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21005</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21005" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21005">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Round cairn, 1.2km NNW of Ferneyrigg</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21005">
+		<SimpleData name="Name">Round cairn, 1.2km NNW of Ferneyrigg</SimpleData>
+		<SimpleData name="ListEntry">1011109</SimpleData>
+		<SimpleData name="SchedDate">1993/12/01</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21005</SimpleData>
+		<SimpleData name="NGR">NY 95687 84784</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">395687.36182200001</SimpleData>
+		<SimpleData name="Northing">584783.90827100002</SimpleData>
+		<SimpleData name="AREA_HA">0.03090111743</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.069172622459812,55.157279289521995 -2.069221108212369,55.157274858817345 -2.069269609272125,55.157279234250744 -2.069313385432075,55.157291969306499 -2.069348134412858,55.157311835296653 -2.069370478767507,55.157336866327682 -2.069378201326591,55.157364628419849 -2.069370575520789,55.157392408258985 -2.06934831835894,55.157417464723615 -2.069313638495657,55.157437361361254 -2.069269906583393,55.157450155317676 -2.069221420608051,55.15745457709496 -2.069172919356368,55.157450210589282 -2.069129143112093,55.157437466502451 -2.069094394086513,55.157417609431285 -2.069072065604523,55.157392578375308 -2.069064327492128,55.157364807291771 -2.06907196926602,55.157337036443664 -2.069094210811435,55.157311980003762 -2.069128890719571,55.157292074447128 -2.069172622459812,55.157279289521995</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

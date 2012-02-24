@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21615</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21615" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21615">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Caludon Castle: a moated site and part of an associated water management system</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21615">
+		<SimpleData name="Name">Caludon Castle: a moated site and part of an associated water management system</SimpleData>
+		<SimpleData name="ListEntry">1014044</SimpleData>
+		<SimpleData name="SchedDate">1925/02/12</SimpleData>
+		<SimpleData name="AmendDate">1996/01/04</SimpleData>
+		<SimpleData name="LegacyUID">21615</SimpleData>
+		<SimpleData name="NGR">SP 37359 80138</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">437386.38624199998</SimpleData>
+		<SimpleData name="Northing">280163.72990500001</SimpleData>
+		<SimpleData name="AREA_HA">1.50789145475</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.450615007829458,52.41793250159234 -1.450604490341464,52.41789143066007 -1.450638533252946,52.417850854361518 -1.450689032841446,52.417817097052492 -1.45081168205297,52.417783387020158 -1.450984944320783,52.417743456838615 -1.451147137442476,52.417706846323995 -1.451465389957906,52.417646793795015 -1.451850422761343,52.417573852284626 -1.451995478405401,52.417547266142243 -1.452134781023239,52.417541168733528 -1.452212603727262,52.417565128279456 -1.452278546277656,52.417619940930983 -1.452316751235043,52.417688380099577 -1.452354580447552,52.417787168248374 -1.452386538723149,52.417879186623011 -1.452458701829106,52.41791379112518 -1.452542149278762,52.417927671542586 -1.452608782135322,52.417927979878215 -1.452675897888353,52.417924910116191 -1.452765124041993,52.417918580272215 -1.453552063785836,52.417782591713454 -1.453639258390342,52.417939486121142 -1.452544710454369,52.41816620123867 -1.452527203056364,52.418244217715348 -1.452498421234274,52.418305334452107 -1.452436808317826,52.418346062388203 -1.451455212103511,52.418467377159089 -1.451871580315189,52.419017706593884 -1.451770276631993,52.419071744494474 -1.451902681243114,52.419177704668279 -1.451639596704176,52.419309377961163 -1.451529163518675,52.419210253026023 -1.451380685733801,52.41906656712483 -1.45122143611464,52.418902315548152 -1.45106726012075,52.418738096277686 -1.45088609210654,52.418526265526616 -1.450793255738418,52.418379178144647 -1.45063132729385,52.417987075718663 -1.450615007829458,52.41793250159234</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

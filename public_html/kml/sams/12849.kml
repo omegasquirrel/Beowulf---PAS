@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12849</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12849" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12849">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Roman villa north of Sandlands Grove</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12849">
+		<SimpleData name="Name">Roman villa north of Sandlands Grove</SimpleData>
+		<SimpleData name="ListEntry">1009403</SimpleData>
+		<SimpleData name="SchedDate">1991/07/18</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">12849</SimpleData>
+		<SimpleData name="NGR">TQ 22393 55673</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">522392.93955000001</SimpleData>
+		<SimpleData name="Northing">155672.83550799999</SimpleData>
+		<SimpleData name="AREA_HA">0.17145722867</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.246008005606793,51.286825833993454 -0.246396357256916,51.286744449010676 -0.246558095170748,51.287268888931294 -0.24644412084659,51.287293539578371 -0.246157506339505,51.287355549749961 -0.246008005606793,51.286825833993454</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

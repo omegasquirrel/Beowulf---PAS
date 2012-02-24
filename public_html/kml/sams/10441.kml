@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10441</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10441" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10441">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>A bell barrow and two bowl barrows east of The Avenue on Countess Farm: part of a linear round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10441">
+		<SimpleData name="Name">A bell barrow and two bowl barrows east of The Avenue on Countess Farm: part of a linear round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1010331</SimpleData>
+		<SimpleData name="SchedDate">1948/04/09</SimpleData>
+		<SimpleData name="AmendDate">1995/05/04</SimpleData>
+		<SimpleData name="LegacyUID">10441</SimpleData>
+		<SimpleData name="NGR">SU 13977 42272</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">413977.02327900002</SimpleData>
+		<SimpleData name="Northing">142272.53501600001</SimpleData>
+		<SimpleData name="AREA_HA">0.33032182084</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.801861977099837,51.17922913117426 -1.801927649728007,51.179213847951729 -1.801996066384249,51.179215905862414 -1.802067444461704,51.179231321818513 -1.80210999117943,51.179251221003575 -1.802154347517095,51.179286211734258 -1.8021742662169,51.179321916508755 -1.802180905738186,51.179358372189313 -1.802165530797171,51.179394251166848 -1.802142673078058,51.179430297348929 -1.802101235434987,51.179458785847849 -1.802051309841201,51.179478268020695 -1.801948971631928,51.179509998580563 -1.801624895000424,51.179610484071837 -1.801219320847852,51.17973624172604 -1.800981463455535,51.179810291414086 -1.800932927270009,51.179819191937248 -1.800889020991146,51.179822687132315 -1.800849883942936,51.179818295483109 -1.800799886291668,51.179807770812822 -1.800743194855303,51.179783611907588 -1.800708485448603,51.17975766497328 -1.800681135876049,51.179720247834481 -1.800673041884736,51.179692907453152 -1.800673617265014,51.179665608816613 -1.800689880071277,51.179626494431716 -1.8007187358028,51.179596510335649 -1.800763778116445,51.179568352161233 -1.800814300243699,51.179550022509297 -1.800996054176974,51.17949455419393 -1.801430683241204,51.179361913749425 -1.801687010245522,51.179283686146064 -1.801861977099837,51.17922913117426</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

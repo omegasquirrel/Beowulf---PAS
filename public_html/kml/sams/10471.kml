@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10471</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10471" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10471">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Disc barrow forming part of the Normanton Down round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10471">
+		<SimpleData name="Name">Disc barrow forming part of the Normanton Down round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1009615</SimpleData>
+		<SimpleData name="SchedDate">1995/03/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10471</SimpleData>
+		<SimpleData name="NGR">SU 12433 41152</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">412433.03562300000</SimpleData>
+		<SimpleData name="Northing">141152.27673099999</SimpleData>
+		<SimpleData name="AREA_HA">0.20889461423</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.8234371167683,51.169257448814619 -1.823552069063686,51.169246184184644 -1.823666934200868,51.169257794906116 -1.823770488818916,51.169291167096247 -1.823852561882848,51.169343003405174 -1.823905134414871,51.169408256336986 -1.823923052922132,51.169480533852415 -1.823904584976603,51.169552747696677 -1.823851516477129,51.169617841797759 -1.823769049306356,51.169669439701735 -1.823665240917709,51.169702490886365 -1.823550287480579,51.169713764646851 -1.823435421274959,51.16970214478939 -1.823331880240495,51.169668781347191 -1.823249807218242,51.169616935654645 -1.823197235375109,51.169551682465602 -1.823179303646004,51.169479413806435 -1.823197787023696,51.169407191111389 -1.823250856200332,51.169342097270885 -1.82333332332934,51.169290508750535 -1.8234371167683,51.169257448814619</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

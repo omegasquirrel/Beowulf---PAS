@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12725</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12725" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12725">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Medieval moated site, Filston Hall</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12725">
+		<SimpleData name="Name">Medieval moated site, Filston Hall</SimpleData>
+		<SimpleData name="ListEntry">1013133</SimpleData>
+		<SimpleData name="SchedDate">1990/07/27</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">12725</SimpleData>
+		<SimpleData name="NGR">TQ 51606 60700</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">551608.06486499996</SimpleData>
+		<SimpleData name="Northing">160757.99617999999</SimpleData>
+		<SimpleData name="AREA_HA">0.32370793621</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.174705121751615,51.325066350106688 0.174502116835707,51.325042016647721 0.174460343122988,51.325107147353961 0.17446103522714,51.325197632537567 0.174486408304016,51.325392339640935 0.174476318686429,51.325577444059284 0.174449309776798,51.325624575100044 0.174388149322684,51.325650684816971 0.174314562855622,51.325670514212113 0.174260072285495,51.32569106814644 0.174251673373059,51.325698004914322 0.174218367280673,51.325725503887099 0.174213156264686,51.325791340520908 0.174233683091314,51.325939139447996 0.174235793233927,51.326182202955827 0.174664007002201,51.326169340737522 0.174728003612542,51.326118824766191 0.174772493948758,51.326054066173697 0.174794403599284,51.326024152748836 0.174787774067981,51.325884036738472 0.174769294069069,51.325835052552954 0.174751506618701,51.325781289145148 0.17474603955403,51.325665738811956 0.174722833289121,51.325592399038428 0.174691793143928,51.325523980098453 0.174683657240197,51.325428165351283 0.174733706358959,51.325196642540078 0.174705121751615,51.325066350106688</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

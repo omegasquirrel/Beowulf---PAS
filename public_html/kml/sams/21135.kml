@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21135</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21135" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21135">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Deepdale cross ridge dyke</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21135">
+		<SimpleData name="Name">Deepdale cross ridge dyke</SimpleData>
+		<SimpleData name="ListEntry">1011913</SimpleData>
+		<SimpleData name="SchedDate">1968/01/23</SimpleData>
+		<SimpleData name="AmendDate">1993/02/17</SimpleData>
+		<SimpleData name="LegacyUID">21135</SimpleData>
+		<SimpleData name="NGR">SE 84344 51378</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">484359.37015099998</SimpleData>
+		<SimpleData name="Northing">451383.08785600000</SimpleData>
+		<SimpleData name="AREA_HA">1.16462768787</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.714118789230571,53.951813659885559 -0.71370741526089,53.951635492377292 -0.713658512202103,53.951598916254277 -0.71364420189909,53.951560328558323 -0.713661033697827,53.95151697787275 -0.713695676075287,53.95147472567939 -0.71374689801,53.951435940743664 -0.713825185112848,53.951420383948467 -0.713936717597901,53.951408463756508 -0.714092096917745,53.951416679408609 -0.714224932539849,53.951434495933739 -0.714357380354051,53.951465422224693 -0.714428711264904,53.95149568548463 -0.714587519501051,53.951572788454683 -0.714691879514168,53.951613247211334 -0.71481411456787,53.951614554793295 -0.715064361665334,53.951610678810859 -0.715343069760356,53.951584150238112 -0.715789803558978,53.951516802982631 -0.716002250859001,53.95147645049903 -0.716336932085986,53.951437412681614 -0.716492613870839,53.951435795114847 -0.716608080743798,53.951476370851672 -0.716717801658355,53.951523437693446 -0.716876513598246,53.951603817338231 -0.718876653965776,53.951448125601779 -0.718875950900447,53.951471065534413 -0.718846456970634,53.951526488185053 -0.718718495887043,53.951711992708312 -0.71695251360931,53.951843954470881 -0.716931397597032,53.951755921181828 -0.716882671940266,53.951761126419733 -0.714748316166434,53.951984704038296 -0.714498044855633,53.951952131083289 -0.714294263813432,53.951890941607104 -0.714118789230571,53.951813659885559</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

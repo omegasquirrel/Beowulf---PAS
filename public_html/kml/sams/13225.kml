@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13225</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13225" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13225">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Kimberworth Manor moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13225">
+		<SimpleData name="Name">Kimberworth Manor moated site</SimpleData>
+		<SimpleData name="ListEntry">1013045</SimpleData>
+		<SimpleData name="SchedDate">1980/10/15</SimpleData>
+		<SimpleData name="AmendDate">1991/06/07</SimpleData>
+		<SimpleData name="LegacyUID">13225</SimpleData>
+		<SimpleData name="NGR">SK 40546 93251</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">440547.43351000000</SimpleData>
+		<SimpleData name="Northing">393251.03665800003</SimpleData>
+		<SimpleData name="AREA_HA">0.31301847742</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.390569371155506,53.434395234977302 -1.390582785201574,53.434342423115616 -1.39060679185611,53.434284631678416 -1.390839584145867,53.434370168022518 -1.390912048733756,53.43431514931666 -1.390895281666865,53.434308762811568 -1.390927245626241,53.434285006893354 -1.390893732314491,53.43426972616335 -1.390976912248481,53.434202168922276 -1.391766702997945,53.434405110096243 -1.391660568522837,53.434603479742819 -1.391605518667193,53.434619567827433 -1.39154202220975,53.43463687128731 -1.391545370851439,53.434698577472055 -1.39142711187561,53.434711826789162 -1.391355330436305,53.434719011696359 -1.391268780741664,53.434727388759669 -1.391138094482499,53.434725464569304 -1.391020123205444,53.434718562457597 -1.390917024967935,53.434704194514246 -1.390830961247203,53.43467856962743 -1.390751347875917,53.434642919300892 -1.390688571061358,53.434609862557927 -1.390642810545468,53.434566825268341 -1.390593159849415,53.434501107767971 -1.390575044520858,53.434440584688943 -1.390569371155506,53.434395234977302</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

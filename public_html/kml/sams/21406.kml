@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21406</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21406" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21406">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Letheringham Priory and remains of 17th century walled garden</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21406">
+		<SimpleData name="Name">Letheringham Priory and remains of 17th century walled garden</SimpleData>
+		<SimpleData name="ListEntry">1014859</SimpleData>
+		<SimpleData name="SchedDate">1977/12/16</SimpleData>
+		<SimpleData name="AmendDate">1996/08/01</SimpleData>
+		<SimpleData name="LegacyUID">21406</SimpleData>
+		<SimpleData name="NGR">TM 26831 58536</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">626819.73364200001</SimpleData>
+		<SimpleData name="Northing">258569.19718200000</SimpleData>
+		<SimpleData name="AREA_HA">1.07373261651</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>1.316873810922225,52.179266083636783 1.317361532241998,52.179011790903679 1.317056483567668,52.178787409644336 1.316897870133551,52.178814664562537 1.31681695998025,52.178834659961765 1.316624694216673,52.178868374913485 1.316692834315402,52.17897298425364 1.316378534985856,52.179031862596446 1.316119031685888,52.179087273672117 1.315890802031997,52.178898701447572 1.316583800956894,52.178524689776552 1.316758468331696,52.178436201022208 1.316766908868199,52.178162478249114 1.316243376717677,52.178156954747948 1.316237226469733,52.178184982684435 1.315846336791282,52.178190916420419 1.315843326946051,52.178150482431192 1.315275331684477,52.178156332894623 1.315284567369796,52.178723307212742 1.315680866623689,52.178989089429159 1.315669367384177,52.179178568881674 1.3161728379783,52.179382377957758 1.316817386973231,52.179282871566535 1.316873810922225,52.179266083636783</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21098</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21098" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21098">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Round barrow 300m south west of Callis Wold Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21098">
+		<SimpleData name="Name">Round barrow 300m south west of Callis Wold Farm</SimpleData>
+		<SimpleData name="ListEntry">1008368</SimpleData>
+		<SimpleData name="SchedDate">1958/09/09</SimpleData>
+		<SimpleData name="AmendDate">1994/05/25</SimpleData>
+		<SimpleData name="LegacyUID">21098</SimpleData>
+		<SimpleData name="NGR">SE 82959 55626</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">482958.20411400002</SimpleData>
+		<SimpleData name="Northing">455626.05692200002</SimpleData>
+		<SimpleData name="AREA_HA">0.13374733920</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.736118905791414,53.98985016421404 -0.736218128215021,53.989841967461828 -0.736316806507329,53.989852244929544 -0.736405255538442,53.989879987000961 -0.736474833045903,53.989922478225125 -0.736518725070441,53.989975557334297 -0.736532634966583,53.990034028858808 -0.736515195317692,53.990092170890719 -0.736468118713155,53.99014429377133 -0.736396013361496,53.990185295609635 -0.736305940783097,53.990211160889679 -0.736206702315352,53.990219357549485 -0.736108038366292,53.990209080146933 -0.736023775982938,53.99018057296793 -0.735978186285143,53.990131691337595 -0.735933986143544,53.990082258073414 -0.735891837737063,53.990034077746877 -0.73590965141964,53.98996915356301 -0.735956728458906,53.989917030901836 -0.736028833770245,53.989876029325139 -0.736118905791414,53.98985016421404</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -20,10 +20,9 @@ class Pas_View_Helper_YahooGeoAdjacent
 	$adjacent = new GeoPlaces();
 	$places = $adjacent->getAdjacent($woeid);
 	if(count($places)){
-	$html = '<h4>Adjacent places</h4>';
-	$html .= '<ul id="legend-items">';
+	$html = '<h3>Adjacent places</h3>';
+	$html .= '<ul>';
 	foreach($places as $p ) {
-	$c = array_shift($colours);
 	$url = $this->view->url(array(
             'module' => 'database',
             'controller' => 'search',

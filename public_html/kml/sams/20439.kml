@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20439</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20439" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20439">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Conger Hill: a motte and bailey castle</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20439">
+		<SimpleData name="Name">Conger Hill: a motte and bailey castle</SimpleData>
+		<SimpleData name="ListEntry">1010059</SimpleData>
+		<SimpleData name="SchedDate">1929/12/13</SimpleData>
+		<SimpleData name="AmendDate">1994/09/09</SimpleData>
+		<SimpleData name="LegacyUID">20439</SimpleData>
+		<SimpleData name="NGR">TL 01122 28905</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">501132.90697100002</SimpleData>
+		<SimpleData name="Northing">228906.12132300000</SimpleData>
+		<SimpleData name="AREA_HA">0.86240565078</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.529694394843558,51.948984662382131 -0.529782868077634,51.948945800032767 -0.529838384652388,51.948994130107849 -0.530939829691441,51.949118383204514 -0.52988125258066,51.950054949619236 -0.529683085049824,51.950037495362388 -0.529578923673315,51.950025189039586 -0.529495038960791,51.95001533876615 -0.529443465076355,51.950007483459586 -0.529385573629552,51.949950770455864 -0.529336059848304,51.949891060026602 -0.529295343689521,51.949828860914387 -0.529263785316963,51.9497647261149 -0.52924156026179,51.949699071449189 -0.529228897201389,51.949632466239983 -0.529225880616783,51.949565442026078 -0.529232539318207,51.949498448769845 -0.529248807307297,51.94943216896543 -0.529274570140694,51.94936698784101 -0.529309573265898,51.949303567592288 -0.529353630630935,51.949242256499801 -0.529406375513974,51.949183589508571 -0.529467250643013,51.949128144081108 -0.529535970468108,51.949076195358664 -0.52961190798776,51.949028230066027 -0.529694394843558,51.948984662382131</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

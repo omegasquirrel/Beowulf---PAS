@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13223</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13223" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13223">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Willow Garth moated site and fishpond, Ecclesfield</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13223">
+		<SimpleData name="Name">Willow Garth moated site and fishpond, Ecclesfield</SimpleData>
+		<SimpleData name="ListEntry">1012477</SimpleData>
+		<SimpleData name="SchedDate">1991/06/21</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13223</SimpleData>
+		<SimpleData name="NGR">SK 35392 94413</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">435388.50463400001</SimpleData>
+		<SimpleData name="Northing">394410.97411499999</SimpleData>
+		<SimpleData name="AREA_HA">0.30867488881</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.468051607116905,53.445180250973635 -1.467919501569906,53.445122801088658 -1.468104639436496,53.444947071009473 -1.468708225537129,53.445180178179612 -1.468751129840294,53.445156432251331 -1.468781381339398,53.445141600674184 -1.468821618550278,53.445131307765969 -1.468869315906765,53.445124032215951 -1.468919467806445,53.445122762947477 -1.468966978601541,53.445130452557088 -1.469026918358078,53.445147176977223 -1.469061787886033,53.4451652910695 -1.469289918126362,53.445360808505093 -1.469296964643526,53.445398250366381 -1.469281529633391,53.44543109807497 -1.469251207121581,53.445450414778911 -1.46905667900545,53.445575229432919 -1.469031462876449,53.445587090242043 -1.469006321400776,53.445592964966956 -1.468981213617048,53.445597338741784 -1.468956127977789,53.445598728388148 -1.468933575321883,53.445598628188833 -1.468901070461618,53.445592497354788 -1.468828716147044,53.445566738089809 -1.468439831375173,53.445400428058718 -1.468051607116905,53.445180250973635</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

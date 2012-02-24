@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20094</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20094" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20094">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow on Treyford Hill</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20094">
+		<SimpleData name="Name">Bowl barrow on Treyford Hill</SimpleData>
+		<SimpleData name="ListEntry">1008745</SimpleData>
+		<SimpleData name="SchedDate">1963/11/13</SimpleData>
+		<SimpleData name="AmendDate">1992/10/12</SimpleData>
+		<SimpleData name="LegacyUID">20094</SimpleData>
+		<SimpleData name="NGR">SU 82878 17699</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">482877.84886099998</SimpleData>
+		<SimpleData name="Northing">117698.63807700000</SimpleData>
+		<SimpleData name="AREA_HA">0.03995285583</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.82131166738104,50.952840694965509 -0.821369508139156,50.952664652985376 -0.821525978556303,50.95268521529426 -0.821647981919876,50.952701257080534 -0.821633515875696,50.952745229354917 -0.821590142391089,50.952877290218787 -0.82131166738104,50.952840694965509</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

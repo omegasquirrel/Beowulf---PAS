@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10549</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10549" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10549">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Two fallen standing stones east of Hangershell Rock</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10549">
+		<SimpleData name="Name">Two fallen standing stones east of Hangershell Rock</SimpleData>
+		<SimpleData name="ListEntry">1017611</SimpleData>
+		<SimpleData name="SchedDate">1991/10/10</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10549</SimpleData>
+		<SimpleData name="NGR">SX 65920 59325</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">265919.90300200001</SimpleData>
+		<SimpleData name="Northing">59325.24978750000</SimpleData>
+		<SimpleData name="AREA_HA">0.05678568548</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.888322427889576,50.418405390279638 -3.88901175390824,50.418394195533089 -3.889029395973457,50.41839534801737 -3.889044041198171,50.418398662786302 -3.889057442041088,50.418403958457148 -3.889068279429024,50.41841098664608 -3.889076976621133,50.418419416733208 -3.889082191840906,50.418428784759087 -3.889083909458792,50.418438695285516 -3.889082543681283,50.41844859293959 -3.889077205125574,50.418458060450384 -3.889069182520131,50.418466582242289 -3.889058473720286,50.418473753564918 -3.889045486188949,50.41847919903941 -3.889030661844179,50.418482704702946 -3.889015330356639,50.418484077992026 -3.888326003034955,50.418495272774109 -3.88830836094671,50.418494120183361 -3.888293714256942,50.418490769354904 -3.888280299411871,50.418485473823786 -3.888269462121254,50.418478445560382 -3.888261201193527,50.418470008330175 -3.888255549996377,50.418460647347061 -3.888253846663962,50.418450736577363 -3.888255648694342,50.418440831850667 -3.888260551279703,50.418431371457082 -3.888268575510278,50.418422885686049 -3.888279282935896,50.4184156784682 -3.888292256478722,50.418410233272461 -3.888307080859461,50.418406727736958 -3.888322427889576,50.418405390279638</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

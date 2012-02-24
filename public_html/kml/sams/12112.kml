@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12112</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12112" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12112">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Long barrow and bowl barrow 440m north west of Sanctuary Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12112">
+		<SimpleData name="Name">Long barrow and bowl barrow 440m north west of Sanctuary Farm</SimpleData>
+		<SimpleData name="ListEntry">1021109</SimpleData>
+		<SimpleData name="SchedDate">1990/10/11</SimpleData>
+		<SimpleData name="AmendDate">2003/11/12</SimpleData>
+		<SimpleData name="LegacyUID">12112</SimpleData>
+		<SimpleData name="NGR">SU 47047 36722</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">447044.65579500003</SimpleData>
+		<SimpleData name="Northing">136725.15995599999</SimpleData>
+		<SimpleData name="AREA_HA">0.55079933875</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.32826220772986,51.127721402258715 -1.328720775617562,51.127370740897881 -1.329759475873833,51.127967787255372 -1.329819384738284,51.128020860505558 -1.329859784138326,51.128080089540731 -1.329862503868841,51.128150900469969 -1.329827762912888,51.128219131878566 -1.329766874757004,51.128280145617957 -1.329680112865971,51.128315041735114 -1.329593658067503,51.1283287090383 -1.329496128420012,51.128330506093988 -1.32941011764479,51.128313494505491 -1.329344583599208,51.128284739596303 -1.32826220772986,51.127721402258715</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

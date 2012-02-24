@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15384</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15384" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15384">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Round cairn with funerary chamber on Buzza Hill, 45m west of the Buzza Tower, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15384">
+		<SimpleData name="Name">Round cairn with funerary chamber on Buzza Hill, 45m west of the Buzza Tower, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1010174</SimpleData>
+		<SimpleData name="SchedDate">1960/12/20</SimpleData>
+		<SimpleData name="AmendDate">1995/01/13</SimpleData>
+		<SimpleData name="LegacyUID">15384</SimpleData>
+		<SimpleData name="NGR">SV 90594 10377</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">90594.23017900001</SimpleData>
+		<SimpleData name="Northing">10376.77417960000</SimpleData>
+		<SimpleData name="AREA_HA">0.02502989281</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.311385005749555,49.913282136438077 -6.311423276350759,49.913276742666952 -6.311462253598178,49.913279259081591 -6.311498123685428,49.913289422767022 -6.311527370788172,49.91330624889617 -6.311547130385511,49.913328089581945 -6.311555483195892,49.913352802655211 -6.311551586391363,49.913377972054406 -6.311535846939756,49.913401135022781 -6.311509789934463,49.913420021218144 -6.31147596826001,49.913432789838104 -6.311437696686395,49.913438174633875 -6.311398720167538,49.913435667210123 -6.31136284913496,49.91342549453482 -6.311333602061973,49.913408668328557 -6.311313828592845,49.913386828158075 -6.311305489776028,49.913362114513106 -6.311309372830846,49.913336945670046 -6.311325126304956,49.913313782176786 -6.311351183280493,49.913294896058538 -6.311385005749555,49.913282136438077</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

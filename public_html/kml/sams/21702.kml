@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21702</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21702" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21702">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>St John the Baptist's Hospital</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21702">
+		<SimpleData name="Name">St John the Baptist's Hospital</SimpleData>
+		<SimpleData name="ListEntry">1017854</SimpleData>
+		<SimpleData name="SchedDate">1933/07/03</SimpleData>
+		<SimpleData name="AmendDate">1993/01/04</SimpleData>
+		<SimpleData name="LegacyUID">21702</SimpleData>
+		<SimpleData name="NGR">SU 87016 92835</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">487019.88262900000</SimpleData>
+		<SimpleData name="Northing">192832.82149000000</SimpleData>
+		<SimpleData name="AREA_HA">0.05334530221</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.74408161412884,51.627461816148909 -0.7441081256062,51.627441904174844 -0.744153051493488,51.627459882598892 -0.744190271082989,51.627478075330174 -0.744235345364021,51.627500101608128 -0.744310785355882,51.62753530180872 -0.744402543469565,51.627589091566733 -0.74448583641532,51.627627675565904 -0.744552272301207,51.62764993010834 -0.744512879833421,51.627667006945991 -0.744432456488285,51.627680956504783 -0.744367221114296,51.62769371963109 -0.74430656429833,51.627697108347569 -0.744246130265891,51.627692424791398 -0.744183715695571,51.627680985225105 -0.744149481587207,51.627667158435422 -0.744096141665929,51.627641006447824 -0.744068429496043,51.627625909629018 -0.744051661632953,51.627606874571164 -0.7440393090124,51.627583858408457 -0.744033790054541,51.62754880346619 -0.744041055333724,51.627520611068803 -0.7440571722939,51.627485778509062 -0.74408161412884,51.627461816148909</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21794</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21794" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21794">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Leafield Barrow: a motte castle 220m north west of St Michael and All Angels Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21794">
+		<SimpleData name="Name">Leafield Barrow: a motte castle 220m north west of St Michael and All Angels Church</SimpleData>
+		<SimpleData name="ListEntry">1008405</SimpleData>
+		<SimpleData name="SchedDate">1935/09/26</SimpleData>
+		<SimpleData name="AmendDate">1995/01/04</SimpleData>
+		<SimpleData name="LegacyUID">21794</SimpleData>
+		<SimpleData name="NGR">SP 31601 15412</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">431598.77383100003</SimpleData>
+		<SimpleData name="Northing">215411.29769199999</SimpleData>
+		<SimpleData name="AREA_HA">0.18763467964</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.542614005810731,51.836484343208781 -1.542520934075539,51.836418167240645 -1.542420602506788,51.836452617392297 -1.542396572347611,51.836429300178999 -1.542415764395953,51.836357141029943 -1.542470020087266,51.836292185082144 -1.542554021304463,51.836240786277308 -1.542659545763341,51.836207992581315 -1.542776256786303,51.836197009434791 -1.542892750797763,51.836208898523552 -1.542997603150924,51.836242509480748 -1.543080557205664,51.836294556866321 -1.543133493730749,51.836359929231541 -1.543151237934845,51.836432231871683 -1.543132032578866,51.836504391120762 -1.543077777525867,51.836569347373008 -1.542993776435576,51.836620737529124 -1.542961120108171,51.836630887464906 -1.542888251195202,51.836653531555029 -1.542771524422311,51.83666452370413 -1.542655043864055,51.836652625598397 -1.542550190872939,51.836619014302428 -1.542514929574889,51.836596894226233 -1.542679108781332,51.836534918852003 -1.542614005810731,51.836484343208781</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

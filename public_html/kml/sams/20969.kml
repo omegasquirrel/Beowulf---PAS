@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20969</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20969" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20969">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Deserted medieval village and field system at Garmondsway</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20969">
+		<SimpleData name="Name">Deserted medieval village and field system at Garmondsway</SimpleData>
+		<SimpleData name="ListEntry">1008666</SimpleData>
+		<SimpleData name="SchedDate">1957/05/07</SimpleData>
+		<SimpleData name="AmendDate">1994/07/29</SimpleData>
+		<SimpleData name="LegacyUID">20969</SimpleData>
+		<SimpleData name="NGR">NZ 34132 34761</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">434131.88684400002</SimpleData>
+		<SimpleData name="Northing">534766.14262800000</SimpleData>
+		<SimpleData name="AREA_HA">4.20745149942</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.472230596020537,54.705388527223455 -1.472412185071046,54.705326167609527 -1.472482631783773,54.705426181701206 -1.472544509520757,54.705522824390862 -1.472628778465604,54.705662781560697 -1.472696290912496,54.705767761376698 -1.472769545382499,54.705872766148268 -1.472791893683254,54.705919396537503 -1.47287498807033,54.70604234552809 -1.472888286793199,54.706068779356897 -1.472906222414902,54.706115830857811 -1.472953652940618,54.706211341120266 -1.472998926076044,54.706296102862943 -1.473018548088083,54.70639148327755 -1.473042371886514,54.706532687242841 -1.47307735763676,54.706699983223608 -1.473091790575248,54.706914406056711 -1.473106777293103,54.707087294736304 -1.473127533632113,54.707256883363179 -1.473117284582153,54.707383129139735 -1.473103814085231,54.707537606179983 -1.473090844524443,54.707652211365932 -1.473092875954818,54.707717023384198 -1.473122102520665,54.708119296876113 -1.472537854604214,54.708027025080526 -1.471936463552086,54.707929688193836 -1.471383737527798,54.70784252670849 -1.470945554233693,54.707774150361061 -1.470538916432714,54.707707563712738 -1.470522988626726,54.707388447762071 -1.470522099188856,54.706795203679306 -1.47051950048224,54.706333239029327 -1.47050984053062,54.705972595771392 -1.470505260862792,54.705884505934002 -1.470523422469076,54.70581146929257 -1.470534587684102,54.705615436795533 -1.47064361818994,54.705615912727801 -1.471207939469698,54.705597785917945 -1.471310498666545,54.70559466531337 -1.471454411538165,54.705585919393798 -1.471618107908591,54.705576226075522 -1.471695550463059,54.705564071871549 -1.47180735108644,54.705536457362392 -1.471930478533694,54.705494648126646 -1.472230596020537,54.705388527223455</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Deserted medieval village and field system at Garmondsway</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20969">
+		<SimpleData name="Name">Deserted medieval village and field system at Garmondsway</SimpleData>
+		<SimpleData name="ListEntry">1008666</SimpleData>
+		<SimpleData name="SchedDate">1957/05/07</SimpleData>
+		<SimpleData name="AmendDate">1994/07/29</SimpleData>
+		<SimpleData name="LegacyUID">20969</SimpleData>
+		<SimpleData name="NGR">NZ 34129 34933</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">434122.65655199997</SimpleData>
+		<SimpleData name="Northing">534934.09213999996</SimpleData>
+		<SimpleData name="AREA_HA">1.08116222261</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.470554091917261,54.707904474994216 -1.47054502199392,54.707745226733238 -1.47084908677011,54.707791738919113 -1.473136762667784,54.708165300642484 -1.473120843007681,54.708821432393137 -1.471004447898731,54.70841634636831 -1.470554091917261,54.707904474994216</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15387</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15387" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15387">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Kerbed platform cairn 60m NNE of Holmbush Carn, Great Ganilly</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15387">
+		<SimpleData name="Name">Kerbed platform cairn 60m NNE of Holmbush Carn, Great Ganilly</SimpleData>
+		<SimpleData name="ListEntry">1010152</SimpleData>
+		<SimpleData name="SchedDate">1976/10/07</SimpleData>
+		<SimpleData name="AmendDate">1995/02/13</SimpleData>
+		<SimpleData name="LegacyUID">15387</SimpleData>
+		<SimpleData name="NGR">SV 94556 14552</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">94555.72182229999</SimpleData>
+		<SimpleData name="Northing">14551.63782270000</SimpleData>
+		<SimpleData name="AREA_HA">0.02502988830</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.25966833440283,49.952762975210611 -6.259706643726931,49.952757606606973 -6.259745650622982,49.952760130674037 -6.259781541500684,49.952770318826289 -6.259810796187297,49.952787157825192 -6.259830564095712,49.952809006876784 -6.259838884839924,49.952833724616212 -6.259834972907382,49.952858892386459 -6.259819182563269,49.952882049694878 -6.259793084189207,49.952900925229045 -6.259759220027545,49.952913670778415 -6.259720911329564,49.952919048402656 -6.259681903562938,49.952916515330372 -6.259646013385772,49.952906336113685 -6.259616758679174,49.952889497073791 -6.259597004723338,49.952867647473148 -6.259588670152026,49.952842930260616 -6.259592596156127,49.952817761948111 -6.25960837269875,49.952794605179228 -6.259634471092797,49.952775729686053 -6.25966833440283,49.952762975210611</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

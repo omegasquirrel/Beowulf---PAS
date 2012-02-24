@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15226</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15226" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15226">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Three prehistoric house platforms on south-east Roughtor, 1km NNW of Fernacre Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15226">
+		<SimpleData name="Name">Three prehistoric house platforms on south-east Roughtor, 1km NNW of Fernacre Farm</SimpleData>
+		<SimpleData name="ListEntry">1008232</SimpleData>
+		<SimpleData name="SchedDate">1994/03/02</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15226</SimpleData>
+		<SimpleData name="NGR">SX 14725 80707</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">214724.25492100001</SimpleData>
+		<SimpleData name="Northing">80707.23378220000</SimpleData>
+		<SimpleData name="AREA_HA">0.03145950617</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.61908197706178,50.596524968811899 -4.619097074990125,50.596522524345303 -4.619112546401343,50.596522733912259 -4.619203087434285,50.596534962290455 -4.619354363689477,50.596567258234337 -4.619365611507336,50.596574875481728 -4.619372688278222,50.596583216211059 -4.619376270660231,50.596591995367191 -4.61937655792921,50.596600983585503 -4.61937350235872,50.596609831168522 -4.619347571384407,50.596687436133799 -4.619332769279668,50.59671123631221 -4.619309240101259,50.59671682976402 -4.619265380515882,50.596710297128425 -4.619204595174837,50.596681442723671 -4.61914728787935,50.596647527003299 -4.61906896294476,50.596588854025583 -4.619050702177026,50.596574297720345 -4.619046206328431,50.596564846553846 -4.619046094092615,50.59655493692869 -4.61904976006335,50.596545374043728 -4.619057453853931,50.596536835880137 -4.619068554199622,50.596529840115444 -4.61908197706178,50.596524968811899</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

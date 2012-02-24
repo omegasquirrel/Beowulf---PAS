@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13235</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13235" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13235">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Frickley Old Hall moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13235">
+		<SimpleData name="Name">Frickley Old Hall moated site</SimpleData>
+		<SimpleData name="ListEntry">1017606</SimpleData>
+		<SimpleData name="SchedDate">1991/05/30</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13235</SimpleData>
+		<SimpleData name="NGR">SE 47151 08543</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">447152.62536900002</SimpleData>
+		<SimpleData name="Northing">408543.70091499999</SimpleData>
+		<SimpleData name="AREA_HA">0.43385387730</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.289219120637604,53.570981556232169 -1.289293317509287,53.570980226169127 -1.289400040319187,53.570986163137633 -1.289506674398249,53.570997393717313 -1.289589631851977,53.571004951158692 -1.289684294294998,53.571021404745586 -1.289728599765014,53.571034026899611 -1.289763582361598,53.571071330051893 -1.289771322186353,53.571140254849432 -1.289803522950314,53.571166944064167 -1.289808717540153,53.571211126393848 -1.28981701941447,53.571246500469378 -1.289836701651932,53.571311963669864 -1.289856043415048,53.571396857971777 -1.289872248470955,53.571492322121884 -1.289882164420268,53.571608952831419 -1.28983173237606,53.571608653568234 -1.289833065015681,53.571705800185306 -1.289829188469131,53.571760535111991 -1.289057742321741,53.571757716438242 -1.28904410380696,53.571155360968838 -1.289075254244035,53.571067242978813 -1.289085495189956,53.570987827497518 -1.289219120637604,53.570981556232169</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

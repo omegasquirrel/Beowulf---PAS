@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21390</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21390" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21390">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Weybourne priory</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21390">
+		<SimpleData name="Name">Weybourne priory</SimpleData>
+		<SimpleData name="ListEntry">1013096</SimpleData>
+		<SimpleData name="SchedDate">1933/09/14</SimpleData>
+		<SimpleData name="AmendDate">1995/07/22</SimpleData>
+		<SimpleData name="LegacyUID">21390</SimpleData>
+		<SimpleData name="NGR">TG 11175 43097</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">611176.78685300006</SimpleData>
+		<SimpleData name="Northing">343093.00504299998</SimpleData>
+		<SimpleData name="AREA_HA">0.99519445950</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>1.142026503645475,52.942990924332896 1.142026445832827,52.942971033442156 1.14107265577572,52.943064668178565 1.141091626203622,52.943155705537009 1.140956277837278,52.943165823715361 1.140862945833417,52.943179506704006 1.140851274394329,52.943189159075907 1.140844585551244,52.943224831183571 1.140843328309153,52.943271564782307 1.14085054181587,52.943328362295794 1.140874215404798,52.943420210580662 1.140953056585476,52.943419995651993 1.140957034611885,52.943453515038669 1.14098864134057,52.943590927555462 1.141103213543354,52.943809033389286 1.140935782242606,52.944234835780982 1.141877685798888,52.944404371870334 1.141911064409212,52.944357166007784 1.141945358887069,52.944301239728887 1.141964479228495,52.944267432926324 1.141982080935245,52.944229313706437 1.141985921172792,52.944199535370927 1.141985623707625,52.944129326280681 1.141979756728414,52.94406504704051 1.141954608102848,52.943899927498173 1.141957103633386,52.943802126102639 1.141963198582266,52.943737539332993 1.141971300549779,52.943717054866575 1.142000423802419,52.943606246532269 1.142033233877565,52.943513434419508 1.142046467532958,52.943447930338792 1.142055528710562,52.943374568896779 1.142060103713392,52.94328902380775 1.142061446353007,52.943175326394154 1.142060572181802,52.943097164821388 1.142050985465249,52.943064117613304 1.142037451438982,52.943026111826349 1.142026503645475,52.942990924332896</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

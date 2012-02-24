@@ -33,7 +33,7 @@ body {
 ul {
 	list-style:square;
 }
-#imagepane {
+#imagepane, #qrcode {
 	padding:20px;
 	border: 1px solid black;
 }

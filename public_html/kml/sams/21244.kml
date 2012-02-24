@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21244</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21244" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21244">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow and archery butt 231m south-west of Wold Newton Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21244">
+		<SimpleData name="Name">Bowl barrow and archery butt 231m south-west of Wold Newton Church</SimpleData>
+		<SimpleData name="ListEntry">1007741</SimpleData>
+		<SimpleData name="SchedDate">1980/01/07</SimpleData>
+		<SimpleData name="AmendDate">1994/01/17</SimpleData>
+		<SimpleData name="LegacyUID">21244</SimpleData>
+		<SimpleData name="NGR">TA 04518 72882</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">504517.79740099999</SimpleData>
+		<SimpleData name="Northing">472881.67627100000</SimpleData>
+		<SimpleData name="AREA_HA">0.07424104618</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.401507368561172,54.141015624213118 -0.401580922927797,54.141009778502443 -0.40165393685615,54.141017570144669 -0.401719291033947,54.141038221532241 -0.401770571623688,54.141069732964702 -0.401802769668168,54.141108999832042 -0.401812726439314,54.141152178100668 -0.401799455892478,54.14119505701651 -0.401764268088261,54.141233429342201 -0.401710614349924,54.141263538759191 -0.401643736487559,54.141282443649075 -0.401570197225122,54.141288280617836 -0.401497167258025,54.141280497698681 -0.401431813101589,54.141259837209667 -0.401380532252482,54.141228334613743 -0.401348334519475,54.141189067636383 -0.401338393804412,54.141145880556174 -0.401351649229721,54.141103010470744 -0.401386837300062,54.141064638266712 -0.401440491297826,54.141034520013193 -0.401507368561172,54.141015624213118</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

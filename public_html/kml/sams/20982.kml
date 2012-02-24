@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20982</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20982" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20982">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Fishponds, 450m north-east of Sewingshields</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20982">
+		<SimpleData name="Name">Fishponds, 450m north-east of Sewingshields</SimpleData>
+		<SimpleData name="ListEntry">1011081</SimpleData>
+		<SimpleData name="SchedDate">1994/03/07</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20982</SimpleData>
+		<SimpleData name="NGR">NY 81121 70614</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">381118.06721700000</SimpleData>
+		<SimpleData name="Northing">570611.20980299998</SimpleData>
+		<SimpleData name="AREA_HA">0.64789855951</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.296086057867976,55.029406851915056 -2.29728398860817,55.02921414196107 -2.297577323666325,55.029709990316597 -2.297636969041747,55.029819035093212 -2.297644914728479,55.029833609161862 -2.297650031661233,55.029848558554534 -2.29765013404245,55.029862361060566 -2.29764627436924,55.029881933341898 -2.297638405645066,55.029900940328517 -2.297627509271207,55.029918813492763 -2.297614591844008,55.029932072720683 -2.297595660221063,55.029946505892291 -2.297571725396011,55.029959225949916 -2.297539735486188,55.029967930916627 -2.297502354509772,55.029975346066983 -2.296643590385306,55.030133434403076 -2.296086057867976,55.029406851915056</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

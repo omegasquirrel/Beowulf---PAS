@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20770</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20770" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20770">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Blunts Hall ringwork</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20770">
+		<SimpleData name="Name">Blunts Hall ringwork</SimpleData>
+		<SimpleData name="ListEntry">1012098</SimpleData>
+		<SimpleData name="SchedDate">1976/02/03</SimpleData>
+		<SimpleData name="AmendDate">1995/07/13</SimpleData>
+		<SimpleData name="LegacyUID">20770</SimpleData>
+		<SimpleData name="NGR">TL 80759 14346</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">580758.61130500003</SimpleData>
+		<SimpleData name="Northing">214345.59828000001</SimpleData>
+		<SimpleData name="AREA_HA">0.61447735830</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.620574643299904,51.798227696742877 0.61999788402467,51.798133896678372 0.619623287460677,51.798177374648361 0.619434766929712,51.798375173475883 0.619438719031215,51.798730784727738 0.619439727717644,51.798748182091025 0.619442125972219,51.798758524769227 0.619445451842626,51.798768855794584 0.619449658665772,51.798778870400156 0.619454764668318,51.798788882940499 0.619460780580747,51.798798578415514 0.619468562671538,51.798807964773125 0.619476342576734,51.798817063348537 0.619485917095132,51.798825843149785 0.619495467141095,51.798834200807001 0.619506811801129,51.798842239689506 0.619518123657169,51.798849712732434 0.619530324176836,51.798856752266119 0.619543398361641,51.798863349636264 0.619555484318404,51.798868413204239 0.619569399885252,51.798874011581709 0.620277952715279,51.798981971550731 0.620592622742783,51.798634940039541 0.620574643299904,51.798227696742877</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

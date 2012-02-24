@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17093</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17093" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17093">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Stapleford deserted medieval village and ice house</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17093">
+		<SimpleData name="Name">Stapleford deserted medieval village and ice house</SimpleData>
+		<SimpleData name="ListEntry">1008553</SimpleData>
+		<SimpleData name="SchedDate">1967/06/19</SimpleData>
+		<SimpleData name="AmendDate">1992/06/11</SimpleData>
+		<SimpleData name="LegacyUID">17093</SimpleData>
+		<SimpleData name="NGR">SK 81305 18564</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">481304.27434000000</SimpleData>
+		<SimpleData name="Northing">318515.27241400001</SimpleData>
+		<SimpleData name="AREA_HA">9.93690827722</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.793871093937555,52.758516121646352 -0.795181636844832,52.756247840222784 -0.796191000470187,52.756894151299498 -0.796425155347222,52.757022711482797 -0.797379423514396,52.757204925645063 -0.797643722867283,52.756705464534562 -0.798628088243049,52.756507819973052 -0.799600958581336,52.7566601059305 -0.799594411486758,52.756679422276861 -0.799174101021851,52.758005949472931 -0.798910645997231,52.758170668556126 -0.79803139743266,52.759117155708324 -0.797654824244935,52.759535666070981 -0.797449715112339,52.760040869301697 -0.79744501978072,52.760071990267186 -0.797435859464499,52.76010273328648 -0.797422298881778,52.760132901341976 -0.797404464346944,52.760162207948731 -0.79738246462017,52.760190474470527 -0.797356377940853,52.760217548779707 -0.797326615152084,52.760243039590073 -0.797293373180168,52.760266795942364 -0.797256622046056,52.76028882661776 -0.797216964769102,52.760308760111172 -0.797174581072795,52.760326526326523 -0.797165894126308,52.760334160693247 -0.79639489414975,52.759968393546927 -0.795920897690149,52.759762719152803 -0.795673364438122,52.759657207639279 -0.795363516641187,52.759494812141263 -0.794186639876519,52.758829117658088 -0.793762985707869,52.758575336891646 -0.793871093937555,52.758516121646352</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13687</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13687" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13687">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Nickless moat</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13687">
+		<SimpleData name="Name">Nickless moat</SimpleData>
+		<SimpleData name="ListEntry">1009552</SimpleData>
+		<SimpleData name="SchedDate">1992/07/13</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13687</SimpleData>
+		<SimpleData name="NGR">SO 62966 72607</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">362964.21242800000</SimpleData>
+		<SimpleData name="Northing">272607.89000299998</SimpleData>
+		<SimpleData name="AREA_HA">0.56301432914</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.544893840400599,52.349867964067165 -2.545083269444216,52.349860823776204 -2.54525763705652,52.349878835580832 -2.545391442636217,52.349931539028802 -2.545515533249239,52.350025058023178 -2.545572865632673,52.350106343852339 -2.545636456771152,52.350278555202166 -2.545684253096935,52.350416343880163 -2.545655985350667,52.350617208975208 -2.545661763644049,52.350708469364633 -2.545608204308709,52.350735714554681 -2.545544974421327,52.350752593624797 -2.545477523759906,52.350734322306728 -2.545305622796555,52.350701105909657 -2.545122350069782,52.350671951394766 -2.544883233886089,52.350618043349783 -2.544793744765357,52.350512443020826 -2.544710565078376,52.350389812955818 -2.544642267606739,52.350281112032825 -2.544606904676716,52.350194267352059 -2.544562887718503,52.350067446947349 -2.544556331079661,52.349910300452535 -2.544694449324922,52.349897113174144 -2.544893840400599,52.349867964067165</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

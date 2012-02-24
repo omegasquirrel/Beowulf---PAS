@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17060</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17060" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17060">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Motte and associated earthworks at Shackerstone</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17060">
+		<SimpleData name="Name">Motte and associated earthworks at Shackerstone</SimpleData>
+		<SimpleData name="ListEntry">1008542</SimpleData>
+		<SimpleData name="SchedDate">1964/04/10</SimpleData>
+		<SimpleData name="AmendDate">1994/03/09</SimpleData>
+		<SimpleData name="LegacyUID">17060</SimpleData>
+		<SimpleData name="NGR">SK 37490 06856</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">437488.13825600001</SimpleData>
+		<SimpleData name="Northing">306856.98450899997</SimpleData>
+		<SimpleData name="AREA_HA">0.45362002286</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.44652716749681,52.658162230084059 -1.446763108137808,52.657917235524799 -1.446848854458866,52.657932531680885 -1.447304649736592,52.657807838087578 -1.447847843723449,52.657980231031395 -1.447743658940736,52.658122395900563 -1.447801232893515,52.658137272459939 -1.447821876515343,52.658148605841774 -1.44782731413069,52.658157054604878 -1.447827659224129,52.658166046007153 -1.447822460559082,52.658175011592725 -1.447567578076363,52.658457002895901 -1.447552209087029,52.658467044809065 -1.447538299873611,52.658470351175602 -1.447498968095043,52.658475507864239 -1.447114657544879,52.658432983711855 -1.44664775827347,52.658308877101511 -1.446624747710437,52.658301191328661 -1.446612334506497,52.658296072142889 -1.446598564187382,52.658289544195284 -1.446585720989973,52.658282184535771 -1.446573801510376,52.658274262831597 -1.446564650611998,52.658267199105403 -1.446555062796756,52.65825844322567 -1.446546398641825,52.658249125336198 -1.44654004118088,52.658240950888171 -1.446534603803853,52.658232502066781 -1.446529646073616,52.658222365404917 -1.446526081568847,52.658211947593607 -1.446523437033733,52.658201264359327 -1.446522655289385,52.658190580835367 -1.446523227026367,52.658181593708456 -1.446524271847635,52.658172608789855 -1.44652716749681,52.658162230084059</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

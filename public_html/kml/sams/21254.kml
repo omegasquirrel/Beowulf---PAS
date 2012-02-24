@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21254</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21254" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21254">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow and adjacent section of a boundary bank in Rendlesham Forest, 1400m west of Valley Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21254">
+		<SimpleData name="Name">Bowl barrow and adjacent section of a boundary bank in Rendlesham Forest, 1400m west of Valley Farm</SimpleData>
+		<SimpleData name="ListEntry">1017576</SimpleData>
+		<SimpleData name="SchedDate">1993/01/26</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21254</SimpleData>
+		<SimpleData name="NGR">TM 35240 46978</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">635241.45487300004</SimpleData>
+		<SimpleData name="Northing">246979.03409999999</SimpleData>
+		<SimpleData name="AREA_HA">0.05482479338</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>1.431092279501962,52.071055871012625 1.431072245000111,52.071056319922121 1.431056854115851,52.071057748836225 1.431041503077076,52.071059887141587 1.431027133548954,52.071062833354837 1.431013720641557,52.071066453220681 1.430999469552026,52.071070943010731 1.430987107798291,52.071076088332504 1.430974758935792,52.071081781916234 1.430964299409081,52.071088131032496 1.430953908146413,52.071095179723386 1.430944437604499,52.07110262433433 1.430935927222529,52.071110598628742 1.430929270271035,52.071118950620253 1.430867116836932,52.071248232101894 1.43120294769513,52.071309277734876 1.431265085671302,52.071179996516875 1.431266628650392,52.071164346047532 1.431265908284692,52.0711549587908 1.431263377175728,52.071145750191803 1.431260846758817,52.071136550596499 1.431255588819883,52.071127565365465 1.431250367479727,52.071118866940076 1.431243347108392,52.071110499756486 1.431234524169714,52.071102607819377 1.431225747469404,52.071095128295141 1.431215168893327,52.071088133020552 1.431204647573551,52.071081693739416 1.431192345040229,52.07107600796423 1.431179182980914,52.071070913853994 1.431166063621994,52.071066376160815 1.431152106089005,52.071062708392844 1.431137295135327,52.071059901970273 1.431122527568589,52.07105766093396 1.431107835755582,52.071056407091298 1.431092279501962,52.071055871012625</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

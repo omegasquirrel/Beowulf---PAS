@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20068</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20068" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20068">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Park pale at Marwell, 400m west of Marwell Manor</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20068">
+		<SimpleData name="Name">Park pale at Marwell, 400m west of Marwell Manor</SimpleData>
+		<SimpleData name="ListEntry">1012308</SimpleData>
+		<SimpleData name="SchedDate">1980/05/21</SimpleData>
+		<SimpleData name="AmendDate">1992/08/05</SimpleData>
+		<SimpleData name="LegacyUID">20068</SimpleData>
+		<SimpleData name="NGR">SU 49632 20870</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">449631.61216299998</SimpleData>
+		<SimpleData name="Northing">120872.62741099999</SimpleData>
+		<SimpleData name="AREA_HA">0.24600238749</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.294217994117074,50.98455809703276 -1.294467730791105,50.984479141004911 -1.294479838279473,50.984509347617617 -1.294489270242621,50.98455065271984 -1.294461164248419,50.984580616560066 -1.294447965475089,50.984623367687618 -1.294438786940941,50.985062680989763 -1.294439191448879,50.985128121134736 -1.294442434660048,50.985651174688755 -1.294122460208686,50.985706344191058 -1.294217994117074,50.98455809703276</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

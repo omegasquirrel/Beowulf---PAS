@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15382</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15382" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15382">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Platform cairn on Carn Morval Down, 235m north of Isles of Scilly Golf Course club house, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15382">
+		<SimpleData name="Name">Platform cairn on Carn Morval Down, 235m north of Isles of Scilly Golf Course club house, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1010172</SimpleData>
+		<SimpleData name="SchedDate">1995/02/14</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15382</SimpleData>
+		<SimpleData name="NGR">SV 90843 11965</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">90842.76217880000</SimpleData>
+		<SimpleData name="Northing">11964.80300100000</SimpleData>
+		<SimpleData name="AREA_HA">0.02502935959</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.309204953245995,49.927652838525532 -6.309243235492174,49.927647445177037 -6.309282224281082,49.927649962021242 -6.309318104831275,49.927660126095432 -6.30934736024266,49.927676952570629 -6.309367125171714,49.927698793426586 -6.309375479881393,49.927723506574921 -6.309371581193365,49.927748675918018 -6.309355836421224,49.927771838699179 -6.309329771121586,49.927790724596292 -6.309295938190649,49.927803483872729 -6.309257655878636,49.927808877205415 -6.309218666911526,49.927806360392573 -6.309182786269633,49.927796196289997 -6.309153530838085,49.927779369773852 -6.309133752083052,49.927757529396864 -6.309125411424179,49.927732815675 -6.309129296305449,49.927707646889871 -6.309145055054411,49.927684483620162 -6.309171120374208,49.92766559776399 -6.309204953245995,49.927652838525532</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20936</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20936" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20936">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Standing stone, 770m south-east of Swinburne Castle</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20936">
+		<SimpleData name="Name">Standing stone, 770m south-east of Swinburne Castle</SimpleData>
+		<SimpleData name="ListEntry">1011407</SimpleData>
+		<SimpleData name="SchedDate">1932/11/28</SimpleData>
+		<SimpleData name="AmendDate">1994/03/22</SimpleData>
+		<SimpleData name="LegacyUID">20936</SimpleData>
+		<SimpleData name="NGR">NY 93753 74546</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">393753.22650100000</SimpleData>
+		<SimpleData name="Northing">574545.57150099997</SimpleData>
+		<SimpleData name="AREA_HA">0.00770816273</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.099275782813084,55.065303508514361 -2.099415715135427,55.065303394058397 -2.099415907741304,55.065380898683749 -2.099275975148571,55.065381013140033 -2.099275782813084,55.065303508514361</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20061</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20061" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20061">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow on Waltham Down, 200m east of cross roads: part of Waltham Down round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20061">
+		<SimpleData name="Name">Bowl barrow on Waltham Down, 200m east of cross roads: part of Waltham Down round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1009914</SimpleData>
+		<SimpleData name="SchedDate">1992/06/26</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20061</SimpleData>
+		<SimpleData name="NGR">SU 92860 14517</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">492859.95049900003</SimpleData>
+		<SimpleData name="Northing">114516.89052900000</SimpleData>
+		<SimpleData name="AREA_HA">0.08412828537</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.680148886771776,50.922505477289242 -0.680221616635272,50.922499042073042 -0.680293921858989,50.922507116448713 -0.680358752971012,50.922528928341812 -0.680409739930732,50.922562328375399 -0.680441909666131,50.922604058997536 -0.68045209130092,50.922650028550329 -0.680439316466051,50.922695738697591 -0.680404807435141,50.922736706856426 -0.680351963880722,50.922768933559318 -0.680285940206247,50.922789266670172 -0.68023693026475,50.922793604882422 -0.680213224058895,50.922795702082873 -0.680140904242297,50.92278762749428 -0.680076072877069,50.922765815479273 -0.680025085939292,50.922732415301212 -0.679992916238408,50.92269069355229 -0.6799827349945,50.922644723962449 -0.67999551031531,50.922599013868648 -0.680030019853521,50.922558036846695 -0.680082863385995,50.922525810288271 -0.680148886771776,50.922505477289242</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

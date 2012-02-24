@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20716</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20716" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20716">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Wincelow Hall moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20716">
+		<SimpleData name="Name">Wincelow Hall moated site</SimpleData>
+		<SimpleData name="ListEntry">1011464</SimpleData>
+		<SimpleData name="SchedDate">1993/09/21</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20716</SimpleData>
+		<SimpleData name="NGR">TL 62955 38377</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">562956.38040400005</SimpleData>
+		<SimpleData name="Northing">238375.82748099999</SimpleData>
+		<SimpleData name="AREA_HA">0.87231845606</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.373981905357815,52.019125311904354 0.373968564705914,52.019114223261212 0.373773507494591,52.019177613781835 0.373706805483997,52.019202563661423 0.373750916592121,52.01925937960786 0.373720906815023,52.019342248165152 0.372532235425926,52.019699086939291 0.37311060214853,52.020432455652497 0.374321162944185,52.020098667379678 0.374063417319258,52.019727876884552 0.373761630274912,52.019335087603316 0.373790826272527,52.019263826789967 0.373901728206198,52.019216997326396 0.373950651990243,52.019177532075901 0.37397853303424,52.019141998080627 0.373981905357815,52.019125311904354</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

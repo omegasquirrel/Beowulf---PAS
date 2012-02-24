@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12051</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12051" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12051">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Moat Park, New Windsor</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12051">
+		<SimpleData name="Name">Moated site at Moat Park, New Windsor</SimpleData>
+		<SimpleData name="ListEntry">1013358</SimpleData>
+		<SimpleData name="SchedDate">1990/08/22</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">12051</SimpleData>
+		<SimpleData name="NGR">SU 95762 75286</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">495764.55381100002</SimpleData>
+		<SimpleData name="Northing">175279.69340500000</SimpleData>
+		<SimpleData name="AREA_HA">0.05837937481</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.622411422367063,51.468185430111525 -0.622485365855033,51.46811896590507 -0.622556953590423,51.4681747215174 -0.622616785283226,51.468232182366783 -0.622659181397853,51.468283935214089 -0.622704472732592,51.468337556490951 -0.622773029092797,51.468396945111763 -0.622830366204409,51.468439728419888 -0.622893671417159,51.468478913035554 -0.622967207232193,51.468514944607314 -0.623021108220391,51.468529838964763 -0.623096899958219,51.468543542604458 -0.6229262297455,51.468605921996961 -0.622829080709908,51.468590034103087 -0.622411422367063,51.468185430111525</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Moated site at Moat Park, New Windsor</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12051">
+		<SimpleData name="Name">Moated site at Moat Park, New Windsor</SimpleData>
+		<SimpleData name="ListEntry">1013358</SimpleData>
+		<SimpleData name="SchedDate">1990/08/22</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">12051</SimpleData>
+		<SimpleData name="NGR">SU 95736 75254</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">495734.32170099998</SimpleData>
+		<SimpleData name="Northing">175255.00700799999</SimpleData>
+		<SimpleData name="AREA_HA">0.38530782994</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.623077755988338,51.467835478388295 -0.623164713778221,51.467834035554844 -0.623254872936225,51.467857295514754 -0.623708019339923,51.468158706169213 -0.623734182178435,51.468208361801651 -0.623728740036137,51.468257655539716 -0.623703715135586,51.468301773775707 -0.623655134999518,51.468340678895714 -0.62319957876772,51.468512988096769 -0.623083570791604,51.468499450765869 -0.623005173754539,51.468474728189122 -0.622924295746593,51.468435337282102 -0.622847864764462,51.468385486798617 -0.622781035308577,51.468325641909075 -0.622741671049664,51.468270255932275 -0.622690929969175,51.468218324152552 -0.622625573558169,51.468158343621276 -0.622528761488946,51.468093047894719 -0.622588755785227,51.468069078287144 -0.622692987469375,51.468018481081025 -0.622849831316064,51.467926562546943 -0.623002048503616,51.46785679992135 -0.623077755988338,51.467835478388295</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

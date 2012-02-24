@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12795</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12795" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12795">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Oval barrow and adjacent bowl barrow, 220m west of Firle Beacon</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12795">
+		<SimpleData name="Name">Oval barrow and adjacent bowl barrow, 220m west of Firle Beacon</SimpleData>
+		<SimpleData name="ListEntry">1013207</SimpleData>
+		<SimpleData name="SchedDate">1967/01/30</SimpleData>
+		<SimpleData name="AmendDate">1991/05/30</SimpleData>
+		<SimpleData name="LegacyUID">12795</SimpleData>
+		<SimpleData name="NGR">TQ 48320 05893</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">548320.89045299997</SimpleData>
+		<SimpleData name="Northing">105897.08942600001</SimpleData>
+		<SimpleData name="AREA_HA">0.20079620629</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.105231228876578,50.833796414802826 0.105217590809605,50.833493338821036 0.105118295517864,50.833495967063705 0.105106378302363,50.833349476587422 0.104788767639886,50.833352959029583 0.104806068744924,50.83350076442072 0.104770961661496,50.833501397833793 0.104516938914378,50.833505980677124 0.104530253499636,50.833801966527361 0.105231228876578,50.833796414802826</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

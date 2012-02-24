@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21756</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21756" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21756">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Site of an oval stone circle and part of an adjacent field system 700m SW of West Kennet long barrow.</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21756">
+		<SimpleData name="Name">Site of an oval stone circle and part of an adjacent field system 700m SW of West Kennet long barrow.</SimpleData>
+		<SimpleData name="ListEntry">1008246</SimpleData>
+		<SimpleData name="SchedDate">1994/01/25</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21756</SimpleData>
+		<SimpleData name="NGR">SU 09874 67142</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">409874.03800000000</SimpleData>
+		<SimpleData name="Northing">167141.53180000000</SimpleData>
+		<SimpleData name="AREA_HA">0.54510740003</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.859256571263493,51.402859298910549 -1.859443208337622,51.402841044672662 -1.859629732348457,51.402859745564911 -1.859797877834946,51.402913590436945 -1.859931201068447,51.402997299665124 -1.860016630842483,51.403102675413926 -1.860045831650623,51.40321941244509 -1.860015919675779,51.403336070029034 -1.859929847495441,51.403441250255945 -1.859796013007245,51.403524640662305 -1.859627537486875,51.403578074399391 -1.85944089745755,51.403596337912866 -1.859254370556077,51.403577627733625 -1.859086223248237,51.403523791073241 -1.858952900030286,51.403440080891471 -1.858867472102823,51.403334695388217 -1.858838274194767,51.403217967054694 -1.858868189115063,51.403101300784542 -1.858954263061898,51.402996130319117 -1.859088097534544,51.402912740866356 -1.859256571263493,51.402859298910549</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

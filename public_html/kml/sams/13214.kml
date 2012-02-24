@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13214</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13214" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13214">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Cromwell's Batteries motte and bailey castle, Skellow</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13214">
+		<SimpleData name="Name">Cromwell's Batteries motte and bailey castle, Skellow</SimpleData>
+		<SimpleData name="ListEntry">1012588</SimpleData>
+		<SimpleData name="SchedDate">1978/02/24</SimpleData>
+		<SimpleData name="AmendDate">1995/02/03</SimpleData>
+		<SimpleData name="LegacyUID">13214</SimpleData>
+		<SimpleData name="NGR">SE 53001 10396</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">452997.51153199997</SimpleData>
+		<SimpleData name="Northing">410397.44946400000</SimpleData>
+		<SimpleData name="AREA_HA">0.11594578954</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.200730265472733,53.587360889030229 -1.200768329291617,53.58734032579342 -1.201190566575852,53.587359162137176 -1.201123172765484,53.587650192388779 -1.200451733524179,53.587572038894329 -1.200492954659907,53.587527470457559 -1.200545051225276,53.587476565850217 -1.20058871898983,53.587444831389504 -1.200659499842431,53.58740206029605 -1.200730265472733,53.587360889030229</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Cromwell's Batteries motte and bailey castle, Skellow</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13214">
+		<SimpleData name="Name">Cromwell's Batteries motte and bailey castle, Skellow</SimpleData>
+		<SimpleData name="ListEntry">1012588</SimpleData>
+		<SimpleData name="SchedDate">1978/02/24</SimpleData>
+		<SimpleData name="AmendDate">1995/02/03</SimpleData>
+		<SimpleData name="LegacyUID">13214</SimpleData>
+		<SimpleData name="NGR">SE 52949 10409</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">452949.65912000003</SimpleData>
+		<SimpleData name="Northing">410409.61268399999</SimpleData>
+		<SimpleData name="AREA_HA">0.08895494150</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.201268209447225,53.587667177909353 -1.201322961467783,53.587475350537233 -1.201417139537886,53.587477587904473 -1.201524700727051,53.587483105405163 -1.201632080756861,53.587498239324731 -1.201717831058173,53.587518028764372 -1.201827492797815,53.587555595114182 -1.201894256828057,53.587583266579252 -1.201926158864704,53.587604296755586 -1.201902161195297,53.587735468139918 -1.201268209447225,53.587667177909353</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Cromwell's Batteries motte and bailey castle, Skellow</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13214">
+		<SimpleData name="Name">Cromwell's Batteries motte and bailey castle, Skellow</SimpleData>
+		<SimpleData name="ListEntry">1012588</SimpleData>
+		<SimpleData name="SchedDate">1978/02/24</SimpleData>
+		<SimpleData name="AmendDate">1995/02/03</SimpleData>
+		<SimpleData name="LegacyUID">13214</SimpleData>
+		<SimpleData name="NGR">SE 52977 10444</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">452977.03739800001</SimpleData>
+		<SimpleData name="Northing">410445.08916199999</SimpleData>
+		<SimpleData name="AREA_HA">0.11526930080</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.200766533872344,53.588006561605781 -1.200813101743554,53.587821088651516 -1.200995870856876,53.58783512653504 -1.201012762009034,53.587786161930559 -1.201577016618005,53.58784861341983 -1.201547851676487,53.58796853256726 -1.201539438595768,53.587986093985656 -1.201522838874409,53.588010000568552 -1.201504344623054,53.588022209463333 -1.201482070901219,53.58803055502063 -1.20145504839973,53.588036774548179 -1.201385210650683,53.588035104128039 -1.201315161250305,53.588032641252987 -1.201229093033291,53.588028866979762 -1.20106234943535,53.588021345227631 -1.200900983188303,53.588013859179078 -1.200766533872344,53.588006561605781</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

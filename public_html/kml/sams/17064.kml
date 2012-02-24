@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17064</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17064" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17064">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site and fishponds NNW of St James' Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17064">
+		<SimpleData name="Name">Moated site and fishponds NNW of St James' Church</SimpleData>
+		<SimpleData name="ListEntry">1012524</SimpleData>
+		<SimpleData name="SchedDate">1993/01/04</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">17064</SimpleData>
+		<SimpleData name="NGR">SK 33800 05028</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">433786.64769200003</SimpleData>
+		<SimpleData name="Northing">305035.34639199998</SimpleData>
+		<SimpleData name="AREA_HA">0.50377093247</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.502416680273689,52.642362545952707 -1.501774484850768,52.642140156286118 -1.501463490730885,52.642196725306974 -1.500930285148916,52.642024529862496 -1.501044242491597,52.641908915219268 -1.501519849566908,52.642033455812822 -1.501733135521543,52.641999516902857 -1.501800439125084,52.64188742724609 -1.502020953149326,52.641583779243184 -1.50210486118078,52.641633611521605 -1.502189035348895,52.64165870490416 -1.502450742383705,52.64175686635388 -1.502572186901979,52.641806855819027 -1.502920815497648,52.64196438092916 -1.502632193084165,52.642309547422435 -1.502613043457506,52.642341821362983 -1.502416680273689,52.642362545952707</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Moated site and fishponds NNW of St James' Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17064">
+		<SimpleData name="Name">Moated site and fishponds NNW of St James' Church</SimpleData>
+		<SimpleData name="ListEntry">1012524</SimpleData>
+		<SimpleData name="SchedDate">1993/01/04</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">17064</SimpleData>
+		<SimpleData name="NGR">SK 33886 05134</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">433886.25637199997</SimpleData>
+		<SimpleData name="Northing">305133.93078400003</SimpleData>
+		<SimpleData name="AREA_HA">0.15602421306</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.50012756899472,52.642845710522323 -1.500251369376207,52.642682447264491 -1.501141137840714,52.642902515945281 -1.501004515604339,52.643107043275748 -1.500863727027885,52.643085333617954 -1.500799034425329,52.643049416696059 -1.500749900265254,52.643028128718335 -1.500625915054262,52.643007775054436 -1.500511061206761,52.642994094226857 -1.500422427184029,52.642964674754161 -1.500286315158171,52.64291262554012 -1.50012756899472,52.642845710522323</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20817</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20817" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20817">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Medieval boundary earthworks at Queen's Bank, 100m south east of Providence House</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20817">
+		<SimpleData name="Name">Medieval boundary earthworks at Queen's Bank, 100m south east of Providence House</SimpleData>
+		<SimpleData name="ListEntry">1009980</SimpleData>
+		<SimpleData name="SchedDate">1994/12/15</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20817</SimpleData>
+		<SimpleData name="NGR">TF 29926 14147</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">529937.04533400002</SimpleData>
+		<SimpleData name="Northing">314148.44814100000</SimpleData>
+		<SimpleData name="AREA_HA">2.83826228233</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.081135088108283,52.710114548477058 -0.077555928027322,52.709601889346636 -0.077518957654355,52.709739750435986 -0.075277193010463,52.709388781704433 -0.075482268721826,52.708685323320871 -0.07756253299428,52.708993003499423 -0.077743873706614,52.709022961880159 -0.077996612364752,52.709048844825126 -0.078265433108869,52.709085048795608 -0.078525999906749,52.709121118370653 -0.078791570169377,52.709168992659357 -0.0790352903639,52.709211495321156 -0.079344532400043,52.709270136876306 -0.07977176659543,52.709344094397608 -0.080212333146038,52.709428327136138 -0.08037973465111,52.709449469354254 -0.080547356430985,52.709465597966158 -0.080679502950075,52.709472763424465 -0.08078965187015,52.709477900325815 -0.081066541336012,52.709519254485208 -0.081275809419396,52.709552842238743 -0.081135088108283,52.710114548477058</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

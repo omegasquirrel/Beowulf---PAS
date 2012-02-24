@@ -126,22 +126,19 @@ class Pas_Service_Geo_Geoplanet {
      * @param integer $woeid
      */
     public function getPlace( $woeid = NULL )  {
-    if(strlen($woeid) > 0 ){
-    $key = 'geoplaceID'.$woeid;
+    if(!is_null($woeid)){
+    $key = 'geoplaceID' . $woeid;
     if (!($this->_cache->test($key))) {
-    $yql = 'select * from geo.places where woeid = '.$woeid;
+    $yql = 'select * from geo.places where woeid = ' . $woeid;
     $place = $this->_oauth->execute($yql, $this->_accessToken, 
     $this->_accessSecret,$this->_accessExpiry,$this->_handle);
     $this->_cache->save($place);
 	} else {
 	$place = $this->_cache->load($key);
 	}
-	$places = $place;
-    if(sizeof($places) > 0) {
+
     return  $this->_parser->parsePlace( $place );
-    } else {
-    return false;	
-    }
+
     } else {
     return false;
     }

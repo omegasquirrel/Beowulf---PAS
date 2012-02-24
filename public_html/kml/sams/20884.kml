@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20884</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20884" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20884">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Medieval monastic sheep farm (bercaria), 550m north-east of Whittondean Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20884">
+		<SimpleData name="Name">Medieval monastic sheep farm (bercaria), 550m north-east of Whittondean Farm</SimpleData>
+		<SimpleData name="ListEntry">1011292</SimpleData>
+		<SimpleData name="SchedDate">1993/10/18</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20884</SimpleData>
+		<SimpleData name="NGR">NU 05955 00200</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">405954.66111500002</SimpleData>
+		<SimpleData name="Northing">600199.96970500005</SimpleData>
+		<SimpleData name="AREA_HA">1.10525309001</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.906568647972222,55.296005890563876 -1.908043478242199,55.295195479304489 -1.90891730476727,55.29571337718648 -1.90897184533748,55.295745990960569 -1.907497503035893,55.296555847592899 -1.907442457355303,55.29652378986583 -1.906568647972222,55.296005890563876</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

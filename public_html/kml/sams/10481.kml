@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10481</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10481" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10481">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 400m south east of Longbarrow Cross Roads, east of A360</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10481">
+		<SimpleData name="Name">Bowl barrow 400m south east of Longbarrow Cross Roads, east of A360</SimpleData>
+		<SimpleData name="ListEntry">1011046</SimpleData>
+		<SimpleData name="SchedDate">1995/03/20</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10481</SimpleData>
+		<SimpleData name="NGR">SU 10103 41029</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">410103.27000100003</SimpleData>
+		<SimpleData name="Northing">141029.10759800000</SimpleData>
+		<SimpleData name="AREA_HA">0.06952839510</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.85681109080768,51.168289521262224 -1.85687740338016,51.168283002129584 -1.856943675227412,51.168289683160566 -1.857003429261153,51.168308909008701 -1.857050792985178,51.16833881117504 -1.857081155727661,51.168376443677197 -1.857091525198835,51.168418134142833 -1.857080898551551,51.168459808028793 -1.857050303743982,51.168497366193428 -1.85700275561953,51.168527152583586 -1.856942883017689,51.168546232419125 -1.85687656999448,51.168552760575253 -1.856810297862379,51.168546070519334 -1.856750543602762,51.168526844607435 -1.856703179880799,51.168496942320573 -1.856672817367195,51.168459309721236 -1.856662448237802,51.168417610197643 -1.856673075278989,51.168375945371103 -1.856703670312218,51.168338387304573 -1.856751218434723,51.168308601034937 -1.85681109080768,51.168289521262224</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

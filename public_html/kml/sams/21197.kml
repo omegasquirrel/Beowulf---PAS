@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21197</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21197" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21197">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Roos Castle moated site and associated fishponds</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21197">
+		<SimpleData name="Name">Roos Castle moated site and associated fishponds</SimpleData>
+		<SimpleData name="ListEntry">1008046</SimpleData>
+		<SimpleData name="SchedDate">1951/05/24</SimpleData>
+		<SimpleData name="AmendDate">1994/04/13</SimpleData>
+		<SimpleData name="LegacyUID">21197</SimpleData>
+		<SimpleData name="NGR">TA 29043 29475</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">529046.47178799997</SimpleData>
+		<SimpleData name="Northing">429475.03803300002</SimpleData>
+		<SimpleData name="AREA_HA">1.73702628563</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.043963137416314,53.746376670724253 -0.043910113429136,53.74608067649126 -0.043813106022206,53.746087039812728 -0.043717712310915,53.744994225337884 -0.045340085772965,53.74496671709187 -0.045585126282122,53.746097209869532 -0.045640060570643,53.746090914118511 -0.045668281974289,53.746267723389956 -0.045577371234188,53.746327666685772 -0.044283694847115,53.746403495698488 -0.044070684209901,53.74641441150235 -0.043985576810404,53.746416627203992 -0.043963137416314,53.746376670724253</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -58,17 +58,18 @@ class Pas_View_Helper_FindspotGeo
 	if(is_null($woeid)){
 	$place = $this->_geoplanet->reverseGeocode($lat,$lon);
 	$placeData = $this->_geoplanet->getPlace($place['woeid']);
-	$elevation = $this->_geoplanet->getElevation(NULL, $lat, $lon);
+//	$elevation = $this->_geoplanet->getElevation(NULL, $lat, $lon);
 	} else {
 	$placeData = $this->_geoplanet->getPlace($woeid);
-	$elevation = $this->_geoplanet->getElevation($woeid, NULL, NULL);
+//	$elevation = $this->_geoplanet->getElevation($woeid, NULL, NULL);
 	}
-	if(is_array($placeData) && is_array($elevation)) {
-	$placeinfo = array_merge($placeData, $elevation);
-	return $this->buildHtml($placeinfo);
-    } else {
-	return false;
-	}
+
+//	if(is_array($placeData) && is_array($elevation)) {
+//	$placeinfo = array_merge($placeData, $elevation);
+	return $this->buildHtml($placeData);
+//    } else {
+//	return false;
+//	}
     }
 
 	/** Function for determining whether elevation is -ve or +ve or =
@@ -95,8 +96,7 @@ class Pas_View_Helper_FindspotGeo
     * @return string $html
     */
     public function buildHtml($data){
-    $html = '';
-    $html .= '<h4>Data from Yahoo! GeoPlanet</h4>';
+    $html = '<h3>Data from Yahoo! GeoPlanet</h3>';
     $html .= '<p>The spatially enriched data provided here was sourced from the excellent Places/Placemaker service';
     $html .= ' from Yahoo\'s geo team.<br />';
     $html .= 'Settlement type: ' . $data['placeTypeName'] . '<br/>';
@@ -107,9 +107,9 @@ class Pas_View_Helper_FindspotGeo
     if(array_key_exists('admin1',$data)){
     $html .= 'Country: ' . $data['admin1'] . '<br/>';
     }
-    $html .= 'Astergdem generated elevation: ' . $this->metres($data['elevation']);
+//    $html .= 'Astergdem generated elevation: ' . $this->metres($data['elevation']);
     $html .= '</p>';
-  	$html .= $this->view->YahooGeoAdjacent($data['woeid']);
+  	
   	return $html;
     }
 

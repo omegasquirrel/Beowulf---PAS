@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20248</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20248" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20248">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 800m east of Dilton Farm forming part of Beaulieu Airfield round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20248">
+		<SimpleData name="Name">Bowl barrow 800m east of Dilton Farm forming part of Beaulieu Airfield round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1010069</SimpleData>
+		<SimpleData name="SchedDate">1992/07/15</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20248</SimpleData>
+		<SimpleData name="NGR">SU 33961 00738</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">433961.31599899998</SimpleData>
+		<SimpleData name="Northing">100738.23601500000</SimpleData>
+		<SimpleData name="AREA_HA">0.03090251117</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.519363579342902,50.805124799432598 -1.519407474329871,50.805120582787659 -1.519451279145625,50.805125160491549 -1.519490712372153,50.805138101316935 -1.519521898792247,50.805158121302703 -1.519541807067119,50.80518327463669 -1.519548461644329,50.805211089167784 -1.519541237426084,50.805238846576287 -1.519520815138336,50.805263833878229 -1.519489220821809,50.805283595483381 -1.519449525461671,50.805296210545549 -1.519427648877625,50.805298314676087 -1.519405630313353,50.805300427240013 -1.519361825338756,50.805295849484409 -1.519322391961179,50.805282908649595 -1.519291205598475,50.805262888576891 -1.519271297370413,50.805237735234819 -1.519264643008348,50.805209920688732 -1.519271867331641,50.80518216329741 -1.519292289770476,50.805157176004897 -1.519323884029614,50.805137414486708 -1.519363579342902,50.805124799432598</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

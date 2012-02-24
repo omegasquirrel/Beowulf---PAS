@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10401</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10401" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10401">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 50m south of Fargo Road, forming part of a nucleated round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10401">
+		<SimpleData name="Name">Bowl barrow 50m south of Fargo Road, forming part of a nucleated round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1009071</SimpleData>
+		<SimpleData name="SchedDate">1995/03/23</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10401</SimpleData>
+		<SimpleData name="NGR">SU 12180 43701</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">412180.00000100001</SimpleData>
+		<SimpleData name="Northing">143700.75900100000</SimpleData>
+		<SimpleData name="AREA_HA">0.08930384304</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.827010116585989,51.19225561263346 -1.827085314543815,51.192248242303151 -1.827160456644187,51.192255834456716 -1.827228190267154,51.192277649895551 -1.827281883705782,51.19231154773712 -1.827316283146672,51.192354211290727 -1.827328012778694,51.19240146326063 -1.827315930602068,51.192448680144643 -1.827281212977999,51.192491241842845 -1.827227266788737,51.192524981019425 -1.827159370577904,51.192546596464602 -1.827084172091456,51.192553966841658 -1.827009029573578,51.192546374639065 -1.826941295606132,51.192524559074059 -1.8268876022252,51.192490661077485 -1.826853203024579,51.192447997399093 -1.826841473866576,51.192400745382415 -1.826853556515312,51.192353528547478 -1.826888274483845,51.192310966975477 -1.826942220615412,51.192277227953902 -1.827010116585989,51.19225561263346</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

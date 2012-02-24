@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19099</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19099" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19099">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Shooters Hut disc barrow, 1500m south-west of Duckley Nap.</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19099">
+		<SimpleData name="Name">Shooters Hut disc barrow, 1500m south-west of Duckley Nap.</SimpleData>
+		<SimpleData name="ListEntry">1007341</SimpleData>
+		<SimpleData name="SchedDate">1930/10/17</SimpleData>
+		<SimpleData name="AmendDate">1993/10/12</SimpleData>
+		<SimpleData name="LegacyUID">19099</SimpleData>
+		<SimpleData name="NGR">SO 42106 95383</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">342105.80422300001</SimpleData>
+		<SimpleData name="Northing">295383.09977899998</SimpleData>
+		<SimpleData name="AREA_HA">0.40048583229</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.855127208259656,52.552889569251029 -2.855290958774309,52.552872545427391 -2.855455310657167,52.552887198185253 -2.855604204207994,52.55293208829773 -2.855723041171663,52.553002826353968 -2.855800212413557,52.55309249306729 -2.855828142692005,52.553192306039776 -2.855804104681243,52.553292485808534 -2.85573044420758,52.553383243118205 -2.855614392065203,52.553455679362067 -2.855467285164597,52.553502718137082 -2.855303547116659,52.553519742105955 -2.85513917817715,52.553505089255303 -2.85499028302947,52.553460189584229 -2.854871445935477,52.553389450798527 -2.854794290847185,52.553299783371592 -2.854766362959349,52.553199979131655 -2.854790403169434,52.553099790577896 -2.854864050326368,52.553009033949458 -2.85498010259907,52.552936598435032 -2.855127208259656,52.552889569251029</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21234</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21234" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21234">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow in Lady Boynton's Whin</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21234">
+		<SimpleData name="Name">Bowl barrow in Lady Boynton's Whin</SimpleData>
+		<SimpleData name="ListEntry">1007732</SimpleData>
+		<SimpleData name="SchedDate">1967/11/01</SimpleData>
+		<SimpleData name="AmendDate">1994/02/04</SimpleData>
+		<SimpleData name="LegacyUID">21234</SimpleData>
+		<SimpleData name="NGR">TA 12426 61820</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">512426.47017900000</SimpleData>
+		<SimpleData name="Northing">461819.88120100001</SimpleData>
+		<SimpleData name="AREA_HA">0.10576138922</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.284594166131995,54.039948946889631 -0.284681759665446,54.03994205257149 -0.284768682864721,54.039951436369549 -0.284846422260901,54.039976158905546 -0.284907379783363,54.040013819696156 -0.284945567905871,54.040060728801294 -0.284957282121933,54.040112276066594 -0.284941339301425,54.040163437850623 -0.284899335889676,54.040209194168455 -0.284835350221149,54.040245072845643 -0.284755666500915,54.04026755888642 -0.284668072719326,54.040274444309475 -0.284581148445216,54.040265069377796 -0.28450340904445,54.040240337689859 -0.284442451564637,54.040202676696055 -0.284404248259695,54.040155776230769 -0.284392550400829,54.040104220156827 -0.284408478186999,54.040053067210131 -0.284450497598897,54.040007302270247 -0.284514483224776,54.039971423796253 -0.284594166131995,54.039948946889631</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

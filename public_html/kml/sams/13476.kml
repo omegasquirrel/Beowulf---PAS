@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13476</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13476" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13476">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Bickerstaffe Hall.</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13476">
+		<SimpleData name="Name">Moated site at Bickerstaffe Hall.</SimpleData>
+		<SimpleData name="ListEntry">1011999</SimpleData>
+		<SimpleData name="SchedDate">1991/11/12</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13476</SimpleData>
+		<SimpleData name="NGR">SD 44341 03963</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">344348.51045499998</SimpleData>
+		<SimpleData name="Northing">403968.15108899999</SimpleData>
+		<SimpleData name="AREA_HA">0.71699013443</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.840415877768622,53.529038364790196 -2.841071919728616,53.528861842688407 -2.841891069375513,53.529655139729492 -2.841718209412016,53.529719628145152 -2.840638809550864,53.529906906924928 -2.840625333561281,53.529845780036922 -2.840609697825364,53.529788335709945 -2.840580910409777,53.529716593065025 -2.840542222361519,53.529632452739499 -2.840510606107053,53.529580873529099 -2.840475834220012,53.529532201810852 -2.840449515910905,53.52950360522297 -2.840421412805202,53.529466392053543 -2.840406309260828,53.529435802049079 -2.840386189032842,53.529395656382917 -2.840372391771627,53.529348751763045 -2.840363387264599,53.529300851676034 -2.840370644366965,53.529260513567294 -2.84038248521851,53.529208628760379 -2.840394487220091,53.52915193389547 -2.84038923133467,53.529101355786018 -2.84037119457035,53.529048332719761 -2.840415877768622,53.529038364790196</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

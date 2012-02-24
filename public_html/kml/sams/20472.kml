@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20472</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20472" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20472">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>A cross-dyke on Birdsall Brow</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20472">
+		<SimpleData name="Name">A cross-dyke on Birdsall Brow</SimpleData>
+		<SimpleData name="ListEntry">1007613</SimpleData>
+		<SimpleData name="SchedDate">1994/01/14</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20472</SimpleData>
+		<SimpleData name="NGR">SE 82643 63389</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">482649.14754400001</SimpleData>
+		<SimpleData name="Northing">463371.32162000000</SimpleData>
+		<SimpleData name="AREA_HA">0.36445485436</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.73812175062364,54.058936019873968 -0.738407076687726,54.058879186845026 -0.73879802822355,54.05957453558608 -0.739225115309176,54.059960455167264 -0.739710947498398,54.060346143743033 -0.739701821618117,54.060363458348434 -0.739694377846754,54.060372647217356 -0.739685530570991,54.060381264143167 -0.739675255919814,54.06038958746057 -0.739663571417093,54.060397042113252 -0.739650476518108,54.060403646095935 -0.739636924966326,54.060409688019881 -0.739621963232325,54.060414870292078 -0.739606080154437,54.060419197999373 -0.739589757562229,54.060422397570392 -0.739572971759594,54.060424747375968 -0.7395557465022,54.060425969079738 -0.739538555248663,54.060426067573815 -0.739521389293829,54.060425330438186 -0.739504722424035,54.060423753653929 -0.739488098208136,54.060420766148042 -0.739471979640039,54.06041722666528 -0.739456368593935,54.060412568969021 -0.739442203547635,54.060407081512906 -0.738880742775418,54.059964988850396 -0.738525481711899,54.059651169861532 -0.73812175062364,54.058936019873968</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

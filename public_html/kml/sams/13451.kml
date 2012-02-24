@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13451</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13451" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13451">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site 180m W of Fir Tree Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13451">
+		<SimpleData name="Name">Moated site 180m W of Fir Tree Farm</SimpleData>
+		<SimpleData name="ListEntry">1011882</SimpleData>
+		<SimpleData name="SchedDate">1973/10/24</SimpleData>
+		<SimpleData name="AmendDate">1991/11/08</SimpleData>
+		<SimpleData name="LegacyUID">13451</SimpleData>
+		<SimpleData name="NGR">SJ 39296 63491</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">339295.60371800000</SimpleData>
+		<SimpleData name="Northing">363490.53209699999</SimpleData>
+		<SimpleData name="AREA_HA">0.96168662320</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.908401615848066,53.164961154432504 -2.909976223930923,53.164483084998281 -2.910480379245374,53.165175573057098 -2.910200643686237,53.165247432120935 -2.910012092959384,53.165308031362628 -2.909879804883833,53.165370312847266 -2.909645369684242,53.165422812205058 -2.909341028935202,53.165494857196933 -2.909159326277325,53.165546943899841 -2.90905102840492,53.165579466745342 -2.908928701384507,53.165614200068852 -2.908401615848066,53.164961154432504</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21631</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21631" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21631">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Churchyard cross in St Peter's churchyard</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21631">
+		<SimpleData name="Name">Churchyard cross in St Peter's churchyard</SimpleData>
+		<SimpleData name="ListEntry">1017762</SimpleData>
+		<SimpleData name="SchedDate">1998/01/16</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21631</SimpleData>
+		<SimpleData name="NGR">SP 29879 44520</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">429878.71400300000</SimpleData>
+		<SimpleData name="Northing">244519.75950099999</SimpleData>
+		<SimpleData name="AREA_HA">0.00249950028</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.565205373659419,52.098193031985659 -1.565278361856353,52.098193300967083 -1.565277925231154,52.098238243402584 -1.565204936960874,52.098237974420712 -1.565205373659419,52.098193031985659</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

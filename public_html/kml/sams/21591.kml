@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21591</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21591" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21591">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Churchyard cross, St Mary's churchyard</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21591">
+		<SimpleData name="Name">Churchyard cross, St Mary's churchyard</SimpleData>
+		<SimpleData name="ListEntry">1012661</SimpleData>
+		<SimpleData name="SchedDate">1974/01/08</SimpleData>
+		<SimpleData name="AmendDate">1995/06/09</SimpleData>
+		<SimpleData name="LegacyUID">21591</SimpleData>
+		<SimpleData name="NGR">SJ 84116 26520</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">384115.76217900001</SimpleData>
+		<SimpleData name="Northing">326519.75100100000</SimpleData>
+		<SimpleData name="AREA_HA">0.00772532287</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.237208016213144,52.835914048599228 -2.23723093827612,52.83591180034631 -2.237253884308693,52.83591395684499 -2.237274611739782,52.835920297866842 -2.237291083483701,52.835930207250165 -2.237301691117484,52.835942717272104 -2.237305403731762,52.835956598538175 -2.237301842676185,52.835970494324535 -2.237291371775684,52.835983046557686 -2.237275008494063,52.835993021603933 -2.23725435066287,52.835999445458441 -2.237231428611602,52.836001693715758 -2.237208482477264,52.835999537212977 -2.237187755017823,52.835993196145424 -2.237171283273689,52.835983286782195 -2.237160660831322,52.835970776744006 -2.237156963154642,52.835956895477928 -2.23716050936269,52.835942999691298 -2.237170995127439,52.835930447474205 -2.237187358409277,52.835920472407871 -2.237208016213144,52.835914048599228</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

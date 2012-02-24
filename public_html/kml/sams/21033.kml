@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21033</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21033" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21033">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Cup and ring marked rock, 1km south-west of East Bolton</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21033">
+		<SimpleData name="Name">Cup and ring marked rock, 1km south-west of East Bolton</SimpleData>
+		<SimpleData name="ListEntry">1007519</SimpleData>
+		<SimpleData name="SchedDate">1973/10/25</SimpleData>
+		<SimpleData name="AmendDate">1994/01/12</SimpleData>
+		<SimpleData name="LegacyUID">21033</SimpleData>
+		<SimpleData name="NGR">NU 12421 15460</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">412420.96285499999</SimpleData>
+		<SimpleData name="Northing">615460.45035599999</SimpleData>
+		<SimpleData name="AREA_HA">0.00576179939</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.805211265372774,55.432843397413357 -1.805320398820431,55.432843570853031 -1.805322499790152,55.432917704819886 -1.805210900879187,55.432917527462962 -1.805211265372774,55.432843397413357</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

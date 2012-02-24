@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15494</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15494" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15494">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Gig shed on the north coast of Great Porth, Bryher</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15494">
+		<SimpleData name="Name">Gig shed on the north coast of Great Porth, Bryher</SimpleData>
+		<SimpleData name="ListEntry">1016173</SimpleData>
+		<SimpleData name="SchedDate">1997/09/25</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15494</SimpleData>
+		<SimpleData name="NGR">SV 87548 14706</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">87547.87904380000</SimpleData>
+		<SimpleData name="Northing">14706.20634810000</SimpleData>
+		<SimpleData name="AREA_HA">0.01242740369</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.357133267825057,49.950626865362317 -6.357264551173452,49.950524418125433 -6.357354635568368,49.95057249815131 -6.357223353156789,49.950674954449099 -6.357133267825057,49.950626865362317</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

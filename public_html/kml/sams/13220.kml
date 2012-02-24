@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13220</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13220" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13220">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Thorpe in Balne moated site, chapel and fishpond.</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13220">
+		<SimpleData name="Name">Thorpe in Balne moated site, chapel and fishpond.</SimpleData>
+		<SimpleData name="ListEntry">1012111</SimpleData>
+		<SimpleData name="SchedDate">1979/10/05</SimpleData>
+		<SimpleData name="AmendDate">1991/07/10</SimpleData>
+		<SimpleData name="LegacyUID">13220</SimpleData>
+		<SimpleData name="NGR">SE 59909 11148</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">459909.65712900000</SimpleData>
+		<SimpleData name="Northing">411148.02633000002</SimpleData>
+		<SimpleData name="AREA_HA">2.78336691705</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.095209631879112,53.593036615650867 -1.095318718974387,53.592592945245251 -1.096485808319086,53.592726370108387 -1.097083240295273,53.592796288575933 -1.097248030012907,53.592802700034959 -1.097326181181572,53.592801563679352 -1.097375388818731,53.592800208965258 -1.097432546437519,53.592776029244661 -1.097644545266687,53.592933067471797 -1.09770144933741,53.592978250674676 -1.097392194016896,53.594320306632177 -1.094956653310413,53.594201934839887 -1.095209631879112,53.593036615650867</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Thorpe in Balne moated site, chapel and fishpond.</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13220">
+		<SimpleData name="Name">Thorpe in Balne moated site, chapel and fishpond.</SimpleData>
+		<SimpleData name="ListEntry">1012111</SimpleData>
+		<SimpleData name="SchedDate">1979/10/05</SimpleData>
+		<SimpleData name="AmendDate">1991/07/10</SimpleData>
+		<SimpleData name="LegacyUID">13220</SimpleData>
+		<SimpleData name="NGR">SE 59935 11012</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">459929.97378000000</SimpleData>
+		<SimpleData name="Northing">411010.75146399997</SimpleData>
+		<SimpleData name="AREA_HA">0.21464734986</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.096167895027465,53.591916110798223 -1.096219557289707,53.591916500921521 -1.09627937790923,53.5919374376614 -1.096321883507146,53.591963376083967 -1.096347168314949,53.591989184473228 -1.096346294339161,53.592030156897764 -1.096240558999032,53.592546751056219 -1.09558767254151,53.592475222841287 -1.096029394167343,53.591950920338327 -1.096081587885644,53.591925697051352 -1.096167895027465,53.591916110798223</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

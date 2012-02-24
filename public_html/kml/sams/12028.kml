@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12028</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12028" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12028">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Smewin's Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12028">
+		<SimpleData name="Name">Moated site at Smewin's Farm</SimpleData>
+		<SimpleData name="ListEntry">1013171</SimpleData>
+		<SimpleData name="SchedDate">1977/03/03</SimpleData>
+		<SimpleData name="AmendDate">1990/05/03</SimpleData>
+		<SimpleData name="LegacyUID">12028</SimpleData>
+		<SimpleData name="NGR">SU 84661 76132</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">484662.83287899999</SimpleData>
+		<SimpleData name="Northing">176130.94060500001</SimpleData>
+		<SimpleData name="AREA_HA">0.20957609264</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.782036232262072,51.478055600430821 -0.781979878022701,51.477913670748848 -0.781969635171116,51.477881939665636 -0.781948169848556,51.477852016352138 -0.781916438556537,51.477799344670132 -0.781889776330317,51.477681785715696 -0.78190188083245,51.477642535693072 -0.781908468363109,51.477621194267144 -0.781941583811621,51.477595938098375 -0.781987991477222,51.47758469453435 -0.782064921695913,51.477582292296802 -0.782165393973439,51.47759293000771 -0.782320725979861,51.477608570200729 -0.782434543307277,51.47762637791395 -0.782563841570119,51.477651180111408 -0.782603683745494,51.477671816568986 -0.782622845142497,51.477681735766609 -0.782629287188401,51.4777340098967 -0.782658011005526,51.477763370001242 -0.782693690606269,51.477866824050686 -0.782705488926723,51.477914253169892 -0.782761569265611,51.477995142308764 -0.782579676304631,51.478004611235889 -0.782250957286482,51.478035323199421 -0.782036232262072,51.478055600430821</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>-0.782341112689026,51.477792046817243 -0.782138788609745,51.477782527771609 -0.782122721355714,51.477937067470059 -0.782314670594644,51.477951739111511 -0.782341112689026,51.477792046817243</coordinates></LinearRing></innerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

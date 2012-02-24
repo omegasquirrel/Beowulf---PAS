@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12076</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12076" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12076">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bell barrow on Bowledge Hill</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12076">
+		<SimpleData name="Name">Bell barrow on Bowledge Hill</SimpleData>
+		<SimpleData name="ListEntry">1013012</SimpleData>
+		<SimpleData name="SchedDate">1973/12/07</SimpleData>
+		<SimpleData name="AmendDate">1991/02/07</SimpleData>
+		<SimpleData name="LegacyUID">12076</SimpleData>
+		<SimpleData name="NGR">SU 91342 68719</SimpleData>
+		<SimpleData name="CaptureSca">1:2500</SimpleData>
+		<SimpleData name="Easting">491342.27329300001</SimpleData>
+		<SimpleData name="Northing">168717.39207400000</SimpleData>
+		<SimpleData name="AREA_HA">0.06936007732</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.687835701825126,51.410055612250041 -0.687902774600687,51.410023092195871 -0.687981396551152,51.409979910853323 -0.687995720665681,51.409990861737015 -0.688063301356572,51.410041074817023 -0.68807997930094,51.410055190276999 -0.688157198366166,51.410012289830163 -0.688300752572769,51.410112387042297 -0.688248867634766,51.410219145397896 -0.688221970224264,51.410224491432558 -0.688139523066773,51.410241552989859 -0.687952755126765,51.410280817404114 -0.687941850999752,51.410265417722748 -0.687893702627583,51.41018934492628 -0.687865193851107,51.410147500178518 -0.687810665023061,51.410069296759815 -0.687835701825126,51.410055612250041</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

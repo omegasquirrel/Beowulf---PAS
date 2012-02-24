@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15196</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15196" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15196">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Peat stack platform 650m north-west of Bowhayland Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15196">
+		<SimpleData name="Name">Peat stack platform 650m north-west of Bowhayland Farm</SimpleData>
+		<SimpleData name="ListEntry">1011881</SimpleData>
+		<SimpleData name="SchedDate">1974/07/18</SimpleData>
+		<SimpleData name="AmendDate">1993/02/26</SimpleData>
+		<SimpleData name="LegacyUID">15196</SimpleData>
+		<SimpleData name="NGR">SX 23474 77649</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">223473.80738099999</SimpleData>
+		<SimpleData name="Northing">77649.10208159999</SimpleData>
+		<SimpleData name="AREA_HA">0.01473958212</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.494148230602305,50.571842801057606 -4.49423429563813,50.571771599834229 -4.494399211800777,50.571852452432779 -4.494312935740658,50.57192366728998 -4.494148230602305,50.571842801057606</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

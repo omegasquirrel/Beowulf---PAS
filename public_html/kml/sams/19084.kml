@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19084</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19084" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19084">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site 70m south of Long Plantation, Hanslope Park</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19084">
+		<SimpleData name="Name">Moated site 70m south of Long Plantation, Hanslope Park</SimpleData>
+		<SimpleData name="ListEntry">1011303</SimpleData>
+		<SimpleData name="SchedDate">1993/11/04</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">19084</SimpleData>
+		<SimpleData name="NGR">SP 82315 45452</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">482315.85163200001</SimpleData>
+		<SimpleData name="Northing">245450.10074100000</SimpleData>
+		<SimpleData name="AREA_HA">0.13644043029</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.799498796384224,52.101440021948775 -0.799448335374085,52.101393393230829 -0.799405363057811,52.101400643015914 -0.799384024358782,52.101398231940642 -0.799364716997032,52.10138704832157 -0.799356123015757,52.101374885888184 -0.799357066148889,52.101339758575442 -0.799329356104599,52.101309833016778 -0.799283868787887,52.101277532622888 -0.79928138322896,52.101236885901912 -0.799295997199288,52.101223853882345 -0.799326710618326,52.101208800943851 -0.799348152648131,52.101206816487291 -0.799430210939749,52.101205458207055 -0.799455582450923,52.101190341893393 -0.799587192447827,52.10113568572833 -0.799622070781175,52.101122653183566 -0.799684453544359,52.101099345124936 -0.799750986544501,52.101078066300502 -0.799804480351941,52.101077513918007 -0.799820256053081,52.101087555613589 -0.799860784263986,52.101105536561164 -0.799918692330861,52.101140156984869 -0.799953931823787,52.101157733410396 -0.800062454410883,52.101230559204012 -0.800022602091588,52.101254303532635 -0.799881278674922,52.101338513672964 -0.799847018804877,52.101352433739571 -0.799670352630217,52.101458239981014 -0.799676090120528,52.101475111618633 -0.799603412497102,52.101492488665265 -0.799587454064545,52.101491427081001 -0.799583892795127,52.101490842400587 -0.799563591706687,52.101483496832927 -0.799509713004271,52.101448332890854 -0.799498796384224,52.101440021948775</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

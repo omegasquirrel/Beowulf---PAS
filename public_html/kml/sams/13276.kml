@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13276</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13276" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13276">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Middleham Castle: twelfth century tower  keep  castle  and  fourteenth century concentric castle.</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13276">
+		<SimpleData name="Name">Middleham Castle: twelfth century tower  keep  castle  and  fourteenth century concentric castle.</SimpleData>
+		<SimpleData name="ListEntry">1010629</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1992/04/09</SimpleData>
+		<SimpleData name="LegacyUID">13276</SimpleData>
+		<SimpleData name="NGR">SE 12664 87592</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">412670.15376000002</SimpleData>
+		<SimpleData name="Northing">487588.32268600003</SimpleData>
+		<SimpleData name="AREA_HA">0.86949037907</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.806409476840721,54.283778689971641 -1.806399564480977,54.283097495127556 -1.807589104949818,54.283275761790804 -1.807290085318174,54.283697029281157 -1.807329316899551,54.283716261653588 -1.807355401470637,54.283741862957413 -1.807361799362049,54.283776375184111 -1.807339826748729,54.28380446122317 -1.807285157276136,54.283818430035332 -1.807357057816989,54.284325910364366 -1.807352257419061,54.284416646863193 -1.806548253962573,54.284461367360407 -1.806532078847994,54.28442217508001 -1.806498675276823,54.284319433379132 -1.806431489147956,54.28420813557063 -1.806409476840721,54.283778689971641</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15375</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15375" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15375">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Civil War battery on northern slope of Mount Todden Down, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15375">
+		<SimpleData name="Name">Civil War battery on northern slope of Mount Todden Down, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1010166</SimpleData>
+		<SimpleData name="SchedDate">1995/02/09</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15375</SimpleData>
+		<SimpleData name="NGR">SV 93000 11633</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">92999.44648319999</SimpleData>
+		<SimpleData name="Northing">11632.01171550000</SimpleData>
+		<SimpleData name="AREA_HA">0.03604466218</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.278834642838853,49.92586952854834 -6.278809403378786,49.92579978054605 -6.279213536543503,49.925794056132716 -6.279218699378951,49.925852263675672 -6.279198230617671,49.925889894984621 -6.279162177784744,49.925912742417644 -6.279105788743087,49.925920972631104 -6.27901904533377,49.925924053115693 -6.278934434370324,49.925921160896117 -6.278876129478001,49.925907947107689 -6.278834642838853,49.92586952854834</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

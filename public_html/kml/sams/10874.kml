@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10874</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10874" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10874">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Windmill Hill Cave, Brixham</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10874">
+		<SimpleData name="Name">Windmill Hill Cave, Brixham</SimpleData>
+		<SimpleData name="ListEntry">1008681</SimpleData>
+		<SimpleData name="SchedDate">1992/01/30</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10874</SimpleData>
+		<SimpleData name="NGR">SX 92457 55983</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">292456.75664699997</SimpleData>
+		<SimpleData name="Northing">55980.51035640000</SimpleData>
+		<SimpleData name="AREA_HA">0.07001163525</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.514118202733842,50.393724567293631 -3.514539162396868,50.393711665593237 -3.514541371001561,50.393747414026407 -3.514533059324064,50.393789451193257 -3.514517119139506,50.393834043033031 -3.51449150659755,50.39387753767366 -3.514446716804259,50.393924978490141 -3.514399621543774,50.393960118877331 -3.514322103103519,50.394009218014276 -3.514251780528165,50.39404218750925 -3.514118202733842,50.393724567293631</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

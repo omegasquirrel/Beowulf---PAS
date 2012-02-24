@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21602</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21602" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21602">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Abbots Bromley market cross</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21602">
+		<SimpleData name="Name">Abbots Bromley market cross</SimpleData>
+		<SimpleData name="ListEntry">1012672</SimpleData>
+		<SimpleData name="SchedDate">1935/09/25</SimpleData>
+		<SimpleData name="AmendDate">1995/06/12</SimpleData>
+		<SimpleData name="LegacyUID">21602</SimpleData>
+		<SimpleData name="NGR">SK 08039 24573</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">408039.03300100000</SimpleData>
+		<SimpleData name="Northing">324572.74200099998</SimpleData>
+		<SimpleData name="AREA_HA">0.00772502870</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.882133475721363,52.818590791620878 -1.882156406713385,52.81858861193227 -1.882179325874456,52.81859083703678 -1.882199993172578,52.818597240000791 -1.882216377431218,52.81860719854069 -1.88222687877064,52.818619740233196 -1.882230476666178,52.818633632506277 -1.882226803850448,52.818647517547639 -1.882216234900308,52.818660038380912 -1.882199796977329,52.818669964423691 -1.882179095201427,52.818676326421922 -1.88215616410765,52.818678506149098 -1.882133244958365,52.818676281005878 -1.882112577632594,52.818669878030313 -1.882096193374127,52.818659919476211 -1.882085692062717,52.818647377772237 -1.882082094155502,52.818633485529048 -1.882085767072877,52.818619600457936 -1.882096336050624,52.818607079636216 -1.882112773973432,52.818597153607662 -1.882133475721363,52.818590791620878</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

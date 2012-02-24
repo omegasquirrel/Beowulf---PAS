@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15378</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15378" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15378">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Civil War battery on Helvear Hill, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15378">
+		<SimpleData name="Name">Civil War battery on Helvear Hill, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1010169</SimpleData>
+		<SimpleData name="SchedDate">1995/02/14</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15378</SimpleData>
+		<SimpleData name="NGR">SV 92335 12404</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">92334.97510620000</SimpleData>
+		<SimpleData name="Northing">12401.54863030000</SimpleData>
+		<SimpleData name="AREA_HA">0.07566434307</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.288565730976229,49.932345884612403 -6.289155220533417,49.932316747425176 -6.289188524401641,49.932352028266699 -6.289183596348691,49.932381419115032 -6.289136455636266,49.932402637860434 -6.289082027966214,49.93242656512242 -6.28904456212959,49.93247177457971 -6.288998715572093,49.932507549447152 -6.288940723812964,49.93253403821263 -6.288896486150628,49.932545422244189 -6.288843853949306,49.932547372182633 -6.288798752585273,49.932549043096522 -6.28876941566921,49.932516044669342 -6.288721509670519,49.932486172719706 -6.28866650431708,49.932461431766384 -6.28862387417103,49.932448406969613 -6.288577248613883,49.932433091618769 -6.288555658795599,49.932402244693158 -6.288545122072422,49.932368558736712 -6.288565730976229,49.932345884612403</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

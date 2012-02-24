@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10516</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10516" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10516">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Enclosure on the west side of the Erme valley below Stalldown</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10516">
+		<SimpleData name="Name">Enclosure on the west side of the Erme valley below Stalldown</SimpleData>
+		<SimpleData name="ListEntry">1012767</SimpleData>
+		<SimpleData name="SchedDate">1991/11/29</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10516</SimpleData>
+		<SimpleData name="NGR">SX 64097 61700</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">264097.29167100001</SimpleData>
+		<SimpleData name="Northing">61699.40931860000</SimpleData>
+		<SimpleData name="AREA_HA">0.06662730021</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.914988603760068,50.439269662248805 -3.915031159713528,50.439263646107669 -3.915061974120018,50.439260863241216 -3.915114411577426,50.439263795350108 -3.91517634887557,50.439266571012517 -3.91521431507422,50.439264425841998 -3.91527078272164,50.439262533670906 -3.915300023089428,50.439266810022708 -3.915333845286928,50.439279924032896 -3.915368035067623,50.439302142959257 -3.91538272084028,50.439312532082461 -3.915391498284513,50.439323782986868 -3.915401747446155,50.439341836164338 -3.915408299582496,50.439356919211249 -3.915406625885435,50.439374413234532 -3.915403524605837,50.439385850765255 -3.915398627378357,50.439411753354705 -3.915380072969313,50.439423445362294 -3.915348627934956,50.439439909625911 -3.915317182826381,50.439456373916428 -3.915284402406683,50.439469064654396 -3.91524086662012,50.439480466471537 -3.915157690548011,50.439481854065441 -3.915125201093411,50.439472450565098 -3.915090441535317,50.439465422940167 -3.915048271174403,50.439451690812902 -3.914997476885056,50.439430509662479 -3.914964806084916,50.43941661211187 -3.914952529678263,50.439406947754883 -3.914938597370022,50.439385915211219 -3.914932798725532,50.439360188737176 -3.914935593481068,50.439341156281536 -3.914939370127563,50.439316792179135 -3.914951587409947,50.439295338100557 -3.914966366369155,50.439278383816287 -3.914988603760068,50.439269662248805</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

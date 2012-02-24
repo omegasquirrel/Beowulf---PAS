@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10069</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10069" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10069">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Boundary earthwork and associated bowl barrow on Windmill Hill</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10069">
+		<SimpleData name="Name">Boundary earthwork and associated bowl barrow on Windmill Hill</SimpleData>
+		<SimpleData name="ListEntry">1010288</SimpleData>
+		<SimpleData name="SchedDate">1965/03/17</SimpleData>
+		<SimpleData name="AmendDate">1990/01/19</SimpleData>
+		<SimpleData name="LegacyUID">10069</SimpleData>
+		<SimpleData name="NGR">SU 24277 51395</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">424279.74229500000</SimpleData>
+		<SimpleData name="Northing">151390.60327200001</SimpleData>
+		<SimpleData name="AREA_HA">0.61873267538</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.651717654459611,51.260509587442584 -1.651903438268506,51.260350902546215 -1.652120855828866,51.260468802288457 -1.652933060442107,51.260851962737917 -1.653737201261085,51.261192373356543 -1.654392777976191,51.261462131763423 -1.655198312185344,51.26173595160099 -1.654918769577565,51.261880230340559 -1.654296528061257,51.261660900752425 -1.653741074789662,51.26144573067306 -1.653125791286248,51.261186941101599 -1.652378259523337,51.260839500761364 -1.651717654459611,51.260509587442584</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Boundary earthwork and associated bowl barrow on Windmill Hill</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10069">
+		<SimpleData name="Name">Boundary earthwork and associated bowl barrow on Windmill Hill</SimpleData>
+		<SimpleData name="ListEntry">1010288</SimpleData>
+		<SimpleData name="SchedDate">1965/03/17</SimpleData>
+		<SimpleData name="AmendDate">1990/01/19</SimpleData>
+		<SimpleData name="LegacyUID">10069</SimpleData>
+		<SimpleData name="NGR">SU 24640 50901</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">424639.15535800002</SimpleData>
+		<SimpleData name="Northing">150915.72494399999</SimpleData>
+		<SimpleData name="AREA_HA">0.87967037445</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.647852991505783,51.255441832672709 -1.648212155909504,51.255339577014595 -1.648218869582661,51.255366788597364 -1.648315890905818,51.255707611302235 -1.648352010322653,51.256052396333118 -1.648435062972554,51.256552962616539 -1.648518462498685,51.257010117035534 -1.648583854554737,51.257478025576695 -1.648650534677163,51.257837199184522 -1.648716387726282,51.258305117952069 -1.648714813850036,51.258511782460303 -1.648335343858385,51.258238639899119 -1.648194623207245,51.257328554448705 -1.648152974951193,51.257321640504827 -1.648098952110924,51.257317602757652 -1.648017476242853,51.257269880917313 -1.648047341847293,51.257200202688836 -1.64810003871443,51.257175165729031 -1.648188725974931,51.257141640614627 -1.648174914011588,51.257047391248499 -1.647852991505783,51.255441832672709</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

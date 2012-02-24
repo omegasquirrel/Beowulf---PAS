@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19003</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19003" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19003">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>The Toot: a motte and bailey castle and later manorial complex 450m south west of St Mary's Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19003">
+		<SimpleData name="Name">The Toot: a motte and bailey castle and later manorial complex 450m south west of St Mary's Church</SimpleData>
+		<SimpleData name="ListEntry">1007936</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1991/12/23</SimpleData>
+		<SimpleData name="LegacyUID">19003</SimpleData>
+		<SimpleData name="NGR">SP 82886 36454</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">482884.80680500000</SimpleData>
+		<SimpleData name="Northing">236455.16499300001</SimpleData>
+		<SimpleData name="AREA_HA">4.23228668444</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.793050346561711,52.021226292444616 -0.792558854560199,52.021217858321229 -0.792018363342978,52.021231694396633 -0.791912000900679,52.020772478161383 -0.791906541931891,52.020726261664514 -0.791900493179627,52.020639183335028 -0.791910225699246,52.020518091478259 -0.791963423268722,52.020261481170621 -0.79201891453898,52.020089042453932 -0.792022105899973,52.019970553896712 -0.792076710217291,52.019820745739054 -0.792142613390613,52.019727571751041 -0.79230399496614,52.0196032060703 -0.79247220975207,52.019492396917066 -0.792805389378974,52.019358947718011 -0.794871045163376,52.01938400419256 -0.795053451504535,52.019945658307854 -0.795123843138295,52.020138150209476 -0.795123531477849,52.020230036514562 -0.79502085004162,52.020757701643248 -0.794939161824692,52.021226977073759 -0.794671415675216,52.021229570233423 -0.794152544418349,52.021258886260995 -0.793981598204704,52.021274444651716 -0.793588575455146,52.021279745118214 -0.793295261154239,52.021270079219988 -0.793050346561711,52.021226292444616</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

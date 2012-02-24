@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13511</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13511" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13511">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Ribden</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13511">
+		<SimpleData name="Name">Moated site at Ribden</SimpleData>
+		<SimpleData name="ListEntry">1012432</SimpleData>
+		<SimpleData name="SchedDate">1968/06/13</SimpleData>
+		<SimpleData name="AmendDate">1992/09/22</SimpleData>
+		<SimpleData name="LegacyUID">13511</SimpleData>
+		<SimpleData name="NGR">SK 07539 47086</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">407537.34273999999</SimpleData>
+		<SimpleData name="Northing">347086.38100300002</SimpleData>
+		<SimpleData name="AREA_HA">0.35030083521</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.888693243907948,53.020768355059985 -1.889393278769577,53.020649055500066 -1.88940997228234,53.020679409324266 -1.889437335558331,53.020728874957669 -1.889525017777637,53.020870813793806 -1.889361374266419,53.021315903008535 -1.889303351324539,53.021340047885332 -1.888803994707836,53.021336895466931 -1.888750511625056,53.021328782325128 -1.888583423660686,53.021265747299822 -1.888814620627485,53.020849927876576 -1.888693243907948,53.020768355059985</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

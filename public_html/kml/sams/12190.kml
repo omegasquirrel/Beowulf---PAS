@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12190</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12190" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12190">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Long barrow on Easton Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12190">
+		<SimpleData name="Name">Long barrow on Easton Down</SimpleData>
+		<SimpleData name="ListEntry">1013366</SimpleData>
+		<SimpleData name="SchedDate">1956/07/16</SimpleData>
+		<SimpleData name="AmendDate">1991/03/07</SimpleData>
+		<SimpleData name="LegacyUID">12190</SimpleData>
+		<SimpleData name="NGR">SU 06374 66094</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">406374.54333199997</SimpleData>
+		<SimpleData name="Northing">166094.09519200001</SimpleData>
+		<SimpleData name="AREA_HA">0.24867407962</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.909438054363678,51.394091371699439 -1.909402701332083,51.39360753178763 -1.910131311075449,51.393644767985201 -1.9101360866434,51.394062217041899 -1.909438054363678,51.394091371699439</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

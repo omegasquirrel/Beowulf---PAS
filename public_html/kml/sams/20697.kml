@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20697</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20697" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20697">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>The Howses moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20697">
+		<SimpleData name="Name">The Howses moated site</SimpleData>
+		<SimpleData name="ListEntry">1011613</SimpleData>
+		<SimpleData name="SchedDate">1993/09/15</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20697</SimpleData>
+		<SimpleData name="NGR">TL 63888 36548</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">563893.89860900003</SimpleData>
+		<SimpleData name="Northing">236551.24567900001</SimpleData>
+		<SimpleData name="AREA_HA">0.64237482509</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.386189995179116,52.002827108752015 0.385981351172498,52.002780807525305 0.385954787049536,52.002794447990311 0.385774066145455,52.002930975117998 0.385637774378964,52.003047888251892 0.385493295151459,52.003181819175182 0.385385568160157,52.00328218248054 0.385337691823624,52.003286866286068 0.385351368506245,52.003333899146796 0.385458701977882,52.003337632818408 0.385540913777839,52.003375561541148 0.385687351564115,52.003409931812747 0.386079472869661,52.003542342453898 0.386199189006154,52.003569852684898 0.386272685022093,52.003583335881117 0.386348796258213,52.003589284204502 0.386542748639891,52.003587223749292 0.386555145981614,52.003585542654022 0.38657586534035,52.003582811614706 0.386598663089759,52.003581899914309 0.386621151717937,52.003579834418744 0.386643273038585,52.003576616341896 0.386664882004305,52.003572257577261 0.386685935875552,52.003566777001026 0.386706045971876,52.003560263414791 0.386725327820703,52.003552696502133 0.386743422737336,52.003544182466499 0.386760374948038,52.003534729365292 0.386775915494581,52.003524486555868 0.386794619807729,52.00347731907015 0.386844707564952,52.003335947680355 0.386877626211681,52.003213646845104 0.386910317330739,52.002973449022839 0.386484641386907,52.002894120961209 0.386393181372353,52.002884742897052 0.386189995179116,52.002827108752015</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

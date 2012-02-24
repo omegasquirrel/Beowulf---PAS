@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21592</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21592" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21592">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Anglo-Scandinavian cross, All Saints' churchyard</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21592">
+		<SimpleData name="Name">Anglo-Scandinavian cross, All Saints' churchyard</SimpleData>
+		<SimpleData name="ListEntry">1012662</SimpleData>
+		<SimpleData name="SchedDate">1963/11/13</SimpleData>
+		<SimpleData name="AmendDate">1995/06/12</SimpleData>
+		<SimpleData name="LegacyUID">21592</SimpleData>
+		<SimpleData name="NGR">SJ 85984 28575</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">385984.43130900001</SimpleData>
+		<SimpleData name="Northing">328574.93700099998</SimpleData>
+		<SimpleData name="AREA_HA">0.00772557273</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.209558411161585,52.854441056379798 -2.209581344366775,52.854438813461044 -2.209604298871889,52.854440975288099 -2.209625031062799,52.854447321112268 -2.209641503602378,52.854457234265091 -2.209652107826095,52.854469746755598 -2.209655813164223,52.8544836288497 -2.209652241835221,52.854497523773119 -2.209641758510574,52.854510073540574 -2.209625381870085,52.85452004475799 -2.20960471121399,52.854526463759889 -2.209581777907358,52.854528706717559 -2.209558823413528,52.854526544851829 -2.209538091137824,52.854520199016306 -2.209521603812269,52.854510285875371 -2.209510999559472,52.85449777337336 -2.209507309108772,52.854483891282769 -2.209510865640513,52.85446999635559 -2.209521349049984,52.854457446599476 -2.209537740476433,52.854447475370186 -2.209558411161585,52.854441056379798</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

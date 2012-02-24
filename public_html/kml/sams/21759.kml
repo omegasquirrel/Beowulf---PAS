@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21759</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21759" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21759">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bell barrow 660m south east of Beckhampton Buildings, forming part of a round barrow cemetery on Horton Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21759">
+		<SimpleData name="Name">Bell barrow 660m south east of Beckhampton Buildings, forming part of a round barrow cemetery on Horton Down</SimpleData>
+		<SimpleData name="ListEntry">1018549</SimpleData>
+		<SimpleData name="SchedDate">1925/03/10</SimpleData>
+		<SimpleData name="AmendDate">1998/04/29</SimpleData>
+		<SimpleData name="LegacyUID">21759</SimpleData>
+		<SimpleData name="NGR">SU 07956 67777</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">407955.92584899999</SimpleData>
+		<SimpleData name="Northing">167776.79700100000</SimpleData>
+		<SimpleData name="AREA_HA">0.25988587306</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.886873979321232,51.408712375116593 -1.887002846752241,51.408699740046806 -1.887131665804625,51.408712622950858 -1.887247802037707,51.408749779878967 -1.887339906189345,51.408807549409119 -1.887398948848646,51.408880294167957 -1.887419153044521,51.408960896338385 -1.887398553931289,51.409041459371572 -1.887339154648397,51.409114090584353 -1.887246766816896,51.409171683130417 -1.887130447530652,51.409208616857647 -1.887001564334146,51.409221252086276 -1.886872758259314,51.409208369019034 -1.886756606799942,51.409171211707864 -1.886664517023833,51.409113441736821 -1.88660546086116,51.40904069659765 -1.886585258061103,51.408960094323241 -1.886605858566618,51.408879531398398 -1.886665273075771,51.408806900568678 -1.886757646531647,51.408749308463499 -1.886873979321232,51.408712375116593</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

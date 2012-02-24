@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19127</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19127" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19127">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Cross-dyke on Ratlinghope Hill, 740m north of Brow Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19127">
+		<SimpleData name="Name">Cross-dyke on Ratlinghope Hill, 740m north of Brow Farm</SimpleData>
+		<SimpleData name="ListEntry">1007699</SimpleData>
+		<SimpleData name="SchedDate">1994/07/13</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">19127</SimpleData>
+		<SimpleData name="NGR">SO 40355 97520</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">340353.83017700003</SimpleData>
+		<SimpleData name="Northing">297521.01162100001</SimpleData>
+		<SimpleData name="AREA_HA">0.11203685179</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.881101257804673,52.572073813777209 -2.88126392394645,52.571957709502485 -2.881826397572814,52.572295953435621 -2.881913499911494,52.572431279717343 -2.881759155254614,52.57248411355706 -2.881101257804673,52.572073813777209</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

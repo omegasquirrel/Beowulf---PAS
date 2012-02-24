@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21785</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21785" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21785">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>The White Horse hill figure 170m NNE of Uffington Castle on Whitehorse Hill</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21785">
+		<SimpleData name="Name">The White Horse hill figure 170m NNE of Uffington Castle on Whitehorse Hill</SimpleData>
+		<SimpleData name="ListEntry">1008413</SimpleData>
+		<SimpleData name="SchedDate">1929/12/13</SimpleData>
+		<SimpleData name="AmendDate">1995/12/05</SimpleData>
+		<SimpleData name="LegacyUID">21785</SimpleData>
+		<SimpleData name="NGR">SU 30117 86633</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">430119.02821800002</SimpleData>
+		<SimpleData name="Northing">186630.73248300000</SimpleData>
+		<SimpleData name="AREA_HA">0.49878931687</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.566556474780631,51.577347614146731 -1.5666047264552,51.577200827727253 -1.567273858713074,51.577304448341593 -1.566824423996111,51.578306025173696 -1.566297463367313,51.578236087417203 -1.566430018204834,51.577757398079534 -1.566456798007754,51.577660668521041 -1.566522534874446,51.577471965840658 -1.566556474780631,51.577347614146731</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12029</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12029" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12029">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Hug Ditch Court</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12029">
+		<SimpleData name="Name">Moated site at Hug Ditch Court</SimpleData>
+		<SimpleData name="ListEntry">1013172</SimpleData>
+		<SimpleData name="SchedDate">1977/10/20</SimpleData>
+		<SimpleData name="AmendDate">1990/09/14</SimpleData>
+		<SimpleData name="LegacyUID">12029</SimpleData>
+		<SimpleData name="NGR">SU 39019 74632</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">439017.11824400001</SimpleData>
+		<SimpleData name="Northing">174635.54437700001</SimpleData>
+		<SimpleData name="AREA_HA">0.46984018285</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.439365928573842,51.469547758041386 -1.439173693196259,51.469461670777093 -1.439097690048398,51.469426680749038 -1.439036365797754,51.469390987592462 -1.439012913649147,51.469363972563542 -1.439014874429787,51.469340253088859 -1.439042443992976,51.469303843027461 -1.439520511090365,51.468913734113421 -1.439607432599573,51.468943506920574 -1.439692505918696,51.468976085207011 -1.439774410079831,51.469011183945078 -1.439853578759136,51.469048652335616 -1.439929578401898,51.469088632203999 -1.440103570889393,51.469213735665562 -1.440277941147363,51.469388069698894 -1.440045317775054,51.469717697936808 -1.439937923510073,51.469744295008212 -1.439845218371548,51.469752880015129 -1.439775860837876,51.469745319591027 -1.439733935543361,51.469720779103703 -1.439650597540001,51.469674523923018 -1.439550739049939,51.469630059987175 -1.439365928573842,51.469547758041386</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>-1.439529093650703,51.469460186092761 -1.439426555410857,51.469399479393878 -1.439346705409727,51.469452858657661 -1.439466501919004,51.469511489881164 -1.439529093650703,51.469460186092761</coordinates></LinearRing></innerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

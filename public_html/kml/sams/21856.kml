@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21856</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21856" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21856">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow forming part of a round barrow cemetery 120m north of the Devizes to Beckhampton road on North Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21856">
+		<SimpleData name="Name">Bowl barrow forming part of a round barrow cemetery 120m north of the Devizes to Beckhampton road on North Down</SimpleData>
+		<SimpleData name="ListEntry">1012898</SimpleData>
+		<SimpleData name="SchedDate">1995/08/30</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21856</SimpleData>
+		<SimpleData name="NGR">SU 05842 67603</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">405842.27687100001</SimpleData>
+		<SimpleData name="Northing">167602.90240100000</SimpleData>
+		<SimpleData name="AREA_HA">0.06952914806</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.917327618064172,51.407293878323244 -1.917394267258286,51.407287316358925 -1.917460892768754,51.407293971947553 -1.917520982986083,51.407313166247427 -1.917568646755492,51.40734304282163 -1.917599202442496,51.407380658151567 -1.917609680480954,51.407422341619309 -1.917599053098881,51.407464019250625 -1.91756836260516,51.407501591653947 -1.917520591639287,51.407531401307665 -1.917460432397041,51.407550511231598 -1.917393782790982,51.407557064280716 -1.91732715694671,51.407550417606451 -1.917267066499823,51.407531223207918 -1.917219417100704,51.407501346522146 -1.917188847275984,51.407463731083993 -1.917178369572021,51.40742203862667 -1.917188997365457,51.407380369985795 -1.917219702457767,51.407342797691186 -1.917267459053418,51.407312988149066 -1.917327618064172,51.407293878323244</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

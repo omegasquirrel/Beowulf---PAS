@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21513</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21513" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21513">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Ranton Hall Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21513">
+		<SimpleData name="Name">Moated site at Ranton Hall Farm</SimpleData>
+		<SimpleData name="ListEntry">1008290</SimpleData>
+		<SimpleData name="SchedDate">1993/11/08</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21513</SimpleData>
+		<SimpleData name="NGR">SJ 84696 24402</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">384696.44132300001</SimpleData>
+		<SimpleData name="Northing">324402.93482700002</SimpleData>
+		<SimpleData name="AREA_HA">0.84125232196</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.227682588926665,52.816709198082073 -2.228650235128537,52.816309740968016 -2.229348747576999,52.817192217858434 -2.228462765596085,52.817531257895013 -2.228401687454467,52.817535924242399 -2.228359809717715,52.817520812729533 -2.228150102522123,52.817384459753924 -2.228187503752063,52.817343872274442 -2.228019383487682,52.817166923515337 -2.228015040050404,52.817136547511254 -2.227754096369929,52.816795161807647 -2.227682588926665,52.816709198082073</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

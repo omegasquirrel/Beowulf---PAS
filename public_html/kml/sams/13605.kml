@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13605</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13605" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13605">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Romano-British Settlement at Chittering, Cambs</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13605">
+		<SimpleData name="Name">Romano-British Settlement at Chittering, Cambs</SimpleData>
+		<SimpleData name="ListEntry">1012359</SimpleData>
+		<SimpleData name="SchedDate">1991/12/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13605</SimpleData>
+		<SimpleData name="NGR">TL 49830 70205</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">549823.59216899995</SimpleData>
+		<SimpleData name="Northing">270224.73112600000</SimpleData>
+		<SimpleData name="AREA_HA">2.67929668384</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.196765810722173,52.308944681742567 0.196469861866857,52.308657042634465 0.195980441245165,52.308803676148521 0.195931351004475,52.308812178187068 0.196167864399597,52.30908905475215 0.195056011589391,52.30942921854156 0.194490198195829,52.30953864564551 0.195086804346676,52.310310974292094 0.195320338871317,52.310581847365299 0.198200953596955,52.309877723309405 0.197608836709345,52.30943095850548 0.197289668512374,52.309203990203756 0.196765810722173,52.308944681742567</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

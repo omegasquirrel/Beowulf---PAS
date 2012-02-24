@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20518</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20518" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20518">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Saxton Castle:  a motte and bailey castle with a later medieval manor house and field system including a trackway and fishpond</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20518">
+		<SimpleData name="Name">Saxton Castle:  a motte and bailey castle with a later medieval manor house and field system including a trackway and fishpond</SimpleData>
+		<SimpleData name="ListEntry">1008226</SimpleData>
+		<SimpleData name="SchedDate">1951/05/24</SimpleData>
+		<SimpleData name="AmendDate">1993/12/08</SimpleData>
+		<SimpleData name="LegacyUID">20518</SimpleData>
+		<SimpleData name="NGR">SE 47708 36684</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">447709.78756600001</SimpleData>
+		<SimpleData name="Northing">436689.79572400003</SimpleData>
+		<SimpleData name="AREA_HA">2.83107350486</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.275542397307919,53.825054476586416 -1.275462386619619,53.824858636514435 -1.275178697776907,53.82487073817871 -1.27575125748026,53.823386353421832 -1.276290068259152,53.823472483574527 -1.27628628467656,53.823498112889872 -1.276821892123037,53.823576329726976 -1.277234488029673,53.82363208806786 -1.277467348425199,53.823667042974392 -1.277650290996092,53.823695764838419 -1.278066230781267,53.823751549421857 -1.278096400409164,53.823741861913007 -1.278212848261968,53.823758345515927 -1.278289455424503,53.823764729432078 -1.278270844743334,53.823877094983644 -1.278194714836685,53.824436184229256 -1.278140650734337,53.824855047464041 -1.277603531587016,53.824863652787869 -1.277099211535309,53.824904028627252 -1.276341372308728,53.824946819657391 -1.276355434047389,53.825098848790006 -1.276295163911463,53.825112291111147 -1.276291395144326,53.825137929492641 -1.276137749660865,53.825150808599872 -1.276094090274022,53.825168305810749 -1.275586438443942,53.825208655170442 -1.275518675445307,53.825076039692306 -1.275542397307919,53.825054476586416</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

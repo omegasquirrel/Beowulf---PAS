@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15564</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15564" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15564">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Black Road causeway, Black Bridge and World War II reservoir at Copperhouse Pool</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15564">
+		<SimpleData name="Name">Black Road causeway, Black Bridge and World War II reservoir at Copperhouse Pool</SimpleData>
+		<SimpleData name="ListEntry">1020400</SimpleData>
+		<SimpleData name="SchedDate">2001/08/25</SimpleData>
+		<SimpleData name="AmendDate">2010/12/17</SimpleData>
+		<SimpleData name="LegacyUID">15564</SimpleData>
+		<SimpleData name="NGR">SW 56658 38128</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">156662.75971099999</SimpleData>
+		<SimpleData name="Northing">38125.98522330000</SimpleData>
+		<SimpleData name="AREA_HA">0.64105643873</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-5.411495386959615,50.193632541395822 -5.410640502973051,50.19317867924412 -5.410499851938041,50.1932657868132 -5.410418837178388,50.193283254904635 -5.410330352757697,50.193278316602786 -5.410232801884153,50.193228384023321 -5.410211451468209,50.193176202883173 -5.410254061105111,50.193114611991589 -5.410365683239251,50.193032127378906 -5.409553460080996,50.19259962934585 -5.409666397797427,50.192316056090348 -5.411905192345362,50.193500147739343 -5.411706991581516,50.193633858826161 -5.411626245745428,50.193655098308284 -5.411555635325943,50.193653404868506 -5.411495386959615,50.193632541395822</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

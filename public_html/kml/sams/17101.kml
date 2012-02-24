@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17101</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17101" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17101">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Medieval monastic grange with building platforms and dovecote at Saltby</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17101">
+		<SimpleData name="Name">Medieval monastic grange with building platforms and dovecote at Saltby</SimpleData>
+		<SimpleData name="ListEntry">1009165</SimpleData>
+		<SimpleData name="SchedDate">1993/02/03</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">17101</SimpleData>
+		<SimpleData name="NGR">SK 87286 26132</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">487288.11506699998</SimpleData>
+		<SimpleData name="Northing">326131.69416200003</SimpleData>
+		<SimpleData name="AREA_HA">0.18939782420</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.705869669906775,52.825169938502661 -0.705950494132473,52.824963203414868 -0.706141485847835,52.825012770555759 -0.706050475091203,52.825204219577927 -0.706047004462846,52.825321052357587 -0.706050532561658,52.825561008185694 -0.706168125944289,52.826395837856687 -0.705985341153508,52.826319111407713 -0.705957898366918,52.826150257912211 -0.705858889364731,52.825532794122935 -0.705869669906775,52.825169938502661</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Medieval monastic grange with building platforms and dovecote at Saltby</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17101">
+		<SimpleData name="Name">Medieval monastic grange with building platforms and dovecote at Saltby</SimpleData>
+		<SimpleData name="ListEntry">1009165</SimpleData>
+		<SimpleData name="SchedDate">1993/02/03</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">17101</SimpleData>
+		<SimpleData name="NGR">SK 87510 26038</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">487523.70686199999</SimpleData>
+		<SimpleData name="Northing">326125.63073899999</SimpleData>
+		<SimpleData name="AREA_HA">2.72839508122</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.704001774097164,52.826455420155092 -0.702831639755939,52.826396395600725 -0.700873651089193,52.826414604575227 -0.70176075592745,52.825056131125883 -0.702101482974588,52.824499389942567 -0.704320512263324,52.824752282532849 -0.704450687519239,52.824790157867064 -0.704545581461577,52.824910491364264 -0.704528713690798,52.824993096652534 -0.703965320987949,52.824927109571604 -0.703996765711576,52.824867893777586 -0.703413763258663,52.824805618675008 -0.703409226376679,52.824817930442649 -0.70331751874848,52.825063310081227 -0.702571512547908,52.824961608971037 -0.702559724152469,52.824983676552797 -0.702514476734039,52.825143474651597 -0.702933909824461,52.825204389680522 -0.703554814833575,52.825297332568702 -0.70371281325478,52.825318943898992 -0.703671280973128,52.825427845324732 -0.703683747063575,52.825560530721454 -0.703683451249473,52.825570470510279 -0.702824066541358,52.826276916036107 -0.70286801743982,52.826280767530527 -0.702909137285641,52.826285990508474 -0.704062279034417,52.826260565098288 -0.704001774097164,52.826455420155092</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

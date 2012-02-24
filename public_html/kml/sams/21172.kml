@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21172</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21172" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21172">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site of Leconfield Castle</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21172">
+		<SimpleData name="Name">Moated site of Leconfield Castle</SimpleData>
+		<SimpleData name="ListEntry">1007949</SimpleData>
+		<SimpleData name="SchedDate">1949/04/27</SimpleData>
+		<SimpleData name="AmendDate">1993/02/19</SimpleData>
+		<SimpleData name="LegacyUID">21172</SimpleData>
+		<SimpleData name="NGR">TA 01266 43117</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">501264.89412600000</SimpleData>
+		<SimpleData name="Northing">443116.66014599998</SimpleData>
+		<SimpleData name="AREA_HA">2.88416588919</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.459898746129832,53.873689612170487 -0.459907237589437,53.873627410576354 -0.462730994779952,53.873744247951819 -0.462705280156026,53.873938158121362 -0.462622050432086,53.874516152156097 -0.462496806074591,53.875225554825455 -0.459723476986616,53.874915129106185 -0.459813328563174,53.874157625077892 -0.459876518073272,53.873788275970171 -0.459898746129832,53.873689612170487</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

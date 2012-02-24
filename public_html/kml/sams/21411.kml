@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21411</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21411" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21411">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Weeting Castle moated site and 12th century manor house with post-medieval ice house</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21411">
+		<SimpleData name="Name">Weeting Castle moated site and 12th century manor house with post-medieval ice house</SimpleData>
+		<SimpleData name="ListEntry">1014779</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1996/08/07</SimpleData>
+		<SimpleData name="LegacyUID">21411</SimpleData>
+		<SimpleData name="NGR">TL 77808 89132</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">577807.02857199998</SimpleData>
+		<SimpleData name="Northing">289133.39269499999</SimpleData>
+		<SimpleData name="AREA_HA">0.97915947459</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.617074451859385,52.471632170464062 0.616861224749269,52.470609330045264 0.615667318522633,52.470719872021618 0.615680234788644,52.471684046287287 0.617074451859385,52.471632170464062</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

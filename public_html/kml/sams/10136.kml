@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10136</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10136" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10136">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Milston Farm enclosure, possible settlement site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10136">
+		<SimpleData name="Name">Milston Farm enclosure, possible settlement site</SimpleData>
+		<SimpleData name="ListEntry">1009653</SimpleData>
+		<SimpleData name="SchedDate">1990/03/13</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10136</SimpleData>
+		<SimpleData name="NGR">SU 16433 45299</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">416433.23077899998</SimpleData>
+		<SimpleData name="Northing">145298.60950300001</SimpleData>
+		<SimpleData name="AREA_HA">0.12360703269</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.766061074856946,51.206491895156596 -1.766149581594754,51.206483277769379 -1.766238013674044,51.206492248330591 -1.766317686671227,51.206517953385308 -1.766380826319806,51.206557868602978 -1.766421225658604,51.206608079187831 -1.766434958583015,51.20666368570182 -1.766420664084164,51.206719227351748 -1.766379758002047,51.206769275787998 -1.766316215818512,51.206808938394246 -1.766236283975198,51.206834325012643 -1.766147762273765,51.2068429424355 -1.766059343847398,51.206833971834342 -1.765979670449719,51.206808266638909 -1.765916530807112,51.206768351172187 -1.765876117571353,51.206718140420783 -1.765862385258608,51.206662542829392 -1.765876680456459,51.20660699226115 -1.765917601245518,51.206556943994123 -1.765981143423081,51.206517281636906 -1.766061074856946,51.206491895156596</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

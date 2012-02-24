@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21788</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21788" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21788">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Pair of confluent bowl barrows 200m SSW of Bockett's Corner on Leigh Hale Plain</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21788">
+		<SimpleData name="Name">Pair of confluent bowl barrows 200m SSW of Bockett's Corner on Leigh Hale Plain</SimpleData>
+		<SimpleData name="ListEntry">1008492</SimpleData>
+		<SimpleData name="SchedDate">1949/03/28</SimpleData>
+		<SimpleData name="AmendDate">1994/06/20</SimpleData>
+		<SimpleData name="LegacyUID">21788</SimpleData>
+		<SimpleData name="NGR">SP 29113 13043</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">429113.31175100000</SimpleData>
+		<SimpleData name="Northing">213042.60821199999</SimpleData>
+		<SimpleData name="AREA_HA">0.16611942621</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.578833940799285,51.815108977056106 -1.578912461137792,51.815101552738966 -1.579332645758633,51.815132321277019 -1.579357341422154,51.815134837135147 -1.57941782737561,51.815154213219962 -1.579465680824773,51.815184225479165 -1.579496243557624,51.815221926203989 -1.579506503404618,51.815263636328787 -1.579495468305782,51.815305270328608 -1.579464206065324,51.815342759116987 -1.579415797205666,51.815372427364579 -1.579354954492413,51.815391360816733 -1.578909530008249,51.815416228467193 -1.578831152691786,51.815408242655081 -1.578760585516018,51.815385647357481 -1.578704756821311,51.815350634241071 -1.578669103415427,51.815306648311939 -1.578657139398149,51.815257981986925 -1.578670009737689,51.815209404541442 -1.578706480496454,51.815165676821898 -1.578762957724229,51.815131065724749 -1.578833940799285,51.815108977056106</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

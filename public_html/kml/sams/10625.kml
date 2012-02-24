@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10625</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10625" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10625">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Linear round barrow cemetery at Castle Park, Alphington</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10625">
+		<SimpleData name="Name">Linear round barrow cemetery at Castle Park, Alphington</SimpleData>
+		<SimpleData name="ListEntry">1012347</SimpleData>
+		<SimpleData name="SchedDate">1991/07/31</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10625</SimpleData>
+		<SimpleData name="NGR">SX 92119 89196</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">292117.01209199999</SimpleData>
+		<SimpleData name="Northing">89196.21251709999</SimpleData>
+		<SimpleData name="AREA_HA">1.25354962206</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.529110219421001,50.6926939744815 -3.529092855929481,50.692690766868559 -3.52781998156228,50.69271990027282 -3.527559229441074,50.692715233704284 -3.527388809515976,50.692140976344149 -3.529810201018234,50.691974321950546 -3.530019214142268,50.692645934760769 -3.529536773130818,50.692708404614564 -3.52950545348192,50.692711414793436 -3.529487348966165,50.692712848531805 -3.529469249289492,50.692713994403441 -3.529451584218645,50.692715008696105 -3.529433473082126,50.692715803993295 -3.52941535527238,50.692716392504778 -3.5293972142001,50.692716702575325 -3.529379082645538,50.69271686856645 -3.529360944312701,50.692716827841807 -3.529342799015372,50.692716571346836 -3.529324630455465,50.692716036376666 -3.529306471707508,50.692715366345894 -3.529288305596685,50.692714471595892 -3.529270571807606,50.69271337332173 -3.529252390254809,50.692712002109012 -3.529234642432561,50.692710472330084 -3.529216434987434,50.692708741709588 -3.529198687862043,50.692706798209315 -3.529180905724401,50.692704648329652 -3.529163130715319,50.692702282494835 -3.52914536283615,50.692699700739098 -3.529128015182458,50.692696978571767 -3.529110219421001,50.6926939744815</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

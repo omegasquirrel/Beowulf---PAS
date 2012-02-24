@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21522</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21522" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21522">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Two moated sites at Brockhurst</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21522">
+		<SimpleData name="Name">Two moated sites at Brockhurst</SimpleData>
+		<SimpleData name="ListEntry">1011058</SimpleData>
+		<SimpleData name="SchedDate">1993/11/09</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21522</SimpleData>
+		<SimpleData name="NGR">SJ 82408 11707</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">382405.46064700000</SimpleData>
+		<SimpleData name="Northing">311707.56386699999</SimpleData>
+		<SimpleData name="AREA_HA">0.39714997522</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.261527392314943,52.702478718457591 -2.26167595484362,52.70236441065925 -2.261962217520217,52.702459625500531 -2.262359601476989,52.702593437778305 -2.262290760696716,52.702759305325266 -2.262210380229028,52.702928326730259 -2.262129653713271,52.703039752226196 -2.262089253241086,52.703089284656166 -2.262008811357056,52.703117456384177 -2.26194488148199,52.703122775814208 -2.26188087402793,52.703115150275167 -2.261702508888593,52.703069625417449 -2.261593603773626,52.703032783709652 -2.261586316796797,52.702974933475133 -2.261538531273548,52.702950317480635 -2.261200941971702,52.702795451687322 -2.261527392314943,52.702478718457591</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Two moated sites at Brockhurst</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21522">
+		<SimpleData name="Name">Two moated sites at Brockhurst</SimpleData>
+		<SimpleData name="ListEntry">1011058</SimpleData>
+		<SimpleData name="SchedDate">1993/11/09</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21522</SimpleData>
+		<SimpleData name="NGR">SJ 82453 11795</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">382449.35337000003</SimpleData>
+		<SimpleData name="Northing">311795.57621299999</SimpleData>
+		<SimpleData name="AREA_HA">0.30370334662</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.260599746149984,52.703574640583781 -2.260612575502786,52.703527209991648 -2.260646470425785,52.703488282195657 -2.260770594868228,52.703565715428219 -2.260913509985452,52.703220890708501 -2.261216699798996,52.703290161871791 -2.261575227461118,52.703362357563897 -2.261652137944648,52.703372085306846 -2.261555878611896,52.703675365683743 -2.261539249253195,52.703747930797682 -2.261488321093623,52.70378689648539 -2.261373478091363,52.703836368223357 -2.261286239167679,52.703836920287152 -2.261185746603033,52.703821239234976 -2.261034816835084,52.703788031602727 -2.260722306034207,52.703652742587529 -2.260599746149984,52.703574640583781</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

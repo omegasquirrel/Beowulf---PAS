@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21706</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21706" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21706">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Berry Pomeroy Castle: a defended residence and Tudor mansion</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21706">
+		<SimpleData name="Name">Berry Pomeroy Castle: a defended residence and Tudor mansion</SimpleData>
+		<SimpleData name="ListEntry">1017855</SimpleData>
+		<SimpleData name="SchedDate">1915/01/13</SimpleData>
+		<SimpleData name="AmendDate">1993/02/10</SimpleData>
+		<SimpleData name="LegacyUID">21706</SimpleData>
+		<SimpleData name="NGR">SX 83897 62213</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">283896.58002400002</SimpleData>
+		<SimpleData name="Northing">62213.50975300000</SimpleData>
+		<SimpleData name="AREA_HA">0.04839310452</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.636410456252453,50.448416410311545 -3.636748711649657,50.448028021622861 -3.636874261005575,50.448069011523842 -3.636530510286124,50.448455688113242 -3.636410456252453,50.448416410311545</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Berry Pomeroy Castle: a defended residence and Tudor mansion</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21706">
+		<SimpleData name="Name">Berry Pomeroy Castle: a defended residence and Tudor mansion</SimpleData>
+		<SimpleData name="ListEntry">1017855</SimpleData>
+		<SimpleData name="SchedDate">1915/01/13</SimpleData>
+		<SimpleData name="AmendDate">1993/02/10</SimpleData>
+		<SimpleData name="LegacyUID">21706</SimpleData>
+		<SimpleData name="NGR">SX 83912 62308</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">283914.12602999998</SimpleData>
+		<SimpleData name="Northing">62302.36109970000</SimpleData>
+		<SimpleData name="AREA_HA">0.63188422133</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.636045213296619,50.44933578368741 -3.63599845828587,50.449290743820967 -3.635950832625812,50.449220461651777 -3.635911563798409,50.449139674134997 -3.635933073167202,50.449033110090156 -3.63596063803353,50.449013484741123 -3.635662336300511,50.448856393971582 -3.636003278233462,50.448570121149395 -3.636302176107453,50.448660001148362 -3.636720052491984,50.448791808260282 -3.636935841694631,50.44893089172767 -3.637100809566214,50.449057693972215 -3.637202604859227,50.449134750113075 -3.637251192226966,50.449221413892396 -3.637227000296518,50.449267325887142 -3.637055550345295,50.449297583529514 -3.63696462172306,50.449305194712032 -3.63693641847492,50.449289177920754 -3.636801360126143,50.449342936509687 -3.636794350731036,50.449369620733769 -3.6367385289742,50.449396973810472 -3.636676501827243,50.449401659873203 -3.636557322802017,50.449452712434628 -3.636496856547052,50.449481407836011 -3.636370997755078,50.449454002504709 -3.636281389900867,50.449430503060832 -3.636213990593095,50.449395431006891 -3.636124155661855,50.449360035880318 -3.636045213296619,50.44933578368741</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

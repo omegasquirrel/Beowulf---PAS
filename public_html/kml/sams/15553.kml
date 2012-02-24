@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15553</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15553" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15553">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>D-day landing craft maintenance site at Mylor harbour</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15553">
+		<SimpleData name="Name">D-day landing craft maintenance site at Mylor harbour</SimpleData>
+		<SimpleData name="ListEntry">1020050</SimpleData>
+		<SimpleData name="SchedDate">2002/03/06</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15553</SimpleData>
+		<SimpleData name="NGR">SW 82021 35360</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">182019.97299800001</SimpleData>
+		<SimpleData name="Northing">35361.84646620000</SimpleData>
+		<SimpleData name="AREA_HA">0.18951277326</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-5.053933395419821,50.178141970548744 -5.054286243312903,50.177822239164698 -5.054792254866789,50.178064581204993 -5.054508796529066,50.178357380425666 -5.053933395419821,50.178141970548744</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>D-day landing craft maintenance site at Mylor harbour</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15553">
+		<SimpleData name="Name">D-day landing craft maintenance site at Mylor harbour</SimpleData>
+		<SimpleData name="ListEntry">1020050</SimpleData>
+		<SimpleData name="SchedDate">2002/03/06</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15553</SimpleData>
+		<SimpleData name="NGR">SW 82016 35408</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">182015.87736899999</SimpleData>
+		<SimpleData name="Northing">35408.24576210000</SimpleData>
+		<SimpleData name="AREA_HA">0.00722537268</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-5.054382151922555,50.178535475307974 -5.054418241686169,50.178462666933839 -5.054531606699752,50.178485842884967 -5.05449553055425,50.178558641980473 -5.054382151922555,50.178535475307974</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21222</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21222" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21222">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Linear earthwork north east of Collingwood Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21222">
+		<SimpleData name="Name">Linear earthwork north east of Collingwood Farm</SimpleData>
+		<SimpleData name="ListEntry">1007862</SimpleData>
+		<SimpleData name="SchedDate">1963/01/16</SimpleData>
+		<SimpleData name="AmendDate">1994/06/30</SimpleData>
+		<SimpleData name="LegacyUID">21222</SimpleData>
+		<SimpleData name="NGR">SE 95494 66306</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">495517.98878000001</SimpleData>
+		<SimpleData name="Northing">466326.08763299999</SimpleData>
+		<SimpleData name="AREA_HA">3.13595767554</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.543886519174134,54.082558262342289 -0.545253513770182,54.081925249312889 -0.545326288365222,54.082002782506827 -0.545848641012147,54.081766975480626 -0.546089392288961,54.081931388976543 -0.545426266267635,54.082265015161745 -0.544398376853026,54.082757796873345 -0.543039407831433,54.083431552132666 -0.53977073889328,54.08506622949146 -0.538786042294707,54.085554544316267 -0.538082494814387,54.085852620710369 -0.537985188828182,54.085887751650766 -0.537902172937588,54.085906912991135 -0.537833588648343,54.08590607957732 -0.537764847321767,54.085909279999335 -0.537696531425526,54.085900378167871 -0.537628372730961,54.085887442390288 -0.537546916374993,54.085862246514573 -0.537459449389797,54.085812771702514 -0.537419557021048,54.085775973525962 -0.53739368634708,54.085731283160847 -0.537375386448512,54.085666505797107 -0.537397799057578,54.08561433070799 -0.537405652895874,54.085586193519539 -0.537433934435653,54.085562322454514 -0.537615531384565,54.085471742117001 -0.540175591310963,54.084284420709274 -0.543886519174134,54.082558262342289</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

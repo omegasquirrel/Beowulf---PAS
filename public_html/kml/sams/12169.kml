@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12169</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12169" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12169">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow on Kitchen Barrow Hill</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12169">
+		<SimpleData name="Name">Bowl barrow on Kitchen Barrow Hill</SimpleData>
+		<SimpleData name="ListEntry">1012520</SimpleData>
+		<SimpleData name="SchedDate">1956/07/16</SimpleData>
+		<SimpleData name="AmendDate">1991/04/18</SimpleData>
+		<SimpleData name="LegacyUID">12169</SimpleData>
+		<SimpleData name="NGR">SU 06765 65011</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">406764.55407100002</SimpleData>
+		<SimpleData name="Northing">165010.73893100000</SimpleData>
+		<SimpleData name="AREA_HA">0.04449881101</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.904129924304047,51.384001736219304 -1.904183218037591,51.383996501572547 -1.90423648984383,51.38400182310798 -1.90428452456949,51.384017192979528 -1.904322626459055,51.384041087828237 -1.904347064276871,51.384071193774055 -1.904355429961992,51.384104541606085 -1.904346925655934,51.384137875707111 -1.904322362701226,51.384167932776109 -1.904284161404465,51.384191774475063 -1.904236062681735,51.384207066060917 -1.904182768654862,51.384212300697023 -1.904129496665288,51.384206979171601 -1.904081447431282,51.384191609190879 -1.904043359923105,51.384167705289457 -1.904018922234549,51.384137608267594 -1.904010556733224,51.384104260411789 -1.904019061332151,51.38407092633517 -1.904043624452206,51.384040860342616 -1.904081811367579,51.384017027696373 -1.904129924304047,51.384001736219304</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

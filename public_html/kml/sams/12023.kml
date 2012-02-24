@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12023</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12023" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12023">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site and three fishponds at Ufton Nervet</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12023">
+		<SimpleData name="Name">Moated site and three fishponds at Ufton Nervet</SimpleData>
+		<SimpleData name="ListEntry">1013176</SimpleData>
+		<SimpleData name="SchedDate">1977/01/18</SimpleData>
+		<SimpleData name="AmendDate">1990/03/27</SimpleData>
+		<SimpleData name="LegacyUID">12023</SimpleData>
+		<SimpleData name="NGR">SU 63137 67324</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">463148.75361800002</SimpleData>
+		<SimpleData name="Northing">167311.61202999999</SimpleData>
+		<SimpleData name="AREA_HA">1.22728270784</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.092868797676621,51.400217586836803 -1.092976759136207,51.400215212116024 -1.093790654454695,51.400993682913381 -1.094068067172354,51.401299581201677 -1.094224582323333,51.401623067983884 -1.094432166524723,51.40171843880367 -1.094671986680273,51.401844882352691 -1.0949157526294,51.401979061845807 -1.094567571063082,51.402140789405991 -1.094431134599747,51.402250524296591 -1.09341728380655,51.401712860804658 -1.092619550369905,51.401244884809742 -1.093131434710445,51.400828206311537 -1.092935037662875,51.400629791994895 -1.092926987809557,51.400602879998232 -1.092788951821634,51.400492623620337 -1.092758657332923,51.400433321607125 -1.09271961193292,51.400381109397841 -1.092723321820261,51.400338174975047 -1.092755683639449,51.400293681886751 -1.09281376653444,51.40025116824139 -1.092868797676621,51.400217586836803</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

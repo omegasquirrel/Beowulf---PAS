@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20914</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20914" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20914">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Hepple Tower</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20914">
+		<SimpleData name="Name">Hepple Tower</SimpleData>
+		<SimpleData name="ListEntry">1008884</SimpleData>
+		<SimpleData name="SchedDate">1932/11/28</SimpleData>
+		<SimpleData name="AmendDate">1993/02/15</SimpleData>
+		<SimpleData name="LegacyUID">20914</SimpleData>
+		<SimpleData name="NGR">NT 98663 00654</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">398662.62692900002</SimpleData>
+		<SimpleData name="Northing">600653.91940200003</SimpleData>
+		<SimpleData name="AREA_HA">0.01901239388</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.02247401660335,55.299947239958179 -2.022665228382381,55.29990582503229 -2.022748804123392,55.300026181879076 -2.022551024776037,55.300068856155377 -2.02247401660335,55.299947239958179</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

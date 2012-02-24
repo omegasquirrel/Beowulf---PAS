@@ -1,11 +1,10 @@
 <?php
 $config = Zend_Registry::get('config');
-$apikey = $config->googlemaps->apikey;
-$appid = $config->ydnkeys->placemakerkey;
+$apikey = $config->webservice->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
-$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key='.$apikey,$type='text/javascript');
+$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
 ?>
-<h4>Spatial data</h4>
+<h3>Spatial data</h3>
 <?php echo $this->FindSpotEditDeleteLink($this->old_findspotid,$this->id,$this->createdBy);?>
 
 <?php if(isset($this->declong) && isset($this->declat)) : ?>
@@ -81,10 +80,13 @@ $(document).ready(function() {
       		animation: google.maps.Animation.DROP,
       		title:"Findspot location",
   		});
-  		<?php if(file_exists('/kml/parishes/' . strtoupper(str_replace(' ','',$this->parish)) . '.kml')):?>
-  		var parish = new google.maps.KmlLayer('/kml/parishes/<?php echo strtoupper(str_replace(' ','',$this->parish));?>.kml');
+  		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(' ','',$this->parish));?>.kml',
+                                                 {preserveViewport: true, suppressInfoWindows: false });
 		parish.setMap(map);
-  		<?php endif;?>
+		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/<?php echo strtoupper(str_replace(' ','',$this->county));?>.kml',
+                                                 {preserveViewport: true, suppressInfoWindows: false });
+		county.setMap(map);
+
 <?php 
 	$bbox = new Pas_Geo_BoundBox();
 	$d = 5;  // distance
@@ -138,7 +140,7 @@ Parish: <?php echo $this->escape(ucwords(strtolower($this->parish)));?>
 <?php if(!is_null($this->gridref)): ?>
 <h3>Spatial coordinates</h3>
 <p>
-Grid reference: <?php echo $this->StripGrid($this->gridref);?><br/>
+Grid reference: <?php echo $this->StripGrid($this->gridref);?><br />
 <span class="fourfigure">4 Figure: <?php echo $this->fourFigure;?></span><br />
 Grid reference source: <?php echo $this->escape($this->source);?><br />
 Grid reference accurate to a <?php echo $this->GetAccuracy($this->gridref);?> metre square.<br />
@@ -157,19 +159,23 @@ Latitude: <?php echo $this->declat;?> Longitude: <?php echo $this->declong;?><br
 </div>
 
 <div class="row-fluid">
-<?php $this->FindSmrs($this->declat,$this->declong);?>
+<?php echo $this->findSmrs($this->declat,$this->declong);?>
 </div>
 
 <div class="row-fluid">
 
-
+<div class="span4">
 <?php
-echo $this->FindspotGeo($this->woeid,$this->declat,$this->declong);
+echo $this->findspotGeo($this->woeid,$this->declat,$this->declong);
 ?>
+</div>
 
-</p>
-<?php endif; ?>
+<div class="span4">
+<?php echo $this->yahooGeoAdjacent($this->woeid);?>
+</div>
 
+<div class="span4">
+<h3>Discovery metadata</h3>
 <p>
 <?php if(!is_null($this->method)) :?>
 Method of discovery: <?php echo $this->escape($this->method);?>
@@ -212,6 +218,10 @@ Specific landuse: <?php echo $this->escape($this->landuse);?>
 <?php endif;?>
 </p>
 </div>
+</div>
+<?php endif; ?>
+
+
 </div>
 
 <div class="row-fluid">

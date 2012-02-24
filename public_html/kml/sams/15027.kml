@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15027</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15027" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15027">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 600m W of Starved Oak Cross</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15027">
+		<SimpleData name="Name">Bowl barrow 600m W of Starved Oak Cross</SimpleData>
+		<SimpleData name="ListEntry">1010646</SimpleData>
+		<SimpleData name="SchedDate">1953/02/16</SimpleData>
+		<SimpleData name="AmendDate">1991/10/02</SimpleData>
+		<SimpleData name="LegacyUID">15027</SimpleData>
+		<SimpleData name="NGR">SX 90680 98897</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">290678.86922699999</SimpleData>
+		<SimpleData name="Northing">98895.28031530000</SimpleData>
+		<SimpleData name="AREA_HA">0.12094428236</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.551907735507986,50.779182336223258 -3.552246184547692,50.779138791504515 -3.552272063594182,50.779169392704034 -3.552290931250254,50.779235844368714 -3.552276479502251,50.779302730615647 -3.552230137327477,50.779363521313769 -3.55215644462051,50.779412247386681 -3.552062591658471,50.779444154632252 -3.551957794221866,50.779456116569342 -3.551852283129416,50.779446953816318 -3.551756414941026,50.779417571736737 -3.551679547601387,50.779370849596191 -3.551629222278084,50.779311345523432 -3.551610369992919,50.779244902540277 -3.551614661761646,50.779225006336851 -3.551907735507986,50.779182336223258</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

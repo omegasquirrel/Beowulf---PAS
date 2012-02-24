@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17036</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17036" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17036">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Sapcote Castle and moat</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17036">
+		<SimpleData name="Name">Sapcote Castle and moat</SimpleData>
+		<SimpleData name="ListEntry">1010301</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1992/10/13</SimpleData>
+		<SimpleData name="LegacyUID">17036</SimpleData>
+		<SimpleData name="NGR">SP 48700 93406</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">448680.43017700000</SimpleData>
+		<SimpleData name="Northing">293398.14490700001</SimpleData>
+		<SimpleData name="AREA_HA">3.36384757558</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.281984984866916,52.535567617583993 -1.282051203560904,52.535545427067319 -1.282249479655191,52.535503953259841 -1.282717924854927,52.535554483941546 -1.28275941028971,52.535534651429813 -1.283018468190004,52.535551287564708 -1.283355052837908,52.535575584413174 -1.283836137333915,52.535644086329178 -1.284443711771264,52.535745660997954 -1.285124932356323,52.535875276586452 -1.285695604131527,52.535969088315525 -1.285643313658212,52.536146991703539 -1.285553217644472,52.536372359209984 -1.285451825940707,52.536532399668936 -1.285139365044312,52.537014969758481 -1.285097186563513,52.537077465687162 -1.284641274477461,52.537267989550628 -1.284098822670031,52.537209494470709 -1.2836225815477,52.537131304726152 -1.283204035373759,52.537048454820777 -1.283011229914573,52.537007120051392 -1.28315188467575,52.536711776330449 -1.283250561238478,52.536466378778435 -1.283255123632175,52.536438797946531 -1.28324331588936,52.536406092572975 -1.283219017213626,52.536380845267296 -1.283173990239077,52.536365514377003 -1.283116609918881,52.536350099699419 -1.282603619799516,52.536254125734573 -1.281901602201114,52.536136910655671 -1.281208033857071,52.536007192572711 -1.281255067263145,52.535899543448117 -1.281234103334339,52.535670996862002 -1.281415791564751,52.535636957405799 -1.281589361820791,52.535595334777561 -1.281766635146483,52.535578843540257 -1.281984984866916,52.535567617583993</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

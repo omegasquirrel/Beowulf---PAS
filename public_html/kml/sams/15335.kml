@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15335</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15335" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15335">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Kerbed platform cairn on Wingletang Down, 75m SSE of Crooked Rock</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15335">
+		<SimpleData name="Name">Kerbed platform cairn on Wingletang Down, 75m SSE of Crooked Rock</SimpleData>
+		<SimpleData name="ListEntry">1009262</SimpleData>
+		<SimpleData name="SchedDate">1976/10/07</SimpleData>
+		<SimpleData name="AmendDate">1994/10/04</SimpleData>
+		<SimpleData name="LegacyUID">15335</SimpleData>
+		<SimpleData name="NGR">SV 88610 07610</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">88610.26482630000</SimpleData>
+		<SimpleData name="Northing">7610.25944220000</SimpleData>
+		<SimpleData name="AREA_HA">0.00860030394</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.336726108026251,49.887558214320471 -6.336712353379229,49.887555328394981 -6.33669995568726,49.887550492944513 -6.336689579298104,49.887543971034908 -6.33668168669458,49.887536105312549 -6.336676870090307,49.887527287454262 -6.336675157529375,49.887517984341365 -6.33667682923668,49.887508680385196 -6.33668169188032,49.887499859755685 -6.336689479591982,49.887491973298403 -6.336699881566842,49.887485437637721 -6.336712274328874,49.887480600036959 -6.33672605189758,49.887477690155166 -6.33674046356307,49.887476880155759 -6.336754830139556,49.887478204449366 -6.336772840509832,49.887476368725586 -6.336788716012425,49.887477591467906 -6.336803539887313,49.887481373179263 -6.336816482168733,49.887487465961058 -6.336826449284464,49.887495478905386 -6.336833059765947,49.887504886429319 -6.336835713469321,49.887515054092773 -6.336834351624214,49.887525327270453 -6.33682891389452,49.887535033305724 -6.336819886038297,49.887543533105848 -6.33680776187066,49.887550277313046 -6.336793474437935,49.887554799002842 -6.33677778012138,49.887556835863776 -6.336761834429516,49.887556227645071 -6.33674065000714,49.887559010150689 -6.336726108026251,49.887558214320471</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

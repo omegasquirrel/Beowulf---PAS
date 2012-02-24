@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21770</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21770" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21770">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Brize's Lodge bowl barrow, 400m east of Gospel Oak</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21770">
+		<SimpleData name="Name">Brize's Lodge bowl barrow, 400m east of Gospel Oak</SimpleData>
+		<SimpleData name="ListEntry">1011218</SimpleData>
+		<SimpleData name="SchedDate">1949/03/22</SimpleData>
+		<SimpleData name="AmendDate">1993/09/09</SimpleData>
+		<SimpleData name="LegacyUID">21770</SimpleData>
+		<SimpleData name="NGR">SP 33861 15724</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">433861.03915800003</SimpleData>
+		<SimpleData name="Northing">215724.20978300000</SimpleData>
+		<SimpleData name="AREA_HA">0.05222422175</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.509882745993426,51.838991833825659 -1.509941123522207,51.838986358610335 -1.509999362401003,51.838992319393078 -1.510051779388429,51.839009144021759 -1.510093239996837,51.839035165787479 -1.510119693052458,51.839067868337644 -1.510128531983657,51.839104022033219 -1.510118909580443,51.839140098888031 -1.510091749523703,51.839172569292586 -1.510049727874656,51.839198252533244 -1.509996950437891,51.83921463024172 -1.509938587083807,51.839220114530107 -1.509904327829864,51.839216609230185 -1.509880333456031,51.839214144670457 -1.509827930703604,51.839197329011604 -1.509786455692384,51.839171298107011 -1.509760017226633,51.839138604529047 -1.509751178639545,51.839102450806969 -1.509760801272883,51.839066373982504 -1.50978794709474,51.839033894608136 -1.509829983146495,51.839008220506336 -1.509882745993426,51.838991833825659</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

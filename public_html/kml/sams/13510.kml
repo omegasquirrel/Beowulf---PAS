@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13510</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13510" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13510">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Thorntree House moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13510">
+		<SimpleData name="Name">Thorntree House moated site</SimpleData>
+		<SimpleData name="ListEntry">1009075</SimpleData>
+		<SimpleData name="SchedDate">1968/06/13</SimpleData>
+		<SimpleData name="AmendDate">1993/01/14</SimpleData>
+		<SimpleData name="LegacyUID">13510</SimpleData>
+		<SimpleData name="NGR">SK 08582 30262</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">408580.82931300002</SimpleData>
+		<SimpleData name="Northing">330265.17659100000</SimpleData>
+		<SimpleData name="AREA_HA">1.17482297447</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.874285690836932,52.869125820495519 -1.874347559735969,52.869080938984276 -1.874900278964201,52.869332594338125 -1.874810399255839,52.869395829917671 -1.874919868886905,52.869453234274971 -1.875054286184467,52.869498609949744 -1.875104031696172,52.869531832956525 -1.875108783613848,52.869610243218283 -1.874569693497842,52.86991726550297 -1.874449829282259,52.870007599126566 -1.874040581467177,52.870218255059939 -1.873656234327336,52.87043195639442 -1.873496414679977,52.870549385535604 -1.87280497873742,52.870114417156977 -1.87298473783351,52.869990969390365 -1.873239469151412,52.869792216333721 -1.873374408878365,52.86966268834643 -1.873409465138569,52.869602415968231 -1.873549091539542,52.869572414059753 -1.873688851578718,52.869491136781363 -1.873743884477408,52.869421842193027 -1.873928588444834,52.869307450491846 -1.874008544767477,52.869229129883394 -1.874228064425746,52.869141913515378 -1.874285690836932,52.869125820495519</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

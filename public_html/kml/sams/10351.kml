@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10351</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10351" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10351">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>The Lesser Cursus and a triple bowl barrow forming part of a linear round barrow cemetery south east of Greenland Farm on Winterbourne Stoke Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10351">
+		<SimpleData name="Name">The Lesser Cursus and a triple bowl barrow forming part of a linear round barrow cemetery south east of Greenland Farm on Winterbourne Stoke Down</SimpleData>
+		<SimpleData name="ListEntry">1010901</SimpleData>
+		<SimpleData name="SchedDate">1925/03/10</SimpleData>
+		<SimpleData name="AmendDate">1995/06/20</SimpleData>
+		<SimpleData name="LegacyUID">10351</SimpleData>
+		<SimpleData name="NGR">SU 10511 43486</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">410523.92144000001</SimpleData>
+		<SimpleData name="Northing">143489.85471399999</SimpleData>
+		<SimpleData name="AREA_HA">2.70247336318</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.849848611753444,51.190387592254709 -1.850305825711377,51.190312572719051 -1.850932674864395,51.190220062114463 -1.851494291908704,51.190107629276298 -1.852151703563615,51.190005232695768 -1.852505690988903,51.189950099401244 -1.85295494875119,51.189885939785924 -1.853295311123863,51.189948446657233 -1.853688330724657,51.190020630668776 -1.853832170283044,51.19004704861343 -1.853958485283961,51.190063076867972 -1.854062059391923,51.190089273502565 -1.854156508998676,51.190154834451647 -1.854173715436552,51.190257220190873 -1.854147250130225,51.190309475467821 -1.854066201124912,51.190382290282969 -1.853929255944594,51.190410786047075 -1.853807601943437,51.190413817543501 -1.85370120906118,51.190400943221015 -1.85357839957699,51.190380234298765 -1.853464693888031,51.19037215233061 -1.85335224075583,51.190370725841603 -1.853043845618561,51.190415371335547 -1.852384498475901,51.190526699456328 -1.85187851466523,51.190616511176273 -1.850728855076843,51.190831515995619 -1.849585532758434,51.191043793075515 -1.849299527252604,51.191096253417072 -1.849001580052506,51.191137628564064 -1.848577764561581,51.191196482673831 -1.847984816213111,51.191278818745715 -1.847769428374341,51.190725750241249 -1.848573445823867,51.190583280185606 -1.848861430694372,51.19053307215453 -1.849133169121045,51.190488651303376 -1.849294462937879,51.190454203817715 -1.849464580436675,51.190434487236693 -1.849848611753444,51.190387592254709</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

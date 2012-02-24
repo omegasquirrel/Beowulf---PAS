@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15351</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15351" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15351">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Kerbed platform cairn on Salakee Down, 85m north west of Church Porth, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15351">
+		<SimpleData name="Name">Kerbed platform cairn on Salakee Down, 85m north west of Church Porth, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1011932</SimpleData>
+		<SimpleData name="SchedDate">1995/05/04</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15351</SimpleData>
+		<SimpleData name="NGR">SV 92228 10098</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">92227.72300080000</SimpleData>
+		<SimpleData name="Northing">10097.72317960000</SimpleData>
+		<SimpleData name="AREA_HA">0.01977608004</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.288480377010645,49.911630602221571 -6.288514396893712,49.911625814492943 -6.288549041487181,49.911628058196342 -6.288580917925878,49.911637099170221 -6.288606910903746,49.911652062995884 -6.288624465184998,49.911671478659898 -6.288631879259395,49.911693447606517 -6.288628404829857,49.911715819983776 -6.288614404487987,49.911736404777379 -6.288591232303946,49.91175319021157 -6.288561167011966,49.911764535154603 -6.288527146241054,49.911769313935515 -6.288492502342748,49.911767079192039 -6.2884606250353,49.911758029231933 -6.288434632041591,49.911743065373948 -6.288417077860069,49.911723649677974 -6.288409663824102,49.911701680717229 -6.288413138407873,49.911679308341881 -6.288427138769101,49.911658723572685 -6.288450310968982,49.91164193817081 -6.288480377010645,49.911630602221571</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

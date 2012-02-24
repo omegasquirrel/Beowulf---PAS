@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19071</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19071" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19071">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow on Ivinghoe Beacon Hill, 230m east of Ivinghoe Beacon trig pillar:  part of the Beacon Hill round barrow cemetery</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19071">
+		<SimpleData name="Name">Bowl barrow on Ivinghoe Beacon Hill, 230m east of Ivinghoe Beacon trig pillar:  part of the Beacon Hill round barrow cemetery</SimpleData>
+		<SimpleData name="ListEntry">1009549</SimpleData>
+		<SimpleData name="SchedDate">1958/03/03</SimpleData>
+		<SimpleData name="AmendDate">1992/10/01</SimpleData>
+		<SimpleData name="LegacyUID">19071</SimpleData>
+		<SimpleData name="NGR">SP 96206 16876</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">496205.80801099999</SimpleData>
+		<SimpleData name="Northing">216875.50149800000</SimpleData>
+		<SimpleData name="AREA_HA">0.07910766165</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.604865934124543,51.842067046518331 -0.604937892898172,51.842060859502439 -0.605009416616144,51.842068748090313 -0.605073518005435,51.842089937046268 -0.605123888331177,51.84212236446907 -0.605155632469553,51.842162843238796 -0.605165621140802,51.842207415971309 -0.60515288556675,51.842251728244484 -0.605118663565181,51.842291424828126 -0.605066326290987,51.842322634370461 -0.605000962230607,51.842342288094827 -0.604929003015351,51.842348475145819 -0.604857478869948,51.842340586506246 -0.604793377230548,51.842319397431531 -0.604743006927793,51.842286969868418 -0.6047112630765,51.842246490990199 -0.604701275124587,51.842201909239307 -0.604704723723697,51.842189901445607 -0.604714010848478,51.842157606001123 -0.60474823310003,51.842117909536235 -0.604800570351365,51.842086700134232 -0.604865934124543,51.842067046518331</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

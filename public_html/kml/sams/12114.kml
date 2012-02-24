@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12114</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12114" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12114">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Long barrow 250m south-west of Warren Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12114">
+		<SimpleData name="Name">Long barrow 250m south-west of Warren Farm</SimpleData>
+		<SimpleData name="ListEntry">1012881</SimpleData>
+		<SimpleData name="SchedDate">1990/10/11</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">12114</SimpleData>
+		<SimpleData name="NGR">SU 51984 25369</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">451984.71784800000</SimpleData>
+		<SimpleData name="Northing">125371.47303900000</SimpleData>
+		<SimpleData name="AREA_HA">0.28554597800</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.259623536604249,51.025389878191554 -1.26025493273202,51.02502589033525 -1.260698158309937,51.025342788188084 -1.259971192735075,51.025719661952898 -1.259623536604249,51.025389878191554</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

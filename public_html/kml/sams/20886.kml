@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20886</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20886" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20886">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Cup and ring marked rocks on Chirnells Moor, 800m east of Red Chirnells</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20886">
+		<SimpleData name="Name">Cup and ring marked rocks on Chirnells Moor, 800m east of Red Chirnells</SimpleData>
+		<SimpleData name="ListEntry">1011294</SimpleData>
+		<SimpleData name="SchedDate">1934/04/23</SimpleData>
+		<SimpleData name="AmendDate">1993/11/04</SimpleData>
+		<SimpleData name="LegacyUID">20886</SimpleData>
+		<SimpleData name="NGR">NU 04142 02752</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">404141.77524900000</SimpleData>
+		<SimpleData name="Northing">602751.55368899996</SimpleData>
+		<SimpleData name="AREA_HA">0.41983333733</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.935408887378772,55.318898850711285 -1.936846500192307,55.318432343633852 -1.937158696108348,55.318744190337391 -1.935721074773569,55.319211258176558 -1.935408887378772,55.318898850711285</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

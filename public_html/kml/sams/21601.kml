@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21601</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21601" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21601">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Three Anglo-Scandinavian crosses in St Mary's and All Saints' churchyard</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21601">
+		<SimpleData name="Name">Three Anglo-Scandinavian crosses in St Mary's and All Saints' churchyard</SimpleData>
+		<SimpleData name="ListEntry">1012671</SimpleData>
+		<SimpleData name="SchedDate">1962/11/12</SimpleData>
+		<SimpleData name="AmendDate">1995/06/12</SimpleData>
+		<SimpleData name="LegacyUID">21601</SimpleData>
+		<SimpleData name="NGR">SK 02790 37873</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">402789.60442599998</SimpleData>
+		<SimpleData name="Northing">337873.06282300001</SimpleData>
+		<SimpleData name="AREA_HA">0.00772568535</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.959916504767699,52.938203601431582 -1.959939495034493,52.938201415757803 -1.9599624813335,52.938203616827387 -1.959983216965173,52.938210015115104 -1.959999679109236,52.938219962766134 -1.960010231817915,52.938232497295829 -1.960013864477526,52.938246386932981 -1.960010206379824,52.938260274098859 -1.959999630706386,52.938272801599304 -1.959983150319803,52.938282738199149 -1.959962402941048,52.938289113657362 -1.959939412563936,52.938291308319798 -1.95991642628463,52.938289098261521 -1.959895705431052,52.938282708917178 -1.95987924334375,52.938272761286157 -1.95986869060641,52.938260226710625 -1.959865072863086,52.938246337108353 -1.959868716135118,52.938232449907645 -1.959879291893242,52.938219922453065 -1.959895772223021,52.938209985833211 -1.959916504767699,52.938203601431582</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17127</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17127" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17127">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Leicester Castle and the Magazine Gateway</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17127">
+		<SimpleData name="Name">Leicester Castle and the Magazine Gateway</SimpleData>
+		<SimpleData name="ListEntry">1012147</SimpleData>
+		<SimpleData name="SchedDate">1924/06/26</SimpleData>
+		<SimpleData name="AmendDate">2001/05/09</SimpleData>
+		<SimpleData name="LegacyUID">17127</SimpleData>
+		<SimpleData name="NGR">SK 58443 04116</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">458442.92290800001</SimpleData>
+		<SimpleData name="Northing">304116.05958200002</SimpleData>
+		<SimpleData name="AREA_HA">0.00933188883</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.137839158326105,52.631627000523153 -1.137946168049726,52.631601860758529 -1.138036604245366,52.631697569746386 -1.137908460883894,52.63171392544767 -1.137839158326105,52.631627000523153</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Leicester Castle and the Magazine Gateway</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17127">
+		<SimpleData name="Name">Leicester Castle and the Magazine Gateway</SimpleData>
+		<SimpleData name="ListEntry">1012147</SimpleData>
+		<SimpleData name="SchedDate">1924/06/26</SimpleData>
+		<SimpleData name="AmendDate">2001/05/09</SimpleData>
+		<SimpleData name="LegacyUID">17127</SimpleData>
+		<SimpleData name="NGR">SK 58287 04172</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">458264.91503199999</SimpleData>
+		<SimpleData name="Northing">304173.77622599999</SimpleData>
+		<SimpleData name="AREA_HA">2.86463193674</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.139211176336199,52.632090626513779 -1.139126966408967,52.632022311252108 -1.138612609174211,52.632178442950178 -1.13865419811598,52.632230590515768 -1.138554448181873,52.632247144286552 -1.138498477683623,52.632203531549003 -1.13847871603401,52.632125615472113 -1.138529940712407,52.632048215399095 -1.138716076028436,52.631971786825559 -1.139116467408193,52.631857826005451 -1.139687245011681,52.631697993268759 -1.139744315423342,52.631674988609781 -1.1398783620336,52.631619000917013 -1.140070701996441,52.6315107457485 -1.140226049304779,52.631423312401438 -1.140275471062305,52.631395496300087 -1.140411310999883,52.631348951548937 -1.140425895148823,52.631348149321937 -1.14053956591824,52.631355464481473 -1.140801402654399,52.631373374200891 -1.141226148808878,52.631441270547036 -1.141998890832117,52.631507361043582 -1.141930090156294,52.632120411749483 -1.141865518975537,52.632154510749892 -1.141835757746369,52.632223419277125 -1.141825624276837,52.632378899699468 -1.141795102201503,52.632486693400175 -1.141544383150537,52.632597225529906 -1.141421186892012,52.632664998654789 -1.141350567146432,52.632703836210183 -1.14130174047983,52.632748009860244 -1.141213201853029,52.632828143388103 -1.141267702546573,52.632953822785453 -1.141301533771896,52.633031858280397 -1.141124743283367,52.633099656293716 -1.140814975329867,52.633218443277038 -1.140615472122775,52.633251572322585 -1.140415811048287,52.633070270661833 -1.140308482736593,52.632972813820487 -1.14004711657004,52.632901775656663 -1.139910572935246,52.632883703829229 -1.139770875644602,52.632865213405942 -1.139494959679302,52.632811356164346 -1.139318470922295,52.632758229322135 -1.139256197890867,52.632723992693471 -1.139079597740229,52.632626876680362 -1.139095833194708,52.632624774073442 -1.139521008140641,52.632569588680497 -1.13935526177493,52.63235529543622 -1.139292462270696,52.632274109265865 -1.139231688007752,52.632113807849727 -1.139211176336199,52.632090626513779</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

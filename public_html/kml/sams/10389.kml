@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10389</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10389" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10389">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 300m WSW of Stonehenge, forming part of a round barrow cemetery on Stonehenge Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10389">
+		<SimpleData name="Name">Bowl barrow 300m WSW of Stonehenge, forming part of a round barrow cemetery on Stonehenge Down</SimpleData>
+		<SimpleData name="ListEntry">1012387</SimpleData>
+		<SimpleData name="SchedDate">1952/06/10</SimpleData>
+		<SimpleData name="AmendDate">1995/05/01</SimpleData>
+		<SimpleData name="LegacyUID">10389</SimpleData>
+		<SimpleData name="NGR">SU 11885 42090</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">411885.44602300000</SimpleData>
+		<SimpleData name="Northing">142090.00000100001</SimpleData>
+		<SimpleData name="AREA_HA">0.08930416880</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.831277951835383,51.177777956140631 -1.831353139911816,51.177770583047213 -1.831428259134339,51.177778172457629 -1.831495973632543,51.177799985428145 -1.831549653358179,51.1778338814172 -1.831584046053162,51.177876543781743 -1.831595776410407,51.177923795476445 -1.831583702412326,51.177971012926243 -1.831548999567064,51.178013576010407 -1.831495073465884,51.178047317257281 -1.831427200473815,51.178068935254345 -1.831352026275921,51.178076308415172 -1.831276892229424,51.17806871893513 -1.831209191793893,51.1780469058249 -1.831155512071148,51.178013009715194 -1.831121119670854,51.177970347191639 -1.831109389787088,51.177923095484502 -1.831121464257035,51.177875878049377 -1.831156167391857,51.177833315125596 -1.831210093490147,51.177799573999359 -1.831277951835383,51.177777956140631</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

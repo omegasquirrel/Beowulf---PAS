@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15193</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15193" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15193">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Prehistoric stone alignment 1km SSE of Eastmoorgate</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15193">
+		<SimpleData name="Name">Prehistoric stone alignment 1km SSE of Eastmoorgate</SimpleData>
+		<SimpleData name="ListEntry">1012228</SimpleData>
+		<SimpleData name="SchedDate">1993/02/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15193</SimpleData>
+		<SimpleData name="NGR">SX 22470 78041</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">222459.64748799999</SimpleData>
+		<SimpleData name="Northing">78009.12481300000</SimpleData>
+		<SimpleData name="AREA_HA">0.49825752467</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.510404721130397,50.572182936714682 -4.510419910621699,50.572182258295243 -4.510434811878393,50.572184392431723 -4.510448087756015,50.572189160997887 -4.510458605560526,50.572196246751304 -4.510465480683845,50.572204949088345 -4.510467967507292,50.572214528620584 -4.509895448390489,50.573255134498424 -4.509838237023758,50.573386996217266 -4.509636261153989,50.573685077769952 -4.508351354238909,50.575549005826616 -4.508266068688095,50.575655333521397 -4.508165633954757,50.575787846915631 -4.507253626037769,50.576837588539732 -4.507104094925921,50.576964412643974 -4.506987002759954,50.577095107093285 -4.506853232250237,50.577244500500143 -4.506843728580129,50.577269017488227 -4.50683327163098,50.577275853669988 -4.506820512432602,50.577280832641556 -4.506806092656039,50.577283535741316 -4.506791108630993,50.57728385845062 -4.50677664279208,50.577281705505953 -4.506763388244699,50.577277358740673 -4.506752225978146,50.577270916183835 -4.506744089993496,50.5772629423547 -4.506739414686709,50.577253904588233 -4.506759769120253,50.577225709012602 -4.506977942554635,50.576957784487924 -4.507137878974619,50.576831923700269 -4.50726122293192,50.57669821616259 -4.508008463508443,50.57579552406979 -4.508116431892343,50.575709080460186 -4.508271165365392,50.575485451416206 -4.509709952774698,50.573381541376591 -4.510365041377247,50.572208590561814 -4.51037851357904,50.572192352635881 -4.51039055539651,50.572186399323471 -4.510404721130397,50.572182936714682</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Prehistoric stone alignment 1km SSE of Eastmoorgate</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15193">
+		<SimpleData name="Name">Prehistoric stone alignment 1km SSE of Eastmoorgate</SimpleData>
+		<SimpleData name="ListEntry">1012228</SimpleData>
+		<SimpleData name="SchedDate">1993/02/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15193</SimpleData>
+		<SimpleData name="NGR">SX 22485 78034</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">222484.62055100000</SimpleData>
+		<SimpleData name="Northing">78033.69414630000</SimpleData>
+		<SimpleData name="AREA_HA">0.00207827527</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.508373494222258,50.575018902142965 -4.508398305712342,50.574974941679137 -4.50845148460171,50.574987152533701 -4.508426447432363,50.575031117838464 -4.508373494222258,50.575018902142965</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Prehistoric stone alignment 1km SSE of Eastmoorgate</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15193">
+		<SimpleData name="Name">Prehistoric stone alignment 1km SSE of Eastmoorgate</SimpleData>
+		<SimpleData name="ListEntry">1012228</SimpleData>
+		<SimpleData name="SchedDate">1993/02/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15193</SimpleData>
+		<SimpleData name="NGR">SX 22347 77878</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">222347.22709299999</SimpleData>
+		<SimpleData name="Northing">77877.52865100000</SimpleData>
+		<SimpleData name="AREA_HA">0.00200173615</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.510237902207924,50.573573523326637 -4.510261237215239,50.573531060414204 -4.510314622049686,50.573542915202864 -4.5102912686833,50.573585297546906 -4.510237902207924,50.573573523326637</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

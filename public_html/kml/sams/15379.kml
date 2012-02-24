@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15379</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15379" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15379">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Round cairn on Helvear Down, 300m NNE of Higher Trenoweth Farm, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15379">
+		<SimpleData name="Name">Round cairn on Helvear Down, 300m NNE of Higher Trenoweth Farm, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1010170</SimpleData>
+		<SimpleData name="SchedDate">1995/02/14</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15379</SimpleData>
+		<SimpleData name="NGR">SV 91933 12655</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">91933.03575230000</SimpleData>
+		<SimpleData name="Northing">12654.55375300000</SimpleData>
+		<SimpleData name="AREA_HA">0.01977712812</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.294613690651063,49.934410177612172 -6.294647726539552,49.934405396652465 -6.294682386938095,49.934407629113167 -6.294714294433186,49.934416676395436 -6.294740287262797,49.934431629946339 -6.294757867512626,49.934451052825288 -6.294765274623792,49.934473021666484 -6.294761815958091,49.934495393583198 -6.294747798393681,49.934515979714355 -6.294724631857148,49.934532766010506 -6.294694539556072,49.934544104400658 -6.294660504377266,49.934548894374387 -6.294625843076122,49.934546652911919 -6.294593950194002,49.934537614055714 -6.294567942663043,49.934522652023901 -6.294550377198421,49.934503237561479 -6.29454295624159,49.934481269255507 -6.294546428945874,49.93445889679132 -6.294560431844328,49.934438302236089 -6.294583613082215,49.934421524420806 -6.294613690651063,49.934410177612172</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

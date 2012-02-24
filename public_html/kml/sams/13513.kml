@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13513</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13513" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13513">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>West Derby motte and bailey castle</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13513">
+		<SimpleData name="Name">West Derby motte and bailey castle</SimpleData>
+		<SimpleData name="ListEntry">1009862</SimpleData>
+		<SimpleData name="SchedDate">1992/03/11</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13513</SimpleData>
+		<SimpleData name="NGR">SJ 39725 93463</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">339723.12351000000</SimpleData>
+		<SimpleData name="Northing">393466.25334400003</SimpleData>
+		<SimpleData name="AREA_HA">0.60891319398</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.908557142122385,53.43400050280291 -2.908575464755838,53.433991518372181 -2.908862782031571,53.434176254724939 -2.909399763180949,53.434516142180058 -2.909480237493351,53.434563538651076 -2.909489345205883,53.434571334513159 -2.909498464765341,53.434579687594407 -2.909505215553596,53.43458778007858 -2.909510578803261,53.434596449390121 -2.909514527322957,53.434605129510928 -2.909517067061321,53.434614098999504 -2.909517731549351,53.43462336140869 -2.909516996538201,53.434632643495341 -2.909518865943439,53.434645465322212 -2.90952053265794,53.434657254962083 -2.909519803597229,53.434666815641272 -2.90951717804102,53.434676381781109 -2.909513146896348,53.434685679954349 -2.90950769506381,53.434694710310019 -2.909500350065195,53.434703197774375 -2.90949157823444,53.43471112981144 -2.909481867396985,53.434718790361593 -2.909293574805173,53.434834391439445 -2.909102054245424,53.434972992240567 -2.909003727824253,53.435033516465133 -2.908712766411157,53.434870884768081 -2.908437212577943,53.434717025128698 -2.908063884962878,53.434494235937201 -2.907939658211032,53.434425112607826 -2.908204646162495,53.434222062294829 -2.908282810594266,53.434164074110001 -2.908385321570608,53.434100066899191 -2.908456558744738,53.434060998844217 -2.908557142122385,53.43400050280291</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

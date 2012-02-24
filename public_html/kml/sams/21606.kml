@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21606</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21606" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21606">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Anglo-Scandinavian cross, 11m east of St Edward's Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21606">
+		<SimpleData name="Name">Anglo-Scandinavian cross, 11m east of St Edward's Church</SimpleData>
+		<SimpleData name="ListEntry">1012656</SimpleData>
+		<SimpleData name="SchedDate">1964/12/02</SimpleData>
+		<SimpleData name="AmendDate">1995/07/13</SimpleData>
+		<SimpleData name="LegacyUID">21606</SimpleData>
+		<SimpleData name="NGR">SJ 98352 56627</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">398352.44850000000</SimpleData>
+		<SimpleData name="Northing">356626.89500199998</SimpleData>
+		<SimpleData name="AREA_HA">0.00249950028</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.026025718880487,53.106808285304247 -2.026100390314173,53.106808268791468 -2.026100417798358,53.106853213796022 -2.026025746286828,53.106853230308829 -2.026025718880487,53.106808285304247</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

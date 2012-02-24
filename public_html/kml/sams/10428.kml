@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10428</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10428" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10428">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 300m south west of Strangways forming part of a linear round barrow cemetery known as the Old King Barrows</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10428">
+		<SimpleData name="Name">Bowl barrow 300m south west of Strangways forming part of a linear round barrow cemetery known as the Old King Barrows</SimpleData>
+		<SimpleData name="ListEntry">1009148</SimpleData>
+		<SimpleData name="SchedDate">1995/05/03</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10428</SimpleData>
+		<SimpleData name="NGR">SU 13772 42985</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">413771.56000100001</SimpleData>
+		<SimpleData name="Northing">142985.35487000001</SimpleData>
+		<SimpleData name="AREA_HA">0.05222414655</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.804279793431548,51.18582117668975 -1.804337292525198,51.185815553858774 -1.804394743203591,51.185821368652221 -1.804446524940296,51.185838054254056 -1.804487565204188,51.185863992638737 -1.804513854285186,51.185896623338586 -1.804522801574047,51.185932758989551 -1.804513549108947,51.185968864241147 -1.804486984629921,51.186001406784783 -1.80444572563685,51.186027198801384 -1.804393803321292,51.186043720280814 -1.804336304004934,51.186049343173451 -1.804278852996174,51.18604352831683 -1.804227071128212,51.186026833654239 -1.804186030828232,51.18600090420022 -1.804159741919952,51.185968273393158 -1.80415079496271,51.185932137749354 -1.804160047649267,51.185896032492096 -1.80418661229738,51.185863490056633 -1.804227871326583,51.185837689109377 -1.804279793431548,51.18582117668975</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

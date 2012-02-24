@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21834</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21834" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21834">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bishop of Winchester's Palace, 90m east of St Mary's Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21834">
+		<SimpleData name="Name">Bishop of Winchester's Palace, 90m east of St Mary's Church</SimpleData>
+		<SimpleData name="ListEntry">1018654</SimpleData>
+		<SimpleData name="SchedDate">1984/09/19</SimpleData>
+		<SimpleData name="AmendDate">1998/11/16</SimpleData>
+		<SimpleData name="LegacyUID">21834</SimpleData>
+		<SimpleData name="NGR">SP 35708 09262</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">435709.92191999999</SimpleData>
+		<SimpleData name="Northing">209261.97516500001</SimpleData>
+		<SimpleData name="AREA_HA">0.65049068482</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.483981542199357,51.780457199811231 -1.484150903469519,51.780438422899032 -1.484216466015787,51.780648311293731 -1.484276204730588,51.780798167406019 -1.484349370212332,51.780983345469942 -1.484428475959701,51.781186648670733 -1.484438949044971,51.781211465104278 -1.483835774691263,51.781297436401353 -1.483639150291217,51.781296573467827 -1.483543896548557,51.781298061403973 -1.483433200007238,51.781298708261033 -1.483347166434935,51.781297575143178 -1.483321879449293,51.781214341225713 -1.48328221294141,51.781071433031833 -1.483268470590869,51.781068936074554 -1.483240004266658,51.780978531228591 -1.483207553681625,51.780891768267963 -1.483164377022297,51.780711027957651 -1.483147877059847,51.78060603813563 -1.483199042374234,51.780603826341952 -1.483189632870238,51.780567182174693 -1.48326639415461,51.780561423405175 -1.483262814279512,51.78053090982754 -1.483501095039446,51.780505117819075 -1.483631048462239,51.780492264607048 -1.483981542199357,51.780457199811231</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

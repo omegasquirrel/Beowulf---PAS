@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21030</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21030" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21030">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Burnt mound, 1km north-east of Quarry House</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21030">
+		<SimpleData name="Name">Burnt mound, 1km north-east of Quarry House</SimpleData>
+		<SimpleData name="ListEntry">1011554</SimpleData>
+		<SimpleData name="SchedDate">1993/11/15</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">21030</SimpleData>
+		<SimpleData name="NGR">NY 96918 80555</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">396918.54630500003</SimpleData>
+		<SimpleData name="Northing">580555.79031800001</SimpleData>
+		<SimpleData name="AREA_HA">0.02966925385</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.049819176599146,55.119296448053227 -2.049930863884865,55.119277306899846 -2.049939211817858,55.119295275417677 -2.050008974046397,55.119438465176096 -2.049995261415309,55.119443520954015 -2.049981548081452,55.119448019597627 -2.049966846283473,55.119451961513988 -2.049952159442657,55.119455337308239 -2.049936970203171,55.119458147193562 -2.049921780203257,55.119460399944181 -2.04990610418553,55.119462652892992 -2.049889940742642,55.119463782793112 -2.049874262617164,55.119464355358382 -2.049856138549708,55.119464919946481 -2.049839957331077,55.119464369466968 -2.049824277787978,55.119463809798042 -2.049808596840366,55.119462126880478 -2.049792915905272,55.119460452941929 -2.049763507570585,55.119452045153757 -2.049750769328293,55.119446425164838 -2.049738014038801,55.119439699896439 -2.04972674748289,55.119432398920829 -2.049717423781879,55.119423982881187 -2.04971054594107,55.119415556856836 -2.049704655168597,55.119406573294256 -2.049701225935374,55.119397588722258 -2.049699254162304,55.119388037438448 -2.049699241545009,55.119377928218313 -2.049701190179361,55.119368941441365 -2.049705584041225,55.119359396528665 -2.049718309859334,55.119342542601188 -2.049726625448709,55.119334676459601 -2.049736900942222,55.119326809513353 -2.049748165533874,55.119320065407578 -2.049760402977362,55.119313887015593 -2.04977411488611,55.11930826515011 -2.049788314198342,55.119303757349122 -2.049803502044678,55.119299824235569 -2.049819176599146,55.119296448053227</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

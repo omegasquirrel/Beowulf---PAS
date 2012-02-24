@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20533</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20533" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20533">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Sigston Castle:  an enclosure castle 400m north of Kirby Sigston church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20533">
+		<SimpleData name="Name">Sigston Castle:  an enclosure castle 400m north of Kirby Sigston church</SimpleData>
+		<SimpleData name="ListEntry">1008207</SimpleData>
+		<SimpleData name="SchedDate">1946/12/18</SimpleData>
+		<SimpleData name="AmendDate">1994/02/18</SimpleData>
+		<SimpleData name="LegacyUID">20533</SimpleData>
+		<SimpleData name="NGR">SE 41653 95152</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">441651.45287600002</SimpleData>
+		<SimpleData name="Northing">495160.27782900003</SimpleData>
+		<SimpleData name="AREA_HA">1.86590690856</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.360333427404347,54.349330360136918 -1.360509464069073,54.349290301484572 -1.36056129566312,54.349308083269484 -1.360664392307571,54.349338520977213 -1.360747291097685,54.349365858892199 -1.360823521950433,54.349399569377724 -1.360919275739353,54.349446190082794 -1.360995308233252,54.349492706344471 -1.361093028422389,54.349553429416162 -1.36116462989199,54.349611893184218 -1.361296494706543,54.349724869159587 -1.361436982610358,54.349856260660921 -1.361592724809384,54.349994149552977 -1.361694330786089,54.350088199593706 -1.361830416951849,54.350220852517701 -1.361871103891722,54.350283834879761 -1.3619246024333,54.350369937347423 -1.36093022848964,54.351143491250525 -1.359798263721642,54.350863903445401 -1.359445596446039,54.350775404481212 -1.35955107915168,54.350710913921318 -1.359815483352989,54.350270527162102 -1.360025004989457,54.349952930057867 -1.360158090996433,54.349726562148362 -1.360221635111578,54.349610297579844 -1.360276334408508,54.349476083400354 -1.360333427404347,54.349330360136918</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15177</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15177" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15177">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Three medieval wayside crosses 70m SW of Trebartha Hall</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15177">
+		<SimpleData name="Name">Three medieval wayside crosses 70m SW of Trebartha Hall</SimpleData>
+		<SimpleData name="ListEntry">1012045</SimpleData>
+		<SimpleData name="SchedDate">1948/02/14</SimpleData>
+		<SimpleData name="AmendDate">1993/01/18</SimpleData>
+		<SimpleData name="LegacyUID">15177</SimpleData>
+		<SimpleData name="NGR">SX 26200 77480</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">226199.58933600000</SimpleData>
+		<SimpleData name="Northing">77479.81414120000</SimpleData>
+		<SimpleData name="AREA_HA">0.01300822149</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.455709191736959,50.571086149903429 -4.455723911871817,50.571084858921267 -4.455738719355042,50.571085248067206 -4.455752955415537,50.571087412215036 -4.45577654501405,50.571095621158463 -4.455787880778487,50.571101219396219 -4.455798134754103,50.57110747010389 -4.455807098599582,50.57111444060439 -4.455815006048343,50.571122008999374 -4.455821372698847,50.571130095648336 -4.455826445609808,50.571138560358214 -4.45582999189827,50.571147273165202 -4.455831996634704,50.571156216371065 -4.455829180985128,50.571165621037899 -4.455823472441269,50.571174529116071 -4.455815508770238,50.571182711227905 -4.455805285324378,50.571189807751587 -4.455793455373967,50.571195615950927 -4.455779995939609,50.571199965440179 -4.455765564556397,50.571202734402284 -4.45575062202479,50.571203823219093 -4.455735588348417,50.571203159999094 -4.45571996764981,50.571199900750933 -4.455706938006335,50.571195678408536 -4.455694964455302,50.571190309471248 -4.45568426608834,50.571183933252804 -4.455672867710364,50.571176861215768 -4.455663856641971,50.571169253099939 -4.455656812381572,50.571160901925296 -4.455651491872925,50.571152019682877 -4.455648575935637,50.571142663959797 -4.455647857138846,50.571133189930976 -4.455649145393821,50.571123745508359 -4.455653965633702,50.571114865204144 -4.455661495737846,50.571106764201524 -4.455670822910651,50.571099542698512 -4.455682434177316,50.571093604213452 -4.455695218817461,50.571089044096176 -4.455709191736959,50.571086149903429</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

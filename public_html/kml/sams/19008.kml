@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19008</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19008" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19008">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Shrunken medieval village at Caldecotte</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19008">
+		<SimpleData name="Name">Shrunken medieval village at Caldecotte</SimpleData>
+		<SimpleData name="ListEntry">1007941</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1991/12/23</SimpleData>
+		<SimpleData name="LegacyUID">19008</SimpleData>
+		<SimpleData name="NGR">SP 89334 35390</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">489329.18728999997</SimpleData>
+		<SimpleData name="Northing">235396.14975400001</SimpleData>
+		<SimpleData name="AREA_HA">3.06562503438</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.699103629649694,52.010106642268845 -0.698874273480692,52.010102805765328 -0.698757880252213,52.010123602760231 -0.69816367663312,52.010287224462445 -0.698047244785081,52.0103093240647 -0.697886243762102,52.010343914284491 -0.697786724976241,52.009809921628637 -0.697788746618249,52.009740270858828 -0.697835958797142,52.009598038801862 -0.697927193554682,52.009480173986887 -0.698045768440718,52.009387669813705 -0.698191626754744,52.009319464641919 -0.698398283247806,52.009289999924917 -0.698666207616486,52.00926752342604 -0.698830519331466,52.009269338262136 -0.699196748844815,52.009270424366832 -0.699417141056196,52.009263174010336 -0.700701141569972,52.009246438720865 -0.701556082239098,52.009237306423714 -0.701556232565346,52.009377607333633 -0.701578173880585,52.009564929794401 -0.701631889160251,52.0098188408532 -0.701720228736104,52.010184867492057 -0.701807193349061,52.01045344089686 -0.701895593836365,52.010599911128175 -0.701875816960818,52.010628276327381 -0.701714185682824,52.010612208256987 -0.701428869965431,52.01057788217755 -0.701035160220288,52.010505990823226 -0.700746350792736,52.010446943667141 -0.700566612720655,52.010402091153665 -0.700231274436653,52.010350324899605 -0.699883797710448,52.010281538208623 -0.699699761894492,52.010239235417721 -0.699574207519521,52.010213159697443 -0.699179009124856,52.010120457932253 -0.699103629649694,52.010106642268845</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

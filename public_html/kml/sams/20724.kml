@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20724</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20724" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20724">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>The Ryes moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20724">
+		<SimpleData name="Name">The Ryes moated site</SimpleData>
+		<SimpleData name="ListEntry">1011471</SimpleData>
+		<SimpleData name="SchedDate">1993/09/21</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">20724</SimpleData>
+		<SimpleData name="NGR">TL 52830 17064</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">552829.43159099994</SimpleData>
+		<SimpleData name="Northing">217064.03404900001</SimpleData>
+		<SimpleData name="AREA_HA">0.62701630111</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.217049131191602,51.831660510083687 0.217066602539521,51.830890401361323 0.21597983164643,51.830919898556452 0.216011775245424,51.831689075692822 0.217049131191602,51.831660510083687</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

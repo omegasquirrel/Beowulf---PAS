@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13206</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13206" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13206">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Rowberrow Cavern, Mendip Forest</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13206">
+		<SimpleData name="Name">Rowberrow Cavern, Mendip Forest</SimpleData>
+		<SimpleData name="ListEntry">1011926</SimpleData>
+		<SimpleData name="SchedDate">1991/03/18</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13206</SimpleData>
+		<SimpleData name="NGR">ST 45954 58022</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">345953.88196299999</SimpleData>
+		<SimpleData name="Northing">158022.36326200000</SimpleData>
+		<SimpleData name="AREA_HA">0.03334593390</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.776871303639156,51.318624926268491 -2.776905676976813,51.318623592204446 -2.77694280669112,51.318629972865175 -2.776972100496462,51.318641387048288 -2.776991764597515,51.318657828655496 -2.77701672822999,51.318673686608584 -2.777032024927322,51.318692369192043 -2.777042050906766,51.318711635303053 -2.777045064428584,51.318733717453888 -2.777040967633927,51.318751971276924 -2.777045577906955,51.318764097737308 -2.777043990482582,51.318774601880506 -2.777035526186292,51.318795096687886 -2.777011183785131,51.318815148355384 -2.776984056228946,51.318827485475062 -2.776955922799546,51.318832096203444 -2.776929479431741,51.318832271678467 -2.776900316329733,51.318828598664403 -2.776877262472584,51.3188204610748 -2.776855893722161,51.318808445804066 -2.776837179437322,51.31879641288284 -2.776814860876836,51.318779988827558 -2.776795089171611,51.318758026877994 -2.776785053866559,51.318738203306346 -2.776779358122491,51.318714484447398 -2.776781620438189,51.318691261270935 -2.776790955666924,51.318669654686978 -2.776805645732187,51.318652436606257 -2.776823921058237,51.318638494742899 -2.776843170321876,51.318629536969461 -2.776871303639156,51.318624926268491</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

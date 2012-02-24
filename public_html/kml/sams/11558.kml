@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__11558</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__11558" id="20110413_SCHEDULEDMONUMENT_LegacyUID__11558">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated enclosures east and west of Love Lane, Ashwell</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__11558">
+		<SimpleData name="Name">Moated enclosures east and west of Love Lane, Ashwell</SimpleData>
+		<SimpleData name="ListEntry">1012208</SimpleData>
+		<SimpleData name="SchedDate">1990/10/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">11558</SimpleData>
+		<SimpleData name="NGR">TL 25169 40195</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">525168.01624999999</SimpleData>
+		<SimpleData name="Northing">240195.39820600001</SimpleData>
+		<SimpleData name="AREA_HA">0.42512537785</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.175942858601613,52.046370842921071 -0.17587900482709,52.046263284404553 -0.175832440920165,52.046178427920815 -0.175809039286081,52.046082717322356 -0.1757937191508,52.046012371614083 -0.175764058829264,52.04595862742417 -0.175700106859191,52.045853863712509 -0.175669319891764,52.045828147250823 -0.175665800175279,52.045802852942209 -0.175684658165392,52.045786321417573 -0.17577159206313,52.045773640303182 -0.175867391132073,52.045766716238944 -0.175936137162338,52.045753753421266 -0.176041600861965,52.045732951726102 -0.176196709353464,52.045721334630677 -0.17642478306856,52.045705226845826 -0.17657570135394,52.045685128135077 -0.176745869635154,52.04608599614771 -0.176829365536478,52.046269586456326 -0.176827882858384,52.046306015949369 -0.176709575539303,52.046306990675568 -0.176568890129525,52.046299202702656 -0.176409118200013,52.046313562530592 -0.175942858601613,52.046370842921071</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Moated enclosures east and west of Love Lane, Ashwell</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__11558">
+		<SimpleData name="Name">Moated enclosures east and west of Love Lane, Ashwell</SimpleData>
+		<SimpleData name="ListEntry">1012208</SimpleData>
+		<SimpleData name="SchedDate">1990/10/17</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">11558</SimpleData>
+		<SimpleData name="NGR">TL 25256 40264</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">525251.60367300001</SimpleData>
+		<SimpleData name="Northing">240256.00239000001</SimpleData>
+		<SimpleData name="AREA_HA">0.90981152796</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.17547850888828,52.046066485726982 -0.17552735969976,52.046061874111118 -0.175548976239862,52.046109379429389 -0.175534852090809,52.046167220324243 -0.175646407314077,52.046317706803123 -0.175750613421574,52.046504361040689 -0.175838943299252,52.046647231410148 -0.17585685428553,52.04678538785538 -0.17480631710872,52.047150089566983 -0.174040081803876,52.04625114748881 -0.174114189897048,52.04622866568414 -0.17426239215773,52.046201927927306 -0.174510864930151,52.046169496212592 -0.174687870530784,52.046157725801613 -0.174834889996374,52.046160003300194 -0.175006317728407,52.046140889688481 -0.175195541975754,52.046118418833721 -0.17547850888828,52.046066485726982</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

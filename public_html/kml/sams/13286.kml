@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13286</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13286" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13286">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Crosland Lower Hall moated site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13286">
+		<SimpleData name="Name">Crosland Lower Hall moated site</SimpleData>
+		<SimpleData name="ListEntry">1013896</SimpleData>
+		<SimpleData name="SchedDate">1992/10/13</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13286</SimpleData>
+		<SimpleData name="NGR">SE 11955 12289</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">411948.85910000000</SimpleData>
+		<SimpleData name="Northing">412292.30882799998</SimpleData>
+		<SimpleData name="AREA_HA">0.24348355114</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.820397982633732,53.607147877470965 -1.819835247344356,53.607053698828125 -1.819842436501332,53.606997910536315 -1.820470563587013,53.607103395448682 -1.820576890550683,53.607023604120243 -1.820831221771572,53.606793354899075 -1.821153917077304,53.606904536231859 -1.821714177782578,53.60708065089819 -1.821752848260753,53.60710684627059 -1.821605475540337,53.607111237994538 -1.821483939776147,53.607117213974973 -1.821380462133001,53.607130892750476 -1.82130027373425,53.607144615144783 -1.821232998516508,53.607156810757928 -1.821176069232211,53.607170567723252 -1.821106196589129,53.607185833399143 -1.821051871065693,53.607194983246139 -1.820997523904505,53.607205661023166 -1.820948367069808,53.607214809558911 -1.820886294889099,53.607222410753288 -1.820795758072518,53.607231497381498 -1.820725900259241,53.607246771806594 -1.820687035220303,53.607266694558149 -1.820581161253243,53.607235787315794 -1.8205192061429,53.607215713633082 -1.820467660218466,53.607178730663534 -1.820397982633732,53.607147877470965</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

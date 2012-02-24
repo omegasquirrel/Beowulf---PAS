@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20907</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20907" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20907">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Pattenshiel Knowe Iron Age/Romano-British farmstead</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20907">
+		<SimpleData name="Name">Pattenshiel Knowe Iron Age/Romano-British farmstead</SimpleData>
+		<SimpleData name="ListEntry">1008890</SimpleData>
+		<SimpleData name="SchedDate">1978/08/23</SimpleData>
+		<SimpleData name="AmendDate">1993/02/15</SimpleData>
+		<SimpleData name="LegacyUID">20907</SimpleData>
+		<SimpleData name="NGR">NY 95563 98644</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">395563.44025099999</SimpleData>
+		<SimpleData name="Northing">598643.78909500001</SimpleData>
+		<SimpleData name="AREA_HA">0.18947533720</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.071363457916831,55.28167561760791 -2.071452586283211,55.281671845192925 -2.07153087681512,55.281681719449864 -2.071602654344095,55.281702775777838 -2.071665759954658,55.281733766374174 -2.071704956939274,55.28176725110184 -2.071733304986538,55.281808182396425 -2.071746420817683,55.281852851756291 -2.071744335897218,55.281901250186671 -2.07173571770791,55.281940963233822 -2.071720568525546,55.28198192016599 -2.071692433290365,55.282023891146231 -2.071659827927038,55.282057660789569 -2.07161206174492,55.28209119672875 -2.071555569479147,55.282113559527495 -2.071488205603376,55.28213097755787 -2.071420823823391,55.282138457310133 -2.071351240307993,55.282138498133243 -2.071279488914423,55.282132340005575 -2.071218593398722,55.282122446426982 -2.07116639037962,55.28210510755116 -2.071131558597125,55.282082789373362 -2.07110542354431,55.282064186212388 -2.071074941486257,55.282035665295119 -2.071055319755859,55.282005889045749 -2.071042208888589,55.28197239786379 -2.071037803872812,55.281938892617077 -2.071033383234234,55.281896698178734 -2.071033312081642,55.281856990254134 -2.071044128023546,55.281822236083912 -2.07106581315452,55.281791204654461 -2.071102696784178,55.281755186233674 -2.071170058116781,55.281727848160038 -2.071289559279895,55.281691790345498 -2.071363457916831,55.28167561760791</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

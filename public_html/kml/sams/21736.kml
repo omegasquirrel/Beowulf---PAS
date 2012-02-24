@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21736</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21736" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21736">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Avebury Long Stones 380m east of The Grange Stables, Beckhampton</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21736">
+		<SimpleData name="Name">Avebury Long Stones 380m east of The Grange Stables, Beckhampton</SimpleData>
+		<SimpleData name="ListEntry">1008104</SimpleData>
+		<SimpleData name="SchedDate">1933/12/19</SimpleData>
+		<SimpleData name="AmendDate">1995/02/09</SimpleData>
+		<SimpleData name="LegacyUID">21736</SimpleData>
+		<SimpleData name="NGR">SU 08913 69328</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">408912.74240100000</SimpleData>
+		<SimpleData name="Northing">169327.58650199999</SimpleData>
+		<SimpleData name="AREA_HA">0.00378547450</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.873191622088852,51.422860547745522 -1.873207187480571,51.4228590179859 -1.873222730012111,51.422860581321565 -1.873236754389298,51.422865065255571 -1.87324786670874,51.422872036753745 -1.873254990291864,51.422880820210729 -1.873257437075654,51.422890551755032 -1.873254936607647,51.422900268974992 -1.873247764571561,51.422909037007479 -1.873236613817184,51.422915984482842 -1.873222564747712,51.422920438155678 -1.873207013654841,51.422921967898475 -1.873191456783818,51.42292040457955 -1.873177432394265,51.422915920605874 -1.873166320074908,51.42290894910105 -1.873159196504427,51.422900165638744 -1.873156764035257,51.422890443094467 -1.87315925022928,51.422880716874552 -1.873166422277853,51.42287194884743 -1.873177573032146,51.42286500137871 -1.873191622088852,51.422860547745522</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Avebury Long Stones 380m east of The Grange Stables, Beckhampton</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21736">
+		<SimpleData name="Name">Avebury Long Stones 380m east of The Grange Stables, Beckhampton</SimpleData>
+		<SimpleData name="ListEntry">1008104</SimpleData>
+		<SimpleData name="SchedDate">1933/12/19</SimpleData>
+		<SimpleData name="AmendDate">1995/02/09</SimpleData>
+		<SimpleData name="LegacyUID">21736</SimpleData>
+		<SimpleData name="NGR">SU 08893 69302</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">408892.52315199998</SimpleData>
+		<SimpleData name="Northing">169302.31249899999</SimpleData>
+		<SimpleData name="AREA_HA">0.00378555232</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.873483034908517,51.422633608545844 -1.873498600268252,51.422632078781746 -1.873514142732933,51.422633642044538 -1.873528167014297,51.422638125978033 -1.873539279378105,51.422645097414609 -1.873546417300862,51.422653880903944 -1.873548849840228,51.42266360344054 -1.87354636374087,51.422673329634883 -1.873539177476971,51.422682097704502 -1.873528026767248,51.422689045173527 -1.873513977850549,51.422693498881564 -1.873498426844277,51.422695028697476 -1.873482869985498,51.422693465382821 -1.873468860065561,51.422688981459416 -1.873457733327923,51.422682010000742 -1.873450609791737,51.422673226521525 -1.873448177297346,51.422663495030577 -1.873450663392372,51.422653777790664 -1.873457835294821,51.422645009710976 -1.873469000378358,51.422638062264028 -1.873483034908517,51.422633608545844</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

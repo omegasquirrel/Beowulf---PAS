@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15524</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15524" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15524">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Prehistoric to Romano-British ritual, funerary and settlement remains on Par Beach, St Martin's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15524">
+		<SimpleData name="Name">Prehistoric to Romano-British ritual, funerary and settlement remains on Par Beach, St Martin's</SimpleData>
+		<SimpleData name="ListEntry">1018116</SimpleData>
+		<SimpleData name="SchedDate">1972/10/24</SimpleData>
+		<SimpleData name="AmendDate">1998/07/24</SimpleData>
+		<SimpleData name="LegacyUID">15524</SimpleData>
+		<SimpleData name="NGR">SV 93299 15325</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">93303.52075610000</SimpleData>
+		<SimpleData name="Northing">15323.99935030000</SimpleData>
+		<SimpleData name="AREA_HA">1.51924413280</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.275994489906584,49.959573970821978 -6.275947139454116,49.959040354800912 -6.276286216600638,49.959027832087791 -6.276452877895733,49.959008638287287 -6.276562511919445,49.958991550562644 -6.276657218531049,49.958996744714973 -6.276762237808157,49.959003726439541 -6.276837431964161,49.959016155855878 -6.276944662281163,49.959010017366957 -6.277120263584194,49.958977462980712 -6.277331635465311,49.958930548504597 -6.277445883930272,49.958889399303509 -6.277638400646654,49.958858387780126 -6.277976913261257,49.95883936626371 -6.278150095125395,49.958817751477063 -6.278302819097349,49.95879256424773 -6.278416473361479,49.958784009482933 -6.278502445509539,49.958774245938251 -6.278593746895925,49.958760569162195 -6.2787624800049,49.958719330859594 -6.278931198121391,49.958678083867952 -6.279099872854315,49.958671850161998 -6.279165622148956,49.958622053748392 -6.279215101301848,49.958603749382561 -6.279393819939784,49.958568322849111 -6.279621192612924,49.95904384136589 -6.279547028687938,49.959071291639468 -6.279240949207296,49.959146446491168 -6.27889980632932,49.959222887364199 -6.278478683716912,49.959294445230775 -6.278345981154713,49.959316733286407 -6.277991030429509,49.959377655874597 -6.277578554569608,49.959436347507086 -6.277162630986912,49.959492978423569 -6.276706034212408,49.959546782057487 -6.276327146814321,49.959565131430729 -6.275994489906584,49.959573970821978</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

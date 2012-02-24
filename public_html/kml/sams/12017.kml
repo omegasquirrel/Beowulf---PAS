@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12017</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12017" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12017">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated Royal Manorial site at Bear's Rails</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12017">
+		<SimpleData name="Name">Moated Royal Manorial site at Bear's Rails</SimpleData>
+		<SimpleData name="ListEntry">1013168</SimpleData>
+		<SimpleData name="SchedDate">1970/01/13</SimpleData>
+		<SimpleData name="AmendDate">1990/03/29</SimpleData>
+		<SimpleData name="LegacyUID">12017</SimpleData>
+		<SimpleData name="NGR">SU 97344 73855</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">497355.33757199999</SimpleData>
+		<SimpleData name="Northing">173846.61258399999</SimpleData>
+		<SimpleData name="AREA_HA">2.11536247396</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.59992897143968,51.454481135533499 -0.600040650545566,51.45448142586784 -0.600212233011537,51.454484517426529 -0.60025370828046,51.454491262075237 -0.600584992744294,51.45461393043427 -0.601186361016344,51.454843966991888 -0.601438432728449,51.454940698790047 -0.601687135730638,51.45503843293001 -0.601575690564759,51.455140198620285 -0.601363405693029,51.455323030434378 -0.60116650730235,51.455493555322406 -0.600893900066838,51.455741273196914 -0.600686648277179,51.455923129735964 -0.600451274062853,51.456043207038853 -0.600263577928431,51.45613052819072 -0.600016699104433,51.456081756968359 -0.599878929862302,51.456008255925553 -0.599621676709302,51.455862514754017 -0.599454593304964,51.455766794220587 -0.599414565173828,51.455713199584871 -0.59925690172765,51.455526995598383 -0.599081784514741,51.455312455423652 -0.59907477788221,51.455268634003261 -0.599069136074732,51.455235241749932 -0.599068648387491,51.455142554039391 -0.599080577077441,51.455079176153568 -0.599097527350825,51.455015849273636 -0.599122889050898,51.454949502578927 -0.599142589049874,51.454904957128022 -0.599184370908689,51.45484714231295 -0.59923664738923,51.454772790463814 -0.599279828806936,51.454723319035637 -0.599331450627807,51.454670819192359 -0.599376013911416,51.454630743022037 -0.599413519205891,51.454603072633446 -0.599472547177547,51.454580865737384 -0.599529969986497,51.454556553479719 -0.599619780291796,51.45453164784837 -0.599716155199052,51.454513276880817 -0.599815064445552,51.454499567073924 -0.59992897143968,51.454481135533499</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

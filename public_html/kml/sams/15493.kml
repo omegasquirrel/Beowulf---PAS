@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15493</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15493" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15493">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Post-medieval pilot lookout on Timmy's Hill, Bryher</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15493">
+		<SimpleData name="Name">Post-medieval pilot lookout on Timmy's Hill, Bryher</SimpleData>
+		<SimpleData name="ListEntry">1016172</SimpleData>
+		<SimpleData name="SchedDate">1997/09/25</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15493</SimpleData>
+		<SimpleData name="NGR">SV 87743 14867</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">87741.77145360000</SimpleData>
+		<SimpleData name="Northing">14868.18530200000</SimpleData>
+		<SimpleData name="AREA_HA">0.00935860018</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.354698648463255,49.95218480375312 -6.354684511127311,49.952183922803144 -6.354666702267874,49.952187013237101 -6.354643098273377,49.952187397143653 -6.354628875051267,49.952185565601752 -6.354615169828603,49.952182211817636 -6.354602644674661,49.952177409884769 -6.35459152351677,49.952171322392601 -6.354582044923521,49.95216412030495 -6.354574783500706,49.952155988994811 -6.354616909343436,49.95213030690126 -6.354667747044584,49.952105655860244 -6.354694876990769,49.952104473431589 -6.354708118944271,49.952107484689705 -6.35471959315504,49.952112695043319 -6.354728937077358,49.95211964123942 -6.354737446699991,49.952127077720846 -6.354744922580469,49.952134958029333 -6.354751220834934,49.952143233548206 -6.354756460111505,49.952151827867503 -6.354760537443025,49.952160681837967 -6.354763418511669,49.95216972476905 -6.354765125536496,49.952178892871245 -6.354765512907373,49.952188119605822 -6.354759277949632,49.952197523424559 -6.354746827900515,49.952201888040342 -6.354732776675034,49.952200724890005 -6.354722504264618,49.952194461487288 -6.354711723119103,49.952188433198565 -6.354698648463255,49.95218480375312</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

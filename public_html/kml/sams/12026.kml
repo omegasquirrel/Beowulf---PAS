@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__12026</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__12026" id="20110413_SCHEDULEDMONUMENT_LegacyUID__12026">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Moated site at Foxley Green Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__12026">
+		<SimpleData name="Name">Moated site at Foxley Green Farm</SimpleData>
+		<SimpleData name="ListEntry">1013186</SimpleData>
+		<SimpleData name="SchedDate">1976/12/14</SimpleData>
+		<SimpleData name="AmendDate">1990/03/27</SimpleData>
+		<SimpleData name="LegacyUID">12026</SimpleData>
+		<SimpleData name="NGR">SU 87974 77037</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">487978.72564600001</SimpleData>
+		<SimpleData name="Northing">177034.02507000000</SimpleData>
+		<SimpleData name="AREA_HA">0.48887565952</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.733988173916677,51.484972504560147 -0.734039090052778,51.484940620042096 -0.734071588296997,51.4849481733972 -0.73419332696689,51.484998745284237 -0.734559472459634,51.485187706073184 -0.734823087443428,51.485326301742184 -0.734925208129057,51.485391066436812 -0.735014841381217,51.485439726573198 -0.734965387790819,51.485494233112433 -0.734847277497449,51.485594038001466 -0.734758300549068,51.485680911829284 -0.73464285369248,51.485797371397659 -0.734609378535158,51.485808439060456 -0.734553218913986,51.485824729113411 -0.734503382866743,51.485823813768441 -0.734369614592044,51.485789927367279 -0.73391367264384,51.48564805888774 -0.733810954358726,51.485604903599913 -0.733800627908501,51.485589820474424 -0.733807508964117,51.485520773431084 -0.733869288233883,51.485305192290426 -0.733972450526505,51.485054026949662 -0.733988173916677,51.484972504560147</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

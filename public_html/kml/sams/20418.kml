@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__20418</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__20418" id="20110413_SCHEDULEDMONUMENT_LegacyUID__20418">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Belsar's Hill ringwork</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__20418">
+		<SimpleData name="Name">Belsar's Hill ringwork</SimpleData>
+		<SimpleData name="ListEntry">1010368</SimpleData>
+		<SimpleData name="SchedDate">1981/10/09</SimpleData>
+		<SimpleData name="AmendDate">1992/01/20</SimpleData>
+		<SimpleData name="LegacyUID">20418</SimpleData>
+		<SimpleData name="NGR">TL 42290 70260</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">542267.21819599997</SimpleData>
+		<SimpleData name="Northing">270266.34830600000</SimpleData>
+		<SimpleData name="AREA_HA">14.79251543990</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>0.087255866146617,52.310316762922682 0.087192130388424,52.310248293501459 0.085846292400108,52.310294839586604 0.084635476322826,52.310336702982688 0.083979157539136,52.31036472373421 0.083612635050307,52.310416212709256 0.083261395614025,52.310460462341752 0.082163003000274,52.310623233727789 0.08258152445383,52.311845002717682 0.0830517237862,52.313215112055325 0.083333807411846,52.314116383505443 0.087880430599164,52.313460619318512 0.087995479761062,52.313350226079692 0.088198154375419,52.313293960021184 0.088783565051596,52.313151914457244 0.089507887490452,52.313019106460068 0.088870391068525,52.312257779839726 0.087964783068882,52.31117633769199 0.087255866146617,52.310316762922682</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13387</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13387" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13387">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Rolleston manor: three moats, eight fishponds with sluices, ridge and furrow and a leat</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13387">
+		<SimpleData name="Name">Rolleston manor: three moats, eight fishponds with sluices, ridge and furrow and a leat</SimpleData>
+		<SimpleData name="ListEntry">1011134</SimpleData>
+		<SimpleData name="SchedDate">1951/12/11</SimpleData>
+		<SimpleData name="AmendDate">1992/07/22</SimpleData>
+		<SimpleData name="LegacyUID">13387</SimpleData>
+		<SimpleData name="NGR">SK 74236 52734</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">474247.82391199999</SimpleData>
+		<SimpleData name="Northing">352735.65831400000</SimpleData>
+		<SimpleData name="AREA_HA">4.88974317826</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.891713729264924,53.06639090217714 -0.891968256317921,53.066203152564832 -0.892139278177626,53.066077201246422 -0.891826952337682,53.065949159249051 -0.891912455661506,53.065886183632614 -0.892220581500204,53.066022609539431 -0.892324649649252,53.065936946064184 -0.892473243874743,53.065828836497644 -0.89267077941386,53.065681466387545 -0.892953566831412,53.065481949651932 -0.89306896376939,53.065555631433959 -0.893433859994604,53.065766062574561 -0.893669668488436,53.065864047287469 -0.89392767128931,53.065977124438383 -0.89398000031752,53.066195400015815 -0.894207391273482,53.066286545300834 -0.894468727075975,53.066378014418575 -0.894626228330236,53.066255862385546 -0.894906046293021,53.066032212549949 -0.895175480992107,53.065817634957213 -0.895293903112571,53.065850835829522 -0.895513046641376,53.065915544746879 -0.895715260106873,53.065988114846256 -0.895878916805077,53.066097804224349 -0.896150288650136,53.066204267389828 -0.896179920676525,53.066236652795212 -0.896231053000302,53.066321206059243 -0.896257406703798,53.066382597202079 -0.896266419615996,53.066427017153138 -0.89625240892234,53.066478864630156 -0.896169062733754,53.066562161688104 -0.892715202301256,53.067893267499826 -0.89133872010477,53.067381291652282 -0.890881492482504,53.067216999981802 -0.891520542057493,53.066666870446788 -0.891528508195324,53.066525143830468 -0.891713729264924,53.06639090217714</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

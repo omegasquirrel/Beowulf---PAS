@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19040</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19040" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19040">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Long barrow 85m west of Cherhill Monument</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19040">
+		<SimpleData name="Name">Long barrow 85m west of Cherhill Monument</SimpleData>
+		<SimpleData name="ListEntry">1010135</SimpleData>
+		<SimpleData name="SchedDate">1992/06/04</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">19040</SimpleData>
+		<SimpleData name="NGR">SU 04693 69309</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">404692.86201099999</SimpleData>
+		<SimpleData name="Northing">169309.27329300001</SimpleData>
+		<SimpleData name="AREA_HA">0.03150468691</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.934001215915836,51.422709537038372 -1.9340623749517,51.42268427799214 -1.934082395878281,51.422823802618375 -1.933696770814304,51.422836372057219 -1.933696900401052,51.422746456287491 -1.934001215915836,51.422709537038372</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

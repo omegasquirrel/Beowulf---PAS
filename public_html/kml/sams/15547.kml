@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15547</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15547" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15547">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Prehistoric hut circle and field system 440m south west of Treswallock Cottage</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15547">
+		<SimpleData name="Name">Prehistoric hut circle and field system 440m south west of Treswallock Cottage</SimpleData>
+		<SimpleData name="ListEntry">1019171</SimpleData>
+		<SimpleData name="SchedDate">2000/10/10</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15547</SimpleData>
+		<SimpleData name="NGR">SX 10137 78075</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">210139.04010700001</SimpleData>
+		<SimpleData name="Northing">78074.76405250000</SimpleData>
+		<SimpleData name="AREA_HA">0.03690387394</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.682481200439091,50.571389835670153 -4.682537961302276,50.571388527364903 -4.682599790091171,50.571393137740614 -4.682657221455268,50.571403875948491 -4.68271449539282,50.571411595516565 -4.682767372999348,50.571425460880242 -4.682758212107553,50.571455876615637 -4.68270862724079,50.571516097482458 -4.68264533221606,50.571568197198054 -4.682579180305652,50.571613769592425 -4.682543913078933,50.571601108272908 -4.682494418672899,50.571591851083426 -4.682473582182218,50.571589057253625 -4.682473186866878,50.571498596659019 -4.682481200439091,50.571389835670153</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

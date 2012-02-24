@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__19088</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__19088" id="20110413_SCHEDULEDMONUMENT_LegacyUID__19088">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>The Bury: a ringwork and associated earthworks 100m north of Lavendon Church</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__19088">
+		<SimpleData name="Name">The Bury: a ringwork and associated earthworks 100m north of Lavendon Church</SimpleData>
+		<SimpleData name="ListEntry">1011295</SimpleData>
+		<SimpleData name="SchedDate">1972/11/14</SimpleData>
+		<SimpleData name="AmendDate">1993/12/01</SimpleData>
+		<SimpleData name="LegacyUID">19088</SimpleData>
+		<SimpleData name="NGR">SP 91608 53761</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">491606.75284099998</SimpleData>
+		<SimpleData name="Northing">253767.83243700000</SimpleData>
+		<SimpleData name="AREA_HA">0.65653354315</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.660958693275295,52.174949366776119 -0.660980770763082,52.174783930598018 -0.661111929475881,52.174799193324027 -0.661152513470755,52.174750409972006 -0.661223397561096,52.17464271054051 -0.661329168960149,52.174450414693041 -0.661471314781548,52.174222360509695 -0.661489611037518,52.174200863714177 -0.661509514344924,52.174147745731247 -0.661488011124747,52.174118226978749 -0.661496918912896,52.174101110201065 -0.661800300873289,52.174139292964604 -0.661987900984865,52.174163502589991 -0.661987023267543,52.174192758418762 -0.662277385100742,52.174221873185402 -0.662614889430986,52.174820761697035 -0.662626326505797,52.174835357915264 -0.662443134776084,52.174847882717735 -0.660958693275295,52.174949366776119</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

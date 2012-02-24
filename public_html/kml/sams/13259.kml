@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__13259</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__13259" id="20110413_SCHEDULEDMONUMENT_LegacyUID__13259">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Aveline's Hole, Burrington Combe</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__13259">
+		<SimpleData name="Name">Aveline's Hole, Burrington Combe</SimpleData>
+		<SimpleData name="ListEntry">1010297</SimpleData>
+		<SimpleData name="SchedDate">1992/09/03</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">13259</SimpleData>
+		<SimpleData name="NGR">ST 47626 58676</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">347625.20755100000</SimpleData>
+		<SimpleData name="Northing">158675.86567400000</SimpleData>
+		<SimpleData name="AREA_HA">0.04963414916</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.753182086014139,51.324860681688264 -2.753166954935315,51.324808724910717 -2.753038598680029,51.324817688160529 -2.752939996949284,51.324820759076708 -2.752827038132755,51.32481823035193 -2.752803635422668,51.32481675328841 -2.752780207096595,51.324812839579856 -2.752760628705351,51.324805646016102 -2.752750026287216,51.324792702907487 -2.752744619493196,51.324778908135919 -2.752744379781353,51.324764270838294 -2.752750626238829,51.324749591875559 -2.752762080761098,51.324735697654745 -2.752774893182301,51.324725850087368 -2.752791595719164,51.324715177222039 -2.752813531677394,51.324707716783685 -2.752917234468095,51.324698912280311 -2.75303661351526,51.324696517029039 -2.753148320470879,51.324701490408707 -2.753147920788198,51.324677097967097 -2.753198507366788,51.324674335758118 -2.753247934559228,51.324680518933853 -2.753287733364278,51.324812012272474 -2.753182086014139,51.324860681688264</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

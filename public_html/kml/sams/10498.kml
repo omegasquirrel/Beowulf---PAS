@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10498</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10498" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10498">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 70m south of A303</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10498">
+		<SimpleData name="Name">Bowl barrow 70m south of A303</SimpleData>
+		<SimpleData name="ListEntry">1012130</SimpleData>
+		<SimpleData name="SchedDate">1995/05/23</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10498</SimpleData>
+		<SimpleData name="NGR">SU 13914 41899</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">413913.50740100001</SimpleData>
+		<SimpleData name="Northing">141898.80260100000</SimpleData>
+		<SimpleData name="AREA_HA">0.04449906168</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.802294938107679,51.176056154620774 -1.802348017468782,51.176050965876939 -1.802401037459108,51.17605633362075 -1.802448821938185,51.176071736520065 -1.802486699548145,51.176095674103159 -1.802510946812145,51.176125793114423 -1.802519215784152,51.17615915828722 -1.802510662281757,51.176192486115632 -1.802486158309649,51.176222522975436 -1.802448076829202,51.176246332450852 -1.80240016135888,51.176261573991546 -1.802347096020522,51.176266771735392 -1.80229406153641,51.176261394990284 -1.802246276913339,51.176245991993802 -1.80220839930498,51.176222054367791 -1.802184152242685,51.176191935260263 -1.802175897710837,51.176158579075299 -1.802184437244115,51.176125242260369 -1.802208941305621,51.176095205497624 -1.802247022784466,51.176071396065097 -1.802294938107679,51.176056154620774</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

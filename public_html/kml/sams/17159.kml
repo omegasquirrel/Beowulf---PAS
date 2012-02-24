@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__17159</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__17159" id="20110413_SCHEDULEDMONUMENT_LegacyUID__17159">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Rushton Triangular Lodge: an Elizabethan warrener's lodge and rabbit warren</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__17159">
+		<SimpleData name="Name">Rushton Triangular Lodge: an Elizabethan warrener's lodge and rabbit warren</SimpleData>
+		<SimpleData name="ListEntry">1013826</SimpleData>
+		<SimpleData name="SchedDate">1927/01/25</SimpleData>
+		<SimpleData name="AmendDate">1996/03/22</SimpleData>
+		<SimpleData name="LegacyUID">17159</SimpleData>
+		<SimpleData name="NGR">SP 83039 83074</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">483039.05299599998</SimpleData>
+		<SimpleData name="Northing">283077.60053300002</SimpleData>
+		<SimpleData name="AREA_HA">0.11196598395</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-0.779474904746823,52.439483516320138 -0.779774655276025,52.439173909062674 -0.779953339253056,52.439180831966077 -0.780217230034768,52.43951279629448 -0.779474904746823,52.439483516320138</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

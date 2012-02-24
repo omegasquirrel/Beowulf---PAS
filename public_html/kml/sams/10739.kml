@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10739</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10739" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10739">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>The south-eastern of two cairns on Eylesbarrow</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10739">
+		<SimpleData name="Name">The south-eastern of two cairns on Eylesbarrow</SimpleData>
+		<SimpleData name="ListEntry">1010692</SimpleData>
+		<SimpleData name="SchedDate">1992/02/24</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10739</SimpleData>
+		<SimpleData name="NGR">SX 59970 68577</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">259970.24877999999</SimpleData>
+		<SimpleData name="Northing">68577.12200069999</SimpleData>
+		<SimpleData name="AREA_HA">0.07910905220</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.975752142924567,50.500073130155165 -3.975821517060941,50.500064909832822 -3.975891492772618,50.500070763920618 -3.975955193237586,50.500090125615515 -3.976006404570574,50.500121085833463 -3.97604009406651,50.500160636062084 -3.976052982610168,50.50020488366669 -3.976043804048836,50.50024950602463 -3.976013461977583,50.500290143688211 -3.975964906025378,50.500322798110844 -3.975902910789117,50.500344294332571 -3.975833522175012,50.500352514912507 -3.975763560137196,50.500346660589976 -3.975699859451769,50.500327298758855 -3.975648648036194,50.500296338442496 -3.975614944732877,50.5002567883027 -3.975602056528051,50.500212540646281 -3.975611235554341,50.500167918317267 -3.975641591929891,50.500127280550743 -3.97569014796456,50.50009462622652 -3.975752142924567,50.500073130155165</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

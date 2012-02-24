@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10721</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10721" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10721">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Tramp's Shelter, Chudleigh Rocks</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10721">
+		<SimpleData name="Name">Tramp's Shelter, Chudleigh Rocks</SimpleData>
+		<SimpleData name="ListEntry">1017681</SimpleData>
+		<SimpleData name="SchedDate">1992/02/06</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">10721</SimpleData>
+		<SimpleData name="NGR">SX 86674 78606</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">286675.19796700001</SimpleData>
+		<SimpleData name="Northing">78607.66867950000</SimpleData>
+		<SimpleData name="AREA_HA">0.01070276399</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-3.602435189182749,50.596131273144692 -3.60251571114105,50.596083785341406 -3.602600502534056,50.596175296911582 -3.602466096755744,50.596235038015301 -3.602435189182749,50.596131273144692</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

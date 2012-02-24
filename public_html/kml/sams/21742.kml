@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21742</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21742" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21742">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Bowl barrow 870m ESE of New Barn on Monkton Down</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21742">
+		<SimpleData name="Name">Bowl barrow 870m ESE of New Barn on Monkton Down</SimpleData>
+		<SimpleData name="ListEntry">1015650</SimpleData>
+		<SimpleData name="SchedDate">1949/04/28</SimpleData>
+		<SimpleData name="AmendDate">1997/04/15</SimpleData>
+		<SimpleData name="LegacyUID">21742</SimpleData>
+		<SimpleData name="NGR">SU 12484 71350</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">412484.09840100002</SimpleData>
+		<SimpleData name="Northing">171349.71484999999</SimpleData>
+		<SimpleData name="AREA_HA">0.06056771315</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-1.821712027382622,51.440886006201097 -1.821774305938948,51.44087994154853 -1.821836522243048,51.440886195168062 -1.821892592773239,51.44090415548807 -1.821937057040009,51.440932078788876 -1.821965523159011,51.440967207042263 -1.821975241967638,51.441006128274267 -1.821965221112925,51.441045010590145 -1.821936482456116,51.441080061086474 -1.821891801710431,51.441107840196061 -1.821835592006284,51.441125639127101 -1.821773327503311,51.441131703867782 -1.821711096494879,51.441125450158538 -1.821655025800148,51.441107480799992 -1.821610561500573,51.441079566379628 -1.821582095619418,51.441044429054308 -1.821572391481675,51.441005516798747 -1.821582398316459,51.440966625508047 -1.821611137137718,51.44093158408463 -1.821655817916144,51.440903796094595 -1.821712027382622,51.440886006201097</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

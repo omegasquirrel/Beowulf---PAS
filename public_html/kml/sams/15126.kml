@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15126</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15126" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15126">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Prehistoric round cairn and Prehistoric clearance cairn 952m north-west of Wardbrook Farm</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15126">
+		<SimpleData name="Name">Prehistoric round cairn and Prehistoric clearance cairn 952m north-west of Wardbrook Farm</SimpleData>
+		<SimpleData name="ListEntry">1008833</SimpleData>
+		<SimpleData name="SchedDate">1992/08/07</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15126</SimpleData>
+		<SimpleData name="NGR">SX 24660 73697</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">224660.07476799999</SimpleData>
+		<SimpleData name="Northing">73697.27578970000</SimpleData>
+		<SimpleData name="AREA_HA">0.02989722656</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.47559441830877,50.536602319742165 -4.475610929758932,50.536601761569131 -4.475627532923729,50.536602955414068 -4.475643339772485,50.536605920135436 -4.475658361048663,50.536610592543241 -4.475671922392779,50.536616762107187 -4.475813004765985,50.536716847185517 -4.475850883784628,50.536749698879568 -4.475856386284809,50.536758018737089 -4.475858185837142,50.536767046963611 -4.475856453528468,50.536776006434117 -4.475851163832067,50.536784411943046 -4.47584272420588,50.536791688234203 -4.475831545759,50.536797331787554 -4.475818509547008,50.536800919152007 -4.475804470825961,50.536802342165437 -4.475790306915501,50.536801375297173 -4.475777124943842,50.536798138894476 -4.475765598858056,50.536792834472671 -4.475560642851973,50.536719481906829 -4.475537105662735,50.536707965881732 -4.475526528109059,50.536699754010243 -4.47551832405301,50.53669051126078 -4.475512733676866,50.536680511305562 -4.475509986679182,50.536670100059531 -4.47550986891672,50.536659497966703 -4.475512411782658,50.536649037181114 -4.475517842833081,50.536639018611673 -4.475525950118978,50.536629707671935 -4.475536326203702,50.536621409789625 -4.47554874180945,50.536614327785053 -4.475562785375692,50.536608686267087 -4.475577999091969,50.536604638843123 -4.47559441830877,50.536602319742165</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__15376</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__15376" id="20110413_SCHEDULEDMONUMENT_LegacyUID__15376">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Round cairn 137m east of Helvear Farm, St Mary's</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__15376">
+		<SimpleData name="Name">Round cairn 137m east of Helvear Farm, St Mary's</SimpleData>
+		<SimpleData name="ListEntry">1010167</SimpleData>
+		<SimpleData name="SchedDate">1995/02/09</SimpleData>
+		<SimpleData name="AmendDate">0000/00/00</SimpleData>
+		<SimpleData name="LegacyUID">15376</SimpleData>
+		<SimpleData name="NGR">SV 92248 12314</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">92248.13708620000</SimpleData>
+		<SimpleData name="Northing">12314.98419720000</SimpleData>
+		<SimpleData name="AREA_HA">0.01824108558</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-6.289978066101871,49.93150830658309 -6.290036913296151,49.931487850411003 -6.290098184757967,49.931664392506875 -6.29002938541077,49.931676084360682 -6.28997248460513,49.931672974025069 -6.28993815353765,49.931650751894423 -6.289921206247626,49.93159656273285 -6.289926024805796,49.931559833367103 -6.289947668401444,49.931530308948503 -6.289978066101871,49.93150830658309</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

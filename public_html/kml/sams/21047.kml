@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__21047</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__21047" id="20110413_SCHEDULEDMONUMENT_LegacyUID__21047">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Simonburn Castle tower house</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__21047">
+		<SimpleData name="Name">Simonburn Castle tower house</SimpleData>
+		<SimpleData name="ListEntry">1012414</SimpleData>
+		<SimpleData name="SchedDate">1934/04/30</SimpleData>
+		<SimpleData name="AmendDate">1994/10/03</SimpleData>
+		<SimpleData name="LegacyUID">21047</SimpleData>
+		<SimpleData name="NGR">NY 86273 73739</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">386272.63995200000</SimpleData>
+		<SimpleData name="Northing">573738.85031100002</SimpleData>
+		<SimpleData name="AREA_HA">0.03586735263</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.216227006118366,55.057903708475656 -2.216471673861172,55.057825211065648 -2.21663684297608,55.057972064195567 -2.216410329202717,55.058061205105631 -2.216227006118366,55.057903708475656</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

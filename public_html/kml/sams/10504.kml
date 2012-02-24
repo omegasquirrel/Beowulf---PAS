@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>20110413_SCHEDULEDMONUMENT_LegacyUID__10504</name>
+<Schema name="20110413_SCHEDULEDMONUMENT_LegacyUID__10504" id="20110413_SCHEDULEDMONUMENT_LegacyUID__10504">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="ListEntry" type="int"></SimpleField>
+	<SimpleField name="SchedDate" type="string"></SimpleField>
+	<SimpleField name="AmendDate" type="string"></SimpleField>
+	<SimpleField name="LegacyUID" type="string"></SimpleField>
+	<SimpleField name="NGR" type="string"></SimpleField>
+	<SimpleField name="CaptureSca" type="string"></SimpleField>
+	<SimpleField name="Easting" type="float"></SimpleField>
+	<SimpleField name="Northing" type="float"></SimpleField>
+	<SimpleField name="AREA_HA" type="float"></SimpleField>
+</Schema>
+  <Placemark>
+	<name>Alstone lake settlement site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#20110413_SCHEDULEDMONUMENT_LegacyUID__10504">
+		<SimpleData name="Name">Alstone lake settlement site</SimpleData>
+		<SimpleData name="ListEntry">1012311</SimpleData>
+		<SimpleData name="SchedDate">1969/11/26</SimpleData>
+		<SimpleData name="AmendDate">1991/05/30</SimpleData>
+		<SimpleData name="LegacyUID">10504</SimpleData>
+		<SimpleData name="NGR">ST 31297 46794</SimpleData>
+		<SimpleData name="CaptureSca">1:10000</SimpleData>
+		<SimpleData name="Easting">331295.95440400002</SimpleData>
+		<SimpleData name="Northing">146792.96443800000</SimpleData>
+		<SimpleData name="AREA_HA">0.78380467176</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-2.984362650689082,51.216615473839283 -2.984481475031546,51.21638793387207 -2.98480330297353,51.215773576674806 -2.984881931524942,51.215594923381751 -2.98518679651306,51.215634430952868 -2.985336894067848,51.215665520767828 -2.98540193987083,51.215574358634171 -2.985712304274025,51.215630004448421 -2.985646982429916,51.215708220342201 -2.985592727510649,51.215821943034577 -2.985540061804455,51.216010089641422 -2.985566066043823,51.216262299256648 -2.985605512717775,51.216420544150495 -2.985620655938472,51.216514151165896 -2.985416685919239,51.216506274697622 -2.985184226504006,51.216479106747791 -2.985087331907641,51.216767942415053 -2.98467408139913,51.216775171043921 -2.984362650689082,51.216615473839283</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>
