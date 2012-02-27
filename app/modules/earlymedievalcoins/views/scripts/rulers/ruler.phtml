@@ -1,15 +1,9 @@
 <?php 
-	
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 $config = Zend_Registry::get('config');
 $apikey = $config->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='.$apikey,$type='text/javascript');
-$this->jQuery()->javascriptCaptureStart() ?>
-jQuery(document).ready(function($) {
+?>
 
- $('a[rel*=lightbox]').lightBox() 
-    })
-<?php $this->jQuery()->javascriptCaptureEnd() ?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
  $(document).ready(function(){
  
@@ -81,7 +75,7 @@ if (GBrowserIsCompatible()) {
     'OSM' // name should be short enough to fit in button
   );
    	  
-   	  var map = new GMap2(document.getElementById("mapobjects"));
+   	  var map = new GMap2(document.getElementById("map"));
 		
         map.addControl(new GSmallMapControl());
 		map.addControl(new GMenuMapTypeControl());
@@ -93,7 +87,8 @@ if (GBrowserIsCompatible()) {
 		map.enableContinuousZoom();
 		map.addControl(new GScaleControl());
     	map.disableScrollWheelZoom(); 
-		map.enableRotation();	  
+		map.enableRotation();
+		 map.checkResize();	  
 	  
 	  <?php
 		
@@ -175,11 +170,11 @@ $user = $auth->getIdentity();
  
 $('#tabs').tabs({ fx: { opacity: 'toggle' } }); 
 $('#tabs').bind('tabsshow', function(event, ui) {
-    if (ui.panel.id == "mapobjects") {
+    if (ui.panel.id == "map") {
         map.checkResize();
     }	 
 
-jQuery('a[href=#mapobjects]').bind('click',fixMap);
+jQuery('a[href=#map]').bind('click',fixMap);
 
 function fixMap(event) {
 	  
@@ -305,51 +300,50 @@ echo '</p>';
 ?> 
 <?php echo $this->latestRecords('ruler:'  .  Zend_Controller_Front::getInstance()->getRequest()->getParam('id'));?>
 
+<div class="row-fluid">
+	<!--  Navigation for tabs  -->
+	<ul id="tab" class="nav nav-tabs">
+		<li class="active"><a href="#denoms" data-toggle="tab">Denominations issued</a></li>
+        <li><a href="#mints" data-toggle="tab">Issuing mints</a></li>
+        <li><a href="#types" data-toggle="tab">Types issued</a>
+        <li><a href="#map" data-toggle="tab">Map</a></li>
+	</ul>
+	<!--  End of Tabs navigation -->
+	
+	<!-- Start of tabbed content div -->
+	<div id="myTabContent" class="tab-content">
+		
+		<div class="tab-pane fade in active" id="denoms">
+		<?php if (count($this->denominations > 0)):?>
+		<h3>Denominations issued</h3>
+			<ul>
+			<?php echo $this->partialLoop('partials/numismatics/denomination.phtml', $this->denominations);?>
+			</ul>
+		<?php endif;?>    
+		</div>
+        
+        <div class="tab-pane fade" id="mints">
+		<?php if(count($this->mints > 0)):?>
+		<h3>Active Mints</h3>
+		<ul>
+			<?php echo $this->partialLoop('partials/numismatics/medmintsList.phtml', $this->mints);?>
+		</ul>
+		<?php endif;?>
+		</div>
+		
+		<div class="tab-pane fade" id="types">
+		<?php if(count($this->types > 0 )):?>
+		<h3><?php echo count($this->types) . ' coin types issued';?></h3>
+		<ul>
+			<?php echo $this->partialLoop('partials/numismatics/types.phtml', $this->types);?>
+		</ul>
+		<?php endif;?>
+		</div>
+		
+        <div class="tab-pane fade" id="map">
+		
+		</div>
+	</div>
+	<!--  End of tabbed content div -->
 
- <div id="tabs"  >
-
-  <ul>
-       
-        <li><a href="#denominations"><span>Denominations issued</span></a></li>
-		 <li><a href="#mints"><span>Issuing mints</span></a></li>
-        <li><a href="#types"><span>Types issued</span></a></li>
-        <li><a href="#mapobjects"><span>Findspots</span></a></li>
-    </ul>
-
-<div id="denominations">
-<?php 
-if (count($this->denominations > 0)) {
-echo '<h3>Denominations issued</h3><ul id="related">';
-echo $this->partialLoop('partials/numismatics/denomination.phtml', $this->denominations);
-echo '</ul>';
-}
-?>
-</div>
-<div id="mints">
-<?php 
-if(count($this->mints > 0)) {
-echo '<h3>Active Mints</h3>';
-echo '<ul id="related">';
-echo $this->partialLoop('partials/numismatics/medmintsList.phtml', $this->mints);
-echo '</ul>';
-}
-?>
-</div>
-
-<div id="types">
-<?php if(count($this->types > 0 )) {
-echo '<h3>';
-echo count($this->types);
-echo ' coin types issued</h3>';
-echo '<ul id="related">';
-echo $this->partialLoop('partials/numismatics/types.phtml', $this->types);
-echo '</ul>';
-}
-?>
-</div>
-
-
-
-
-<div id="mapobjects"></div>
 </div>

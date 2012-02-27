@@ -18,9 +18,9 @@ class ResearchProjects extends Pas_Db_Table_Abstract {
 
 	protected $_primary = 'id';
 
-	protected $_higherlevel = array( 'admin', 'flos', 'fa');
+	protected $_higherlevel = array( 'admin', 'flos', 'fa', 'treasure');
 
-	protected $_restricted = array( 'public', 'member' );
+	protected $_restricted = array( null, 'public', 'member' , 'hero');
 
 	/**
 	* Get a role from Zend_Auth

@@ -11,7 +11,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	protected $_higherlevel = array('admin','flos','fa','heros', 'treasure', 'research');
 
-	protected $_restricted = array('public','member');
+	protected $_restricted = array(null,'public','member');
 
 	public function __construct($options = null) {
 
@@ -321,7 +321,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$institution->setLabel('Recording institution: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose institution' => $inst_options));
+	->addMultiOptions(array(NULL => 'Choose institution', 'Available institutions' => $inst_options));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(4800);

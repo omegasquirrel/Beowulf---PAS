@@ -11,7 +11,7 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 
 	protected $_higherlevel = array('admin','flos','fa','heros','treasure','research'); 
 	
-	protected $_restricted = array('public','member');
+	protected $_restricted = array(null,'public','member');
 
 	public function __construct($options = null) {
 		

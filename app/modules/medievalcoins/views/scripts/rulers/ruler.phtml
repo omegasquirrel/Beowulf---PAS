@@ -53,7 +53,7 @@ $chunks = split('\. ',str_replace('c.','circa',$row['abstract']));
   $trimmed = $this->ellipsisstring($abs,200);
 
  $this->headMeta($trimmed,'description');
-echo '<h4>Wikipedia derived information</h4>';
+echo '<h3>Wikipedia derived information</h3>';
 if(isset($row['thumb'])) {
 echo '<a href="'.$row['depiction'].'" rel="lightbox" title="' .str_replace('"','',$row['caption']) .'"><img src="'.$row['thumb'].'" class="flow" alt="' .str_replace('"','',$row['caption']) .'" width="'.$row['imgw'].'"/></a>';
 }
@@ -109,41 +109,52 @@ echo '</p>';
 ?> 
 
 
-<div id="tabs">
-<ul>
- <li><a href="#denominations"><span>Denominations issued</span></a></li>
- <li><a href="#mints"><span>Issuing mints</span></a></li>
- <li><a href="#types"><span>Types</span></a></li>
- <li><a href="#mapobjects"><span>Findspots</span></a></li>
-</ul>
+<div class="row-fluid">
+	<!--  Navigation for tabs  -->
+	<ul id="tab" class="nav nav-tabs">
+		<li class="active"><a href="#denoms" data-toggle="tab">Denominations issued</a></li>
+        <li><a href="#mints" data-toggle="tab">Issuing mints</a></li>
+        <li><a href="#types" data-toggle="tab">Types issued</a>
+        <li><a href="#map" data-toggle="tab">Map</a></li>
+	</ul>
+	<!--  End of Tabs navigation -->
+	
+	<!-- Start of tabbed content div -->
+	<div id="myTabContent" class="tab-content">
+		
+		<div class="tab-pane fade in active" id="denoms">
+		<?php if (count($this->denominations > 0)):?>
+		<h3>Denominations issued</h3>
+			<ul>
+			<?php echo $this->partialLoop('partials/numismatics/denomination.phtml', $this->denominations);?>
+			</ul>
+		<?php endif;?>    
+		</div>
+        
+        <div class="tab-pane fade" id="mints">
+		<?php if(count($this->mints > 0)):?>
+		<h3>Active Mints</h3>
+		<ul>
+			<?php echo $this->partialLoop('partials/numismatics/medmintsList.phtml', $this->mints);?>
+		</ul>
+		<?php endif;?>
+		</div>
+		
+		<div class="tab-pane fade" id="types">
+		<?php if(count($this->types > 0 )):?>
+		<h3><?php echo count($this->types) . ' coin types issued';?></h3>
+		<ul>
+			<?php echo $this->partialLoop('partials/numismatics/types.phtml', $this->types);?>
+		</ul>
+		<?php endif;?>
+		</div>
+		
+        <div class="tab-pane fade" id="map">
+		
+		</div>
+	</div>
+	<!--  End of tabbed content div -->
 
-<?php if (count($this->denominations)) :?>
-<div id="denominations">
-<h3>Denominations issued by </h3>
-<ul id="related">
-<?php echo $this->partialLoop('partials/numismatics/denomination.phtml', $this->denominations);?>
-</ul>
-</div>
-<?php endif;?>
-
-<?php if(count($this->mints)):?>
-<div id="mints">
-<h3>Active Mints</h3>
-<ul id="related">
-<?php echo $this->partialLoop('partials/numismatics/medmintsList.phtml', $this->mints) ?>
-</ul>
-</div>
-<?php endif;?>
-
-<?php if(count($this->types)):?>
-<div id="types">
-<h3><?php echo count($this->types);?> coin types issued</h3>
-<ul id="related">
-<?php echo $this->partialLoop('partials/numismatics/types.phtml', $this->types) ?>
-</ul>
-</div>
-<?php endif;?>
-<div id="mapobjects"></div>
 </div>
 <?php 
 $config = Zend_Registry::get('config');
@@ -236,7 +247,7 @@ if (GBrowserIsCompatible()) {
     'OSM' // name should be short enough to fit in button
   );
    	  
-   	  var map = new GMap2(document.getElementById("mapobjects"));
+   	  var map = new GMap2(document.getElementById("map"));
 		
         map.addControl(new GSmallMapControl());
 		map.addControl(new GMenuMapTypeControl());
@@ -330,11 +341,11 @@ $user = $auth->getIdentity();
  
 $('#tabs').tabs({ fx: { opacity: 'toggle' } }); 
 $('#tabs').bind('tabsshow', function(event, ui) {
-    if (ui.panel.id == "mapobjects") {
+    if (ui.panel.id == "map") {
         map.checkResize();
     }	 
 
-jQuery('a[href=#mapobjects]').bind('click',fixMap);
+jQuery('a[href=#map]').bind('click',fixMap);
 
 function fixMap(event) {
 	  

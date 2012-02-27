@@ -40,7 +40,7 @@ class PostMedievalCoins_RulersController extends Pas_Controller_Action_Admin {
 	$denominations = new Denominations();
 	$this->view->denominations = $denominations->getEarlyMedRulerToDenomination($id);
 	$types = new MedievalTypes();
-	$this->view->types = $types->getMedievalTypeToRuler($id);
+	$this->view->types = $types->getPostMedievalTypeToRuler($id);
 	$mints = new Mints();
 	$this->view->mints = $mints->getMedMintRuler($id);
 	} else {

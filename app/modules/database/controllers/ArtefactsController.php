@@ -15,9 +15,9 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     /**
      * @var array restricted access roles
      */
-    protected $_restricted = array('member','public');
+    protected $_restricted = array(null, 'member','public');
 
-    protected $_higherLevel = array('treasure', 'flos', 'admin', 'hero' );
+    protected $_higherLevel = array('treasure', 'flos', 'admin', 'hero', 'fa' );
 
     /**
     * @var array coins pseudonyms
@@ -123,7 +123,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county')
     );
-    $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow           '));
+    $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow'));
 
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {

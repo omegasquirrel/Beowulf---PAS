@@ -8,15 +8,15 @@ $this->headMeta($this->curUrl(),'dc.identifier')
 $this->headTitle('Issuing mints ');
 ?>
 <h2>Issuing Mints of the Early Medieval period</h2>
-<table class="stripeMe">
-<caption>A list of all Early Medieval mints listed on our database</caption>
-<thead>
-<tr>
-<th>Mint name</th>
-<th>Geo location</th>
-</tr>
-</thead>
-<tbody>
-<?php echo $this->partialLoop('partials/numismatics/medmints.phtml',$this->mints);?>
-</tbody>
+<table class="table table-striped">
+	<caption>A list of all Early Medieval mints listed on our database</caption>
+	<thead>
+	<tr>
+	<th>Mint name</th>
+	<th>Geo location</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php echo $this->partialLoop('partials/numismatics/medmints.phtml',$this->mints);?>
+	</tbody>
 </table>

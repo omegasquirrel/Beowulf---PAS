@@ -53,7 +53,7 @@
 		<?php endif;?>
 		
 		<?php if (count($this->peoples) > 0) : ?>
-		<h4>Personal details</h4>
+		<h3>Personal details</h3>
 		<?php echo $this->partialLoop('partials/database/personal.phtml', $this->peoples) ?>
 		<?php endif;?>
 		
@@ -111,7 +111,7 @@ if ((count($this->coins)) && in_array($this->finds['0']['objecttype'],$objectarr
 
 <?php if(count($this->coinrefs)) :?>
 <div id="coinrefslinked">
-<h4>Coin references</h4>
+<h3>Coin references</h3>
 <ul>
 <?php echo $this->partialLoop('partials/numismatics/coinrefs.phtml',$this->coinrefs);?>
 </ul>
@@ -121,7 +121,7 @@ echo $this->CoinRefAddLink($this->finds['0']['old_findID'], $this->finds['0']['i
 </div>
 <?php else:?>
 <div id="coinrefs">
-<h4>Coin references</h4>
+<h3>Coin references</h3>
 <p>No coin references available.</p>
 <?php
 echo $this->CoinRefAddLink($this->finds['0']['old_findID'], $this->finds['0']['id'],$this->finds['0']['broadperiod'],$this->finds['0']['secuid'],$this->finds['0']['id'],$this->finds['0']['createdBy']);
@@ -135,7 +135,7 @@ $objectarray = array('coin','COIN','Coin');
 $jettonArray = array('token','Token','Jetton','JETTON','TOKEN');
 if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$objectarray)) { ?>
 <div id="numisdata">
-<h4>Numismatic data</h4>
+<h3>Numismatic data</h3>
 <p>No numismatic data has been recorded for this coin yet.</p>
 
 <div id="addcoindata" class="addpanel noprint"><?php echo $this->AddCoinLink($this->finds['0']['old_findID'],$this->finds['0']['id'],$this->finds['0']['secuid'],$this->finds['0']['createdBy'],$this->finds['0']['broadperiod']);?></div>
@@ -144,7 +144,7 @@ if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$objectarr
 <?php
 if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$jettonArray)) { ?>
 <div id="numisdata">
-<h4>Numismatic data</h4>
+<h3>Numismatic data</h3>
 <p>No numismatic data has been recorded for this coin yet.</p>
 
 <div id="addcoindata" class="addpanel noprint"><?php echo $this->AddJettonLink($this->finds['0']['old_findID'],$this->finds['0']['id'],$this->finds['0']['secuid'],$this->finds['0']['createdBy'],$this->finds['0']['broadperiod']);?></div>
@@ -167,9 +167,9 @@ if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$jettonArr
 		?>
 	</div>
 <div class="span3 well" id="qrcode">
-<h4>QR barcode</h4>
+<h3>QR barcode</h3>
 <img class="flow" src="http://chart.apis.google.com/chart?chs=150x150&amp;cht=qr&amp;chl=<?php echo $this->CurUrl();?>" alt="QR code for this URL" width="150" height="150" style="float:right;"/>
-<p>If you have a mobile phone equipped with QR recognition software, you can go directly to the webpage that this record resides at. Every record has an individual one of these.</p>
+<p>The barcode on the right is a unique identifier for this record. If your phone has scanning software installed, then this can be used for sharing or you can print it off and attach it to the object.</p>
 </div>
 </div>
 
@@ -178,7 +178,7 @@ if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$jettonArr
 <?php echo $this->Findspot($this->findspots);?>
 <?php else: ?>
 <div id="findspotdata">
-<h4>Spatial data</h4>
+<h3>Spatial data</h3>
 <p>No data recorded at present.</p>
 <?php echo $this->FindSpotLink($this->finds['0']['old_findID'],$this->finds['0']['id'],
 $this->finds['0']['secuid'],$this->finds['0']['createdBy']);?>
@@ -187,7 +187,7 @@ $this->finds['0']['secuid'],$this->finds['0']['createdBy']);?>
 
 </div>
 <div class="row-fluid">
-<h4>References cited</h4>
+<h3>References cited</h3>
 <div id="references">
 <?php
 if (count($this->refs) > 0) : ?>
@@ -218,7 +218,7 @@ $this->finds['0']['secuid'],$this->finds['0']['createdBy']);?>
 
 <a class="btn btn-small" href="#comment_content" id="addcomment" title="Comment on this artefact's record">Be the first to comment</a></p>
 <?php else: ?>
-<a class="btn btn-small" href="#comment_content" id="addcomment" title="Comment on this find">Add a new comment</a> | Total Comments [<?php echo count($this->comments);?>]</p><h4>Approved comments on this record</h4>
+<a class="btn btn-small" href="#comment_content" id="addcomment" title="Comment on this find">Add a new comment</a> | Total Comments [<?php echo count($this->comments);?>]</p><h3>Approved comments on this record</h3>
 <?php endif;?>
 <div id="comm">
 <?php if($this->comments):?>

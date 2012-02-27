@@ -12,7 +12,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
     protected $_higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
 
-	protected $_restricted = array('public', 'member', 'research');
+	protected $_restricted = array(null,'public', 'member', 'research');
 
 	public function __construct($options = null) {
 
@@ -65,7 +65,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 
-        $workflow = new Zend_Form_Element_Select('workflow');
+    $workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
@@ -180,10 +180,11 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$type = new Zend_Form_Element_Select('typeID');
 	$type->setLabel('Coin type: ')
-	->setRegisterInArrayValidator(false)
+		->setRegisterInArrayValidator(false)
         ->setRequired(false)
         ->addValidator('Int')
-	->addFilters(array('StripTags','StringTrim'));
+		->addFilters(array('StripTags','StringTrim'))
+		 ->addMultiOptions(array(NULL => 'Choose type after choosing ruler'));
 
 
 	//Primary ruler

@@ -362,8 +362,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 
 
-        public function postcodeAction(){
-        $form = new PostcodeForm();
+	public function postcodeAction(){
+    $form = new PostcodeForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
 	if ($form->isValid($form->getValues())) {
@@ -384,8 +384,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$form->populate($form->getValues());
 	}
 	}
-
-        }
+	}
 
         /** Display the index page.
 	*/

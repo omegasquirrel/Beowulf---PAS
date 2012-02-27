@@ -11,7 +11,7 @@ class RomanNumismaticSearchForm extends Pas_Form
 
     protected $_higherlevel = array('admin','flos','fa','heros');
 
-    protected $_restricted = array('public','member','research');
+    protected $_restricted = array(null, 'public','member','research');
 
 
     public function __construct($options = null) {

@@ -97,6 +97,23 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 	return $rulers->fetchAll($select);
     }
 
+    
+	/** Get all the post medieval types attached to a ruler
+	* @param integer $rulerID
+	* @return array
+	* @todo add cache
+	*/
+	public function getPostMedievalTypeToRuler($rulerID) {
+	$rulers = $this->getAdapter();
+	$select = $rulers->select()
+		->from($this->_name, array('id','type','datefrom','dateto'))
+		->joinLeft('rulers','rulers.id = medievaltypes.rulerID', array())
+		->where('period = ?', (int)36)
+		->where('medievaltypes.rulerID = ?', (int)$rulerID)
+		->order('medievaltypes.id');
+	return $rulers->fetchAll($select);
+    }
+    
     /** Get all the medieval types attached to a ruler as dropdown ket value pairs
 	* @param integer $rulerID
 	* @return array

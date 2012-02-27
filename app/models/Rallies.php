@@ -20,12 +20,12 @@ class Rallies extends Pas_Db_Table_Abstract {
      * @return array
 	*/
 	public function getRallies() {
-	if (!$options = $this->_cache->load('rallydd')) {
+	if (!$options = $this->_cache->load('rallydds')) {
 	$select = $this->select()
-		->from($this->_name, array('rally_name', 'rally_name'))
+		->from($this->_name, array('id', 'rally_name'))
 		->order('rally_name');
 	$options = $this->getAdapter()->fetchPairs($select);
-	$this->_cache->save($options, 'rallydd');
+	$this->_cache->save($options, 'rallydds');
 	}
 	return $options;
     }

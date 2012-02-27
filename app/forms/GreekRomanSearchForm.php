@@ -8,7 +8,11 @@
 */
 class GreekRomanSearchForm extends Pas_Form {
 
-public function __construct($options = null) {
+	protected $_higherlevel = array('admin','flos','fa','heros', 'treasure', 'research');
+
+	protected $_restricted = array(null,'public','member');
+	
+	public function __construct($options = null) {
 
 	//Get data to form select menu for primary and secondary material
 	$primaries = new Materials();
@@ -60,10 +64,17 @@ public function __construct($options = null) {
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
 	->setRequired(false)
-	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL ,'Choose Worklow stage' => 
-	array('1'=> 'Quarantine','2' => 'On review', '3' => 'Awaiting validation', '4' => 'Published')))
-	->addValidator('Digits');
+	->addFilters(array('StripTags', 'StringTrim'));
+
+	if(in_array($this->_role,$this->_higherlevel)) {
+	$workflow->addMultiOptions(array(NULL => 'Choose a workflow stage',
+	'Available workflow stages' => array('1'=> 'Quarantine','2' => 'On review',
+	'4' => 'Awaiting validation', '3' => 'Published')));
+	}
+	if(in_array($this->_role,$this->_restricted)) {
+	$workflow->addMultiOptions(array(NULL => 'Choose a workflow stage',
+	'Available workflow stages' => array('4' => 'Awaiting validation', '3' => 'Published')));
+	}
 
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
@@ -77,7 +88,6 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int')
-	->addMultiOptions(array(NULL => NULL,'Choose rally name' => $rally_options))
 	->addValidator('InArray', false, array(array_keys($rally_options)));
 
 
@@ -91,18 +101,19 @@ public function __construct($options = null) {
 	$hoardID->setLabel('Part of this hoard: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose rally name' => $hoard_options))
+	->addMultiOptions(array(NULL => 'Choose hoard name', 'Available hoards' => $hoard_options))
 	->addValidator('InArray', false, array(array_keys($hoard_options)));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
+	->addMultiOptions(array(NULL => 'Choose county', 'Available counties' => $county_options))
 	->addValidator('InArray', false, array(array_keys($county_options)));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
-	->addFilters(array('StringTrim','StripTags'));
+	->addFilters(array('StringTrim','StripTags'))
+	->addMultiOptions(array(NULL => 'Choose district after county'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
@@ -134,7 +145,7 @@ public function __construct($options = null) {
 	$denomination->setLabel('Denomination: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $denomination_options))
+	->addMultiOptions(array(NULL => 'Choose denomination type', 'Available denominations' => $denomination_options))
 	->addValidator('InArray', false, array(array_keys($denomination_options)));
 	
 	//Primary ruler
@@ -142,7 +153,7 @@ public function __construct($options = null) {
 	$ruler->setLabel('Ruler / issuer: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose primary ruler' => $ruler_options))
+	->addMultiOptions(array(NULL => 'Choose primary ruler', 'Available rulers' => $ruler_options))
 	->addValidator('InArray', false, array(array_keys($ruler_options)));
 	
 	//Mint
@@ -151,7 +162,7 @@ public function __construct($options = null) {
 	->setRegisterInArrayValidator(false)
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $mint_options))
+	->addMultiOptions(array(NULL => 'Choose issuing mint', 'Available mints' => $mint_options))
 	->addValidator('InArray', false, array(array_keys($mint_options)));
 	
 	//Obverse inscription
@@ -191,13 +202,13 @@ public function __construct($options = null) {
 	$axis->setLabel('Die axis measurement: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose measurement' => $axis_options))
+	->addMultiOptions(array(NULL => 'Choose measurement', 'Available axes' => $axis_options))
 	->addValidator('InArray', false, array(array_keys($axis_options)));
 	
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin');
 	$objecttype->removeDecorator('HtmlTag')
-	->addFilters(array('StringTrim','StripTags'));
+	->addFilters(array('StringTrim','StripTags', 'StringToUpper'));
 	
 	$broadperiod = new Zend_Form_Element_Hidden('broadperiod');
 	$broadperiod->setValue('Greek and Roman Provincial')

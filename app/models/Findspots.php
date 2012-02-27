@@ -18,7 +18,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 
 	protected $_higherlevel = array('admin','flos','fa'); 
 
-	protected $_restricted = array('public','member','research','hero');
+	protected $_restricted = array(null, 'public','member','research','hero');
 
 	protected $_edittest = array('flos','member');
 	

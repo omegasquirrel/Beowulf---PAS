@@ -2,7 +2,11 @@
 
 class ByzantineNumismaticSearchForm extends Pas_Form
 {
+    protected $_higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
 
+	protected $_restricted = array(null,'public', 'member', 'research');
+	
+	
 	public function __construct($options = null)
 	{
 	$institutions = new Institutions();
@@ -14,7 +18,7 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$rallies = new Rallies();
 	$rally_options = $rallies->getRallies();
 
-//Get Hoard data
+	//Get Hoard data
 	$hoards = new Hoards();
 	$hoard_options = $hoards->getHoards();
 
@@ -27,19 +31,16 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$denominations = new Denominations();
 	$denomination_options = $denominations->getDenomsByzantine();
 
-        $mints = new Mints();
+    $mints = new Mints();
 	$mint_options = $mints->getMintsByzantine();
 
-        $axis = new Dieaxes();
+    $axis = new Dieaxes();
 	$axis_options = $axis->getAxes();
-
-
 
 	$regions = new Regions();
 	$region_options = $regions->getRegionName();
 
 	parent::__construct($options);
-
 
 	$this->setName('byzantine-search');
 
@@ -65,13 +66,23 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$workflow->setLabel('Workflow stage: ')
 		->setRequired(false)
 		->addFilter('StripTags')
-		->addFilter('StringTrim')
-		->addMultiOptions(array(NULL => NULL ,'Choose Worklow stage' => array(
-		'1'=> 'Quarantine',
-		'2' => 'On review',
-		'3' => 'Awaiting validation',
-		'4' => 'Published')))
-		->setDisableTranslator(true);
+		->addFilter('StringTrim');
+
+	if(in_array($this->_role,$this->_higherlevel)) {
+	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
+            'Choose Worklow stage' => array(
+                '1' => 'Quarantine',
+                '2' => 'On review',
+                '4' => 'Awaiting validation',
+                '3' => 'Published')));
+	}
+	if(in_array($this->_role,$this->_restricted)) {
+	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
+            'Choose Worklow stage' => array(
+                '4' => 'Awaiting validation',
+                '3' => 'Published')));
+	}
+		
 
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
@@ -79,37 +90,32 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 		->setRequired(false)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
-		->setUncheckedValue(NULL)
-		->setDisableTranslator(true);
+		->setUncheckedValue(NULL);
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
-		->setRequired(false)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
-		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $rally_options))
-		->setDisableTranslator(true);
+		->addMultiOptions(array(NULL => 'Choose rally name', 
+			'Available rallies' => $rally_options));
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
 	$hoard->setLabel('Hoard find: ')
-		->setRequired(false)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->setUncheckedValue(NULL);
 
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
-		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $hoard_options));
-
-
+		->addMultiOptions(array(NULL => 'Choose hoard name', 'Available hoards' => $hoard_options));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidators(array('NotEmpty'))
-		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options));
+		->addMultiOptions(array(NULL => 'Choose county', 
+			'Available counties' => $county_options));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
@@ -149,21 +155,24 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 		->setRegisterInArrayValidator(false)
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $denomination_options));
+		->addMultiOptions(array(NULL => 'Choose denomination type', 
+			'Available denominations' => $denomination_options));
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose primary ruler' => $ruler_options));
+		->addMultiOptions(array(NULL => 'Choose primary ruler', 
+			'Available rulers' => $ruler_options));
 
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
 	$mint->setLabel('Issuing mint: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose denomination type' => $mint_options));
+		->addMultiOptions(array(NULL => 'Choose denomination type', 
+			'Available mints' => $mint_options));
 
 	//Obverse inscription
 	$obverseinsc = new Zend_Form_Element_Text('obverseLegend');
@@ -198,13 +207,13 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$axis->setLabel('Die axis measurement: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose measurement' => $axis_options));
+		->addMultiOptions(array(NULL => 'Choose measurement', 'Available axes' => $axis_options));
 
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose institution' => $inst_options));
+	->addMultiOptions(array(NULL => 'Choose institution', 'Choose institution' => $inst_options));
 
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('coin');

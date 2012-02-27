@@ -23,7 +23,7 @@ class Tribes extends Pas_Db_Table_Abstract {
 	$tribes = $this->getAdapter();
 	$select = $tribes->select()
 		->from($this->_name, array('id','tribe'))
-		->where($this->_name . '.valid = ?',(int)1)
+//		->where($this->_name . '.valid = ?',(int)1)
 		->order($this->_primary);
 	return $tribes->fetchPairs($select);
     }
@@ -37,7 +37,7 @@ class Tribes extends Pas_Db_Table_Abstract {
 		->from($this->_name, array('id','tribe'))
 		->joinLeft('ironageregionstribes','ironageregionstribes.tribeID =' . $this->_name . '.id', array())
 		->joinLeft('geographyironage','geographyironage.id = ironageregionstribes.regionID', array('area','region'))
-		->where($this->_name . '.valid = ?', (int)1)
+//		->where($this->_name . '.valid = ?', 1)
 		->order('id');
 	$options = $this->getAdapter()->fetchAll($select);
 	return $options;
@@ -71,7 +71,7 @@ class Tribes extends Pas_Db_Table_Abstract {
 	$tribes = $this->getAdapter();
 	$select = $tribes->select()
 		->from($this->_name, array('id','tribe','description'))
-		->where($this->_name . '.valid = ?', (int)1)
+//		->where($this->_name . '.valid = ?', (int)1)
 		->where('id = ?',(int)$id)
 		->order('id ASC');
         return $tribes->fetchAll($select);

@@ -8,10 +8,15 @@ $this->headMeta('A list of all active mints under the Roman Empire','description
 ?>
 
 <h2>Issuing Mints of the Roman Empire</h2>
-<table class="stripeMe">
-<tr>
-<th>Mint name</th>
-<th>Geo location</th>
-</tr>
-<?php echo $this->partialLoop('partials/numismatics/mintsTableList.phtml',$this->rommints);?>
+<table class="table table-striped" summary="List of locations">
+	<caption>List of mint locations</caption>
+	<thead>
+		<tr>
+			<th>Mint name</th>
+			<th>Geo location</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php echo $this->partialLoop('partials/numismatics/mintsTableList.phtml',$this->rommints);?>
+	</tbody>
 </table>

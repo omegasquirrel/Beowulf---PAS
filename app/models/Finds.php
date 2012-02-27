@@ -21,7 +21,7 @@ class Finds extends Pas_Db_Table_Abstract {
 
 	protected $_parishStop = array('admin','flos','fa','hero','treasure','research');
 
-	protected $_restricted = array('public','member','research');
+	protected $_restricted = array(null, 'public','member','research');
 
 	protected $_edittest = array('flos','member');
 

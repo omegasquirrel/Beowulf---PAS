@@ -8,11 +8,12 @@
 
 class MedNumismaticSearchForm extends Pas_Form {
 
-public function __construct($options = null) {
+    protected $_higherlevel = array('admin', 'flos', 'fa', 'heros', 'treasure');
 
+	protected $_restricted = array(null,'public', 'member', 'research');
 
-	//Get data to form select menu for periods
-	//Get Rally data
+	public function __construct($options = null) {
+
 
 	$rallies = new Rallies();
 	$rally_options = $rallies->getRallies();
@@ -67,10 +68,22 @@ public function __construct($options = null) {
 
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL ,
-		'Choose Worklow stage' => array('1'=> 'Quarantine','2' => 'On review',
-		'3' => 'Awaiting validation', '4' => 'Published')));
+		->addFilters(array('StripTags', 'StringTrim'))->addValidator('Int');
+
+	if(in_array($this->_role,$this->_higherlevel)) {
+	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
+            'Choose Worklow stage' => array(
+                '1' => 'Quarantine',
+                '2' => 'On review',
+                '4' => 'Awaiting validation',
+                '3' => 'Published')));
+	}
+	if(in_array($this->_role,$this->_restricted)) {
+	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
+            'Choose Worklow stage' => array(
+                '4' => 'Awaiting validation',
+                '3' => 'Published')));
+	}
 
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
@@ -81,7 +94,8 @@ public function __construct($options = null) {
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $rally_options))
+		->addMultiOptions(array(NULL => 'Choose rally name', 
+			'Available rallies' => $rally_options))
 		->addValidator('InArray', false, array(array_keys($rally_options)));
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
@@ -93,13 +107,13 @@ public function __construct($options = null) {
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose rally name' => $hoard_options))
+		->addMultiOptions(array(NULL => 'Choose hoard name', 'Available hoards' => $hoard_options))
 		->addValidator('InArray', false, array(array_keys($hoard_options)));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
+		->addMultiOptions(array(NULL => 'Choose county', 'Available counties' => $county_options))
 		->addValidator('InArray', false, array(array_keys($county_options)));
 
 	$district = new Zend_Form_Element_Select('district');
@@ -147,7 +161,11 @@ public function __construct($options = null) {
 
 	$type = new Zend_Form_Element_Select('typeID');
 	$type->setLabel('Coin type: ')
-		->addFilters(array('StripTags', 'StringTrim'));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->setRegisterInArrayValidator(false)
+        ->addValidator('Int')
+		->addFilters(array('StripTags','StringTrim'))
+		 ->addMultiOptions(array(NULL => 'Choose type after choosing ruler'));
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');

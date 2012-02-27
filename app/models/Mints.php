@@ -337,7 +337,7 @@ class Mints extends Pas_Db_Table_Abstract {
 		->from($this->_name, array('mint_name', 'mint_id' => 'id'))
 		->joinLeft('romanmints','mints.id = romanmints.pasID', array('i' => 'id'))
 		->joinLeft('mint_reversetype','mints.id = mint_reversetype.mintID', array())
-		->joinLeft('revtypes','mint_reversetype.reverseID = revtypes.id', array())
+		->joinLeft('revtypes','mint_reversetype.reverseID = revtypes.id', array('id'))
 		->where('revtypes.id = ?', (int)$reverseID);
 	return $mints->fetchAll($select);
 	}
