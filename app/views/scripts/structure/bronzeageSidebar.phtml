@@ -1,9 +1,8 @@
 <ul id="menu1" class="menu  nav nav-stacked nav-pills">
-
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage'),'default',true);?>">Introduction</a></li>
 <li><a href="#">Gold objects <i class="icon-folder-open"></i></a>
-<ul class="nav nav-stacked nav-pills">
-    <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
+<ul class="nav nav-stacked nav-pills menuindent">
+<li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'gold'),'bronzeage',true);?>">Introduction</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'dress-fasteners'),'bronzeage',true);?>">Dress fasteners</a></li>
@@ -26,7 +25,7 @@
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'stud-caps-on-stone-wristguards'),'bronzeage',true);?>">Stud caps on stone wristguards</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
-'action' => 'index','slug' => 'basket-shaped-ornaments'),'bronzeage',true);?>">Basket-Shaped Ornaments</li>
+'action' => 'index','slug' => 'basket-shaped-ornaments'),'bronzeage',true);?>">Basket-Shaped Ornaments</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'discs'),'bronzeage',true);?>">Discs</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
@@ -52,8 +51,8 @@
 </ul>
 </li>
 <li><a href="#">Other metal objects <i class="icon-folder-open"></i></a>
-<ul class="nav nav-stacked nav-pills">
-    <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
+<ul class="nav nav-stacked nav-pills menuindent">
+<li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'other'),'bronzeage',true);?>">Introduction</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'bracelets'),'bronzeage',true);?>">Bracelets</a></li>

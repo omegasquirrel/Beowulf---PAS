@@ -224,5 +224,23 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $this->_helper->viewRenderer->setNoRender(); 
     echo Zend_Json::encode($finddata);
     }
+    
+    public function mapdataAction(){
+    	
+    $this->_helper->viewRenderer->setNoRender(); 
+	$this->_helper->layout->disableLayout();
+    $params = $this->_getAllParams();
+	$params['show'] = 500;
+	$params['format'] = 'json';
+	$search = new Pas_Solr_Handler('beowulf');
+	$search->setFields(array(
+		'id','old_findID','description',
+		'longitude', 'latitude', 'county',
+		'district', 'parish','knownas'));
+	$search->setParams($params);
+	$response = $search->execute();
+	$results = Zend_Json::encode($search->_processResults());
+	echo $results;
+    }
 
 }

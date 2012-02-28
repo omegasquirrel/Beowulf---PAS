@@ -26,40 +26,43 @@ class Pas_View_Helper_Breadcrumb
 	$l_m = $module;
 
 	switch ($module) {
-		case $module == 'getinvolved':
+		case 'getinvolved':
 			$nicemodule = 'Getting involved';
 			break;
-		case $module == 'admin':
+		case 'admin':
 			$nicemodule = 'Administration centre';
 			break;
-		case $module == 'conservation':
+		case 'conservation':
 			$nicemodule = 'Conservation advice';
 			break;
-		case $module == 'research':
+		case 'research':
 			$nicemodule = 'research';
 			break;
-		case $module == 'treasure':
+		case 'treasure':
 			$nicemodule = 'Treasure Act';
 			break;
-		case $module == 'news':
+		case 'news':
 			$nicemodule = 'news &amp; reports';
 			break;
-		case $module == 'events':
+		case 'events':
 			$nicemodule = 'events';
 			break;
-		case $module == 'info':
+		case 'info':
 			$nicemodule = 'Site information';
 			break;
-		case $module == 'romancoins':
+		case 'romancoins':
 			$nicemodule = 'Roman Numismatic guide';
 			break;
-		case $module == 'greekromancoins':
+		case 'greekromancoins':
 			$nicemodule = 'Greek and Roman Provincial Numismatic guide';
 		 	break;
-		case $module == 'api':
+		case 'api':
 			$nicemodule = 'Application programming interface';
 			break;
-		case $module == 'staffshoardsymposium':
+		case 'bronzeage':
+			$nicemodule = 'Bronze Age object guide';
+			break;
+		case 'staffshoardsymposium':
 			$nicemodule  = 'Staffordshire Hoard Symposium';
 			break;
 		 default: 
@@ -71,61 +74,61 @@ class Pas_View_Helper_Breadcrumb
 	$l_c = strtolower($controller);
 
 	switch ($controller) {
-		case $controller == 'error':
+		case 'error':
 			$nicename = 'Error manager';
 			break;
-		case $controller == 'romancoins':
+		case 'romancoins':
 			$nicename = 'Roman coin guide';
 			break;
-		case $controller == 'database':
+		case 'database':
 			$nicename = 'Finds database';
 			break;
-		case $controller == 'medievalcoins':
+		case 'medievalcoins':
 			$nicename = 'Medieval coin guide';
 			break;
-		case $controller == 'ironagecoins':
+		case 'ironagecoins':
 			$nicename = 'Iron Age coin guide';
 			break;
-		case $controller == 'earlymedievalcoins':
+		case 'earlymedievalcoins':
 			$nicename = 'Early Medieval coin guide';
 			break; 
-		case $controller == 'greekandromancoins':
+		case 'greekandromancoins':
 			$nicename = 'Greek &amp; Roman Provincial coin guide';
 			break; 
-		case $controller == 'byzantinecoins':
+		case 'byzantinecoins':
 			$nicename = 'Byzantine coin guide';
 			break; 
-		case $controller == 'postmedievalcoins':
+		case 'postmedievalcoins':
 			$nicename = 'Post Medieval coin guide';
 			break; 
-		case $controller == 'getinvolved':
+		case 'getinvolved':
 			$nicename = 'Get involved';
 			break;
-		case $controller == 'contacts':
+		case 'contacts':
 			$nicename = 'Scheme contacts';
 			break;
-		case $controller == 'events':
+		case 'events':
 			$nicename = 'Scheme events';
 			break;
-		case $controller == 'users':
+		case 'users':
 			$nicename = 'Users\' section';
 			break;
-		case $controller == 'admin':
+		case 'admin':
 			$nicename = 'Site Administration';
 			break;
-		case $controller == 'britishmuseum':
+		case 'britishmuseum':
 			$nicename = 'British Museum events';
 			break;
-		case $controller == 'datatransfer':
+		case 'datatransfer':
 			$nicename = 'Data transfer';
 			break;
-		case $controller == 'info':
+		case 'info':
 			$nicename = 'Event information';
 			break;
-		case $controller == 'foi':
+		case 'foi':
 			$nicename = 'Freedom of Information Act';
 			break;
-		case $controller == 'her':
+		case 'her':
 			$nicename = 'Historic Enviroment Signatories';
 			break;
 		case 'myscheme':
@@ -141,91 +144,91 @@ class Pas_View_Helper_Breadcrumb
 	$l_a = strtolower($action);
 
 	switch ($action) {
-		case $action == 'mapsearchresults':
+		case 'mapsearchresults':
 			$nicenameaction = 'Map search results';
 			break;
-		case $action == 'countystats':
+		case 'countystats':
 			$nicenameaction = 'County statistics';
 			break;
-		case $action == 'regionalstats':
+		case 'regionalstats':
 			$nicenameaction = 'Regional statistics';
 			break;		
-		case $action == 'institutionstats':
+		case 'institutionstats':
 			$nicenameaction = 'Institutional statistics';
 			break;
-		case $action == 'numismaticsearch':
+		case 'numismaticsearch':
 			$nicenameaction = 'Numismatic search';
 			break;
-		case $action == 'profile':
+		case 'profile':
 			$nicenameaction = 'Profile details';
 			break;
-		case $action == 'add':
+		case 'add':
 			$nicenameaction = 'Add a new find';
 			break;
-		case $action == 'myresearch':
+		case 'myresearch':
 			$nicenameaction = 'My research agendas';
 			break;
-		case $action == 'myinstitution':
+		case 'myinstitution':
 			$nicenameaction = 'My institution\'s finds';
 			break;
-		case $action == 'forgot':
+		case 'forgot':
 			$nicenameaction = 'Reset forgotten password';
 			break;
-		case $action == 'login':
+		case 'login':
 			$nicenameaction = 'Login to Beowulf';
 			break;
-		case $action == 'advanced':
+		case 'advanced':
 			$nicenameaction = 'Advanced search interface';
 			break;
-		case $action == 'basicsearch':
+		case 'basicsearch':
 			$nicenameaction = 'Basic what/where/when search interface';
 			break;
-		case $action == 'searchresults':
+		case 'searchresults':
 			$nicenameaction = 'Search results';
 			break;
-		case $action == 'organisations':
+		case 'organisations':
 			$nicenameaction = 'Registered Organisations';
 			break;
-		case $action == 'addfindspot':
+		case 'addfindspot':
 			$nicenameaction = 'Add a findspot';
 			break;
-		case $action == 'editfindspot':
+		case 'editfindspot':
 			$nicenameaction = 'Edit findspot';
 			break;
-		case $action == 'editpublication':
+		case 'editpublication':
 			$nicenameaction = 'Edit a publication\'s details';
 			break;
-		case $action == 'publication':
+		case 'publication':
 			$nicenameaction = 'Publication\'s details';
 			break;
-			case $action == 'addromancoin':
+			case 'addromancoin':
 			$nicenameaction = 'Add Roman numismatic data';
 			break;
-			case $action == 'romannumismatics':
+			case 'romannumismatics':
 			$nicenameaction = 'Roman numismatic search';
 			break;
-			case $action == 'record':
+			case 'record':
 			$nicenameaction = 'Object/coin record';
 			break;
-			case $action == 'emperorbios':
+			case 'emperorbios':
 			$nicenameaction = 'Emperor biographies';
 			break;
-			case $action == 'postmednumismatics':
+			case 'postmednumismatics':
 			$nicenameaction ='Post Medieval numismatic search';
 			break;
-			case $action == 'project':
+			case 'project':
 			$nicenameaction = 'Project details';
 			break;
-			case $action == 'hers':
+			case 'hers':
 			$nicenameaction = 'HER offices signed up';
 			break;
-			case $action == 'ruler':
+			case 'ruler':
 			$nicenameaction = 'Ruler details';
 			break;
-			case $action == 'error':
+			case 'error':
 			$nicenameaction = 'Error details';
 			break;
-			case $action == 'errorreport':
+			case 'errorreport':
 			$nicenameaction = 'Submit an error';
 			break;
 			

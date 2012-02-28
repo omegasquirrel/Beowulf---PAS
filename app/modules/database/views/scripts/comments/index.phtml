@@ -4,13 +4,14 @@ $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.
 
 ?>
 <h2>Comments on records</h2>
-
+<div class="row-fluid">
 <?php
 if($this->comments):?>
-<ul>
-<?php echo $this->partialLoop('partials/database/commentsonfinds.phtml',$this->comments);?>
-</ul>
+	<?php echo $this->partialLoop('partials/database/commentsonfinds.phtml',$this->comments);?>
+</div>
+<div class="row-fluid">
 <?php echo $this->paginationControl($this->comments, 'Sliding', 'structure/pagination.phtml'); ?>
+</div>
 
 <?php else:?>
 <p>There are no comments available at the moment.</p>

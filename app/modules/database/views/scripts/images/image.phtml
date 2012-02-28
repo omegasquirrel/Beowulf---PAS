@@ -1,9 +1,6 @@
 <?php
 $this->headTitle('Image and metadata for '.$this->images['0']['label']);
-$this->jQuery()->javascriptCaptureStart() ?>
- $(document).ready(function(){
-$('#tabs').tabs({ fx: { opacity: 'toggle' } });  });
-<?php $this->jQuery()->javascriptCaptureEnd() ?>
+?>
 
 <?php echo $this->partial('partials/database/image.phtml',$this->images['0']);?>
 

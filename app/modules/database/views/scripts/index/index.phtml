@@ -14,17 +14,77 @@ $('a[rel*=lightbox]').lightBox()
 });
 <?php $this->jQuery()->javascriptCaptureEnd(); ?>
 <?php
+$config = Zend_Registry::get('config');
+$apikey = $config->webservice->googlemaps->apikey;
+$this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
+$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
+?>
+<?php $this->inlineScript()->captureStart();?>
+$(document).ready(function() {
+
+	var osmMapType = new google.maps.ImageMapType({
+        getTileUrl: function (coord, zoom) {
+            return "http://tile.openstreetmap.org/" +
+                zoom + "/" + coord.x + "/" + coord.y + ".png";
+
+        },
+        tileSize: new google.maps.Size(256, 256),
+        isPng: true,
+        alt: "OpenStreetMap layer",
+        name: "OSM",
+        maxZoom: 18
+    });
+    
+        
+	var myOptions = {
+          center: new google.maps.LatLng(54,-2),
+          zoom: 6,
+		  mapTypeControlOptions: {
+          mapTypeIds: [
+          google.maps.MapTypeId.TERRAIN,
+          google.maps.MapTypeId.SATELLITE,
+          'OSM'
+          ]
+    	  },
+    	  mapTypeControl: true,
+    	  style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          scaleControl: true,
+    	  zoomControl: true,
+          mapTypeId: 'OSM',
+          scrollwheel: false,
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+            myOptions);
+            map.mapTypes.set('OSM',osmMapType); 
+            map.setTilt(45);
+        var county = new google.maps.KmlLayer('http://finds.org.uk/database/search/results/note/1/reason/2/format/kml',
+                                                 {preserveViewport: true, suppressInfoWindows: false });
+		county.setMap(map);    
+       
+      
+});
+<?php $this->inlineScript()->captureEnd();?>
+<?php
 $this->jQuery()->javascriptCaptureEnd();?>
 <h2>Welcome to the Scheme's database</h2>
 
-<?php 
-echo $this->form; 
-?>
-
-<div class="hero-unit span10">
-<h2><?php echo number_format($this->counts['0']['c']);?> records of <?php echo number_format($this->counts['0']['q']);?> artefacts</h2>
+<div class="row-fluid">
+	<div id="map" style="min-height:100px; height:250px; margin-bottom:30px;">
+	</div>
 </div>
-<div class="row span12">
+
+<div class="row-fluid">
+	<div class="span4">
+	<?php 
+	echo $this->form; 
+	?>
+	</div>
+	<div class="span8">
+	<h2><?php echo number_format($this->counts['0']['c']);?> records of <?php echo number_format($this->counts['0']['q']);?> artefacts</h2>
+	</div>
+</div>
+
+<div class="row-fluid">
 <?php foreach($this->contents as $c) {
 echo $c['body'];
 }

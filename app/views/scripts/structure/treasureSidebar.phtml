@@ -6,7 +6,7 @@ $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerN
 title="An introduction to the Treasure Act">Introduction</a></li>
 <?php echo $this->treasuremenu();?>
 <li <?php if($controller == 'reports') { echo 'class="expandfirst"';};?>><a href="#">Treasure Reports <i class="icon-folder-open"></i>  </a>
-<ul><?php echo $this->TreasureReportsMenu();?></ul>
+<ul class="menuindent"><?php echo $this->TreasureReportsMenu();?></ul>
 </li>
 <li><a href="<?php echo $this->url(array('module' => 'treasure','controller' => 'cases'),'default',true);?>" title="Case history">Cases</a></li>
 </ul>

@@ -1,17 +1,18 @@
-<li>
-<div class="commgrav"><?php
-echo $this->gravatar($this->comment_author_email, array(
-'imgSize' => 30, 'defaultImg' => 'monsterid', 'secure' => true),
-    array('class' => 'avatar', 
-    'title' => $this->comment_author . '\'s gravatar representation',
-    'rating' => 'G'));
 
-?></div><?php echo $this->comment_author;?> wrote @ <?php echo $this->df;?>.  
-<blockquote><p><?php echo strip_tags($this->comment_content);?></p></blockquote>
-<span><?php echo $this->FindToImage($this->id);?></span>
+<div class="well">
+   <div><ul class="thumbnails" style="float:right;">
+   <li>
+   <div class="thumbnail"><?php echo $this->FindToImage($this->id);?></div>
+   </li>
+   </ul>
+   </div>
+
+<?php echo $this->comment_author;?> wrote @ <?php echo $this->df;?>.  
+<blockquote><?php echo $this->purify($this->comment_content);?></blockquote>
+
 	<p>About: <?php echo ucfirst(strtolower($this->objecttype));?>
    <a href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts','action' => 'record', 'id' => $this->id),null,true);?>"><?php echo $this->old_findID;?></a><br/><?php echo $this->workflow($this->secwfstage);?>
    <?php echo ucfirst(strtolower($this->broadperiod));?>
    <?php if(isset($this->county)) {echo ucwords(strtolower($this->county));}?></p>
 
-</li>
+</div>

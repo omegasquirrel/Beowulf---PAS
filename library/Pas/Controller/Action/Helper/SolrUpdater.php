@@ -162,6 +162,9 @@ class Pas_Controller_Action_Helper_SolrUpdater
 		$data['updated'] = NULL;	
 		}
 	}
+	foreach($data as $k => $v){
+		$data[$k] = strip_tags($v);
+	}
 	return $data;
 	
     }
