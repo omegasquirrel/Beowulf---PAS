@@ -305,7 +305,9 @@ class Pas_Solr_Handler {
             }
     	$data[] = $fields;
     }
-    return $data;
+    $processor = new Pas_Solr_SensitiveFields();
+    $clean = $processor->cleanData($data, $this->_getRole(), $this->_core);
+    return $clean;
     }
 
     /** Process the facets
@@ -389,9 +391,10 @@ class Pas_Solr_Handler {
     public function _getRows($params){
     if(isset($params['show'])){
         $rows = $params['show'];
-        if($rows > 50){
+
+        if($rows > 50 && !is_null($this->_format)){
             $rows = 50;
-        }
+        } 
     } else {
         $rows = 20;
     }
@@ -438,9 +441,14 @@ class Pas_Solr_Handler {
     );
 	$select['fields'] = $this->getFields();
     $select['sort'] = $this->_getSort($this->_core, $this->_params);
-    $select['rows'] = $this->_getRows($this->_params);
+
     $select['start'] = $this->_getStart($this->_params);
 
+    if(array_key_exists('format', $this->_params)){
+    $this->_processFormats($this->_params);
+    }
+
+    $select['rows'] = $this->_getRows($this->_params);
 
     if(array_key_exists('q',$this->_params)){
     $select['query'] = $this->_params['q'];
@@ -473,10 +481,7 @@ class Pas_Solr_Handler {
     }
 
     $this->_createFilters($this->_params);
-    
-    if(array_key_exists('format', $this->_params)){
-    $this->_processFormats($this->_params);
-    }
+
 
     $this->_resultset = $this->_solr->select($this->_query);
     return $this->_resultset;

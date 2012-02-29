@@ -36,11 +36,11 @@ class Pas_Solr_ExportHandler {
 
     protected $_facets;
 
-    protected $_allowed = array('fa','flos','admin','treasure');
+    protected $_allowed = array('fa','flos','admin','treasure', 'research');
 
     protected $_formats = array(
         'json', 'csv', 'xml',
-        'midas', 'rdf', 'n3', 
+        'midas', 'rdf', 'n3',
     	'kml', 'turtle', 'geoJSON');
 
     protected $_format;
@@ -54,7 +54,7 @@ class Pas_Solr_ExportHandler {
     protected $_facetSet;
 
     protected $_query;
-    
+
 
     protected function _setFacetFieldsAvailable(){
         $facetFields = array();
@@ -442,7 +442,7 @@ class Pas_Solr_ExportHandler {
     $select['rows'] = $this->_getRows($this->_params);
 //    $this->_getRows($this->_params);
     $select['start'] = $this->_getStart($this->_params);
- 
+
     if(array_key_exists('format', $this->_params)){
     $this->_processFormats($this->_params);
     }
@@ -451,17 +451,17 @@ class Pas_Solr_ExportHandler {
     $select['query'] = $this->_params['q'];
             unset($this->_params['q']);
     }
-    
-	$customizer = $this->_solr->getPlugin('customizerequest');
-//	$customizer->createCustomization('transform')
+
+//	$customizer = $this->_solr->getPlugin('customizerequest');
+////	$customizer->createCustomization('transform')
+////           ->setType('param')
+////           ->setName('tr')
+////           ->setValue('example.xsl');
+//	$customizer->createCustomization('format')
 //           ->setType('param')
-//           ->setName('tr')
-//           ->setValue('example.xsl');
-	$customizer->createCustomization('format')
-           ->setType('param')
-           ->setName('wt')
-           ->setValue($this->_format);
-    // get a select query instance based on the config
+//           ->setName('wt')
+//           ->setValue($this->_format);
+//    // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
 
 
@@ -488,13 +488,10 @@ class Pas_Solr_ExportHandler {
     }
 
     $this->_createFilters($this->_params);
-    
-    
 
-   
-    $data = $this->_solr->select($this->_query);	
-   	return $data->getResponse()->getBody();
-    
+    $data = $this->_solr->select($this->_query);
+    return $data->getResponse()->getBody();
+
     }
 
     protected function _buildFacetQueries($k, $v){

@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying various ajax request pages
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,7 +8,7 @@
 * @license    GNU General Public License
 */
 class Database_AjaxController extends Pas_Controller_Action_Ajax {
-    
+
     /** Setup the contexts by action and the ACL.
     */
     public function init() {
@@ -17,21 +17,21 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$this->_helper->_acl->allow('flos',NULL);
 	$this->_helper->_acl->allow('hero',NULL);
 	$this->_helper->_acl->allow('research',NULL);
-	$this->_helper->layout->disableLayout();  
+	$this->_helper->layout->disableLayout();
     }
-    
+
     const REDIRECT = '/database/artefacts/';
-	
+
     /** Redirect as no direct access
-     * 
+     *
      */
     public function indexAction() {
         $this->_redirect(self::REDIRECT);
     }
-	
+
     /** Display the webcitation page
-     * 
-     */	
+     *
+     */
     public function webciteAction()	{
     if($this->_getParam('id',false)){
     $finds = new Finds();
@@ -40,9 +40,9 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	throw new Pas_Exception_Param($this->_missingParameter);
     }
     }
-	
+
     /** Display the find embed view
-     * 
+     *
     */
     public function embedAction() {
     if($this->_getParam('id',false)){
@@ -55,9 +55,9 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	throw new Pas_Exception_Param($this->_missingParameter);
     }
     }
-	
+
     /** Display other discoveries
-    */	
+    */
     public function otherdiscoveriesAction() {
     $id = $this->_getParam('id');
     $finds = new Finds;
@@ -65,9 +65,9 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $quants = new Finds;
     $this->view->quants = $quants->getOtherFindsTotals($id);
     }
-	
+
     /** Retrieve the nearest finds to a lat lon point
-     * 
+     *
      */
     public function nearestAction() {
     $lat = $this->_getParam('lat');
@@ -79,7 +79,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $this->view->lat = $lat;
     $this->view->long = $long;
     }
-	
+
     /** Download a file
     */
     public function downloadAction() {
@@ -92,8 +92,8 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     }
     $file = './' . $path . $filename;
     $mime_type = mime_content_type($file);
-    if (file_exists($file)) { 
-    $this->_helper->viewRenderer->setNoRender(); 
+    if (file_exists($file)) {
+    $this->_helper->viewRenderer->setNoRender();
     $this->_helper->sendFile($file,$mime_type);
     } else {
         throw new Pas_Exception_Param('That file does not exist',404);
@@ -102,14 +102,14 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	throw new Pas_Exception_Param($this->_missingParameter,500);
     }
     }
-	
+
     /** Display rally data
     */
     public function rallydataAction() {
     $rallies = new Rallies();
     $this->view->mapping = $rallies->getMapdata();
     }
-	
+
     /** Display period tag cloud
     */
     public function tagcloudAction() {
@@ -117,7 +117,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $this->view->periods = $periods->getPeriodDetails($this->_getParam('id'));
     $this->view->objects = $periods->getObjectTypesByPeriod($this->_getParam('id'));
     }
-	
+
     /** Record data overlay page
     */
     public function recordAction() {
@@ -127,7 +127,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $finds = new Finds();
     $findsdata = $finds->getIndividualFind($id,$this->getRole());
     if(count($findsdata)) {
-    $this->view->finds = $findsdata; 
+    $this->view->finds = $findsdata;
     } else {
 	throw new Pas_Exception_NotAuthorised('You are not authorised to view this record');
     }
@@ -148,18 +148,18 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	throw new Pas_Exception_Param($this->_missingParameter,500);
     }
     }
-	
+
     /** Display a report in pdf format
     */
     public function reportAction() {
     if($this->_getParam('id',false)) {
     $this->view->recordID = $this->_getParam('id');
     $id = $this->_getParam('id');
-    $finds = new Finds();	
+    $finds = new Finds();
     $findsdata = $finds->getIndividualFind($id,$this->getRole());
     if(count($findsdata)) {
-        $this->view->finds = $findsdata; 
-    } else {	
+        $this->view->finds = $findsdata;
+    } else {
         throw new Pas_Exception_NotAuthorised('You are not authorised to view this record');
     }
     $findsdata = new Finds();
@@ -183,64 +183,63 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     }
 
     /** Get a find autdit overlay
-     * 
-     * 	
+     *
+     *
      */
     public function auditAction() {
     $audit = new FindsAudit();
     $this->view->audit = $audit->getChange($this->_getParam('id'));
     }
-	
+
     /** Get a findspot overlay from the audit table
-     * 
-     */	
+     *
+     */
     public function fsauditAction(){
     $audit = new FindSpotsAudit();
     $this->view->audit = $audit->getChange($this->_getParam('id'));
     }
-	
+
     /** Get a coin overlay from the audit table
-    */	
+    */
     public function coinauditAction(){
     $audit = new CoinsAudit();
     $this->view->audit = $audit->getChange($this->_getParam('id'));
     }
 
     /** Get a saved search overlay
-     * 	
-     */	
+     *
+     */
 
     public function savesearchAction() {
     $form = new SaveSearchForm();
     $this->view->form = $form;
     }
-	
+
     /** Copy the last find
-    */	
+    */
     public function copyfindAction() {
     $finds = new Finds();
     $finddata = $finds->getLastRecord($this->getIdentityForForms());
-    $this->_helper->layout->disableLayout();    
-    $this->_helper->viewRenderer->setNoRender(); 
+    $this->_helper->layout->disableLayout();
+    $this->_helper->viewRenderer->setNoRender();
     echo Zend_Json::encode($finddata);
     }
-    
+
     public function mapdataAction(){
-    	
-    $this->_helper->viewRenderer->setNoRender(); 
+
+//        $this->_helper->viewRenderer->setNoRender();
 	$this->_helper->layout->disableLayout();
-    $params = $this->_getAllParams();
-	$params['show'] = 500;
+        $params = $this->_getAllParams();
+	$params['show'] = 2000;
 	$params['format'] = 'json';
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
-		'id','old_findID','description',
-		'longitude', 'latitude', 'county',
-		'district', 'parish','knownas'));
+		'id','old_findID','description', 'gridref','fourFigure',
+		'longitude', 'latitude', 'county', 'woeid',
+		'district', 'parish','knownas', 'thumbnail'));
 	$search->setParams($params);
-	$response = $search->execute();
-	$results = Zend_Json::encode($search->_processResults());
-	echo $results;
-    }
+	$search->execute();
+        $this->view->results = $search->_processResults();
+   }
 
 }

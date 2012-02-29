@@ -5,41 +5,41 @@
 * @category 	Pas
 * @package		Pas_Geo
 * @subpackage 	GridCalc
-* @copyright 	© Oxford ArchDigital Ltd. 2001-2002
+* @copyright 	Oxford ArchDigital Ltd. 2001-2002
 * @author 		Tyler Bell, Daniel Pett, Vuk Trifkovic, Andrew Larcombe
 * @license		http://www.gnu.org/licenses/gpl-3.0.txt
 * @version		1.0
 * @since		22 September 2011
 */
 class Pas_Geo_Gridcalc  {
-	
+
 	/** Set up the constant for mathematical number pi
-	 * 
+	 *
 	 * @var string PI the constant
 	 */
-	
+
 	const PI = 3.14159265358979;
-	
+
 	protected $_gridref;
-	
+
 	/** Equatorial Radius
 	 * @var integer $_a
 	 */
-	protected $_a;		
-	/** Square of eccentricity 
+	protected $_a;
+	/** Square of eccentricity
 	 * @var integer
-	 */							
+	 */
 	protected $_e2;
-	
+
 	/** Select your datum to use
 	 * @var string $_datum
 	 */
-	protected $_datum;								
-	
+	protected $_datum;
+
 	/** Array of ellipsoids
 	 * @var array $ellipsoid
 	 */
-	public static $ellipsoid = array(	
+	public static $ellipsoid = array(
 	"Airy"					=>array (6377563, 0.00667054),
 	"Australian National"	=>array	(6378160, 0.006694542),
 	"Bessel 1841"			=>array	(6377397, 0.006674372),
@@ -63,22 +63,22 @@ class Pas_Geo_Gridcalc  {
 	"WGS 66"				=>array (6378145, 0.006694542),
 	"WGS 72"				=>array (6378135, 0.006694318),
 	"WGS 84"				=>array (6378137, 0.00669438),
-	"ED50"					=>array	(6378388, 0.00672267), 
-	"EUREF89"				=>array	(6378137, 0.00669438), 
-	"ETRS89"				=>array	(6378137, 0.00669438)  
+	"ED50"					=>array	(6378388, 0.00672267),
+	"EUREF89"				=>array	(6378137, 0.00669438),
+	"ETRS89"				=>array	(6378137, 0.00669438)
 	);
-	
+
 	/** Set up the constructor and objects
 	 * @param string $gridref The uncleaned grid reference
 	 */
 	public function __construct( $gridref, $datum='WGS 84'){
 	$this->_gridref = $gridref;
 	// Set datum Equatorial Radius
-	$this->_a = self::$ellipsoid[$datum][0];	
-	// Set datum Square of eccentricity	
-	$this->_e2 = self::$ellipsoid[$datum][1];	
+	$this->_a = self::$ellipsoid[$datum][0];
+	// Set datum Square of eccentricity
+	$this->_e2 = self::$ellipsoid[$datum][1];
 	}
-	
+
 	/** Strip a grid reference of extra letters and spaces
 	 * @param string $string The grid reference to strip
 	 * @access public
@@ -91,7 +91,7 @@ class Pas_Geo_Gridcalc  {
 	}
 
 	/** Get the accuracy of a grid reference to metres
-	 * 
+	 *
 	 * @param string  $gridref The grid reference to clean
 	 * @param boolean $clean   Clean or leave grid reference as is. Default true
 	 */
@@ -109,7 +109,7 @@ class Pas_Geo_Gridcalc  {
 			break;
 		case 4:
 			$acc = 1000;
-			break; 
+			break;
 		case 6:
 			$acc = 100;
 			break;
@@ -128,20 +128,20 @@ class Pas_Geo_Gridcalc  {
 		default:
 			return false;
 			break;
-	}		
+	}
 	$gridAcc = $acc;
-	return $acc;	
+	return $acc;
 	}
 
 	/** Produce a fourfigure National grid reference from a string.
-	 * 
+	 *
 	 * @param string $gridref
 	 * @param integer $digits Defaults to 4 digits.
 	 */
 	public function fourFigure($digits = 4) {
 	//clean grid reference
 	$cleangrid = $this->_stripgrid($this->_gridref);
-	
+
 	$letterpair = substr($cleangrid, 0, 2); //strips off first two characters as National grid has 2 let
 	$letterpair = strtoupper($letterpair); //transform smallcase to capital
 	$rawcount = strlen($cleangrid);//gets length of string
@@ -149,7 +149,7 @@ class Pas_Geo_Gridcalc  {
 	if ($digits > $coordcount){
 		$digits = $coordcount;
 	} //keeps digits sensible
-		
+
 	$gridcoords = substr($cleangrid, 2, $coordcount);	//isolates the grid numbers
 	$fromEach = round($digits/2);	//number of digits to grab from E and N each
 	$halfcount = $coordcount/2; //get half of number of digits
@@ -160,20 +160,20 @@ class Pas_Geo_Gridcalc  {
 	}
 
 	/** Function to check if the grid reference is the correct length
-	 * 
+	 *
 	 * @param $rawcount
 	 */
 	private function _countcheck($rawcount){
 	//called internally to see whether grid ref has correct number of digits
-	if(is_int($rawcount/2)) 
+	if(is_int($rawcount/2))
 		return true;
 	else {
-		return false;	
+		return false;
 	}
 	}
-	
+
 	/** Function to convert OSGB grid reference string
-	 * 
+	 *
 	 * @param string $unit metres default|Accepts m (1 multiplier) or km (0.01 multiplier.
 	 * @param integer $round the number of digits for the Lat Lon pair to be trimmed to.
 	 * @return array $geodata An array of geo conversions.
@@ -209,62 +209,62 @@ class Pas_Geo_Gridcalc  {
 	$squareArray["SO"] = array("x" =>3,	"y"=>2);
 	$squareArray["SP"] = array("x" =>4,	"y"=>2);
 	$squareArray["TL"] = array("x" =>5,	"y"=>2);
-	$squareArray["TM"] = array("x" =>6,	"y"=>2);	
+	$squareArray["TM"] = array("x" =>6,	"y"=>2);
 	$squareArray["SG"] = array("x" =>1,	"y"=>3);
 	$squareArray["SH"] = array("x" =>2,	"y"=>3);
 	$squareArray["SJ"] = array("x" =>3,	"y"=>3);
 	$squareArray["SK"] = array("x" =>4,	"y"=>3);
 	$squareArray["TF"] = array("x" =>5,	"y"=>3);
-	$squareArray["TG"] = array("x" =>6,	"y"=>3);	
+	$squareArray["TG"] = array("x" =>6,	"y"=>3);
 	$squareArray["SB"] = array("x" =>1,	"y"=>4);
 	$squareArray["SC"] = array("x" =>2,	"y"=>4);
 	$squareArray["SD"] = array("x" =>3,	"y"=>4);
 	$squareArray["SE"] = array("x" =>4,	"y"=>4);
 	$squareArray["TA"] = array("x" =>5,	"y"=>4);
-	$squareArray["TB"] = array("x" =>6,	"y"=>4);		
+	$squareArray["TB"] = array("x" =>6,	"y"=>4);
 	$squareArray["NW"] = array("x" =>1,	"y"=>5);
 	$squareArray["NX"] = array("x" =>2,	"y"=>5);
 	$squareArray["NY"] = array("x" =>3,	"y"=>5);
 	$squareArray["NZ"] = array("x" =>4,	"y"=>5);
 	$squareArray["OV"] = array("x" =>5,	"y"=>5);
-	$squareArray["OW"] = array("x" =>6,	"y"=>5);	
-	$squareArray["NQ"] = array("x" =>0,	"y"=>6);			
+	$squareArray["OW"] = array("x" =>6,	"y"=>5);
+	$squareArray["NQ"] = array("x" =>0,	"y"=>6);
 	$squareArray["NR"] = array("x" =>1,	"y"=>6);
 	$squareArray["NS"] = array("x" =>2,	"y"=>6);
 	$squareArray["NT"] = array("x" =>3,	"y"=>6);
 	$squareArray["NU"] = array("x" =>4,	"y"=>6);
 	$squareArray["OQ"] = array("x" =>5,	"y"=>6);
-	$squareArray["NL"] = array("x" =>0,	"y"=>7);			
+	$squareArray["NL"] = array("x" =>0,	"y"=>7);
 	$squareArray["NM"] = array("x" =>1,	"y"=>7);
 	$squareArray["NN"] = array("x" =>2,	"y"=>7);
 	$squareArray["NO"] = array("x" =>3,	"y"=>7);
 	$squareArray["NP"] = array("x" =>4,	"y"=>7);
 	$squareArray["OL"] = array("x" =>5,	"y"=>7);
-	$squareArray["NF"] = array("x" =>0,	"y"=>8);			
+	$squareArray["NF"] = array("x" =>0,	"y"=>8);
 	$squareArray["NG"] = array("x" =>1,	"y"=>8);
 	$squareArray["NH"] = array("x" =>2,	"y"=>8);
 	$squareArray["NJ"] = array("x" =>3,	"y"=>8);
 	$squareArray["NK"] = array("x" =>4,	"y"=>8);
 	$squareArray["OF"] = array("x" =>5,	"y"=>8);
-	$squareArray["NA"] = array("x" =>0,	"y"=>9);			
+	$squareArray["NA"] = array("x" =>0,	"y"=>9);
 	$squareArray["NB"] = array("x" =>1,	"y"=>9);
 	$squareArray["NC"] = array("x" =>2,	"y"=>9);
 	$squareArray["ND"] = array("x" =>3,	"y"=>9);
 	$squareArray["NE"] = array("x" =>4,	"y"=>9);
 	$squareArray["OA"] = array("x" =>5,	"y"=>9);
-	$squareArray["HV"] = array("x" =>0,	"y"=>10);		
+	$squareArray["HV"] = array("x" =>0,	"y"=>10);
 	$squareArray["HW"] = array("x" =>1,	"y"=>10);
 	$squareArray["HX"] = array("x" =>2,	"y"=>10);
 	$squareArray["HY"] = array("x" =>3,	"y"=>10);
 	$squareArray["HZ"] = array("x" =>4,	"y"=>10);
 	$squareArray["JV"] = array("x" =>5,	"y"=>10);
-	$squareArray["HQ"] = array("x" =>0,	"y"=>11);			
+	$squareArray["HQ"] = array("x" =>0,	"y"=>11);
 	$squareArray["HR"] = array("x" =>1,	"y"=>11);
 	$squareArray["HS"] = array("x" =>2,	"y"=>11);
 	$squareArray["HT"] = array("x" =>3,	"y"=>11);
 	$squareArray["HU"] = array("x" =>4,	"y"=>11);
-	$squareArray["JQ"] = array("x" =>5,	"y"=>11);	
-	$squareArray["HL"] = array("x" =>0,	"y"=>12);			
+	$squareArray["JQ"] = array("x" =>5,	"y"=>11);
+	$squareArray["HL"] = array("x" =>0,	"y"=>12);
 	$squareArray["HM"] = array("x" =>1,	"y"=>12);
 	$squareArray["HN"] = array("x" =>2,	"y"=>12);
 	$squareArray["HO"] = array("x" =>3,	"y"=>12);
@@ -287,20 +287,20 @@ class Pas_Geo_Gridcalc  {
 	$northcoord = (substr($gridcoords, $halfcount, $halfcount));
 	//Confirm numeric for easting coordinates
 	if (!is_numeric($eastcoord)){
-		throw new Pas_Geo_Exception('Easting contains alpha characters');		
+		throw new Pas_Geo_Exception('Easting contains alpha characters');
 	}
 	//Confirm numeric for northing coordinates
 	if (!is_numeric($northcoord)){
-		throw new Pas_Geo_Exception('Northing contains alpha characters');		
+		throw new Pas_Geo_Exception('Northing contains alpha characters');
 	}
 
 	//combine and cast
 	$squareX = $squareArray[$letterpair]["x"];
 	$squareY = $squareArray[$letterpair]["y"];
-	
+
 	$noteast = $squareX . $eastcoord;
 	$easting = (integer) $noteast;
-	
+
 	$notnorth = $squareY . $northcoord;
 	$northing = (integer) $notnorth;
 
@@ -308,7 +308,7 @@ class Pas_Geo_Gridcalc  {
 	$factor = $this->_getaccuracy( 1 );
 	$eastresult = ($easting * $factor);
 	$northresult = ($northing * $factor);
-	
+
 	//get multiplier
 	if ($unit === "m"){
 		$multiplier = 1;
@@ -317,41 +317,41 @@ class Pas_Geo_Gridcalc  {
 	} else {
 		throw new Pas_Geo_Exception('Units are not correct');
 	}
-	
+
 	//Return Easting and Northing
 	$gridX = (integer)($eastresult * $multiplier);
 	$gridY = (integer)($northresult * $multiplier);
-	
+
 	//calculates UK map sheets
-	
-	//Get 1:10,000 Map Sheet 
+
+	//Get 1:10,000 Map Sheet
 	//coords for determining mapquater
 	$e2 = substr($easting, 2, 1);
 	$n2 = substr($northing, 2, 1);
 	//coords for determining coord pair
 	$e1 = substr($easting,1,1);
 	$n1 = substr($northing,1,1);
-	
+
 	if ($e2 >= 5) {
 	$ew = "E";
 	} else {
 	$ew = "W";
 	}
-	
+
 	if ($n2 >= 5) {
 	$ns = "N";
 	} else {
 	$ns = "S";
 	}
-	
+
 	$mapQuarter = $ns . $ew;
 	$tenKMap = $letterpair . $e1 . $n1 . $mapQuarter;
-	
+
 	//Get 1:2500 Map Sheet
 	$eastcoord = substr($easting, 0, 2);
 	$northcoord = substr($northing, 0, 2);
 	$twoPointFiveKMap	= $letterpair . $eastcoord . $northcoord;
-	
+
 	$height = 0;
 	$e = $gridX;
 	$n = $gridY;
@@ -372,11 +372,11 @@ class Pas_Geo_Gridcalc  {
 	'25kmap'     		=> $twoPointFiveKMap,
 	'10kmap'     		=> $tenKMap,
 	'easting'   		=> $gridX,
-	'northing' 	 		=> $gridY,
+	'northing' 	 	=> $gridY,
 	'gridsquare' 		=> $letterpair,
-	'decimalLatLon'   => array(
-	'decimalLatitude' => $cleanLat,
-	'decimalLongitude'  => $cleanLon),
+	'decimalLatLon'         => array(
+	'decimalLatitude'       => $cleanLat,
+	'decimalLongitude'      => $cleanLon),
 	'ordinalLatLon' =>  $this->_decimalToOrdinalCoords($cleanLat, $cleanLon),
 	'fourFigureGridRef' => $this->fourFigure(4),
 	'accuracy'	 => array(
@@ -389,7 +389,7 @@ class Pas_Geo_Gridcalc  {
 	);
 	return $geodata;
 	}
-	
+
 	/** Compute initial value for Latitude (PHI) IN RADIANS.
 	 * REQUIRES THE "Marc" FUNCTION
 	 * THIS FUNCTION IS CALLED BY THE "E_N_to_Lat", "E_N_to_Long" and "E_N_to_C" FUNCTIONS
@@ -412,12 +412,12 @@ class Pas_Geo_Gridcalc  {
         $PHI2 = (($North - $n0 - $M) / $afo) + $PHI1;
         $M = $this->_marc($bfo, $n, $PHI0, $PHI2);
         $PHI1 = $PHI2;
-	}    
+	}
     return $PHI2;
 	}
 
 	/** Convert geodetic coords lat (PHI), long (LAM) and height (H) to cartesian X coordinate.
-	 * 
+	 *
 	 * @param $PHI geodetic coords lat in decimal degrees
 	 * @param $LAM geodetic coords lon in decimal degrees
 	 * @param $H Ellipsoidal height in metres
@@ -434,7 +434,7 @@ class Pas_Geo_Gridcalc  {
 	}
 
 	/** Convert geodetic coords lat (PHI), long (LAM) and height (H) to cartesian Y coordinate.
-	 * 
+	 *
 	 * @param $PHI Latitude in decimal degrees
 	 * @param $LAM Longitude in decimal degrees
 	 * @param $H Ellipsoidal height in metres
@@ -453,7 +453,7 @@ class Pas_Geo_Gridcalc  {
 	}
 
 	/** Convert geodetic coord components latitude (PHI) and height (H) to cartesian Z coordinate.
-	* 
+	*
 	* @param $PHI Latitude in decimal degrees
 	* @param $H Ellipsoidal height in metres
 	* @param $a ellipsoid axis dimensions in metres
@@ -470,7 +470,7 @@ class Pas_Geo_Gridcalc  {
 	}
 
 	/** Computed Helmert transformed X coordinate//
-	* Cartesian XYZ coords (X,Y,Z), X translation (DX) all in meters 
+	* Cartesian XYZ coords (X,Y,Z), X translation (DX) all in meters
 	* Y and Z rotations in seconds of arc (Y_Rot, Z_Rot) and scale in ppm (s).
 	* Convert rotations to radians and ppm scale to a factor.
 	* @param $X
@@ -527,7 +527,7 @@ class Pas_Geo_Gridcalc  {
 	$RadY_Rot = ($Y_Rot / 3600) * (self::PI / 180);
 	// Compute transformed Z coord
 	return (-1 * $X * $RadY_Rot) + ($Y * $RadX_Rot) + $Z + ($Z * $sfactor) + $DZ;
-	} 
+	}
 
 
 	/**  Convert XYZ to Latitude (PHI) in Dec Degrees.
@@ -586,7 +586,7 @@ class Pas_Geo_Gridcalc  {
 	 * @param $Z
 	 * @param $a
 	 * @param $b
-	 */	
+	 */
 	private function _xyzToH ($X, $Y, $Z, $a, $b) {
     $PHI = $this->_xyzToLat($X, $Y, $Z, $a, $b);
 	//Convert PHI radians
@@ -666,11 +666,11 @@ class Pas_Geo_Gridcalc  {
     $I = $M + $n0;
     $II = ($nu / 2) * (sin($RadPHI)) * (cos($RadPHI));
     $III = (($nu / 24) * (sin($RadPHI)) * (pow(cos($RadPHI),3))) * (5 - (pow(tan($RadPHI),2)) + (9 * $eta2));
-    $IIIA = (($nu / 720) * (sin($RadPHI)) * (pow(cos($RadPHI),5))) * (61 - (58 * (pow(tan($RadPHI),2))) 
+    $IIIA = (($nu / 720) * (sin($RadPHI)) * (pow(cos($RadPHI),5))) * (61 - (58 * (pow(tan($RadPHI),2)))
     + (pow(tan($RadPHI),4)));
     return $I + (pow($p,2) * $II) + (pow($p,4) * $III) + (pow($p,6) * $IIIA);
 	}
-	
+
 	/**  Un-project Transverse Mercator eastings and northings back to latitude.
 	 * @param $East easting in metres
 	 * @param $North northing in metres
@@ -678,7 +678,7 @@ class Pas_Geo_Gridcalc  {
 	 * @param string $b ellipsoid axis in metres
 	 * @param string $e0 eastings false origin
 	 * @param string $n0 northings false origin
-	 * @param integer $f0 central meridian scale factor 
+	 * @param integer $f0 central meridian scale factor
 	 * @param double $PHI0 latitude of false origin in dec degrees
 	 * @param double $LAM0 longitude of false origin in dec degrees
 	 */
@@ -700,14 +700,14 @@ class Pas_Geo_Gridcalc  {
     $eta2 = ($nu / $rho) - 1;
 	//Compute Latitude
     $VII = (tan($PHId)) / (2 * $rho * $nu);
-    $VIII = ((tan($PHId)) / (24 * $rho * pow($nu,3))) * (5 + (3 * (pow(tan($PHId),2))) + $eta2 
+    $VIII = ((tan($PHId)) / (24 * $rho * pow($nu,3))) * (5 + (3 * (pow(tan($PHId),2))) + $eta2
     - (9 * $eta2 * (pow(tan($PHId),2))));
-    $IX = ((tan($PHId)) / (720 * $rho * pow($nu,5))) * (61 + (90 * ((tan($PHId)) ^ 2)) + (45 
+    $IX = ((tan($PHId)) / (720 * $rho * pow($nu,5))) * (61 + (90 * ((tan($PHId)) ^ 2)) + (45
     * (pow(tan($PHId),4))));
     $E_N_to_Lat = (180 / self::PI) * ($PHId - (pow($Et,2) * $VII) + (pow($Et,4) * $VIII) - (($Et ^ 6) * $IX));
 	return ($E_N_to_Lat);
 	}
-	
+
 	/** Un-project Transverse Mercator eastings and northings back to longitude.
 	 * @uses marc
 	 * @uses InitialLat
@@ -717,7 +717,7 @@ class Pas_Geo_Gridcalc  {
 	 * @param string $b ellipsoid axis in metres
 	 * @param string $e0 eastings false origin
 	 * @param string $n0 northings false origin
-	 * @param integer $f0 central meridian scale factor 
+	 * @param integer $f0 central meridian scale factor
 	 * @param double $PHI0 latitude of false origin in dec degrees
 	 * @param double $LAM0 longitude of false origin in dec degrees
 	 */
@@ -734,7 +734,7 @@ class Pas_Geo_Gridcalc  {
 
 	//Compute initial value for latitude (PHI) in radians
     $PHId = $this->_initialLat($North, $n0, $af0, $RadPHI0, $n, $bf0);
-    
+
 	//Compute nu, rho and eta2 using value for PHId
     $nu = $af0 / (sqrt(1 - ($e2 * (pow(sin($PHId),2)))));
     $rho = ($nu * (1 - $e2)) / (1 - ($e2 * pow(Sin($PHId),2)));
@@ -743,11 +743,11 @@ class Pas_Geo_Gridcalc  {
 	//Compute Longitude
     $X = (pow(cos($PHId),-1)) / $nu;
     $XI = ((pow(cos($PHId),-1)) / (6 * pow($nu,3))) * (($nu / $rho) + (2 * (pow(tan($PHId),2))));
-    $XII = ((pow(cos($PHId),-1)) / (120 * pow($nu,5))) * (5 + (28 * (pow(tan($PHId),2))) 
+    $XII = ((pow(cos($PHId),-1)) / (120 * pow($nu,5))) * (5 + (28 * (pow(tan($PHId),2)))
     + (24 * (pow(tan($PHId),4))));
-    $XIIA = ((pow(Cos($PHId),-1)) / (5040 * pow($nu,7))) * (61 + (662 * (pow(tan($PHId),2))) 
+    $XIIA = ((pow(Cos($PHId),-1)) / (5040 * pow($nu,7))) * (61 + (662 * (pow(tan($PHId),2)))
     + (1320 * (pow(Tan($PHId),4))) + (720 * (pow(tan($PHId),6))));
-    $E_N_to_Long = (180 / self::PI) * ($RadLAM0 + ($Et * $X) - (pow($Et,3) * $XI) + (pow($Et,5) * $XII) 
+    $E_N_to_Long = (180 / self::PI) * ($RadLAM0 + ($Et * $X) - (pow($Et,3) * $XI) + (pow($Et,5) * $XII)
     - (pow($Et,7) * $XIIA));
 	return $E_N_to_Long;
 	}
@@ -762,15 +762,15 @@ class Pas_Geo_Gridcalc  {
 	private function _marc($bFo, $n, $P1, $P2){
 	$n2 = $n*$n;
 	$n3 = $n*$n*$n;
-	$Marc = $bFo * (((1 + $n + ((5 / 4) * ($n2)) + ((5 / 4) * ($n3))) * ($P2 - $P1)) - (((3 * $n) + (3 * ($n2)) 
-	+ ((21 / 8) * ($n3))) * (Sin($P2 - $P1)) * (Cos($P2 + $P1))) + ((((15 / 8) * ($n2)) + ((15 / 8) * ($n3))) 
-	* (Sin(2 * ($P2 - $P1))) * (Cos(2 * ($P2 + $P1)))) - (((35 / 24) * ($n3)) * (Sin(3 * ($P2 - $P1))) * (Cos(3 
+	$Marc = $bFo * (((1 + $n + ((5 / 4) * ($n2)) + ((5 / 4) * ($n3))) * ($P2 - $P1)) - (((3 * $n) + (3 * ($n2))
+	+ ((21 / 8) * ($n3))) * (Sin($P2 - $P1)) * (Cos($P2 + $P1))) + ((((15 / 8) * ($n2)) + ((15 / 8) * ($n3)))
+	* (Sin(2 * ($P2 - $P1))) * (Cos(2 * ($P2 + $P1)))) - (((35 / 24) * ($n3)) * (Sin(3 * ($P2 - $P1))) * (Cos(3
 	* ($P2 + $P1)))));
 	return $Marc;
 	}
-	
+
 	/** Internal function used in Grid Calc
-	 * 
+	 *
 	 * @param $gridX
 	 * @param $N0
 	 * @param $aFo
@@ -924,4 +924,4 @@ class Pas_Geo_Gridcalc  {
 	'MinSecLon' => $degLonValue);
  	return $degreedData;
 	}
-} 
+}
