@@ -2,7 +2,7 @@
 $config = Zend_Registry::get('config');
 $apikey = $config->webservice->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
-
+$this->inlineScript()->appendFile($this->serverUrl() . '/js/markerclusterer.js',$type='text/javascript');
 $this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
 ?>
 
@@ -10,7 +10,7 @@ $this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$ty
 $(document).ready(function() {
 
 
-var nlsmap = new google.maps.ImageMapType({
+    var nlsmap = new google.maps.ImageMapType({
 	   getTileUrl: function(tile, zoom) { return NLSTileUrlOS(tile.x, tile.y, zoom); },
 	   tileSize: new google.maps.Size(256, 256),
 	   isPng: false,
@@ -89,13 +89,10 @@ var nlsmap = new google.maps.ImageMapType({
     });
 
 
-
-
-
-	var myOptions = {
+    var myOptions = {
           center: new google.maps.LatLng( 53.2,-6.1),
           zoom: 7,
-		  mapTypeControlOptions: {
+          mapTypeControlOptions: {
           mapTypeIds: [
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
@@ -112,40 +109,74 @@ var nlsmap = new google.maps.ImageMapType({
           scrollwheel: false,
         };
 
-
-        var map = new google.maps.Map(document.getElementById("map"),
-            myOptions);
-            map.mapTypes.set('OSM',osmMapType);
-            map.mapTypes.set('SOIL',soilMapType);
-
-    map.mapTypes.set('historic',nlsmap);
-            map.setTilt(45);
+    var map = new google.maps.Map(document.getElementById("map"),myOptions);
+        map.mapTypes.set('OSM',osmMapType);
+        map.mapTypes.set('SOIL',soilMapType);
+        map.mapTypes.set('historic',nlsmap);
 
 
 
-       <?php
-       $params = Zend_Controller_Front::getInstance()->getRequest();
-       $url = $this->serverUrl() . $this->url(array('module' => 'database','controller' => 'ajax','action' => 'mapdata', 'show' => '200', 'ruler' => $this->emps[0]['pasID']),'default',true);
+<?php
+
+$url = $this->serverUrl() . $this->url(array(
+    'module' => 'database',
+    'controller' => 'ajax',
+    'action' => 'mapdata2',
+    'ruler' => $this->emps[0]['pasID']),
+        'default',true);
        ?>
 
-       var records = new google.maps.KmlLayer('<?php echo $url;?>' ,
-                                                 {preserveViewport: true, suppressInfoWindows: false });
-		records.setMap(map);
 
-             $('a[data-toggle="tab"]').on('shown', function (e) {
+
+  $('a[data-toggle="tab"]').on('shown', function (e) {
   e.target // activated tab
   e.relatedTarget // previous tab
 
-             google.maps.event.trigger(map, 'resize');
-             map.setZoom( map.getZoom() );
-            var latLngBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(49.871159, -6.379880),
-          new google.maps.LatLng(55.811741, 1.768960)
-        );
-    	map.fitBounds(latLngBounds);
+  google.maps.event.trigger(map, 'resize');
+  map.setZoom( map.getZoom() );
+  var latLngBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(49.871159, -6.379880),
+    new google.maps.LatLng(55.811741, 1.768960)
+    );
+  map.fitBounds(latLngBounds);
 })
 
+var markers = new Array();
+
+var infowindow = new google.maps.InfoWindow();
+    jQuery.get("<?php echo $url;?>", {}, function(data) {
+
+    jQuery(data).find("marker").each(function() {
+        var markerXML = jQuery(this);
+        var latlng = new google.maps.LatLng(
+            parseFloat(markerXML.attr("lat")),
+            parseFloat(markerXML.attr("lng"))
+        );
+        var marker = new google.maps.Marker({position: latlng, map: map});
+
+        // now that the marker is placed, assign event listener on the marker
+        // and create/assign infowindow to the event trigger.
+        markerInfoWindow(marker, markerXML.attr("content"));
+        markers.push(marker);
+    });
+    var markerCluster = new MarkerClusterer(map, markers);
 });
+
+function markerInfoWindow(marker, information){
+     google.maps.event.addListener(marker, 'click',
+    function() {
+        infowindow.close();
+        infowindow.setContent(information);
+        infowindow.setPosition(marker.getPosition());
+        infowindow.open(map, marker);
+    });
+}
+
+
+});
+
+
+
 
 
 

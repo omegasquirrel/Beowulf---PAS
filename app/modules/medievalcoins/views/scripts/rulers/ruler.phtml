@@ -274,11 +274,47 @@ var nlsmap = new google.maps.ImageMapType({
             myOptions);
             map.mapTypes.set('OSM',osmMapType);
             map.mapTypes.set('SOIL',soilMapType);
+            map.mapTypes.set('historic',nlsmap);
 
-    map.mapTypes.set('historic',nlsmap);
-            map.setTilt(45);
+            var infoWindow;
 
 
+       jQuery.get("/database/ajax/mapdata2/show/20/", function(data) {
+  jQuery(data).find("marker").each(function() {
+    var eachMarker = jQuery(this);
+    var markerCoords = new google.maps.LatLng(
+        parseFloat(eachMarker.find("lat").text()),
+        parseFloat(eachMarker.find("lng").text())
+    );
+
+    var content = eachMarker.find("content").text();
+    var html =  content;
+
+    var marker = addMarker(html, markerCoords);
+
+    });
+  });
+// Create a marker for each XML entry
+function addMarker(html, markerCoords) {
+
+// Place the new marker
+var marker = new google.maps.Marker({
+    animation: google.maps.Animation.DROP,
+    map: map,
+    position: markerCoords
+}); // end place the new marker
+
+// Add event listener. On marker click, close all open infoWindows open current infoWindow.
+google.maps.event.addListener(marker, "click", function() {
+    if (infowindow) infowindow.close();
+    infowindow = new google.maps.InfoWindow({content: html});
+    infowindow.open(map, marker);
+}); // end add event listener
+
+// Display marker
+return marker;
+
+} // end addMarker();
 
        <?php
        $params = Zend_Controller_Front::getInstance()->getRequest();
@@ -302,16 +338,7 @@ var nlsmap = new google.maps.ImageMapType({
         );
     	map.fitBounds(latLngBounds);
 })
-var center;
-function calculateCenter() {
-  center = map.getCenter();
-}
-google.maps.event.addDomListener(map, 'idle', function() {
-  calculateCenter();
-});
-google.maps.event.addDomListener(window, 'resize', function() {
-  map.setCenter(center);
-});
+
 });
 
 

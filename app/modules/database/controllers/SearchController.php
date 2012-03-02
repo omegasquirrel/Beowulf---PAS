@@ -31,27 +31,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addContext('atom',array('suffix' => 'atom'))
 		->addActionContext('results', array('json','rss','atom'))
 		->setAutoJsonSerialization(false);
-	$her = array('her');
-	$herroles = array('hero','flos','admin','fa');
-	$role = $this->getAccount();
-	if($role){
-	$user = $role->role;
-	if(in_array($user,array('hero','flos','admin','fa','treasure','member','research'))) {
-	$this->_helper->contextSwitch()
-		->addContext('csv',array('suffix' => 'csv'))
-		->addActionContext('results', array('csv'));
-	}
-	}
-
-	if($role){
-	$user = $role->role;
-	if(in_array($user,$herroles)) {
-	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
-	$this->_helper->contextSwitch()
-		->addContext('hero',array('suffix' => 'hero'))
-		->addActionContext('results', array('hero'));
-	}
-	}
+	
 	$this->_helper->contextSwitch()->initContext();
 
 	if(!in_array($this->_helper->contextSwitch()->getCurrentContext(),$this->_contexts )) {
@@ -243,28 +223,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	return $target;
 	}
-	/** Display the map of results
-	*/
-	public function mapAction() {
-	$data = $this->_getAllParams();
-	$params = array_filter($data);
-	$this->view->params = $params;
-		unset($params['controller']);
-		unset($params['module']);
-		unset($params['action']);
-		unset($params['submit']);
-		unset($params['csrf']);
 
-	$where = array();
-        foreach($params as $key => $value) {
-            if(!is_null($value)) {
-            $where[] = $key . '/' . urlencode($value);
-            }
-        }
-   	$whereString = implode('/', $where);
-	$query = $whereString;
-	$this->view->query = $query;
-	}
 
 	public function saveAction() {
 	$form = new SaveSearchForm();
@@ -396,15 +355,17 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$search->setFields($fields->getFields());
     $search->setFacets(array(
     	'objectType','county','broadperiod',
-    	'institution', 'rulerName', 'denominationName', 'mintName', 
+    	'institution', 'rulerName', 'denominationName', 'mintName',
     	'workflow'));
 	$search->setParams($params);
 	$search->execute();
     $this->view->facets = $search->_processFacets();
 	$this->view->paginator = $search->_createPagination();
-	$this->view->results = $search->_processResults();	
+	$this->view->results = $search->_processResults();
 	}
 
-	
+	public function mapAction(){
+
+        }
 //EOS
 }
