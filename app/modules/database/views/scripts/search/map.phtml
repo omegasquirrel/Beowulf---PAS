@@ -193,9 +193,15 @@ google.maps.event.addDomListener(window, 'resize', function() {
 <?php $this->headTitle('Map of search results');?>
 
 <h1>Map of search results</h1>
-
+<p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'results'),'default',false);?>" 
+title="Return to your search">Return to search results <i class="icon-search"></i></a> 
+<a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'kml'),null,false);?>">Export all results as KML <i class="icon-download-alt"></i></a> 
+<a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'csv'),null,false);?>">Export as CSV <i class="icon-download-alt"></i></a> <a class="btn-small btn" href="#">Export for HER import <i class="icon-download-alt"></i></a> <a href="#" class="btn-small btn">Export for GIS <i class="icon-download-alt"></i></a></p>
 <div class="row-fluid">
 
-    <div id="map" style="min-height:1000px;"></div>
 
+	<div class="span9">
+    <div id="map" style="min-height:1000px;"></div>
+    </div>
+	<div class="span3"><?php echo $this->mapFacetCreator();?></div>
 </div>

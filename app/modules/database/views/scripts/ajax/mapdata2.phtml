@@ -10,8 +10,8 @@ $dom->appendChild($documentNode);
 foreach($this->results as $result){
     if(!is_null($result['longitude'])){
 
-          if(isset($result['thumbnail'])){
-            $url = '/images/thumbnails/';
+        if(isset($result['thumbnail'])){
+        $url = '/images/thumbnails/';
         $description = '<img src="' . $this->serverUrl() . $url . $result['thumbnail'] . '.jpg" style="float:right;"/>';
         }
         $description .= '<h3>';

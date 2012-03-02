@@ -13,7 +13,8 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     */
     public function init() {
 	$this->_helper->_acl->allow('public',NULL);
-	$this->_helper->_acl->deny('public',array('nearest'));
+	$this->_helper->_acl->deny('public',array('nearest', 'kml', 'her', 'gis'));
+	$this->_helper->_acl->deny('member',array('nearest', 'kml', 'her', 'gis'));
 	$this->_helper->_acl->allow('flos',NULL);
 	$this->_helper->_acl->allow('hero',NULL);
 	$this->_helper->_acl->allow('research',NULL);
@@ -243,10 +244,9 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    }
 
    public function mapdata2Action(){
-
-//        $this->_helper->viewRenderer->setNoRender();
+//     $this->_helper->viewRenderer->setNoRender();
 	$this->_helper->layout->disableLayout();
-        $params = $this->_getAllParams();
+    $params = $this->_getAllParams();
 	$params['show'] = 2000;
 	$params['format'] = 'json';
 	$search = new Pas_Solr_Handler('beowulf');
@@ -256,7 +256,102 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 		'district', 'parish','knownas', 'thumbnail'));
 	$search->setParams($params);
 	$search->execute();
-        $this->view->results = $search->_processResults();
-   }
+	$this->view->results = $search->_processResults();
+	}
 
+   public function exporterAction(){
+   	$this->_helper->layout->disableLayout();
+    $params = $this->_getAllParams();
+	$params['show'] = 15000;
+	$params['format'] = 'json';
+	$search = new Pas_Solr_Handler('beowulf');
+	$search->setFields(array(
+		'id','old_findID','description', 'gridref','fourFigure',
+		'longitude', 'latitude', 'county', 'woeid',
+		'district', 'parish','knownas', 'thumbnail'));
+	$search->setParams($params);
+	$search->execute();
+    $this->view->results = $search->_processResults();
+   }
+   
+   public function kmlAction(){
+   $params = $this->_getAllParams();
+	$params['show'] = 15000;
+	$params['format'] = 'json';
+	$search = new Pas_Solr_Handler('beowulf');
+	$search->setFields(array(
+		'id','old_findID','description', 'gridref','fourFigure',
+		'longitude', 'latitude', 'county', 'woeid',
+		'district', 'parish','knownas', 'thumbnail'));
+	$search->setParams($params);
+	$search->execute();
+    $this->view->results = $search->_processResults();	
+   }
+   
+   public function herAction(){
+   	
+   }
+   
+   public function csvAction(){
+	ini_set("memory_limit","750M");
+	$this->_helper->viewRenderer->setNoRender();
+   	$params = $this->_getAllParams();
+	$params['show'] = 50000;
+	$params['format'] = 'json';
+	$search = new Pas_Solr_Handler('beowulf');
+	$search->setFields(array(
+		'id','old_findID','description', 'gridref','fourFigure',
+		'longitude', 'latitude', 'county', 'woeid',
+		'district', 'parish','knownas', 'thumbnail'));
+	$search->setParams($params);
+	$search->execute();
+    $results = $search->_processResults();
+    //   	
+   $csv = $this->arrayToCsv($results);
+	header('Content-Type: text/csv; charset=utf-8');
+	header('Content-Disposition: attachment; filename=export.csv');
+	 $file = fopen('php://temp/maxmemory:'. (12*1024*1024), 'r+');
+	fputcsv($file,array_keys($csv['0']),',','""');
+      foreach ($csv as $record) {
+        fputcsv($file, $record,',','"');
+      }
+      rewind($file);
+      $output = stream_get_contents($file);
+      fclose($file);
+      echo $output;
+   
+   }
+   
+	protected function arrayToCsv($data) {
+    foreach ($data AS $dat) {
+	$record = array();
+	if(!array_key_exists('thumbnail',$dat)){
+		$dat['thumbnail'] = NULL;
+	}
+	if(!array_key_exists('woeid',$dat)){
+		$dat['woeid'] = NULL;
+	}
+	$record['id'] = $dat['id'];
+	$record['old_findID'] = $dat['old_findID'];
+	$record['description'] = $dat['description'];
+	$record['thumbnail'] = $dat['thumbnail'];
+	$record['gridref'] = $dat['gridref'];
+	$record['fourFigure'] = $dat['fourFigure'];
+	$record['latitude'] = $dat['latitude'];
+	$record['longitude'] = $dat['longitude'];
+	$record['county'] = $dat['county'];
+	$record['district'] = $dat['district'];
+	$record['parish'] = $dat['parish'];
+ 	foreach($dat as $k => $v){
+		
+	$record[$k] = trim(strip_tags(str_replace('<br />',array( "\n", "\r"), utf8_decode( $v ))));
+	}
+	$finalData[] = $record;
+	}
+    return $finalData;
+	}  	
+    
+   public function gisAction(){
+   	
+   }
 }

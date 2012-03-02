@@ -31,9 +31,8 @@ class Pas_Solr_SensitiveFields {
     protected function _processGeoData($data){
 
         if(is_array($data)){
-$clean = array();
+		$clean = array();
             foreach($data as $record){
-
                 if(!is_null($record['knownas'])){
                     $record['gridref'] = NULL;
                     $record['parish'] = 'Restricted Access';

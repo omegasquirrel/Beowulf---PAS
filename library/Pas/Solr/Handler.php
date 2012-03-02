@@ -37,6 +37,8 @@ class Pas_Solr_Handler {
     protected $_facets;
 
     protected $_allowed = array('fa','flos','admin','treasure');
+    
+    protected $_map = false;
 
     protected $_formats = array(
         'json', 'csv', 'xml',
@@ -54,6 +56,10 @@ class Pas_Solr_Handler {
     protected $_facetSet;
 
     protected $_query;
+    
+    public function setMap($map){
+    	return $this->_map = $map;
+    }
 
     protected function _setFacetFieldsAvailable(){
         $facetFields = array();
@@ -237,6 +243,10 @@ class Pas_Solr_Handler {
     }
 
 
+	if(isset($this->_map) && !in_array($this->_role, $this->_allowed) && ($this->_core === 'beowulf')){
+		$this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
+		$this->_query->createFilterQuery('hascoords')->setQuery('gridref:["" TO *]');
+	}
 
     if(array_key_exists('bbox',$params)){
     	$coords = new Pas_Solr_BoundingBoxCheck($params['bbox']);
