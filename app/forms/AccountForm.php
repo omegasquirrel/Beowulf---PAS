@@ -100,9 +100,13 @@ class AccountForm extends Pas_Form
             ->addValidator('EmailAddress');
 
     $submit = new Zend_Form_Element_Submit('submit');
+	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+            
     $submit->setLabel('Set my account up on Beowulf');
     
-    $this->addElement($submit);
+    $this->addElements(array($submit,$hash));
 
 
     $this->addDisplayGroup(array(

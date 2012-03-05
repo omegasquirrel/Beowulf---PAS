@@ -58,7 +58,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
 	$where = array();
-	$where[] = $users->getAdapter()->quoteInto('id = ?', $this->getIdentityForForms());
+	$where[] = $this->_users->getAdapter()->quoteInto('id = ?', $this->getIdentityForForms());
 
 	$this->_users->update($form->getValues(), $where);
 	$this->_flashMessenger->addMessage('You updated your profile successfully.');

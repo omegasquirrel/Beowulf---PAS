@@ -547,7 +547,7 @@
 	<field name="tribe" type="int" indexed="true" stored="true"/>
 	<field name="tribeName" type="string" indexed="true" stored="true" />
 	<field name="reeceID" type="int" indexed="true" stored="true" />
-	<field name="cciNumber" type="float" indexed="true" stored="true" />
+	<field name="cciNumber" type="string" indexed="true" stored="true" />
 	<field name="mintmark" type="string" indexed="true" stored="true" />
 	<field name="allenType" type="string" indexed="true" stored="true" />
 	<field name="mackType" type="string" indexed="true" stored="true" />
@@ -562,9 +562,9 @@
 	<field name="axis" type="int" indexed="true" stored="true" />
 	<field name="moneyer" type="string" indexed="true" stored="true" />
 	<field name="moneyerName" type="string" indexed="true" stored="true" />
-        <field name="reverse" type="int" indexed="true" stored="true" />
-        <field name="reverseType" type="text" indexed="true" stored="true" />
-        <field name="status" type="int" indexed="true" stored="true" />
+    <field name="reverse" type="int" indexed="true" stored="true" />
+    <field name="reverseType" type="text" indexed="true" stored="true" />
+    <field name="status" type="int" indexed="true" stored="true" />
 	<!-- Findspot specific fields -->
 	<field name="regionID" type="int" indexed="true" stored="true" />
 	<field name="regionName" type="string" indexed="true" stored="true" />
@@ -577,8 +577,8 @@
 
 	<field name="fourFigure" type="string" indexed="true" stored="true" />
 	<field name="gridref" type="string" indexed="true" stored="true" />
-	<field name="easting" type="string" indexed="false" stored="true" />
-	<field name="northing" type="string" indexed="false" stored="true" />
+	<field name="easting" type="string" indexed="true" stored="true" />
+	<field name="northing" type="string" indexed="true" stored="true" />
 	<field name="latitude" type="double" indexed="true" stored="true" />
 	<field name="longitude" type="double" indexed="true" stored="true" />
 	<field name="elevation" type="float" indexed="true" stored="true" />
@@ -712,6 +712,7 @@
 	<copyField source="mintmark" dest="text" />
 	<copyField source="objecttype" dest="objectType" />
 	<copyField source="reverseType" dest="text" />
+	<copyField source="cciNumber" dest="text" />
 
    <!-- Above, multiple source fields are copied to the [text] field.
 	  Another way to map multiple source fields to the same

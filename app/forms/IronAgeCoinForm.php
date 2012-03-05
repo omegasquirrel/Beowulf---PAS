@@ -211,7 +211,7 @@ public function __construct($options = null) {
 	$cciNumber->setLabel('Celtic Coin Index Number: ')
 	->setAttrib('size',12)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->setDescription('This is the coin\'s unique CCI number, not a comparison field!');
+	->setDescription('This is the coin\'s unique CCI number, not a comparison field. <br /> Numbers are issued by the CCI.');
 
 	$rudd_type = new Zend_Form_Element_Text('rudd_type');
 	$rudd_type->setLabel('Ancient British Coinage number: ')

@@ -365,7 +365,6 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 
 	public function mapAction(){
-
-        }
+	}
 //EOS
 }

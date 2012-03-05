@@ -60,16 +60,15 @@ class Pas_Db_Table_Abstract
 	 */
 	public function add($data){
 
-        if(array_key_exists('csrf', $data)){
+   	if(array_key_exists('csrf', $data)){
             unset($data['csrf']);
-        }
+    }
 	if(empty($data['created'])){
 		$data['created'] = $this->timeCreation();
 	}
 	if(empty($data['createdBy'])){
 		$data['createdBy'] = $this->userNumber();
 	}
-
         foreach($data as $k => $v) {
 
             if ( $v == "") {

@@ -292,12 +292,11 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    	
    }
    
-   public function csvAction(){
-	ini_set("memory_limit","750M");
-	$this->_helper->viewRenderer->setNoRender();
-   	$params = $this->_getAllParams();
-	$params['show'] = 50000;
+   public function iterateCsv($params, $page){
+   	$params['show'] = 10;
 	$params['format'] = 'json';
+	$params['page'] = $page;
+	
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',
@@ -306,18 +305,43 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$search->setParams($params);
 	$search->execute();
     $results = $search->_processResults();
-    //   	
-   $csv = $this->arrayToCsv($results);
-	header('Content-Type: text/csv; charset=utf-8');
-	header('Content-Disposition: attachment; filename=export.csv');
-	 $file = fopen('php://temp/maxmemory:'. (12*1024*1024), 'r+');
+    return $results;
+
+   }
+   
+   public function csvAction(){
+	$this->_helper->viewRenderer->setNoRender();
+   	$params = $this->_getAllParams();
+	$params['show'] = 10;
+	$params['format'] = 'json';
+	$search = new Pas_Solr_Handler('beowulf');
+	$search->setParams($params);
+	$search->setFields(array(
+		'id','old_findID','description', 'gridref','fourFigure',
+		'longitude', 'latitude', 'county', 'woeid',
+		'district', 'parish','knownas', 'thumbnail'));
+	$search->execute();
+    $results = $search->_processResults();
+    $paginator = $search->_createPagination();
+    $pages = $paginator->getPages();
+    $iterator = $pages->pageCount;
+    
+   	$csv = $this->arrayToCsv($results);
+	$file = fopen('php://temp/maxmemory:'. (12*1024*1024), 'r+');
 	fputcsv($file,array_keys($csv['0']),',','""');
-      foreach ($csv as $record) {
-        fputcsv($file, $record,',','"');
-      }
+   	foreach (range(1, $iterator) as $number) {
+    $retrieved = $this->iterateCsv($this->_getAllParams(), $number);
+   	$record = $this->arrayToCsv($retrieved);
+    	foreach($record as $rec){
+    	fputcsv($file, $rec, ',', '"');	
+    	}
+     
+	}
       rewind($file);
       $output = stream_get_contents($file);
       fclose($file);
+      header('Content-Type: text/csv; charset=utf-8');
+	header('Content-Disposition: attachment; filename=export.csv');
       echo $output;
    
    }
@@ -339,9 +363,14 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$record['fourFigure'] = $dat['fourFigure'];
 	$record['latitude'] = $dat['latitude'];
 	$record['longitude'] = $dat['longitude'];
+	$record['easting'] = $dat['easting'];
+	$record['northing'] = $dat['northing'];
 	$record['county'] = $dat['county'];
 	$record['district'] = $dat['district'];
 	$record['parish'] = $dat['parish'];
+	$record['knownas'] = $dat['knownas'];
+	$record['woeid'] = $dat['woeid'];
+	
  	foreach($dat as $k => $v){
 		
 	$record[$k] = trim(strip_tags(str_replace('<br />',array( "\n", "\r"), utf8_decode( $v ))));

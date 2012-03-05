@@ -63,8 +63,7 @@ class ProfileForm extends Pas_Form
         $email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))
 			->email;
         $email = $this->getElement('email');
-        $email->addValidator('emailAddress')
-			->setRequired(true)
+        $email->setRequired(true)
 			->addErrorMessage('Please enter a valid address!')
 			->addFilters(array('StringTrim','StripTags','StringToLower'))
 			->addValidator('EmailAddress',false,array('mx' => true));
@@ -82,8 +81,12 @@ class ProfileForm extends Pas_Form
         	'Valid copyrights' => $copy))
 			->addValidator('InArray', false, array(array_keys($copy)));
 
-
-
+	$submit = new Zend_Form_Element_Submit('submit');
+	$submit->setLabel('Save details');
+	
+	$hash = new Zend_Form_Element_Hash('csrf');
+	$hash->setValue($this->_salt)->setTimeout(4800);
+	$this->addElements(array($hash,$submit));
 	$this->addDisplayGroup(array(
 	'username','first_name','last_name',
 	'fullname','email','password',

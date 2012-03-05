@@ -242,8 +242,8 @@ class Pas_Solr_Handler {
             );
     }
 
-
-	if(isset($this->_map) && !in_array($this->_role, $this->_allowed) && ($this->_core === 'beowulf')){
+	
+	if(($this->_map === true) && !in_array($this->_role, $this->_allowed) && ($this->_core === 'beowulf')){
 		$this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
 		$this->_query->createFilterQuery('hascoords')->setQuery('gridref:["" TO *]');
 	}

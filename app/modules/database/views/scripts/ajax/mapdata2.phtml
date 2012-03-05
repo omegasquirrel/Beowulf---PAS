@@ -17,7 +17,7 @@ foreach($this->results as $result){
         $description .= '<h3>';
         $description .= $result['old_findID'];
         $description .= '</h3>';
-        $description .= $this->purify($result['description']);
+        $description .= $this->purify($this->ellipsisstring($result['description'],500));
 
         $description .= '<p>Record Url: <a href="' . $this->serverUrl() . '/database/artefacts/record/id/' . $result['id'] . '">';
         $description .= $this->serverUrl() . '/database/artefacts/record/id/' . $result['id'] . '</a></p>';

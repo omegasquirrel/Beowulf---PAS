@@ -75,11 +75,16 @@ class Pas_View_Helper_MapFacetCreator extends Zend_View_Helper_Abstract {
             $facet = array_slice($facet,0,10);
         }
         foreach($facet as $key => $value){
-
-        $url = $this->view->url(array($facetName => $key),'default',false);
+		$request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+		if(isset($request['page'])){
+            unset($request['page']);
+        }
+		$request[$facetName] = $key;
+		
+        $url = $this->view->url($request,'default',false);
         $html .= '<li>';
         if($facetName !== 'workflow'){
-        $html .= '<a href="' . $url . '" title="Facet query for ' . $this->view->facetContentSection($key);
+        $html .= '<a href="' . $url . '" title="Facet query for ' . $key;
         $html .= '">';
         $html .= $key . ' ('. number_format($value) .')';
         } else {
@@ -102,7 +107,7 @@ class Pas_View_Helper_MapFacetCreator extends Zend_View_Helper_Abstract {
         $facet = $request[$facetName];
         if(isset($facet)){
             unset($request[$facetName]);
-            $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
+            $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url($request,'default',true)
                     . '" title="Clear the facet">Clear this facet</a></p>';
         }
 
