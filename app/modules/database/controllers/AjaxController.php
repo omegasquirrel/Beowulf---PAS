@@ -247,7 +247,9 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 //     $this->_helper->viewRenderer->setNoRender();
 	$this->_helper->layout->disableLayout();
     $params = $this->_getAllParams();
+    if(!isset($params['show'])){
 	$params['show'] = 2000;
+    }
 	$params['format'] = 'json';
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
@@ -259,6 +261,46 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$this->view->results = $search->_processResults();
 	}
 
+	protected $_csvFields = array(
+	'id','old_findID','secuid',
+	'objecttype', 'classification', 'subclass',
+	'length', 'height', 'width',
+	'thickness', 'diameter', 'quantity',
+	'other_ref', 'TID', 'broadperiod',
+	'numdate1', 'numdate2', 'culture',
+	'description', 'notes', 'reuse',
+	'created', 'updated', 'workflow',
+	'note', 'datefound1','datefound2',
+	'inscription', 'disccircum', 'museumAccession',
+	'subsequentAction', 'subPeriodFrom', 'subPeriodTo',
+	'obverse_description', 'obverse_inscription', 'reverse_description',
+	'reverse_inscription', 'denomination', 'degree_of_wear',
+	'allen_type', 'va_type', 'mack',
+	'reeceID','dieAxis', 'wearID',
+	'moneyer', 'revtypeID',	'categoryID',
+	'typeID', 'tribeID', 'status',
+	'rulerQualifier', 'denominationQualifier', 'mintQualifier',
+	'dieAxisCertainty', 'initialMark', 'reverseMintMark',
+	'statusQualifier', 'reason', 'username',
+	'fullname', 'institution', 'usernameUpdate',
+	'fullnameUpdate', 'primaryMaterial', 'secondaryMaterial',
+	'decoration	style', 'manufacture', 'surfaceTreatment',
+	'completeness', 'preservation', 'periodFrom',	
+	'periodTo', 'discmethod','tribe',	
+	'region', 'area','ruler1',	
+	'ruler2', 'period_name	date_range',	
+	'mint_name', 'wear','category',
+	'type', 'reverseType', 'finder',
+	'identifier', 'secondaryIdentifier', 'recorder',	
+	'county', 'parish',	'district',	
+	'knownas','gridref','fourFigure',	
+	'easting', 'northing', 'map25k',	
+	'map10k','gridlength','accuracy',	
+	'address','postcode','findspotdescription',
+	'lat','lon', 'source'
+	);
+	
+	
    public function exporterAction(){
    	$this->_helper->layout->disableLayout();
     $params = $this->_getAllParams();
@@ -299,9 +341,11 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
-		'id','old_findID','description', 'gridref','fourFigure',
-		'longitude', 'latitude', 'county', 'woeid',
-		'district', 'parish','knownas', 'thumbnail'));
+		'id','old_findID','description', 'gridref',
+		'fourFigure', 'longitude', 'latitude', 
+		'county', 'woeid', 'district', 
+		'parish','knownas', 'thumbnail',
+		'easting', 'northing'));
 	$search->setParams($params);
 	$search->execute();
     $results = $search->_processResults();
@@ -317,9 +361,11 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setParams($params);
 	$search->setFields(array(
-		'id','old_findID','description', 'gridref','fourFigure',
-		'longitude', 'latitude', 'county', 'woeid',
-		'district', 'parish','knownas', 'thumbnail'));
+		'id','old_findID','description', 'gridref',
+		'fourFigure', 'longitude', 'latitude', 
+		'county', 'woeid', 'district', 
+		'parish','knownas', 'thumbnail',
+		'easting', 'northing'));
 	$search->execute();
     $results = $search->_processResults();
     $paginator = $search->_createPagination();

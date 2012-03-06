@@ -1,9 +1,8 @@
 <?php
-$config = Zend_Registry::get('config');
-$apikey = $config->webservice->googlemaps->apikey;
-$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
-$this->inlineScript()->appendFile($this->serverUrl() . '/js/markerclusterer.js',$type='text/javascript');
+echo $this->googleDynamicMap(null,true,false);
 $this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
+
+$this->inlineScript()->appendFile('/js/copyright.js',$type='text/javascript');
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -94,8 +93,10 @@ $(document).ready(function() {
           zoom: 7,
           mapTypeControlOptions: {
           mapTypeIds: [
+          
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
+          google.maps.MapTypeId.ROADMAP,
           'OSM',
           'SOIL',
           'historic'
@@ -114,35 +115,69 @@ $(document).ready(function() {
         map.mapTypes.set('SOIL',soilMapType);
         map.mapTypes.set('historic',nlsmap);
 
+copyrightDiv = document.createElement("div")
+copyrightDiv.id = "map-copyright"
+copyrightDiv.style.fontSize = "14px"
+copyrightDiv.style.fontFamily = "Arial, sans-serif"
+copyrightDiv.style.margin = "0 2px 2px 0"
+copyrightDiv.style.whiteSpace = "nowrap"
+copyrightDiv.className = "btn btn-large"
+map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(copyrightDiv)
 
+copyrights = {}
+copyrights["OSM"] = "<a target=\"_blank\" href=\"http://www.openstreetmap.org/\">Map data &copy; OpenStreetMap contributors, CC BY-SA</a>"
+copyrights["historic"] = "Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>"
+function setCopyright()
+{
+copyrightDiv = document.getElementById("map-copyright");
+current = map.getMapTypeId()
+if(current in copyrights)
+        copyrightDiv.innerHTML = copyrights[current]
+        else
+        copyrightDiv.innerHTML = ""
+}
 
-<?php
-$request = Zend_Controller_Front::getInstance()->getRequest();
-$params = array('module' => 'database', 'controller' => 'ajax', 'action' => 'mapdata2');
-$params2 = array_slice($request->getParams(),3);
-$params = array_merge($params,$params2);
-$url = $this->serverUrl() . $this->url($params
-        ,'default',true);
-       ?>
+function onMapTypeIdChanged()
+{
+    newMapType = map.getMapTypeId()
 
+    copyrightDiv = document.getElementById("map-copyright")
+    if(newMapType in copyrights)
+        copyrightDiv.innerHTML = copyrights[newMapType]
+    else
+        copyrightDiv.innerHTML = ""
+}
 
+google.maps.event.addListener(map, "maptypeid_changed", onMapTypeIdChanged)
 
-  $('a[data-toggle="tab"]').on('shown', function (e) {
-  e.target // activated tab
-  e.relatedTarget // previous tab
+// Call once so that the correct copyright notice is set for
+// the initially selected map type
+setTimeout(onMapTypeIdChanged, 50);
 
-  google.maps.event.trigger(map, 'resize');
-  map.setZoom( map.getZoom() );
-  var latLngBounds = new google.maps.LatLngBounds(
+	  $('a[data-toggle="tab"]').on('shown', function (e) {
+	  e.target // activated tab
+	  e.relatedTarget // previous tab
+
+  	google.maps.event.trigger(map, 'resize');
+  	map.setZoom( map.getZoom() );
+  	var latLngBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(49.871159, -6.379880),
     new google.maps.LatLng(55.811741, 1.768960)
     );
-  map.fitBounds(latLngBounds);
-})
+  	map.fitBounds(latLngBounds);
+	});
 
-var markers = new Array();
+	<?php
+	$request = Zend_Controller_Front::getInstance()->getRequest();
+	$params = array('module' => 'database', 'controller' => 'ajax', 'action' => 'mapdata2');
+	$params2 = array_slice($request->getParams(),3);
+	$params = array_merge($params,$params2);
+	$url = $this->serverUrl() . $this->url($params,'default',true);
+	       ?>
 
-var infowindow = new google.maps.InfoWindow();
+	var markers = new Array();
+
+	var infowindow = new google.maps.InfoWindow();
     jQuery.get("<?php echo $url;?>", {}, function(data) {
 
     jQuery(data).find("marker").each(function() {
@@ -158,28 +193,31 @@ var infowindow = new google.maps.InfoWindow();
         markerInfoWindow(marker, markerXML.attr("content"));
         markers.push(marker);
     });
-    var markerCluster = new MarkerClusterer(map, markers);
-});
+	});
 
-function markerInfoWindow(marker, information){
-     google.maps.event.addListener(marker, 'click',
-    function() {
-        infowindow.close();
-        infowindow.setContent(information);
-        infowindow.setPosition(marker.getPosition());
-        infowindow.open(map, marker);
-    });
-}
-var center;
-function calculateCenter() {
-  center = map.getCenter();
-}
-google.maps.event.addDomListener(map, 'idle', function() {
-  calculateCenter();
-});
-google.maps.event.addDomListener(window, 'resize', function() {
-  map.setCenter(center);
-});
+	function markerInfoWindow(marker, information){
+	     google.maps.event.addListener(marker, 'click',
+	    function() {
+	        infowindow.close();
+	        infowindow.setContent(information);
+	        infowindow.setPosition(marker.getPosition());
+	        infowindow.open(map, marker);
+	    });
+	}
+	var center;
+
+	function calculateCenter() {
+	  center = map.getCenter();
+	}
+	google.maps.event.addDomListener(map, 'idle', function() {
+	  calculateCenter();
+	  setCopyright();
+	});
+	google.maps.event.addDomListener(window, 'resize', function() {
+	  map.setCenter(center);
+	});
+
+
 
 });
 

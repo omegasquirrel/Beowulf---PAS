@@ -4,9 +4,10 @@ $this->headMeta('This database is maintained by the Scheme and contains records 
 $this->headMeta('archaeology,database,England,Wales,discovery,archaeological','dc.keywords');
 ?>
 <?php
-$config = Zend_Registry::get('config');
-$apikey = $config->webservice->googlemaps->apikey;
-$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
+echo $this->googleDynamicMap();
+$this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
+
+$this->inlineScript()->appendFile('/js/copyright.js',$type='text/javascript');
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -47,11 +48,57 @@ $(document).ready(function() {
             myOptions);
             map.mapTypes.set('OSM',osmMapType);
             map.setTilt(45);
-        var county = new google.maps.KmlLayer('http://beta.finds.org.uk/database/ajax/mapdata/note/1/reason/2/',
-                                                 {preserveViewport: true, suppressInfoWindows: false });
-		county.setMap(map);
+      
        google.maps.event.trigger(map, 'resize');
        map.setZoom( map.getZoom() );
+       var markers = new Array();
+	<?php
+	$request = Zend_Controller_Front::getInstance()->getRequest();
+	$params = array('module' => 'database', 'controller' => 'ajax', 'action' => 'mapdata2');
+	$params['note'] = 1;
+	$params['show'] = 50;
+	$url = $this->serverUrl() . $this->url($params,'default',true);
+	       ?>
+	var infowindow = new google.maps.InfoWindow();
+    jQuery.get("<?php echo $url;?>", {}, function(data) {
+
+    jQuery(data).find("marker").each(function() {
+        var markerXML = jQuery(this);
+        var latlng = new google.maps.LatLng(
+            parseFloat(markerXML.attr("lat")),
+            parseFloat(markerXML.attr("lng"))
+        );
+        var marker = new google.maps.Marker({position: latlng, map: map});
+
+        // now that the marker is placed, assign event listener on the marker
+        // and create/assign infowindow to the event trigger.
+        markerInfoWindow(marker, markerXML.attr("content"));
+        markers.push(marker);
+    });
+    var markerCluster = new MarkerClusterer(map, markers);
+	});
+
+	function markerInfoWindow(marker, information){
+	     google.maps.event.addListener(marker, 'click',
+	    function() {
+	        infowindow.close();
+	        infowindow.setContent(information);
+	        infowindow.setPosition(marker.getPosition());
+	        infowindow.open(map, marker);
+	    });
+	}
+	var center;
+
+	function calculateCenter() {
+	  center = map.getCenter();
+	}
+	google.maps.event.addDomListener(map, 'idle', function() {
+	  calculateCenter();
+	  setCopyright();
+	});
+	google.maps.event.addDomListener(window, 'resize', function() {
+	  map.setCenter(center);
+	});
 
 });
 <?php $this->inlineScript()->captureEnd();?>
