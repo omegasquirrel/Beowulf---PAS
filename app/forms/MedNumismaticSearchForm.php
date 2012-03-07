@@ -159,7 +159,7 @@ class MedNumismaticSearchForm extends Pas_Form {
 		'Available categories' => $cat_options))
 		->addValidator('InArray', false, array(array_keys($cat_options)));
 
-	$type = new Zend_Form_Element_Select('typeID');
+	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Coin type: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->setRegisterInArrayValidator(false)
@@ -260,7 +260,7 @@ class MedNumismaticSearchForm extends Pas_Form {
 
 
 	$this->addDisplayGroup(array(
-	'category', 'ruler', 'typeID',
+	'category', 'ruler', 'type',
 	'denomination', 'mint','moneyer',
 	'axis',  'obinsc','obdesc',
 	'revinsc','revdesc'), 'numismatics')

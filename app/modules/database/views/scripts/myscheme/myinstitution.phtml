@@ -27,6 +27,8 @@ $('a[rel*=lightbox]').lightBox()
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->results);?>
         </div>
         <div class="span3">
+		<p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'institutionmap'),null,false);?>" title="Map these records">Map these finds <i class="icon-map-marker"></i></a></p>
+        <p>Total results available: <?php echo $this->paginator->getTotalItemCount();?></p>
         <?php echo $this->facetCreator($this->facets); ?>
 		</div>
         <?php else:?>

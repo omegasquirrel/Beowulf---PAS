@@ -166,7 +166,7 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 		'Available categories' => $cat_options))
 		->addFilters(array('StripTags','StringTrim'));
 	
-	$type = new Zend_Form_Element_Select('typeID');
+	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Coin type: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
@@ -254,7 +254,7 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	$cat,$submit, $hash, $institution));
 	
 	$this->addDisplayGroup(array(
-		'category','ruler','typeID',
+		'category','ruler','type',
 		'denomination','mint','moneyer',
 		'axis','obinsc','obdesc',
 		'revinsc','revdesc')

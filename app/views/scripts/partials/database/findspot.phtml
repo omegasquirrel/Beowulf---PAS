@@ -79,6 +79,7 @@ $(document).ready(function() {
       		map: map,
       		animation: google.maps.Animation.DROP,
       		title:"Findspot location",
+      		icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" 
   		});
   		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(' ','',$this->parish));?>.kml',
                                                  {preserveViewport: true, suppressInfoWindows: false });

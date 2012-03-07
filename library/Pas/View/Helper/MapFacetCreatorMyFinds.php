@@ -19,8 +19,15 @@
  * @uses Zend_View_Helper_Url
  * @uses Zend_Controller_Front
  */
-class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
+class Pas_View_Helper_MapFacetCreatorMyFinds extends Zend_View_Helper_Abstract {
 
+	protected $_id;
+	
+	public function __construct(){
+		$person = new Pas_User_Details();
+		$this->_id = $person->getIdentityForForms();
+	}
+	
     /** Create the facets boxes for rendering
      * @access public
      * @param array $facets
@@ -28,8 +35,18 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
      * @throws Pas_Exception_BadJuJu
      */
 
-    public function facetCreator(array $facets){
-        if(is_array($facets)){
+    public function mapFacetCreatorMyFinds(){
+	 $params = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+    $params['createdBy'] = $this->_id;
+    $search = new Pas_Solr_Handler('beowulf');
+	$search->setParams($params);
+	$search->setFacets(array('objectType','county','broadperiod',
+    	'institution', 'rulerName', 'denominationName', 'mintName',
+    	'workflow'));
+	$search->setMap(true);
+	$search->execute();
+	$facets = $search->_processFacets();
+    if(is_array($facets)){
         $html = '<h3>Search facets</h3>';
         foreach($facets as $facetName => $facet){
             $html .= $this->_processFacet($facet, $facetName);
@@ -60,17 +77,16 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
             $facet = array_slice($facet,0,10);
         }
         foreach($facet as $key => $value){
-        $request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+		$request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
 		if(isset($request['page'])){
             unset($request['page']);
         }
-        $request[$facetName] = $key;
+		$request[$facetName] = $key;
 		
-        $url = $this->view->url($request,'default',true);
-        
+        $url = $this->view->url($request,'default',false);
         $html .= '<li>';
         if($facetName !== 'workflow'){
-        $html .= '<a href="' . $url . '" title="Facet query for ' . $this->view->facetContentSection($key);
+        $html .= '<a href="' . $url . '" title="Facet query for ' . $key;
         $html .= '">';
         $html .= $key . ' ('. number_format($value) .')';
         } else {
@@ -93,7 +109,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         $facet = $request[$facetName];
         if(isset($facet)){
             unset($request[$facetName]);
-            $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
+            $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url($request,'default',true)
                     . '" title="Clear the facet">Clear this facet</a></p>';
         }
 

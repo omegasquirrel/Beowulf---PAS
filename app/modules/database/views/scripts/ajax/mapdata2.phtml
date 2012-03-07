@@ -8,8 +8,10 @@ $dom->appendChild($documentNode);
 
 
 foreach($this->results as $result){
+	
+	
     if(!is_null($result['longitude'])){
-
+		$description = '';
         if(isset($result['thumbnail'])){
         $url = '/images/thumbnails/';
         $description = '<img src="' . $this->serverUrl() . $url . $result['thumbnail'] . '.jpg" style="float:right;"/>';
@@ -17,18 +19,17 @@ foreach($this->results as $result){
         $description .= '<h3>';
         $description .= $result['old_findID'];
         $description .= '</h3>';
-        $description .= $this->purify($this->ellipsisstring($result['description'],500));
+        $description .= $this->ellipsisstring($result['description'],200);
 
         $description .= '<p>Record Url: <a href="' . $this->serverUrl() . '/database/artefacts/record/id/' . $result['id'] . '">';
         $description .= $this->serverUrl() . '/database/artefacts/record/id/' . $result['id'] . '</a></p>';
-	$marker = $dom->createElement('marker');
-	$marker->setAttribute('lat', $result['latitude']);
+		$marker = $dom->createElement('marker');
+		$marker->setAttribute('lat', $result['latitude']);
         $marker->setAttribute('lng', $result['longitude']);
         $marker->setAttribute('content', $description);
-	$documentNode->appendChild( $marker );
+        $marker->setAttribute('title', $result['old_findID']);
+		$documentNode->appendChild( $marker );
     }
 }
-
-
 $xmlData  = $dom->saveXML();
 echo $xmlData;

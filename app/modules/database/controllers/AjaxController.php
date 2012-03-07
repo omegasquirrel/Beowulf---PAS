@@ -245,7 +245,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 
    public function mapdata2Action(){
 //     $this->_helper->viewRenderer->setNoRender();
-	$this->_helper->layout->disableLayout();
+//	$this->_helper->layout->disableLayout();
     $params = $this->_getAllParams();
     if(!isset($params['show'])){
 	$params['show'] = 2000;

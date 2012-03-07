@@ -56,7 +56,7 @@ $(document).ready(function() {
 	$request = Zend_Controller_Front::getInstance()->getRequest();
 	$params = array('module' => 'database', 'controller' => 'ajax', 'action' => 'mapdata2');
 	$params['note'] = 1;
-	$params['show'] = 50;
+	$params['show'] = 75;
 	$url = $this->serverUrl() . $this->url($params,'default',true);
 	       ?>
 	var infowindow = new google.maps.InfoWindow();
@@ -68,10 +68,12 @@ $(document).ready(function() {
             parseFloat(markerXML.attr("lat")),
             parseFloat(markerXML.attr("lng"))
         );
-        var marker = new google.maps.Marker({position: latlng, map: map});
-
-        // now that the marker is placed, assign event listener on the marker
-        // and create/assign infowindow to the event trigger.
+        var title = markerXML.attr("title");
+        var marker = new google.maps.Marker({
+        	position: latlng, 
+        	map: map,  
+        	title: title,
+        	icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" });
         markerInfoWindow(marker, markerXML.attr("content"));
         markers.push(marker);
     });

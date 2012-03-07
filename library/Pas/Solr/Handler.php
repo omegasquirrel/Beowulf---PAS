@@ -243,8 +243,10 @@ class Pas_Solr_Handler {
     }
 
 	
-	if(($this->_map === true) && !in_array($this->_role, $this->_allowed) && ($this->_core === 'beowulf')){
+	if(($this->_map === true) && !in_array($this->_getRole(), $this->_allowed) && ($this->_core === 'beowulf')){
 		$this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
+		$this->_query->createFilterQuery('hascoords')->setQuery('gridref:["" TO *]');
+	} elseif($this->_map === true && ($this->_core === 'beowulf')) {
 		$this->_query->createFilterQuery('hascoords')->setQuery('gridref:["" TO *]');
 	}
 

@@ -172,6 +172,7 @@ setTimeout(onMapTypeIdChanged, 50);
 	$params = array('module' => 'database', 'controller' => 'ajax', 'action' => 'mapdata2');
 	$params2 = array_slice($request->getParams(),3);
 	$params = array_merge($params,$params2);
+	$params['createdBy'] = $this->id;
 	$url = $this->serverUrl() . $this->url($params,'default',true);
 	       ?>
 
@@ -233,10 +234,9 @@ setTimeout(onMapTypeIdChanged, 50);
 
 <?php $this->inlineScript()->captureEnd();?>
 
-<?php $this->headTitle('Map of search results');?>
+<?php $this->headTitle('Map of finds I recorded');?>
 
-<h1>Map of search results</h1>
-<ul><?php echo $this->SearchParams(Zend_Controller_Front::getInstance()->getRequest()->getParams());?></ul>
+<h1>Map of finds I recorded</h1>
 
 <p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'results'),'default',false);?>" 
 title="Return to your search">Return to search results <i class="icon-search"></i></a> 
@@ -250,5 +250,5 @@ title="Return to your search">Return to search results <i class="icon-search"></
     </div>
 	<div class="span3">
 	
-<?php echo $this->mapFacetCreator();?></div>
+<?php echo $this->mapFacetCreatorMyFinds();?></div>
 </div>

@@ -209,7 +209,7 @@ class Peoples extends Pas_Db_Table_Abstract {
 		->from($this->_name,array(
 			'identifier' => 'CONCAT("people-",people.id)','people.id',
 			'fullname', 'surname','forename',
-			'longitude' => 'lon','latitude' => 'lat',
+			'lon','lat',
 			'email','created','updated',
 			'coordinates' => 'CONCAT(lat,",",lon)',
 			'place' => 'CONCAT(address," ",town_city," ",county)'

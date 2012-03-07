@@ -50,7 +50,7 @@ class Pas_Controller_Action_Helper_CoinFormLoader
             . '/js/JQuery/coinslinkedinit.js',$type='text/javascript');
             break;
         case 'IRON AGE':
-            $form = new IronAgeCoinForm();
+            $form = new IronAgeCoinFormNew();
             $form->details->setLegend('Add Iron Age numismatic data');
             $form->submit->setLabel('Add Iron Age data');
             $this->_view->headTitle('Add an Iron Age coin\'s details');

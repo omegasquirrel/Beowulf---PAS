@@ -248,14 +248,14 @@ class AdvancedSearchForm extends Pas_Form {
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
 	$rally->setLabel('Rally find: ')
-	->setRequired(false)
+
 	->addValidator('Int')
 	->addFilters(array('StringTrim','StripTags'))
 	->setUncheckedValue(NULL);
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
-	->setRequired(false)
+
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose a rally',
@@ -263,13 +263,13 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
 	$hoard->setLabel('Hoard find: ')
-	->setRequired(false)
+
 	->addFilters(array('StringTrim','StripTags'))
 	->setUncheckedValue(NULL);
 
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
-	->setRequired(false)
+
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
              NULL => 'Available hoards',
@@ -278,13 +278,16 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$other_ref = new Zend_Form_Element_Text('otherRef');
 	$other_ref->setLabel('Other reference: ')
-	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'));
-
+	
+	$smrRef = new Zend_Form_Element_Text('smrRef');
+	$smrRef->setLabel('SMR reference: ')
+	->addFilters(array('StringTrim','StripTags'));
+		
 	//Manufacture method
 	$manmethod = new Zend_Form_Element_Select('manufacture');
 	$manmethod->setLabel('Manufacture method: ')
-	->setRequired(false)
+
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int')
 	->addMultiOptions(array(
@@ -294,7 +297,7 @@ class AdvancedSearchForm extends Pas_Form {
 	//Decoration method
 	$decmethod = new Zend_Form_Element_Select('decoration');
 	$decmethod->setLabel('Decoration method: ')
-	->setRequired(false)
+
 	->addValidator('Int')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
@@ -305,7 +308,7 @@ class AdvancedSearchForm extends Pas_Form {
 	//Surface treatment
 	$surftreat = new Zend_Form_Element_Select('surface');
 	$surftreat->setLabel('Surface Treatment: ')
-	->setRequired(false)
+
 	->addValidator('Int')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
@@ -315,7 +318,7 @@ class AdvancedSearchForm extends Pas_Form {
 	//decoration style
 	$decstyle = new Zend_Form_Element_Select('decstyle');
 	$decstyle->setLabel('Decorative style: ')
-	->setRequired(false)
+
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose decorative style',
@@ -325,7 +328,7 @@ class AdvancedSearchForm extends Pas_Form {
 	//Preservation of object
 	$preservation = new Zend_Form_Element_Select('preservation');
 	$preservation->setLabel('Preservation: ')
-	->setRequired(false)
+
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
 	->addMultiOptions(array(
@@ -421,7 +424,7 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$material1 = new Zend_Form_Element_Select('material');
 	$material1->setLabel('Primary material: ')
-	->setRequired(false)
+
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(
             NULL => 'Choose primary material',
@@ -456,7 +459,7 @@ class AdvancedSearchForm extends Pas_Form {
 	$recordby, $recorderID, $identifierID,
 	$culture, $surftreat, $submit,
 	$material1, $elevation, $woeid,
-	$institution, $hash));
+	$institution, $hash, $smrRef));
 	} else {
 	$this->addElements(array(
 	$old_findID, $objecttype, $broadperiod,
@@ -473,7 +476,8 @@ class AdvancedSearchForm extends Pas_Form {
 	$created2, $idBy, $finder,
 	$finderID, $recordby, $recorderID,
 	$identifierID, $culture, $surftreat,
-	$submit, $material1, $institution, $hash));
+	$submit, $material1, $institution, 
+	$smrRef, $hash));
 	}
 
 	$this->addDisplayGroup(array(
@@ -481,8 +485,9 @@ class AdvancedSearchForm extends Pas_Form {
 	'notes', 'note', 'reason',
 	'treasure', 'TID', 'rally',
 	'rallyID', 'hoard', 'hID',
-	'workflow', 'otherRef', 'material',
-	'manufacture','surface'), 'details');
+	'workflow', 'otherRef', 'smrRef',
+	'material',	'manufacture','surface'), 
+	'details');
 	$this->details->setLegend('Main details: ');
 
 	

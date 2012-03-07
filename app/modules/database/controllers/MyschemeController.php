@@ -93,6 +93,13 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $this->view->facets = $search->_processFacets();
     }
 
+    public function mapAction(){
+    $this->view->id = $this->_getDetails()->id;	
+    }
+   
+	public function institutionmapAction(){
+    $this->view->inst = $this->_getDetails()->institution;	
+    }
     private function array_cleanup( $array ) {
     $todelete = array('submit','action','controller','module','csrf');
     foreach( $array as $key => $value ) {

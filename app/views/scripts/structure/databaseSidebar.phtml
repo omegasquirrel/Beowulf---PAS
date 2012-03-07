@@ -73,17 +73,16 @@ echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'pe
 ?>
 <?php
 $auth = Zend_Auth::getInstance();
-if($auth->hasIdentity())
-{
+if($auth->hasIdentity()) {
 $user = $auth->getIdentity();
-{
 $allowed = array('fa','admin','flos','hero');
-if(in_array($user->role,$allowed))
-{
-echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'smr'),NULL,true).
-'" title="List of scheduled monuments">Scheduled monuments  <i class="icon-list"></i></a></li>';
-}
-}
+if(in_array($user->role,$allowed)){
+}?>
+<li><a href="<?php echo $this->url(array('controller' => 'database','action' => 'smr'),NULL,true);?>" 
+title="List of scheduled monuments">Scheduled monuments  <i class="icon-list"></i></a></li>
+<li><a href="<?php echo $this->url(array('controller' => 'database','action' => 'osdata'),NULL,true);?>" 
+title="List of OS data">Ordnance Survey data  <i class="icon-list"></i></a></li>
+<?php 
 }
 ?>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller'=>  'publications'),NULL,true);?>" title="Reference works cited on database">Reference works cited  <i class="icon-book"></i></a></li>
