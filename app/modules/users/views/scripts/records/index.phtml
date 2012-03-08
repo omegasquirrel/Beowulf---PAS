@@ -2,16 +2,20 @@
 $this->headTitle('Records of mine on the database');
 $this->headMeta('A list of all finds recorded for me, by the Scheme','description');
 if($this->finds) :?>
-
+<div class="row-fluid">
 <h2>My finds recorded by the Scheme</h2>
 
-<p><a href="<?php echo $this->url(array('module' => 'users','controller' => 'records','action' => 'mapped'),NULL,true);?>" title="Map these finds">View these finds on a googlemap</a></p>
-<?php
-echo $this->facetCreator($this->facets);
-?>
-<div class="stripeMe">
+<div class="span8">
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->finds);?>
     </div>
+    <div class="span3">
+    
+<p><a class="btn btn-small" href="<?php echo $this->url(array('module' => 'users','controller' => 'records','action' => 'mapped'),NULL,true);?>" title="Map these finds">View these finds on a googlemap <i class="icon-map-marker"></i></a></p>
+    
+        <?php
+echo $this->facetCreator($this->facets);
+?></div>
+</div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 
 <?php else:?>

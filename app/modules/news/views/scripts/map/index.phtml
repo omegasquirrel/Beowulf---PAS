@@ -1,21 +1,9 @@
 <?php
 $this->headTitle('Scheme news stories mapped by location');
 $this->MetaBase('A map showing all of our georeferenced news stories that the Scheme has filed','map of stories','archaeology,news,stories,map,georeferenced');
-$this->inlineScript()->appendFile("http://maps.google.com/maps/api/js?sensor=false",$type="text/javascript");
+$this->googleDynamicMap();
 $this->inlineScript()->captureStart();
 ?>
-
-	
-    var customIcons = {
-     pas: {
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
-        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-      },
-      mla: {
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-      }
-    };
     function load() {
       var map = new google.maps.Map(document.getElementById("map"), {
         center: new google.maps.LatLng(54.70235509327093, -3.2080078125),
@@ -32,19 +20,19 @@ $this->inlineScript()->captureStart();
         var xml = parseXml(data);
         var markers = xml.documentElement.getElementsByTagName("marker");
         for (var i = 0; i < markers.length; i++) {
-          var name = markers[i].getAttribute("name");
+          var title = markers[i].getAttribute("title");
           var id = markers[i].getAttribute("id");
           var point = new google.maps.LatLng(
               parseFloat(markers[i].getAttribute("lat")),
-              parseFloat(markers[i].getAttribute("lng")));
-          var url = "/news/stories/article/id/" + id;
-          var html = "<a href='" + url + "'>"+ name + "</a>";
-          var icon = customIcons['pas'];
+              parseFloat(markers[i].getAttribute("lon")));
+          var url = "<?php echo $this->serverUrl();?>/news/stories/article/id/" + id;
+          var content = markers[i].getAttribute("content")
+          var html = "<h3><a href='" + url + "'>"+ title + "</a></h3>" + content;
           var marker = new google.maps.Marker({
             map: map,
             position: point,
-            icon: icon.icon,
-            shadow: icon.shadow
+            icon: "http://labs.google.com/ridefinder/images/mm_20_blue.png",
+        	shadow: "http://labs.google.com/ridefinder/images/mm_20_shadow.png"
           });
           bindInfoWindow(marker, map, infoWindow, html);
         }

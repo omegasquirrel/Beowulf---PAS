@@ -34,7 +34,7 @@ public function __construct($options = null) {
 		->addValidator(new Pas_Validate_Url())
 		->addErrorMessage('Please enter a valid URL')
 		->setAttrib('size',60)
-		->setDecorators($decorators);
+	;
 
 	$address1 = new Zend_Form_Element_Text('address1');
 	$address1->setLabel('Address line one: ')

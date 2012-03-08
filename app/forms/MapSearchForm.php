@@ -12,7 +12,7 @@ public function __construct($options = null) {
 	
 	$latitude = new Zend_Form_Element_Text('declat');
 	$latitude->setLabel('Latitude: ')
-	->setDecorators($decorators);
+;
 
 	$longitude = new Zend_Form_Element_Text('declong');
 	$longitude->setLabel('Longitude: ');

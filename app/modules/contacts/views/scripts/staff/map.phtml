@@ -6,7 +6,7 @@ $this->metaBase('A map of the locations of our staff who work for the Portable A
 
 ?>
 <h2>Map of Scheme staff locations</h2>
-<div id="map" style="width:740px; height:800px;">
+<div id="map">
 </div>
 <?php
 $this->inlineScript()->captureStart();
@@ -14,16 +14,6 @@ $this->inlineScript()->captureStart();
 
  //<![CDATA[
 
-    var customIcons = {
-      restaurant: {
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
-        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-      },
-      bar: {
-        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
-        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
-      }
-    };
     function load() {
       var map = new google.maps.Map(document.getElementById("map"), {
         center: new google.maps.LatLng(52.6557, -1.188),
@@ -45,12 +35,11 @@ $this->inlineScript()->captureStart();
               parseFloat(markers[i].getAttribute("lat")),
               parseFloat(markers[i].getAttribute("lng")));
           var html = "<a href='"+ url + "'>" + name + "</a>" + "<br />"  + address;
-          var icon = customIcons['bar'];
           var marker = new google.maps.Marker({
             map: map,
             position: point,
-            icon: icon.icon,
-            shadow: icon.shadow
+            icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+        	shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
           });
           bindInfoWindow(marker, map, infoWindow, html);
         }

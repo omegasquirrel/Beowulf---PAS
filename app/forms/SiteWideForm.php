@@ -20,7 +20,7 @@ class SiteWideForm extends Pas_Form
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
 		->addErrorMessage('Please enter a search term')
-		->setDecorators($decorators);
+	;
 		
     $section = new Zend_Form_Element_Select('section');
     $section->setLabel('Section')

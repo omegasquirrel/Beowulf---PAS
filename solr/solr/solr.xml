@@ -38,5 +38,6 @@
     <core name="beobiblio" instanceDir="beobiblio"></core>
     <core name="dayofarch" instanceDir="dayofarch"></core>
     <core name="beoblogs" instanceDir="beoblogs"></core>
+    <core name="beogeodata" instanceDir="beogeodata"></core>
   </cores>
 </solr>

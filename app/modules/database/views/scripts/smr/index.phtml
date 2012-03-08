@@ -12,9 +12,10 @@ $this->headTitle('List all Scheduled Monuments of the National Monument record')
 
 <h2>Scheduled monuments listed on the National Monuments Register</h2>
 <p>The Scheduled Monuments listed below were provided by Martin Newman from English Heritage. We accept no responsibility for E&amp;O.</p>
-
-<?php if(count($this->smrs) > 0):?>
-<div id="findsList">
+<?php echo $this->form;?>
+<?php if(count($this->results) > 0):?>
+<div class="row-fluid">
+<div class="span8">
 <table class="table table-striped" summary="A list of all scheduled monuments in England">
     <thead>
         <tr>
@@ -24,12 +25,18 @@ $this->headTitle('List all Scheduled Monuments of the National Monument record')
             <th>Parish</th>
         </tr>
     </thead>
-    <tr><?php echo $this->form;?></tr>
     <tbody>
-        <?php echo $this->partialLoop('partials/database/smr.phtml',$this->smrs);?>
+        <?php echo $this->partialLoop('partials/database/smr.phtml',$this->results);?>
     </tbody>
-</table>
-<?php echo $this->paginationControl($this->smrs, 'Sliding', 'structure/pagination.phtml'); ?>
+</table></div>
+
+<div class="span2">
+<p><a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'smr','action' => 'map'),'default',false);?>">Map these sites</a></p>
+<?php echo $this->facetCreator($this->facets);?>
+</div>
+</div>
+<div class="row-fluid">
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
 <?php else:?>
 <p>No Scheduled Monuments are available to you right now.</p>

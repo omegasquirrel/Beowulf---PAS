@@ -40,14 +40,21 @@ class Logins extends Pas_Db_Table_Abstract {
 	* @param string $user username
 	* @return Array
 	*/
-	public function myIps($user) {
+	public function myIps($user, $page) {
 	$logins = $this->getAdapter();
 	$select = $logins->select()
             ->from($this->_name, array('count' => 'COUNT(ipAddress)','ipAddress'))
             ->where('username =  ? ',$user)
             ->group('ipAddress')
             ->order('id DESC');
-	return $logins->fetchAll($select);
+	$paginator = Zend_Paginator::factory($select);
+	$paginator->setItemCountPerPage(10)
+	    	  ->setPageRange(10);
+	$paginator->setCache($this->_cache);
+	if(isset($page) && ($page != "")) {
+    	$paginator->setCurrentPageNumber($page);
+	}
+	return $paginator;
 	}
 
 	/** Retrieve a list and count of users for a specific IP address

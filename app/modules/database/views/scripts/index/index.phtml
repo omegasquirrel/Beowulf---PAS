@@ -4,8 +4,8 @@ $this->headMeta('This database is maintained by the Scheme and contains records 
 $this->headMeta('archaeology,database,England,Wales,discovery,archaeological','dc.keywords');
 ?>
 <?php
-echo $this->googleDynamicMap();
-$this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
+echo $this->googleDynamicMap(null,true);
+$this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
 
 $this->inlineScript()->appendFile('/js/copyright.js',$type='text/javascript');
 ?>
@@ -77,7 +77,6 @@ $(document).ready(function() {
         markerInfoWindow(marker, markerXML.attr("content"));
         markers.push(marker);
     });
-    var markerCluster = new MarkerClusterer(map, markers);
 	});
 
 	function markerInfoWindow(marker, information){
@@ -96,7 +95,6 @@ $(document).ready(function() {
 	}
 	google.maps.event.addDomListener(map, 'idle', function() {
 	  calculateCenter();
-	  setCopyright();
 	});
 	google.maps.event.addDomListener(window, 'resize', function() {
 	  map.setCenter(center);

@@ -429,4 +429,37 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    public function gisAction(){
    	
    }
+   
+   public function osdataAction(){
+   	$params = $this->_getAllParams();
+	$params['show'] = 5489;
+	$params['format'] = 'json';
+	$params['source'] = 'osdata';
+	$params['sort'] = 'id';
+   $q = $this->_getParam('q');
+	if(is_null($q)){
+	$params['q'] = 'type:R OR type:A';
+	} else {
+		$params['q'] = 'type:R || type:A && ' . $q;
+	}
+	$search = new Pas_Solr_Handler('beogeodata');
+	$search->setParams($params);
+	$search->setFields(array('*'));
+	$search->execute();
+    $this->view->results =  $search->_processResults();	
+   }
+   
+   public function smrsAction(){
+   	$params = $this->_getAllParams();
+	$params['show'] = 25046;
+	$params['format'] = 'json';
+	$params['source'] = 'osdata';
+	$params['sort'] = 'id';
+	$params['source'] = 'smrdata';
+	$search = new Pas_Solr_Handler('beogeodata');
+	$search->setParams($params);
+	$search->setFields(array('*'));
+	$search->execute();
+    $this->view->results =  $search->_processResults();	
+   }
 }

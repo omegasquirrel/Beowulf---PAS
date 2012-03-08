@@ -2,8 +2,7 @@
 $this->headTitle('Coroner\'s of England and Wales mapped');
 $this->metaBase('A map of the locations for coroners known to the  Portable Antiquities Scheme','Coroners map',
 'map,google,contacts,scheme,coroners,archaeology,deaths');
-
-$this->inlineScript()->appendFile('http://maps.google.com/maps/api/js?sensor=false',$type='text/javascript');
+$this->googleDynamicMap();
 ?>
 <h2>Map of coroners locations</h2>
 <?php $this->inlineScript()->captureStart() ?>
@@ -17,11 +16,55 @@ $this->inlineScript()->appendFile('http://maps.google.com/maps/api/js?sensor=fal
 
   var map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-  var Layer = new google.maps.KmlLayer('<?php echo $this->serverUrl() . $this->url(array('module' => 'contacts','controller' =>
-  'coroners','action' => 'index','format' => 'kml'),'default',true);?>');
-  Layer.setMap(map);
+  var markers = new Array();
+
+	var infowindow = new google.maps.InfoWindow();
+    jQuery.get("<?php echo $this->serverUrl() . $this->url(array('module' => 'contacts','controller' =>
+  'ajax','action' => 'coroners'),'default',true);?>", {}, function(data) {
+
+    jQuery(data).find("marker").each(function() {
+        var markerXML = jQuery(this);
+        var latlng = new google.maps.LatLng(
+            parseFloat(markerXML.attr("lat")),
+            parseFloat(markerXML.attr("lng"))
+        );
+        var title = markerXML.attr("title");
+        var marker = new google.maps.Marker({
+        	position: latlng, 
+        	map: map,  
+        	title: title,
+        	icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" });
+
+        // now that the marker is placed, assign event listener on the marker
+        // and create/assign infowindow to the event trigger.
+        markerInfoWindow(marker, markerXML.attr("content"));
+        markers.push(marker);
+    });
+	});
+
+	function markerInfoWindow(marker, information){
+	     google.maps.event.addListener(marker, 'click',
+	    function() {
+	        infowindow.close();
+	        infowindow.setContent(information);
+	        infowindow.setPosition(marker.getPosition());
+	        infowindow.open(map, marker);
+	    });
+	}
+	var center;
+
+	function calculateCenter() {
+	  center = map.getCenter();
+	}
+	google.maps.event.addDomListener(map, 'idle', function() {
+	  calculateCenter();
+	});
+	google.maps.event.addDomListener(window, 'resize', function() {
+	  map.setCenter(center);
+	});
+  
   });
 <?php $this->inlineScript()->captureEnd() ?>
-<div id="map" style="width:95%; height:800px;">
+<div id="map">
 <div id="loading"></div>
 </div>

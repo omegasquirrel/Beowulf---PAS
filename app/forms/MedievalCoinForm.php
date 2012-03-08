@@ -103,7 +103,6 @@ public function __construct($options = null) {
 	
 	$obverse_inscription = new Zend_Form_Element_Text('obverse_inscription');
 	$obverse_inscription->setLabel('Obverse inscription: ')
-	->setDecorators($decorators)
 	->setAttrib('size',60)
 	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'));
 	

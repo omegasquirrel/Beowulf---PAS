@@ -30,7 +30,7 @@ class ImageEditForm extends Pas_Form {
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
 	->setRequired(true)
-	->setDecorators($decorators)
+
 	->addMultiOptions(array(NULL => NULL,'Choose a period' => $period_options))
 	->addValidator('inArray', false, array(array_keys($period_options)));
 

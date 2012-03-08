@@ -1,6 +1,6 @@
 <?php
 echo $this->googleDynamicMap(null,true,false);
-$this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
+$this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
 
 $this->inlineScript()->appendFile('/js/copyright.js',$type='text/javascript');
 ?>
@@ -124,28 +124,28 @@ copyrightDiv.style.whiteSpace = "nowrap"
 copyrightDiv.className = "btn btn-large"
 map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(copyrightDiv)
 
-copyrights = {}
-copyrights["OSM"] = "<a target=\"_blank\" href=\"http://www.openstreetmap.org/\">Map data &copy; OpenStreetMap contributors, CC BY-SA</a>"
-copyrights["historic"] = "Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>"
-function setCopyright()
-{
+copyrights = {};
+copyrights["OSM"] = "<a target=\"_blank\" href=\"http://www.openstreetmap.org/\">Map data &copy; OpenStreetMap contributors, CC BY-SA</a>";
+copyrights["historic"] = "Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>";
+
+function setCopyright() {
 copyrightDiv = document.getElementById("map-copyright");
-current = map.getMapTypeId()
-if(current in copyrights)
-        copyrightDiv.innerHTML = copyrights[current]
-        else
-        copyrightDiv.innerHTML = ""
-}
+var current = map.getMapTypeId();
+	if(current in copyrights)
+	        copyrightDiv.innerHTML = copyrights[current];
+	        else
+	        copyrightDiv.innerHTML = " ";
+	}
 
 function onMapTypeIdChanged()
 {
-    newMapType = map.getMapTypeId()
+    newMapType = map.getMapTypeId();
 
-    copyrightDiv = document.getElementById("map-copyright")
+    copyrightDiv = document.getElementById("map-copyright");
     if(newMapType in copyrights)
-        copyrightDiv.innerHTML = copyrights[newMapType]
+        copyrightDiv.innerHTML = copyrights[newMapType];
     else
-        copyrightDiv.innerHTML = ""
+        copyrightDiv.innerHTML = "";
 }
 
 google.maps.event.addListener(map, "maptypeid_changed", onMapTypeIdChanged)

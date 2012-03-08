@@ -16,28 +16,33 @@ $this->headMeta('These pages catalogue all sites in the Ordnance Survey 1:50K da
 
 <h2>Ordnance Survey 1:50 K records</h2>
 <p>These records are obtained from the 1:50K data download from the Ordnance Survey Opendata project.</p>
-
-<?php if($this->osdata):?>
-<div id="findsList">
+<?php echo $this->form;?>
+<?php if($this->results):?>
+<div class="row-fluid">
+<div class="span8">
 <table class="table table-striped" summary="A list of all ordnance survey listed monuments">
 <thead>
 <tr>
 <th>Monument name</th>
 <th>County</th>
 <th>Feature type</th>
-<th>Parish</th>
-<th>Grid reference</th>
 </tr>
 </thead>
 <tr><?php 
 //echo $this->form;
 ?></tr>
 <tbody>
-<?php echo $this->partialLoop('partials/database/osdata.phtml',$this->osdata);?>
+<?php echo $this->partialLoop('partials/database/osdata.phtml',$this->results);?>
 </tbody>
 </table>
-<?php echo $this->paginationControl($this->osdata, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
+<div class="span2">
+<p><a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'osdata','action' => 'map'),'default',false);?>">Map these sites</a></p>
+<?php echo $this->facetCreator($this->facets);?>
+</div>
+</div>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
+
 <?php else:?>
 <p>No OS records are available to you right now.</p>
 <?php endif;?>

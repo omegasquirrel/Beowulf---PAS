@@ -41,8 +41,8 @@ class Users_AuditController extends Pas_Controller_Action_Admin {
 	}
 
         public function iphistoryAction(){
-            	$logins = new Logins();
-            $this->view->ips = $logins->myIps($this->getUsername());
+		$logins = new Logins();
+            $this->view->ips = $logins->myIps($this->getUsername(), $this->_getParam('page'));
         }
 
 }

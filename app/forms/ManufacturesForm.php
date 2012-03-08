@@ -18,7 +18,7 @@ public function __construct($options = null) {
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addErrorMessage('Please enter a valid title for this method!')
-	->setDecorators($decorators);
+;
 
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
 	$termdesc->setLabel('Description of manufacture method: ')

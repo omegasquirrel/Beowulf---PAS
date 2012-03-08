@@ -165,7 +165,7 @@ class News extends Pas_Db_Table_Abstract {
 	public function getMapData() {
 	$events = $this->getAdapter();
 	$select = $events->select()
-		->from($this->_name, array('id','name' => 'title','lat' => 'latitude', 'lng' => 'longitude'))
+		->from($this->_name, array('id','title','lat' => 'latitude', 'lon' => 'longitude','contents'))
 		->where('latitude IS NOT NULL');
 	return $events->fetchAll($select);
 	}

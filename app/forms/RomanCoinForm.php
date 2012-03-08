@@ -78,7 +78,7 @@ public function __construct($options = null)
 	
 	$reeceID = new Zend_Form_Element_Select('reeceID');
 	$reeceID->setLabel('Reece period: ')
-		->setDecorators($decorators)
+	
 		->addMultiOptions(array(NULL => NULL,'Choose period' => $reece))
 		->addValidator('InArray', false, array(array_keys($reece)))
 		->addFilters(array('StripTags', 'StringTrim'));
