@@ -359,7 +359,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {
     $updateData = $form->getValues();
-    $updateData = array_filter($updateData);
+//    $updateData = array_filter($updateData);
     $id2by = $form->getValue('id2by');
     if($id2by === "" || is_null($id2by)){
     $updateData['identifier2ID'] = NULL;
@@ -374,8 +374,6 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $where = array();
     $where[] = $this->_finds->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
     $this->_finds->update($updateData, $where);
-    $solr = new Pas_Solr_Updater();
-    $solr->add($this->_getParam('id'),'beowulf');
     $this->_helper->audit($updateData, $oldData, 'FindsAudit',  $this->_getParam('id'),
     	$this->_getParam('id'));
     $this->_helper->solrUpdater->update('beowulf', $this->_getParam('id'));

@@ -208,6 +208,49 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $this->view->facets = $search->_processFacets();
     }
 
+    public function mytreasurecasesAction(){
+    $form = new SolrForm();
+    $this->view->form = $form;
+    $params = $this->_getAllParams();
+    $search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county',
+        )
+    );
+    $search->setFacets(array('objectType','county','broadperiod', 'discovered', 'institution','workflow'));
+    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+    if ($form->isValid($form->getValues())) {
+    $params = $this->array_cleanup($form->getValues());
+
+    $this->_helper->Redirector->gotoSimple('mytreasurecases','myscheme','database',$params);
+    } else {
+    $form->populate($form->getValues());
+    $params = $form->getValues();
+    }
+    } else {
+
+    $params = $this->_getAllParams();
+    $form->populate($this->_getAllParams());
+
+
+    }
+
+    if(!isset($params['q']) || $params['q'] == ''){
+        $params['q'] = '*';
+    }
+    $params['finderID'] =  $this->_getDetails()->peopleID;
+    $params['treasure'] = 1;
+    $search->setParams($params);
+    $search->execute();
+    $this->view->paginator = $search->_createPagination();
+    $this->view->results = $search->_processResults();
+    $this->view->facets = $search->_processFacets();
+    }
 
 
 }

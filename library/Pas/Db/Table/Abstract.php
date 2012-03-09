@@ -84,7 +84,6 @@ class Pas_Db_Table_Abstract
 	 * @param array $data
 	 */
 	public function update( $data, $where){
-
         if(array_key_exists('csrf', $data)){
         unset($data['csrf']);
         }
@@ -101,7 +100,6 @@ class Pas_Db_Table_Abstract
             $data[$k] = NULL;
             }
         }
-
 	$tableSpec = ($this->_schema ? $this->_schema . '.' : '') . $this->_name;
 	return parent::update( $data, $where);
 	}

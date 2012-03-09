@@ -17,7 +17,7 @@ class Pas_View_Helper_GoogleDynamicMap extends Zend_View_Helper_Abstract {
 	
 	protected $_clusterUrl = '/js/markerclusterer.js';
 	
-	protected $_nlsUrl = 'http://nls.tileserver.com/api-cluster.js';
+	protected $_nlsUrl = 'http://nls.tileserver.com/api.js';
 
 	protected $_version;
 	

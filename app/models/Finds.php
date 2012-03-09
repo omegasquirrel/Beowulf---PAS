@@ -1904,7 +1904,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('preservations','finds.preservation = preservations.id', array('preservationTerm' => 'term'))
 		->joinLeft('periods','finds.objdate1period = periods.id', array('periodFromName' => 'term'))
 		->joinLeft(array('p' => 'periods'),'finds.objdate2period = p.id', array('periodToName' => 'term'))
-		->joinLeft('cultures','finds.culture = cultures.id', array('culturename' => 'term'))
+		->joinLeft('cultures','finds.culture = cultures.id', array('cultureName' => 'term'))
 		->joinLeft('discmethods','discmethods.id = finds.discmethod', array('discoveryMethod' => 'method'))
 		->joinLeft('subsequentActions','finds.subs_action = subsequentActions.id',
 		array('subsequentActionTerm' => 'action'))

@@ -35,7 +35,10 @@ class Pas_View_Helper_SearchParams
 	'otherref' => 'other reference',
 	'smrRef' => 'SMR or HER reference number',
 	'typeID' => 'Medieval periodic type',
-	'cciNumber' => 'Celtic coin Index number'
+	'cciNumber' => 'Celtic coin Index number',
+	'broadperiod' => 'Broad period',
+	'objecttype' => 'Object type',
+	'rallyID' => 'Rally known as'
 	);
 		
 	public function SearchParams($params = NULL) {
@@ -109,6 +112,9 @@ class Pas_View_Helper_SearchParams
 		case 'treasure' :
 			$params[$key] = yes;
 			break;
+		case 'rally' :
+			$params[$key] = yes;
+			break;
 		case 'note':
 			$params[$key] = yes;
 			break;
@@ -135,6 +141,9 @@ class Pas_View_Helper_SearchParams
 			break;
 		case 'type':
 			$params[$key] = $this->getData('MedievalTypes','type', $value);
+			break;
+		case 'rallyID':
+			$params[$key] = $this->getData('Rallies','rally_name', $value);
 			break;
 		default:
 			$params[$key] = $value;

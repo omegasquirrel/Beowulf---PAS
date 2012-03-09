@@ -141,7 +141,10 @@ class Pas_View_Helper_MapFacetCreator extends Zend_View_Helper_Abstract {
             case 'mintName':
             	$clean = 'Mint';
             	break;
-            default:
+			case 'rulerName':
+            	$clean = 'Ruler/issuer';
+            	break;
+            	default:
                 $clean = ucfirst($name);
                 break;
         }

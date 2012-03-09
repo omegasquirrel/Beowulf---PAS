@@ -4,10 +4,7 @@ $this->headMeta('This database is maintained by the Scheme and contains records 
 $this->headMeta('archaeology,database,England,Wales,discovery,archaeological','dc.keywords');
 ?>
 <?php
-echo $this->googleDynamicMap(null,true);
-$this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
-
-$this->inlineScript()->appendFile('/js/copyright.js',$type='text/javascript');
+echo $this->googleDynamicMap();
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -44,14 +41,24 @@ $(document).ready(function() {
           mapTypeId: 'OSM',
           scrollwheel: false,
         };
-        var map = new google.maps.Map(document.getElementById("map"),
+        var map = new google.maps.Map(document.getElementById("mapIntro"),
             myOptions);
             map.mapTypes.set('OSM',osmMapType);
             map.setTilt(45);
       
        google.maps.event.trigger(map, 'resize');
        map.setZoom( map.getZoom() );
-       var markers = new Array();
+       
+       	var myTitle = document.createElement('h1');
+		myTitle.style.color = '#444444';
+		myTitle.style.font = "10px sans-serif";
+		myTitle.innerHTML = 'OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google';
+
+		var myTextDiv = document.createElement('div');
+		myTextDiv.appendChild(myTitle);
+
+		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
+		
 	<?php
 	$request = Zend_Controller_Front::getInstance()->getRequest();
 	$params = array('module' => 'database', 'controller' => 'ajax', 'action' => 'mapdata2');
@@ -60,6 +67,8 @@ $(document).ready(function() {
 	$url = $this->serverUrl() . $this->url($params,'default',true);
 	       ?>
 	var infowindow = new google.maps.InfoWindow();
+	
+
     jQuery.get("<?php echo $url;?>", {}, function(data) {
 
     jQuery(data).find("marker").each(function() {
@@ -73,11 +82,12 @@ $(document).ready(function() {
         	position: latlng, 
         	map: map,  
         	title: title,
-        	icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" });
+        	icon: '<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png', 
+        	});
         markerInfoWindow(marker, markerXML.attr("content"));
-        markers.push(marker);
     });
 	});
+
 
 	function markerInfoWindow(marker, information){
 	     google.maps.event.addListener(marker, 'click',
@@ -105,7 +115,7 @@ $(document).ready(function() {
 <h2>Welcome to the Scheme's database</h2>
 
 <div class="row-fluid">
-	<div id="map" style="min-height:100px; height:400px; margin-bottom:30px;">
+	<div id="mapIntro" >
 	</div>
 </div>
 

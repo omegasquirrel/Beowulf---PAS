@@ -11,11 +11,21 @@ body {
 .forRDFOnly {
 	display: none;
 }
+#map, #mapIntro img {
+   max-width:none;
+}
 #map img {
    max-width:none;
 }
+
 #map {
 	min-height:700px;
+	 height: auto !important;
+}
+#mapIntro {
+	min-height:400px;
+	height: auto !important;
+	margin-bottom:40px;
 }
 .menuindent {
 	margin-left:30px;
@@ -48,4 +58,8 @@ ul {
 .portrait {
     margin-left: 20px;
     float: right;
+}
+#yearrange li {
+	display:inline-block;
+	padding:10px;
 }

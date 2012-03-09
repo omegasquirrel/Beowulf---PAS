@@ -5,11 +5,7 @@ $config = Zend_Registry::get('config');
 <h4>Spatial data</h4>
 <?php if(!is_null($this->gridref) && is_null($this->knownas)) : ?>
 <?php
-$config = Zend_Registry::get('config');
-$apikey = $config->googlemaps->apikey;
-$this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='.$apikey,$type='text/javascript')
-		->appendFile('http://gmaps-utility-library.googlecode.com/svn/trunk/mapiconmaker/1.0/src/mapiconmaker.js',$type='text/javascript')
-		->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
+$this->googleDynamicMap(null,null,true);
 ?>
 <div id="map">
 <noscript><img src="http://maps.google.com/maps/api/staticmap?center=<?php echo $this->declat;?>,<?php echo $this->declong;?>&amp;zoom=6&amp;size=640x300&amp;maptype=terrain&amp;markers=color:green|label:G|<?php echo $this->declat;?>,<?php echo $this->declong;?>&amp;sensor=false" alt="Findspot map generated via google static maps" /></noscript>
@@ -186,10 +182,7 @@ var nlsmap = new GMapType([tilelayer], G_NORMAL_MAP.getProjection(), "Historical
 	?>
 
 <?php
-$config = Zend_Registry::get('config');
-$apikey = $config->googlemaps->apikey;
-$this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='.$apikey,$type='text/javascript')
-->appendFile('http://gmaps-utility-library.googlecode.com/svn/trunk/mapiconmaker/1.0/src/mapiconmaker.js',$type='text/javascript');
+echo $this->googleDynamicMap(null,null,true);
 ?>
 
 <?php $this->inlineScript()->captureStart();?>

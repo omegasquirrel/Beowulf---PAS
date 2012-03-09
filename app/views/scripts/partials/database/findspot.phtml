@@ -1,8 +1,5 @@
 <?php
-$config = Zend_Registry::get('config');
-$apikey = $config->webservice->googlemaps->apikey;
-$this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
-$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
+$this->googleDynamicMap(null,null,true);
 ?>
 <h3>Spatial data</h3>
 <?php echo $this->FindSpotEditDeleteLink($this->old_findspotid,$this->id,$this->createdBy);?>
@@ -50,7 +47,17 @@ $(document).ready(function() {
         name: "OSM",
         maxZoom: 18
     });
-        
+    
+    var nlsmap = new google.maps.ImageMapType({
+	   getTileUrl: function(tile, zoom) { return NLSTileUrlOS(tile.x, tile.y, zoom); },
+	   tileSize: new google.maps.Size(256, 256),
+	   isPng: false,
+	   maxZoom: 14,
+	   minZoom: 1,
+	   name: 'Historic',
+	   alt: "NLS Historic Map"
+	});
+	
 	var myOptions = {
           center: new google.maps.LatLng(<?php echo $this->declat;?>, <?php echo $this->declong;?>),
           zoom: 12,
@@ -60,7 +67,8 @@ $(document).ready(function() {
           google.maps.MapTypeId.HYBRID,
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
-          'OSM'
+          'OSM',
+          'historic'
           ]
     	  },
     	  mapTypeControl: true,
@@ -73,6 +81,7 @@ $(document).ready(function() {
         var map = new google.maps.Map(document.getElementById("map"),
             myOptions);
             map.mapTypes.set('OSM',osmMapType); 
+        	map.mapTypes.set('historic',nlsmap);
             map.setTilt(45);
         var marker = new google.maps.Marker({
       		position: new google.maps.LatLng(<?php echo $this->declat;?>, <?php echo $this->declong;?>),
@@ -81,6 +90,17 @@ $(document).ready(function() {
       		title:"Findspot location",
       		icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" 
   		});
+  		
+  		var myTitle = document.createElement('h1');
+		myTitle.style.color = '#444444';
+		myTitle.style.font = "10px sans-serif";
+		myTitle.innerHTML = 'Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google';
+
+		var myTextDiv = document.createElement('div');
+		myTextDiv.appendChild(myTitle);
+
+		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
+  		
   		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(' ','',$this->parish));?>.kml',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		parish.setMap(map);

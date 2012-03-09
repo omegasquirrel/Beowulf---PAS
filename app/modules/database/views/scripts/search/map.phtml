@@ -1,8 +1,5 @@
 <?php
 echo $this->googleDynamicMap(null,true,false);
-$this->inlineScript()->appendFile('http://nls.tileserver.com/api.js',$type='text/javascript');
-
-$this->inlineScript()->appendFile('/js/copyright.js',$type='text/javascript');
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -19,13 +16,10 @@ $(document).ready(function() {
 	   alt: "NLS Historic Map"
 	});
 
-
-
     var osmMapType = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             return "http://tile.openstreetmap.org/" +
                 zoom + "/" + coord.x + "/" + coord.y + ".png";
-
         },
         tileSize: new google.maps.Size(256, 256),
         isPng: true,
@@ -93,7 +87,6 @@ $(document).ready(function() {
           zoom: 7,
           mapTypeControlOptions: {
           mapTypeIds: [
-          
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
           google.maps.MapTypeId.ROADMAP,
@@ -115,57 +108,17 @@ $(document).ready(function() {
         map.mapTypes.set('SOIL',soilMapType);
         map.mapTypes.set('historic',nlsmap);
 
-copyrightDiv = document.createElement("div")
-copyrightDiv.id = "map-copyright"
-copyrightDiv.style.fontSize = "14px"
-copyrightDiv.style.fontFamily = "Arial, sans-serif"
-copyrightDiv.style.margin = "0 2px 2px 0"
-copyrightDiv.style.whiteSpace = "nowrap"
-copyrightDiv.className = "btn btn-large"
-map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(copyrightDiv)
+	var myTitle = document.createElement('h1');
+		myTitle.style.color = '#444444';
+		myTitle.style.font = "10px sans-serif";
+		myTitle.innerHTML = 'Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google';
 
-copyrights = {};
-copyrights["OSM"] = "<a target=\"_blank\" href=\"http://www.openstreetmap.org/\">Map data &copy; OpenStreetMap contributors, CC BY-SA</a>";
-copyrights["historic"] = "Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>";
+		var myTextDiv = document.createElement('div');
+		myTextDiv.appendChild(myTitle);
 
-function setCopyright() {
-copyrightDiv = document.getElementById("map-copyright");
-var current = map.getMapTypeId();
-	if(current in copyrights)
-	        copyrightDiv.innerHTML = copyrights[current];
-	        else
-	        copyrightDiv.innerHTML = " ";
-	}
+		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
 
-function onMapTypeIdChanged()
-{
-    newMapType = map.getMapTypeId();
 
-    copyrightDiv = document.getElementById("map-copyright");
-    if(newMapType in copyrights)
-        copyrightDiv.innerHTML = copyrights[newMapType];
-    else
-        copyrightDiv.innerHTML = "";
-}
-
-google.maps.event.addListener(map, "maptypeid_changed", onMapTypeIdChanged)
-
-// Call once so that the correct copyright notice is set for
-// the initially selected map type
-setTimeout(onMapTypeIdChanged, 50);
-
-	  $('a[data-toggle="tab"]').on('shown', function (e) {
-	  e.target // activated tab
-	  e.relatedTarget // previous tab
-
-  	google.maps.event.trigger(map, 'resize');
-  	map.setZoom( map.getZoom() );
-  	var latLngBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(49.871159, -6.379880),
-    new google.maps.LatLng(55.811741, 1.768960)
-    );
-  	map.fitBounds(latLngBounds);
-	});
 
 	<?php
 	$request = Zend_Controller_Front::getInstance()->getRequest();
@@ -173,13 +126,12 @@ setTimeout(onMapTypeIdChanged, 50);
 	$params2 = array_slice($request->getParams(),3);
 	$params = array_merge($params,$params2);
 	$url = $this->serverUrl() . $this->url($params,'default',true);
-	       ?>
+	?>
 
 	var markers = new Array();
 
 	var infowindow = new google.maps.InfoWindow();
     jQuery.get("<?php echo $url;?>", {}, function(data) {
-
     jQuery(data).find("marker").each(function() {
         var markerXML = jQuery(this);
         var latlng = new google.maps.LatLng(
@@ -210,28 +162,24 @@ setTimeout(onMapTypeIdChanged, 50);
 	    });
 	}
 	var center;
-
+	
 	function calculateCenter() {
 	  center = map.getCenter();
 	}
+	
 	google.maps.event.addDomListener(map, 'idle', function() {
 	  calculateCenter();
-	  setCopyright();
 	});
+	
 	google.maps.event.addDomListener(window, 'resize', function() {
 	  map.setCenter(center);
 	});
 
 
-
 });
-
-
-
-
-
-
+		
 <?php $this->inlineScript()->captureEnd();?>
+
 
 <?php $this->headTitle('Map of search results');?>
 

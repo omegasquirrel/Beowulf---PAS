@@ -115,6 +115,9 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
             case 'objectType':
                 $clean = 'Object type';
                 break;
+            case 'objecttype':
+                $clean = 'Object type';
+                break;
             case 'broadperiod':
                 $clean = 'Broad period';
                 break;
@@ -127,6 +130,12 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
             case 'mintName':
             	$clean = 'Mint';
             	break;
+            case 'rulerName':
+            	$clean = 'Ruler/issuer';
+            	break;
+            case 'licenseAcronym':
+            	$clean = 'License applicable';
+            	break;	
             default:
                 $clean = ucfirst($name);
                 break;

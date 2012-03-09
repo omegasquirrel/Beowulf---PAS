@@ -109,6 +109,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     public function rallydataAction() {
     $rallies = new Rallies();
     $this->view->mapping = $rallies->getMapdata();
+	$this->getResponse()->setHeader('Content-type', 'text/xml');
     }
 
     /** Display period tag cloud
@@ -244,8 +245,6 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    }
 
    public function mapdata2Action(){
-//     $this->_helper->viewRenderer->setNoRender();
-//	$this->_helper->layout->disableLayout();
     $params = $this->_getAllParams();
     if(!isset($params['show'])){
 	$params['show'] = 2000;
@@ -259,6 +258,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$search->setParams($params);
 	$search->execute();
 	$this->view->results = $search->_processResults();
+	$this->getResponse()->setHeader('Content-type', 'text/xml');
 	}
 
 	protected $_csvFields = array(
@@ -341,7 +341,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
-		'id','old_findID','description', 'gridref',
+		'id','old_findID', 'objecttype', 'description', 'gridref',
 		'fourFigure', 'longitude', 'latitude', 
 		'county', 'woeid', 'district', 
 		'parish','knownas', 'thumbnail',
@@ -386,8 +386,12 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
       rewind($file);
       $output = stream_get_contents($file);
       fclose($file);
-      header('Content-Type: text/csv; charset=utf-8');
-	header('Content-Disposition: attachment; filename=export.csv');
+      $user = new Pas_User_Details();
+      $username = $user->getPerson()->username;
+      $time = Zend_Date::now()->toString('yyyyMMddHHmmss');
+      $filename = 'PASExportFor_' . $username . '_' . $time . '.csv';
+      $this->getResponse()->setHeader('Content-type', 'text/csv; charset=utf-8');
+      $this->getResponse()->setHeader('Content-Disposition', 'attachment; filename=' . $filename);
       echo $output;
    
    }
@@ -403,6 +407,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	}
 	$record['id'] = $dat['id'];
 	$record['old_findID'] = $dat['old_findID'];
+	$record['objecttype'] = $dat['objecttype'];
 	$record['description'] = $dat['description'];
 	$record['thumbnail'] = $dat['thumbnail'];
 	$record['gridref'] = $dat['gridref'];
@@ -453,7 +458,6 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    	$params = $this->_getAllParams();
 	$params['show'] = 25046;
 	$params['format'] = 'json';
-	$params['source'] = 'osdata';
 	$params['sort'] = 'id';
 	$params['source'] = 'smrdata';
 	$search = new Pas_Solr_Handler('beogeodata');
@@ -461,5 +465,17 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$search->setFields(array('*'));
 	$search->execute();
     $this->view->results =  $search->_processResults();	
+   }
+   
+   public function peopleAction(){
+   	$params = $this->_getAllParams();
+	$params['show'] = 5000;
+	$params['format'] = 'json';
+	$params['sort'] = 'id';
+	$search = new Pas_Solr_Handler('beopeople');
+	$search->setParams($params);
+	$search->setFields(array('*'));
+	$search->execute();
+    $this->view->results =  $search->_processResults();		
    }
 }

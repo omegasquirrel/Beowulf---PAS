@@ -119,9 +119,9 @@ class Pas_Controller_Action_Helper_SolrUpdater
                 break;
         }
         $data = $model->getSolrData($id);
-//        Zend_Debug::dump($data);
-//        exit;
+        
         $cleanData = $this->cleanData($data[0]);
+        
         return $cleanData;
          
 	} else {
@@ -164,6 +164,9 @@ class Pas_Controller_Action_Helper_SolrUpdater
 	}
 	foreach($data as $k => $v){
 		$data[$k] = strip_tags($v);
+		if (is_null($v) || $v === "") {
+			unset($data[$k]);
+		  }
 	}
 	return $data;
 	
