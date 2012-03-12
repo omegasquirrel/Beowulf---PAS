@@ -28,7 +28,7 @@ $('a[rel*=lightbox]').lightBox()
         </div>
         <div class="span3">
 		<p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'institutionmap'),null,false);?>" title="Map these records">Map these finds <i class="icon-map-marker"></i></a></p>
-        <p>Total results available: <?php echo $this->paginator->getTotalItemCount();?></p>
+        <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
         <?php echo $this->facetCreator($this->facets); ?>
 		</div>
         <?php else:?>

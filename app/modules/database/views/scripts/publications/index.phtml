@@ -24,11 +24,12 @@ echo $this->Href(array(
     'acl'=>'Zend_Acl',
     'params' =>array('id'=>$this->id),
     'content'=>'Add publication',
+    'attribs'=> array('class' => 'btn btn-large btn-success'),
     'wrapper' => array(
-        'tag' => 'p',
-        'class' => 'btn btn-large btn-success'),'
+        'tag' => 'p'),'
             attribs' => array(
-                'title' => 'Add publication details')));
+                'title' => 'Add publication details',
+        )));
 ?>
 <?php echo $this->form;?>
 

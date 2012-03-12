@@ -3,7 +3,7 @@
 <?php
 	$name = substr($this->filename, 0, strrpos($this->filename, '.'));
 	$ext = '.jpg';
-$file = $name.$ext;
+$file = $name . $ext;
 ?>
 <?php list($w, $h, $type, $attr) = getimagesize('./'.$this->baseUrl().'/images/thumbnails/' . $this->thumbnail . '.jpg');
 ?>

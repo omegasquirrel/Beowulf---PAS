@@ -19,13 +19,13 @@
  * @uses Zend_View_Helper_Url
  * @uses Zend_Controller_Front
  */
-class Pas_View_Helper_MapFacetCreatorMyFinds extends Zend_View_Helper_Abstract {
+class Pas_View_Helper_MapFacetCreatorMyFindsByFlo extends Zend_View_Helper_Abstract {
 
 	protected $_id;
 
 	public function __construct(){
 		$person = new Pas_User_Details();
-		$this->_id = $person->getIdentityForForms();
+		$this->_id = $person->getPerson()->peopleID;
 	}
 
     /** Create the facets boxes for rendering
@@ -35,10 +35,10 @@ class Pas_View_Helper_MapFacetCreatorMyFinds extends Zend_View_Helper_Abstract {
      * @throws Pas_Exception_BadJuJu
      */
 
-    public function mapFacetCreatorMyFinds(){
+    public function mapFacetCreatorMyFindsByFlo(){
 	 $params = Zend_Controller_Front::getInstance()->getRequest()->getParams();
-    $params['createdBy'] = $this->_id;
-    $search = new Pas_Solr_Handler('beowulf');
+        $params['finderID'] = $this->_id;
+        $search = new Pas_Solr_Handler('beowulf');
 	$search->setParams($params);
 	$search->setFacets(array('objectType','county','broadperiod',
     	'institution', 'rulerName', 'denominationName', 'mintName',

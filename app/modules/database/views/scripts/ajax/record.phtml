@@ -1,5 +1,5 @@
 <div style="width:800px;height:500px;overflow:auto;margin-left:10px;margin-right:10px;">
-<?php 
+<?php
 echo $this->partial('partials/database/recordh2section.phtml',$this->finds['0']);
 ?>
 <div id="imagepane">
@@ -14,14 +14,14 @@ echo $this->partial('partials/database/recordh2section.phtml',$this->finds['0'])
 </div>
 
 
-<?php 
+<?php
 echo $this->partialLoop('partials/database/recorddescriptive.phtml',$this->finds);
 echo $this->partial('partials/database/treasurefinddetails.phtml', $this->finds['0']);
-echo $this->partial('partials/database/temporal.phtml', $this->temporals['0']); 
+echo $this->partial('partials/database/temporal.phtml', $this->temporals['0']);
 ?>
 
 
-<?php 
+<?php
 $objectarray = array('coin','COIN','Coin');
 if ((count($this->coins)) && in_Array($this->finds['0']['objecttype'],$objectarray)) { ?>
 <?php if (($this->finds['0']['broadperiod']) == 'Iron Age' ) : ?>
@@ -47,12 +47,12 @@ if ((count($this->coins)) && in_Array($this->finds['0']['objecttype'],$objectarr
 <?php endif; ?>
 <?php }?>
 
-<?php 
+<?php
 $objectarray = array('coin','COIN','Coin');
 if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$objectarray)) { ?>
 <h3>Numismatic data</h3>
 <p>No numismatic data has been recorded for this coin yet.</p>
-<?php $this->allowedtest('<p>You have not added <a href="'.$this->url(array('module' => 'database','controller' => 'coins','action' => 'add', 'broadperiod' => $this->finds['0']['broadperiod'],'findID' => $this->finds['0']['secuid'],'returnID' => $this->finds['0']['id']),null,true).'" title="Add '.$this->finds['0']['broadperiod'].' coin data">coin data</a>.</p>');?>
+<?php $this->allowedtest('<p>You have not added <a href="'.$this->url(array('module' => 'database','controller' => 'coins','action' => 'add', 'broadperiod' => $this->finds['0']['broadperiod'],'findID' => $this->finds['0']['secuid'],'returnID' => $this->finds['0']['id']),null,true).'" class="btn btn-small"  title="Add '.$this->finds['0']['broadperiod'].' coin data">coin data</a>.</p>');?>
 <?php }?>
 
 

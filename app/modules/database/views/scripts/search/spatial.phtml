@@ -1,0 +1,96 @@
+<?php
+echo $this->googleDynamicMap();
+?>
+
+<?php $this->inlineScript()->captureStart();?>
+$(function(){
+var map;
+var dragging = false;
+var rect;
+var pos1, pos2;
+var latlng1, latlng2;
+
+$(document).ready(function() {
+    initMap();
+});
+
+function initMap() {
+    var latlng = new google.maps.LatLng( 53.2,-3.1 );
+    var settings = {
+        zoom: 7,
+
+          scrollwheel: false,
+        center: latlng,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        },
+        navigationControl: true,
+        navigationControlOptions: {
+            style: google.maps.NavigationControlStyle.SMALL
+        },
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+    }
+    var mapElem = $("#map");
+    map = new google.maps.Map(mapElem[0], settings);
+    rect = new google.maps.Rectangle({
+                map: map
+            });
+
+    google.maps.event.addListener(map, 'mousedown', function(mEvent) {
+        map.draggable = false;
+        latlng1 = mEvent.latLng;
+        dragging = true;
+        pos1 = mEvent.pixel;
+    });
+
+    google.maps.event.addListener(map, 'mousemove', function(mEvent) {
+        latlng2 = mEvent.latLng;
+        console.log(mEvent);
+        showRect();
+    });
+
+    google.maps.event.addListener(map, 'mouseup', function(mEvent) {
+        map.draggable = true;
+        dragging = false;
+    });
+
+    google.maps.event.addListener(rect, 'mouseup', function(data){
+        map.draggable = true;
+        dragging = false;
+
+        var lat1 = latlng1.lat();
+        var lat2 = latlng2.lat();
+        var minLat = lat1<lat2?lat1:lat2;
+        var maxLat = lat1<lat2?lat2:lat1;
+        var lng1 = latlng1.lng();
+        var lng2 = latlng2.lng();
+        var minLng = lng1<lng2?lng1:lng2;
+        var maxLng = lng1<lng2?lng2:lng1;
+        $('#bottomLeft').val(minLat + ',' + minLng);
+        $('#topRight').val(maxLat + ',' + maxLng);
+        <!--alert('Datbase query for the following bounds:\n\nlat: ' + minLat + ' to ' + maxLat+ '\n\nlng: ' + minLng + ' to ' + maxLng);-->
+    });
+
+
+}
+
+function showRect() {
+    if(dragging){
+        if (rect === undefined) {
+            rect = new google.maps.Rectangle({
+                map: map
+            });
+        }
+        var latLngBounds = new google.maps.LatLngBounds(latlng1, latlng2);
+        rect.setBounds(latLngBounds);
+    }
+}
+});
+<?php $this->inlineScript()->captureEnd();?>
+
+<h2>Search our database via a map interface</h2>
+
+<div id="map"></div>
+
+<?php echo $this->form;?>

@@ -184,11 +184,10 @@ function markerInfoWindow(marker, information){
 
 
 <?php echo $this->partialLoop('partials/numismatics/emperor.phtml',$this->emps);?>
-<?php if($this->images):?>
 <div class="row-fluid">
-<h3>Latest examples recorded</h3>
-<?php echo $this->partialLoop('partials/database/imagesPaged.phtml',$this->images);?>
-<?php endif;?>
+
+<?php echo $this->latestRecords('ruler:' . $this->emps[0]['pasID']);?>
+
 </div>
 
 

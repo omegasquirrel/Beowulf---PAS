@@ -15,13 +15,13 @@
 */
 class Pas_View_Helper_SearchParams
 	extends Zend_View_Helper_Abstract {
- 
+
 	protected $_cache;
-	
+
 	public function __construct(){
 		$this->_cache = Zend_Registry::get('cache');
 	}
-	
+
 	protected $_niceNames = array(
 	'mintName' => 'Mint',
 	'rulerName' => 'Ruler',
@@ -38,27 +38,32 @@ class Pas_View_Helper_SearchParams
 	'cciNumber' => 'Celtic coin Index number',
 	'broadperiod' => 'Broad period',
 	'objecttype' => 'Object type',
-	'rallyID' => 'Rally known as'
+	'rallyID' => 'Rally known as',
+        'woeid' => 'Yahoo!\'s Where on Earth ID number',
+        'd' => 'Distance (in kilometres)',
+        'lat' => 'latitude',
+        'lon' => 'longitude',
+        'bbox' => 'Bounding box co-ordinates'
 	);
-		
+
 	public function SearchParams($params = NULL) {
 
 	$params = array_slice($params,3);
 	if(array_key_exists('page',$params)){
 		unset($params['page']);
 	}
-	
+
 	$params = $this->cleanParams($params);
 	$html = '';
-	if(!is_null($params)) {	
-	$html .= '<p>You searched for: </p>'; 
+	if(!is_null($params)) {
+	$html .= '<p>You searched for: </p>';
 	$html .= '<ul>';
-	
+
 	foreach($params as $k => $v){
 		$html .= '<li>' . $this->cleanKey($k) .': ' . $v . '</li>';
 		$this->view->headTitle(  ' > ' . $this->cleanKey($k) . ': ' . $this->view->escape($v));
 	}
-	
+
 	$html .= '</ul>';
 	}
 	return $html;
@@ -67,15 +72,15 @@ class Pas_View_Helper_SearchParams
 	if(in_array($string,array_keys($this->_niceNames))){
 	$text = "$string";
 	foreach ($this->_niceNames as $key => $value) {
-	$text = preg_replace( "|(?!<[^<>]*?)(?<![?.&])\b$key\b(?!:)(?![^<>]*?>)|msU", 
-	$value , $text );	
+	$text = preg_replace( "|(?!<[^<>]*?)(?<![?.&])\b$key\b(?!:)(?![^<>]*?>)|msU",
+	$value , $text );
 	}
 	} else {
 	$text = $string;
 	}
 	return ucfirst($text);
 	}
-	
+
 	public function getData($name, $field, $value){
 	$key = md5($name.$field.$value);
 	if (!($this->_cache->test($key))) {
@@ -85,9 +90,9 @@ class Pas_View_Helper_SearchParams
 	} else {
 	$data = $this->_cache->load($key);
 	}
-	return $data;	
+	return $data;
 	}
-	
+
 	public function cleanParams($params){
 	foreach($params as $key => $value){
 	switch($key){
@@ -95,16 +100,16 @@ class Pas_View_Helper_SearchParams
 			$params[$key] = $this->getData('Regions','region', $value);
 			break;
 		case 'denomination':
-			$params[$key] = $this->getData('Denominations','denomination', $value); 
+			$params[$key] = $this->getData('Denominations','denomination', $value);
 			break;
 		case 'ruler':
-			$params[$key] = $this->getData('Rulers','issuer', $value); 	
+			$params[$key] = $this->getData('Rulers','issuer', $value);
 			break;
 		case 'mint':
-			$params[$key] = $this->getData('Mints','mint_name', $value); 	
+			$params[$key] = $this->getData('Mints','mint_name', $value);
 			break;
 		case 'material':
-			$params[$key] = $this->getData('Materials','term', $value); 
+			$params[$key] = $this->getData('Materials','term', $value);
 			break;
 		case 'hID':
 			$params[$key] = $this->getData('Hoards','term', $value);
@@ -120,6 +125,9 @@ class Pas_View_Helper_SearchParams
 			break;
 		case 'hoard':
 			$params[$key] = yes;
+			break;
+                case 'thumbnail':
+			$params[$key] = 'Only object with images please';
 			break;
 		case 'surface':
 			$params[$key] = $this->getData('Surftreatments','term', $value);
@@ -149,7 +157,7 @@ class Pas_View_Helper_SearchParams
 			$params[$key] = $value;
 			break;
 	}
-	}		
+	}
 	return $params;
 	}
 
