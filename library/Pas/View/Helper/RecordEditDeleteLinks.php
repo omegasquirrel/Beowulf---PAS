@@ -112,11 +112,11 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	'id' => $findID),null,true);
 	$deleteurl = $this->view->url(array('module' => 'database', 'controller' => 'artefacts', 'action' => 'delete',
 	'id' => $findID),null,true);
-	$html = ' | <a class="' . $class . '" href="';
+	$html = ' <a class="' . $class . '" href="';
 	$html .= $editurl;
 	$html .= '" title="Edit details for ';
 	$html .= $oldfindID;
-	$html .= '" accesskey="e">Edit</a> | <a class="' . $classDanger . '" href="';
+	$html .= '" accesskey="e">Edit</a> <a class="' . $classDanger . '" href="';
 	$html .= $deleteurl;
 	$html .= '" title="Delete record ';
 	$html .= $oldfindID;

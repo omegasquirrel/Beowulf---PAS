@@ -1,8 +1,5 @@
 <?php
 echo $this->googleDynamicMap(null,true,false);
-$this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
-
-$this->inlineScript()->appendFile('/js/copyright.js',$type='text/javascript');
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -93,7 +90,7 @@ $(document).ready(function() {
           zoom: 7,
           mapTypeControlOptions: {
           mapTypeIds: [
-          
+
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
           google.maps.MapTypeId.ROADMAP,
@@ -115,44 +112,17 @@ $(document).ready(function() {
         map.mapTypes.set('SOIL',soilMapType);
         map.mapTypes.set('historic',nlsmap);
 
-copyrightDiv = document.createElement("div")
-copyrightDiv.id = "map-copyright"
-copyrightDiv.style.fontSize = "14px"
-copyrightDiv.style.fontFamily = "Arial, sans-serif"
-copyrightDiv.style.margin = "0 2px 2px 0"
-copyrightDiv.style.whiteSpace = "nowrap"
-copyrightDiv.className = "btn btn-large"
-map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(copyrightDiv)
+        var myTitle = document.createElement('h1');
+		myTitle.style.color = '#444444';
+		myTitle.style.font = "10px sans-serif";
+		myTitle.innerHTML = 'Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google';
 
-copyrights = {}
-copyrights["OSM"] = "<a target=\"_blank\" href=\"http://www.openstreetmap.org/\">Map data &copy; OpenStreetMap contributors, CC BY-SA</a>"
-copyrights["historic"] = "Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>"
-function setCopyright()
-{
-copyrightDiv = document.getElementById("map-copyright");
-current = map.getMapTypeId()
-if(current in copyrights)
-        copyrightDiv.innerHTML = copyrights[current]
-        else
-        copyrightDiv.innerHTML = ""
-}
+		var myTextDiv = document.createElement('div');
+		myTextDiv.appendChild(myTitle);
 
-function onMapTypeIdChanged()
-{
-    newMapType = map.getMapTypeId()
+		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
 
-    copyrightDiv = document.getElementById("map-copyright")
-    if(newMapType in copyrights)
-        copyrightDiv.innerHTML = copyrights[newMapType]
-    else
-        copyrightDiv.innerHTML = ""
-}
 
-google.maps.event.addListener(map, "maptypeid_changed", onMapTypeIdChanged)
-
-// Call once so that the correct copyright notice is set for
-// the initially selected map type
-setTimeout(onMapTypeIdChanged, 50);
 
 	  $('a[data-toggle="tab"]').on('shown', function (e) {
 	  e.target // activated tab
@@ -189,8 +159,8 @@ setTimeout(onMapTypeIdChanged, 50);
         );
         var title = markerXML.attr("title");
         var marker = new google.maps.Marker({
-        	position: latlng, 
-        	map: map,  
+        	position: latlng,
+        	map: map,
         	title: title,
         	icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" });
 
@@ -217,7 +187,6 @@ setTimeout(onMapTypeIdChanged, 50);
 	}
 	google.maps.event.addDomListener(map, 'idle', function() {
 	  calculateCenter();
-	  setCopyright();
 	});
 	google.maps.event.addDomListener(window, 'resize', function() {
 	  map.setCenter(center);
@@ -238,9 +207,9 @@ setTimeout(onMapTypeIdChanged, 50);
 
 <h1>Map of finds I recorded</h1>
 
-<p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'results'),'default',false);?>" 
-title="Return to your search">Return to search results <i class="icon-search"></i></a> 
-<a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'kml'),null,false);?>">Export all results as KML <i class="icon-download-alt"></i></a> 
+<p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'results'),'default',false);?>"
+title="Return to your search">Return to search results <i class="icon-search"></i></a>
+<a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'kml'),null,false);?>">Export all results as KML <i class="icon-download-alt"></i></a>
 <a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'csv'),null,false);?>">Export as CSV <i class="icon-download-alt"></i></a> <a class="btn-small btn" href="#">Export for HER import <i class="icon-download-alt"></i></a> <a href="#" class="btn-small btn">Export for GIS <i class="icon-download-alt"></i></a></p>
 <div class="row-fluid">
 
@@ -249,6 +218,6 @@ title="Return to your search">Return to search results <i class="icon-search"></
     <div id="map" style="min-height:1000px;"></div>
     </div>
 	<div class="span3">
-	
+
 <?php echo $this->mapFacetCreatorMyFinds();?></div>
 </div>

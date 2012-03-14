@@ -128,6 +128,21 @@ $(document).ready(function() {
 	$url = $this->serverUrl() . $this->url($params,'default',true);
 	?>
 
+        <?php if(array_key_exists('d', $params)):?>
+                <?php $radius = 1000 * $params['d'];?>
+       var circle = new google.maps.Circle({
+          map: map,
+          radius: <?php echo $radius; ?>,
+          strokeOpacity:0.1,
+          strokeWeight: 1,
+          strokeColor: '#0000FF',
+          fillOpacity: 0.1,
+          center: new google.maps.LatLng(  <?php echo $params['lat']; ?>, <?php echo $params['lon'];?> )
+        });
+        circle = new google.maps.Circle(circle);
+        <?php endif;?>
+
+
 	var markers = new Array();
 
 	var infowindow = new google.maps.InfoWindow();
@@ -140,8 +155,8 @@ $(document).ready(function() {
         );
         var title = markerXML.attr("title");
         var marker = new google.maps.Marker({
-        	position: latlng, 
-        	map: map,  
+        	position: latlng,
+        	map: map,
         	title: title,
         	icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" });
 
@@ -162,22 +177,34 @@ $(document).ready(function() {
 	    });
 	}
 	var center;
-	
+
 	function calculateCenter() {
 	  center = map.getCenter();
 	}
-	
+
 	google.maps.event.addDomListener(map, 'idle', function() {
 	  calculateCenter();
 	});
-	
+
 	google.maps.event.addDomListener(window, 'resize', function() {
 	  map.setCenter(center);
 	});
 
+    <?php if(array_key_exists('bbox', $params)):?>
+        <?php
 
+        $bbox = explode(',',$params['bbox']);
+        $latlng1 = $bbox[0] . ',' . $bbox[1];
+        $latlng2 = $bbox[2] . ',' . $bbox[3];
+        ?>
+        var rect;
+        rect = new google.maps.Rectangle({
+                map: map});
+        var latLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(<?php echo $latlng1;?>), new google.maps.LatLng(<?php echo $latlng2;?>));
+        rect.setBounds(latLngBounds);
+        <?php endif;?>
 });
-		
+
 <?php $this->inlineScript()->captureEnd();?>
 
 
@@ -186,9 +213,9 @@ $(document).ready(function() {
 <h1>Map of search results</h1>
 <ul><?php echo $this->SearchParams(Zend_Controller_Front::getInstance()->getRequest()->getParams());?></ul>
 
-<p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'results'),'default',false);?>" 
-title="Return to your search">Return to search results <i class="icon-search"></i></a> 
-<a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'kml'),null,false);?>">Export all results as KML <i class="icon-download-alt"></i></a> 
+<p><a class="btn btn-small" href="<?php echo $this->url(array('action' => 'results'),'default',false);?>"
+title="Return to your search">Return to search results <i class="icon-search"></i></a>
+<a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'kml'),null,false);?>">Export all results as KML <i class="icon-download-alt"></i></a>
 <a class="btn-small btn" href="<?php echo $this->url(array('controller' => 'ajax','action' => 'csv'),null,false);?>">Export as CSV <i class="icon-download-alt"></i></a> <a class="btn-small btn" href="#">Export for HER import <i class="icon-download-alt"></i></a> <a href="#" class="btn-small btn">Export for GIS <i class="icon-download-alt"></i></a></p>
 <div class="row-fluid">
 
@@ -197,6 +224,6 @@ title="Return to your search">Return to search results <i class="icon-search"></
     <div id="map" style="min-height:1000px;"></div>
     </div>
 	<div class="span3">
-	
+        
 <?php echo $this->mapFacetCreator();?></div>
 </div>

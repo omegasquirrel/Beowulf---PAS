@@ -1,22 +1,24 @@
 <div class="row-fluid" id="prior-next">
-	<ul class="pager">
-	<?php if(count($this->recordsprior)) :?>
+    <ul class="pager">
+
+        <?php if(count($this->recordsprior)) :?>
 		<?php echo $this->partial('partials/database/previous.phtml', $this->recordsprior['0']) ;?>
 	<?php endif;?>
-	<?php if(count($this->nexts)) :?>
+
+        <?php if(count($this->nexts)) :?>
 		<?php echo $this->partial('partials/database/next.phtml', $this->nexts['0']) ;?>
 	<?php endif;?>
-	</ul>
+    </ul>
 </div>
 
 <div class="row-fluid">
 <div typeof="pas:record" about="<?php echo $this->finds['0']['old_findID'];?>">
-<?php
+
+    <?php
 	echo $this->partialLoop('partials/database/recordheadtitle.phtml',$this->finds);
 	$this->meta();
 	echo $this->partialLoop('partials/database/zoterorecord.phtml',$this->finds);
-
-?>
+    ?>
 
 
 
@@ -26,130 +28,79 @@
 
 <div class="row-fluid">
 
-	<div class="span7">
-	<?php 
+	<div class="span8">
+	<?php
 	echo $this->partial('partials/database/recordh2section.phtml',$this->finds['0']);
-	echo $this->notifyFloPublic($this->finds['0']['institution'],
- 			$this->finds['0']['id'], $this->finds['0']['secwfstage'] );?>
-		<?php
-		echo $this->partialLoop('partials/database/recorddescriptive.phtml',$this->finds);
-		?>
-		
-		<?php 
-		echo $this->partial('partials/database/treasurefinddetails.phtml', $this->finds['0']);
-		echo $this->partial('partials/database/temporal.phtml', $this->temporals['0']);
-		?>
-		
-		<?php
-		if (count($this->findsdata) > 0) {
-		echo $this->partialLoop('partials/database/dimensions.phtml', $this->findsdata);
-		}
-		?>
-		
-		<?php echo $this->partial('partials/database/datefound.phtml',$this->finds['0']);?>
+	echo $this->notifyFloPublic(
+                $this->finds['0']['institution'],
+ 		$this->finds['0']['id'],
+                $this->finds['0']['secwfstage']
+                );
+       	echo $this->partialLoop('partials/database/recorddescriptive.phtml',$this->finds);
+	echo $this->partial('partials/database/treasurefinddetails.phtml', $this->finds['0']);
+	echo $this->partial('partials/database/temporal.phtml', $this->temporals['0']);
+	if (count($this->findsdata) > 0) {
+	echo $this->partialLoop('partials/database/dimensions.phtml', $this->findsdata);
+	}
 
-		<?php if (count($this->rallyfind)) : ?>
-			<?php echo $this->partialLoop('partials/database/rallyfind.phtml', $this->rallyfind) ?>
-		<?php endif;?>
-		
-		<?php if (count($this->peoples) > 0) : ?>
-		<h3>Personal details</h3>
-		<?php echo $this->partialLoop('partials/database/personal.phtml', $this->peoples) ?>
-		<?php endif;?>
-		
-		<?php if ($this->findotherrefs) : ?>
-		<?php echo $this->partialLoop('partials/database/otherrefs.phtml', $this->findotherrefs) ;?>
-		<?php endif;?>
-		
-<?php
+        echo $this->partial('partials/database/datefound.phtml',$this->finds['0']);
 
-$tokenArray = array('jetton','JETTON','Jetton','Token','TOKEN','token');
-if ((count($this->coins)) && in_array($this->finds['0']['objecttype'],$tokenArray)) {
-echo $this->partial('partials/database/jettonData.phtml', $this->coins['0']);
-}?>
-<?php
-if (count($this->findsmaterial)){
-echo $this->partialLoop('partials/database/materials.phtml', $this->findsmaterial);
-}
-?>
+        if (count($this->rallyfind)){
+            echo $this->partialLoop('partials/database/rallyfind.phtml', $this->rallyfind);
+        }
 
-<?php
-$objectarray = array('coin','COIN','Coin');
+        if (count($this->peoples) > 0):
+        ?>
 
-if ((count($this->coins)) && in_array($this->finds['0']['objecttype'],$objectarray)) { ?>
+        <h3>Personal details</h3>
+	<?php echo $this->partialLoop('partials/database/personal.phtml', $this->peoples) ?>
+	<?php endif;?>
 
-<?php if (($this->finds['0']['broadperiod'] == 'Iron Age')  || ($this->finds['0']['broadperiod'] == 'IRON AGE') ) : ?>
-<?php echo $this->partial('partials/database/ironagedata.phtml', $this->coins['0']) ?>
-<?php endif; ?>
+        <?php
+        if ($this->findotherrefs){
+            echo $this->partialLoop('partials/database/otherrefs.phtml', $this->findotherrefs);
+        }
+        if (count($this->findsmaterial)){
+            echo $this->partialLoop('partials/database/materials.phtml', $this->findsmaterial);
+        }
+        echo $this->coinDataDisplay(
+            $this->finds['0']['objecttype'],
+            $this->finds['0']['broadperiod'],
+            $this->coins,
+            $this->finds);
 
-<?php if (($this->finds['0']['broadperiod'] == 'Byzantine' ) || ($this->finds['0']['broadperiod'] == 'BYZANTINE') ) : ?>
-<?php echo $this->partial('partials/database/byzantinedata.phtml', $this->coins['0']) ?>
-<?php endif; ?>
-
-<?php if (($this->finds['0']['broadperiod'] == 'Roman') || ($this->finds['0']['broadperiod'] == 'ROMAN')  ) : ?>
-<?php echo $this->partial('partials/database/romandata.phtml', $this->coins['0']) ?>
-<?php endif; ?>
-
-<?php if (($this->finds['0']['broadperiod'] == 'Medieval')  || ($this->finds['0']['broadperiod'] == 'MEDIEVAL') ) : ?>
-<?php echo $this->partial('partials/database/meddata.phtml', $this->coins['0']) ?>
-<?php endif; ?>
-
-<?php if (($this->finds['0']['broadperiod'] == 'Early Medieval') || ($this->finds['0']['broadperiod'] == 'EARLY MEDIEVAL') ) : ?>
-<?php echo $this->partial('partials/database/earlymeddata.phtml', $this->coins['0']) ?>
-<?php endif; ?>
-
-<?php if (($this->finds['0']['broadperiod'] == 'Post Medieval') || ($this->finds['0']['broadperiod'] == 'POST MEDIEVAL')  ) : ?>
-<?php echo $this->partial('partials/database/postmeddata.phtml', $this->coins['0']) ?>
-<?php endif; ?>
-
-<?php if (($this->finds['0']['broadperiod'] == 'Greek and Roman Provincial') || ($this->finds['0']['broadperiod'] == 'GREEK AND ROMAN PROVINCIAL') ) : ?>
-<?php echo $this->partial('partials/database/greekdata.phtml', $this->coins['0']) ?>
-<?php endif; ?>
-
-
-
-
-<?php if(count($this->coinrefs)) :?>
-<div id="coinrefslinked">
-<h3>Coin references</h3>
-<ul>
-<?php echo $this->partialLoop('partials/numismatics/coinrefs.phtml',$this->coinrefs);?>
-</ul>
-<?php
-echo $this->CoinRefAddLink($this->finds['0']['old_findID'], $this->finds['0']['id'],$this->finds['0']['broadperiod'],$this->finds['0']['secuid'],$this->finds['0']['id'],$this->finds['0']['createdBy']);
-?>
-</div>
+        if(count($this->coinrefs)):?>
+        <div id="coinrefslinked">
+        <h3>Coin references</h3>
+        <ul>
+        <?php echo $this->partialLoop('partials/numismatics/coinrefs.phtml',$this->coinrefs);?>
+        </ul>
+        <?php
+        echo $this->CoinRefAddLink(
+                $this->finds['0']['old_findID'],
+                $this->finds['0']['id'],
+                $this->finds['0']['broadperiod'],
+                $this->finds['0']['secuid'],
+                $this->finds['0']['id'],
+                $this->finds['0']['createdBy']);
+        ?>
+        </div>
 <?php else:?>
 <div id="coinrefs">
 <h3>Coin references</h3>
 <p>No coin references available.</p>
 <?php
-echo $this->CoinRefAddLink($this->finds['0']['old_findID'], $this->finds['0']['id'],$this->finds['0']['broadperiod'],$this->finds['0']['secuid'],$this->finds['0']['id'],$this->finds['0']['createdBy']);
+echo $this->CoinRefAddLink(
+        $this->finds['0']['old_findID'],
+        $this->finds['0']['id'],
+        $this->finds['0']['broadperiod'],
+        $this->finds['0']['secuid'],
+        $this->finds['0']['id'],
+        $this->finds['0']['createdBy']);
 ?>
 </div>
 <?php endif;?>
-<?php }?>
 
-<?php
-$objectarray = array('coin','COIN','Coin');
-$jettonArray = array('token','Token','Jetton','JETTON','TOKEN');
-if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$objectarray)) { ?>
-<div id="numisdata">
-<h3>Numismatic data</h3>
-<p>No numismatic data has been recorded for this coin yet.</p>
-
-<div id="addcoindata" class="addpanel noprint"><?php echo $this->AddCoinLink($this->finds['0']['old_findID'],$this->finds['0']['id'],$this->finds['0']['secuid'],$this->finds['0']['createdBy'],$this->finds['0']['broadperiod']);?></div>
-</div>
-<?php } else {?>
-<?php
-if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$jettonArray)) { ?>
-<div id="numisdata">
-<h3>Numismatic data</h3>
-<p>No numismatic data has been recorded for this coin yet.</p>
-
-<div id="addcoindata" class="addpanel noprint"><?php echo $this->AddJettonLink($this->finds['0']['old_findID'],$this->finds['0']['id'],$this->finds['0']['secuid'],$this->finds['0']['createdBy'],$this->finds['0']['broadperiod']);?></div>
-</div>
-<?php }}?>
 	</div>
 
 	<div class="span3 well" id="imagepane">
@@ -180,8 +131,11 @@ if((!count($this->coins)) && in_Array($this->finds['0']['objecttype'],$jettonArr
 <div id="findspotdata">
 <h3>Spatial data</h3>
 <p>No data recorded at present.</p>
-<?php echo $this->FindSpotLink($this->finds['0']['old_findID'],$this->finds['0']['id'],
-$this->finds['0']['secuid'],$this->finds['0']['createdBy']);?>
+<?php echo $this->FindSpotLink(
+        $this->finds['0']['old_findID'],
+        $this->finds['0']['id'],
+        $this->finds['0']['secuid'],
+        $this->finds['0']['createdBy']);?>
 </div>
 <?php endif; ?>
 
@@ -191,8 +145,13 @@ $this->finds['0']['secuid'],$this->finds['0']['createdBy']);?>
 <div id="references">
 <?php
 if (count($this->refs) > 0) : ?>
-<p><?php echo $this->AddRefLink($this->finds['0']['old_findID'],$this->finds['0']['id'],
-$this->finds['0']['secuid'],$this->finds['0']['createdBy']);?></p>
+<p>
+    <?php echo $this->AddRefLink(
+        $this->finds['0']['old_findID'],
+        $this->finds['0']['id'],
+        $this->finds['0']['secuid'],
+        $this->finds['0']['createdBy']);?>
+</p>
 
 <ul id="related">
 <?php echo $this->partialLoop('partials/database/harvardbook.phtml', $this->refs);?>
@@ -255,7 +214,7 @@ echo $this->form;
 	echo $this->partial('partials/database/recordaudit.phtml',$this->finds['0']);
 ?>
 
-	
+
 	<ul id="tab" class="nav nav-tabs">
             <li class="active"><a href="#find" data-toggle="tab">Finds audit</a></li>
             <li><a href="#fspot" data-toggle="tab">Findspot audit</a></li>
@@ -263,23 +222,15 @@ echo $this->form;
           </ul>
           <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="find">
-			<?php echo $this->ChangesFind($this->finds['0']['id']);?>            
+			<?php echo $this->ChangesFind($this->finds['0']['id']);?>
 			</div>
             <div class="tab-pane fade" id="fspot">
-			<?php  echo $this->ChangesFindSpot($this->finds['0']['id']);?>            
+			<?php  echo $this->ChangesFindSpot($this->finds['0']['id']);?>
 			</div>
             <div class="tab-pane fade" id="coin">
-			<?php echo $this->ChangesCoins($this->finds['0']['id']);?>            
+			<?php echo $this->ChangesCoins($this->finds['0']['id']);?>
 			</div>
           </div>
 	</div>
 </div>
 </div>
-<?php 
-$this->inlineScript()->appendFile($this->baseUrl().'/js/bootstrap-tab.js',
-        $type='text/javascript');?>
-<?php $this->inlineScript()->captureStart() ?>
-jQuery(document).ready(function ($) {
-            $(".tabs").tabs();
-        });
-<?php $this->inlineScript()->captureEnd() ?>

@@ -23,23 +23,37 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 	 * @param string $createdBy
 	 */
 	public function toolbox($id, $oldfindID, $createdBy) {
+        $this->view->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
 	$this->view->inlineScript()->captureStart();
 	echo '$(document).ready(function() {
 	$(\'.print\').click(function() {
 	window.print();
 	return false;
 	});
+
+    $(\'.overlay\').click(function(e) {
+    e.preventDefault();
+    var href = $(e.target).attr(\'href\');
+    if (href.indexOf(\'#\') == 0) {
+        $(href).modal(\'open\');
+    } else {
+        $.get(href, function(data) {
+            $(\'<div class="modal fade" >\' + data + \'</div>\').modal();
+        });
+    }
+});
+
 	});';
 	$this->view->inlineScript()->captureEnd();
-    $class = 'btn btn-small btn-primary';
+        $class = 'btn btn-small btn-primary overlay';
 	echo '<div id="toolBox"><p>';
-	echo '<a class="' . $class . '" href="'
-	. $this->view->url(array('module' => 'database','controller' => 'ajax','action' => 'webcite','id' => $id),null,true)
-	. '" rel="facebox" title="Get citation information">Cite record</a> | <a class="' . $class . '" href="'
+	echo '<a class="' . $class . '"  href="'
+	. $this->view->serverUrl() . $this->view->url(array('module' => 'database','controller' => 'ajax','action' => 'webcite','id' => $id),null,true)
+	. '" rel="facebox" title="Get citation information">Cite record</a> <a class="' . $class . '" href="'
 	. $this->view->url(array('module' => 'database','controller' => 'ajax', 'action' => 'embed', 'id' =>  $id),null,true)
 	. '" rel="facebox" title="Get code to embed this record in your webpage">Embed record</a> ';
 	echo $this->view->RecordEditDeleteLinks($id,$oldfindID,$createdBy);
-	echo ' | <a class="' . $class . '" href="#print" class="print">Print</a> | ';
+	echo ' <a class="' . $class . '" href="#print" class="print">Print</a> ';
 	echo $this->view->Href(array(
             'module' => 'database',
             'controller'=>'artefacts',
@@ -52,7 +66,7 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
                 'accesskey' => 'a',
                 'class' => 'btn btn-small btn-primary')
             ));
-	echo ' | <a class="' . $class . '" href="'.$this->view->url(array('module' => 'database','controller' => 'artefacts','action' => 'record','id' => $id,'format' => 'pdf'),null,true)
+	echo ' <a class="' . $class . '" href="'.$this->view->url(array('module' => 'database','controller' => 'artefacts','action' => 'record','id' => $id,'format' => 'pdf'),null,true)
 	. '" title="Report format">Report</a>';
 	echo'</p></div>';
 	}

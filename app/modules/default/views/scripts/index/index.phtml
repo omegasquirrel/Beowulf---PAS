@@ -4,11 +4,11 @@ $this->headMeta('BJ0IxlmtPbri25v9zbMgcOFDOBuZmNacd9-friMs1_E','google-site-verif
 $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javascript');
 ?>
 
-<div class="container">
+
 <div class="span10">
     <?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?>
 </div>
-
+<div class="container">
 <section id="carousel">
 
         <div class="span10">
@@ -54,11 +54,11 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
         </ul>
     </div>
     </section>
-    
+
     <div class="span10">
     <?php echo $this->partialLoop('partials/index/quotes.phtml',$this->quotes);?>
 	</div>
-	
+
 	<div id="tweets" class="well span5">
  	<h3>Latest tweets</h3>
     	<?php echo $this->LatestTweets();?>
@@ -79,8 +79,8 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 	<li><a href="<?php echo $this->url(array('module' => 'postmedievalcoins'),null,true);?>" title="Learn about Post medieval coins">Post Medieval</a></li>
 	</ul>
 	</div>
-	
-	
+
+
 	<?php $this->jQuery()->javascriptCaptureStart()?>
 	$('.myCarousel').carousel({
 		interval: 2000

@@ -30,12 +30,7 @@ public function __construct($options = null) {
     ->addErrorMessage('Come on it\'s not that hard, enter a title!')
     ->setAttrib('size', 10);
 
-    $oldfindID = new Zend_Form_Element_Text('old_findID');
-    $oldfindID->setLabel('Filter by find ID #')
-    ->setRequired(false)
-    ->addFilters(array('StripTags','StringTrim'))
-    ->setAttrib('size', 11)
-    ->addValidator('stringLength', false, array(1,200));
+
 
     $broadperiod = new Zend_Form_Element_Select('broadperiod');
     $broadperiod->setLabel('Filter by broadperiod')
@@ -53,6 +48,10 @@ public function __construct($options = null) {
     ->addMultiOptions(array(NULL => NULL,'Choose county' => $county_options))
     ->addValidator('InArray', false, array(array_keys($county_options)));
 
+    $bottomLeft = new Zend_Form_Element_Text('bottomLeft');
+    $bottomLeft->setLabel('Bottom left corner');
+    $topRight = new Zend_Form_Element_Text('topRight');
+    $topRight->setLabel('Top right corner');
     //Submit button
     $submit = new Zend_Form_Element_Submit('submit');
     $submit->setLabel('Filter:');
@@ -63,7 +62,7 @@ public function __construct($options = null) {
     $this->addElement($hash);
 
     $this->addElements(array(
-    $objecttype, $oldfindID, $broadperiod,
+    $objecttype,  $broadperiod, $topRight, $bottomLeft,
     $county, $submit));
 
     parent::init();

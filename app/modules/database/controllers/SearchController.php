@@ -31,7 +31,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addContext('atom',array('suffix' => 'atom'))
 		->addActionContext('results', array('json','rss','atom'))
 		->setAutoJsonSerialization(false);
-	
+
 	$this->_helper->contextSwitch()->initContext();
 
 	if(!in_array($this->_helper->contextSwitch()->getCurrentContext(),$this->_contexts )) {
@@ -322,7 +322,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 
 
 	public function postcodeAction(){
-    $form = new PostcodeForm();
+         $form = new PostcodeForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
 	if ($form->isValid($form->getValues())) {
@@ -365,6 +365,26 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 
 	public function mapAction(){
+	}
+
+        public function spatialAction(){
+        $form = new FindFilterForm();
+        $this->view->form = $form;
+        if($this->getRequest()->isPost() && $form->isValid($_POST)){
+	if ($form->isValid($form->getValues())) {
+        $params = array(
+          'bbox' => $form->getValue('bottomLeft') . ',' . $form->getValue('topRight'),
+          'county' => $form->getValue('county'),
+          'objectType' => $form->getValue('objecttype'),
+          'broadperiod' => $form->getValue('broadperiod')
+        );
+        $params = array_filter($params);
+	$this->_flashMessenger->addMessage('Your search is complete');
+	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
+	} else {
+	$form->populate($form->getValues());
+	}
+	}
 	}
 //EOS
 }

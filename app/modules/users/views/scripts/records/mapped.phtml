@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->headTitle('All finds recorded by me, mapped');
 $this->headMeta('A list of all finds recorded for me, by the Scheme on a google map!','description');
 $this->googleDynamicMap(null,true);
@@ -93,7 +93,7 @@ $(document).ready(function() {
           zoom: 7,
           mapTypeControlOptions: {
           mapTypeIds: [
-          
+
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
           google.maps.MapTypeId.ROADMAP,
@@ -115,44 +115,15 @@ $(document).ready(function() {
         map.mapTypes.set('SOIL',soilMapType);
         map.mapTypes.set('historic',nlsmap);
 
-copyrightDiv = document.createElement("div")
-copyrightDiv.id = "map-copyright"
-copyrightDiv.style.fontSize = "14px"
-copyrightDiv.style.fontFamily = "Arial, sans-serif"
-copyrightDiv.style.margin = "0 2px 2px 0"
-copyrightDiv.style.whiteSpace = "nowrap"
-copyrightDiv.className = "btn btn-large"
-map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(copyrightDiv)
+var myTitle = document.createElement('h1');
+		myTitle.style.color = '#444444';
+		myTitle.style.font = "10px sans-serif";
+		myTitle.innerHTML = 'Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google';
 
-copyrights = {};
-copyrights["OSM"] = "<a target=\"_blank\" href=\"http://www.openstreetmap.org/\">Map data &copy; OpenStreetMap contributors, CC BY-SA</a>";
-copyrights["historic"] = "Historical maps from <a href='http://geo.nls.uk/maps/api/'>NLS Maps API<\/a>";
+		var myTextDiv = document.createElement('div');
+		myTextDiv.appendChild(myTitle);
 
-function setCopyright() {
-copyrightDiv = document.getElementById("map-copyright");
-var current = map.getMapTypeId();
-	if(current in copyrights)
-	        copyrightDiv.innerHTML = copyrights[current];
-	        else
-	        copyrightDiv.innerHTML = " ";
-	}
-
-function onMapTypeIdChanged()
-{
-    newMapType = map.getMapTypeId();
-
-    copyrightDiv = document.getElementById("map-copyright");
-    if(newMapType in copyrights)
-        copyrightDiv.innerHTML = copyrights[newMapType];
-    else
-        copyrightDiv.innerHTML = "";
-}
-
-google.maps.event.addListener(map, "maptypeid_changed", onMapTypeIdChanged)
-
-// Call once so that the correct copyright notice is set for
-// the initially selected map type
-setTimeout(onMapTypeIdChanged, 50);
+		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
 
 	  $('a[data-toggle="tab"]').on('shown', function (e) {
 	  e.target // activated tab
@@ -191,8 +162,8 @@ setTimeout(onMapTypeIdChanged, 50);
         );
         var title = markerXML.attr("title");
         var marker = new google.maps.Marker({
-        	position: latlng, 
-        	map: map,  
+        	position: latlng,
+        	map: map,
         	title: title,
         	icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" });
 
@@ -219,8 +190,7 @@ setTimeout(onMapTypeIdChanged, 50);
 	}
 	google.maps.event.addDomListener(map, 'idle', function() {
 	  calculateCenter();
-	  setCopyright();
-	});
+    	});
 	google.maps.event.addDomListener(window, 'resize', function() {
 	  map.setCenter(center);
 	});
@@ -237,6 +207,13 @@ setTimeout(onMapTypeIdChanged, 50);
 <?php $this->inlineScript()->captureEnd();?>
 
 <h2>My finds mapped</h2>
+<div class="row-fluid">
+<div class="span9">
+    <div id="map"></div>
+    </div>
+	<div class="span3">
 
-<div id="map"></div>
+<?php echo $this->mapFacetCreatorMyFindsByFlo();?></div>
+</div>
+</div>
 
