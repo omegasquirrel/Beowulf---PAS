@@ -21,8 +21,9 @@ class Pas_View_Helper_CoinDataDisplay extends Zend_View_Helper_Abstract {
         'MODERN');
 
     public function coinDataDisplay($objectType, $broadperiod, $coins, $finds){
-
-        if(is_array($coins)){
+		$types = array_merge($this->_numismatics, $this->_objects);
+        if(in_array(strtoupper($objectType), $types)){
+        	if(sizeof($coins)>0){
 
         if(in_array(strtoupper($broadperiod), $this->_broadperiods)){
 
@@ -38,11 +39,11 @@ class Pas_View_Helper_CoinDataDisplay extends Zend_View_Helper_Abstract {
             throw new Pas_Exception_BadJuJu('You cannot have a coin of that period');
         }
 
-        return $html;
+       
 
 
         } else {
-            $html = '<div id="numisdata">';
+            $html = '<div>';
             $html .= '<h3>Numismatic data</h3>';
             $html .= '<p>No numismatic data has been recorded for this coin yet.</p>';
             $html .= '<div class="noprint">';
@@ -54,8 +55,9 @@ class Pas_View_Helper_CoinDataDisplay extends Zend_View_Helper_Abstract {
                     $finds['broadperiod']);
             $html .= '</div>';
 
-            return $html;
         }
+        }
+        return $html;
     }
 
     }

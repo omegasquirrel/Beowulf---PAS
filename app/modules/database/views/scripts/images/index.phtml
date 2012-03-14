@@ -1,11 +1,7 @@
 <?php
 $this->headTitle('All images on the database');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 ?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
-jQuery(document).ready(function($) {
- $('a[rel*=lightbox]').lightBox()
-});
 $(function() {
 <?php
 $auth = Zend_Auth::getInstance();

@@ -1,8 +1,6 @@
 <?php
 /**
  * This class is to display search params
- * Sucks monkey balls in extremis.
- * Load of rubbish, needs a rewrite
  * @category   Pas
  * @package    Pas_View_Helper
  * @subpackage Abstract
@@ -10,42 +8,81 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @uses Zend_View_Helper_Abstract
  * @author Daniel Pett
- * @since September 13 2011
- * @todo change the class to use zend_navigation
+ * @version 2
+ * @since march 14 2012
 */
 class Pas_View_Helper_SearchParams
 	extends Zend_View_Helper_Abstract {
 
+	/** The cache object
+	 * 
+	 * @var unknown_type
+	 */
 	protected $_cache;
 
+	/** Create the cache object
+	 * 
+	 */
 	public function __construct(){
 		$this->_cache = Zend_Registry::get('cache');
 	}
 
+	/** Array of cleaned names for display as a parameter
+	 * 
+	 * @var array
+	 */
 	protected $_niceNames = array(
-	'mintName' => 'Mint',
-	'rulerName' => 'Ruler',
-	'objectType' => 'Object type',
-	'q' => 'Free text search',
-	'fourFigure' => 'Four figure NGR',
-	'old_findID' => 'Find number',
-	'discovered' => 'Discovery year',
-	'TID' => 'Treasure case number',
-	'hID' => 'Hoard ID',
-	'otherref' => 'other reference',
-	'smrRef' => 'SMR or HER reference number',
-	'typeID' => 'Medieval periodic type',
-	'cciNumber' => 'Celtic coin Index number',
-	'broadperiod' => 'Broad period',
-	'objecttype' => 'Object type',
-	'rallyID' => 'Rally known as',
+		'mintName' => 'Mint',
+		'rulerName' => 'Ruler',
+		'objectType' => 'Object type',
+		'q' => 'Free text search',
+		'fourFigure' => 'Four figure NGR',
+		'old_findID' => 'Find number',
+		'discovered' => 'Discovery year',
+		'TID' => 'Treasure case number',
+		'hID' => 'Hoard ID',
+		'otherref' => 'other reference',
+		'smrRef' => 'SMR or HER reference number',
+		'typeID' => 'Medieval periodic type',
+		'cciNumber' => 'Celtic coin Index number',
+		'broadperiod' => 'Broad period',
+		'objecttype' => 'Object type',
+		'rallyID' => 'Rally known as',
         'woeid' => 'Yahoo!\'s Where on Earth ID number',
         'd' => 'Distance (in kilometres)',
         'lat' => 'latitude',
         'lon' => 'longitude',
-        'bbox' => 'Bounding box co-ordinates'
+        'bbox' => 'Bounding box co-ordinates',
+        'createdBy' => 'Created by',
+		'fromsubperiod' => 'Sub period from',
+		'tosubperiod' => 'Sub period to',
+		'periodFrom' => 'Period from',
+		'periodTo' => 'Period to',
+		'culture' => 'Ascribed culture',
+		'otherRef' => 'Other reference',
+		'elevation' => 'Height above sea level in metres',
+		'geographyID' => 'Iron Age geographical region',
+		'tribe' => 'Iron Age tribal association',
+		'axis' => 'Die axis measurement',
+		'vaType' => 'Van Arsdell number',
+		'allenType' => 'Allen type',
+		'ruddType' => 'Ancient British Coinage number',
+		'mackType' => 'Mack Type',
+		'numChiab' => 'Coin hoards of Iron Age Britain number',
+		'phase_date_1' => 'Phase date 1',
+		'Phase_date_2' => 'Phase date 2',
+		'depositionDate' => 'Date of deposition',
+		'obverseLegend' => 'Obverse inscription',
+		'reverseLegend' => 'Reverse inscription',
+		'obverseDescription' => 'Obverse description',
+		'reverseDescription' => 'Reverse description'
 	);
 
+	/** Generate the search string from parameters submitted
+	 * @access public
+	 * @param array $params
+	 * @return string 
+	 */
 	public function SearchParams($params = NULL) {
 
 	$params = array_slice($params,3);
@@ -61,13 +98,19 @@ class Pas_View_Helper_SearchParams
 
 	foreach($params as $k => $v){
 		$html .= '<li>' . $this->cleanKey($k) .': ' . $v . '</li>';
-		$this->view->headTitle(  ' > ' . $this->cleanKey($k) . ': ' . $this->view->escape($v));
+		$this->view->headTitle(  ' | ' . $this->cleanKey($k) . ': ' . $this->view->escape($v));
 	}
 
 	$html .= '</ul>';
 	}
 	return $html;
 	}
+	
+	/** Clean the key for nicename
+	 * @access public
+	 * @param string $string
+	 * @return string
+	 */
 	public function cleanKey($string){
 	if(in_array($string,array_keys($this->_niceNames))){
 	$text = "$string";
@@ -81,6 +124,13 @@ class Pas_View_Helper_SearchParams
 	return ucfirst($text);
 	}
 
+	/** Look up the correct value and cache the results
+	 * @access public
+	 * @param string $name The model name
+	 * @param string $field The field to return
+	 * @param string $value The value to lookup
+	 * @return string
+	 */
 	public function getData($name, $field, $value){
 	$key = md5($name.$field.$value);
 	if (!($this->_cache->test($key))) {
@@ -93,6 +143,11 @@ class Pas_View_Helper_SearchParams
 	return $data;
 	}
 
+	/** Clean up the parameters submitted
+	 * @access public
+	 * @param array $params The parameters submitted
+	 * @return string
+	 */
 	public function cleanParams($params){
 	foreach($params as $key => $value){
 	switch($key){
@@ -126,7 +181,7 @@ class Pas_View_Helper_SearchParams
 		case 'hoard':
 			$params[$key] = yes;
 			break;
-                case 'thumbnail':
+		case 'thumbnail':
 			$params[$key] = 'Only object with images please';
 			break;
 		case 'surface':
@@ -152,6 +207,39 @@ class Pas_View_Helper_SearchParams
 			break;
 		case 'rallyID':
 			$params[$key] = $this->getData('Rallies','rally_name', $value);
+			break;
+		case 'createdBy':
+			$params[$key] = $this->getData('Users','fullname', $value);
+			break;
+		case 'fromsubperiod':
+			$params[$key] = $this->getData('SubPeriods','term', $value);
+			break;
+		case 'tosubperiod':
+			$params[$key] = $this->getData('SubPeriods','term', $value);
+			break;
+		case 'periodFrom':
+			$params[$key] = $this->getData('Periods','term', $value);
+			break;
+		case 'periodTo':
+			$params[$key] = $this->getData('Periods','term', $value);
+			break;
+		case 'culture':
+			$params[$key] = $this->getData('Cultures','term', $value);
+			break;
+		case 'tribe':
+			$params[$key] = $this->getData('Tribes','tribe', $value);
+			break;
+		case 'geographyID':
+			$params[$key] = $this->getData('Geography','area', $value);
+			break;
+		case 'axis':
+			$params[$key] = $this->getData('Dieaxes','die_axis_name', $value);
+			break;
+		case 'moneyer':
+			$params[$key] = $this->getData('Moneyers','name', $value);
+			break;
+		case 'reeceID':
+			$params[$key] = 'Period ' . $value . ': ' . $this->getData('Reeces','description', $value);
 			break;
 		default:
 			$params[$key] = $value;

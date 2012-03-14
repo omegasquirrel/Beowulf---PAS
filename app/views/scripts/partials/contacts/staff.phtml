@@ -41,15 +41,6 @@ lat:
 </span>
 </span>
 <?php if(!is_null($this->image)) {?>
-<?php 
-$this->jQuery()->javascriptCaptureStart(); ?>
-jQuery(document).ready(function($){
-$('a[rel*=lightbox]').lightBox() 
-});
-<?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
-?>
 <?php list($w, $h) = getimagesize('./images/staffphotos/thumbnails/' . $this->image);?>
 
 <a href="<?php echo $this->baseUrl();?>/images/staffphotos/resized/<?php echo $this->image;?>" rel="lightbox" 

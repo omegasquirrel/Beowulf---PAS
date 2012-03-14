@@ -1,6 +1,4 @@
 <h2>Search results</h2>
-
-
 <?php if ($this->results): ?>
 <p><a href="<?php echo $this->url(array(
 	'module' => 'database',
@@ -14,7 +12,7 @@
  unset($url['page']);
  $url['action'] = 'map';
  ?>
- <p><a href="<?php echo $this->url($url,null,true);?>" class="btn-small btn">Map results<i class="icon-map-marker"></i></a> <a class="btn-small btn" href="#">Export all results as KML <i class="icon-download-alt"></i>    </a> <a class="btn-small btn" href="#">Export as CSV <i class="icon-download-alt"></i></a> <a class="btn-small btn" href="#">Export for HER import <i class="icon-download-alt"></i></a> <a href="#" class="btn-small btn">Export for GIS <i class="icon-download-alt"></i></a></p>
+ <p><a href="<?php echo $this->url($url,null,true);?>" class="btn-small btn">Map results<i class="icon-map-marker"></i></a> <?php echo $this->searchExportTools();?></p>
 
 <div class="row-fluid">
 <ul><?php echo $this->SearchParams(Zend_Controller_Front::getInstance()->getRequest()->getParams());?></ul>
@@ -53,13 +51,3 @@
 
 <?php echo '<p>Your search has produced no results. Please refine your query. If you are expecting more results, you may have insufficient access for their workflow stage.</p>';?>
 <?php endif; ?>
-
-
-<?php
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
-?>
-<?php $this->jQuery()->javascriptCaptureStart(); ?>
-jQuery(document).ready(function($) {
-$('a[rel*=lightbox]').lightBox()
-});
-<?php $this->jQuery()->javascriptCaptureEnd(); ?>

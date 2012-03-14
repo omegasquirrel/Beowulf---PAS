@@ -156,16 +156,8 @@ echo '</p>';
 
 <?php 
 	
-	$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/facebox/facebox.js',$type='text/javascript'); 
 	$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/facebox.init.js',$type='text/javascript'); 
 	$this->headLink()->appendStylesheet($this->baseUrl().'/js/JQuery/facebox/facebox.css',$type='screen');
 
-
-$this->jQuery()->javascriptCaptureStart() ?>
-jQuery(document).ready(function($) {
-
- $('a[rel*=lightbox]').lightBox() 
- $('#tabs').tabs({ fx: { opacity: 'toggle' } }); 
-    });
-<?php $this->jQuery()->javascriptCaptureEnd() ?>
+ ?>

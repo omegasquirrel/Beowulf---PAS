@@ -1,10 +1,4 @@
-<?php $this->jQuery()->javascriptCaptureStart() ?>
-jQuery(document).ready(function($) {
-$('a[rel*=lightbox]').lightBox()
-});
-<?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
+<?php 
 $this->headTitle('Our sets of images as seen on Flickr');
 $this->MetaBase('A collection of our sets of photos as shown on flickr and consumed within our site. It includes the mighty Staffordshire Hoard',
 'photos',

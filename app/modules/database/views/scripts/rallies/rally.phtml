@@ -14,11 +14,3 @@ echo $this->Href(array('module' => 'database','controller'=>'rallies', 'action'=
 'acl'=>'Zend_Acl',  'params' =>array('id'=>$this->rallies['0']['id']), 'content'=>'Add an attending finds liaison officer','attribs' => array('title' => 'Add a new attending flo')));
 ?>
 <?php echo $this->latestRecords('rallyID:' . Zend_Controller_Front::getInstance()->getRequest()->getParam('id'));?>
-<?php $this->jQuery()->javascriptCaptureStart() ?>
-jQuery(document).ready(function($) {
-
- $('a[rel*=lightbox]').lightBox() 
-    })
-<?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript'); 
-?>

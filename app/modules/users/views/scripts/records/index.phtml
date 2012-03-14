@@ -23,11 +23,3 @@ echo $this->facetCreator($this->facets);
 <p>Your account is either not linked to the personal details we have for you on record/ of you have nor reported any objects yet to our staff.</p>
 <p>If you think it is the former, speak to your FLO and ask them to link your personal details to your account username.</p>
 <?php endif;?>
-<?php
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
-?>
-<?php $this->jQuery()->javascriptCaptureStart(); ?>
-jQuery(document).ready(function($) {
-$('a[rel*=lightbox]').lightBox()
-});
-<?php $this->jQuery()->javascriptCaptureEnd(); ?>

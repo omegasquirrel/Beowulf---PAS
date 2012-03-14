@@ -131,7 +131,8 @@ coins.status,
 finds.findofnotereason AS reason,
 finderID,
 recorderID,
-identifier1ID AS identifierID
+identifier1ID AS identifierID,
+findspots.elevation
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID
