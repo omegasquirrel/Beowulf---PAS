@@ -524,6 +524,8 @@
 	<field name="finderID" type="string" indexed="true" stored="true" />
 	<field name="identifier" type="string" indexed="true" stored="true" />
 	<field name="identifierID" type="string" indexed="true" stored="true" />
+        <field name="secondaryIdentifier" type="string" indexed="true" stored="true" />
+        <field name="identifier2ID" type="string" indexed="true" stored="true" />
 	<field name="recorder" type="string" indexed="true" stored="true" />
 	<field name="recorderID" type="string" indexed="true" stored="true" />
 	<field name="updatedBy" type="string" indexed="true" stored="true" />
@@ -562,9 +564,10 @@
 	<field name="axis" type="int" indexed="true" stored="true" />
 	<field name="moneyer" type="string" indexed="true" stored="true" />
 	<field name="moneyerName" type="string" indexed="true" stored="true" />
-    <field name="reverse" type="int" indexed="true" stored="true" />
-    <field name="reverseType" type="text" indexed="true" stored="true" />
-    <field name="status" type="int" indexed="true" stored="true" />
+        <field name="reverse" type="int" indexed="true" stored="true" />
+        <field name="reverseType" type="text" indexed="true" stored="true" />
+        <field name="status" type="int" indexed="true" stored="true" />
+
 	<!-- Findspot specific fields -->
 	<field name="regionID" type="int" indexed="true" stored="true" />
 	<field name="regionName" type="string" indexed="true" stored="true" />
@@ -622,7 +625,7 @@
         a "*" only at the start or the end.
         EXAMPLE:  name="*_i" will match any field ending in _i (like myid_i, z_i)
         Longer patterns will be matched first.  if equal size patterns
-        both match, the first appearing in the schema will be used.  -->
+        both match, the first appearing in the schema will be used.-->
    <dynamicField name="*_i"  type="int"    indexed="true"  stored="true"/>
    <dynamicField name="*_s"  type="string"  indexed="true"  stored="true"/>
    <dynamicField name="*_l"  type="long"   indexed="true"  stored="true"/>
@@ -632,13 +635,13 @@
    <dynamicField name="*_f"  type="float"  indexed="true"  stored="true"/>
    <dynamicField name="*_d"  type="double" indexed="true"  stored="true"/>
 
-   <!-- Type used to index the lat and lon components for the "location" FieldType -->
+   <!-- Type used to index the lat and lon components for the "location" FieldType-->
    <dynamicField name="*_coordinate"  type="tdouble" indexed="true"  stored="false"/>
 
    <dynamicField name="*_dt" type="date"    indexed="true"  stored="true"/>
    <dynamicField name="*_p"  type="location" indexed="true" stored="true"/>
 
-   <!-- some trie-coded dynamic fields for faster range queries -->
+   <!-- some trie-coded dynamic fields for faster range queries-->
    <dynamicField name="*_ti" type="tint"    indexed="true"  stored="true"/>
    <dynamicField name="*_tl" type="tlong"   indexed="true"  stored="true"/>
    <dynamicField name="*_tf" type="tfloat"  indexed="true"  stored="true"/>

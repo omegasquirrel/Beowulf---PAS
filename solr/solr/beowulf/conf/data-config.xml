@@ -132,7 +132,12 @@ finds.findofnotereason AS reason,
 finderID,
 recorderID,
 identifier1ID AS identifierID,
-findspots.elevation
+identifier2ID,
+findspots.elevation,
+finders.fullname AS finder,
+primaries.fullname AS identifier,
+secondaries.fullname AS secondaryIdentifier,
+recorders.fullname AS recorder
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID
@@ -167,6 +172,10 @@ LEFT JOIN hoards ON finds.hoardID = hoards.id
 LEFT JOIN subsequentActions ON finds.subs_action = subsequentActions.id
 LEFT JOIN regions ON findspots.regionID = regions.id
 LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
+LEFT JOIN people AS finders ON finds.finderID = finders.secuid
+LEFT JOIN people AS primaries ON finds.identifier1ID = primaries.secuid
+LEFT JOIN people AS secondaries ON finds.identifier2ID = secondaries.secuid
+LEFT JOIN people AS recorders ON finds.recorderID = recorders.secuid
 "
 >
     <field column="findIdentifier" name="findIdentifier" />
@@ -280,9 +289,14 @@ LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
     <field column="reverseType" name="reverseType" />
     <field column="status" name="status" />
     <field column="reasonTerm" name="reasonTerm" />
+    <field column="finder" name="finder" />
     <field column="finderID" name="finderID" />
+    <field column="recorder" name="recorder" />
     <field column="recorderID" name="recorderID" />
+    <field column="identifier" name="identifier" />
     <field column="identifierID" name="identifierID" />
+    <field column="secondaryIdentifier" name="secondaryIdentifier" />
+    <field column="identifer2ID" name="identifier2ID" />
     <field column="creator" name="creator" />
 </entity>
 
