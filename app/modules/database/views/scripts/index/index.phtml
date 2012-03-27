@@ -5,6 +5,7 @@ $this->headMeta('archaeology,database,England,Wales,discovery,archaeological','d
 ?>
 <?php
 echo $this->googleDynamicMap();
+$this->inlineScript()->appendFile('http://maps.stamen.com/js/tile.stamen.js',$type = 'text/javascript');
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -22,7 +23,8 @@ $(document).ready(function() {
         name: "OSM",
         maxZoom: 18
     });
-
+	
+	
 
 	var myOptions = {
           center: new google.maps.LatLng(54,-2),
@@ -31,7 +33,9 @@ $(document).ready(function() {
           mapTypeIds: [
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
-          'OSM'
+          'OSM',
+          'Watercolor',
+          'Toner'
           ]
     	  },
     	  mapTypeControl: true,
@@ -48,11 +52,12 @@ $(document).ready(function() {
       
        google.maps.event.trigger(map, 'resize');
        map.setZoom( map.getZoom() );
-       
+       map.mapTypes.set("Watercolor", new google.maps.StamenMapType("watercolor"));
+       map.mapTypes.set("Toner", new google.maps.StamenMapType("toner"));
        	var myTitle = document.createElement('h1');
 		myTitle.style.color = '#444444';
 		myTitle.style.font = "10px sans-serif";
-		myTitle.innerHTML = 'OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google';
+		myTitle.innerHTML = '<p>OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google | Watercolor &amp; Toner: Stamen Design, licensed CC BY 3.0</p>';
 
 		var myTextDiv = document.createElement('div');
 		myTextDiv.appendChild(myTitle);

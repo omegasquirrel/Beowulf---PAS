@@ -18,6 +18,8 @@ class Pas_View_Helper_GoogleDynamicMap extends Zend_View_Helper_Abstract {
 	protected $_clusterUrl = '/js/markerclusterer.js';
 	
 	protected $_nlsUrl = 'http://nls.tileserver.com/api.js';
+	
+	protected $_stamenUrl = 'http://maps.stamen.com/js/tile.stamen.js';
 
 	protected $_version;
 	
@@ -40,7 +42,7 @@ class Pas_View_Helper_GoogleDynamicMap extends Zend_View_Helper_Abstract {
 	/**
 	 * 
 	 */
-	public function googleDynamicMap($sensor = null, $clusterer = null, $nlsMap = null) {
+	public function googleDynamicMap($sensor = null, $clusterer = null, $nlsMap = null, $stamen = null) {
 	if(!is_null($sensor)){
 		$this->_sensor = 'true';
 	} 
@@ -53,6 +55,9 @@ class Pas_View_Helper_GoogleDynamicMap extends Zend_View_Helper_Abstract {
 	}
 	if(!is_null($nlsMap)){
 	$this->view->inlineScript()->appendFile($this->_nlsUrl, $this->_type);
+	}
+	if(!is_null($stamen)){
+	$this->view->inlineScript()->appendFile($this->_stamenUrl, $this->_type);	
 	}
 	}
 	
