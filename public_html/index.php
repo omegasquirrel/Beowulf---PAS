@@ -21,6 +21,7 @@ set_include_path('.' . PATH_SEPARATOR . 'library/'
 . PATH_SEPARATOR . 'library/EasyRdf/'
 . PATH_SEPARATOR . 'library/Phlickr/'
 . PATH_SEPARATOR . 'library/Solarium/'
+. PATH_SEPARATOR . 'library/tcpdf/'
 . PATH_SEPARATOR . get_include_path());
 
 /* include 'Zend/Loader.php';

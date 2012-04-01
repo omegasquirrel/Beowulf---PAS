@@ -307,13 +307,14 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    public function nmsAction(){
        $exporter = new Pas_Exporter_Generate();
        $exporter->setFormat('nms');
-       $this->view->nms = $exporter->execute();
+       $data = $exporter->execute();
 
-       $filename = 'NMSRecordExport_For_' . $this->getUsername() . '_'. Zend_Date::now()->toString('yyyyMMddHHmmss') . '.pdf';
-              $this->view->filename = $filename;
+       $filename = 'NMSRecordsExport_For_' . $this->getUsername() . '_'. Zend_Date::now()->toString('yyyyMMddHHmmss') . '.pdf';
+       $this->view->filename = $filename;
        $this->view->path = APPLICATION_PATH . '/tmp';
-       $this->getResponse()->setHeader('Content-type', 'application.pdf')
-               ->setHeader('Content-Disposition', 'attachment; filename=' . $filename);
+       $this->view->nms = $data;
+//       $this->getResponse()
+//               ->setHeader('Content-Disposition', 'attachment; filename=' . $filename);
 
    }
 

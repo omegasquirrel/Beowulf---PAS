@@ -22,7 +22,7 @@ class Pas_Exporter_Nms extends Pas_Exporter_Generate {
         'gridref', 'county',
 	'district', 'parish','knownas',
         'finder', 'smrRef','otherRef',
-        'identifier'
+        'identifier', 'objecttype'
         );
 
     public function __construct() {
