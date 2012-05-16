@@ -134,11 +134,12 @@ $tbl = <<<EOD
 <thead>
 <tr>
 <th width="10%">Find ID</th>
+<th width="10%">Broad period</th>
 <th width="10%">Finder</th>
 <th width="10%">Object type</th>
 <th width="40%">Description</th>
 <th width="15%">Findspot</th>
-<th width="15%">Smr ref</th>
+<th width="5%">Smr ref</th>
 </tr>
 </thead>
 <tbody>
@@ -148,6 +149,7 @@ foreach($data as $d){
     $desc = $pdf->purify($d['description']);
     $tbl .= '<tr nobr="true">';
     $tbl .= '<td width="10%">' . $d['old_findID'] . '</td>';
+    $tbl .= '<td width="10%">' . $d['broadperiod'] . '</td>';
     $tbl .= '<td width="10%">' . $d['finder'] . '</td>';
     $tbl .= '<td width="10%">' . $d['objecttype'] . '</td>';
     $tbl .= '<td width="40%">' . $desc . '</td>';
@@ -159,7 +161,7 @@ foreach($data as $d){
     }
     $tbl .=  'NGR: ' . $d['gridref'] . '<br />';
     $tbl .= 'Four figure: ' . $d['fourFigure'] . '</td>';
-    $tbl .= '<td width="15%">' . $d['smrRef'] . '</td>';
+    $tbl .= '<td width="5%">' . $d['smrRef'] . '</td>';
     $tbl .= '</tr>';
 }
 $tbl .= <<<EOD

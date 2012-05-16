@@ -40,6 +40,8 @@ else
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'byzantinenumismatics'),NULL,true);?>" title="Byzantine numismatic search our database">Byzantine numismatic search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'mednumismatics'),NULL,true);?>" title="Medieval numismatic search our database">Medieval numismatic search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'postmednumismatics'),NULL,true);?>" title="Post medieval numismatic search our database">Post medieval numismatic search</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'spatial'),NULL,true);?>" title="Spatial search">Search via map</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'postcode'),NULL,true);?>" title="Post code search">Postcode search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'savedsearches'),NULL,true);?>" title="All public saved searches on our database">Public saved searches</a></li>
 <?php
 $auth = Zend_Auth::getInstance();
@@ -78,11 +80,11 @@ $user = $auth->getIdentity();
 $allowed = array('fa','admin','flos','hero');
 if(in_array($user->role,$allowed)){
 }?>
-<li><a href="<?php echo $this->url(array('controller' => 'database','action' => 'smr'),NULL,true);?>" 
+<li><a href="<?php echo $this->url(array('controller' => 'database','action' => 'smr'),NULL,true);?>"
 title="List of scheduled monuments">Scheduled monuments  <i class="icon-list"></i></a></li>
-<li><a href="<?php echo $this->url(array('controller' => 'database','action' => 'osdata'),NULL,true);?>" 
+<li><a href="<?php echo $this->url(array('controller' => 'database','action' => 'osdata'),NULL,true);?>"
 title="List of OS data">Ordnance Survey data  <i class="icon-list"></i></a></li>
-<?php 
+<?php
 }
 ?>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller'=>  'publications'),NULL,true);?>" title="Reference works cited on database">Reference works cited  <i class="icon-book"></i></a></li>

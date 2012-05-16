@@ -7,31 +7,44 @@
 
 /**
  * Description of Nms
- * This class is just for the use of Norfolk. Complete waste of time implementing
- * it.
- *
- * @author danielpett
+ * This class is just for the use of Norfolk. Complete waste of time
+ * implementing it, every one else can use csv and adapt it to their own needs.
+ * @category Pas
+ * @package Pas_Exporter
+ * @version 1
+ * @since 1/4/12
+ * @license GNU
+ * @copyright Daniel Pett
+ * @author Daniel Pett
  */
 class Pas_Exporter_Nms extends Pas_Exporter_Generate {
 
     protected $_format = 'nms';
 
-
+    /** The fields to return
+     *
+     * @var array
+     */
     protected $_nmsFields = array(
-	'id','old_findID','description', 'fourFigure',
-        'gridref', 'county',
+	'id','old_findID','description',
+        'fourFigure','gridref', 'county',
 	'district', 'parish','knownas',
         'finder', 'smrRef','otherRef',
-        'identifier', 'objecttype'
+        'identifier', 'objecttype', 'broadperiod'
         );
 
     public function __construct() {
         parent::__construct();
     }
 
+    /** Create the data for export
+     * @access public
+     * @return array
+     */
     public function create(){
+    $params = array_merge($this->_params, array('show' => 500));
     $this->_search->setFields($this->_nmsFields);
-    $this->_search->setParams($this->_params);
+    $this->_search->setParams($params);
     $this->_search->execute();
     return  $this->_clean($this->_search->_processResults());
     }
@@ -40,7 +53,8 @@ class Pas_Exporter_Nms extends Pas_Exporter_Generate {
         foreach($data as $dat){
 
         foreach($dat as $k => $v){
-            $record[$k] = trim(strip_tags(str_replace('<br />',array( ""), utf8_decode( $v ))));
+            $record[$k] = trim(strip_tags(str_replace('<br />',array( ""),
+                    utf8_decode( $v ))));
         }
         $finalData[] = $record;
         }

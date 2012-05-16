@@ -4,6 +4,9 @@ $apikey = $config->webservice->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
 $this->inlineScript()->appendFile($this->serverUrl() . '/js/markerclusterer.js',$type='text/javascript');
 $this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
+
+$this->headScript()->appendFile('http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js',$type = 'text/javascript');
+$this->headScript()->appendFile('http://isawnyu.github.com/awld-js/awld.js?autoinit', $type = 'text/javascript');
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
@@ -182,8 +185,9 @@ function markerInfoWindow(marker, information){
 
 <?php $this->inlineScript()->captureEnd();?>
 
-
+<div class="awld-scope">
 <?php echo $this->partialLoop('partials/numismatics/emperor.phtml',$this->emps);?>
+</div>
 <div class="row-fluid">
 
 <?php echo $this->latestRecords('ruler:' . $this->emps[0]['pasID']);?>

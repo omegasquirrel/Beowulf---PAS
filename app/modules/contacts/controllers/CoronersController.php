@@ -1,6 +1,6 @@
 <?php
 /** Controller for coroner based data
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -10,11 +10,12 @@
 class Contacts_CoronersController extends Pas_Controller_Action_Admin
 {
 	/** Initialise the ACL and contexts
-	*/ 
+	*/
 	public function init() {
 	$this->_helper->_acl->allow('public',null);
-    $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$contexts = array('xml','json','kml');
+        $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
  			 ->addContext('kml',array('suffix' => 'kml'))
  			 ->addContext('foaf',array('suffix' => 'foaf'))
@@ -23,35 +24,21 @@ class Contacts_CoronersController extends Pas_Controller_Action_Admin
 			 ->addActionContext('index',$contexts)
              ->initContext();
 	}
-	
+
 	/** Set up data for coroners index page
-	*/ 
+	*/
 	public function indexAction() {
 	$coroners = new Coroners();
 	$coroners =  $coroners->getAll($this->_getAllParams());
 		if(in_array($this->_helper->contextSwitch()->getCurrentContext(),array('kml'))) {
 			$coroners->setItemCountPerPage(150);
 		}
-	$contexts = array('json','xml');
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$contexts)) {
-		$data = array('pageNumber' => $coroners->getCurrentPageNumber(),
-					  'total' => number_format($coroners->getTotalItemCount(),0),
-					  'itemsReturned' => $coroners->getCurrentItemCount(),
-					  'totalPages' => number_format($coroners->getTotalItemCount() / 
-					$coroners->getCurrentItemCount(),0));
-		$this->view->data = $data;
-	$ca = array();
-	foreach($coroners  as $k => $v){
-	$ca[$k] = $v;
-	}
-	$this->view->coroners = $ca;
-	} else {
 	$this->view->coroners = $coroners;
-		}
-	}
+
+        }
 
 	/** Render individual coroner profile
-	*/ 
+	*/
 	public function profileAction() {
 		if($this->_getParam('id',false)){
 			$coroners = new Coroners();
@@ -61,8 +48,8 @@ class Contacts_CoronersController extends Pas_Controller_Action_Admin
 		}
 	}
 	/** Render map of the coroners
-	*/ 
+	*/
 	public function mapAction() {
 	}
-	
+
 }

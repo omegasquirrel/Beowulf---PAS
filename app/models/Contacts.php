@@ -25,25 +25,25 @@ class Contacts extends Pas_Db_Table_Abstract {
 	$persons = $this->getAdapter();
 	$select = $persons->select()
 		->from($this->_name,array(
-		'number' => 'id', 'firstname', 'lastname', 
-		'email_one', 'email_two', 'address_1', 
-		'address_2', 'identifier', 'town', 
-		'county', 'postcode', 'country', 
-		'profile', 'telephone', 'fax', 
+		'number' => 'id', 'firstname', 'lastname',
+		'email_one', 'email_two', 'address_1',
+		'address_2', 'identifier', 'town',
+		'county', 'postcode', 'country',
+		'profile', 'telephone', 'fax',
 		'dbaseID', 'longitude', 'latitude',
 		'image'))
 		->joinLeft(array('locality' => 'staffregions'),'locality.ID = staff.region')
 		->joinLeft('instLogos',$this->_name.'.identifier = instID', array('host' => 'image'))
 		->joinLeft(array('position' => 'staffroles'),'staff.role = position.ID',
 		array('staffroles' => 'role'))
-		->where('staff.id= ?',(int)$id)
+		->where('staff.id = ?',(int)$id)
 		->group($this->_primary);
 	$data =  $persons->fetchAll($select);
 	$this->_cache->save($data, 'currentstaffmember' . $id);
 	}
 	return $data;
 	}
-    
+
      /** Get person's image
     * @param integer $id
 	* @return array
@@ -65,9 +65,9 @@ class Contacts extends Pas_Db_Table_Abstract {
 	$persons = $this->getAdapter();
 	$select = $persons->select()
 		->from('staff',array(
-		'id', 'firstname', 'lastname', 
+		'id', 'firstname', 'lastname',
 		'email_one', 'address_1', 'address_2',
-		'town', 'county', 'postcode', 
+		'town', 'county', 'postcode',
 		'telephone', 'fax', 'role'))
 		->joinLeft(array('locality' => 'staffregions'),'locality.ID = staff.region',
 		array('staffregions' => 'description'))
@@ -80,7 +80,7 @@ class Contacts extends Pas_Db_Table_Abstract {
 	}
     return $data;
     }
-	
+
 	/** Get a list of current staff to display on the map of contacts
 	* @return array
 	* @todo add caching
@@ -89,11 +89,11 @@ class Contacts extends Pas_Db_Table_Abstract {
 	$persons = $this->getAdapter();
 	$select = $persons->select()
 		->from($this->_name,array(
-		'id', 'firstname', 'lastname', 
+		'id', 'firstname', 'lastname',
 		'email_one', 'email_two', 'address_1',
 		'address_2', 'identifier', 'town',
-		'county', 'postcode', 'country', 
-		'profile', 'telephone', 'fax', 
+		'county', 'postcode', 'country',
+		'profile', 'telephone', 'fax',
 		'dbaseID', 'longitude','latitude',
 		'image','alumni'))
 		->joinLeft(array('locality' => 'staffregions'),'locality.ID = staff.region',
@@ -103,7 +103,7 @@ class Contacts extends Pas_Db_Table_Abstract {
 		->where('alumni = ?',(int)'1');
 	return $contacts = $persons->fetchAll($select);
 	}
-	
+
 	/** Get a list of current staff to display on the map of contacts
 	* @param integer $params['page']
 	* @return array
@@ -116,7 +116,7 @@ class Contacts extends Pas_Db_Table_Abstract {
 		'id', 'firstname', 'lastname',
 		'email_one', 'email_two', 'address_1',
 		'address_2', 'identifier', 'town',
-		'county', 'postcode', 'country', 
+		'county', 'postcode', 'country',
 		'profile', 'telephone', 'fax',
 		'dbaseID', 'longitude', 'latitude',
 		'image','alumni'))
@@ -127,10 +127,10 @@ class Contacts extends Pas_Db_Table_Abstract {
 		->order('alumni DESC');
 	$paginator = Zend_Paginator::factory($select);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']); 
+	$paginator->setCurrentPageNumber((int)$params['page']);
 	}
-	$paginator->setItemCountPerPage(20) 
-		->setPageRange(10); 
+	$paginator->setItemCountPerPage(20)
+		->setPageRange(10);
 	return $paginator;
 	}
 
@@ -142,7 +142,7 @@ class Contacts extends Pas_Db_Table_Abstract {
 	$persons = $this->getAdapter();
 	$select = $persons->select()
 		->from($this->_name,array(
-		'id', 'firstname', 'lastname', 
+		'id', 'firstname', 'lastname',
 		'email_one', 'address_1', 'address_2',
 		'town', 'county', 'postcode',
 		'telephone', 'fax', 'role',
@@ -156,11 +156,11 @@ class Contacts extends Pas_Db_Table_Abstract {
 	}
 	return $data;
 	}
-	
+
 	/** Get a list of current finds liaison officers
 	* @return array
 	*/
-	public function getLiaisionOfficers() {
+	public function getLiaisonOfficers() {
 	if (!$data = $this->_cache->load('liaisonOfficers')) {
 	$persons = $this->getAdapter();
 	$select = $persons->select()
@@ -181,8 +181,8 @@ class Contacts extends Pas_Db_Table_Abstract {
 	}
 	return $data;
 	}
-	
-	
+
+
 	/** Get a list of current treasure team
 	* @return array
 	*/
@@ -205,8 +205,8 @@ class Contacts extends Pas_Db_Table_Abstract {
 	}
 	return $data;
 	}
-	
-	
+
+
 	/** Get a list of current finds adviser team
     * @return array
 	*/
@@ -217,8 +217,8 @@ class Contacts extends Pas_Db_Table_Abstract {
 		->from($this->_name,array(
 			'id', 'firstname', 'lastname',
 			'email_one', 'address_1', 'address_2',
-			'town', 'county', 'postcode', 
-			'telephone', 'fax', 'role', 
+			'town', 'county', 'postcode',
+			'telephone', 'fax', 'role',
 			'longitude', 'latitude', 'image'))
 		->joinLeft(array('position' => 'staffroles'),'staff.role = position.ID',
 		array('staffroles' => 'role'))
@@ -229,8 +229,8 @@ class Contacts extends Pas_Db_Table_Abstract {
 	}
     return $data;
 	}
-	
-	
+
+
 	/** Get a list of all current staff
     * @return array
 	*/
@@ -242,12 +242,12 @@ class Contacts extends Pas_Db_Table_Abstract {
 			'id', 'firstname', 'lastname',
 			'email_one', 'address_1','address_2',
 			'town', 'county', 'postcode',
-			'telephone', 'fax', 'role', 
-			'longitude', 'latitude', 'created', 
+			'telephone', 'fax', 'role',
+			'longitude', 'latitude', 'created',
 			'updated', 'profile'))
 		->joinLeft(array('locality' => 'staffregions'),'locality.regionID = staff.region',
 		array('staffregions' => 'description'))
-		->joinLeft(array('position' => 'staffroles'),'staff.role = position.ID', 
+		->joinLeft(array('position' => 'staffroles'),'staff.role = position.ID',
 		array('staffroles' => 'role'))
 		->order($this->_name.'.id')
 		->where('alumni = ?',(int)1);
@@ -257,7 +257,7 @@ class Contacts extends Pas_Db_Table_Abstract {
     return $data;
 	}
 
-	
+
 	/** Get a list of all current staff
     * @return array
 	*/
@@ -275,7 +275,7 @@ class Contacts extends Pas_Db_Table_Abstract {
 	}
     return $data;
 	}
-	
+
 	public function getNameEmail($id){
 	if (!$data = $this->_cache->load('staffemail' . $id)) {
 	$persons = $this->getAdapter();
@@ -287,9 +287,9 @@ class Contacts extends Pas_Db_Table_Abstract {
 	$data =  $persons->fetchAll($select);
 	$this->_cache->save($data, 'staffemail' . $id);
 	}
-    return $data;	
+    return $data;
 	}
-	
+
 	/** Get a dropdown list of attending staff
 	* @return array
 	*/
@@ -301,9 +301,9 @@ class Contacts extends Pas_Db_Table_Abstract {
 	return $persons->fetchPairs($select);
 	}
 
-	
+
 	/** Retrieve the owner of a find record
-	* @param integer $findID the find record ID number 
+	* @param integer $findID the find record ID number
 	* @return array
 	*/
 	public function getOwner($findID) {
@@ -318,6 +318,6 @@ class Contacts extends Pas_Db_Table_Abstract {
 	$accounts = $users->fetchAll($select);
 	$this->_cache->save($accounts, 'owneroffind'.$findID);
 	}
-	return $accounts; 	
+	return $accounts;
 	}
 }

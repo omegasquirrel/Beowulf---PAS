@@ -165,4 +165,16 @@ class Emperors extends Pas_Db_Table_Abstract {
 	}
 	return  $data;
 	}
+
+        public function getEmperorsTimeline(){
+         if (!$data = $this->_cache->load('empsTimeline')) {
+		$emperors = $this->getAdapter();
+		$select = $emperors->select()
+                ->from('emperors')
+		   ->order('date_from');
+        $data = $emperors->fetchAll($select);
+    $this->_cache->save($data, 'empsTimeline');
+	}
+	return  $data;
+        }
 }

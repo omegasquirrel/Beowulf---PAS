@@ -11,29 +11,29 @@
  * @uses viewHelper Pas_View_Helper
  */
 class Pas_View_Helper_AmazonDetails {
-	
+
 	protected $_config;
-	
+
 	protected $_cache;
-	
-	protected $_amazon; 
-	
+
+	protected $_amazon;
+
 	/** Construct the object
-	 * 
+	 *
 	 */
 	public function __construct(){
 		$this->_cache = Zend_Registry::get('cache');
 		$this->_config = Zend_Registry::get('config');
 		$this->_amazon = $this->_config->webservice->amazon->toArray();
 	}
-	
+
 	/** Generate the amazon data call using ISBN number
 	 * @param string $isbn
 	 */
 	public function amazonDetails($isbn) {
 	if(!is_null($isbn) && is_string($isbn) && strlen($isbn) < 11){
 	return $this->getAmazonData($isbn);
-	}	
+	}
 	}
 
 	/** Get the amazon data using Zend Service Amazon
@@ -44,16 +44,20 @@ class Pas_View_Helper_AmazonDetails {
 	$key = md5($isbn);
 	if (!($this->_cache->test($key))) {
 	$amazon = new Zend_Service_Amazon($this->_amazon['apikey'],$this->_amazon['country'],$this->_amazon['secretkey']);
+
 	$book = $amazon->itemLookup($isbn,array('AssociateTag' => $this->_amazon['AssociateTag'], 'ResponseGroup' => 'Large'));
+
 	$this->_cache->save($book);
 	} else {
 	$book = $this->_cache->load($key);
 	}
+
+
 	return $this->parseData($book);
 	}
 
 	/** Parse the response
-	 * 
+	 *
 	 * @param object $book Amazon response object
 	 */
 	protected function parseData($book){
@@ -63,18 +67,18 @@ class Pas_View_Helper_AmazonDetails {
 		return false;
 	}
 	}
-	
+
 	/** Build the HTML for rendering
-	 * 
+	 *
 	 * @param object $book
-	 */	
+	 */
 	protected function buildHtml($book){
 	$html = '<div><h3>Amazon Book Data</h3><ul>';
 	if(array_key_exists('MediumImage',$book) && (!is_null($book->MediumImage))){
-	$html .= '<img src="' . $book->MediumImage->Url . '" alt="Cover image for ' . $book->Title . '" height="' 
+	$html .= '<img src="' . $book->MediumImage->Url . '" alt="Cover image for ' . $book->Title . '" height="'
 	. $book->MediumImage->Height . '" width="' . $book->MediumImage->Width . '" class="amazonpicture" />';
 	}
-	$html .= '<li><a href="' . $book->DetailPageURL . '" title="View full details at Amazon"> ' . $book->Title 
+	$html .= '<li><a href="' . $book->DetailPageURL . '" title="View full details at Amazon"> ' . $book->Title
 	. '</a></li> ';
 	$html .= '<li>Number of pages: ' . $book->NumberOfPages . '</li>';
 	$html .= '<li>Total new copies available: ' . $book->Offers->TotalNew . '</li>';
@@ -99,7 +103,7 @@ class Pas_View_Helper_AmazonDetails {
 	$html .= '</ul>';
 	$html .= '<h3>Amazon editoral review</h3>';
 	foreach($book->EditorialReviews as $review){
-		$html .= '<p>' . $review->Content . '</p>';	
+		$html .= '<p>' . $review->Content . '</p>';
 	}
 	}
 	if($book->SimilarProducts){
@@ -110,7 +114,7 @@ class Pas_View_Helper_AmazonDetails {
 	}
 	}
 	$html .= '</ul>';
-	$html .= '</div>';	
+	$html .= '</div>';
 	return $html;
 	}
 }

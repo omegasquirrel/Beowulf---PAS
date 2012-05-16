@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying Early Medieval coin types page
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -13,42 +13,27 @@ class Earlymedievalcoins_TypesController extends Pas_Controller_Action_Admin {
 	*/
 	public function init() {
 	$this->_helper->_acl->allow(null);
+        $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()
 		->setAutoDisableLayout(true)
 		->addActionContext('index', array('xml','json'))
 		->addActionContext('type', array('xml','json'))
 		->initContext();
     }
-    
+
 	/** Internal period number for querying the database
 	*/
 	protected $_period = '47';
-	
-		
+
+
    	/** Set up the index page for early medieval types.
 	*/
 	public function indexAction() {
 	$type = new MedievalTypes();
-	$types = $type->getTypesByPeriod($this->_period,$this->_getParam('page'));
-	$contexts = array('json','xml');
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$contexts)) {
-	$data = array('pageNumber' => $types->getCurrentPageNumber(),
-				  'total' => number_format($types->getTotalItemCount(),0),
-				  'itemsReturned' => $types->getCurrentItemCount(),
-				  'totalPages' => number_format($types->getTotalItemCount()
-				  /$types->getCurrentItemCount(),0));
-	$this->view->data = $data;
-	$typesa = array();
-	foreach($types as $r => $v){
-		$typesa[$r] = $v;
+	$this->view->types = $type->getTypesByPeriod($this->_period,$this->_getParam('page'));
 	}
-		$this->view->types = $typesa;
-	} else {
-		$this->view->types = $types;
-	}
-	}
-	
-		
+
+
    	/** Set up the individual types
 	*/
 	public function typeAction() {

@@ -97,7 +97,7 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 	return $rulers->fetchAll($select);
     }
 
-    
+
 	/** Get all the post medieval types attached to a ruler
 	* @param integer $rulerID
 	* @return array
@@ -113,7 +113,7 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 		->order('medievaltypes.id');
 	return $rulers->fetchAll($select);
     }
-    
+
     /** Get all the medieval types attached to a ruler as dropdown ket value pairs
 	* @param integer $rulerID
 	* @return array
@@ -152,12 +152,17 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 	* @todo add cache
 	*/
 	public function getCoinTypeCategory($catID)  {
+            $key = md5('cointypeCat' . $catID);
+            if (!$data = $this->_cache->load($key)) {
 	$rulers = $this->getAdapter();
 	$select = $rulers->select()
 		->from($this->_name, array('id', 'type', 'datefrom', 'dateto'))
 		->where('categoryID = ?', (int)$catID)
 		->order($this->_primary);
-	return $rulers->fetchAll($select);
+	$data =  $rulers->fetchAll($select);
+        $this->_cache->save($data, $key);
+    }
+    return $data;
     }
 
     /** Get all the medieval types paginated by period

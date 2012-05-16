@@ -115,7 +115,8 @@ class Zend_Service_Amazon
         $options = $this->_prepareOptions('ItemSearch', $options, $defaultOptions);
         $client->getHttpClient()->resetParameters();
         $response = $client->restGet('/onca/xml', $options);
-
+        Zend_Debug::dump($response->getBody());
+        exit;
         if ($response->isError()) {
             /**
              * @see Zend_Service_Exception
@@ -156,7 +157,8 @@ class Zend_Service_Amazon
         $options['ItemId'] = (string) $asin;
         $options = $this->_prepareOptions('ItemLookup', $options, $defaultOptions);
         $response = $client->restGet('/onca/xml', $options);
-
+//        Zend_Debug::dump($response->getBody());
+//        exit;
         if ($response->isError()) {
             /**
              * @see Zend_Service_Exception
@@ -171,7 +173,7 @@ class Zend_Service_Amazon
         $dom->loadXML($response->getBody());
         self::_checkErrors($dom);
         $xpath = new DOMXPath($dom);
-        $xpath->registerNamespace('az', 'http://webservices.amazon.com/AWSECommerceService/2005-10-05');
+        $xpath->registerNamespace('az', 'http://webservices.amazon.com/AWSECommerceService/2011-08-01');
         $items = $xpath->query('//az:Items/az:Item');
 
         if ($items->length == 1) {

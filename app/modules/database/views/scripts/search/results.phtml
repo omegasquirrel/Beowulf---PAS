@@ -1,17 +1,12 @@
 <h2>Search results</h2>
 <?php if ($this->results): ?>
-<p><a href="<?php echo $this->url(array(
-	'module' => 'database',
-	'controller' => 'search'),
-	'default',true);?>">Back to simple search</a>
-| <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'advanced'),'default',true);?>">Back to advanced search</a>
- | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'email'),'default',true);?>">Email Search</a> |
- <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'save'),'default',true);?>">Save search</a></p>
- <?php $url = Zend_Controller_Front::getInstance()->getRequest()->getParams();
- 
+<?php echo $this->emailSaveSearch();?>
+ <?php
+ $url = Zend_Controller_Front::getInstance()->getRequest()->getParams();
  unset($url['page']);
  $url['action'] = 'map';
  ?>
+
  <p><a href="<?php echo $this->url($url,null,true);?>" class="btn-small btn">Map results<i class="icon-map-marker"></i></a> <?php echo $this->searchExportTools();?></p>
 
 <div class="row-fluid">
@@ -32,7 +27,7 @@
         <div class="span3">
         <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
         <?php echo $this->paginationControl($this->paginator,'elastic','structure/paginationSolr.phtml'); ?>
-        
+
         <?php echo $this->facetCreator($this->facets); ?>
 		</div>
         <?php else:?>

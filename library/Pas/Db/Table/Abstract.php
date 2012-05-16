@@ -113,8 +113,8 @@ class Pas_Db_Table_Abstract
 //    $this->_purgeCache();
 	}
 
-	public function fetchPairs($sql, $bind = array()) {
-	$id = md5($sql);
+    public function fetchPairs($sql, $bind = array()) {
+    $id = md5($sql);
 
     if ((!($this->_cache->test($id))) || (!$this->cache_result)) {
       $result = parent::fetchPairs($sql, $bind);
@@ -124,5 +124,8 @@ class Pas_Db_Table_Abstract
     } else {
       return $this->_cache->load($id);
     }
-	}
+    }
+
+
+    
 }

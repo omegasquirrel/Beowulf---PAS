@@ -64,4 +64,16 @@ class RomanCoins_EmperorsController extends Pas_Controller_Action_Admin {
 	}
 	}
 
+        public function timelineAction() {
+                    $this->_helper->layout->disableLayout();
+
+        }
+
+        public function dataAction(){
+
+
+        $emps = new Emperors();
+        $this->view->emperors = $emps->getEmperorsTimeline();
+        }
+
 }

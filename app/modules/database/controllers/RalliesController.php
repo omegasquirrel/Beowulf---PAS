@@ -1,6 +1,6 @@
 <?php
 /** Controller for CRUD of rallies recorded by the Scheme. Note not attended!
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,14 +8,15 @@
 * @license    GNU General Public License
 */
 class Database_RalliesController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_cache, $_config, $_rallies;
 	/** Initialise the ACL and contexts
-	*/	
+	*/
 	public function init() {
 	$this->_helper->_acl->allow('public',array('index','rally','map'));
 	$this->_helper->_acl->deny('public',array('addflo','delete','deleteflo'));
 	$this->_helper->_acl->allow('flos',null);
+        $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()
 		->setAutoDisableLayout(true)
 		->addContext('csv',array('suffix' => 'csv'))
@@ -30,10 +31,10 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$this->_rallies = new Rallies();
     }
 	/** Set up the url for redirect
-	*/	
+	*/
 	const URL = '/database/rallies/';
 	/** Create an array of years
-	 * 
+	 *
 	 * @return array year list
 	*/
 	private function years(){
@@ -44,32 +45,15 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 		foreach($years as $key => $value) {
 		$yearslist[] = array('year' => $value);
 	}
-	return $yearslist;	
+	return $yearslist;
 	}
 	/** Index page for the list of rallies.
-	*/	
-	public function indexAction() {	
-	$rallies = $this->_rallies->getRallyNames((array)$this->_getAllParams());	
-	if(count($rallies)){
-	$data = array(
-	'pageNumber' => $rallies->getCurrentPageNumber(),
-	'total' => number_format($rallies->getTotalItemCount(),0),
-	'itemsReturned' => $rallies->getCurrentItemCount(),
-	'totalPages' => number_format($rallies->getTotalItemCount()/$rallies->getCurrentItemCount(),0));
-	$this->view->data = $data;
-	}
-	$contexts = array('json');
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$contexts)) {
-	$ralliesa = array();
-	foreach($rallies as $r => $v){
-	$ralliesa['rally'][$r] = $v;
-	}
-	$this->view->rallies = $ralliesa;
-	} else {
+	*/
+	public function indexAction() {
+	$rallies = $this->_rallies->getRallyNames((array)$this->_getAllParams());
 	$this->view->rallies = $rallies;
 	$this->view->years = $this->years();
 	}
-	}	
 	/** Individual rally details
 	*/
 	public function rallyAction() {
@@ -123,7 +107,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$insert = $this->_rallies->insert($insertData);
 	$this->_cache->remove('rallydd');
 	$this->_redirect(self::URL . 'rally/id/' . $insert);
-	$this->_flashMessenger->addMessage('Details for ' . $form->getValue('rally_name') 
+	$this->_flashMessenger->addMessage('Details for ' . $form->getValue('rally_name')
 	. ' have been created!');
 	} else  {
 	$form->populate($formData);
@@ -131,7 +115,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit individual rally details
-	*/	
+	*/
 	public function editAction() {
 	if($this->_getParam('id',false)){
 	$form = new RallyForm();
@@ -234,7 +218,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Add a flo to a rally as attending
-	*/	
+	*/
 	public function addfloAction() {
 	if($this->_getParam('id',false)) {
 	$this->view->jQuery()->addJavascriptFile($this->view->baseUrl() . '/js/JQuery/ui.datepicker.js',
@@ -258,7 +242,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$insert = $rallies->insert($insertData);
 	$this->_redirect(self::URL . 'rally/id/' . $rallyID);
 	$this->_flashMessenger->addMessage('Finds Liaison Officer added to a rally');
-	} else 
+	} else
 	{
 	$form->populate($formData);
 	}
@@ -267,7 +251,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	/** Delete an attending flo
 	*/
 	public function deletefloAction() {
@@ -296,7 +280,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Display a map of attended rallies
-	*/	
+	*/
 	public function mapAction() {
 	$this->view->apikey = $this->_config->webservice->googlemaps->apikey;
 	}

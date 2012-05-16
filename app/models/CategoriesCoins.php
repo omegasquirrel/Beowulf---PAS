@@ -10,11 +10,11 @@
 * @since 		22 September 2011
 */
 
-class CategoriesCoins 
+class CategoriesCoins
 	extends Pas_Db_Table_Abstract {
-	
+
 	/** Set the table name
-	 */ 
+	 */
 	protected $_name = 'categoriescoins';
 
 	/** Set the primary key
@@ -62,16 +62,16 @@ class CategoriesCoins
 	public function getPeriodPostMed() {
 	$select = $this->select()
 		->from($this->_name, array('id', 'category'))
-		->where('periodID = ? ',(int)36)
+		->where('periodID = ? ', (int)36)
 		->order('id');
 	$options = $this->getAdapter()->fetchPairs($select);
 	return $options;
     }
 
 	/** Get all valid categories
-	* @return array 
+	* @return array
 	*/
-    
+
 	public function getCategories($type) {
 	$cats = $this->getAdapter();
 	$select = $cats->select()
@@ -82,11 +82,11 @@ class CategoriesCoins
 		->limit(1);
 	return $cats->fetchAll($select);
     }
-    
-    
+
+
     /** Get all valid categories by period
-    * @param integer $period 
-	* @return array 
+    * @param integer $period
+	* @return array
 	*/
 	public function getCategoriesPeriod($period) {
 	$cats = $this->getAdapter();
@@ -97,10 +97,10 @@ class CategoriesCoins
 		->order('id');
 	return $cats->fetchAll($select);
     }
-	
+
      /** Get all valid categories by period for the administration interface
-    * @param integer $period 
-	* @return array 
+    * @param integer $period
+	* @return array
 	*/
 	public function getCategoriesPeriodAdmin($period) {
 	$cats = $this->getAdapter();
@@ -114,47 +114,52 @@ class CategoriesCoins
     }
 
 	/** Get all categories for a dropdown listing
-	* @return array 
+	* @return array
 	*/
 	public function getCategoriesAll() {
 	$cats = $this->getAdapter();
 	$select = $cats->select()
-		->from($this->_name, array('id','term' => 'category'))
+		->from($this->_name, array('id', 'term' => 'category'))
 		->order($this->_primary);
 	return $cats->fetchPairs($select);
     }
-    
+
      /** Get category by ID number
     * @param integer $id
-	* @return array 
+	* @return array
 	*/
 	public function getCategory($id) {
 	$cats = $this->getAdapter();
 	$select = $cats->select()
 		->from($this->_name, array('id', 'term' => 'category'))
-		->where('id = ?',(int)$id);
+		->where('id = ?', (int)$id);
 	return $cats->fetchAll($select);
     }
-    
+
      /** Get all valid rulers for a specific category
     * @param integer $categoryID
-	* @return array 
+	* @return array
 	*/
 	public function getMedievalRulersToType($categoryID) {
+    $key = md5('medtyperuler' . $categoryID);
+            if (!$data = $this->_cache->load($key)) {
 	$cats = $this->getAdapter();
 	$select = $cats->select()
 		->from($this->_name, array('id','term' => 'category'))
 		->joinLeft('medievaltypes','medievaltypes.categoryID = categoriescoins.ID', array())
-		->joinLeft('rulers','rulers.id = medievaltypes.rulerID', 
+		->joinLeft('rulers','rulers.id = medievaltypes.rulerID',
 		array('id', 'issuer', 'date1', 'date2'))
 		->where('medievaltypes.categoryID = ?',(int)$categoryID)
 		->group('rulers.id');
-	return $cats->fetchAll($select);
+	$data =  $cats->fetchAll($select);
+        $this->_cache->save($data, $key);
+    }
+    return $data;
 	}
 
 	/** Get all valid categories for the sitemap by period
     * @param integer $period
-	* @return array 
+	* @return array
 	*/
 	public function getCatsSiteMap($period) {
 	if (!$data = $this->_cache->load('sitemapcat'.$period)) {
@@ -168,6 +173,6 @@ class CategoriesCoins
 	}
 	return  $data;
 	}
-   
+
 }
 

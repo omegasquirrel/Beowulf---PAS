@@ -84,6 +84,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->_helper->_acl->allow('member',NULL);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     $this->_cs = $this->_helper->contextSwitch();
+    $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
     $this->_cs->setAutoDisableLayout(true)
             ->addContext('csv',array('suffix' => 'csv'))
             ->addContext('kml',array('suffix' => 'kml'))
@@ -92,7 +93,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('rdf',array('suffix' => 'rdf'))
             ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
-            ->addActionContext('record', array('csv','pdf','qrcode'))
+            ->addActionContext('record', array('csv','pdf','qrcode', 'json'))
             ->addActionContext('index', array('rss','atom'))
             ->initContext();
     $this->_finds = new Finds();

@@ -174,20 +174,20 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 
 	$this->view->form = $form;
 	if($this->getRequest()->isPost()){
-    $this->_helper->geoFormLoaderOptions($this->getRequest()->getPost());
-    if ($form->isValid($this->getRequest()->getPost())) {
+        $this->_helper->geoFormLoaderOptions($this->getRequest()->getPost());
+        if ($form->isValid($this->getRequest()->getPost())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
 	} else {
-    $this->_helper->geoFormLoaderOptions($form->getValues());
+        $this->_helper->geoFormLoaderOptions($form->getValues());
 	$form->populate($form->getValues());
 	}
-    }  else {
-    $this->_helper->geoFormLoaderOptions($form->getValues());
-    $form->populate($form->getValues());
-    }
+        }  else {
+        $this->_helper->geoFormLoaderOptions($form->getValues());
+        $form->populate($form->getValues());
+        }
 	}
 	/** Display the greek and roman provincial pages
 	*/
@@ -250,12 +250,19 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
+
+
 	/** Email a search result
 	*/
 	public function emailAction() {
 	$user = $this->_helper->identity->getPerson();
+        if(!$user->id){
+            $userid = 3;
+        } else {
+            $userid = $user->id;
+        }
 	$lastsearch = $this->_searches->fetchRow($this->_searches->select()->where('userid = ?',
-	$user->id)->order('id DESC'));
+	$userid)->order('id DESC'));
 	if($lastsearch) {
 	$querystring = unserialize($lastsearch->searchString);
 	$params = array();
@@ -322,20 +329,22 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 
 
 	public function postcodeAction(){
-         $form = new PostcodeForm();
+        $form = new PostcodeForm();
+        $form->postcode->setLabel('Postcode to search on: ');
 	$this->view->form = $form;
-	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	if($this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost())){
 	if ($form->isValid($form->getValues())) {
         $postcode = $form->getValue('postcode');
-        $area = new Pas_Geo_Edina_PostCodeSearch();
-        $area->setPostCode($postcode);
+        $area = new Pas_Geo_Mapit_Postcode();
+        $area->setPartialPostCode($postcode);
 
-        $xy = $area->get()->features[0]->bbox;
-
+        $xy = $area->get();
         $params = array(
-        'lat' => $xy[1],
-        'lon' => $xy[0],
-        'd' => $form->getValue('distance'));
+        'lat' => $xy->wgs84_lat,
+        'lon' => $xy->wgs84_lon,
+        'd' => $form->getValue('distance'),
+        'postcode' => $form->getValue('postcode')
+        );
 
 	$this->_flashMessenger->addMessage('Your search is complete');
 	$this->_helper->Redirector->gotoSimple('results','search','database',$params);
@@ -353,19 +362,22 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
-    $search->setFacets(array(
+        $search->setFacets(array(
     	'objectType','county','broadperiod',
     	'institution', 'rulerName', 'denominationName', 'mintName',
     	'workflow'));
 	$search->setParams($params);
 	$search->execute();
-    $this->view->facets = $search->_processFacets();
+        $this->view->facets = $search->_processFacets();
 	$this->view->paginator = $search->_createPagination();
 	$this->view->results = $search->_processResults();
+        $queries = new Searches();
+        $queries->insertResults(serialize($params));
 	}
 
 	public function mapAction(){
 	}
+
 
         public function spatialAction(){
         $form = new FindFilterForm();

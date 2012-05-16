@@ -36,46 +36,48 @@
  		$this->finds['0']['id'],
                 $this->finds['0']['secwfstage']
                 );
-       	echo $this->partialLoop('partials/database/recorddescriptive.phtml',$this->finds);
+       	echo $this->partial('partials/database/recorddescriptive.phtml',$this->finds['0']);
 	echo $this->partial('partials/database/treasurefinddetails.phtml', $this->finds['0']);
 	echo $this->partial('partials/database/temporal.phtml', $this->temporals['0']);
 	if (count($this->findsdata) > 0) {
-	echo $this->partialLoop('partials/database/dimensions.phtml', $this->findsdata);
+	echo $this->partial('partials/database/dimensions.phtml', $this->findsdata['0']);
 	}
 
         echo $this->partial('partials/database/datefound.phtml',$this->finds['0']);
 
         if (count($this->rallyfind)){
-            echo $this->partialLoop('partials/database/rallyfind.phtml', $this->rallyfind);
+        echo $this->partial('partials/database/rallyfind.phtml', $this->rallyfind['0']);
         }
-
-        if (count($this->peoples) > 0):
         ?>
-
+        <?php if (count($this->peoples) > 0): ?>
         <h3>Personal details</h3>
-	<?php echo $this->partialLoop('partials/database/personal.phtml', $this->peoples) ?>
+	<?php echo $this->partial('partials/database/personal.phtml', $this->peoples['0']) ?>
 	<?php endif;?>
 
+        <?php if ($this->findotherrefs){
+        echo $this->partial('partials/database/otherrefs.phtml', $this->findotherrefs['0']);
+        } ?>
+
         <?php
-        if ($this->findotherrefs){
-            echo $this->partialLoop('partials/database/otherrefs.phtml', $this->findotherrefs);
-        }
         if (count($this->findsmaterial)){
-            echo $this->partialLoop('partials/database/materials.phtml', $this->findsmaterial);
+        echo $this->partial('partials/database/materials.phtml', $this->findsmaterial['0']);
         }
+        ?>
+
+        <?php
         echo $this->coinDataDisplay(
             $this->finds['0']['objecttype'],
             $this->finds['0']['broadperiod'],
             $this->coins,
             $this->finds);
-
-        if(count($this->coinrefs)):?>
+        ?>
+        <?php if(count($this->coinrefs)):?>
         <div id="coinrefslinked">
         <h3>Coin references</h3>
         <ul>
-        <?php echo $this->partialLoop('partials/numismatics/coinrefs.phtml',$this->coinrefs);?>
+        <?php echo $this->partial('partials/numismatics/coinrefs.phtml',$this->coinrefs['0']);?>
         </ul>
-        
+
         <?php
         echo $this->CoinRefAddLink(
                 $this->finds['0']['old_findID'],
@@ -86,21 +88,21 @@
                 $this->finds['0']['createdBy']);
         ?>
         </div>
-<?php else:?>
-<div id="coinrefs">
-<h3>Coin references</h3>
-<p>No coin references available.</p>
-<?php
-echo $this->CoinRefAddLink(
-        $this->finds['0']['old_findID'],
-        $this->finds['0']['id'],
-        $this->finds['0']['broadperiod'],
-        $this->finds['0']['secuid'],
-        $this->finds['0']['id'],
-        $this->finds['0']['createdBy']);
-?>
-</div>
-<?php endif;?>
+        <?php else:?>
+        <div id="coinrefs">
+        <h3>Coin references</h3>
+        <p>No coin references available.</p>
+        <?php
+        echo $this->CoinRefAddLink(
+                $this->finds['0']['old_findID'],
+                $this->finds['0']['id'],
+                $this->finds['0']['broadperiod'],
+                $this->finds['0']['secuid'],
+                $this->finds['0']['id'],
+                $this->finds['0']['createdBy']);
+        ?>
+        </div>
+        <?php endif;?>
 
 	</div>
 
@@ -118,12 +120,14 @@ echo $this->CoinRefAddLink(
 		echo $this->ImageLink($this->finds['0']['old_findID'],$this->finds['0']['id'],$this->finds['0']['secuid'],$this->finds['0']['createdBy']);
 		?>
 	</div>
-<div class="span3 well" id="qrcode">
-<h3>QR barcode</h3>
-<img class="flow" src="http://chart.apis.google.com/chart?chs=150x150&amp;cht=qr&amp;chl=<?php echo $this->CurUrl();?>" alt="QR code for this URL" width="150" height="150" style="float:right;"/>
-<p>The barcode on the right is a unique identifier for this record. If your phone has scanning software installed, then this can be used for sharing or you can print it off and attach it to the object.</p>
-</div>
-</div>
+
+        <div class="span3 well" id="qrcode">
+        <h3>QR barcode</h3>
+        <img class="flow" src="http://chart.apis.google.com/chart?chs=150x150&amp;cht=qr&amp;chl=<?php echo $this->CurUrl();?>" alt="QR code for this URL" width="150" height="150" style="float:right;"/>
+        <p>The barcode on the right is a unique identifier for this record. If your phone has scanning software installed, then this can be used for sharing or you can print it off and attach it to the object.</p>
+        </div>
+
+        </div>
 
 <div class="row-fluid">
 <?php if (count($this->findspots)) : ?>
@@ -209,11 +213,10 @@ echo $this->form;
 ?>
 
 </div>
-<div class="row-fluid">
-<?php
 
-	echo $this->partial('partials/database/recordaudit.phtml',$this->finds['0']);
-?>
+<!-- Start of the Audit section -->
+        <div class="row-fluid">
+        <?php echo $this->partial('partials/database/recordaudit.phtml',$this->finds['0']); ?>
 
 
 	<ul id="tab" class="nav nav-tabs">
@@ -233,5 +236,7 @@ echo $this->form;
 			</div>
           </div>
 	</div>
+<!-- end of audit section -->
+
 </div>
 </div>

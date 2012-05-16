@@ -1,9 +1,9 @@
-<?php 
+<?php
 $site = Zend_Registry::get('siteurl');
-$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();	
-$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();	
+$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
-$contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch');	
+$contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch');
 $param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
 $contexts = $contextSwitch->getContexts();
 
@@ -14,7 +14,7 @@ $denominations->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
 $meta->appendChild( $dom->createElement('count', $this->denominations->getTotalItemCount()));
 $formats = $dom->createElement('formats');
-$meta->appendChild($formats);	
+$meta->appendChild($formats);
 foreach ($contexts as $k => $v){
 $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param,'format' => $k),NULL,true)  ));
@@ -25,15 +25,15 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 $denominationsElem = $dom->createElement('denominations');
 $denominations->appendChild($denominationsElem);
 // set it's attribute
-foreach($this->denominations as $d){
-$d = (object)$d;
+ Zend_Debug::dump($this->denominations);
+    exit;
+foreach($this->denominations as $denomination){
+    Zend_Debug::dump($denomination);
+    exit;
 $denominationElem = $dom->createElement('denomination');
-$denominationElem->appendChild( $dom->createElement('id', $d->id));
-$denominationElem->appendChild( $dom->createElement('name', $d->denomination));
-$denominationElem->appendChild( $dom->createElement('description',$d->description));
-$denominationElem->appendChild( $dom->createElement('material',$d->old_material));
-$denominationElem->appendChild( $dom->createElement('url',$site . $this->url(array('module' => $module,
-'controller' => $controller,'action' => 'denomination','id' => $d->id),NULL,true) ));
+foreach($denomination as $k => $v) {
+    $denominationElem->appendChild( $dom->createElement($k, $v));
+}
 $denominationsElem->appendChild( $denominationElem );
 }
 

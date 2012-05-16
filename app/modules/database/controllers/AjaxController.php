@@ -280,9 +280,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    public function kmlAction(){
        $exporter = new Pas_Exporter_Generate();
        $exporter->setFormat('kml');
-       $results = $exporter->execute();
-       Zend_Debug::dump($results);
-       exit;
+       $this->view->results = $exporter->execute();
 
        $filename = 'KMLExport_' . Zend_Date::now()->toString('yyyyMMddHHmmss') . '.kml';
 

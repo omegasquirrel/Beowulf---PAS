@@ -1,6 +1,6 @@
 <?php
 /** Controller for getting vacancy data
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -10,25 +10,27 @@
 class GetInvolved_VacanciesController extends Pas_Controller_Action_Admin
 {
 	/** Initialise the ACL and contexts
-	*/ 
+	*/
     public function init() {
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-		$this->_helper->acl->allow('public',null);
-		$this->_helper->contextSwitch()
-			 ->setAutoDisableLayout(true)
-  			 ->addContext('rss',array('suffix' => 'rss'))
-			 ->addContext('atom',array('suffix' => 'atom'))
-			 ->addActionContext('index', array('xml','json','rss','atom'))
- 			 ->addActionContext('archives', array('xml','json'))
-  			 ->addActionContext('vacancy', array('xml','json'))
-             ->initContext();
-	    }
-		
+	$this->_helper->acl->allow('public',null);
+        $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+        $this->_helper->contextSwitch()
+                ->setAutoDisableLayout(true)
+                ->addContext('rss',array('suffix' => 'rss'))
+                ->addContext('atom',array('suffix' => 'atom'))
+                ->addActionContext('index', array('xml','json','rss','atom'))
+                ->addActionContext('archives', array('xml','json'))
+                ->addActionContext('vacancy', array('xml','json'))
+                ->initContext();
+
+                }
+
 	/** Render the index pages and rss
-	*/ 
+	*/
 	public function indexAction() {
 		if(in_array($this->_helper->contextSwitch()->getCurrentContext(),array('rss','atom'))) {
-		 $this->_helper->layout->disableLayout();   
+		 $this->_helper->layout->disableLayout();
 		$vacs = new Vacancies();
 		$vacs = $vacs->getJobs(25);
 		$feedArray = array(
@@ -65,15 +67,15 @@ class GetInvolved_VacanciesController extends Pas_Controller_Action_Admin
 	}
 
 	/** Render the archives section
-	*/ 
+	*/
 	public function archivesAction(){
 		$archives = new Vacancies();
 		$this->view->archives = $archives->getArchiveJobs($this->_getParam('page'));
 	}
 
 	/** Render a vacancy's details
-	* @throws Pas_Exception_Param if missing parameter on URL. 
-	*/ 
+	* @throws Pas_Exception_Param if missing parameter on URL.
+	*/
 	public function vacancyAction() {
 		if($this->_getParam('id',false)){
 			$vacs = new Vacancies();

@@ -1,0 +1,18 @@
+<?php
+$this->metaBase('A timeline of Roman emperors',null,'roman,emperors,timeline');
+$this->headTitle('A timeline of Roman emperors');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/timeline.js',$type = 'text/javascript');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/timeline.css', $type='screen');
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+?>
+<h2>A timeline of Roman Emperors</h2>
+<div id="timeline"></div>
+<?php $this->jQuery()->javascriptCaptureStart() ?>
+	$(document).ready(function() {
+		var timeline = new VMM.Timeline();
+		timeline.init("http://veritetimeline.appspot.com/latest/examples/kitchen-sink.json");
+	});
+<?php $this->jQuery()->javascriptCaptureEnd() ?>

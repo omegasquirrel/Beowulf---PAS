@@ -1,0 +1,13 @@
+<?php
+$paginator = $this->paginator;
+$results = array();
+foreach($this->results as $result){
+	$results[] = $result;
+}
+
+$meta = array(
+    'currentPage' => $paginator->getCurrentPageNumber(),
+    'totalResults' => $paginator->getTotalItemCount(),
+    'resultsPerPage' => $paginator->getTotalItemCount(),
+    'totalPages' => $paginator->getTotalItemCount()/$paginator->getTotalItemCount());
+echo Zend_Json::prettyPrint(Zend_Json::encode(( array('meta' => $meta, 'results' => $results, 'facets' => $this->facets))));

@@ -46,7 +46,7 @@ class Pas_View_Helper_MapFacetCreator extends Zend_View_Helper_Abstract {
 	$facets = $search->_processFacets();
         $total = $search->getNumber();
     if(is_array($facets)){
-        $html = '<p>Total results available:' . number_format($total) . '<br />These results might differ to the expected results. We only allow you to see records available to you</p>';
+        $html = '<p>Total results available: ' . number_format($total) . '<br />These results might differ to the expected results. We only allow you to see records available to you</p>';
         $html .= '<h3>Search facets</h3>';
         foreach($facets as $facetName => $facet){
             $html .= $this->_processFacet($facet, $facetName);

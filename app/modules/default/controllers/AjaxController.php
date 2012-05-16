@@ -10,7 +10,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function init(){
 	$this->_helper->acl->allow('public',null);
 	$this->_helper->layout->disableLayout();
-	$this->_helper->viewRenderer->setNoRender();
+//	$this->_helper->viewRenderer->setNoRender();
 	$this->_cache = Zend_Registry::get('rulercache');
         $this->_user = $this->_helper->identity->getPerson();
         $this->_places = new Places();
@@ -820,5 +820,10 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	throw new Exception('No comment ID has been specified',500);
 	}
 	}
+
+        public function emperorsAction(){
+        $emps = new Emperors();
+        $this->view->emperors = $emps->getEmperorsTimeline();
+        }
 
 }
