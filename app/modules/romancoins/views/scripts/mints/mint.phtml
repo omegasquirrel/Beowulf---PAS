@@ -1,8 +1,14 @@
-<?php echo $this->partialLoop('partials/numismatics/mintDetail.phtml',$this->rommints);?>
+<?php 
+echo $this->partialLoop('partials/numismatics/mintDetail.phtml',$this->rommints);
+?>
 <h3>Issuers</h3>
-<p>This mint was active under the following issuers and we have recorded <?php echo $this->partialLoop('partials/countObjects.phtml',$this->counts);?>.</p>
+<p>This mint was active under the following issuers:</p>
 <ul id="related">
-<?php echo $this->partialLoop('partials/numismatics/issuersRomanMints.phtml',$this->actives);?>
+<?php 
+echo $this->partialLoop('partials/numismatics/issuersRomanMints.phtml',$this->actives);
+?>
 </ul>
 
-<?php echo $this->latestRecords('mint:'. Zend_Controller_Front::getInstance()->getRequest()->getParam('id')); ?>
+<?php 
+echo $this->latestRecords('mint:'. Zend_Controller_Front::getInstance()->getRequest()->getParam('id')); 
+?>

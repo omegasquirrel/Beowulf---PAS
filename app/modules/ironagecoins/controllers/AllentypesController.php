@@ -9,45 +9,30 @@
 */
 class IronAgeCoins_AllentypesController extends Pas_Controller_Action_Admin {
 	
+	protected $_allenTypes;
+	
     /** Setup the contexts by action and the ACL.
     */
     public function init() {
     $this->_helper->_acl->allow(null);
-    $this->_helper->contextSwitch()
-	->setAutoDisableLayout(true)
-	->addActionContext('index', array('xml','json'))
-        ->addActionContext('type', array('xml','json'))
-	->initContext();
+	$this->_helper->contextSwitch->setAutoJsonSerialization(false);
+    $this->_helper->contextSwitch()->setAutoDisableLayout(true)
+		->addActionContext('index', array('xml','json'))
+  		->addActionContext('type', array('xml','json'))
+		->initContext();
+	$this->_allenTypes = new AllenTypes();
     }
     
     /** Create index pages for Allen Types available to the user
     */
     public function indexAction() {
-    $types = new AllenTypes();
-    $allens = $types->getAllenTypes($this->_getAllParams());
-    $contexts = array('json','xml');
-    if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$contexts)) {
-    $data = array(
-        'pageNumber' => $allens->getCurrentPageNumber(),
-        'total' => number_format($allens->getTotalItemCount(),0),
-        'itemsReturned' => $allens->getCurrentItemCount(),
-        'totalPages' => number_format($allens->getTotalItemCount() 
-                            / $allens->getCurrentItemCount(),0)
-        );
-    $this->view->data = $data;
-    $allensa = array();
-    foreach($allens as $r => $v){
-    $allensa['type'][$r] = $v;
-    }
-    $this->view->allenTypes = $allensa;
-    } else {
-            $this->view->allens = $allens;
-    }
+    $this->view->allens = $this->_allenTypes->getAllenTypes($this->_getAllParams());
+    
     }
 
     public function typeAction(){
     $types = new AllenTypes();
-    $this->view->type = $types->fetchRow($types->select()->where('type = ?', 
+    $this->view->type = $this->_allenTypes->fetchRow($this->_allenTypes->select()->where('type = ?', 
             $this->_getParam('id')));
     }
 }

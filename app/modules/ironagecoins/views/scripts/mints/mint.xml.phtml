@@ -21,15 +21,11 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 $mintsElem = $dom->createElement('mints');
 
-foreach($this->mints as $m){
-$m = (object)$m;
+foreach($this->mints as $mint){
 $mintElem = $dom->createElement('mint');
-$mintElem->appendChild( $dom->createElement('id', $m->i));
-$mintElem->appendChild( $dom->createElement('name', $m->name));
-$mintElem->appendChild( $dom->createElement('created', $m->created));
-$mintElem->appendChild( $dom->createElement('updated', $m->updated));
-$mintElem->appendChild( $dom->createElement('period', $m->p));
-
+	foreach($mint as $k => $v){
+		$mintElem->appendChild( $dom->createElement($k, $v));
+	}
 $mints->appendChild( $mintElem );
 }
 

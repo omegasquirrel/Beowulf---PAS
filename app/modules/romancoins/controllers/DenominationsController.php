@@ -9,29 +9,30 @@
 */
 class RomanCoins_DenominationsController extends Pas_Controller_Action_Admin {
 
+	protected $_denominations, $_contexts = array('xml', 'json');
 	/** Set up the ACL and contexts
 	*/
 	public function init() {
 	$this->_helper->_acl->allow(null);
-	$contexts = array('xml','json');
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
-		->addActionContext('index',$contexts)
-		->addActionContext('denomination',$contexts)
+		->addActionContext('index',$this->_contexts)
+		->addActionContext('denomination',$this->_contexts)
 		->initContext();
+	$this->_denominations = new Denominations();
         }
 	/** Set up the index page
 	*/
 	public function indexAction() {
-	$denoms = new Denominations();
-	$this->view->denominations = $denoms->getDenByPeriod((int)21);
+	
+	$this->view->denominations = $this->_denominations->getDenByPeriod((int)21);
 	}
 	/** Set up the individual denominations
 	*/
 	public function denominationAction() {
 	if($this->_getParam('id',false)) {
 	$id = $this->_getParam('id');
-	$denoms = new Denominations();
-	$this->view->denoms = $denoms->getDenom($id,(int)21);
+	$this->view->denoms = $this->_denominations->getDenom($id,(int)21);
 	$emps = new Emperors();
 	$this->view->emps = $emps->getDenomEmperor($id);
 	} else {

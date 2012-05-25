@@ -36,19 +36,8 @@ $mintElem->appendChild( $dom->createElement('updated', $r->updated_on));
 $imageElem = $dom->createElement('recentRecords');	
 $empsElem = $dom->createElement('emperors');	
 $mintElem->appendChild($empsElem);
-$mintElem->appendChild($imageElem);
 
 
-foreach($this->images as $i){
-$i = (object)$i;
-$recordElem = $dom->createElement('record');
-$imageElem->appendChild( $recordElem);
-$recordElem->appendChild( $dom->createElement('findID', $i->old_findID));
-$recordElem->appendChild( $dom->createElement('objectType', $i->objecttype));
-$recordElem->appendChild( $dom->createElement('broadPeriod', $i->broadperiod));
-$recordElem->appendChild( $dom->createElement('url', $site . '/database/artefacts/record/id/' . $i->id));
-$recordElem->appendChild( $dom->createElement('thumbnail', $site . ' /images/' . $i->id . '.jpg'));
-}
 
 foreach($this->actives as $i){
 $i = (object)$i;

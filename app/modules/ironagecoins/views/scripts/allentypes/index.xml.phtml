@@ -7,9 +7,9 @@ $contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSw
 $param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
 $contexts = $contextSwitch->getContexts();
 
-$dom 	  = new DomDocument("1.0", "UTF-8");
+$dom 	= new DomDocument("1.0", "UTF-8");
 $types  = $dom->createElement('response');
-$meta = $dom->createElement('meta');
+$meta 	= $dom->createElement('meta');
 $types->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
 $meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
@@ -27,16 +27,12 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 //1st item
 $allensElem = $dom->createElement('allenTypes');
 $types->appendChild($allensElem);
-// set it's attribute
-$this->allenTypes = (object)$this->allenTypes;
-foreach($this->allenTypes->type as $m){
-
-$allenElem = $dom->createElement('type');
-$allenElem->appendChild( $dom->createElement('id', $m['id']));
-$allenElem->appendChild( $dom->createElement('type', $m['type']));
-$allenElem->appendChild( $dom->createElement('created', $m['created']));
-$allenElem->appendChild( $dom->createElement('updated', $m['updated']));
-$allensElem->appendChild( $allenElem );
+foreach($this->allens as $allen){
+	$allenElem = $dom->createElement('type');
+	foreach($allen as $k => $v ){
+		$allenElem->appendChild( $dom->createElement($k, $v));
+	}
+	$allensElem->appendChild($allenElem);
 }
 
 $dom->appendChild( $types );

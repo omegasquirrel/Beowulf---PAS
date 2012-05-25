@@ -23,33 +23,12 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 $denominationsElem = $dom->createElement('denominations');
 
-foreach($this->denoms as $d){
-$d = (object)$d;
-$denominationElem = $dom->createElement('denomination');
-$denominationElem->appendChild( $dom->createElement('id', $d->id));
-$denominationElem->appendChild( $dom->createElement('name', $d->denomination));
-$denominationElem->appendChild( $dom->createElement('rarity', $d->rarity));
-$denominationElem->appendChild( $dom->createElement('description', $d->description));
-$denominationElem->appendChild( $dom->createElement('weight', $d->weight));
-$denominationElem->appendChild( $dom->createElement('diameter', $d->diameter));
-$denominationElem->appendChild( $dom->createElement('material', $d->old_material));
-$denominationElem->appendChild( $dom->createElement('created', $d->created));
-$denominationElem->appendChild( $dom->createElement('updated', $d->updated));
+foreach($this->denoms as $denomination){
+	$denominationElem = $dom->createElement('denomination');
+	foreach($denomination as $k => $v){
+		$denominationElem->appendChild( $dom->createElement($k, $v));
+	}
 
-$imageElem = $dom->createElement('recentRecords');	
-$denominationElem->appendChild($imageElem);
-
-foreach($this->images as $i){
-$i = (object)$i;
-$recordElem = $dom->createElement('record');
-$imageElem->appendChild( $recordElem);
-$recordElem->appendChild( $dom->createElement('findID', $i->old_findID));
-$recordElem->appendChild( $dom->createElement('label', $i->label));
-$recordElem->appendChild( $dom->createElement('objectType', $i->objecttype));
-$recordElem->appendChild( $dom->createElement('broadPeriod', $i->broadperiod));
-$recordElem->appendChild( $dom->createElement('url', $site . '/database/artefacts/record/id/' . $i->id));
-$recordElem->appendChild( $dom->createElement('thumbnail', $site . ' /images/' . $i->id . '.jpg'));
-}
 $denominations->appendChild( $denominationElem );
 }
 

@@ -23,34 +23,10 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 
 foreach($this->moneyer as $moneyer){
-$moneyer = (array)$moneyer;
 $moneyerElem = $dom->createElement('moneyer');
-$moneyerElem->appendChild( $dom->createElement('id', $moneyer['id']));
-$moneyerElem->appendChild( $dom->createElement('name', $moneyer['name']));
-$moneyerElem->appendChild( $dom->createElement('mint', $moneyer['mint']));
-$moneyerElem->appendChild( $dom->createElement('alternativeName', $moneyer['alt_name']));
-$moneyerElem->appendChild( $dom->createElement('dateFrom', $moneyer['date_1']));
-$moneyerElem->appendChild( $dom->createElement('dateTo', $moneyer['date_2']));
-$moneyerElem->appendChild( $dom->createElement('biography', $moneyer['bio']));
-$moneyerElem->appendChild( $dom->createElement('rrcReference', $moneyer['RRC']));
-$moneyerElem->appendChild( $dom->createElement('appearance', $moneyer['appear']));
-$moneyerElem->appendChild( $dom->createElement('updated', $moneyer['updated']));
-$moneyerElem->appendChild( $dom->createElement('created', $moneyer['created']));
-
-$imageElem = $dom->createElement('recentRecords');	
-$moneyerElem->appendChild($imageElem);
-
-foreach($this->images as $i){
-$i = (object)$i;
-$recordElem = $dom->createElement('record');
-$imageElem->appendChild( $recordElem);
-$recordElem->appendChild( $dom->createElement('findID', $i->old_findID));
-$recordElem->appendChild( $dom->createElement('label', $i->label));
-$recordElem->appendChild( $dom->createElement('objectType', $i->objecttype));
-$recordElem->appendChild( $dom->createElement('broadPeriod', $i->broadperiod));
-$recordElem->appendChild( $dom->createElement('url', $site . '/database/artefacts/record/id/' . $i->id));
-$recordElem->appendChild( $dom->createElement('thumbnail', $site . ' /images/' . $i->id . '.jpg'));
-}
+	foreach($moneyer as $k => $v){
+	$moneyerElem->appendChild( $dom->createElement($k, $v));
+	}
 $moneyers->appendChild( $moneyerElem );
 }
 

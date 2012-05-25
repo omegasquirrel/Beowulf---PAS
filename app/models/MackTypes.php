@@ -39,7 +39,7 @@ class MackTypes extends Pas_Db_Table_Abstract {
 		$types = $this->getAdapter();
 		$select = $types->select()
             ->from($this->_name, array('id','term' => 'type'))
-			->where('type LIKE ? ', $q.'%')
+			->where('type LIKE ? ', $q . '%')
 			->order('type')
 			->limit(10);
 	   return $types->fetchAll($select);
@@ -54,10 +54,10 @@ class MackTypes extends Pas_Db_Table_Abstract {
 		$select = $types->select()
             ->from($this->_name)
 			->joinLeft('coins','coins.mack_type = macktypes.type',array())
-			->joinLeft('finds','finds.secuid = coins.findID', array('totals' => 'SUM(quantity)'))
-			->order($this->_name.'.type')
-			->group($this->_name.'.type');
+			->order($this->_name . '.type')
+			->group($this->_name . '.type');
 	$paginator = Zend_Paginator::factory($select);
+	$paginator->setCache($this->_cache);
 	$paginator->setItemCountPerPage(30)
 	          ->setPageRange(10);
 	if(isset($params['page']) && ($params['page'] != "")) {

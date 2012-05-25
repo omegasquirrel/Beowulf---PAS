@@ -8,11 +8,11 @@ $param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
 $contexts = $contextSwitch->getContexts();
 
 $dom 	  = new DomDocument("1.0", "UTF-8");
-$persons  = $dom->createElement('response');
+$mints  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
-$persons->appendChild($meta);
+$mints->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('count', count($this->reeces)));
+$meta->appendChild( $dom->createElement('count', count($this->rommints)));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){
@@ -22,35 +22,18 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 //1st item
-$personsElem = $dom->createElement('personifications');
-$persons->appendChild($personsElem);
-
-foreach($this->gods as $r){
-$personElem = $dom->createElement('personification');
+$mintsElem = $dom->createElement('mints');
+$mints->appendChild($mintsElem);
+// set it's attribute
+foreach($this->rommints as $r){
+$mintElem = $dom->createElement('mint');
 foreach($r as $k => $v){
-	$personElem->appendChild( $dom->createElement($k, htmlspecialchars($v))); 
+	$mintElem->appendChild( $dom->createElement($k, htmlspecialchars($v))); 
 }
-$personsElem->appendChild( $personElem );
-}
-
-foreach($this->virtues as $r){
-$personElem = $dom->createElement('personification');
-foreach($r as $k => $v){
-	$personElem->appendChild( $dom->createElement($k, htmlspecialchars($v))); 
-}
-$personsElem->appendChild( $personElem );
+$mintsElem->appendChild( $mintElem );
 }
 
-foreach($this->symbols as $r){
-$personElem = $dom->createElement('personification');
-foreach($r as $k => $v){
-	$personElem->appendChild( $dom->createElement($k, htmlspecialchars($v))); 
-}
-$personsElem->appendChild( $personElem );
-}
-
-
-$dom->appendChild( $persons );
+$dom->appendChild( $mints );
 
 $xmlData  = $dom->saveXML();
 echo $xmlData;

@@ -1,58 +1,40 @@
-<?php header('Content-Type: application/rss+xml');?>
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>';
-$siteurl = Zend_Registry::get('siteurl');
-?>
-<response>
-<meta>
-	<html><?php echo $siteurl;?>/romancoins/emperors/emperor/id/<?php echo $this->emps['0']['id'];?></html>
-	<xml><?php echo $siteurl;?>/romancoins/emperors/emperor/id/<?php echo $this->emps['0']['id'];?>/format/xml/</xml>
-	<json><?php echo $siteurl;?>/romancoins/emperors/emperor/id/<?php echo $this->emps['0']['id'];?>/format/json</json>
-</meta>
-<emperor>
-<?php echo $this->partial('partials/xml/emperor.phtml',$this->emps['0']);?>
-<dbpedia>
-</dbpedia>
-<denominations>
-<?php foreach($this->denoms as $d):
-$d = (object)$d;?>
-<denomination>
-	<name><?php echo $d->denomination;?></name>
-	<id><?php echo $d->id;?></id>
-	</denomination>
-<?php endforeach;?>
-</denominations>
-<mints>
-<?php foreach ($this->mints as $m):
-$m = (object)$m;
-?>
-	<mint>
-	<name><?php echo $m->mint_name?></name>
-	<id><?php echo $m->id;?></id>
-	</mint>
-<?php endforeach;?>
-</mints>
-<reverseTypes>
-</reverseTypes>
-<reeceperiod><?php echo $this->emps['0']['p'];?>
-</reeceperiod>
-<moneyers>
-	<moneyer>
-	<name></name>
-	<id></id>
-	</moneyer> 
-</moneyers>
-</emperor>
-<recentRecords>
-	<?php foreach ($this->images as $s): 
-	$s = (object)$s;?>
-	<record>
-		<findID><?php echo $s->old_findID?></findID>
-		<objectType><?php echo $s->objecttype;?></objectType>
-		<broadperiod><?php echo $s->broadperiod;?></broadperiod>
-		<id><?php echo $s->id;?></id>
-		<uri><?php echo $siteurl;?>/database/artefacts/record/id/<?php echo $s->id;?></uri>
-		<thumbnail><?php echo $siteurl;?>/images/thumbnails/<?php echo $s->thumbnail;?>.jpg</thumbnail>
-	</record>
-	<?php endforeach;?>
-</recentRecords>
-</response>
+<?php
+$site = Zend_Registry::get('siteurl');
+$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+$contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch');
+$param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+$contexts = $contextSwitch->getContexts();
+
+$dom = new DomDocument("1.0", "UTF-8");
+$rulers  = $dom->createElement('response');
+
+$meta = $dom->createElement('meta');
+$rulers->appendChild($meta);
+$meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
+$formats = $dom->createElement('formats');
+$meta->appendChild($formats);
+foreach ($contexts as $k => $v){
+$formats->appendChild( $dom->createElement($k, $site . $this->url(array('module' => $module,
+'controller' => $controller,'action' => $action,'id' => $param,'format' => $k),NULL,true)  ));
+}
+$formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
+'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
+$rulersElem = $dom->createElement('emperors');
+foreach($this->emps as $r){
+$rulerElem = $dom->createElement('emperor');
+   foreach($r as $k => $a){
+
+       $rulerElem->appendChild( $dom->createElement($k, htmlspecialchars($a)));
+   }
+
+$rulersElem->appendChild( $rulerElem );
+
+$rulers->appendChild( $rulerElem );
+}
+
+$dom->appendChild( $rulers );
+
+$xmlData  = $dom->saveXML();
+echo $xmlData;

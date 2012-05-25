@@ -1,4 +1,5 @@
 <?php 
+
 $site = Zend_Registry::get('siteurl');
 $module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();	
 $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();	
@@ -11,10 +12,10 @@ $moneyers  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
 $moneyers->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
-$meta->appendChild( $dom->createElement('currentPage',$this->data['pageNumber']));
+$meta->appendChild( $dom->createElement('totalItems',$this->moneyers->getTotalItemCount()));
+$meta->appendChild( $dom->createElement('currentPage',$this->moneyers->getCurrentPageNumber()));
 $meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->data['itemsReturned']));
+$meta->appendChild( $dom->createElement('itemsReturned',$this->moneyers->getItemCountPerPage()));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){
@@ -28,19 +29,11 @@ $moneyersElem = $dom->createElement('republicanMoneyers');
 $moneyers->appendChild($moneyersElem);
 // set it's attribute
 foreach($this->moneyers as $moneyer){
-
 $moneyerElem = $dom->createElement('moneyer');
-$moneyerElem->appendChild( $dom->createElement('id', $moneyer['id']));
-$moneyerElem->appendChild( $dom->createElement('name', $moneyer['name']));
-$moneyerElem->appendChild( $dom->createElement('mint', $moneyer['mint']));
-$moneyerElem->appendChild( $dom->createElement('alternativeName', $moneyer['alt_name']));
-$moneyerElem->appendChild( $dom->createElement('dateFrom', $moneyer['date_1']));
-$moneyerElem->appendChild( $dom->createElement('dateTo', $moneyer['date_2']));
-$moneyerElem->appendChild( $dom->createElement('biography', $moneyer['bio']));
-$moneyerElem->appendChild( $dom->createElement('rrcReference', $moneyer['RRC']));
-$moneyerElem->appendChild( $dom->createElement('appearance', $moneyer['appear']));
-$moneyerElem->appendChild( $dom->createElement('updated', $moneyer['updated']));
-$moneyerElem->appendChild( $dom->createElement('created', $moneyer['created']));
+	foreach($moneyer as $k => $v){
+		$moneyerElem->appendChild( $dom->createElement($k, $v));
+	}
+
 $moneyersElem->appendChild( $moneyerElem );
 }
 

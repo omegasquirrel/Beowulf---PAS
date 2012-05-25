@@ -68,13 +68,13 @@ class Coroners extends Pas_Db_Table_Abstract {
 	. $data['postcode'] . ',' . $data['country'];
 	$coords = $this->_geocoder->getCoordinates($address);	
 	if($coords){
-		$$data['latitude'] = $coords['lat'];
-		$$data['longitude'] = $coords['lon']; 
-		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
+		$data['latitude'] = $coords['lat'];
+		$data['longitude'] = $coords['lon']; 
+		$place = $this->_geoPlanet->reverseGeoCode($lat, $lon);
 		$data['woeid'] = $place['woeid'];
 	} else {
-		$$data['latitude'] = NULL;
-		$$data['longitude']  = NULL;
+		$data['latitude'] = NULL;
+		$data['longitude']  = NULL;
 		$data['woeid'] = NULL;
 	}
 	return parent::insert($data);
@@ -90,8 +90,8 @@ class Coroners extends Pas_Db_Table_Abstract {
 	. $data['postcode'] . ',' . $data['country'];
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
-		$$data['latitude'] = $coords['lat'];
-		$$data['longitude'] = $coords['lon']; 
+		$data['latitude'] = $coords['lat'];
+		$data['longitude'] = $coords['lon']; 
 		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
 		$data['woeid'] = $place['woeid'];
 	} else {

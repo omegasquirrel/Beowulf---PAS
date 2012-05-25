@@ -7,6 +7,7 @@
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
 * @author     Daniel Pett
+* @since	  September 2011
 */
 class ByzantineCoins_DenominationsController extends Pas_Controller_Action_Admin {
 
@@ -37,7 +38,7 @@ class ByzantineCoins_DenominationsController extends Pas_Controller_Action_Admin
     if($this->_getParam('id',false)){
     $this->view->id = $this->_getParam('id');
     $denoms = new Denominations();
-    $this->view->denoms = $denoms->getDenom($this->_getParam('id'),(int)$this->_period);
+    $this->view->denoms = $denoms->getDenom($this->_getParam('id'),$this->_period);
     } else {
    	throw new Pas_Exception_Param($this->_missingParameter);
     }

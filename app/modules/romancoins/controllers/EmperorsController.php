@@ -9,52 +9,53 @@
 */
 class RomanCoins_EmperorsController extends Pas_Controller_Action_Admin {
 
-	protected $_config, $_googleapikey;
-
+	protected $_emperors;
+	
+	protected $_contexts = array('xml','json');
+	
 	/** Set up the ACL and contexts
 	* @todo Move the api key to the view
 	*/
 	public function init() {
 	$this->_helper->_acl->allow(null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->_config = Zend_Registry::get('config');
-	$this->_googleapikey = $this->_config->webservice->googlemaps->apikey;
-	$contexts = array('xml','json');
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
-		->addActionContext('index',$contexts)
-		->addActionContext('emperor',$contexts)
+		->addActionContext('index', $this->_contexts)
+		->addActionContext('emperor', $this->_contexts)
 		->initContext();
+	$this->_emperors = new Emperors();
     }
 	/** Set up the emperor index pages
 	*/
 	public function indexAction() {
-	$emperors = new Emperors();
-	$this->view->julioclaudian = $emperors->getDynEmp(1);
-	$this->view->civilwar = $emperors->getDynEmp(2);
-	$this->view->flavian = $emperors->getDynEmp(3);
-	$this->view->adoptive = $emperors->getDynEmp(4);
-	$this->view->antonine = $emperors->getDynEmp(5);
-	$this->view->waremperors = $emperors->getDynEmp(6);
-	$this->view->severan = $emperors->getDynEmp(7);
-	$this->view->thirdcentury = $emperors->getDynEmp(8);
-	$this->view->british = $emperors->getDynEmp(9);
-	$this->view->gallic = $emperors->getDynEmp(10);
-	$this->view->tetrarchy = $emperors->getDynEmp(11);
-	$this->view->constantine = $emperors->getDynEmp(12);
-	$this->view->valentinian = $emperors->getDynEmp(13);
-	$this->view->theodosius = $emperors->getDynEmp(14);
-	$this->view->fourthcentury = $emperors->getDynEmp(16);
+	if(!in_array($this->_helper->contextSwitch->getCurrentContext(),$this->_contexts)){
+	$this->view->julioclaudian = $this->_emperors->getDynEmp(1);
+	$this->view->civilwar = $this->_emperors->getDynEmp(2);
+	$this->view->flavian = $this->_emperors->getDynEmp(3);
+	$this->view->adoptive = $this->_emperors->getDynEmp(4);
+	$this->view->antonine = $this->_emperors->getDynEmp(5);
+	$this->view->waremperors = $this->_emperors->getDynEmp(6);
+	$this->view->severan = $this->_emperors->getDynEmp(7);
+	$this->view->thirdcentury = $this->_emperors->getDynEmp(8);
+	$this->view->british = $this->_emperors->getDynEmp(9);
+	$this->view->gallic = $this->_emperors->getDynEmp(10);
+	$this->view->tetrarchy = $this->_emperors->getDynEmp(11);
+	$this->view->constantine = $this->_emperors->getDynEmp(12);
+	$this->view->valentinian = $this->_emperors->getDynEmp(13);
+	$this->view->theodosius = $this->_emperors->getDynEmp(14);
+	$this->view->fourthcentury = $this->_emperors->getDynEmp(16);
+		} else {
+			$this->view->emperors = $this->_emperors->getEmperors();
+		}
 	}
 
 	/** Set up the individual emperor
 	*/
 	public function emperorAction() {
 	if($this->_getParam('id',false)){
-	$this->view->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='
-	. $this->_googleapikey,$type='text/javascript');
 	$id = (int)$this->_getParam('id');
-	$emps = new Emperors();
-	$this->view->emps = $emps->getEmperorDetails($id);
+	$this->view->emps = $this->_emperors->getEmperorDetails($id);
 	$denoms = new Denominations();
 	$this->view->denoms = $denoms->getEmperorDenom($id);
 	$mints = new Mints();
@@ -64,16 +65,12 @@ class RomanCoins_EmperorsController extends Pas_Controller_Action_Admin {
 	}
 	}
 
-        public function timelineAction() {
-                    $this->_helper->layout->disableLayout();
-
-        }
-
-        public function dataAction(){
-
-
-        $emps = new Emperors();
-        $this->view->emperors = $emps->getEmperorsTimeline();
-        }
+	public function timelineAction() {
+		$this->_helper->layout->disableLayout();
+    }
+    
+    public function dataAction(){
+	$this->view->emperors = $this->_emperors->getEmperorsTimeline();
+    }
 
 }

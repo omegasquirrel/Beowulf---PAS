@@ -79,13 +79,15 @@ class Rulers extends Pas_Db_Table_Abstract {
 	* @todo add caching
 	*/
 	public function getRulersByzantineList($page) {
+	$rulers = $this->getAdapter();
 	$select = $this->select()
 			->from($this->_name, array('id', 'issuer','date1','date2'))
 			->where('period = ?',(int)67)
 			->order('date1')
 			->order('date2')
 			->where('valid = ?',(int)1);
-	$paginator = Zend_Paginator::factory($select);
+	$data = $rulers->fetchAll($select);
+	$paginator = Zend_Paginator::factory($data);
 	$paginator->setItemCountPerPage(30)
 	          ->setPageRange(10);
 	if(isset($page) && ($page != "")) {
@@ -100,13 +102,13 @@ class Rulers extends Pas_Db_Table_Abstract {
 	* @todo add caching
 	*/
 	public function getRulersGreekList($params) {
-		$rulers = $this->getAdapter();
-		$select = $this->select()
-			->from($this->_name, array('id', 'issuer','date1','date2'))
-			->where('period = ?',(int)66)
-			->order('date1')
-			->order('date2')
-			->where('valid = ?',(int)1);
+	$rulers = $this->getAdapter();
+	$select = $this->select()
+		->from($this->_name, array('id', 'issuer','date1','date2'))
+		->where('period = ?',(int)66)
+		->order('date1')
+		->order('date2')
+		->where('valid = ?',(int)1);
 	$data = $rulers->fetchAll($select);
 	$paginator = Zend_Paginator::factory($data);
 	$paginator->setItemCountPerPage(30)
@@ -593,7 +595,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->joinLeft('mints','mints.id = mints_rulers.mint_id', array('mintid' => 'id','n' => 'mint_name' ))
 			->joinLeft('romanmints','romanmints.pasID = mints.id', array('id' ))
 			->where('emperors.id IS NOT NULL')
-			->where('romanmints.id= ?',(int)$mintID)
+			->where('romanmints.pasID = ?',(int)$mintID)
 			->order('date_from')
 			->group('issuer');
 	return $actives->fetchAll($select);

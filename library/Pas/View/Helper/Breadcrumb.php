@@ -65,8 +65,41 @@ class Pas_View_Helper_Breadcrumb
 		case 'staffshoardsymposium':
 			$nicemodule  = 'Staffordshire Hoard Symposium';
 			break;
+		case 'romancoins':
+			$nicemodule = 'Roman coin guide';
+			break;
+		case 'database':
+			$nicemodule = 'Finds database';
+			break;
+		case 'medievalcoins':
+			$nicemodule = 'Medieval coin guide';
+			break;
+		case 'ironagecoins':
+			$nicemodule = 'Iron Age coin guide';
+			break;
+		case 'earlymedievalcoins':
+			$nicemodule = 'Early Medieval coin guide';
+			break; 
+		case 'greekandromancoins':
+			$nicemodule = 'Greek &amp; Roman Provincial coin guide';
+			break; 
+		case 'byzantinecoins':
+			$nicemodule = 'Byzantine coin guide';
+			break; 
+		case 'postmedievalcoins':
+			$nicemodule = 'Post Medieval coin guide';
+			break; 
+		case 'getinvolved':
+			$nicemodule = 'Get involved';
+			break;
+		case 'contacts':
+			$nicemodule = 'Scheme contacts';
+			break;
+		case 'events':
+			$nicemodule = 'Scheme events';
+			break;
 		 default: 
-		 $nicemodule = $module;
+		 	$nicemodule = $module;
 		 break;
 	}
 
@@ -76,39 +109,6 @@ class Pas_View_Helper_Breadcrumb
 	switch ($controller) {
 		case 'error':
 			$nicename = 'Error manager';
-			break;
-		case 'romancoins':
-			$nicename = 'Roman coin guide';
-			break;
-		case 'database':
-			$nicename = 'Finds database';
-			break;
-		case 'medievalcoins':
-			$nicename = 'Medieval coin guide';
-			break;
-		case 'ironagecoins':
-			$nicename = 'Iron Age coin guide';
-			break;
-		case 'earlymedievalcoins':
-			$nicename = 'Early Medieval coin guide';
-			break; 
-		case 'greekandromancoins':
-			$nicename = 'Greek &amp; Roman Provincial coin guide';
-			break; 
-		case 'byzantinecoins':
-			$nicename = 'Byzantine coin guide';
-			break; 
-		case 'postmedievalcoins':
-			$nicename = 'Post Medieval coin guide';
-			break; 
-		case 'getinvolved':
-			$nicename = 'Get involved';
-			break;
-		case 'contacts':
-			$nicename = 'Scheme contacts';
-			break;
-		case 'events':
-			$nicename = 'Scheme events';
 			break;
 		case 'users':
 			$nicename = 'Users\' section';
@@ -134,6 +134,9 @@ class Pas_View_Helper_Breadcrumb
 		case 'myscheme':
 			$nicename = 'My scheme';
 			break;
+					case 'vanarsdelltypes':
+			$nicename = 'Van Arsdell Types';
+			break;
 		default:
 			$nicename = $controller;
 			break;
@@ -147,6 +150,7 @@ class Pas_View_Helper_Breadcrumb
 		case 'mapsearchresults':
 			$nicenameaction = 'Map search results';
 			break;
+
 		case 'countystats':
 			$nicenameaction = 'County statistics';
 			break;

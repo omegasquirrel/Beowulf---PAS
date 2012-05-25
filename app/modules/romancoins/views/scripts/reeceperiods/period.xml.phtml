@@ -22,44 +22,26 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 
-foreach($this->periods as $r){
-$r = (object)$r;
+foreach($this->periods as $period){
 $periodElem = $dom->createElement('period');
-$periodElem->appendChild( $dom->createElement('id', $r->id));
-$periodElem->appendChild( $dom->createElement('name', $r->period_name));
-$periodElem->appendChild( $dom->createElement('dateRange', $r->date_range));
-$periodElem->appendChild( $dom->createElement('created', $r->created));
-$periodElem->appendChild( $dom->createElement('updated', $r->updated));
-$imageElem = $dom->createElement('recentRecords');	
-$periodElem->appendChild($imageElem);
+	foreach($period as $k => $v){
+	$periodElem->appendChild( $dom->createElement($k, $v));
+	}
 $reverseElem = $dom->createElement('reverseTypes');
-$periodElem->appendChild($reverseElem);
 
-foreach($this->images as $i){
-$i = (object)$i;
-$recordElem = $dom->createElement('record');
-$imageElem->appendChild( $recordElem);
-$recordElem->appendChild( $dom->createElement('findID', $i->old_findID));
-$recordElem->appendChild( $dom->createElement('label', $i->label));
-$recordElem->appendChild( $dom->createElement('objectType', $i->objecttype));
-$recordElem->appendChild( $dom->createElement('broadPeriod', $i->broadperiod));
-$recordElem->appendChild( $dom->createElement('url', $site . '/database/artefacts/record/id/' . $i->id));
-$recordElem->appendChild( $dom->createElement('thumbnail', $site . ' /images/' . $i->id . '.jpg'));
-}
 
-foreach($this->reverses as $rev){
-$rev = (object)$rev;
+foreach($this->reverses as $reverse){
 $revElem	= $dom->createElement('reverseType');
-$reverseElem->appendChild($revElem);
-$reverseElem->appendChild($dom->createElement('id', $rev->id));
-$reverseElem->appendChild($dom->createElement('type', $rev->type));
-$reverseElem->appendChild($dom->createElement('translation', $rev->translation));
-$reverseElem->appendChild($dom->createElement('generalDate', $rev->gendate));
-$reverseElem->appendChild($dom->createElement('created', $rev->created));
-$reverseElem->appendChild($dom->createElement('updated', $rev->updated));
-}
-$periods->appendChild( $periodElem );
 
+	foreach($reverse as $k => $v ){
+		
+	$revElem->appendChild($dom->createElement($k,$v));
+	}
+	$reverseElem->appendChild( $revElem);
+}
+
+$periods->appendChild( $periodElem );
+$periods->appendChild( $reverseElem );
 
 }
 

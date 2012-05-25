@@ -21,10 +21,12 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 $mintsElem = $dom->createElement('mints');
 
-foreach($this->tribes as $t){
-$t = (object)$t;
+foreach($this->tribes as $tribe){
 $tribeElem = $dom->createElement('tribe');
-$tribeElem->appendChild( $dom->createElement('id', $t->id));
+	foreach($tribe as $k => $v){
+		$tribeElem->appendChild( $dom->createElement($k, $v));	
+	}
+
 $tribeElem->appendChild( $dom->createElement('name', $t->tribe));
 
 

@@ -28,17 +28,15 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 $allensElem = $dom->createElement('mackTypes');
 $types->appendChild($allensElem);
 // set it's attribute
-$this->macks = (object)$this->macks;
-foreach($this->macks->type as $m){
 
-$allenElem = $dom->createElement('type');
-$allenElem->appendChild( $dom->createElement('id', $m['id']));
-$allenElem->appendChild( $dom->createElement('type', $m['type']));
-$allenElem->appendChild( $dom->createElement('created', $m['created']));
-$allenElem->appendChild( $dom->createElement('updated', $m['updated']));
-$allensElem->appendChild( $allenElem );
+foreach($this->macks as $mack){
+	$allenElem = $dom->createElement('type');
+	foreach($mack as $k => $v){
+	
+	$allenElem->appendChild( $dom->createElement($k, $v));
+	}
+	$allensElem->appendChild( $allenElem );
 }
-
 $dom->appendChild( $types );
 
 $xmlData  = $dom->saveXML();

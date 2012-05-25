@@ -28,16 +28,13 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 $denominationsElem = $dom->createElement('denominations');
 $denominations->appendChild($denominationsElem);
 // set it's attribute
-$denoms = (object)$this->denominations;
 
-foreach($denoms->type as $d){
+foreach($this->denominations as $denomination){
 $denominationElem = $dom->createElement('denomination');
-$denominationElem->appendChild( $dom->createElement('id', $d['id']));
-$denominationElem->appendChild( $dom->createElement('name', $d['denomination']));
-$denominationElem->appendChild( $dom->createElement('description',$d['description']));
-$denominationElem->appendChild( $dom->createElement('material',$d['old_material']));
-$denominationElem->appendChild( $dom->createElement('url',$site . $this->url(array('module' => $module,
-'controller' => $controller,'action' => 'denomination','id' => $d['id']),NULL,true) ));
+	foreach($denomination as $k => $v){
+		$denominationElem->appendChild( $dom->createElement($k, $v));
+	}
+
 $denominationsElem->appendChild( $denominationElem );
 }
 

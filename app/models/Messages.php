@@ -28,9 +28,9 @@ class Messages extends Pas_Db_Table_Abstract {
 	protected $_akismet;
 
 	public function init(){
-        $this->_baseUrl = Zend_Registry::get('siteurl');
+    $this->_baseUrl = Zend_Registry::get('siteurl');
 	$this->_akismetkey = $this->_config->webservice->akismet->apikey;
-	$this->_akismet = new Zend_Service_Akismet($akismetkey,$this->_baseUrl);
+	$this->_akismet = new Zend_Service_Akismet($this->_akismetkey, $this->_baseUrl);
 	}
 
 	/** get a count of messages

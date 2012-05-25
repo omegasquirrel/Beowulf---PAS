@@ -8,10 +8,10 @@ $param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
 $contexts = $contextSwitch->getContexts();
 
 $dom = new DomDocument("1.0", "UTF-8");
-$denominations  = $dom->createElement('response');
+$type  = $dom->createElement('response');
 
 $meta = $dom->createElement('meta');
-$denominations->appendChild($meta);
+$type->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
@@ -21,31 +21,18 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 }
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
-$denominationsElem = $dom->createElement('denominations');
 
-foreach($this->denoms as $denomination){
-$denominationElem = $dom->createElement('denomination');
-	foreach($denomination as $k => $v){
-		$denominationElem->appendChild( $dom->createElement($k, $v));
+
+$typeElem = $dom->createElement('type');
+	foreach($this->type as $k => $v){
+	$typeElem->appendChild( $dom->createElement($k, $v));
 	}
 
+$type->appendChild( $typeElem );
 
 
-$empsElem = $dom->createElement('issuedBy');
-$denominationElem->appendChild($empsElem);
-	foreach ($this->emps as $emperor) {
-	$empElem = $dom->createElement('emperor');
-	foreach($emperor as $k => $v){
-		$empElem->appendChild( $dom->createElement($k, $v));
-	}
-	$empsElem->appendChild($empElem);
-	
-}
 
-$denominations->appendChild( $denominationElem );
-}
-
-$dom->appendChild( $denominations );
+$dom->appendChild( $type );
 
 $xmlData  = $dom->saveXML();
 echo $xmlData;

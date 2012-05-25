@@ -8,27 +8,26 @@
 * @license    GNU General Public License
 */
 class RomanCoins_MintsController extends Pas_Controller_Action_Admin {
-	/** Configuration and google apikey
-	*/		
-	protected $_config, $_googleapikey;
+
+	protected $_mints;
+	
 	/** Set up the ACL and contexts
 	*/	
 	public function init() {
 	$this->_helper->_acl->allow(null);
-	$this->_config = Zend_Registry::get('config');
-	$this->_googleapikey = $this->_config->googlemaps->apikey; 
 	$contexts = array('xml','json');
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addActionContext('index',$contexts)
 		->addActionContext('mint',$contexts)
 		->initContext();
+	$this->_mints = new Romanmints();
     }
 	/** Set up the index action
 	* 
 	*/	
 	public function indexAction() {
-	$rommints = new Romanmints();
-	$this->view->rommints = $rommints->getRomanMintsList();
+	$this->view->rommints = $this->_mints->getRomanMintsList();
 	}
 	/** Set up the mint action
 	* @todo move the config and key to view
@@ -36,12 +35,10 @@ class RomanCoins_MintsController extends Pas_Controller_Action_Admin {
 	public function mintAction() {
 	if($this->_getParam('id',false)) {
 	$id = $this->_getParam('id');
-	$rommints = new Romanmints();
-	$this->view->rommints = $rommints->getMintDetails($id);
+	$this->view->rommints = $this->_mints->getMintDetails($id);
 	$actives = new Rulers();
+
 	$this->view->actives = $actives->getRomanMintRulerList($id);
-	$counts = new Finds();
-	$this->view->counts = $counts->getCountMint($id);
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}

@@ -11,11 +11,8 @@
 <?php echo $this->partialLoop('partials/numismatics/revtypelistreece.phtml',$this->reverses);?>
 
 </ul>
-<?php endif;?>
+<?php endif;
 
-<?php if($this->images):?>
-<h3>Latest examples recorded</h3>
-<div id="latest">
-<?php echo $this->partialLoop('partials/database/imagesPaged.phtml',$this->images);?>
-</div>
-<?php endif;?>
+echo $this->latestRecords('reeceID:' .  Zend_Controller_Front::getInstance()->getRequest()->getParam('id'));
+?>
+

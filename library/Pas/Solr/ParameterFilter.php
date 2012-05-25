@@ -19,7 +19,9 @@ class Pas_Solr_ParameterFilter {
         $this->_params = $params;
     }
 
-    public function processParams(array $params)
+    public function processParams(array $params){
+    	
+    }
 
     protected function _processNgrToLatLon($gridref){
 

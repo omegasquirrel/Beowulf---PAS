@@ -12,7 +12,7 @@ $mints  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
 $mints->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('count', count($this->byzantium)));
+$meta->appendChild( $dom->createElement('count', count($this->mints)));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){
@@ -25,7 +25,7 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 $mintsElem = $dom->createElement('mints');
 $mints->appendChild($mintsElem);
 // set it's attribute
-foreach($this->byzantium as $r){
+foreach($this->mints as $r){
 $r = (object)$r;
 $mintElem = $dom->createElement('mint');
 $mintElem->appendChild( $dom->createElement('id', $r->i));

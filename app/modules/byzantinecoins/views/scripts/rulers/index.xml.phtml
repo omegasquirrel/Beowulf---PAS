@@ -27,11 +27,12 @@ $mintsElem = $dom->createElement('rulers');
 $mints->appendChild($mintsElem);
 // set it's attribute
 
-foreach($this->rulers as $r){
+foreach($this->rulers as $ruler){
 
 $mintElem = $dom->createElement('ruler');
-$mintElem->appendChild( $dom->createElement('id', $r['id']));
-$mintElem->appendChild( $dom->createElement('name', $r['issuer']));
+	foreach($ruler as $k => $v){
+	$mintElem->appendChild( $dom->createElement($k, $v));
+	}
 $mintsElem->appendChild( $mintElem );
 }
 

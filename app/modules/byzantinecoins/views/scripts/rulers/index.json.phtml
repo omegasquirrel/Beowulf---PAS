@@ -1,7 +1,7 @@
 <?php
 $paginator = $this->rulers;
 $results = array();
-foreach($paginator as $result){
+foreach($this->rulers as $result){
 	$results[] = $result;
 }
 $meta = array(
@@ -9,8 +9,4 @@ $meta = array(
     'totalResults' => $paginator->getTotalItemCount(),
     'resultsPerPage' => $paginator->getItemCountPerPage(),
     'totalPages' => abs($paginator->getTotalItemCount()/$paginator->getItemCountPerPage()));
-
-
-
-
 echo Zend_Json::prettyPrint(Zend_Json::encode( ( array('meta' => $meta, 'rulers' => $results) ) ) ) ;

@@ -7,9 +7,9 @@ $contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSw
 $param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
 $contexts = $contextSwitch->getContexts();
 $dom = new DomDocument("1.0", "UTF-8");
-$tribes  = $dom->createElement('response');
+$types  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
-$tribes->appendChild($meta);
+$types->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);
@@ -19,19 +19,15 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 }
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
-$mintsElem = $dom->createElement('mints');
+$mintsElem = $dom->createElement('vanArsdellTypes');
+$tribeElem = $dom->createElement('type');
 
-    foreach($this->tribes as $t){
-$t = (object)$t;
-$tribeElem = $dom->createElement('tribe');
-$tribeElem->appendChild( $dom->createElement('id', $t->id));
-$tribeElem->appendChild( $dom->createElement('name', $t->tribe));
-
-
-$tribes->appendChild( $tribeElem );
+foreach($this->type as $k => $v){
+$tribeElem->appendChild( $dom->createElement($k, $v));
 }
-
-$dom->appendChild( $tribes );
+$types->appendChild($mintsElem);
+$mintsElem->appendChild( $tribeElem );
+$dom->appendChild( $types );
 
 $xmlData  = $dom->saveXML();
 echo $xmlData;

@@ -8,30 +8,34 @@
 * @license    GNU General Public License
 */
 class RomanCoins_DynastiesController extends Pas_Controller_Action_Admin {
+	
+	protected $_contexts = array('xml', 'json');
+	
+	protected $_dynasties;
+	
 	/** Set up the ACL and contexts
 	*/
 	public function init() {
 	$this->_helper->_acl->allow(null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$contexts = array('xml','json');
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
-		->addActionContext('index',$contexts)
-		->addActionContext('dynasty',$contexts)
+		->addActionContext('index',$this->_contexts)
+		->addActionContext('dynasty',$this->_contexts)
 		->initContext();
-        }
+	$this->_dynasties = new Dynasties();
+	}
 
 	/** Set up the index pages
 	*/
 	public function indexAction() {
-	$dynasties = new Dynasties();
-	$this->view->dynasties = $dynasties->getDynastyList();
+	$this->view->dynasties = $this->_dynasties->getDynastyList();
 	}
 	/** Set up the individual dynasty
 	*/
 	public function dynastyAction() {
 	if($this->_getParam('id',false)) {
-	$dynasties = new Dynasties();
-	$this->view->dynasties = $dynasties->getDynasty($this->_getParam('id'));
+	$this->view->dynasties = $this->_dynasties->getDynasty($this->_getParam('id'));
 	$emperors = new Emperors();
 	$this->view->emperors = $emperors->getEmperorsDynasty($this->_getParam('id'));
 	} else {

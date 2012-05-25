@@ -16,8 +16,7 @@ class ByzantineCoins_RulersController extends Pas_Controller_Action_Admin {
     public function init()  {
     $this->_helper->_acl->allow(null);
     $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
-    $this->_helper->contextSwitch()
-            ->addActionContext('index', array('xml','json'))
+    $this->_helper->contextSwitch()->addActionContext('index', array('xml','json'))
             ->addActionContext('ruler', array('xml','json'))
             ->initContext();
     $this->_rulers = new Rulers();
@@ -32,7 +31,7 @@ class ByzantineCoins_RulersController extends Pas_Controller_Action_Admin {
     */
     public function rulerAction() {
     if($this->_getParam('id',false)){
-    $this->view->byzantine = $this->_rulers->getRulerProfile((int)$this->_getParam('id'));
+    $this->view->ruler = $this->_rulers->getRulerProfile((int)$this->_getParam('id'));
     $this->view->id = $this->_getParam('id');
     } else {
         throw new Pas_Exception_Param($this->_missingParameter);

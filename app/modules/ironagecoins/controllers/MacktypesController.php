@@ -10,15 +10,18 @@
 */
 class IronAgeCoins_MacktypesController extends Pas_Controller_Action_Admin {
     
+	protected $_mackTypes;
+	
 	/** Set up the ACL and the contexts
 	*/    
 	public function init() {
 	$this->_helper->_acl->allow(null);
-	$this->_helper->contextSwitch()
-		->setAutoDisableLayout(true)
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addActionContext('index', array('xml','json'))
 		->addActionContext('type', array('xml','json'))
 		->initContext();
+	$this->_mackTypes = new MackTypes();
     }
     
 	/** Internal period ID number for the Iron Age
@@ -28,28 +31,11 @@ class IronAgeCoins_MacktypesController extends Pas_Controller_Action_Admin {
 	/** Set up the Mack type index pages
 	*/    
 	public function indexAction() {
-    $types = new MackTypes();
-    $macks = $types->getMackTypes($this->_getAllParams());
-    $contexts = array('json','xml');
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$contexts)) {
-	$data = array('pageNumber' => $macks->getCurrentPageNumber(),
-				  'total' => number_format($macks->getTotalItemCount(),0),
-				  'itemsReturned' => $macks->getCurrentItemCount(),
-				  'totalPages' => number_format($macks->getTotalItemCount()/$macks->getCurrentItemCount(),0));
-	$this->view->data = $data;
-	$macksa = array();
-	foreach($macks as $r => $v){
-	$macksa['type'][$r] = $v;
-	}
-	$this->view->macks = $macksa;
-	} else {
-	$this->view->macks = $macks;
-	}
+    $this->view->macks = $this->_mackTypes->getMackTypes($this->_getAllParams());
     }
     
  	public function typeAction(){
-    $types = new MackTypes();
-	$this->view->type = $types->fetchRow($types->select()->where('type = ?',urlencode($this->_getParam('id'))));
+	$this->view->type = $this->_mackTypes->fetchRow($this->_mackTypes->select()->where('type = ?',urlencode($this->_getParam('id'))));
     }
     
 }

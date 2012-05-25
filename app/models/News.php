@@ -191,13 +191,13 @@ class News extends Pas_Db_Table_Abstract {
 	if(is_array($data)){
 	$coords = $this->_geocoder->getCoordinates($data['primaryNewsLocation']);
 	if($coords){
-		$$data['latitude'] = $coords['lat'];
-		$$data['longitude'] = $coords['lon'];
+		$data['latitude'] = $coords['lat'];
+		$data['longitude'] = $coords['lon'];
 		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
 		$data['woeid'] = $place['woeid'];
 	} else {
-		$$data['latitude'] = NULL;
-		$$data['longitude']  = NULL;
+		$data['latitude'] = NULL;
+		$data['longitude']  = NULL;
 		$data['woeid'] = NULL;
 	}
 
@@ -210,13 +210,13 @@ class News extends Pas_Db_Table_Abstract {
 	public function updateNews($data, $id){
 	$coords = $this->_geocoder->getCoordinates($data['primaryNewsLocation']);
 	if($coords){
-		$$data['latitude'] = $coords['lat'];
-		$$data['longitude'] = $coords['lon'];
+		$data['latitude'] = $coords['lat'];
+		$data['longitude'] = $coords['lon'];
 		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
 		$data['woeid'] = $place['woeid'];
 	} else {
-		$$data['latitude'] = NULL;
-		$$data['longitude']  = NULL;
+		$data['latitude'] = NULL;
+		$data['longitude']  = NULL;
 		$data['woeid'] = NULL;
 	}
 	$where = array();
