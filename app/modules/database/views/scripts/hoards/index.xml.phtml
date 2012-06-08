@@ -8,11 +8,14 @@ $param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
 $contexts = $contextSwitch->getContexts();
 
 $dom 	  = new DomDocument("1.0", "UTF-8");
-$activities  = $dom->createElement('response');
+$cats  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
-$activities->appendChild($meta);
+$cats->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('count', count($this->activities)));
+$meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
+$meta->appendChild( $dom->createElement('currentPage',$this->data['pageNumber']));
+$meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
+$meta->appendChild( $dom->createElement('itemsReturned',$this->data['itemsReturned']));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){
@@ -22,18 +25,18 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 //1st item
-$activitiesElem = $dom->createElement('activities');
-$activities->appendChild($activitiesElem);
+$mintsElem = $dom->createElement('hoards');
+$cats->appendChild($mintsElem);
 // set it's attribute
-foreach($this->activities as $r){
-$activityElem = $dom->createElement('activity');
-foreach($r as $k => $v){
-$activityElem->appendChild( $dom->createElement($k, $v));
+foreach($this->hoards as $r => $v) {
+     $typeElem = $dom->createElement('hoard');
+   foreach($v as $k => $a){
+      
+       $typeElem->appendChild( $dom->createElement($k, htmlspecialchars($a))); 
+   }
+   $mintsElem->appendChild($typeElem);
 }
-$activitiesElem->appendChild( $activityElem );
-}
-
-$dom->appendChild( $activities );
+$dom->appendChild( $cats );
 
 $xmlData  = $dom->saveXML();
 echo $xmlData;

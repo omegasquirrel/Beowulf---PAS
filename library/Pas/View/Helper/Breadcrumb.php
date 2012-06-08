@@ -167,7 +167,7 @@ class Pas_View_Helper_Breadcrumb
 			$nicenameaction = 'Profile details';
 			break;
 		case 'add':
-			$nicenameaction = 'Add a new find';
+			$nicenameaction = 'Create new';
 			break;
 		case 'myresearch':
 			$nicenameaction = 'My research agendas';

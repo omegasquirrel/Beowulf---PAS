@@ -8,11 +8,13 @@ $param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
 $contexts = $contextSwitch->getContexts();
 
 $dom 	  = new DomDocument("1.0", "UTF-8");
-$activities  = $dom->createElement('response');
+$denominations  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
-$activities->appendChild($meta);
+$denominations->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('count', count($this->activities)));
+$meta->appendChild( $dom->createElement('count', $this->data['total']));
+$meta->appendChild( $dom->createElement('page', $this->data['pageNumber']));
+$meta->appendChild( $dom->createElement('totalPages', $this->data['totalPages']));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){
@@ -22,18 +24,18 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 //1st item
-$activitiesElem = $dom->createElement('activities');
-$activities->appendChild($activitiesElem);
+$denominationsElem = $dom->createElement('dieAxes');
+$denominations->appendChild($denominationsElem);
 // set it's attribute
-foreach($this->activities as $r){
-$activityElem = $dom->createElement('activity');
+foreach($this->dieaxes as $r){
+$denominationElem = $dom->createElement('dieaxis');
 foreach($r as $k => $v){
-$activityElem->appendChild( $dom->createElement($k, $v));
+$denominationElem->appendChild( $dom->createElement($k, $v));
 }
-$activitiesElem->appendChild( $activityElem );
+$denominationsElem->appendChild( $denominationElem );
 }
 
-$dom->appendChild( $activities );
+$dom->appendChild( $denominations );
 
 $xmlData  = $dom->saveXML();
 echo $xmlData;

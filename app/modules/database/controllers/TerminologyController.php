@@ -16,34 +16,38 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('public',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_contexts = array('xml','json');
-	$this->_helper->contextSwitch()
-		 ->setAutoDisableLayout(true)
-		 ->addActionContext('periods', $this->_contexts)
- 		 ->addActionContext('period', $this->_contexts)
- 		 ->addActionContext('activities', $this->_contexts)
- 		 ->addActionContext('activity', $this->_contexts)
- 		 ->addActionContext('cultures', $this->_contexts)
- 		 ->addActionContext('culture', $this->_contexts)
- 		 ->addActionContext('methods', $this->_contexts)
- 		 ->addActionContext('method', $this->_contexts)
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
+		 ->addActionContext('periods', 		$this->_contexts)
+ 		 ->addActionContext('period', 		$this->_contexts)
+ 		 ->addActionContext('activities', 	$this->_contexts)
+ 		 ->addActionContext('activity', 	$this->_contexts)
+ 		 ->addActionContext('cultures', 	$this->_contexts)
+ 		 ->addActionContext('culture', 		$this->_contexts)
+ 		 ->addActionContext('methods', 		$this->_contexts)
+ 		 ->addActionContext('method', 		$this->_contexts)
  		 ->addActionContext('preservations',$this->_contexts)
- 		 ->addActionContext('preservation',$this->_contexts)
- 		 ->addActionContext('notes',$this->_contexts)
-		 ->addActionContext('note',$this->_contexts)
-		 ->addActionContext('materials',$this->_contexts)
-		 ->addActionContext('material',$this->_contexts)
-		 ->addActionContext('workflows',$this->_contexts)
-		 ->addActionContext('workflow',$this->_contexts)
-		 ->addActionContext('manufactures',$this->_contexts)
-		 ->addActionContext('manufacture',$this->_contexts)
-		 ->addActionContext('surfaces',$this->_contexts)
-		 ->addActionContext('surface',$this->_contexts)
-		 ->addActionContext('objects',$this->_contexts)
-		 ->addActionContext('object',$this->_contexts)
-		 ->addActionContext('rulers',$this->_contexts)
-		 ->addActionContext('mints',$this->_contexts)
+ 		 ->addActionContext('preservation', $this->_contexts)
+ 		 ->addActionContext('notes',		$this->_contexts)
+		 ->addActionContext('note',			$this->_contexts)
+		 ->addActionContext('materials',	$this->_contexts)
+		 ->addActionContext('material',		$this->_contexts)
+		 ->addActionContext('workflows',	$this->_contexts)
+		 ->addActionContext('workflow',		$this->_contexts)
+		 ->addActionContext('manufactures',	$this->_contexts)
+		 ->addActionContext('manufacture',	$this->_contexts)
+		 ->addActionContext('surfaces',		$this->_contexts)
+		 ->addActionContext('surface',		$this->_contexts)
+		 ->addActionContext('objects',		$this->_contexts)
+		 ->addActionContext('object',		$this->_contexts)
+		 ->addActionContext('rulers',		$this->_contexts)
+		 ->addActionContext('mints',		$this->_contexts)
 		 ->addActionContext('denominations',$this->_contexts)
-		 ->addActionContext('index',$this->_contexts)
+		 ->addActionContext('dieaxes',		$this->_contexts)
+		 ->addActionContext('dieaxis',		$this->_contexts)
+		 ->addActionContext('index',		$this->_contexts)
+		 ->addActionContext('landuses',		$this->_contexts)
+		 ->addActionContext('landuse',		$this->_contexts)		 
 		 ->initContext();
 	$this->_periods = new Periods();
 	}
@@ -71,8 +75,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	/** Display a list of periods
 	*/
 	public function periodsAction() {
-	$periods = new Periods();
-	$this->view->periods = $periods->getPeriods();
+	$this->view->periods = $this->_periods->getPeriods();
 	}
 	/** Details about a specific period
 	*/
@@ -113,7 +116,6 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	if($this->_getParam('id',false)) {
 	$methods = new DiscoMethods();
 	$this->view->methods = $methods->getDiscmethodInformation($this->_getParam('id'));
-
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
@@ -305,8 +307,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	if($this->_getParam('id',false)) {
 	$landuses = new Landuses();
 	$this->view->landuses = $landuses->getLanduseDetails($this->_getParam('id'));
-	$landuses2 = new Landuses();
-	$this->view->landuses2 = $landuses2->getLandusesChild($this->_getParam('id'));
+	$this->view->landuses2 = $landuses->getLandusesChild($this->_getParam('id'));
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}

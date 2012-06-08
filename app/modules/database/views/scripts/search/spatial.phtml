@@ -60,12 +60,12 @@ function initMap() {
 
         var lat1 = latlng1.lat();
         var lat2 = latlng2.lat();
-        var minLat = lat1<lat2?lat1:lat2;
-        var maxLat = lat1<lat2?lat2:lat1;
+        var minLat = lat1 < lat2 ? lat1:lat2;
+        var maxLat = lat1 < lat2 ? lat2:lat1;
         var lng1 = latlng1.lng();
         var lng2 = latlng2.lng();
-        var minLng = lng1<lng2?lng1:lng2;
-        var maxLng = lng1<lng2?lng2:lng1;
+        var minLng = lng1 < lng2 ? lng1:lng2;
+        var maxLng = lng1 < lng2 ? lng2:lng1;
         $('#bottomLeft').val(minLat + ',' + minLng);
         $('#topRight').val(maxLat + ',' + maxLng);
     });

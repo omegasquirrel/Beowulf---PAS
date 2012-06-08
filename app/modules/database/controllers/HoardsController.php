@@ -8,6 +8,9 @@
 * @license    GNU General Public License
 */
 class Database_HoardsController extends Pas_Controller_Action_Admin {
+	
+	protected $_hoards;
+	
 	/** Setup the contexts by action and the ACL.
 	*/
 	public function init() {
@@ -15,13 +18,14 @@ class Database_HoardsController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('flos',null);
 	$this->_helper->_acl->allow('public',$publicActions);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->_helper->contextSwitch()
-		->setAutoDisableLayout(true)
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
 		->addActionContext('hoard', array('xml','json'))
 		->addActionContext('index', array('xml','json','rss','atom'))
 		->initContext();
+	$this->_hoards = new Hoards();
 	}
 	
 	/** Url redirect 
@@ -31,8 +35,7 @@ class Database_HoardsController extends Pas_Controller_Action_Admin {
     /** Index page, listing all hoards recorded on the database.
 	*/
 	public function indexAction() {
-	$hoards = new Hoards();
-	$this->view->hoards = $hoards->getHoardList((array)$this->_getAllParams());
+	$this->view->hoards = $this->_hoards->getHoardList((array)$this->_getAllParams());
 	}
 	
     /** Details of an individual hoard
@@ -40,8 +43,7 @@ class Database_HoardsController extends Pas_Controller_Action_Admin {
 	*/
 	public function hoardAction() {
 	if($this->_getParam('id',false)){
-	$hoards = new Hoards();
-	$this->view->hoards = $hoards->getHoardDetails((int)$this->_getParam('id'));
+	$this->view->hoards = $this->_hoards->getHoardDetails((int)$this->_getParam('id'));
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
