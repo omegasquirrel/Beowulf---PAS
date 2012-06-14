@@ -1,98 +1,36 @@
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>';?>
-<response>
-	<image>
-	<?php
-	$data = $this->images;
-	$object = (object)$data['0'];
-	$route = $object->imagedir;
-	?>
-	<url><?php echo $this->serverUrl();?>/database/images/id/<?php echo $object->id;?></url>
-	<label><?php echo $this->Xmlclean($object->label);?></label>
-	<broadperiod><?php echo $object->broadperiod;?></broadperiod>
-	<county><?php echo $object->county;?></county>
-	<creator><?php echo $object->fullname;?></creator>
-	<created><?php echo date(DATE_W3C,strtotime($object->created));?></created>
-	<imagerights><?php echo $this->Xmlclean($object->imagerights);?></imagerights>
-	<formats>
-	<original>
-		<path><?php echo $route . $object->filename;?></path>
-		<?php if(file_exists($route . $object->filename)) {
-		$data = getimagesize($route . $object->filename);
-		$width = $data['0'];
-		$height = $data['1'];
-		$mime = $data['mime'];
-		$size = filesize($object->imagedir . $object->filename);
-		?>
-		<mimeType><?php echo $mime;?></mimeType>
-		<fileSize><?php echo $size;?></fileSize>
-		<height><?php echo $height;?></height>
-		<width><?php echo $width;?></width>
-		<?php }?>
-	</original>
-	<medium>
-		<?php
-		if(file_exists($route . 'medium/' . $object->filename)) {
-		$data2 = getimagesize($route . 'medium/' . $object->filename);
-		$width2 = $data2['0'];
-		$height2 = $data2['1'];
-		$mime2 = $data2['mime'];
-		$size2 = filesize($object->imagedir . 'medium/' . $object->filename);
-			?>
-		<path><?php echo $route;?>medium/<?php echo strtolower($object->filename);?></path>
-		<mimeType></mimeType>
-		<mimeType><?php echo $mime2;?></mimeType>
-		<fileSize><?php echo $size2;?></fileSize>
-		<height><?php echo $height2;?></height>
-		<width><?php echo $width2;?></width>
-		<?php }?>
-	</medium>
-	<thumbnail>
-		<path><?php echo $this->serverUrl();?>/images/thumbnails/<?php echo $object->id?>.jpg</path>
-		<?php
-		$data3 = getimagesize('<?php echo $this->serverUrl();?>/images/thumbnails/' . $object->id . '.jpg');
-		$width3 = $data3['0'];
-		$height3 = $data3['1'];
-		$mime3 = $data3['mime'];
-		$size3 = filesize('images/thumbnails/' . $object->id . '.jpg');
-			?>
-		<mimeType><?php echo $mime3; ?></mimeType>
-		<fileSize><?php echo $size3;?></fileSize>
-		<height><?php echo $height3;?></height>
-		<width><?php echo $width3;?></width>
-	</thumbnail>
-	<display>
-		<?php if(file_exists($route . 'display/' . strtolower($object->filename))) {
-		$data4 = getimagesize($route . 'display/' . strtolower($object->filename));
-		$width4 = $data4['0'];
-		$height4 = $data4['1'];
-		$mime4 = $data4['mime'];
-		$size4 = filesize($object->imagedir  . 'display/' . strtolower($object->filename));
-			?>
-		<path><?php echo $route;?>display/<?php echo strtolower($object->filename);?></path>
-		<mimeType><?php  echo $mime4?></mimeType>
-		<fileSize><?php echo $size4;?></fileSize>
-		<height><?php echo $height4;?></height>
-		<width><?php echo $width4;?></width>
-		<?php }?>
-	</display>
-	<small>
-		<?php if(file_exists($route . 'small/' . $object->filename)) {
-		$data5 = getimagesize($route . 'small/' . $object->filename);
-		$width5 = $data5['0'];
-		$height5 = $data5['1'];
-		$mime5 = $data5['mime'];
-		$size5 = filesize($object->imagedir . 'small/' . $object->filename);
-		?>
-		<path><?php echo $route;?>small/<?php echo $object->filename;?></path>
-		<mimeType><?php echo $mime;?></mimeType>
-		<fileSize><?php echo $size5;?></fileSize>
-		<height><?php echo $height5;?></height>
-		<width><?php echo $width5;?></width>
-		<?php }?>
-	</small>
-	</formats>
-	<linkedFinds>
-	<?php echo $this->partialLoop('partials/xml/linkedfinds.phtml',$this->finds);?>
-	</linkedFinds>
-	</image>
-</response>
+<?php 
+$site = Zend_Registry::get('siteurl');
+$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();	
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();	
+$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+$contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch');	
+$param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+$contexts = $contextSwitch->getContexts();
+
+$dom 	  = new DomDocument("1.0", "UTF-8");
+$cats  = $dom->createElement('response');
+$meta = $dom->createElement('meta');
+$formats = $dom->createElement('formats');
+$meta->appendChild($formats);	
+foreach ($contexts as $k => $v){
+$formats->appendChild( $dom->createElement($k, $site . $this->url(array('module' => $module,
+'controller' => $controller,'action' => $action,'id' => $param,'format' => $k),NULL,true)  ));
+}
+$formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
+'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
+//1st item
+$mintsElem = $dom->createElement('images');
+$cats->appendChild($mintsElem);
+// set it's attribute
+foreach($this->images as $r => $v) {
+     $typeElem = $dom->createElement('image');
+   foreach($v as $k => $a){
+      
+       $typeElem->appendChild( $dom->createElement($k, htmlspecialchars($a))); 
+   }
+   $mintsElem->appendChild($typeElem);
+}
+$dom->appendChild( $cats );
+
+$xmlData  = $dom->saveXML();
+echo $xmlData;

@@ -60,17 +60,14 @@ class Database_StatisticsController extends Pas_Controller_Action_Admin {
 	$calendar->formatted_link_to = $this->view->baseUrl() 
 	. '/database/search/results/created/%Y-%m-%d';
 	print '<div id="calendar">';
-	print("<ul id=\"year\">\n"); 
 	for($i=1;$i<=12;$i++){ 
-		print("<li>"); 
 		if( $i == $calendar->month ){ 
-			print($calendar->output_calendar()); 
+			print($calendar->output_calendar(null,null, 'table table-striped')); 
 		} else { 
-			print($calendar->output_calendar($calendar->year, $i)); 
+			print($calendar->output_calendar($calendar->year, $i, 'table table-striped')); 
 		} 
-		print("</li>\n"); 
 	} 
-	print("</ul></div>"); 
+	print("</div>"); 
 	
 	}
 	

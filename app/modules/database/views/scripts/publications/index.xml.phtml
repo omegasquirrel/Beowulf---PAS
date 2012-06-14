@@ -12,10 +12,10 @@ $publications  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
 $publications->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
-$meta->appendChild( $dom->createElement('currentPage',$this->data['pageNumber']));
-$meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->data['itemsReturned']));
+$meta->appendChild( $dom->createElement('totalItems',$this->paginator->getTotalItemCount()));
+$meta->appendChild( $dom->createElement('currentPage',$this->paginator->getCurrentPageNumber()));
+$meta->appendChild( $dom->createElement('totalPages',ceil($this->paginator->getTotalItemCount()/$this->paginator->getItemCountPerPage())));
+
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k){

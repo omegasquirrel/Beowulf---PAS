@@ -18,7 +18,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$this->_helper->_acl->allow('member',array('add','delete','edit'));
 	$this->_helper->_acl->allow('flos',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-        $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()
 		->setAutoDisableLayout(true)
 		->addContext('csv',array('suffix' => 'csv'))
@@ -26,7 +26,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
 		->addActionContext('image', array('xml','json'))
-                ->addActionContext('index',array('json'))
+		->addActionContext('index',array('xml','json'))
 		->initContext();
 	$this->_auth = Zend_Registry::get('auth');
 	$this->_images = new Slides();

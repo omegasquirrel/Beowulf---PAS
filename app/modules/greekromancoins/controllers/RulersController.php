@@ -8,15 +8,19 @@
 * @license    GNU General Public License
 */
 class GreekRomanCoins_RulersController extends Pas_Controller_Action_Admin {
+	
+	protected $_rulers;
+	
 	/** Initialise the ACL and contexts
 	*/ 
 	public function init(){
  	$this->_helper->_acl->allow(null);
-	$this->_helper->contextSwitch()
-			 ->setAutoDisableLayout(true)
+ 	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 			 ->addActionContext('index', array('xml','json'))
 			 ->addActionContext('ruler', array('xml','json'))
              ->initContext();
+    $this->_rulers = new Rulers();
     }
 	/** Internal period number
 	*/ 
@@ -24,31 +28,14 @@ class GreekRomanCoins_RulersController extends Pas_Controller_Action_Admin {
 	/** Set up the index page
 	*/ 
     public function indexAction() {
-	$greek = new Rulers();
-	$greeks = $greek->getRulersGreekList($this->_getAllParams());
-	$contexts = array('json','xml');
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$contexts)) {
-	$data = array('pageNumber' => $greeks->getCurrentPageNumber(),
-				  'total' => number_format($greeks->getTotalItemCount(),0),
-				  'itemsReturned' => $greeks->getCurrentItemCount(),
-				  'totalPages' => number_format($greeks->getTotalItemCount()/$greeks->getItemCountPerPage(),0));
-	$this->view->data = $data;
-	$greeksa = array();
-	foreach($greeks as $r => $v){
-	$greeksa[$r] = $v;
-	}
-		$this->view->greeks = $greeksa;
-	} else {
-		$this->view->greeks = $greeks;
-	}
+	$this->view->greeks = $this->_rulers->getRulersGreekList($this->_getAllParams());
 	}
 	
 	/** Individual ruler page
 	*/ 	
 	public function rulerAction() {
 	if($this->_getParam('id',false)){
-	$greeks = new Rulers();
-	$this->view->greek= $greeks->getRulerProfile($this->_getParam('id'));
+	$this->view->greek= $this->_rulers->getRulerProfile($this->_getParam('id'));
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);		
 	}

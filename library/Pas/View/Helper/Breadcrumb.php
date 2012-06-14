@@ -134,8 +134,14 @@ class Pas_View_Helper_Breadcrumb
 		case 'myscheme':
 			$nicename = 'My scheme';
 			break;
-					case 'vanarsdelltypes':
+		case 'vanarsdelltypes':
 			$nicename = 'Van Arsdell Types';
+			break;
+		case 'smr':
+			$nicename = 'Scheduled Monuments';
+			break;
+		case 'osdata':
+			$nicename = 'Ordnance Survery Open Data';
 			break;
 		default:
 			$nicename = $controller;
@@ -235,7 +241,9 @@ class Pas_View_Helper_Breadcrumb
 			case 'errorreport':
 			$nicenameaction = 'Submit an error';
 			break;
-			
+			case 'oneto50k':
+			$nicenameaction = 'One to 50K entry';
+			break;
 			default:
 			$nicenameaction = $action;
 			break;

@@ -3,7 +3,7 @@
 <h3>Finds recorded with the Scheme</h3>
 
 
-<div class="stripeMe">
+<div>
         <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->finds);?>
     </div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>

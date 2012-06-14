@@ -14,6 +14,12 @@ class Database_SmrController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('flos',null);
 	$this->_helper->_acl->allow('hero',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+	$this->_contexts = array('xml','json');
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
+		->addActionContext('record',$this->_contexts)
+		->addActionContext('index',$this->_contexts)
+		->initContext();
     }
 	const REDIRECT = 'database/smr/';
 	/** Index page for smrs

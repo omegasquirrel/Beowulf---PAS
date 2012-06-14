@@ -14,8 +14,9 @@ $moneyers->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
 $meta->appendChild( $dom->createElement('totalItems',$this->moneyers->getTotalItemCount()));
 $meta->appendChild( $dom->createElement('currentPage',$this->moneyers->getCurrentPageNumber()));
-$meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->moneyers->getItemCountPerPage()));
+$meta->appendChild( $dom->createElement('itemsPerPage', $this->moneyers->getItemCountPerPage()));
+$meta->appendChild( $dom->createElement('totalPages',ceil($this->moneyers->getTotalItemCount()/$this->moneyers->getItemCountPerPage())));
+
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){

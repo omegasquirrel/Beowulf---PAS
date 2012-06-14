@@ -12,10 +12,10 @@ $cats  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
 $cats->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
-$meta->appendChild( $dom->createElement('currentPage',$this->data['pageNumber']));
-$meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->data['itemsReturned']));
+$meta->appendChild( $dom->createElement('totalItems',$this->hoards->getTotalItemCount()));
+$meta->appendChild( $dom->createElement('currentPage',$this->hoards->getCurrentPageNumber()));
+$meta->appendChild( $dom->createElement('itemsPerpage', $this->hoards->getItemCountPerPage()));
+$meta->appendChild( $dom->createElement('totalPages',ceil($this->hoards->getTotalItemCount()/$this->hoards->getItemCountPerPage())));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){

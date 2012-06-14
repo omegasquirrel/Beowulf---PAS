@@ -23,8 +23,8 @@ class Getinvolved_PublicationsController extends Pas_Controller_Action_Admin {
 	$content = new Content();
 	$this->view->contents = $content->getFrontContent('publications');
 	$service = Zend_Gdata_Docs::AUTH_SERVICE_NAME;
-	$client = Zend_Gdata_ClientLogin::getHttpClient($this->_helper->config->webservice->google->username, 
-	$this->_config->webservice->google->password, $service);
+	$client = Zend_Gdata_ClientLogin::getHttpClient($this->_helper->Config()->webservice->google->username, 
+	$this->_helper->Config()->webservice->google->password, $service);
 	$docs = new Zend_Gdata_Docs($client);
 	$feed = $docs->getDocumentListFeed();
 	$documents = array();	

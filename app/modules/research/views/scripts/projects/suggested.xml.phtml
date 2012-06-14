@@ -12,10 +12,11 @@ $suggested  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
 $suggested->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
-$meta->appendChild( $dom->createElement('currentPage',$this->data['pageNumber']));
-$meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->data['itemsReturned']));
+$meta->appendChild( $dom->createElement('totalItems',$this->suggested->getTotalItemCount()));
+$meta->appendChild( $dom->createElement('currentPage',$this->suggested->getCurrentPageNumber()));
+$meta->appendChild( $dom->createElement('itemsPerPage', $this->suggested->getItemCountPerPage()));
+$meta->appendChild( $dom->createElement('totalPages',ceil($this->suggested->getTotalItemCount()/$this->suggested->getItemCountPerPage())));
+
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){

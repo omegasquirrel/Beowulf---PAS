@@ -14,8 +14,8 @@ $denominations->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
 $meta->appendChild( $dom->createElement('totalItems',$this->denominations->getTotalItemCount()));
 $meta->appendChild( $dom->createElement('currentPage',$this->denominations->getCurrentPageNumber()));
-$meta->appendChild( $dom->createElement('totalPages',$this->denominations->totalPages));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->denominations->itemsReturned));
+$meta->appendChild( $dom->createElement('totalPages',ceil($this->denominations->getTotalItemCount()/$this->denominations->getItemCountPerPage())));
+
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k => $v){

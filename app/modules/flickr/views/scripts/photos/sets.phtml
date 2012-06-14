@@ -29,9 +29,9 @@ This set contains <?php echo $d->photos;?> photographs<?php if($d->videos != 0) 
 </div>
 <?php endforeach;?>
 <?php endif;?>
-
+<div class="row span16">
 <?php echo $this->paginationControl($this->$paginator, 'Sliding', 'structure/pagination.phtml'); ?>
-
+</div>
 <?php else:?>
 <p>There are no sets available at the moment</p>
 <?php endif;?>

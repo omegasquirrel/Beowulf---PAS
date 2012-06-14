@@ -8,15 +8,19 @@
 * @license    GNU General Public License
 */
 class GreekRomanCoins_MintsController extends Pas_Controller_Action_Admin {
+	
+	protected $_mints;
+	
 	/** Initialise the ACL and contexts
 	*/ 
 	public function init()  {
  	$this->_helper->_acl->allow(null);
-	$this->_helper->contextSwitch()
-			 ->setAutoDisableLayout(true)
+ 	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 			 ->addActionContext('index', array('xml','json'))
 			 ->addActionContext('mint', array('xml','json'))
              ->initContext();
+    $this->_mints = new Mints();
     }
 	/** Internal period number
 	*/ 
@@ -25,15 +29,13 @@ class GreekRomanCoins_MintsController extends Pas_Controller_Action_Admin {
 	/** Initialise the index pages
 	*/  
     public function indexAction()  {
-    $greeks = new Mints();
-    $this->view->greeks = $greeks->getMintsGreekList();
+    $this->view->greeks = $this->_mints->getMintsGreekList();
     }
 	/** Set up the mint action
 	*/     
     public function mintAction() {
 	if($this->_getParam('id',false)){    
-    $byzantium = new Mints();
-    $this->view->byzantium = $byzantium->getMintDetails($this->_getParam('id'));
+    $this->view->greeks = $this->_mints->getMintDetails($this->_getParam('id'));
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);		
 	}

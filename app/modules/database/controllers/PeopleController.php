@@ -15,8 +15,8 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     public function init() {
     $this->_helper->_acl->allow('flos',NULL);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-    $this->_helper->contextSwitch()
-            ->setAutoDisableLayout(true)
+    $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+    $this->_helper->contextSwitch()->setAutoDisableLayout(true)
             ->addContext('csv',array('suffix' => 'csv'))
             ->addContext('vcf',array('suffix' => 'vcf'))
             ->addContext('rss',array('suffix' => 'rss'))
@@ -28,7 +28,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $this->_peoples = new Peoples();
     $this->_gmapskey = $this->_helper->config->webservice->googlemaps->apikey;
     $this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
-}
+	}
 
     const REDIRECT = 'database/people/';
     /** Index page of all people on the database
