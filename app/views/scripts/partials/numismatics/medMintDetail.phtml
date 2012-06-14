@@ -6,7 +6,13 @@ $this->headLink()->appendAlternate($this->baseUrl().'/database/search/results/mi
 <h2>The <?php echo $this->escape($this->mint_name);?> mint</h2>
 
 <p>Mint: <?php echo $this->escape($this->mint_name);?> <br />
+<?php if(!is_null($this->latitude)):?>
 Geo location: <?php echo $this->escape($this->latitude);?> <?php echo $this->escape($this->longitude);?><br />
+<?php endif;?>
+<?php if(!is_null($this->abbrev)):?>
 Abbreviation: <?php echo $this->abbrev;?><br />
-<?php echo $this->description;?></p>
+<?php endif;?>
+</p>
+<?php echo $this->description;?>
+
 <p>View <a href="<?php echo $this->url(array('module'=>'database','controller' => 'search','action'=>'results', 'mint'=>$this->id),null,true);?>" title="View all records">all coins recorded</a>, which are attributed to <?php echo $this->escape($this->mint_name);?>.</p>

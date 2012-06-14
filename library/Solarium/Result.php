@@ -72,6 +72,8 @@ class Solarium_Result
     protected $_query;
 
     /**
+     * Solarium client instance
+     *
      * @var Solarium_Client
      */
     protected $_client;
@@ -125,8 +127,8 @@ class Solarium_Result
     /**
      * Get Solr response data
      *
-     * Included a lazy loading mechanism: JSON body data is decoded on first use and then saved for reuse.
-     * 
+     * Includes a lazy loading mechanism: JSON body data is decoded on first use and then saved for reuse.
+     *
      * @return array
      */
     public function getData()

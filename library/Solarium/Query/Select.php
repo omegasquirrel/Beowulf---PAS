@@ -60,6 +60,16 @@ class Solarium_Query_Select extends Solarium_Query
     const SORT_ASC = 'asc';
 
     /**
+     * Solr query operator AND
+     */
+    const QUERY_OPERATOR_AND = 'AND';
+
+    /**
+     * Solr query operator OR
+     */
+    const QUERY_OPERATOR_OR = 'OR';
+
+    /**
      * Query component facetset
      */
     const COMPONENT_FACETSET = 'facetset';
@@ -98,6 +108,11 @@ class Solarium_Query_Select extends Solarium_Query
      * Query component stats
      */
     const COMPONENT_STATS = 'stats';
+
+    /**
+     * Query component debug
+     */
+    const COMPONENT_DEBUG = 'debug';
 
     /**
      * Get type for this query
@@ -169,6 +184,11 @@ class Solarium_Query_Select extends Solarium_Query
             'component' => 'Solarium_Query_Select_Component_Stats',
             'requestbuilder' => 'Solarium_Client_RequestBuilder_Select_Component_Stats',
             'responseparser' => 'Solarium_Client_ResponseParser_Select_Component_Stats',
+        ),
+        self::COMPONENT_DEBUG => array(
+            'component' => 'Solarium_Query_Select_Component_Debug',
+            'requestbuilder' => 'Solarium_Client_RequestBuilder_Select_Component_Debug',
+            'responseparser' => 'Solarium_Client_ResponseParser_Select_Component_Debug',
         ),
     );
 
@@ -264,6 +284,50 @@ class Solarium_Query_Select extends Solarium_Query
     public function getQuery()
     {
         return $this->getOption('query');
+    }
+
+    /**
+     * Set default query operator
+     *
+     * Use one of the constants as value
+     *
+     * @param string $operator
+     * @return Solarium_Query_Select Provides fluent interface
+     */
+    public function setQueryDefaultOperator($operator)
+    {
+        return $this->_setOption('querydefaultoperator', $operator);
+    }
+
+    /**
+     * Get the default query operator
+     *
+     * @return null|string
+     */
+    public function getQueryDefaultOperator()
+    {
+        return $this->getOption('querydefaultoperator');
+    }
+
+    /**
+     * Set default query field
+     *
+     * @param string $field
+     * @return Solarium_Query_Select Provides fluent interface
+     */
+    public function setQueryDefaultField($field)
+    {
+        return $this->_setOption('querydefaultfield', $field);
+    }
+
+    /**
+     * Get the default query field
+     *
+     * @return null|string
+     */
+    public function getQueryDefaultField()
+    {
+        return $this->getOption('querydefaultfield');
     }
 
     /**
@@ -894,6 +958,18 @@ class Solarium_Query_Select extends Solarium_Query
     public function getStats()
     {
         return $this->getComponent(Solarium_Query_Select::COMPONENT_STATS, true);
+    }
+
+    /**
+     * Get a Debug component instance
+     *
+     * This is a convenience method that maps presets to getComponent
+     *
+     * @return Solarium_Query_Select_Component_Debug
+     */
+    public function getDebug()
+    {
+        return $this->getComponent(Solarium_Query_Select::COMPONENT_DEBUG, true);
     }
 
 }

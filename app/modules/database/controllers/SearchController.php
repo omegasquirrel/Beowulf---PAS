@@ -361,18 +361,23 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$search = new Pas_Solr_Handler('beowulf');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	
 	$search->setFields($fields->getFields());
-        $search->setFacets(array(
-    	'objectType','county','broadperiod',
-    	'institution', 'rulerName', 'denominationName', 'mintName',
-    	'workflow'));
+    
+	$search->setFacets(array(
+    'objectType','county', 'broadperiod',
+    'institution', 'rulerName', 'denominationName', 
+    'mintName', 'workflow'));
+
 	$search->setParams($params);
 	$search->execute();
-        $this->view->facets = $search->_processFacets();
+    $this->view->facets = $search->_processFacets();
 	$this->view->paginator = $search->_createPagination();
+	$this->view->stats = $search->_processStats();
 	$this->view->results = $search->_processResults();
-        $queries = new Searches();
-        $queries->insertResults(serialize($params));
+		
+    $queries = new Searches();
+    $queries->insertResults(serialize($params));
 	}
 
 	public function mapAction(){

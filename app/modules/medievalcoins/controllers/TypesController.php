@@ -8,16 +8,19 @@
 */
 class MedievalCoins_TypesController extends Pas_Controller_Action_Admin {
 	
+	protected $_types;
+	
 	/** Setup the contexts by action and the ACL.
 	*/	
 	public function init() {
 	$this->_helper->_acl->allow(null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->_helper->contextSwitch()
-		->setAutoDisableLayout(true)
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addActionContext('index', array('xml','json'))
 		->addActionContext('type', array('xml','json'))
 		->initContext();
+	$this->_types = new MedievalTypes();
     }
 	/** Internal period ID number
 	*/	
@@ -26,33 +29,14 @@ class MedievalCoins_TypesController extends Pas_Controller_Action_Admin {
 	/** Index page for list of Medieval types
 	*/	
     public function indexAction() {
-	$type = new MedievalTypes();
-	$types = $type->getTypesByPeriod((int)$this->_period,(int)$this->_getParam('page'));
-	$contexts = array('json','xml');
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$contexts)) {
-	$data = array('pageNumber' => $types->getCurrentPageNumber(),
-				  'total' => number_format($types->getTotalItemCount(),0),
-				  'itemsReturned' => $types->getCurrentItemCount(),
-				  'totalPages' => number_format($types->getTotalItemCount()/$types->getCurrentItemCount(),0));
-	$this->view->data = $data;
-	$typesa = array();
-	foreach($types as $r => $v){
-	$typesa[$r] = $v;
-	}
-	$this->view->types = $typesa;
-	} else {
-	$this->view->types = $types;
-	}
+	$this->view->types = $this->_types->getTypesByPeriod((int)$this->_period,(int)$this->_getParam('page'));
 	}
 	
 	/** Medieval type details page
 	*/	
 	public function typeAction() {
 	if($this->_getParam('id',false)){
-	$types = new MedievalTypes();
-	$this->view->types = $types->getTypeDetails((int)$this->_getParam('id'));
-	$images = new Slides();
-	$this->view->images = $images->getExamplesCoinsMedTypes((int)$this->_getParam('id'),4);
+	$this->view->types = $this->_types->getTypeDetails((int)$this->_getParam('id'));
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}

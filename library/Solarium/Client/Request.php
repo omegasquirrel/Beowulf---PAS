@@ -211,7 +211,7 @@ class Solarium_Client_Request extends Solarium_Configurable
      */
     public function addParam($key, $value, $overwrite = false)
     {
-        if ($value !== '' && $value !== null) {
+        if ($value !== null) {
             if (!$overwrite && isset($this->_params[$key])) {
                 if (!is_array($this->_params[$key])) {
                     $this->_params[$key] = array($this->_params[$key]);
@@ -385,4 +385,25 @@ class Solarium_Client_Request extends Solarium_Configurable
 
         return $queryString;
     }
+
+    /**
+     * Magic method enables a object to be transformed to a string
+     *
+     * Get a summary showing significant variables in the object
+     * note: uri resource is decoded for readability
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $output = __CLASS__ . '::toString' . "\n"
+                . 'method: ' . $this->getMethod() . "\n"
+                . 'header: ' . print_r($this->getHeaders(), 1) //don't add newline when using print_r
+                . 'resource: ' . $this->getUri() . "\n"
+                . 'resource urldecoded: ' . urldecode($this->getUri()) . "\n"
+                . 'raw data: ' . $this->getRawData() . "\n";
+
+        return $output;
+    }
+
 }

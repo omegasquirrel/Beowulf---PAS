@@ -37,7 +37,7 @@ class Coinclassifications
 	* @return array
 	*/
 	public function getAllClasses($id) {
-	if (!$data = $this->_cache->load('classificationscoins')) {
+	if (!$data = $this->_cache->load('classificationscoins' . $id)) {
 	$coins = $this->getAdapter();
 	$select = $coins->select()
 		->from($this->_name,array('referenceName'))
@@ -46,7 +46,7 @@ class Coinclassifications
 		->joinLeft('finds','finds.secuid =  coinxclass.findID', array('returnID' => 'id'))
 		->where('finds.id = ?' ,(int)$id);
 	$data = $coins->fetchAll($select);
-	$this->_cache->save($data, 'classificationscoins');
+	$this->_cache->save($data, 'classificationscoins' . $id);
 	}
 	return $data;
 	}

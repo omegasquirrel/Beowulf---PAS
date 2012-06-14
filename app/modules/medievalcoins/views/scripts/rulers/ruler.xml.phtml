@@ -31,20 +31,7 @@ $rulerElem = $dom->createElement('ruler');
    }
 	
 $rulersElem->appendChild( $rulerElem );
-$imageElem = $dom->createElement('recentRecords');	
-$rulerElem->appendChild($imageElem);
 
-foreach($this->images as $i){
-$i = (object)$i;
-$recordElem = $dom->createElement('record');
-$imageElem->appendChild( $recordElem);
-$recordElem->appendChild( $dom->createElement('findID', $i->old_findID));
-$recordElem->appendChild( $dom->createElement('label', $i->label));
-$recordElem->appendChild( $dom->createElement('objectType', $i->objecttype));
-$recordElem->appendChild( $dom->createElement('broadPeriod', $i->broadperiod));
-$recordElem->appendChild( $dom->createElement('url', $site . '/database/artefacts/record/id/' . $i->id));
-$recordElem->appendChild( $dom->createElement('thumbnail', $site . ' /images/' . $i->id . '.jpg'));
-}
 $rulers->appendChild( $rulerElem );
 }
 

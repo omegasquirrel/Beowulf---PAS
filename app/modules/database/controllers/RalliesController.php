@@ -16,11 +16,8 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('public',array('index','rally','map'));
 	$this->_helper->_acl->deny('public',array('addflo','delete','deleteflo'));
 	$this->_helper->_acl->allow('flos',null);
-        $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
-	$this->_helper->contextSwitch()
-		->setAutoDisableLayout(true)
-		->addContext('csv',array('suffix' => 'csv'))
-		->addContext('kml',array('suffix' => 'kml'))
+    $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
 		->addActionContext('rally', array('xml','json'))

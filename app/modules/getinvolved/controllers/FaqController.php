@@ -14,8 +14,8 @@ class GetInvolved_FaqController extends Pas_Controller_Action_Admin {
     public function init() {
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 		$this->_helper->acl->allow('public',null);
-		$this->_helper->contextSwitch()
-			 ->setAutoDisableLayout(true)
+		$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+		$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 			 ->addActionContext('index', array('xml','json'))
              ->initContext();
 	}

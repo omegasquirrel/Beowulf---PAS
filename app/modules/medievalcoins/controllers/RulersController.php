@@ -7,16 +7,19 @@
 * @license    GNU General Public License
 */
 class MedievalCoins_RulersController extends Pas_Controller_Action_Admin {
+	
+	protected $_rulers;
 	/** Setup the contexts by action and the ACL.
 	*/	
 	public function init() {
 	$this->_helper->_acl->allow(null);
-	$this->_helper->contextSwitch()
-		->setAutoDisableLayout(true)
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addActionContext('index', array('xml','json'))
 		->addActionContext('ruler', array('xml','json'))
 		->addActionContext('foreign', array('xml','json'))
 		->initContext();
+	$this->_rulers = new Rulers();
     }
 	/** Internal period ID number
 	*/	
@@ -24,32 +27,21 @@ class MedievalCoins_RulersController extends Pas_Controller_Action_Admin {
 	/** Index page for the list of rulers
 	*/	
 	public function indexAction() {
-	$normans = new Rulers();
-	$this->view->normans = $normans->getMedievalRulersListed('2','29');
-	$shortlong = new Rulers();
-	$this->view->shortlong = $shortlong->getMedievalRulersListed('14','29');
-	$edwardian = new Rulers();
-	$this->view->edwardian = $edwardian->getMedievalRulersListed('15','29');
-	$latemed = new Rulers();
-	$this->view->latemed = $latemed->getMedievalRulersListed('16','29');
+	$this->view->normans 	= $this->_rulers->getMedievalRulersListed('2','29');
+	$this->view->shortlong 	= $this->_rulers->getMedievalRulersListed('14','29');
+	$this->view->edwardian 	= $this->_rulers->getMedievalRulersListed('15','29');
+	$this->view->latemed 	= $this->_rulers->getMedievalRulersListed('16','29');
 	}
 	/** Index page for list of foreign rulers
 	*/	
 	public function foreignAction() {
-	$ferengi = new Rulers();
-	$this->view->ferengi = $ferengi->getMedievalRulersListed($this->_period,'29');
-	$doges = new Rulers();
-	$this->view->doges = $doges->getForeign($this->_period, $country = '1');
-	$scots = new Rulers();
-	$this->view->scots = $scots->getForeign($this->_period, $country = '2');
-	$low = new Rulers();
-	$this->view->low = $low->getForeign($this->_period, $country = '3');
-	$imitate= new Rulers();
-	$this->view->imitate = $imitate->getForeign($this->_period, $country = '4');
-	$portugal= new Rulers();
-	$this->view->portugal = $imitate->getForeign($this->_period, $country = '5');
-	$shortlongs= new Rulers();
-	$this->view->shortlongs = $shortlongs->getForeign($this->_period, $country = '6');
+	$this->view->ferengi 	= $this->_rulers->getMedievalRulersListed($this->_period,'29');
+	$this->view->doges		= $this->_rulers->getForeign($this->_period, $country = '1');
+	$this->view->scots 		= $this->_rulers->getForeign($this->_period, $country = '2');
+	$this->view->low 		= $this->_rulers->getForeign($this->_period, $country = '3');
+	$this->view->imitate 	= $this->_rulers->getForeign($this->_period, $country = '4');
+	$this->view->portugal 	= $this->_rulers->getForeign($this->_period, $country = '5');
+	$this->view->shortlongs = $this->_rulers->getForeign($this->_period, $country = '6');
 	}
 	/** Individual ruler pages
 	*/	
@@ -57,9 +49,8 @@ class MedievalCoins_RulersController extends Pas_Controller_Action_Admin {
 	if($this->_getParam('id',false)){
 	$id = (int)$this->_getParam('id');
 	$this->view->id = $id;
-	$rulers = new Rulers();
-	$this->view->rulers = $rulers->getRulerImage($id);
-	$this->view->monarchs = $rulers->getRulerProfileMed($id);
+	$this->view->rulers = $this->_rulers->getRulerImage($id);
+	$this->view->monarchs = $this->_rulers->getRulerProfileMed($id);
 	$denominations = new Denominations();
 	$this->view->denominations = $denominations->getEarlyMedRulerToDenomination($id);
 	$types = new MedievalTypes();

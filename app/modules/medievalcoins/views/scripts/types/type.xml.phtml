@@ -28,17 +28,7 @@ $typeElem = $dom->createElement('type');
       
        $typeElem->appendChild( $dom->createElement($k, htmlspecialchars($a))); 
    }
-$imageElem = $dom->createElement('recentRecords'); 
 
-foreach($this->images as $r => $v) {
-$recordElem = $dom->createElement('records');
-   foreach($v as $k => $a){
-      
-       $recordElem->appendChild( $dom->createElement($k, $a)); 
-   }
-   $imageElem->appendChild($recordElem);
-}
-$typeElem->appendChild($imageElem);
 $types->appendChild( $typeElem );
 
 

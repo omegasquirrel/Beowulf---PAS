@@ -28,7 +28,7 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 $publicationsElem = $dom->createElement('publications');
 $publications->appendChild($publicationsElem);
 // set it's attribute
-foreach($this->paginator as $r){
+foreach($this->results as $r){
 	$publicationElem = $dom->createElement('publication');
 foreach($r as $k => $v){
 	$publicationElem->appendChild( $dom->createElement($k, htmlspecialchars($v))); 

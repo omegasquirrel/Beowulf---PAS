@@ -57,6 +57,30 @@ class Pas_Solr_Handler {
 
     protected $_query;
     
+    protected $_stats = false;
+    
+    protected $_statsFields = array('quantity');
+    
+    public function setStats($value){
+    	return $this->_stats = $value;
+    }
+    
+    public function getStats(){
+    	return $this->_stats;
+    }
+    
+    public function setStatsFields($fields){
+		if(is_array($fields)){
+    	return $this->_statsFields = $fields;
+		} else {
+			return $this->_statsFields;
+		}
+    }
+    
+    public function getStatsFields(){
+    	return $this->_statsFields;
+    }
+    
     public function setMap($map){
     	return $this->_map = $map;
     }
@@ -322,6 +346,25 @@ class Pas_Solr_Handler {
     return $clean;
     }
 
+	public function _processStats(){
+    $stats = $this->_resultset->getStats();
+    foreach($stats as $stat){
+    $data = array(
+    'stdDeviation' => $stat->getStddev(),
+    'mean' => $stat->getMean(),
+    'sum' => $stat->getSum(),
+    'query' => $stat->getName(),
+    'minima' => $stat->getMin(),
+    'maxima' => $stat->getMax(),
+	'count' =>  $stat->getCount(),
+    'missing' => $stat->getMissing(),
+    'sumOfSquares' => $stat->getSumOfSquares(),
+    'mean' => $stat->getMean()
+    );
+    }
+    return $data;
+    }
+    
     /** Process the facets
      *
      * @return boolean
@@ -353,7 +396,6 @@ class Pas_Solr_Handler {
     if(!is_null($fields)){
     $this->_schemaFields[] = '*';
     $this->_schemaFields[] = 'q';
-
     foreach($fields as $f){
         if(!in_array($f,$this->_schemaFields)){
             throw new Pas_Solr_Exception('The field ' . $f
@@ -468,9 +510,13 @@ class Pas_Solr_Handler {
     }
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
-
-
-
+	
+ 	if($this->_core === 'beowulf'){
+		$stats = $this->_query->getStats();
+		foreach($this->getStatsFields() as $field){
+			$stats->createField($field);
+		}
+ 	}
     if(!in_array($this->_getRole(), $this->_allowed) || is_null($this->_getRole()) ) {
     if(array_key_exists('workflow', array_flip($this->_schemaFields))){
     $this->_query->createFilterQuery('workflow')->setQuery('workflow:[3 TO 4]');
@@ -494,11 +540,13 @@ class Pas_Solr_Handler {
 
     $this->_createFilters($this->_params);
 
-
     $this->_resultset = $this->_solr->select($this->_query);
     return $this->_resultset;
     }
 
+    
+    
+    
     protected function _buildFacetQueries($k, $v){
         return $this->_query->createFilterQuery($k)->setQuery(substr($k, 2) . ':"' . $v . '"');
     }
@@ -516,6 +564,7 @@ class Pas_Solr_Handler {
     Zend_Debug::dump($this->_processFacets($this->_resultset, $this->_facets),'The facet set');
     }
 
+  
     /** Create the facets
      *
      */

@@ -53,9 +53,9 @@ class Events_UpcomingController extends Pas_Controller_Action_Admin {
 	$next_month = date("m", strtotime("+1 month", strtotime($first_day)));
 	$url = $this->view->url(array('module' => 'events','controller' => 'upcoming','action' => 'index'),'upcoming',true);
 	$calendar->formatted_link_to = $url.'/%Y-%m-%d';
-	$this->view->curr = $calendar->output_calendar();
-	$this->view->nextplusone = $calendar->output_calendar($prev_year, $prev_month);
-	$this->view->next =  $calendar->output_calendar($next_year, $next_month);
+	$this->view->curr = $calendar->output_calendar(null,null,'table table-striped');
+	$this->view->nextplusone = $calendar->output_calendar($prev_year, $prev_month,'table table-striped');
+	$this->view->next =  $calendar->output_calendar($next_year, $next_month,'table table-striped');
 	$events = new Events();
 	if($this->_getParam('date') == NULL) {
 	$this->view->events = $eventsList->getUpcomingEventsList();

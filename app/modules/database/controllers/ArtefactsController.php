@@ -213,6 +213,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
                 'xml','json','qrcode')))){
 
     $wform = new WorkflowStageForm();
+    
     $wform->id->setValue($id);
     $wform->submit->setLabel('Change workflow');
     $this->view->wform = $wform;

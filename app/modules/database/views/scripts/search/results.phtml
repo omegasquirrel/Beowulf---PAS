@@ -27,7 +27,7 @@
         <div class="span3">
         <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
         <?php echo $this->paginationControl($this->paginator,'elastic','structure/paginationSolr.phtml'); ?>
-
+		<?php echo $this->statGenerator($this->stats);?>
         <?php echo $this->facetCreator($this->facets); ?>
 		</div>
         <?php else:?>

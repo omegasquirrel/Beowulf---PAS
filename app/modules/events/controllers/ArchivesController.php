@@ -17,6 +17,7 @@
 class Events_ArchivesController extends Pas_Controller_Action_Admin {
 
 	protected $_contextSwitch;
+	
     protected $_contexts = array('xml','json','atom','rss');
 	
     /**
@@ -24,13 +25,18 @@ class Events_ArchivesController extends Pas_Controller_Action_Admin {
 	*/
 	public function init() {
 	$this->_helper->acl->allow('public',null);
+	
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+	
 	$this->_contextSwitch = $this->_helper->contextSwitch();
+	
+	$this->_contextSwitch->setAutoJsonSerialization(false);
+	
 	$this->_contextSwitch->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
 		->addActionContext('index', $this->_contexts)
 		->addActionContext('upcoming', $this->_contexts)
-		 ->addActionContext('event',$this->_contexts)
+		->addActionContext('event',$this->_contexts)
 		->initContext();
 	}
 	
@@ -41,7 +47,6 @@ class Events_ArchivesController extends Pas_Controller_Action_Admin {
 	public function indexAction() {
 	$events = new Events();
 	$events = $events->getArchivedEventsList($this->_getAllParams());
-	if(!in_array($this->_contextSwitch->getCurrentContext(),$this->_contexts)) {
 	$current_year = date('Y');
 	$years = range(1998, $current_year);
 	$yearslist = array();
@@ -51,19 +56,6 @@ class Events_ArchivesController extends Pas_Controller_Action_Admin {
 	$list = $yearslist;
 	$this->view->years = $list;
 	$this->view->events = $events;
-	}  else {
-	$data = array('pageNumber' => $events->getCurrentPageNumber(),
-				  'total' => number_format($events->getTotalItemCount(),0),
-				  'itemsReturned' => $events->getCurrentItemCount(),
-				  'totalPages' => number_format($events->getTotalItemCount()
-				  / $events->getItemCountPerPage(),0));
-	$this->view->data = $data;
-	$eventsData = array();
-	foreach($events as $k => $v ){
-		$eventsData[$k] = $v;
-	}	
-	$this->view->events = $eventsData;
-	}
 	}
 	
 	/** Return data for the archive by years
@@ -89,20 +81,24 @@ class Events_ArchivesController extends Pas_Controller_Action_Admin {
 	}
 	$caseslisted = $lists;
 	$calendar->highlighted_dates = $caseslisted;
-	$url = $this->view->url(array('module' => 'events','controller' => 'archives','action' => 'list'),null,true);
+	$url = $this->view->url(array(
+		'module' => 'events', 
+		'controller' => 'archives',
+		'action' => 'list'),null,true);
 	$calendar->formatted_link_to = $url . '/day/%Y-%m-%d';
-	print '<div id="calendar">';
-	print("<ul id=\"year\">\n"); 
+//	print '<div id="calendar">';
+//	print("<ul id=\"year\">\n"); 
 	for($i=1;$i<=12;$i++){ 
-		print("<li>"); 
+//		print("<li>"); 
 		if( $i == $calendar->month ){ 
-			print($calendar->output_calendar()); 
+			print($calendar->output_calendar(null,null, 'table table-striped')); 
 		} else { 
-			print($calendar->output_calendar($calendar->year, $i)); 
+			print($calendar->output_calendar($calendar->year, $i, 'table table-striped')); 
 		} 
-		print("</li>\n"); 
+//		print("</li>\n"); 
 	} 
-	print("</ul></div>"); 
+//	print("</ul>");
+	print("</div>"); 
 	}
 	
 	/** Return data for the list page of archived events

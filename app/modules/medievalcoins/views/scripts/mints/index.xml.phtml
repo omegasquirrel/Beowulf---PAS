@@ -25,13 +25,11 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 $mintsElem = $dom->createElement('mints');
 $mints->appendChild($mintsElem);
 // set it's attribute
-foreach($this->mints as $r){
-$r = (object)$r;
+foreach($this->mints as $mint){
 $mintElem = $dom->createElement('mint');
-$mintElem->appendChild( $dom->createElement('id', $r->id));
-$mintElem->appendChild( $dom->createElement('name', htmlspecialchars($r->name)));
-$mintElem->appendChild( $dom->createElement('created', $r->created));
-$mintElem->appendChild( $dom->createElement('updated', $r->updated));
+foreach($mint as $k => $v){
+$mintElem->appendChild( $dom->createElement($k, $v));
+}
 $mintsElem->appendChild( $mintElem );
 }
 

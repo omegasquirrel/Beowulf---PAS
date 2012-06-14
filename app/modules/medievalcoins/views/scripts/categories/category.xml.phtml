@@ -22,11 +22,11 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
 
-foreach($this->categories as $r){
-$r = (object)$r;
+foreach($this->categories as $category){
 $mintElem = $dom->createElement('category');
-$mintElem->appendChild( $dom->createElement('id', $r->id));
-$mintElem->appendChild( $dom->createElement('name', $r->term));
+foreach($category as $k => $v){
+$mintElem->appendChild( $dom->createElement($k, $v));
+}
 $empsElem = $dom->createElement('issuers');	
 $mintElem->appendChild($empsElem);
 $typesElem = $dom->createElement('types');

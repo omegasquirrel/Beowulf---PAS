@@ -9,7 +9,7 @@ $meta = array(
     'currentPage' => $paginator->getCurrentPageNumber(),
     'totalResults' => $paginator->getTotalItemCount(),
     'resultsPerPage' => $paginator->getItemCountPerPage(),
-    'totalPages' => abs($paginator->getTotalItemCount()/$paginator->getItemCountPerPage()));
+    'totalPages' => ceil($paginator->getTotalItemCount()/$paginator->getItemCountPerPage()));
 
 
 echo Zend_Json::prettyPrint(Zend_Json::encode( ( array('meta' => $meta, 'hoards' => $results ) ) ) );

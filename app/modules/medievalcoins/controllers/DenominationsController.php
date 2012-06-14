@@ -8,16 +8,20 @@
 * @license    GNU General Public License
 */
 class MedievalCoins_DenominationsController extends Pas_Controller_Action_Admin {
+	
+	protected $_denominations;
+	
 	/** Setup the contexts by action and the ACL.
 	*/		
 	public function init() {
 	$this->_helper->_acl->allow(null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->_helper->contextSwitch()
-		->setAutoDisableLayout(true)
+	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addActionContext('index', array('xml','json'))
 		->addActionContext('denomination', array('xml','json'))
 		->initContext();
+	$this->_denominations = new Denominations();
     }
     
 	/** Setup the contexts by action and the ACL.
@@ -27,23 +31,7 @@ class MedievalCoins_DenominationsController extends Pas_Controller_Action_Admin 
 	/** Setup index page for Medieval denominations
 	*/	
 	public function indexAction() {
-	$denominations = new Denominations();
-	$denominations = $denominations->getDenominations((int)$this->_period, (int)$this->_getParam('page'));
-	$data = array('pageNumber' => $denominations->getCurrentPageNumber(),
-				  'total' => number_format($denominations->getTotalItemCount(),0),
-				  'itemsReturned' => $denominations->getCurrentItemCount(),
-				  'totalPages' => number_format($denominations->getTotalItemCount()/$denominations->getCurrentItemCount(),0));
-	$this->view->data = $data;
-	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),array('json'))) {
-		
-	    $d = array();
-	    foreach($denominations->getCurrentItems() as $k => $v) {
-	        $d[$k] = $v;
-	    }
-	    $this->view->denominations = $d;
-	} else {
-	    $this->view->denominations = $denominations;
-	}
+	$this->view->denominations = $this->_denominations->getDenominations((int)$this->_period, (int)$this->_getParam('page'));
 	}
 	
 	/** Setup the denomination details
@@ -51,10 +39,8 @@ class MedievalCoins_DenominationsController extends Pas_Controller_Action_Admin 
 	public function denominationAction() {
 	if($this->_getParam('id',false)){
 	$id = (int)$this->_getParam('id');
-	$denoms = new Denominations();
-	$this->view->denoms = $denoms->getDenom($id,$this->_period);
-	$rulers = new Denominations();
-	$this->view->rulers = $rulers->getRulerDenomination($id);
+	$this->view->denoms = $this->_denominations->getDenom($id,$this->_period);
+	$this->view->rulers = $this->_denominations->getRulerDenomination($id);
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}

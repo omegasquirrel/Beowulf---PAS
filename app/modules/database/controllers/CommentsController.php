@@ -18,7 +18,7 @@ class Database_CommentsController extends Pas_Controller_Action_Admin {
 		->setAutoDisableLayout(true)
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
-		->addActionContext('index', array('xml','rss','atom'))
+		->addActionContext('index', array('xml','rss','atom','json'))
 		->initContext();
     }
 

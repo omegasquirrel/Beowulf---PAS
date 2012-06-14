@@ -1,4 +1,12 @@
-<?php 
-$all = $this->comments;
- unset($all['comment_author_email']);
-echo $this->json($all);?>
+<?php
+$paginator = $this->comments;
+$results = array();
+foreach($this->comments as $result){
+	$results[] = $result;
+}
+$meta = array(
+    'currentPage' => $paginator->getCurrentPageNumber(),
+    'totalResults' => $paginator->getTotalItemCount(),
+    'resultsPerPage' => $paginator->getItemCountPerPage(),
+    'totalPages' => ceil($paginator->getTotalItemCount()/$paginator->getItemCountPerPage()));
+echo Zend_Json::prettyPrint(Zend_Json::encode( ( array('meta' => $meta, 'comments' => $results) ) ) ) ;

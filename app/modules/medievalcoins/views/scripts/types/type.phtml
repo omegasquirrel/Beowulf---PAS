@@ -1,9 +1,5 @@
 <?php echo $this->partial('partials/numismatics/typedetails.phtml',$this->types['0']);?>
 
-<?php if($this->images):?>
-<h3>Latest examples recorded</h3>
-<div id="latest">
-<?php echo $this->partialLoop('partials/database/imagesPaged.phtml',$this->images);?>
-</div>
-<?php endif;?>
+<?php echo $this->latestRecords('type:'  .  Zend_Controller_Front::getInstance()->getRequest()->getParam('id'));?>
+
 
