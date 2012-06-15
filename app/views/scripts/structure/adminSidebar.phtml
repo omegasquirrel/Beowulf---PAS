@@ -1,3 +1,4 @@
+<div class="well sidebar-nav" >
 <?php
 $auth = Zend_Auth::getInstance();
 if($auth->hasIdentity()) {
@@ -51,3 +52,4 @@ if(in_array($user->role,$allowed)) {
 }
 }
 ?>
+</div>

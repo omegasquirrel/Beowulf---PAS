@@ -26,8 +26,8 @@ public function __construct($options = null) {
 	$name = new Zend_Form_Element_Text('name');
 	$name->setLabel('Issuing mint known as: ')
 		->setRequired(true)
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
+		->addErrorMessage('You must enter a mint name');
 
 	$description = new Zend_Form_Element_TextArea('description');
 	$description->setLabel('Description of mint: ')
@@ -38,9 +38,9 @@ public function __construct($options = null) {
 	$abbrev = new Zend_Form_Element_Text('abbrev');
 	$abbrev->setLabel('Abbreviation appearing on coins: ')
 		->setRequired(true)
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('NotEmpty')
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addErrorMessage('You must enter an abbreviation')
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
+		->addValidator('NotEmpty');
 
 	$latitude = new Zend_Form_Element_Text('latitude');
 	$latitude->setLabel('Latitude: ')

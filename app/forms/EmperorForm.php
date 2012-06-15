@@ -23,16 +23,13 @@ $dynasties_options = $dynasties->getOptions();
 
 
 parent::__construct($options);
-
-
 	$this->setName('EmperorDetails');
 
 	$name = new Zend_Form_Element_Text('name');
 	$name->setLabel('Emperor\'s name: ')
 	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->addErrorMessage('Come on it\'s not that hard, enter a firstname!');
+	->addFilters(array('StripTags','StringTrim', 'Purifier'))
+	->addErrorMessage('Enter an emperor name!');
 
 	$reeceID = new Zend_Form_Element_Select('reeceID');
 	$reeceID->setLabel('Reece period assigned: ')

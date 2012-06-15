@@ -183,9 +183,8 @@ public function __construct($options = null) {
 
 	$knownas = new Zend_Form_Element_Text('knownas');
 	$knownas->setLabel('Findspot to be known as: ')
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 	->setAttrib('class','privatedata')
-	->addFilters(array('StripTags', 'StringTrim'));
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 
 	$landownername = new Zend_Form_Element_Text('landownername');
 	$landownername->setLabel('Landowner: ')

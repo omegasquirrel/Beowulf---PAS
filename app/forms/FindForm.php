@@ -147,24 +147,21 @@ public function __construct($options = null) {
 	$class->setLabel('Classification: ')
 	->setAttrib('size',60)
 	->setRequired(false)
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->addFilters(array('StripTags','StringTrim'));
+	->addFilters(array('StripTags','StringTrim', 'Purifier'));
 
 	//Find subclassification
 	$subclass = new Zend_Form_Element_Text('subclass');
 	$subclass->setLabel('Sub-classification: ')
 	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+	->addFilters(array('StripTags','StringTrim', 'Purifier'))
 	->setAttrib('size',60);
 
 	//Inscription: Only available if !=coin
 	$inscription = new Zend_Form_Element_Text('inscription');
 	$inscription->setLabel('Inscription: ')
 	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->setAttrib('size',60)
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+	->addFilters(array('StripTags','StringTrim', 'Purifier'))
+	->setAttrib('size',60);
 
 	//Treasure: enumerator 1/0
 	$treasure = new Zend_Form_Element_Checkbox('treasure');

@@ -1200,7 +1200,7 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($formData)) {
 	$denoms = new DenomRulers();
 	$insertData = array(
-	'ruler_id' => $form->getValue('ruler_id'),
+	'ruler_id',=> $form->getValue('ruler_id'),
 	'denomination_id' => $form->getValue('denomination_id'),
 	'period_id' => $form->getValue('period_id'),
 	'created' => $this->getTimeForForms(), 
@@ -1242,7 +1242,7 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($formData)) {
 	$mintrulers = new MintsRulers();
 	$insertData = array(
-	'ruler_id' => $form->getValue('ruler_id'),
+	'ruler_id',=> $form->getValue('ruler_id'),
 	'mint_id' => $form->getValue('mint_id'),
 	'created' => $this->getTimeForForms(), 
 	'createdBy' => $this->getIdentityForForms()

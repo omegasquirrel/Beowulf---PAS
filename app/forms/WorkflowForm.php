@@ -18,8 +18,7 @@ class WorkflowForm extends Pas_Form {
 	$workflowstage->setLabel('Work flow stage title: ')
 		->setRequired(true)
 		->setAttrib('size',60)
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->setLabel('Workflow stage is currently in use: ')

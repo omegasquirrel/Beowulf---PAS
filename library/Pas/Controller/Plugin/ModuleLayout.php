@@ -194,13 +194,13 @@ class Pas_Controller_Plugin_ModuleLayout
 	$response->insert('navigation', $view->render('structure/navigation.phtml'));
 	$response->insert('footer', $view->render('structure/footer.phtml'));
 	$response->insert('messages', $view->render('structure/messages.phtml'));
-	$response->insert('contexts',$view->render('structure/contexts.phtml'));
-	$response->insert('analytics',$view->render('structure/analytics.phtml'));
-	$response->insert('searchfacet',$view->render('structure/facetsearch.phtml'));
+	$response->insert('contexts', $view->render('structure/contexts.phtml'));
+	$response->insert('analytics', $view->render('structure/analytics.phtml'));
+	$response->insert('searchfacet', $view->render('structure/facetsearch.phtml'));
 
-	$response->insert('bronzeage',$view->render('structure/bronzeage.phtml'));
-	$response->insert('staffs',$view->render('structure/staffs.phtml'));
-	$response->insert('searchForm',$view->render('structure/searchForm.phtml'));
+	$response->insert('bronzeage', $view->render('structure/bronzeage.phtml'));
+	$response->insert('staffs', $view->render('structure/staffs.phtml'));
+	$response->insert('searchForm', $view->render('structure/searchForm.phtml'));
 	$layout = Zend_Layout::getMvcInstance();
 	if ($layout->getMvcEnabled() ) {
 	$layout->setLayoutPath('app/layouts/');

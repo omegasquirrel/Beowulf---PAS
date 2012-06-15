@@ -24,7 +24,6 @@ public function __construct($options = null) {
 	$title->setLabel('Role title: ')
 		->setRequired(true)
 		->addFilters(array('StringTrim', 'StripTags'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 		->addErrorMessage('You must enter a title for this vacancy.')
 		->setAttrib('size', 60);
 	

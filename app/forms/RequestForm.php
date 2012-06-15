@@ -61,17 +61,15 @@ public function __construct($options = null) {
 	$town_city->SetLabel('Town: ')
 		->setRequired(true)
 		->setAttrib('size',50)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,200))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->addValidator('StringLength', false, array(1,200));
 
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->SetLabel('Postcode: ')
 		->setRequired(true)
 		->setAttrib('size',50)
-		->addFilters(array('StripTags','StringTrim'))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->addValidator('StringLength', false, array(1,200))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 		->addValidator('ValidPostCode');
 
 	$county = new Zend_Form_Element_Select('county');

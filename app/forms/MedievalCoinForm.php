@@ -57,7 +57,7 @@ public function __construct($options = null) {
 	->addMultiOptions(array(NULL => NULL,'Choose category' => $cat_options))
 	->addValidator('InArray', false, array(array_keys($cat_options)));
 	
-	$ruler= new Zend_Form_Element_Select('ruler');
+	$ruler= new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler: ')
 	->addValidators(array('NotEmpty','Digits'))
 	->addFilters(array('StripTags', 'StringTrim'))
@@ -175,7 +175,7 @@ public function __construct($options = null) {
 	$hash));
 	
 	$this->addDisplayGroup(array(
-	'categoryID','ruler','typeID',
+	'categoryID','ruler_id''typeID',
 	'ruler_qualifier','denomination','denomination_qualifier',
 	'mint_id','status','status_qualifier',
 	'degree_of_wear','obverse_description','obverse_inscription',

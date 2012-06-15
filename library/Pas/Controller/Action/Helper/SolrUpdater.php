@@ -39,8 +39,8 @@ class Pas_Controller_Action_Helper_SolrUpdater
     }
     }
     
-    public function update($core, $id){
-    $data = $this->getUpdateData($core, $id);
+    public function update($core, $id, $model){
+    $data = $this->getUpdateData($core, $id, $model);
 
     $this->_solr = $this->getSolrConfig($core);
     $update = $this->_solr->createUpdate();
@@ -114,12 +114,14 @@ class Pas_Controller_Action_Helper_SolrUpdater
             case 'beopublications':
             	$model = new Publications();
             	break;
+            case 'news':
+            	$model = new News();
+            	break;
             default:
                 throw new Exception('Your core does not exist',500);
                 break;
         }
         $data = $model->getSolrData($id);
-        
         $cleanData = $this->cleanData($data[0]);
         
         return $cleanData;

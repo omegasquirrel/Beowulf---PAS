@@ -28,10 +28,11 @@ class IndexController extends Pas_Controller_Action_Admin
 	$news = new News();
 	$this->view->news = $news->getHeadlines();
         $form = new SolrForm();
+        $form->setAttrib('class', 'navbar-search pull-right');
         $this->view->form = $form;
         $form->removeElement('thumbnail');
         $form->q->removeDecorator('label');
-        $form->q->setAttrib('class','span10');
+        $form->q->setAttrib('class','input-large');
         $form->q->setDecorators(array(
 			"ViewHelper",
 			array("Errors", array("placement" => "prepend")),
@@ -40,7 +41,7 @@ class IndexController extends Pas_Controller_Action_Admin
 			"Label",
 			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
 		));
-        $form->submit->setAttrib('class','span8');
+//        $form->submit->setAttrib('class','span8');
         if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());

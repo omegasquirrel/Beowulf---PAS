@@ -55,7 +55,7 @@ parent::__construct($options);
 		->addMultiOptions(array(NULL => NULL,'Choose category' => $cat_options))
 		->addValidator('InArray', false, array(array_keys($cat_options)));
 	
-	$ruler_id= new Zend_Form_Element_Select('ruler');
+	$ruler_id= new Zend_Form_Element_Select('ruler_id');
 	$ruler_id->setLabel('Ruler: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => NULL,'Choose ruler' => $ro))

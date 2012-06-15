@@ -188,7 +188,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 
 	//Primary ruler
-	$ruler = new Zend_Form_Element_Select('ruler');
+	$ruler = new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler / issuer: ')
         ->setRegisterInArrayValidator(false)
         ->setRequired(false)
@@ -288,7 +288,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 
 	$this->addDisplayGroup(array(
-            'category', 'ruler', 'type',
+            'category', 'ruler_id','type',
             'denomination', 'mint','moneyer',
             'axis', 'obverseLegend', 'obverseDescription',
             'reverseLegend','reverseDescription'),

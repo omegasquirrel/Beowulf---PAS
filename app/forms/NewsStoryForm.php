@@ -30,8 +30,7 @@ class NewsStoryForm extends Pas_Form {
 		->setRequired(true)
 		->setAttrib('rows',5)
 		->setAttrib('cols',70)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim','Purifier'));
 	
 	$contents = new Pas_Form_Element_RTE('contents');
 	$contents->setLabel('News story content: ')
@@ -46,8 +45,7 @@ class NewsStoryForm extends Pas_Form {
 	$address->setLabel('News address (puts it on map): ')
 		->setRequired(true)
 		->setAttrib('size',50)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim','Purifier'));
 	
 	$author = new Zend_Form_Element_Text('author');
 	$author->setLabel('Principal author: ')
@@ -67,18 +65,16 @@ class NewsStoryForm extends Pas_Form {
 	
 	$contactName = new Zend_Form_Element_Text('contactName');
 	$contactName->setLabel('Contact name: ')
-		->setRequired(false)
+		->setRequired(true)
 		->setAttrib('size',50)
-		->addErrorMessage('Please enter a title for this story.')
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addErrorMessage('Please enter a contact for this story.')
+		->addFilters(array('StripTags','StringTrim','Purifier'));
 	
 	$contactTel = new Zend_Form_Element_Text('contactTel');
 	$contactTel->setLabel('Contact telephone number: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->setRequired(false)
-		->addErrorMessage('Please enter a valid telephone number.')
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addErrorMessage('Please enter a valid telephone number.');
 	
 	$keywords = new Zend_Form_Element_Text('keywords');
 	$keywords->setLabel('Keywords for the story: ')

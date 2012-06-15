@@ -1,8 +1,12 @@
 <?php 
-class Pas_View_Helper_Nicemonth extends Zend_View_Helper_Abstract
-{
+/** A view helper to translate integers to month
+ * 
+ * @author dpett
+ *
+ */
+class Pas_View_Helper_Nicemonth extends Zend_View_Helper_Abstract {
    
-function nicemonth($date) {
+	public function nicemonth($date) {
        switch ($date) {
 		case 01:
 			$month = 'January';
@@ -41,10 +45,9 @@ function nicemonth($date) {
 			$month = 'December';
 			break;
 		default:
-			return $date;
+			return $month = $date;
 			break;
 	}		
-	
 	return $month; 
     }
 	

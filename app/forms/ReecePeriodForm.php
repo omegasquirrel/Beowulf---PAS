@@ -18,8 +18,7 @@ public function __construct($options = null) {
 	$period_name = new Zend_Form_Element_Text('period_name');
 	$period_name->setLabel('Reece Period name: ')
 		->setRequired(true)
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 		->setAttrib('size',60)
 		->addErrorMessage('You must enter a period name');
 

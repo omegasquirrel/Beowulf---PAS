@@ -175,7 +175,7 @@ class RomanNumismaticSearchForm extends Pas_Form
             ->addValidator('InArray', false, array(array_keys($denom_options)));
 
     //Primary ruler
-    $ruler = new Zend_Form_Element_Select('ruler');
+    $ruler = new Zend_Form_Element_Select('ruler_id');
     $ruler->setLabel('Ruler / issuer: ')
             ->addFilters(array('StripTags', 'StringTrim'))
             ->addMultiOptions(array(
@@ -290,7 +290,7 @@ class RomanNumismaticSearchForm extends Pas_Form
     $institution));
 
     $this->addDisplayGroup(array(
-    'denomination','ruler','mint',
+    'denomination','ruler_id''mint',
     'moneyer','axis','reeceID',
     'revtypeID','obverseLegend','obverseDescription',
     'reverseLegend','reverseDescription'),

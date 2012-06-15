@@ -24,9 +24,8 @@ class VolunteerForm extends Pas_Form {
 	$title->setLabel('Project title: ')
 		->setRequired(true)
 		->setAttrib('size',60)
-		->addFilters(array('StripTags','StringTrim'))
-		->addErrorMessage('Choose title for the project.')
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->addErrorMessage('Choose title for the project.');
 	
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Short description of project: ')

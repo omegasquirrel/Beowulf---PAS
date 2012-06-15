@@ -55,7 +55,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int');
 
-	$ruler_id= new Zend_Form_Element_Select('ruler');
+	$ruler_id= new Zend_Form_Element_Select('ruler_id');
 	$ruler_id->setLabel('Ruler: ')
 	->setRegisterInArrayValidator(false)
 	->addMultiOptions(array(NULL => NULL,'Please choose a ruler' => $ro))
@@ -175,7 +175,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
             $initial, $hash));
 
 	$this->addDisplayGroup(array(
-            'categoryID', 'ruler', 'typeID',
+            'categoryID', 'ruler_id','typeID',
             'ruler_qualifier', 'denomination', 'denomination_qualifier',
             'mint_id', 'status', 'status_qualifier',
             'degree_of_wear', 'obverse_description', 'obverse_inscription',

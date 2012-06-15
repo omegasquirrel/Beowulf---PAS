@@ -18,7 +18,8 @@ class SolrForm extends Pas_Form {
 	$q->setLabel('Search content: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('class', 'span6 ')
+		->setAttrib('class', 'span10')
+		->setAttrib('placeholder', 'Try coin for example')
 		->addErrorMessage('Please enter a search term');
 
     $thumbnail = new Zend_Form_Element_Checkbox('thumbnail');

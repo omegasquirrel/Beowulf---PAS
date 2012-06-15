@@ -189,7 +189,7 @@ public function getLog()
                     break;
 					case 'Pas_Exception_BadJuJu':
 					        $this->getResponse()->setHttpResponseCode(500);
-							$this->view->message = 'Bad JuJu on your part!';
+							$this->view->message = 'There has been an internal server error!';
 							$this->view->info  = $errors->exception;
 							$this->view->code  = 500;
 							$this->view->compiled = $compiledTrace;
@@ -207,7 +207,7 @@ public function getLog()
 				        $this->getResponse()->setHttpResponseCode(503);
 						$this->view->info  = $errors->exception;
                         $this->view->code = 503;
-						$this->view->message = 'Somebody had fat fingers and made a boo boo with the SQL.';
+						$this->view->message = 'There has been a SQL (that is the code that powers database queries) error. Our fault entirely.' ;
 						$this->view->compiled = $compiledTrace;
 						$message = $this->whois()."\n";
 						$message .= $this->view->CurUrl()."\n";
@@ -218,7 +218,7 @@ public function getLog()
                     break;
 					case 'Zend_Db_Adapter_Exception':
 						$this->getResponse()->setHttpResponseCode(500);
-						$this->view->message = 'Server has gone away';
+						$this->view->message = 'Server has gone away (usually being restarted or processes killed.)';
 						$message = $this->whois()."\n";
 						$message .= $this->view->CurUrl()."\n";
 						$message .= $this->ipAgent()."\n";

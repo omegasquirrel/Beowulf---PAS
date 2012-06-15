@@ -40,8 +40,7 @@ parent::__construct($options);
 
     $fullname = new Zend_Form_Element_Text('fullname');
     $fullname->setLabel('Send this to: ')
-    ->addFilters(array('StringTrim','StripTags'))
-    ->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+    ->addFilters(array('StringTrim','StripTags', 'Purifier'))
     ->setAttrib('size',30);
 
     $email = $this->addElement('text', 'email',array('label' => 'Their email Address', 'size' => '30'))->email;

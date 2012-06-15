@@ -18,15 +18,13 @@ parent::__construct($options);
 	$name->setLabel('HER name: ')
 	->setRequired(true)
 	->setAttrib('size',60)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->addErrorMessage('Please enter a HER name');
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
+	->addErrorMessage('Please enter an HER name');
 
 	$contact_name = new Zend_Form_Element_Text('contact_name');
 	$contact_name->setLabel('Contact name: ')
 	->setRequired(true)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 	->setAttrib('size',40)
 	->addErrorMessage('Please enter a contact name');
 

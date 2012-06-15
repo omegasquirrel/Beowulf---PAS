@@ -225,18 +225,20 @@ class News extends Pas_Db_Table_Abstract {
 	}
 	
 	public function getSolrData($id){
-	$refs = $this->getAdapter();
-	$select = $refs->select()
-		->from($this->_name,array(
-			'identifier' => 'CONCAT("publications-",publications.id)','publications.id',
-			'title', 'authors','editors',
-			'inPublication' => 'in_publication','isbn',
-			'placePublished' => 'publication_place','yearPublished' => 'publication_year',
-			'created','updated','publisher'
+	$contents = $this->getAdapter();
+	$select = $contents->select()->from($this->_name,array(
+			'identifier' => 'CONCAT("news-",news.id)',
+			'id',
+			'title',
+			'excerpt' => 'summary',
+			'body',
+			'section' => 'news',
+			'created',
+			'updated',
+			'type' => 'news',
 			 ))
-		->joinLeft('publicationtypes',$this->_name . '.publication_type = publicationtypes.id',
-		array('pubType' => 'term'))
-		->where('publications.id = ?',(int)$id);
-	return	$refs->fetchAll($select);		
+		->where($this->_name .  '.id = ?',(int)$id);
+		
+	return	$contents->fetchAll($select);		
 	}
 }

@@ -42,24 +42,21 @@ class EditAccountForm extends Pas_Form
         $firstName = $this->addElement('text', 'first_name',
             array('label' => 'First Name', 'size' => '30'))->first_name;
         $firstName->setRequired(true)
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 		->addErrorMessage('You must enter a firstname');
 
         $lastName = $this->addElement('text', 'last_name',
             array('label' => 'Last Name', 'size' => '30'))
 		->last_name;
         $lastName->setRequired(true)
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 		->addErrorMessage('You must enter a surname');
 
         $fullname = $this->addElement('text', 'fullname',
 		array('label' => 'Preferred Name: ', 'size' => '30'))
 		->fullname;
         $fullname->setRequired(true)
-		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 		->addErrorMessage('You must enter your preferred name');
 
         $email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))

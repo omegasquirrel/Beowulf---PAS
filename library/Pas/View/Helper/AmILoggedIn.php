@@ -52,8 +52,8 @@ class Pas_View_Helper_AmILoggedIn extends Zend_View_Helper_Abstract {
     $fullname = $this->view->escape(ucfirst($user->fullname));
     $id = $this->view->escape(ucfirst($user->id));
 //    $string = '<div id="gravatar">' . $gravatar . '</div>';
-
-    $string = '<a href="'.$this->view->url(array('module' => 'users','controller' => 'account'),
+	$string = '<div id="logmein">';
+    $string .= '<a href="'.$this->view->url(array('module' => 'users','controller' => 'account'),
         'default',true).'" title="View your user profile">' . $fullname .  '</a> &raquo; <a href="'
     . $logoutUrl . '">Log out</a></p><p>Assigned role: ' . ucfirst($user->role);
 
@@ -68,10 +68,12 @@ class Pas_View_Helper_AmILoggedIn extends Zend_View_Helper_Abstract {
     $loginUrl = $this->view->url(array('module' => 'users'),'default', true);
     $register = $this->view->url(array('module' => 'users','controller' => 'account',
     'action'=> 'register'),'default',true);
-    $string = '<a href="'.$loginUrl.'" title="Login to our database">Log in</a> | <a href="'
+	$string = '<div id="logmein">';
+    $string .= '<a href="'.$loginUrl.'" title="Login to our database">Log in</a> | <a href="'
     . $register . '" title="Register with us">Register</a>';
     $this->view->headMeta('Public User','page-user-screen_name');
     }
+    $string .= '</div>';
     return $string;
 
     }

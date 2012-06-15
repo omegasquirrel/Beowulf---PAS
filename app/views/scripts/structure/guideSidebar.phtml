@@ -1,3 +1,4 @@
+<div class="well sidebar-nav" >
 <?php
 $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 
@@ -86,7 +87,6 @@ title="How to record horse harness">Horse harness</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'sealmatrices'),'frg',true);?>"
 title="How to record seals">Seals</a></li>
 </ul>
-</li>
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'whatistheobjectmadefrom'),'frg',true);?>"
 title="Material types and how to use them">Materials</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'manufacture'),'frg',true);?>"
@@ -96,3 +96,4 @@ title="Decorative methods">Decorative methods</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'recommendedequipment'),'frg',true);?>"
 title="Go to the guide's introduction">Recommended equipment</a></li>
 </ul>
+</div>

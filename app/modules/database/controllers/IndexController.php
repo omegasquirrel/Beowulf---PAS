@@ -20,12 +20,6 @@ class Database_IndexController extends Pas_Controller_Action_Admin {
 	$content = new Content();
 	$this->view->contents = $content->getFrontContent('database');
 
-	$thumbs = new Slides();
-	$this->view->thumbs = $thumbs->getLast10Thumbnails(4);
-
-	$finds = new Finds();
-	$this->view->counts = $finds->getCountAllFinds();
-
 	$recent = new Logins();
 	$this->view->logins = $recent->todayVisitors();
 

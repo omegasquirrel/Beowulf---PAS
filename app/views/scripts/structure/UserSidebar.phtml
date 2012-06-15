@@ -5,7 +5,7 @@ if($auth->hasIdentity()) {
 $user = $auth->getIdentity();
 $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 ?>
-
+<div class="well sidebar-nav" >
 <ul id="menu1" class="menu collapsible nav nav-stacked nav-pills">
 <li><a href="<?php echo $this->url(array(
     'module' => 'users',
@@ -46,5 +46,6 @@ if(in_array($user->role,$allowed)) {
 </ul>
 </li>
 </ul>
-<?php } ?>
 
+</div>
+<?php }?>

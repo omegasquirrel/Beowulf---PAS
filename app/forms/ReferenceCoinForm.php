@@ -26,15 +26,13 @@ public function __construct($options = null) {
 
 	$volume = new Zend_Form_Element_Text('vol_no');
 	$volume->setLabel('Volume number: ')
-		->addFilters(array('StripTags', 'StringTrim'))
-		->setAttrib('size',9)
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
+		->setAttrib('size',9);
 
 	$reference = new Zend_Form_Element_Text('reference');
 	$reference->setLabel('Reference number: ')
-		->addFilters(array('StripTags', 'StringTrim'))
-		->setAttrib('size', 15)
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
+		->setAttrib('size', 15);
 
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');

@@ -39,8 +39,8 @@ public function __construct($options = null) {
 	$eventTitle = new Zend_Form_Element_Text('eventTitle');
 	$eventTitle->setLabel('Event title: ')
 	->setRequired(true)
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->addFilters(array('StripTags','StringTrim'))
+	->addErrorMessage('You must enter an event title')
+	->addFilters(array('StripTags','StringTrim', 'Purifier'))
 	->setAttrib('size',70);
 
 	$eventDescription = new Pas_Form_Element_RTE('eventDescription');
@@ -55,9 +55,9 @@ public function __construct($options = null) {
 	$address = new Zend_Form_Element_Text('eventLocation');
 	$address->setLabel('Address: ')
 	->setRequired(true)
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
+	->addErrorMessage('You must enter an address')
 	->setAttrib('size',70)
-	->addFilters(array('StripTags','StringTrim'));
+	->addFilters(array('StripTags','StringTrim', 'Purifier'));
 
 	$eventStartTime = new Zend_Form_Element_Text('eventStartTime');
 	$eventStartTime->setLabel('Event start time: ')

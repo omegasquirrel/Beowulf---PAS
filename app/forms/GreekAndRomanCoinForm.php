@@ -47,7 +47,7 @@ public function __construct($options = null) {
 	->addFilters(array('StringTrim','StripTags'))
 	->setOptions(array('separator' => ''));
 	
-	$ruler= new Zend_Form_Element_Select('ruler');
+	$ruler= new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler: ')
 	->addValidators(array('NotEmpty','Int'))
 	->addFilters(array('StringTrim','StripTags'))
@@ -140,7 +140,7 @@ public function __construct($options = null) {
 	$submit));
 	
 	$this->addDisplayGroup(array(
-	'denomination','denomination_qualifier','ruler',
+	'denomination','denomination_qualifier','ruler_id'
 	'ruler_qualifier', 'mint_id', 'mint_qualifier',
 	'status', 'status_qualifier', 'degree_of_wear','obverse_description',
 	'obverse_inscription', 'reverse_description', 'reverse_inscription',

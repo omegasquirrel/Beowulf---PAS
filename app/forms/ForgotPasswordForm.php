@@ -17,10 +17,9 @@ public function init() {
 	$username = $this->getElement('username')
 	->setRequired(true)
 	->addErrorMessage('You must enter a username')
-	->addFilters(array('StringTrim','StripTags'))
+	->addFilters(array('StringTrim','StripTags', 'Purifier'))
 	->addValidator('Db_RecordExists', false,
-	array('table' => 'users','field' => 'username'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+	array('table' => 'users','field' => 'username'));
 
 
 	$email = $this->addElement('Text', 'email',

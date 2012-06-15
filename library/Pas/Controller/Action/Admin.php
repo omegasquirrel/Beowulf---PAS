@@ -42,6 +42,7 @@ class Pas_Controller_Action_Admin extends Zend_Controller_Action {
 	
 	
 	public function postDispatch() {
+		
         //$this->view->messages = $this->_flashMessenger->getMessages();
         }
     

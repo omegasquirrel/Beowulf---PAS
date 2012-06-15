@@ -37,10 +37,9 @@ public function __construct($options = null) {
 	$title = new Zend_Form_Element_Text('title');
 	$title->setLabel('Project title: ')
 		->setRequired(true)
-		->addFilters(array('StripTags','StringTrim'))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->setAttrib('size',60)
-		->addErrorMessage('Choose title for the project.')
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));;
+		->addErrorMessage('Choose title for the project.');
 
 	$description = $this->addElement('RTE', 'description',array(
 	'label' => 'Short description of project: '));

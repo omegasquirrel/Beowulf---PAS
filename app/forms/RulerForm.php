@@ -24,8 +24,7 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addErrorMessage('Please enter a name for this issuer or ruler.')	
 		->setAttrib('size',70)
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-		->addFilters(array('StripTags', 'StringTrim'));
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 
 	$date1 = new Zend_Form_Element_Text('date1');
 	$date1->setLabel('Date issued from: ')

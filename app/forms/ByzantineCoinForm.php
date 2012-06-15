@@ -50,7 +50,7 @@ public function __construct($options = null)
 	->addValidator('Int')
 	->setOptions(array('separator' => ''));
 
-	$ruler= new Zend_Form_Element_Select('ruler');
+	$ruler= new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler: ')
 	->addValidators(array('NotEmpty','Int'))
 	->addMultiOptions(array(NULL => NULL,'Choose denomination' => $ruler_options))
@@ -150,7 +150,7 @@ public function __construct($options = null)
 	$ruler_qualifier, $denomination_qualifier,$status_qualifier,
 	$submit, $hash));
 
-	$this->addDisplayGroup(array('denomination', 'denomination_qualifier', 'ruler',
+	$this->addDisplayGroup(array('denomination', 'denomination_qualifier', 'ruler_id'
 	'ruler_qualifier', 'mint_id', 'mint_qualifier',
 	'status', 'status_qualifier', 'degree_of_wear',
 	'obverse_description', 'obverse_inscription', 'reverse_description',

@@ -42,8 +42,7 @@ public function __construct($options = null) {
 	$reference = new Zend_Form_Element_Text('reference');
 	$reference->setLabel('Referee\'s name: ')
 		->setAttrib('size',30)
-		->addFilters(array('StringTrim', 'StripTags'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StringTrim', 'StripTags', 'Purifier'));
 
 	$referenceEmail = new Zend_Form_Element_Text('referenceEmail');
 	$referenceEmail->setLabel('Referee\'s email address: ')
@@ -55,8 +54,7 @@ public function __construct($options = null) {
 	$fullname = new Zend_Form_Element_Text('fullname');
 	$fullname->setLabel('Fullname: ')
 		->setAttrib('size',30)
-		->addFilters(array('StringTrim', 'StripTags'))
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StringTrim', 'StripTags', 'Purifier'));
 
 
 	$email = $this->addElement('text', 'email',array('label' => 'Email Address', 'size' => '30'))->email;

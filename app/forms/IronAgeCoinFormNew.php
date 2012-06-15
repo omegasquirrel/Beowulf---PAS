@@ -41,6 +41,9 @@ public function __construct($options = null) {
 	$macktypes = new MackTypes();
 	$macktypelist = $macktypes->getMackTypesDD();
 	
+	$abc = new AbcNumbers();
+	$abclist = $abc->getTerms();
+	
 	parent::__construct($options);
 	
 			
@@ -74,7 +77,7 @@ public function __construct($options = null) {
 	->addValidator('Digits')
 	->setOptions(array('separator' => ''));
 	
-	$ruler_id= new Zend_Form_Element_Select('ruler');
+	$ruler_id= new Zend_Form_Element_Select('ruler_id');
 	$ruler_id->setLabel('Ruler: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Digits')
@@ -184,26 +187,21 @@ public function __construct($options = null) {
 	$mack_type = new Zend_Form_Element_Select('mack_type');
 	$mack_type->setLabel('Mack Type: ')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 	->addMultiOptions(array(NULL => 'Choose a Mack type','Valid types' => $macktypelist))
 	->addValidator('InArray', false, array(array_keys($macktypelist)));
 	
 	$bmc_type = new Zend_Form_Element_Text('bmc_type');
 	$bmc_type->setLabel('British Museum catalogue number: ')
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 	
 	$allen_type = new Zend_Form_Element_Select('allen_type');
 	$allen_type->setLabel('Allen Type: ')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 	->addMultiOptions(array(NULL => 'Choose an Allen type','Valid types' => $atypelist));
 	
 	$va_type = new Zend_Form_Element_Select('va_type');
 	$va_type->setLabel('Van Arsdell Number: ')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true))
 	->addMultiOptions(array(NULL => 'Choose Van Arsdell type','Valid types' => $vatypelist));
 	
 
@@ -213,25 +211,22 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags', 'StringTrim'))
 	->setDescription('This is the coin\'s unique CCI number, not a comparison field.  Numbers are issued by the CCI.');
 
-	$rudd_type = new Zend_Form_Element_Text('rudd_type');
+	$rudd_type = new Zend_Form_Element_Select('rudd_type');
 	$rudd_type->setLabel('Ancient British Coinage number: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+	->addFilters(array('StripTags', 'StringTrim','Purifier'))
+	->addMultiOptions(array(NULL => 'Choose ABC number','Valid types' => $abclist));
 	
 	$phase_date_1 = new Zend_Form_Element_Text('phase_date_1');
 	$phase_date_1->setLabel('Phase date 1: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 	
 	$phase_date_2 = new Zend_Form_Element_Text('phase_date_2');
 	$phase_date_2->setLabel('Phase date 2: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 	
 	$context = new Zend_Form_Element_Text('context');
 	$context->setLabel('Context of coins: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 	
 	$depositionDate = new Zend_Form_Element_Text('depositionDate');
 	$depositionDate->setLabel('Date of deposition: ')
@@ -261,7 +256,7 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array(
 	'denomination','denomination_qualifier', 'geographyID',
 	'geography_qualifier','tribe','tribe_qualifier',
-	'ruler', 'ruler_qualifier','ruler2_id',
+	'ruler_id','ruler_qualifier','ruler2_id',
 	'ruler2_qualifier','mint_id','status',
 	'status_qualifier','degree_of_wear','obverse_description',
 	'obverse_inscription', 'reverse_description','reverse_inscription',

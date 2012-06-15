@@ -21,9 +21,10 @@ public function __construct($options = null) {
 	
 	$monumentName = new Zend_Form_Element_Text('monumentName');
 	$monumentName->setLabel('Filter by name:')
-		->addFilters(array('StringTrim', 'StripTags'))
-		->setAttrib('size', 20)
-		->addValidator('Alnum', false, array('allowWhiteSpace' => true));
+		->setRequired(true)
+		->addFilters(array('StringTrim', 'StripTags', 'Purifier'))
+		->addErrorMessage('You must enter a monument name')
+		->setAttrib('size', 20);
 	
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Filter by parish')
