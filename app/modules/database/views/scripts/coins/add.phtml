@@ -8,6 +8,9 @@
     ?>
 
 <h2>Add numismatic data</h2>
-<p><a class="btn btn-success btn-large" href="<?php echo $this->url(array('module' => 'database','controller' => 'coins','action' => 'add','copy' => 'last'),null,false);?>" title="Autofill form fields from last record you created" id="populate" accesskey="c">Copy last record</a></p>
+
+<?php $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('returnID');?>
+<p><a class="btn btn-success " href="<?php echo $this->url(array('module' => 'database','controller' => 'coins','action' => 'add','copy' => 'last'),null,false);?>" title="Autofill form fields from last record you created" id="populate" accesskey="c">Copy last record</a> 
+<a class="btn btn-success" href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts','action' => 'record', 'id' => $id),null,false);?>" title="return to the record">Return to record</a></p>
 
 <?php echo $this->form;?>

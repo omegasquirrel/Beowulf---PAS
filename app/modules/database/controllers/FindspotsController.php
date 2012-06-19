@@ -110,8 +110,9 @@ class Database_FindspotsController
     $where[] = $this->_findspots->getAdapter()->quoteInto('id = ?', 
              $this->_getParam('id'));
     $findspot = $this->_findspots->fetchRow($where);
+        $form->populate($findspot);
     $this->_helper->findspotFormOptions();
-    $form->populate($formData);
+
     }
     }
     } else {
@@ -120,9 +121,10 @@ class Database_FindspotsController
     $where = array();
     $where[] = $this->_findspots->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
     $findspot = $this->_findspots->fetchRow($where);
-    $this->_helper->findspotFormOptions();
+    
     $this->view->findspot = $findspot->toArray();
     $form->populate($findspot->toArray());
+    $this->_helper->findspotFormOptions();
     }
     }
     } else {
@@ -140,8 +142,8 @@ class Database_FindspotsController
     $findID = (int)$this->_request->getPost('findID');
     $del = $this->_request->getPost('del');
     if ($del == 'Yes' && $id > 0) {
-    $this->_findspots = new Findspots();
     $where = 'id = ' . $id;
+    $this->_findspots->delete($where);
 	$this->_helper->solrUpdater->update('beowulf', $findID);
     $this->_flashMessenger->addMessage('Findspot deleted.');
     }
@@ -149,8 +151,7 @@ class Database_FindspotsController
     } else {
     $id = (int)$this->_request->getParam('id');
     if ($id > 0) {
-    $findspots = new Findspots();
-    $this->view->findspot = $findspots->getFindtoFindspotDelete($this->_getParam('id'));
+    $this->view->findspot = $this->_findspots->getFindtoFindspotDelete($this->_getParam('id'));
     }
     }
     } else {

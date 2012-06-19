@@ -22,22 +22,19 @@ public function __construct($options = null) {
 	$name = new Zend_Form_Element_Text('name');
 	$name->setLabel('Monarch\'s name: ')
 		->setRequired(true)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->setAttrib('size','50')
 		->addErrorMessage('You must enter a Monarch\'s name');
 
 	$styled = new Zend_Form_Element_Text('styled');
 	$styled->setLabel('Styled as: ')
 		->setRequired(false)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'));
 
 	$alias = new Zend_Form_Element_Text('alias');
 	$alias->setLabel('Monarch\'s alias: ')
 		->setRequired(false)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'));
 
 	$dbaseID = new Zend_Form_Element_Select('dbaseID');
 	$dbaseID->setLabel('Database ID: ')

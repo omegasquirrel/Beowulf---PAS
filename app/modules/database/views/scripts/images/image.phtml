@@ -23,7 +23,7 @@ $this->headTitle('Image and metadata for '.$this->images['0']['label']);
 	}
 	$allowed = array('flos','fa','member','admin','treasure','flo');
 	if(in_array($role,$allowed)) {?>
-<p><a href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'link','imageID' => $this->images['0']['secuid']),null,true);?>" title="Attach this image to an artefact">Link this image to a record</a></p>
+<p><a class="btn btn-success" href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'link','imageID' => $this->images['0']['secuid']),null,true);?>" title="Attach this image to an artefact">Link this image to a record</a></p>
 
 <?php }?>
 

@@ -114,7 +114,7 @@ class ContactForm extends Pas_Form
 	$postcode->SetLabel('Postcode: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('PostCode')
+	->addValidator('ValidPostCode')
 	->addValidator('StringLength', false, array(1,200))
 	->addErrorMessage('You must enter a postal code');
 

@@ -11,7 +11,7 @@ if($auth->hasIdentity())
 $user = $auth->getIdentity();
 {
 if(in_array($user->role,$allowed)){
-$string .=' <a href="'.$deletelink.'" title="Delete the image link" class="delete">Delete link</a>';
+$string .=' <a class="btn-small btn btn-warning" href="'.$deletelink.'" title="Delete the image link" class="delete">Delete link</a>';
 }
 }
 }

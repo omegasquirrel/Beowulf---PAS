@@ -83,14 +83,15 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$lon = $coords['lon']; 
+		$pm = new Pas_Service_Geoplanet();
+		$place = $pm->reverseGeoCode($lat,$lon);
+		$woeid = $place['woeid'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
+		$woeid = NULL;
 	}
-	$pm = new Placemaker();
-	$place = $pm->get($address);
-	$woeid = $place->woeid;
 	
 	$updateData = array();
 	$updateData['name'] = $form->getValue('name');
@@ -225,15 +226,15 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$lon = $coords['lon']; 
+		$pm = new Pas_Service_Geoplanet();
+		$place = $pm->reverseGeoCode($lat,$lon);
+		$woeid = $place['woeid'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
+		$woeid = NULL;
 	}
-	$pm = new Placemaker();
-	$place = $pm->get($address);
-	$woeid = $place->woeid;
-	
 	$insertData['secuid'] = $this->secuid();
 	$insertData['name'] = $form->getValue('name');
 	$insertData['website'] = $form->getValue('website');

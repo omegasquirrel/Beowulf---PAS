@@ -39,7 +39,8 @@ Views: <?php echo $this->views;?><br/>
 <a href="<?php echo $this->url(array('module' => 'flickr','controller' => 'photos','action' => 'details',
 'id' => $this->id),'default',true);?>" title="View all details for this photo">More details &raquo;</a></p>
 </div>
- <ul class="thumbnails span5 offset1">
+<div class="span3 offset1">
+ <ul class="thumbnails">
      <li >
     <div class="thumbnail" >
 <a href="<?php echo $this->url_m;?>" rel="lightbox" title="Larger image of
@@ -49,7 +50,7 @@ Views: <?php echo $this->views;?><br/>
 </div>
     </li>
  </ul>
-
+</div>
 </div>
 
 

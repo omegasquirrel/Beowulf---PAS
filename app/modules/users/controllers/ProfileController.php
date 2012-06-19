@@ -51,10 +51,14 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon'];
+		$lon = $coords['lon'];
+		$pm = new Pas_Service_Geoplanet();
+		$place = $pm->reverseGeoCode($lat,$lon);
+		$woeid = $place['woeid'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
+		$woeid = NULL;
 	}
 	$woeid = $place->woeid;
 

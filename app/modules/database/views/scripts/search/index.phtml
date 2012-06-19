@@ -2,12 +2,19 @@
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinitwww.js',$type='text/javascript'); 
 $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
-$this->headTitle('Perform a basic "What/Where/When" search');
+$this->headTitle('Perform a basic  search');
 ?>
 
-<h2>What/Where/When search</h2>
+<h2>Search the database</h2>
 <?php 
 $this->metaBasic();
 echo $this->form;
-
 ?>
+<h3>Some examples of how to search</h3>
+<p>Try some of these for example.</p>
+<ul>
+<li>ROMAN NOT coin</li>
+<li>Sompting</li>
+<li>coin AND gordian</li>
+<li> "Gordian III"</li>
+</ul>

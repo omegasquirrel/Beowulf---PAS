@@ -20,7 +20,7 @@ class Pas_View_Helper_GoogleStaticMap extends Zend_View_Helper_Abstract {
 	function __construct() {
 		$this->_config = Zend_Registry::get('config');
 		if($this->_key == null){
-			$this->_key = $this->_config->webservice->googlemaps->apikey;
+			$this->_key = $this->_config->webservice->google->apikey;
 		}
 	}
 

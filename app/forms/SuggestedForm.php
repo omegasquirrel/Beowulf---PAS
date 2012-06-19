@@ -43,10 +43,10 @@ parent::__construct($options);
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addErrorMessage('Choose title for the project.');
 	
-	$description = $this->addElement('Textarea', 'description',array(
+	$description = $this->addElement('RTE', 'description',array(
 	'label' => 'Short description of project: ')); 
 	$description = $this->getElement('description')
-		->setRequired(false)
+		->setRequired(true)
 		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'))
 		->setAttribs(array('cols' => 80, 'rows' => 10));
 	

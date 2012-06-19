@@ -44,16 +44,16 @@ class Pas_View_Helper_CoinDataDisplay extends Zend_View_Helper_Abstract {
 
         } else {
             $html = '<div>';
-            $html .= '<h3>Numismatic data</h3>';
+            $html .= '<h4>Numismatic data</h4>';
             $html .= '<p>No numismatic data has been recorded for this coin yet.</p>';
             $html .= '<div class="noprint">';
             $html .= $this->view->addCoinLink(
-                    $finds['old_findID'],
-                    $finds['id'],
-                    $finds['secuid'],
-                    $finds['createdBy'],
-                    $finds['broadperiod']);
-            $html .= '</div>';
+                    $finds[0]['old_findID'],
+                    $finds[0]['id'],
+                    $finds[0]['secuid'],
+                    $finds[0]['createdBy'],
+                    $finds[0]['broadperiod']);
+            $html .= '</div></div>';
 
         }
         }

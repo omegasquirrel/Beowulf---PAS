@@ -22,8 +22,9 @@
 <?php endif; ?>
 <?php endforeach; ?>
 <li class="next">
-<?php if (isset($this->next)): ?>
-<a href="<?php $this->url(array('page' => $this->next)); ?>">Next &raquo;</a>
+<?php 
+if (isset($this->next)): ?>
+<a href="<?php echo $this->url(array('page' => $this->next)); ?>">Next &raquo;</a>
 <?php else: ?>
 <a href="#" class="disabled">Next &raquo;</a>
 <?php endif; ?>

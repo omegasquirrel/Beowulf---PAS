@@ -18,9 +18,8 @@ public function __construct($options = null) {
 	$tribe->setLabel('Tribe name: ')
 	->setRequired(true)
 	->setAttrib('size',60)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('You must enter a name for the tribe.')
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+	->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
+	->addErrorMessage('You must enter a name for the tribe.');
 
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Description of the tribe: ')

@@ -38,33 +38,28 @@ public function __construct($options = null) {
 
 	$address1 = new Zend_Form_Element_Text('address1');
 	$address1->setLabel('Address line one: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size',60)
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->setAttrib('size',200);
 
 	$address2 = new Zend_Form_Element_Text('address2');
 	$address2->setLabel('Address line two: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size',60)
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->setAttrib('size',200);
 
 	$address3 = new Zend_Form_Element_Text('address3');
 	$address3->setLabel('Address line three: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size',60)
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->setAttrib('size',200);
 
 	$address = new Zend_Form_Element_Text('address');
 	$address->setLabel('Full address: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size',60)
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->setAttrib('size',200);
 
 	$town_city = new Zend_Form_Element_Text('town_city');
 	$town_city->setLabel('Town or city: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size',60)
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->setAttrib('size',60);
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
@@ -84,19 +79,17 @@ public function __construct($options = null) {
 
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->setLabel('Postcode: ')
-		->addFilters(array('StripTags','StringTrim'))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->addValidator('StringLength', false, array(1,10))
 		->addValidator('ValidPostCode')
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
 		->addErrorMessage('Please enter a valid postcode')
 		->setAttrib('size',10);
 
 	$contactperson = new Zend_Form_Element_Text('contact');
 	$contactperson->setLabel('Organisation\'s lead contact: ')
-		->addFilters(array('StripTags','StringTrim'))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->addValidator('StringLength', false, array(1,200))
-		->setAttrib('size',50)
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->setAttrib('size',50);
 
 	$contactpersonID = new Zend_Form_Element_Hidden('contactpersonID');
 	$contactpersonID->addFilters(array('StripTags','StringTrim'));

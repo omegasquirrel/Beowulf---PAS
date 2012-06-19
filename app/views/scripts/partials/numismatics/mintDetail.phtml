@@ -14,12 +14,7 @@ $this->headMeta('Full details for issuing  mint at '. $this->name
 <p>
 
 <?php if(!is_null($this->name)):?>
-Mint: <?php echo $this->escape($this->name);?> <br />
-<?php endif;?>
-
-<?php if(!is_null($this->latitude)):?>
-Geo location: <?php echo $this->escape($this->latitude);?> 
-<?php echo $this->escape($this->longitude);?><br />
+Mint: <span property="skos:prefLabel"><?php echo $this->escape($this->name);?></span> <br />
 <?php endif;?>
 
 <?php if(!is_null($this->abbrev)):?>
@@ -29,7 +24,14 @@ Abbreviation: <?php echo $this->abbrev;?>
 </p>
 
 <?php if(!is_null($this->description)):?>
-<?php echo $this->description;?>
+<span property="skos:definition"><?php echo $this->description;?></span>
+<?php endif;?>
+<h3>Geographical entities</h3>
+<?php if(!is_null($this->latitude)):?>
+<p>Geo location: <span property="gml:pos"><?php echo $this->escape($this->latitude);?>, <?php echo $this->escape($this->longitude);?></span></p>
+<?php endif;?>
+<?php if(!is_null($this->pleiadesID)):?>
+<p><a property="skos:related" resource="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>" href="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>">View on Pleiades</a></p>
 <?php endif;?>
 
 <?php if(!is_null($this->pasID)):?>

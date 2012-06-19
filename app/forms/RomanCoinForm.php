@@ -32,6 +32,16 @@ public function __construct($options = null)
 	$reeces = new Reeces();
 	$reece = $reeces->getOptions();
 	
+	$money = new Moneyers();
+	$moneyers = $money->getRepublicMoneyers();
+	
+	$statuses = new Statuses();
+	$statuses = $statuses->getCoinStatus();
+	
+	$reverses = new Revtypes();
+	$reverses = $reverses->getRevTypes();
+	
+	
 	parent::__construct($options);
 	
 		
@@ -40,7 +50,7 @@ public function __construct($options = null)
 	$denomination = new Zend_Form_Element_Select('denomination');
 	$denomination->setLabel('Denomination: ')
 		->setRequired(true)
-		->addMultiOptions(array(NULL => NULL,'Choose denomination' => $denomination_options))
+		->addMultiOptions(array(NULL => 'Choose denomination', 'Valid denominations' => $denomination_options))
 		->addValidator('InArray', false, array(array_keys($denomination_options)))
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('You must enter a denomination');
@@ -55,7 +65,7 @@ public function __construct($options = null)
 	
 	$ruler= new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler: ')
-		->addMultiOptions(array(NULL => NULL,'Choose a ruler' => $ro))
+		->addMultiOptions(array(NULL => 'Choose a ruler', 'Valid rulers' => $ro))
 		->addValidator('InArray', false, array(array_keys($ro)));
 	
 	$ruler_qualifier = new Zend_Form_Element_Radio('ruler_qualifier');
@@ -66,7 +76,7 @@ public function __construct($options = null)
 	
 	$mint_id= new Zend_Form_Element_Select('mint_id');
 	$mint_id->setLabel('Issuing mint: ')
-		->addMultiOptions(array(NULL => NULL,'Choose a mint' => $mo))
+		->addMultiOptions(array(NULL => 'Choose a mint', 'Valid mints' => $mo))
 		->addValidator('InArray', false, array(array_keys($mo)))
 		->addFilters(array('StripTags', 'StringTrim'));
 	
@@ -78,14 +88,14 @@ public function __construct($options = null)
 	
 	$reeceID = new Zend_Form_Element_Select('reeceID');
 	$reeceID->setLabel('Reece period: ')
-	
-		->addMultiOptions(array(NULL => NULL,'Choose period' => $reece))
+		->addMultiOptions(array(NULL => 'Choose a Reece period', 'Valid periods' => $reece))
 		->addValidator('InArray', false, array(array_keys($reece)))
 		->addFilters(array('StripTags', 'StringTrim'));
 	
 	$moneyer = new Zend_Form_Element_Select('moneyer');
 	$moneyer->setLabel('Republican Moneyer: ')
-		->setRegisterInArrayValidator(false)
+		->addMultiOptions(array(NULL => 'Choose a moneyer', 'Valid moneyers' => $moneyers))
+		->addValidator('InArray', false, array(array_keys($moneyers)))
 		->addFilters(array('StripTags', 'StringTrim'));
 	
 	$moneyer_qualifier = new Zend_Form_Element_Radio('moneyer_qualifier');
@@ -96,8 +106,9 @@ public function __construct($options = null)
 			
 	$revtypeID = new Zend_Form_Element_Select('revtypeID');
 	$revtypeID->setLabel('Reverse type: ')
-		->setRegisterInArrayValidator(false)
-		->addFilters(array('StripTags', 'StringTrim'));
+		->addMultiOptions(array(NULL => 'Choose a reverse type', 'Valid reverses' => $reverses))
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('InArray', false, array(array_keys($reverses)));
 	
 	$revTypeID_qualifier = new Zend_Form_Element_Radio('revTypeID_qualifier');
 	$revTypeID_qualifier->setLabel('Reverse type qualifier: ')
@@ -109,8 +120,9 @@ public function __construct($options = null)
 	$status->setLabel('Status: ')
 		->setValue(1)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose coin status' => $wear_options))
-		->addValidator('InArray', false, array(array_keys($wear_options)));
+		->addMultiOptions(array(NULL => 'Choose coin status', 'Valid options' => $statuses))
+		->addValidator('InArray', false, array(array_keys($statuses)))
+		;
 	
 	$status_qualifier = new Zend_Form_Element_Radio('status_qualifier');
 	$status_qualifier->setLabel('Status qualifier: ')
@@ -121,7 +133,7 @@ public function __construct($options = null)
 	
 	$degree_of_wear = new Zend_Form_Element_Select('degree_of_wear');
 	$degree_of_wear->setLabel('Degree of wear: ')
-		->addMultiOptions(array(NULL => NULL,'Choose coin status' => $wear_options))
+		->addMultiOptions(array(NULL => 'Choose coin wear status', 'Valid options' => $wear_options))
 		->addValidator('InArray', false, array(array_keys($wear_options)))
 		->addFilters(array('StripTags', 'StringTrim'));
 	
@@ -171,7 +183,7 @@ public function __construct($options = null)
 	$submit = new Zend_Form_Element_Submit('submit');
 				  
 	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
-	if($action == 'editcoin') {
+	if($action == 'edit') {
 		$rulers = new Rulers();
 		$ruler_options = $rulers->getRomanRulers();
 		$ruler->addMultiOptions(array(NULL => NULL,'Choose ruler' => $ruler_options))

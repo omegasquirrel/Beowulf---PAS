@@ -13,29 +13,28 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	extends Zend_Controller_Plugin_Abstract {
 
 	public function postDispatch(Zend_Controller_Request_Abstract $request) {
+	
 	$view = Zend_Controller_Action_HelperBroker::getExistingHelper('ViewRenderer')->view;
+	
 	$view->headMeta('Built using the awesome Zend Framework (but customised by Daniel Pett): '
 	. Zend_Version::VERSION,'generator');
+	
 	$view->baseUrl = $request->getBaseUrl();
 	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/jquery.menu.js', $type='text/javascript');
-        $view->jQuery()->addJavascriptFile($view->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
+	$view->jQuery()->addJavascriptFile($view->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/bootstrap.min.js', $type='text/javascript');
-        $view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/lightboxInit.js', $type='text/javascript');
-//	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/corner.js', $type='text/javascript');
-	$module = strtolower($request->getModuleName());
-//	if($module == 'default') {
+	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/lightboxInit.js', $type='text/javascript');
+	$view->jQuery()->addJavascriptFile('http://assets.cookieconsent.silktide.com/current/plugin.min.js', $type='text/javascript');
+	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/cookieConsent.js', $type='text/javascript');
+	
+	
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap.css', $type='screen');
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/custom-bootstrap.css', $type='screen');
-        $view->headLink()->appendStylesheet($view->baseUrl() . '/css/lightbox.css', $type='screen');
-
+	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/lightbox.css', $type='screen');
+	$view->headLink()->appendStylesheet('http://assets.cookieconsent.silktide.com/current/style.min.css');
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.css', $type='screen');
-//	} else {
-//	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/default.css', $type='screen');
-//	}
-//	$view->headLink()->appendStylesheet($view->baseUrl().'/css/print.css', $type='print')
-//		->appendStylesheet($view->baseUrl().'/css/style.css', $type='screen');
 	$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
-        $view->headMeta()->appendName('viewport','width=device-width, initial-scale=1.0');
+	$view->headMeta()->appendName('viewport','width=device-width, initial-scale=1.0');
 	$view->headLink()->appendAlternate($view->baseUrl().'/database/artefacts/index/format/atom/',
 		'application/rss+xml', 'Latest recorded finds feed')
 		->appendAlternate($view->baseUrl() . '/news/format/atom',
@@ -64,7 +63,8 @@ class Pas_Controller_Plugin_StyleAndAlternate
             'type' =>  'application/opensearchdescription+xml',
             'title' => 'Portable Antiquities content search',
             'APPEND'));
-
+        
        }
+       
 
 }

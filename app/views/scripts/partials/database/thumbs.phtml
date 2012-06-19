@@ -40,7 +40,7 @@ $tempfile = './' . $imagedir . 'display/'. strtolower($name).$ext;
 if(file_exists($tempfile)) {
 list($w, $h) = getimagesize($tempfile);
 
-echo '<img src="/'. $imagedir .'display/'.strtolower($name).$ext.'" alt="A resized image of '.$this->label.'" width="'.$w.'" height="'.$h.'" />';
+echo '<img class="imgdisplay" src="/'. $imagedir .'display/'.strtolower($name).$ext.'" alt="A resized image of '.$this->label.'" width="'.$w.'" height="'.$h.'" />';
 } else {
 $phMagick = new phMagick($location, $tempfile);
 $phMagick->resize(0,150);

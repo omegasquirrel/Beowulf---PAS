@@ -81,10 +81,12 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
     private function buildHtml($solrResponse){
     $html ='<div class="row-fluid"><h3>Similar objects</h3>';
     foreach($solrResponse['results'] as $document){
-       if(($document->thumbnail)){
+      
 
    			$html .= '<div class="span3 well">';
+   			 if(($document->thumbnail)){
 			$html .= '<img src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
+   			 }
 			$html .= '<div class="caption"><p>Find number: ';
 			$html .= '<a href="' . $this->view->serverUrl() . '/database/artefacts/record/id/'
                 . $document->id . '">';
@@ -93,7 +95,7 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
 			$html .= '<br />Broadperiod: ' . $document->broadperiod;
             $html .= '</p></div>';
             $html .= '</div>';
-       }
+       
     }
 
     $html .= '</div>';

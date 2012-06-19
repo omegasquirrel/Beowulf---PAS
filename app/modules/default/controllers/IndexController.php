@@ -33,15 +33,6 @@ class IndexController extends Pas_Controller_Action_Admin
         $form->removeElement('thumbnail');
         $form->q->removeDecorator('label');
         $form->q->setAttrib('class','input-large');
-        $form->q->setDecorators(array(
-			"ViewHelper",
-			array("Errors", array("placement" => "prepend")),
-			array("Description", array("tag" => "span", "class" => "help-block")),
-			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-			"Label",
-			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
-		));
-//        $form->submit->setAttrib('class','span8');
         if($this->getRequest()->isPost() && $form->isValid($_POST)){
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());

@@ -258,7 +258,7 @@ public function __construct($options = null) {
 	$numdate1->setLabel('Date from: ')
 	->setAttrib('size',10)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Digits');
+	->addValidator('Int');
 
 	$numdate2qual = new Zend_Form_Element_Radio('numdate2qual');
 	$numdate2qual->setLabel('Date certainty: ')
@@ -273,7 +273,7 @@ public function __construct($options = null) {
 	$numdate2->setLabel('Date to: ')
 	->setAttrib('size',10)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Digits');
+	->addValidator('Int');
 
 	//Ascribed culture: assigned via dropdown
 	$culture = new Zend_Form_Element_Select('culture');

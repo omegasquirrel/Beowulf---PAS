@@ -24,7 +24,7 @@ class Database_IndexController extends Pas_Controller_Action_Admin {
 	$this->view->logins = $recent->todayVisitors();
 
 	$form = new SolrForm();
-
+	$form->q->setLabel('Search our database: ');
 	$form->setMethod('post');
 	$this->view->form = $form;
 	$values = $form->getValues();

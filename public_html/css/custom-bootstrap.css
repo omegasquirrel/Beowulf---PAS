@@ -78,3 +78,21 @@ ul {
 #logmein {
 	text-align:center;
 }
+#prior-next {
+	margin-top:10px;
+}
+.imgdisplay {
+	margin:auto; 
+	display:block; 
+	border:6px solid black;
+}
+.sponsors {
+	margin:auto;
+	display:block;
+}
+.ilogo li {
+	list-style:none;
+}
+.ilogo {
+	float:right;
+}

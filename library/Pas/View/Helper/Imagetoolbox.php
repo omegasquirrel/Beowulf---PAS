@@ -66,7 +66,7 @@ class Pas_View_Helper_ImageToolbox
 	'action' => 'edit','id' => $id),null,TRUE);
 	$deleteurl = $this->view->url(array('module' => 'database','controller' => 'images',
 	'action' => 'delete','id' => $id),null,TRUE);
-	$string = 	' | <a href="'.$editurl.'" title="Edit image">Edit</a> | <a href="' . $deleteurl 
+	$string = 	' <a class="btn" href="'.$editurl.'" title="Edit image">Edit</a> <a  class="btn" href="' . $deleteurl 
 	. '" title="Delete this image">Delete</a>';
 	return $string;
 	}

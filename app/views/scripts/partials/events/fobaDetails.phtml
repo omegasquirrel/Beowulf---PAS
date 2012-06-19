@@ -5,7 +5,9 @@
 $params = array(  
         'markers'=>array(array($this->lat,$this->lng)),  
         'size'=>array(100,100),  
-        'zoom'=>12  
+        'zoom'=>12,
+		'alt' => 'Static map for event',
+		'title' => ''
     );
 echo $this->GoogleStaticMap( $params );?>
 <?php $url =  $this->url(array('module' => 'events',

@@ -175,7 +175,7 @@ public function __construct($options = null) {
 	$hash));
 	
 	$this->addDisplayGroup(array(
-	'categoryID','ruler_id''typeID',
+	'categoryID','ruler_id','typeID',
 	'ruler_qualifier','denomination','denomination_qualifier',
 	'mint_id','status','status_qualifier',
 	'degree_of_wear','obverse_description','obverse_inscription',

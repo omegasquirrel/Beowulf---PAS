@@ -96,30 +96,26 @@ public function __construct($options = null) {
 
 	$address = new Zend_Form_Element_Text('address');
 	$address->SetLabel('Address: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,200))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->addValidator('StringLength', false, array(1,500));
 
 	$town_city = new Zend_Form_Element_Text('town_city');
 	$town_city->SetLabel('Town: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,200))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->addValidator('StringLength', false, array(1,200));
 	
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
-		->addFilters(array('StripTags','StringTrim'))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->addMultiOptions(array(NULL => 'Please choose a county',
-		'Valid counties' => $counties_options))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		'Valid counties' => $counties_options));
 
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->SetLabel('Postcode: ')
 		->setRequired(false)
-		->addFilters(array('StripTags','StringTrim','StringToUpper'))
+		->addFilters(array('StripTags','StringTrim','StringToUpper', 'Purifier'))
 		->addValidator('StringLength', false, array(1,200))
-		->addValidator('ValidPostCode')
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addValidator('ValidPostCode');
 
 	$country = new Zend_Form_Element_Select('country');
 	$country->SetLabel('Country: ')
@@ -132,21 +128,18 @@ public function __construct($options = null) {
 
 	$hometel = new Zend_Form_Element_Text('hometel');
 	$hometel->SetLabel('Home telephone number: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,30))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->addValidator('StringLength', false, array(1,30));
 
 	$worktel = new Zend_Form_Element_Text('worktel');
 	$worktel->SetLabel('Work telephone number: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,30))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->addValidator('StringLength', false, array(1,30));
 
 	$fax = new Zend_Form_Element_Text('faxno');
 	$fax->SetLabel('Fax number: ')
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('StringLength', false, array(1,30))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->addValidator('StringLength', false, array(1,30));
 
 	$comments = new Pas_Form_Element_RTE('comments');
 	$comments->SetLabel('Comments: ')

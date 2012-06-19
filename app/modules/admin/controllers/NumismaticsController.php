@@ -525,6 +525,8 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	$this->view->denoms = $denominations->getRomanRulerDenomAdmin($id);
 	$reverses = new Revtypes();
 	$this->view->reverses = $reverses->getTypesAdmin($id);
+	$reece = new ReecePeriodEmperors();
+	$this->view->reeces = $reece->fetchRow('ruler_id = '. $id );
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
@@ -639,8 +641,8 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	'name' => $form->getValue('name'),
 	'reeceID' => $form->getValue('reeceID'),
 	'pasID' => $form->getValue('pasID'),
-	'date_from' => $form->getValue('date_from')
-	,'date_to' => $form->getValue('date_to'),
+	'date_from' => $form->getValue('date_from'),
+	'date_to' => $form->getValue('date_to'),
 	'biography' => $form->getValue('biography'),
 	'dynasty' => $form->getValue('dynasty'),
 	'updated' => $this->getTimeForForms(),	
@@ -1200,7 +1202,7 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($formData)) {
 	$denoms = new DenomRulers();
 	$insertData = array(
-	'ruler_id',=> $form->getValue('ruler_id'),
+	'ruler_id' => $form->getValue('ruler_id'),
 	'denomination_id' => $form->getValue('denomination_id'),
 	'period_id' => $form->getValue('period_id'),
 	'created' => $this->getTimeForForms(), 
@@ -1242,7 +1244,7 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($formData)) {
 	$mintrulers = new MintsRulers();
 	$insertData = array(
-	'ruler_id',=> $form->getValue('ruler_id'),
+	'ruler_id'=> $form->getValue('ruler_id'),
 	'mint_id' => $form->getValue('mint_id'),
 	'created' => $this->getTimeForForms(), 
 	'createdBy' => $this->getIdentityForForms()
@@ -1890,5 +1892,65 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	public function refsAction() {
 	$refs = new CoinClass();
 	$this->view->refs = $refs->getRefs();
+	}
+	
+	public function addreeceAction(){
+	$form = new ReeceEmperorForm();
+	$form->submit->setLabel('Submit details');
+	$this->view->form =$form;
+		$this->view->form = $form;
+	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
+    if ($form->isValid($form->getValues())) {
+    $updateData = array(
+    'periodID' => '21',
+    'ruler_id' => $this->_getParam('rulerid'),
+    'reeceperiod_id' => $form->getValue('reeceperiod_id')
+    );
+	$periods = new ReecePeriodEmperors();
+	$update = $periods->add($updateData);
+	$this->_redirect('/admin/numismatics/romanruler/id/' . $this->_getParam('rulerid'));
+	$this->_flashMessenger->addMessage('Period added');
+	} else {
+	$form->populate($form->getValues());
+	}
+	}
+	}
+	
+	public function editreeceAction(){
+	if($this->_getparam('id',false)) {
+	$form = new ReeceEmperorForm();
+	$form->submit->setLabel('Update details' );
+	$this->view->form = $form;
+	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
+    if ($form->isValid($form->getValues())) {
+    $updateData = array(
+    'periodID' => 21,
+    'ruler_id' => $this->_getParam('rulerid'),
+    'reeceperiod_id' => $form->getValue('reeceperiod_id')
+    );
+	$periods = new ReecePeriodEmperors();
+	$where = array();
+	$where[] = $periods->getAdapter()->quoteInto('ruler_id = ?', (int)$this->_getParam('rulerid'));
+	$update = $periods->update($updateData, $where);
+	$this->_flashMessenger->addMessage('Reece period updated');
+	$this->_redirect('/admin/numismatics/romanruler/id/' . $this->_getParam('rulerid'));
+	} else {
+	$form->populate($form->getValues());
+	}
+	} else {
+	$id = (int)$this->_request->getParam('rulerid', 0);
+	if ($id > 0) {
+	$periods = new ReecePeriodEmperors();
+	$activity = $periods->fetchRow('ruler_id='.(int)$id);
+	if(count($activity))	{
+	$form->populate($activity->toArray());
+	} else {
+	throw new Pas_Exception_Param($this->_nothingFound);
+	}
+	}
+	}
+	} else {
+	throw new Pas_Exception_Param($this->_missingParameter);
+	}
 	}
 }

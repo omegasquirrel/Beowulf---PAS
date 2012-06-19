@@ -131,8 +131,8 @@ class Pas_View_Helper_FindSpotLink
 	public function buildHtml($findID, $secuid) {
 	$url = $this->view->url(array('module' => 'database', 'controller' => 'findspots','action' => 'add',
 	'id' => $findID, 'secuid' => $secuid),null,true);
-	$string = '<div class="addpanel noprint"><a href="' . $url
-	.'" title="Add spatial details for this find" accesskey="f">Add a findspot</a></div>';
+	$string = '<a class="btn btn-success" href="' . $url
+	.'" title="Add spatial details for this find" accesskey="f">Add a findspot</a>';
 	return $string;
 	}
 

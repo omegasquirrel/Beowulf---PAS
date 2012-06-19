@@ -182,7 +182,7 @@ class Pas_View_Helper_SearchParams
 			$params[$key] = yes;
 			break;
 		case 'thumbnail':
-			$params[$key] = 'Only object with images please';
+			$params[$key] = 'Only records with images please';
 			break;
 		case 'surface':
 			$params[$key] = $this->getData('Surftreatments','term', $value);

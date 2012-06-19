@@ -17,7 +17,6 @@ if(in_array($user->role,$allowedAccess))
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myinstitution'),null,true);?>" title="View everything recorded at my workplace">My institution's records  <i class="icon-list"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme','action' => 'myimages'),null,true);?>">My images <i class="icon-camera"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'images'),null,true);?>">All images <i class="icon-picture"></i></a></li>
-</li>
 <?php
 }
 }

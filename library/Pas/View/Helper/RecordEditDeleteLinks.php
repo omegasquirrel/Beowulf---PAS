@@ -116,12 +116,12 @@ class Pas_View_Helper_RecordEditDeleteLinks extends Zend_View_Helper_Abstract {
 	$html .= $editurl;
 	$html .= '" title="Edit details for ';
 	$html .= $oldfindID;
-	$html .= '" accesskey="e">Edit</a> <a class="' . $classDanger . '" href="';
+	$html .= '" accesskey="e">Edit <i class="icon-white icon-edit"></i></a> <a class="' . $classDanger . '" href="';
 	$html .= $deleteurl;
 	$html .= '" title="Delete record ';
 	$html .= $oldfindID;
 	$html .= '" accesskey="d">';
-	$html .= 'Delete</a>';
+	$html .= 'Delete <i class="icon-white icon-trash"></i></a>';
 	return $html;
 	}
 

@@ -63,20 +63,22 @@ public function __construct($options = null) {
 	$eventStartTime->setLabel('Event start time: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator(new Zend_Validate_Date('H:i:s'));
+	->addValidator(new Zend_Validate_Date('H:i:s'))
+	->setDescription('Enter in 24 hour clock format');
 
 	$eventEndTime = new Zend_Form_Element_Text('eventEndTime');
 	$eventEndTime->setLabel('Event end time: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator(new Zend_Validate_Date('H:i:s'));
+	->addValidator(new Zend_Validate_Date('H:i:s'))
+	->setDescription('Enter in 24 hour clock format');
 
 	$eventStartDate = new ZendX_JQuery_Form_Element_DatePicker('eventStartDate');
 	$eventStartDate->setLabel('Event start date: ')
-	->setRequired(false)
+	->setRequired(true)
 	->setJQueryParam('dateFormat', 'yy-mm-dd')
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Date')
+	->addValidator('Datetime')
 	->addErrorMessage('Come on it\'s not that hard, enter a title!')
 	->setAttrib('size', 20);
 
@@ -85,7 +87,7 @@ public function __construct($options = null) {
 	->setRequired(false)
 	->setJQueryParam('dateFormat', 'yy-mm-dd')
 	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('Date')
+	->addValidator('Datetime')
 	->addErrorMessage('Come on it\'s not that hard, enter a title!')
 	->setAttrib('size', 20);
 
@@ -95,7 +97,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('stringLength', false, array(1,10))
 	->addValidator('inArray', false, array(array_keys($staffregions_options)))
-	->addMultiOptions($staffregions_options);
+	->addMultiOptions(array(null => 'Please choose a region', 'Valid regions' => $staffregions_options));
 
 	$eventType = new Zend_Form_Element_Select('eventType');
 	$eventType->setLabel('Type of event: ')

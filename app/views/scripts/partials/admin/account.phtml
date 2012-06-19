@@ -4,8 +4,8 @@
 echo $this->Href(array(
     'module' => 'admin','controller'=>'users', 'action'=>'edit',
 'checkAcl'=>true,'acl'=>'Zend_Acl', 'params' => array('id' => $this->id),
-'content'=>'Edit account','attribs' => array('title' => 'Edit account'),
-        'wrapper' => array('tag' => 'div','id' => 'action','class' => 'btn btn-large btn-warning')));
+'content'=>'Edit account','attribs' => array('title' => 'Edit account','class' => 'btn btn-large btn-warning'),
+        'wrapper' => array('tag' => 'div','id' => 'action',)));
 ?>
 
 <h3>Personal data</h3>

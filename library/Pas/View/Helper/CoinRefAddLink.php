@@ -18,6 +18,15 @@ class Pas_View_Helper_CoinRefAddLink
 	protected $_recorders = array('flos');
 	protected $_higherLevel = array('admin','fa','treasure');
 
+	protected $_numismatics = array('COIN');
+
+    protected $_objects = array('JETTON', 'TOKEN');
+
+    protected $_broadperiods = array('IRON AGE', 'ROMAN', 'BYZANTINE',
+        'EARLY MEDIEVAL', 'GREEK AND ROMAN PROVINCIAL', 'MEDIEVAL', 'POST MEDIEVAL',
+        'MODERN');
+	
+	
 	protected $_auth = NULL;
 
 	/** Construct the auth object
@@ -93,7 +102,7 @@ class Pas_View_Helper_CoinRefAddLink
 	 * @param $returnID
 	 * @param $createdBy
 	 */
-	public function CoinRefAddLink($oldfindID, $id,$broadperiod,$secuid,$returnID,$createdBy) {
+	public function CoinRefAddLink($oldfindID, $id, $broadperiod, $secuid, $returnID, $createdBy) {
 	$byID = $this->checkAccessbyUserID($createdBy);
 	$instID = $this->checkAccessbyInstitution($oldfindID);
 	if(in_array($this->getRole(),$this->_restricted)) {

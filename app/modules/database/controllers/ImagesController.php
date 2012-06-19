@@ -428,7 +428,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$returnID = $returns->id;
 	$this->_helper->cache->remove('findtoimage' . $returnID);
 	$this->_flashMessenger->addMessage('You just linked an image to this record');
-	$this->_redirect('/database/artefacts/record/id/'.$returnID);
+	$this->_redirect('/database/artefacts/record/id/' . $returnID);
 	}
 	}
 	} else {
@@ -445,10 +445,9 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$id = (int)$this->_request->getPost('id');
 	$del = $this->_request->getPost('del');
 	if ($del == 'Yes' && $id > 0) {
-	$imageID = $this->_request->getPost('imageID');;
-	$findID = $this->_request->getPost('findID');;
-	$slides = new Slides();
-	$imagedata = $slides->fetchRow('imageID = '.$id);
+	$imageID = $this->_request->getPost('imageID');
+	$findID = $this->_request->getPost('findID');
+	$imagedata = $this->_images->fetchRow('imageID = ' . $id);
 	$imageID = $imagedata['secuid'];
 	$linked = new FindsImages();
 	$where = array();
@@ -456,16 +455,15 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$where[] = $linked->getAdapter()->quoteInto('image_id = ?', $imageID);
 	$where[] = $linked->getAdapter()->quoteInto('find_id = ?', $findID);
 	$linked->delete($where);
-	$this->_flashMessenger->addMessage('Image and links deleted!');
-	$this->_redirect('/database/artefacts/record/id/'.$this->_getParam('returnID'));
+	$this->_flashMessenger->addMessage('Links deleted!');
+	$this->_redirect('/database/artefacts/record/id/' . $this->_getParam('returnID'));
 	$this->_helper->cache->remove('findtoimage' . $returnID);
 	}
 	} else {
 	$id = (int)$this->_request->getParam('id');
 
 	if ((int)$id > 0) {
-	$this->view->slide = $this->_images->fetchRow($slides->select()->where('imageID = ?', $id));
-
+	$this->view->slide = $this->_images->fetchRow($this->_images->select()->where('imageID = ?', $id));
 	$this->view->params = $this->_getAllParams();
 	}
 	}

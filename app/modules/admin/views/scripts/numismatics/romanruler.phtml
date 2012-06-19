@@ -113,6 +113,13 @@ $('a.deletedenom').click(function(e) {
 <p>No denominations listed</p>
 <?php endif;?>
 
+<h3>Reece period assigned</h3>
+<?php if($this->reeces):?>
+<p>Reece period assigned: <?php echo $this->reeces->reeceperiod_id;?> 
+<span class="btn"><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'numismatics','action' => 'editreece','rulerid' => $this->details['0']['id']),null,true)?>">Edit</a></span></p>
+<?php else:?>
+<span class="btn"><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'numismatics','action' => 'addreece','rulerid' => $this->details['0']['id']),null,true)?>">Add a Reece period if applicable</a></span>
+<?php endif;?>
 <h3>Reverse types</h3>
 <p><a class="btn btn-large btn-primary" href="<?php echo $this->url(array('module' => 'admin','controller' => 'numismatics','action' => 'rulertoreversetype','rulerid' => $this->details['0']['id']),null,true);?>" title="Add a new reverse type">Add a reverse type to this list</a></p>
 <?php if(count($this->reverses)):?>

@@ -5,15 +5,15 @@ class AjaxController extends Pas_Controller_Action_Ajax
 
 	protected $_user;
 
-        protected $_places;
+    protected $_places;
 
 	public function init(){
 	$this->_helper->acl->allow('public',null);
 	$this->_helper->layout->disableLayout();
-//	$this->_helper->viewRenderer->setNoRender();
+	$this->_helper->viewRenderer->setNoRender();
 	$this->_cache = Zend_Registry::get('rulercache');
-        $this->_user = $this->_helper->identity->getPerson();
-        $this->_places = new Places();
+   	$this->_user = $this->_helper->identity->getPerson();
+    $this->_places = new Places();
    	}
 
 	/** No access to the root page
@@ -21,19 +21,19 @@ class AjaxController extends Pas_Controller_Action_Ajax
          */
 	public function indexAction(){
         throw new Exception('No access to index action', 500);
-        }
+	}
 
-        /** Get an ajax list of available counties
-         *
-         */
+	/** Get an ajax list of available counties
+	*
+	*/
 	public function countiesAction() {
 	$counties = new Counties;
 	$countiesjson = $counties->getCountyName2();
 	echo Zend_Json::encode($countiesjson);
 	}
 
-        /** Get a list of districts
-         *
+	/** Get a list of districts
+	*
          */
 	public function placesAction() {
 	if($this->_getParam('term',false)){

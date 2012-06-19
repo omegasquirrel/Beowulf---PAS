@@ -1,5 +1,10 @@
 <h2>Add an image</h2>
 <?php
 $this->headTitle('Add an image');
-echo $this->form;
+$id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');?>
+<p><a class="btn btn-success" href="<?php echo $this->url(array(
+	'module' => 'database',
+	'controller' => 'artefacts',
+	'action' => 'record', 'id' => $id),null,true);?>" title="return to the record">Return to record</a></p>
+<?php echo $this->form;
 ?>

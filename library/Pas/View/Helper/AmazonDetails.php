@@ -75,7 +75,7 @@ class Pas_View_Helper_AmazonDetails {
 	protected function buildHtml($book){
 	$html = '<div><h3>Amazon Book Data</h3><ul>';
 	if(array_key_exists('MediumImage',$book) && (!is_null($book->MediumImage))){
-	$html .= '<img src="' . $book->MediumImage->Url . '" alt="Cover image for ' . $book->Title . '" height="'
+	$html .= '<img class="flow" src="' . $book->MediumImage->Url . '" alt="Cover image for ' . $book->Title . '" height="'
 	. $book->MediumImage->Height . '" width="' . $book->MediumImage->Width . '" class="amazonpicture" />';
 	}
 	$html .= '<li><a href="' . $book->DetailPageURL . '" title="View full details at Amazon"> ' . $book->Title

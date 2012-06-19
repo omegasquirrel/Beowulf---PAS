@@ -26,7 +26,7 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
         $this->view->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
 	$this->view->inlineScript()->captureStart();
 	echo '$(document).ready(function() {
-	$(\'.print\').click(function() {
+	$(\'#print\').click(function() {
 	window.print();
 	return false;
 	});
@@ -53,14 +53,14 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 	. $this->view->url(array('module' => 'database','controller' => 'ajax', 'action' => 'embed', 'id' =>  $id),null,true)
 	. '" rel="facebox" title="Get code to embed this record in your webpage">Embed record</a> ';
 	echo $this->view->RecordEditDeleteLinks($id,$oldfindID,$createdBy);
-	echo ' <a class="' . $class . '" href="#print" class="print">Print</a> ';
+	echo ' <a class="' . $class . '" href="#print" id="print">Print <i class="icon-print icon-white"></i></a> ';
 	echo $this->view->Href(array(
             'module' => 'database',
             'controller'=>'artefacts',
             'action'=>'add',
             'checkAcl'=>true,
             'acl'=>'Zend_Acl',
-            'content'=>'Add record',
+            'content'=>'Add record <i class="icon-white icon-plus"></i>',
             'attribs' => array(
                 'title' => 'Add new object',
                 'accesskey' => 'a',

@@ -52,8 +52,7 @@ class NewsStoryForm extends Pas_Form {
 		->setRequired(true)
 		->setAttrib('size',60)
 		->addErrorMessage('Please enter a title for this story.')
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags','StringTrim', 'Purifier'));
 
 	$contactEmail = new Zend_Form_Element_Text('contactEmail');
 	$contactEmail->setLabel('Contact email address: ')

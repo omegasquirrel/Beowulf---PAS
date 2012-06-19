@@ -149,8 +149,9 @@ class Pas_View_Helper_AddCoinLink
 	 */
 	public function buildHtml($findID, $secuid, $broadperiod) {
 	$url = $this->view->url(array('module' => 'database','controller' => 'coins','action' => 'add', 
-	'broadperiod' => $broadperiod,'findID' => $secuid,'returnID' => $findID),NULL,TRUE);
-	$string = '<a href="' . $url . '" title="Add ' . $broadperiod . ' coin data" accesskey="m">Add ' . $broadperiod 
+	'broadperiod' => $broadperiod,'findID' => $secuid, 'returnID' => $findID),NULL,TRUE);
+	$string = '<a class="btn btn-primary" href="' . $url . '" title="Add ' 
+	. $broadperiod . ' coin data" accesskey="m">Add ' . $broadperiod 
 	.' coin data</a>';
 	return $string;
 	}

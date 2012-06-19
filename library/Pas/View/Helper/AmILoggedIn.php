@@ -53,7 +53,7 @@ class Pas_View_Helper_AmILoggedIn extends Zend_View_Helper_Abstract {
     $id = $this->view->escape(ucfirst($user->id));
 //    $string = '<div id="gravatar">' . $gravatar . '</div>';
 	$string = '<div id="logmein">';
-    $string .= '<a href="'.$this->view->url(array('module' => 'users','controller' => 'account'),
+    $string .= '<p><a href="'.$this->view->url(array('module' => 'users','controller' => 'account'),
         'default',true).'" title="View your user profile">' . $fullname .  '</a> &raquo; <a href="'
     . $logoutUrl . '">Log out</a></p><p>Assigned role: ' . ucfirst($user->role);
 

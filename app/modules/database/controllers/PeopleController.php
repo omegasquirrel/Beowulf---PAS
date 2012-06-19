@@ -36,6 +36,8 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     public function indexAction(){
     $form = new SolrForm();
     $form->removeElement('thumbnail');
+    $form->q->setLabel('Search people: ');
+    $form->q->setAttrib('placeholder','Try Bland for example');
     $this->view->form = $form;
 
     $params = $this->array_cleanup($this->_getAllParams());

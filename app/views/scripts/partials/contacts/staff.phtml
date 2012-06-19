@@ -47,9 +47,9 @@ lat:
 title="Profile image of <?php echo $this->escape($this->firstname);?> <?php echo $this->escape($this->lastname);?>">
 <img property="foaf:img google:photo" src="<?php echo $this->baseUrl(); ?>/images/staffphotos/thumbnails/<?php echo $this->image;?>" title="Image of <?php echo $this->escape($this->firstname);?> <?php echo $this->escape($this->lastname);?>"  class="staffimage" width="<?php echo $w;?>" height="<?php echo $h;?>" alt="A profile picture chosen by <?php echo $this->escape($this->firstname);?> <?php echo $this->escape($this->lastname);?>"/></a>            
 <?php }?>
-<img src="http://maps.google.com/maps/api/staticmap?center=<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&zoom=15&size=300x300&maptype=hybrid&markers=color:green|label:G|
-<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&sensor=false" class="flow"/>
-<p>Short profile:</p>
+
+<p>Short profile:</p><img src="http://maps.google.com/maps/api/staticmap?center=<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&zoom=15&size=200x200&maptype=hybrid&markers=color:green|label:G|
+<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&sensor=false" class="flow imgdisplay"/>
 <div class="summary" property="foaf:plan"><?php echo $this->profile;?></div>
 
 <div class="tel" >

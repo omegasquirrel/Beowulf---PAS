@@ -17,8 +17,7 @@ public function __construct($options = null) {
 	$term = new Zend_Form_Element_Text('term');
 	$term->setLabel('Grid reference origin term: ')
 		->setRequired(true)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->setAttrib('size',60)
 		->addErrorMessage('Please enter a valid grid reference origin term!');
 

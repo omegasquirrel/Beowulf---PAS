@@ -48,7 +48,7 @@ class Pas_View_Helper_Contextsavailable extends Zend_View_Helper_Abstract {
 	$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();	
 	$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();	
 	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();	
-	$string = '<div id="contexts"><p>This page is available in: ';
+	$string = '<div id="contexts" class="row-fluid"><p>This page is available in: ';
 	foreach($contexts as $key => $value) {
 		
 	$url = $this->view->url(array(
