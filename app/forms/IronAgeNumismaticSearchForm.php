@@ -342,7 +342,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$institution, $cci,$submit, $hash));
 
 	$this->addDisplayGroup(array(
-        'cciNumber', 'denomination', 'geographyID','ruler_id'
+        'cciNumber', 'denomination', 'geographyID','ruler_id',
 	'ruler2', 'tribe', 'mint',
 	'axis', 'obverseLegend', 'obverseDescription',
 	'reverseLegend', 'reverseDescription', 'bmc',
@@ -372,7 +372,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
         $this->addDisplayGroup(array('submit'), 'submit');
 
 
-        
+
 
 	parent::init();
 	}

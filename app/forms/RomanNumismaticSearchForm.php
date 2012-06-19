@@ -290,7 +290,7 @@ class RomanNumismaticSearchForm extends Pas_Form
     $institution));
 
     $this->addDisplayGroup(array(
-    'denomination','ruler_id''mint',
+    'denomination','ruler_id', 'mint',
     'moneyer','axis','reeceID',
     'revtypeID','obverseLegend','obverseDescription',
     'reverseLegend','reverseDescription'),
