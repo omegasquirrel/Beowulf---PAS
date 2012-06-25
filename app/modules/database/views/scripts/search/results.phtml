@@ -46,3 +46,27 @@
 
 <?php echo '<p>Your search has produced no results. Please refine your query. If you are expecting more results, you may have insufficient access for their workflow stage.</p>';?>
 <?php endif; ?>
+<?php 
+$this->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
+$this->inlineScript()->captureStart();
+?>
+$(document).ready(function() {
+	$('#print').click(function() {
+	window.print();
+	return false;
+	});
+
+    $('.overlay').click(function(e) {
+    e.preventDefault();
+    var href = $(e.target).attr('href');
+    if (href.indexOf('#') == 0) {
+        $(href).modal('open');
+    } else {
+        $.get(href, function(data) {
+            $('<div class="modal fade" >' + data + '</div>').modal();
+        });
+    }
+});
+
+	}); 
+<?php $this->inlineScript()->captureEnd();?>

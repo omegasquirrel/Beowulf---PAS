@@ -4,7 +4,7 @@ $this->headMeta('Biographical and related data for '.$this->name,'Description');
 $this->headMeta('roman,numismatics,biography,emperor,'.$this->name.',portable antiquities','Keywords');
 
 $this->headLink()->appendAlternate($this->url(array('module' => 'database','controller' => 'search','action' => 'results','ruler' => $this->pasID,'format' => 'rss'),null,true), 'application/rss+xml', 'Latest finds for '. $this->name .'- RSS Feed'); ?>
-<div about="<?php echo $this->name;?>" typeof="romanEmperor">
+<div about="<?php echo $this->name;?>" typeof="nm:roman_emperor">
 <h2 property="skos:prefLabel"><?php echo $this->escape($this->name);?></h2>
 <?php if(isset($this->p)):?>
 <p>Reece Period attributed: <a href="<?php echo $this->url(array('module' => 'romancoins','controller' => 'reeceperiods','action' => 'period','id'=> $this->reeceID, 'name' => $this->urlslug($this->p)),'default',true);?>" title="View scope notes for <?php echo $this->p;?>"><?php echo $this->escape($this->p);?></a></p>
@@ -19,6 +19,18 @@ echo '<a href="'.$this->baseUrl().'/images/rulers/'.$this->escape($this->filenam
 <p>Coins for this issuer were issued from <?php echo $this->escape($this->date_from);?> until <?php echo $this->escape($this->date_to);?>.</p>
 
 <?php echo $this->biography;?>
+
+<h3>Other resources about <?php echo $this->name;?></h3>
+<ul>
+<li>Dbpedia: <a property="skos:related"  resource="http://dbpedia.org/resource/<?php echo $this->dbpedia;?>" href="http://dbpedia.org/resource/<?php echo $this->dbpedia;?>">http://dbpedia.org/resource/<?php echo $this->dbpedia;?></a></li>
+<li>Wikipedia: <a property="skos:related"  resource="http://en.wikipedia.org/wiki/<?php echo $this->dbpedia;?>" href="http://en.wikipedia.org/wiki/<?php echo $this->dbpedia;?>">http://en.wikipedia.org/wiki/<?php echo $this->dbpedia;?></a></li>
+<?php if(!is_null($this->viaf)):?>
+<li>VIAF: <a property="skos:related"  resource="http://en.wikipedia.org/wiki/<?php echo $this->dbpedia;?>"href="http://viaf.org/viaf/<?php echo $this->viaf;?>">http://viaf.org/viaf/<?php echo $this->viaf;?></a></li>
+<?php endif;?>
+<?php if(!is_null($this->nomismaID)):?>
+<li>Nomisma: <a property="skos:related"  resource="http://nomisma.org/id/<?php echo $this->nomismaID;?>" href="http://nomisma.org/id/<?php echo $this->nomismaID;?>">http://nomisma.org/id/<?php echo $this->nomismaID;?></a></li>
+<?php endif;?>
+</ul>
 
 <p>View <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'results','ruler' => $this->pasID),null, true);?>" title="Search for all coins of <?php echo $this->name;?>">all coins recorded</a> by the scheme attributed to <?php echo $this->name;?>.</p>
 <?php
@@ -43,7 +55,7 @@ PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
 SELECT *
 
 WHERE {
-?king foaf:page <http://en.wikipedia.org/wiki/'.urlencode(str_replace(array(' (first reign)',' (second reign)',' '),array('','','_'),ucfirst($this->name))).'> .
+?king foaf:page <http://en.wikipedia.org/wiki/' . $this->dbpedia . '> .
 OPTIONAL {?king dbpedia-owl:abstract ?abstract} .
 OPTIONAL {?king foaf:depiction ?depiction}.
 OPTIONAL {?king dbpedia-owl:thumbnail ?thumb} .
@@ -115,7 +127,6 @@ echo 'Died at: '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','
 if(isset($row['alt'])) {
 echo 'Alternative names: '.$row['alt'].'<br />';
 }
-echo 'Wikipedia page: <a property="skos:related" resource="' . $row['page'] . '" href="'.$row['page'].'" title="Go to the Wikipedia entry for '.$row['name'].'">'.$row['page'].'</a><br />';
 
 echo 'This data is sourced from dbpedia, and as such should be treated with caution';
 echo '</p>';

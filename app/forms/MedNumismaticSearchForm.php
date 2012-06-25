@@ -168,7 +168,7 @@ class MedNumismaticSearchForm extends Pas_Form {
 		 ->addMultiOptions(array(NULL => 'Choose type after choosing ruler'));
 
 	//Primary ruler
-	$ruler = new Zend_Form_Element_Select('ruler_id');
+	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(
@@ -260,7 +260,7 @@ class MedNumismaticSearchForm extends Pas_Form {
 
 
 	$this->addDisplayGroup(array(
-	'category', 'ruler_id','type',
+	'category', 'ruler','type',
 	'denomination', 'mint','moneyer',
 	'axis',  'obinsc','obdesc',
 	'revinsc','revdesc'), 'numismatics')

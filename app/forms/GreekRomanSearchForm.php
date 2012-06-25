@@ -149,7 +149,7 @@ class GreekRomanSearchForm extends Pas_Form {
 	->addValidator('InArray', false, array(array_keys($denomination_options)));
 
 	//Primary ruler
-	$ruler = new Zend_Form_Element_Select('ruler_id');
+	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
@@ -230,7 +230,7 @@ class GreekRomanSearchForm extends Pas_Form {
 	$objecttype,$broadperiod, $submit));
 
 	$this->addDisplayGroup(array(
-	'denomination','ruler_id','mint',
+	'denomination','ruler','mint',
 	'moneyer','axis','obinsc',
 	'obdesc','revinsc','revdesc'), 'numismatics');
 

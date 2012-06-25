@@ -111,7 +111,7 @@ class Database_FindspotsController
              $this->_getParam('id'));
     $findspot = $this->_findspots->fetchRow($where);
         $form->populate($findspot);
-    $this->_helper->findspotFormOptions();
+//    $this->_helper->findspotFormOptions();
 
     }
     }
@@ -123,8 +123,9 @@ class Database_FindspotsController
     $findspot = $this->_findspots->fetchRow($where);
     
     $this->view->findspot = $findspot->toArray();
-    $form->populate($findspot->toArray());
     $this->_helper->findspotFormOptions();
+	$form->populate($findspot->toArray());
+
     }
     }
     } else {

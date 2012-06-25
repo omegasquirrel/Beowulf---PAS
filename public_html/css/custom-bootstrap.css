@@ -96,3 +96,20 @@ ul {
 .ilogo {
 	float:right;
 }
+.btn.btn-small.overlay {
+	margin-bottom: 20px;
+	margin-top: -10px;
+}
+
+ul.facetExpand li {
+    float:left; width:50%;
+}
+
+.pagination li .active {
+	font-weight: bold;
+	background: lightGrey;
+}
+.nav li .active a {
+	font-weight: bold;
+	color:white;
+}

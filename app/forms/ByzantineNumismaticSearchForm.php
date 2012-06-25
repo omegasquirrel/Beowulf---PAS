@@ -159,7 +159,7 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 			'Available denominations' => $denomination_options));
 
 	//Primary ruler
-	$ruler = new Zend_Form_Element_Select('ruler_id');
+	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
@@ -239,7 +239,7 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$submit));
 
 	$this->addDisplayGroup(array(
-	'denomination', 'ruler_id','mint',
+	'denomination', 'ruler','mint',
 	'moneyer', 'axis', 'obverseLegend',
 	'obverseDescription','reverseLegend','reverseDescription'),
 	'numismatics');

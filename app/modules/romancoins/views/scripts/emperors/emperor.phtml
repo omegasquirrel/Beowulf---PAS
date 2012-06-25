@@ -4,7 +4,7 @@ $apikey = $config->webservice->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
 $this->inlineScript()->appendFile($this->serverUrl() . '/js/markerclusterer.js',$type='text/javascript');
 $this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
-
+$this->inlineScript()->appendFile('http://webplayer.yahooapis.com/player.js', $type='text/javascript');
 $this->headScript()->appendFile('http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js',$type = 'text/javascript');
 $this->headScript()->appendFile('http://isawnyu.github.com/awld-js/awld.js?autoinit', $type = 'text/javascript');
 ?>
@@ -223,7 +223,8 @@ function markerInfoWindow(marker, information){
 			</div>
 
             <?php if(!is_null($this->emps['0']['murdoch'])):?>
-            <div class="tab-pane fade" id="podcast"><?php echo $this->emps['0']['murdoch'];?>
+            <div class="tab-pane fade" id="podcast">
+            <a href="http://www.youtube.com/watch?v=<?php echo $this->emps['0']['murdoch'];?>">Adrian Murdoch's Emperor's of Rome</a>
 			<p>This video has been embedded from <a href="http://adrianmurdoch.typepad.com/my_weblog/" title="Adrian's blog">Adrian Murdoch's</a> series of podcasts on the Emperors of Rome.
 			Many thanks to him for allowing us to use these podcasts.</p>
 			</div>

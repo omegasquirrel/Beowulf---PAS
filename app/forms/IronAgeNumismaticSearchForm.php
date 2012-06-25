@@ -176,7 +176,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	->addValidator('inArray', false, array(array_keys($denom_options)));
 
 	//Primary ruler
-	$ruler = new Zend_Form_Element_Select('ruler_id');
+	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
 	->setRequired(false)
 	->addFilters(array('StripTags', 'StringTrim'))
@@ -342,7 +342,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$institution, $cci,$submit, $hash));
 
 	$this->addDisplayGroup(array(
-        'cciNumber', 'denomination', 'geographyID','ruler_id',
+        'cciNumber', 'denomination', 'geographyID','ruler',
 	'ruler2', 'tribe', 'mint',
 	'axis', 'obverseLegend', 'obverseDescription',
 	'reverseLegend', 'reverseDescription', 'bmc',

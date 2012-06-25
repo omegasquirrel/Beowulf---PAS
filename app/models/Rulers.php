@@ -81,7 +81,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	public function getRulersByzantineList($page) {
 	$rulers = $this->getAdapter();
 	$select = $this->select()
-			->from($this->_name, array('id', 'issuer','date1','date2'))
+			->from($this->_name)
 			->where('period = ?',(int)67)
 			->order('date1')
 			->order('date2')
@@ -104,7 +104,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	public function getRulersGreekList($params) {
 	$rulers = $this->getAdapter();
 	$select = $this->select()
-		->from($this->_name, array('id', 'issuer','date1','date2'))
+		->from($this->_name)
 		->where('period = ?',(int)66)
 		->order('date1')
 		->order('date2')
@@ -183,7 +183,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	if (!$data = $this->_cache->load('medievalListRulers')) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
-			->from($this->_name, array('id', 'issuer', 'date1', 'date2', 'updated'))
+			->from($this->_name)
 			->where('period = ?',(int)29)
 			->order('id');
 		$data = $rulers->fetchAll($select);
@@ -199,7 +199,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	if (!$data = $this->_cache->load('earlymedievalListRulers')) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
-			->from($this->_name, array('id','issuer' ,'date1','date2','updated'))
+			->from($this->_name)
 			->where('period = ?',(int)29)
 			->order('id');
 		$data = $rulers->fetchAll($select);
@@ -215,7 +215,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	if (!$data = $this->_cache->load('ialistRulers')) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
-			->from($this->_name, array('id','issuer' ,'date1','date2','updated'))
+			->from($this->_name)
 			->where('period = ?',(int)16)
 			->order('id');
 		$data = $rulers->fetchAll($select);
@@ -231,7 +231,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	if (!$data = $this->_cache->load('greeklistRulers')) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
-			->from($this->_name, array('id', 'issuer', 'date1', 'date2', 'updated'))
+			->from($this->_name)
 			->where('period = ?',(int)66)
 			->order('id');
 		$data = $rulers->fetchAll($select);
@@ -247,7 +247,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	if (!$data = $this->_cache->load('byzlistRulers')) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
-			->from($this->_name, array('id','issuer', 'date1', 'date2', 'updated'))
+			->from($this->_name)
 			->where('period = ?',(int)67)
 			->order('id');
 		$data = $rulers->fetchAll($select);
@@ -263,7 +263,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	if (!$data = $this->_cache->load('pmedlistRulers')) {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
-			->from($this->_name, array('id', 'issuer', 'date1', 'date2', 'updated'))
+			->from($this->_name)
 			->where('period = ?', (int)36)
 			->order('id');
 		$data = $rulers->fetchAll($select);
@@ -292,7 +292,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	public function getEarlyMedievalRulers($catID)  {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
-			->from($this->_name, array('id','issuer','date1','date2'))
+			->from($this->_name)
 			->joinLeft('medievaltypes','medievaltypes.rulerID = ' . $this->_name . '.id',array())
 			->joinLeft('categoriescoins','categoriescoins.id = medievaltypes.categoryID',array('category'))
 			->where('period = ?', (int)47)

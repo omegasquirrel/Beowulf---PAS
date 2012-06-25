@@ -11,6 +11,21 @@ $this->inlineScript()->appendFile('http://maps.stamen.com/js/tile.stamen.js',$ty
 <?php $this->inlineScript()->captureStart();?>
 $(document).ready(function() {
 
+<?php 
+	$user = new Pas_User_Details();
+	$person = $user->getPerson()->role;
+	$allowed = array('admin', 'fa', 'flos', 'research', 'treasure');
+	if(in_array($person, $allowed)) {
+		$maxzoom = 18;
+		$minzoom = 1;
+	} else {
+		$maxzoom = 11;
+		$minzoom = 1;
+	}
+?>
+		
+	var max = <?php echo $maxzoom;?>;
+	var min = <?php echo $minzoom;?>;
 	var osmMapType = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             return "http://tile.openstreetmap.org/" +
@@ -21,7 +36,7 @@ $(document).ready(function() {
         isPng: true,
         alt: "OpenStreetMap layer",
         name: "OSM",
-        maxZoom: 18
+        maxZoom: max
     });
 	
 	
@@ -44,6 +59,8 @@ $(document).ready(function() {
     	  zoomControl: true,
           mapTypeId: 'OSM',
           scrollwheel: false,
+          maxZoom: max,
+          minZoom: min
         };
         var map = new google.maps.Map(document.getElementById("mapIntro"),
             myOptions);

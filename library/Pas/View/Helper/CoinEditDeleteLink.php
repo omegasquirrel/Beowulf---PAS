@@ -139,8 +139,8 @@ class Pas_View_Helper_CoinEditDeleteLink
 	$deleteurl = $this->view->url(array('module' => 'database','controller' => 'coins','action' => 'delete',
 	'id' => $id),null,TRUE);
 	$string = '<span class="noprint"><p><a class="' . $editClass . '" href="' . $editurl
-	. '" title="Edit numismatic data for this record">Edit numismatic data</a> | <a class="' . $deleteClass . '" href="' .
-	$deleteurl . '" title="Delete numismatic data">Delete</a></p></span>';
+	. '" title="Edit numismatic data for this record">Edit numismatic data <i class="icon-white icon-edit"></i></a> <a class="' . $deleteClass . '" href="' .
+	$deleteurl . '" title="Delete numismatic data">Delete <i class="icon-white icon-trash"></i></a></p></span>';
 	return $string;
 	}
 

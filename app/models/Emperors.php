@@ -21,7 +21,7 @@ class Emperors extends Pas_Db_Table_Abstract {
 	* @return array
 	*/
 	public function getEmperorDetails($id){
-	if (!$data = $this->_cache->load('empdetails'.$id)) {
+	if (!$data = $this->_cache->load('empdetails' . $id)) {
 	$emperors = $this->getAdapter();
 	$select = $emperors->select()
 		->from($this->_name)
@@ -30,7 +30,7 @@ class Emperors extends Pas_Db_Table_Abstract {
 		->joinLeft('rulerImages','emperors.pasID = rulerImages.rulerID', array('filename'))
 		->where('emperors.id= ?', (int)$id);
     $data = $emperors->fetchAll($select);
- 	$this->_cache->save($data, 'empdetails'.$id);
+ 	$this->_cache->save($data, 'empdetails' . $id);
 	}
         return $data;
     }
@@ -138,15 +138,15 @@ class Emperors extends Pas_Db_Table_Abstract {
 	* @todo is this a duplication of getEmperorsDynasty function?
 	*/
 	public function getDynEmp($id) {
-	if (!$data = $this->_cache->load('dynemp'.$id)) {
+	if (!$data = $this->_cache->load('dynasties' . $id)) {
 	$emperors = $this->getAdapter();
 	$select = $emperors->select()
-		->from('emperors', array('id','issuer' => 'name','date_from','date_to','dbaseID' => 'pasID'))
+		->from('emperors', array('id','issuer' => 'name','date_from','date_to','dbaseID' => 'pasID', 'dbpedia', 'viaf'))
         ->joinLeft('rulerImages',$this->_name . '.pasID = rulerImages.rulerID', array('image' => 'filename'))
 	    ->where('emperors.dynasty = ?', $id)
 	    ->order('emperors.date_from');
 	$data = $emperors->fetchAll($select);
-	$this->_cache->save($data, 'dynemp'.$id);
+	$this->_cache->save($data, 'dynasties' . $id);
 	}
     return $data;
 	}
@@ -182,14 +182,14 @@ class Emperors extends Pas_Db_Table_Abstract {
 	* @todo is this a duplication of getEmperorsDynasty function?
 	*/
 	public function getEmperors() {
-	if (!$data = $this->_cache->load('emperorsJson')) {
+	if (!$data = $this->_cache->load('emperorsJsonList')) {
 	$emperors = $this->getAdapter();
 	$select = $emperors->select()
-		->from('emperors', array('id','issuer' => 'name','date_from','date_to','dbaseID' => 'pasID'))
+		->from('emperors', array('id','issuer' => 'name','date_from','date_to','dbaseID' => 'pasID', 'dbpedia', 'viaf'))
         ->joinLeft('rulerImages',$this->_name . '.pasID = rulerImages.rulerID', array('image' => 'filename'))
 	    ->order('emperors.date_from');
 	$data = $emperors->fetchAll($select);
-	$this->_cache->save($data, 'emperorsJson');
+	$this->_cache->save($data, 'emperorsJsonList');
 	}
     return $data;
 	}

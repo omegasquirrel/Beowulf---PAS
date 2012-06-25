@@ -19,7 +19,7 @@
  * @uses Zend_View_Helper_Url
  * @uses Zend_Controller_Front
  */
-class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
+class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
 
     /** Create the facets boxes for rendering
      * @access public
@@ -28,9 +28,9 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
      * @throws Pas_Exception_BadJuJu
      */
 
-    public function facetCreator(array $facets){
+    public function facetCreatorAjax(array $facets){
         if(is_array($facets)){
-        $html = '<h3>Search facets</h3>';
+        $html = '';
         foreach($facets as $facetName => $facet){
             $html .= $this->_processFacet($facet, $facetName);
         }
@@ -49,25 +49,21 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
      * @uses Zend_Controller_Front
      * @uses Zend_View_Helper_Url
      */
-    protected function _processFacet(array $facet, $facetName){
-        if(is_array($facet)){
-        	if(count($facet)){
+    protected function _processFacet(array $facets, $facetName){
+        if(is_array($facets)){
+        	if(count($facets)){
         $html = '<div id="facet-' . $facetName .'">';
-        $html .= '<h4>' . $this->_prettyName($facetName) . '</h4>';
-        $html .= '<ul class="navpills nav-stacked nav">';
+        $html .= '<ul class="facetExpand">';
 
-        if($facetName !== 'workflow'){
-            $facets = array_slice($facet,0,10);
-        } else {
-        	$facets = $facet;
-        }
         foreach($facets as $key => $value){
         $request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
 		if(isset($request['page'])){
             unset($request['page']);
         }
+        			unset($request['facetType']);
         $request[$facetName] = $key;
-		
+		$request['controller'] = 'search';
+		$request['action'] = 'results';
         $url = $this->view->url($request,'default',true);
         
         $html .= '<li>';
@@ -87,19 +83,23 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
 
         $html .= '</ul>';
         $request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
-
+		$request['controller'] = 'search';
+		$request['action'] = 'results';
         if(isset($request['page'])){
             unset($request['page']);
         }
 		if(count($facet) > 10){
 			$request['controller'] = 'ajax';
 			$request['action'] = 'facet';
-			$request['facetType'] = $facetName;
-			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',true) . '" rel="facebox">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
+			unset($request['facetType']);
+			Zend_Debug::dump($request);
+			exit;
+			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',false) . '" rel="facebox">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
         $facet = $request[$facetName];
         if(isset($facet)){
             unset($request[$facetName]);
+            unset($request['facetType']);
             $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
                     . '" title="Clear the facet">Clear this facet</a></p>';
         }

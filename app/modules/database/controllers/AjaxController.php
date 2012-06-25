@@ -364,4 +364,30 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$search->execute();
     $this->view->results =  $search->_processResults();
    }
+   
+   public function facetAction(){
+   	$params = $this->_getAllParams();
+	$params['format'] = 'json';
+	$params['controller'] = 'search';
+	$params['action'] = 'results';
+   	$config = array(
+    'adapter'   => 'Zend_Http_Client_Adapter_Curl',
+    'curloptions' => array(
+        CURLOPT_POST =>  true,
+        CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_LOW_SPEED_TIME => 1
+	),
+	);
+		
+	$client = new Zend_Http_Client($this->view->serverUrl() . $this->view->url($params));
+    $response = $client->request();
+
+	if($response->isSuccessful()){
+	$data =  json_decode($response->getBody());
+	$this->view->data = $data;
+	$this->view->facetName = $params['facetType'];
+   }
+   } 
 }
