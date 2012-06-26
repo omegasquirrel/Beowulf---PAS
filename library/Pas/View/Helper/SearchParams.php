@@ -75,7 +75,9 @@ class Pas_View_Helper_SearchParams
 		'obverseLegend' => 'Obverse inscription',
 		'reverseLegend' => 'Reverse inscription',
 		'obverseDescription' => 'Obverse description',
-		'reverseDescription' => 'Reverse description'
+		'reverseDescription' => 'Reverse description',
+		'show' => 'Show this many records per page',
+		
 	);
 
 	/** Generate the search string from parameters submitted

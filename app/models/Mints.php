@@ -238,7 +238,7 @@ class Mints extends Pas_Db_Table_Abstract {
 	public function getMintEmperorList($emperorID) {
 	$mints = $this->getAdapter();
 	$select = $mints->select()
-		->from($this->_name,array('mint_name','mint_id' => 'id'))
+		->from($this->_name,array('mint_name','mint_id' => 'id', 'pleiadesID', 'woeid', 'geonamesID'))
 		->joinLeft('mints_rulers','mints_rulers.mint_id = mints.id' ,array())
 		->joinLeft('romanmints','romanmints.pasID = mints.id', array('i' => 'id'))
 		->joinLeft('emperors','mints_rulers.ruler_id = emperors.pasID', array('pasID', 'name', 'id'))

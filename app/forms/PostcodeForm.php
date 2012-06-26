@@ -18,6 +18,7 @@ public function __construct($options = null){
 	$q->setLabel('Search content: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
+		->addValidator('ValidPostCode')
 		->setAttrib('size', 20)
 		->addErrorMessage('Please enter a search term');
 

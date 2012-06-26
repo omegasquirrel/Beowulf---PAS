@@ -32,6 +32,7 @@ else
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts'),NULL,true);?>" title="All finds recorded on the database">All artefacts &amp; coins <i class="icon-list"></i></a></li>
 <li<?php if($controller == 'search') { echo ' class="expandfirst"';};?>><a href="#">Search database <i class="icon-search"></i></a>
 <ul class="nav nav-stacked nav-pills menuindent">
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search'),NULL,true);?>" title="Basic search our database" >Basic search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'advanced'),NULL,true);?>" title="Advanced search our database" accesskey="4">Advanced search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'ironagenumismatics'),NULL,true);?>" title="Iron age numismatic search our database">Iron Age numismatic search</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'romannumismatics'),NULL,true);?>" title="Roman numismatic search our database">Roman numismatic search</a></li>

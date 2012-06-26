@@ -4,6 +4,7 @@
  <?php
  $url = Zend_Controller_Front::getInstance()->getRequest()->getParams();
  unset($url['page']);
+ unset($url['show']);
  $url['action'] = 'map';
  ?>
 
@@ -25,6 +26,8 @@
     <?php echo $this->partialLoop('partials/database/findRecordList.phtml',$this->results);?>
         </div>
         <div class="span3">
+        <?php echo $this->resultsQuantityChooser($this->paginator);?>
+        <?php echo $this->resultsSorter($this->paginator);?>
         <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
         <?php echo $this->paginationControl($this->paginator,'elastic','structure/paginationSolr.phtml'); ?>
 		<?php echo $this->statGenerator($this->stats);?>

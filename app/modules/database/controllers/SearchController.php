@@ -334,7 +334,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost())){
 	if ($form->isValid($form->getValues())) {
-        $postcode = $form->getValue('postcode');
+        $postcode = str_replace(' ','',$form->getValue('postcode'));
         $area = new Pas_Geo_Mapit_Postcode();
         $area->setPartialPostCode($postcode);
 
