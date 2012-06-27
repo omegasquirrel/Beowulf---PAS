@@ -30,7 +30,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
 
     public function facetCreator(array $facets){
         if(is_array($facets)){
-        $html = '<h3>Search facets</h3>';
+        $html = '<h3>Filter or refine your search</h3>';
         foreach($facets as $facetName => $facet){
             $html .= $this->_processFacet($facet, $facetName);
         }
@@ -101,7 +101,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         if(isset($facet)){
             unset($request[$facetName]);
             $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
-                    . '" title="Clear the facet">Clear this facet</a></p>';
+                    . '" title="Clear the facet">Clear this filter</a></p>';
         }
 
         $html .= '</div>';
@@ -143,6 +143,9 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
             case 'licenseAcronym':
             	$clean = 'License applicable';
             	break;	
+            case 'materialTerm':
+            	$clean = 'Material';
+            	break;
             default:
                 $clean = ucfirst($name);
                 break;

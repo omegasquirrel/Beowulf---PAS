@@ -19,15 +19,14 @@
  * @uses Zend_View_Helper_Url
  * @uses Zend_Controller_Front
  */
-class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
+class Pas_View_Helper_FacetCreatorAjaxMyFinds extends Zend_View_Helper_Abstract {
 
-	
-	protected $_action, $_controller;
+	protected $_action;
 	
 	public function __construct(){
-		$this->_controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 		$this->_action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
 	}
+	
     /** Create the facets boxes for rendering
      * @access public
      * @param array $facets
@@ -35,7 +34,7 @@ class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
      * @throws Pas_Exception_BadJuJu
      */
 
-    public function facetCreatorAjax(array $facets){
+    public function facetCreatorAjaxMyFinds(array $facets){
         if(is_array($facets)){
         $html = '';
         foreach($facets as $facetName => $facet){
@@ -69,8 +68,8 @@ class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
         }
 		unset($request['facetType']);
         $request[$facetName] = $key;
-		$request['controller'] = 'search';
-		$request['action'] = 'results';
+		$request['controller'] = 'myscheme';
+		$request['action'] = 'myfinds';
         $url = $this->view->url($request,'default',true);
         
         $html .= '<li>';

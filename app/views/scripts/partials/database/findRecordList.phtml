@@ -10,7 +10,7 @@
     <ul class="thumbnails" style="float:right;">
         <li >
             <div class="thumbnail">
-            <a href="<?php echo $this->serverUrl() . '/' . $this->imagedir?>display/<?php echo urlencode(strtolower($this->filename));?>" rel="lightbox" title="View larger image of <?php echo $this->old_findID;?>"><img src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
+            <a href="<?php echo $this->serverUrl() . '/' . $this->imagedir?>medium/<?php echo urlencode(strtolower($this->filename));?>" rel="lightbox" title="View larger image of <?php echo $this->old_findID;?>"><img src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
                     alt="Thumbnail image of <?php echo $this->old_findID;?>"
                     width="<?php echo $w;?>" height="<?php echo $h;?>"/></a>
             </div>
@@ -42,7 +42,7 @@
         <?php echo $this->workflow($this->workflow);?><br />
         <?php endif;?>
         <?php if(!is_null($this->description)):?>
-        Description: <?php echo $this->ellipsisstring($this->description,600);?><br />
+        <?php echo $this->ellipsisstring($this->description,600);?><br />
         
 		<?php endif;?>
     </p>

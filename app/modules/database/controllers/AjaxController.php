@@ -363,9 +363,9 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$search->setFields(array('*'));
 	$search->execute();
     $this->view->results =  $search->_processResults();
-   }
+	}
    
-   public function facetAction(){
+   	public function facetAction(){
    	$params = $this->_getAllParams();
 	$params['format'] = 'json';
 	$params['controller'] = 'search';
@@ -390,4 +390,64 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$this->view->facetName = $params['facetType'];
    }
    } 
+   
+   public function myfindsfacetAction(){
+   	$params = $this->_getAllParams();
+	$params['format'] = 'json';
+	$params['controller'] = 'search';
+	$params['action'] = 'results';
+	$params['createdBy'] = $this->_getDetails()->id;
+   	$config = array(
+    'adapter'   => 'Zend_Http_Client_Adapter_Curl',
+    'curloptions' => array(
+        CURLOPT_POST =>  true,
+        CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_LOW_SPEED_TIME => 1
+	),
+	);
+		
+	$client = new Zend_Http_Client($this->view->serverUrl() . $this->view->url($params));
+    $response = $client->request();
+
+	if($response->isSuccessful()){
+	$data =  json_decode($response->getBody());
+	$this->view->data = $data;
+	$this->view->facetName = $params['facetType'];
+   }
+   } 
+   
+	protected function _getDetails() {
+    $user = new Pas_User_Details();
+    return $user->getPerson();
+    }
+   
+   public function myimagesfacetAction(){
+   $params = $this->_getAllParams();
+	$params['format'] = 'json';
+	$params['module'] = 'database';
+	$params['controller'] = 'images';
+	$params['action'] = 'index';
+	$params['createdBy'] = $this->_getDetails()->id;
+   	$config = array(
+    'adapter'   => 'Zend_Http_Client_Adapter_Curl',
+    'curloptions' => array(
+        CURLOPT_POST =>  true,
+        CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_LOW_SPEED_TIME => 1
+	),
+	);
+	
+	$client = new Zend_Http_Client($this->view->serverUrl() . $this->view->url($params));
+    $response = $client->request();
+	if($response->isSuccessful()){
+	$data =  json_decode($response->getBody());
+	$this->view->data = $data;
+	$this->view->facetName = $params['facetType'];
+   }
+   } 
+   
 }

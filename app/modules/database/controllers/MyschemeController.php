@@ -15,12 +15,13 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     public function init() {
     $this->_helper->_acl->allow('member',null);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-    $this->_helper->contextSwitch()
-         ->setAutoDisableLayout(true)
+    $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+    $this->_helper->contextSwitch()->setAutoDisableLayout(true)
          ->addContext('csv',array('suffix' => 'csv'))
          ->addContext('kml',array('suffix' => 'kml'))
          ->addContext('rss',array('suffix' => 'rss'))
          ->addContext('atom',array('suffix' => 'atom'))
+	     ->addActionContext('myimages', array('json'))
          ->addActionContext('record', array('xml','json','rss','atom'))
          ->addActionContext('index', array('xml','json','rss','atom'))
          ->initContext();
@@ -165,9 +166,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $form = new SolrForm();
     $form->removeElement('thumbnail');
     $this->view->form = $form;
-
     $params = $this->_getAllParams();
-
     $search = new Pas_Solr_Handler('beoimages');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',

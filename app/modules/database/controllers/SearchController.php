@@ -367,7 +367,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$search->setFacets(array(
     'objectType','county', 'broadperiod',
     'institution', 'rulerName', 'denominationName', 
-    'mintName', 'workflow'));
+    'mintName', 'materialTerm', 'workflow'));
 
 	$search->setParams($params);
 	$search->execute();
