@@ -181,8 +181,6 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->view->findsdata     = $this->_finds->getFindData($id);
     $this->view->findsmaterial = $this->_finds->getFindMaterials($id);
     $this->view->temporals     = $this->_finds->getFindTemporalData($id);
-    $this->view->nexts         = $this->_finds->getNextObject($id);
-    $this->view->recordsprior  = $this->_finds->getPreviousObject($id);
     $this->view->peoples       = $this->_finds->getPersonalData($id);
     $this->view->findotherrefs = $this->_finds->getFindOtherRefs($id);
 

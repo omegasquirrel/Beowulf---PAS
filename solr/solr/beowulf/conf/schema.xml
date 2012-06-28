@@ -511,27 +511,27 @@
 	<field name="rallyID" type="int" indexed="true" stored="true" />
 	<field name="rallyName" type="string" indexed="true" stored="true" />
 	<field name="secuid" type="string" indexed="true" stored="true" />
-	<field name="weight" type="double" indexed="false" stored="true" />
-	<field name="width" type="double" indexed="false" stored="true" />
-	<field name="diameter" type="double" indexed="false" stored="true" />
-	<field name="height" type="double" indexed="false" stored="true" />
-	<field name="thickness" type="double" indexed="false" stored="true" />
-	<field name="length" type="double" indexed="false" stored="true" />
-        <field name="quantity" type="int" indexed="true" stored="true" />
+	<field name="weight" type="double" indexed="true" stored="true" />
+	<field name="width" type="double" indexed="true" stored="true" />
+	<field name="diameter" type="double" indexed="true" stored="true" />
+	<field name="height" type="double" indexed="true" stored="true" />
+	<field name="thickness" type="double" indexed="true" stored="true" />
+	<field name="length" type="double" indexed="true" stored="true" />
+	<field name="quantity" type="int" indexed="true" stored="true" />
 
 	<!--  Person specific details -->
 	<field name="finder" type="string" indexed="true" stored="true" />
 	<field name="finderID" type="string" indexed="true" stored="true" />
 	<field name="identifier" type="string" indexed="true" stored="true" />
 	<field name="identifierID" type="string" indexed="true" stored="true" />
-        <field name="secondaryIdentifier" type="string" indexed="true" stored="true" />
-        <field name="identifier2ID" type="string" indexed="true" stored="true" />
+	<field name="secondaryIdentifier" type="string" indexed="true" stored="true" />
+	<field name="identifier2ID" type="string" indexed="true" stored="true" />
 	<field name="recorder" type="string" indexed="true" stored="true" />
 	<field name="recorderID" type="string" indexed="true" stored="true" />
 	<field name="updatedBy" type="string" indexed="true" stored="true" />
 	<field name="createdBy" type="int" indexed="true" stored="true" />
 	<field name="institution" type="string" indexed="true" stored="true" />
-        <field name="creator" type="string" indexed="true" stored="true" />
+	<field name="creator" type="string" indexed="true" stored="true" />
 
 	<!-- Coin specific fields -->
 	<field name="denomination" type="int" indexed="true" stored="true" />
@@ -564,9 +564,9 @@
 	<field name="axis" type="int" indexed="true" stored="true" />
 	<field name="moneyer" type="string" indexed="true" stored="true" />
 	<field name="moneyerName" type="string" indexed="true" stored="true" />
-        <field name="reverse" type="int" indexed="true" stored="true" />
-        <field name="reverseType" type="text" indexed="true" stored="true" />
-        <field name="status" type="int" indexed="true" stored="true" />
+	<field name="reverse" type="int" indexed="true" stored="true" />
+	<field name="reverseType" type="text" indexed="true" stored="true" />
+	<field name="status" type="int" indexed="true" stored="true" />
 
 	<!-- Findspot specific fields -->
 	<field name="regionID" type="int" indexed="true" stored="true" />

@@ -36,6 +36,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	$this->bootstrap('db');
 	$resource = $this->getPluginResource('db');
 	$database = Zend_Registry::get('config')->resources->db;
+	
 	try {
 	// setup database
 	$db = Zend_Db::factory($database);

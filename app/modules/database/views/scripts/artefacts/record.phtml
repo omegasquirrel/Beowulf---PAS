@@ -1,14 +1,9 @@
 <!--  Start previous next row -->
 <div class="row-fluid" id="prior-next">
     <ul class="pager">
-
-        <?php if(count($this->recordsprior)) :?>
-		<?php echo $this->partial('partials/database/previous.phtml', $this->recordsprior['0']) ;?>
-	<?php endif;?>
-
-        <?php if(count($this->nexts)) :?>
-		<?php echo $this->partial('partials/database/next.phtml', $this->nexts['0']) ;?>
-	<?php endif;?>
+    	<?php echo $this->previousFind($this->finds['0']['id']);?>
+		<?php echo $this->nextFind($this->finds['0']['id']);?>
+        
     </ul>
 </div>
 <!--  End the previous next row -->

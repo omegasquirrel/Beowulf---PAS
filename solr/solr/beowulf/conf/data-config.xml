@@ -13,7 +13,7 @@ SELECT
 DISTINCT(finds.id) as id,
 CONCAT('finds-',finds.id) AS findIdentifier,
 finds.old_findID,
-finds.objecttype,
+UPPER(finds.objecttype) AS objecttype,
 finds.broadperiod,
 finds.description,
 p1.term AS periodFromName,
