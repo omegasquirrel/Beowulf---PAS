@@ -22,7 +22,7 @@ public function __construct($options = null) {
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter a chase date')
-		->addValidator('Date')
+		->addValidator('Datetime')
 		->setAttrib('size', 20);
 
 	$location = new Zend_Form_Element_Text('location');

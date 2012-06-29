@@ -81,14 +81,14 @@ public function __construct($options = null) {
 	$date_from->setLabel('Start date of rally: ')
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Date');
+		->addValidator('Datetime');
 	
 	//Date found to
 	$date_to = new ZendX_JQuery_Form_Element_DatePicker('date_to');
 	$date_to->setLabel('End date of rally: ')
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Date');
+		->addValidator('Datetime');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
 

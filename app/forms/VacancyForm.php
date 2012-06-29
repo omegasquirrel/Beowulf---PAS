@@ -57,7 +57,7 @@ public function __construct($options = null) {
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->setJQueryParam('maxDate', '+1y')
 		->addFilters(array('StringTrim', 'StripTags'))
-		->addValidator('Date')
+		->addValidator('Datetime')
 		->addErrorMessage('Come on it\'s not that hard, enter a title!')
 		->setAttrib('size', 20);
 	
@@ -67,7 +67,7 @@ public function __construct($options = null) {
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->setJQueryParam('maxDate', '+1y')
 		->addFilters(array('StringTrim', 'StripTags'))
-		->addValidator('Date')
+		->addValidator('Datetime')
 		->addErrorMessage('Come on it\'s not that hard, enter a title!')
 		->setAttrib('size', 20);
 	

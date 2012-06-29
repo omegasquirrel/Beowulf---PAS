@@ -27,13 +27,13 @@ $datefrom = new Zend_Form_Element_Text('datefrom');
 $datefrom->setLabel('Date from: ')
 ->setRequired(true)
 ->addFilters(array('StripTags', 'StringTrim'))
-->addValidator('Date');
+->addValidator('Datetime');
 
 $dateto = new Zend_Form_Element_Text('dateto');
 $dateto->setLabel('Date to: ')
 ->setRequired(true)
 ->addFilters(array('StripTags', 'StringTrim'))
-->addValidator('Date');
+->addValidator('Datetime');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(4800);

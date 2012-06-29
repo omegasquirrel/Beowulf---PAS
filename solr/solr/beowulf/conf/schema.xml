@@ -493,6 +493,7 @@
 	<field name="discovery" type="int" indexed="true" stored="true" />
 	<field name="discoveryMethod" type="string" indexed="true" stored="true" />
 	<field name="created" type="date" indexed="true" stored="true" />
+	<field name="updated" type="date" indexed="true" stored="true" />
 	<field name="datefound1" type="date" indexed="true" stored="true" />
 	<field name="datefound2" type="date" indexed="true" stored="true" />
 	<field name="culture" type="string" indexed="true" stored="true" />

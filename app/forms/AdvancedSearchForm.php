@@ -385,12 +385,12 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$created = new Zend_Form_Element_Text('createdBefore');
 	$created->setLabel('Date record created on or before: ')
-	->addValidator('Date')
+	->addValidator('Datetime')
 	->addFilters(array('StringTrim','StripTags'));
 
 	$created2 = new Zend_Form_Element_Text('createdAfter');
 	$created2->setLabel('Date record created on or after: ')
-	->addValidator('Date')
+	->addValidator('Datetime')
 	->addFilters(array('StringTrim','StripTags'));
 
 	$finder = new Zend_Form_Element_Text('finder');
@@ -455,8 +455,7 @@ class AdvancedSearchForm extends Pas_Form {
 	$regionID, $district, $parish,
 	$fourFigure, $objdate1subperiod, $objdate2subperiod,
 	$treasure, $treasureID, $discoverydate,
-	$created, $created2, $idBy,
-	$recordby, $recorderID, $identifierID,
+	$created, $created2, 
 	$culture, $surftreat, $submit,
 	$material1, $elevation, $woeid,
 	$institution, $hash, $smrRef));
@@ -509,9 +508,7 @@ class AdvancedSearchForm extends Pas_Form {
 
 	if(in_array($this->_role,$this->_restricted)) {
 	$this->addDisplayGroup(array(
-	'institution',
-	'idby', 'identifierID', 'recordby',
-	'recorderID', 'createdAfter', 'createdBefore',
+	'institution', 'createdAfter', 'createdBefore',
 	'discovered'), 'Discovery');
 	} else {
 	$this->addDisplayGroup(array(

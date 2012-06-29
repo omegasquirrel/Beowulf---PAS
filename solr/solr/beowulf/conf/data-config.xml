@@ -13,7 +13,7 @@ SELECT
 DISTINCT(finds.id) as id,
 CONCAT('finds-',finds.id) AS findIdentifier,
 finds.old_findID,
-UPPER(finds.objecttype) AS objecttype,
+finds.objecttype AS objecttype,
 finds.broadperiod,
 finds.description,
 p1.term AS periodFromName,
@@ -137,7 +137,8 @@ findspots.elevation,
 finders.fullname AS finder,
 primaries.fullname AS identifier,
 secondaries.fullname AS secondaryIdentifier,
-recorders.fullname AS recorder
+recorders.fullname AS recorder,
+finds.updated AS updated
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID
@@ -298,6 +299,7 @@ LEFT JOIN people AS recorders ON finds.recorderID = recorders.secuid
     <field column="secondaryIdentifier" name="secondaryIdentifier" />
     <field column="identifer2ID" name="identifier2ID" />
     <field column="creator" name="creator" />
+    <field column="updated" name="updated" />
 </entity>
 
 </document>

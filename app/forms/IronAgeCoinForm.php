@@ -227,7 +227,7 @@ public function __construct($options = null) {
 	$depositionDate = new Zend_Form_Element_Text('depositionDate');
 	$depositionDate->setLabel('Date of deposition: ')
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Date');
+	->addValidator('Datetime');
 
 	$numChiab = new Zend_Form_Element_Text('numChiab');
 	$numChiab->setLabel('Coin hoards of Iron Age Britain number: ')

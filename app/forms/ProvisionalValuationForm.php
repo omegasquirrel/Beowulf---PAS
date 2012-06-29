@@ -49,7 +49,7 @@ public function __construct($options = null) {
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
-		->addValidator('Date');
+		->addValidator('Datetime');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
 	

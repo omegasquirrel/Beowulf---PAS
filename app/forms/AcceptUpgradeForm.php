@@ -95,13 +95,13 @@ public function __construct($options = null) {
 		->setJQueryParam('dateFormat', 'yy-mm-dd')
 		->addFilter('StringTrim')
 		->addFilter('StripTags')
-		->addValidator('Date')
+		->addValidator('Datetime')
 		->setRequired(false)
 		->addErrorMessage('You must enter a valid start date for this project');
 
 	$endDate = new ZendX_JQuery_Form_Element_DatePicker('endDate');
 	$endDate->setLabel('End date of project: ')
-		->addValidator('Date')
+		->addValidator('Datetime')
 		->addFilter('StringTrim')
 		->addFilter('StripTags')
 		->setJQueryParam('dateFormat', 'yy-mm-dd')

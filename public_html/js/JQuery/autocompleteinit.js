@@ -89,11 +89,11 @@ jQuery(document).ready(function($) {
 		$('#recorderID').val(data.id);
 		});
 		
-		$('#idBy')
+		$('#idby')
         .autocomplete('/ajax/people/', acOptions)
-        .attr('name', 'idBy')
+        .attr('name', 'idby')
         .result(function(e, data) {
-		$('#idBy').val(data.term);
+		$('#idby').val(data.term);
 		$('#identifierID').val(data.id);
 		});
 	
