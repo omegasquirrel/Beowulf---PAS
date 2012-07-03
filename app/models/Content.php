@@ -86,26 +86,36 @@ class Content extends Pas_Db_Table_Abstract {
      * @return array
 	*/
 	public function getConservationNotes() {
+	$key = md5('consNotes');
+	if (!$data = $this->_cache->load($key)) {
 	$content = $this->getAdapter();
 	$select = $content->select()
 		->from($this->_name,array('slug', 'menuTitle', 'updated'))
 		->where('frontPage = ?', (int)0)
 		->where('section = ?',(string) 'conservation')
 		->where('publishState = ?', (int)3);
-	return $content->fetchAll($select);
+	$data = $content->fetchAll($select);
+	$this->_cache->save($data, $key);
+    }
+	return $data;
 	}
 
 	/** Retrieves treasure section list for menu when publication status is set to published
      * @return array
 	*/
 	public function getTreasureContent() {
+	$key = md5('treasurecontent');
+	if (!$data = $this->_cache->load($key)) {
 	$content = $this->getAdapter();
 	$select = $content->select()
 		->from($this->_name, array('slug', 'menuTitle', 'updated'))
 		->where('frontPage = ?', (int) 0)
 		->where('section = ?',(string) 'treasure')
 		->where('publishState = ?', (int)3);
-	return $content->fetchAll($select);
+	$data = $content->fetchAll($select);
+	$this->_cache->save($data, $key);
+    }
+	return $data;
 	}
 
 	/** Retrieves section list for menu when publication status is set to published
@@ -113,13 +123,18 @@ class Content extends Pas_Db_Table_Abstract {
      * @return array
 	*/
 	public function getSectionContents($section) {
+	$key = md5('sectionContents' . $section);
+	if (!$data = $this->_cache->load($key)) {
 	$content = $this->getAdapter();
 	$select = $content->select()
 		->from($this->_name,array('slug','menuTitle','updated','title'))
 		->where('frontPage = ?', (int)0)
 		->where('section = ?',(string)$section)
 		->where('publishState = 3');
-	return $content->fetchAll($select);
+	$data = $content->fetchAll($select);
+	$this->_cache->save($data, $key);
+    }
+	return $data;
 	}
 
 	/** Retrieves content list for menu by section when publication status is set to published
@@ -130,6 +145,8 @@ class Content extends Pas_Db_Table_Abstract {
      * @return array
 	*/
 	public function buildMenu($section,$front = 0,$publish = 3) {
+	$key = md5('menu' . $section);
+	if (!$data = $this->_cache->load($key)) {
 	$content = $this->getAdapter();
 	$select = $content->select()
 		->from($this->_name,array('slug', 'menuTitle', 'updated'))
@@ -137,7 +154,10 @@ class Content extends Pas_Db_Table_Abstract {
 		->where('section =?', (string)$section)
 		->where('publishState = ?', (int)$publish)
 		->order('id ASC');
-	return $content->fetchAll($select);
+	$data = $content->fetchAll($select);
+	$this->_cache->save($data, $key);
+    }
+	return $data;
 	}
 
 	/** Retrieves content list for treasure section when publication status is set to published

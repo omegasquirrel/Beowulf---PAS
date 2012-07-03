@@ -39,7 +39,10 @@ class MedNumismaticSearchForm extends Pas_Form {
 
 	$cats = new CategoriesCoins();
 	$cat_options = $cats->getPeriodMed();
-
+	
+	$types = new MedievalTypes();
+	$type_options = $types->getMedievalTypesForm(29);
+	
 	$regions = new Regions();
 	$region_options = $regions->getRegionName();
 
@@ -165,7 +168,8 @@ class MedNumismaticSearchForm extends Pas_Form {
 		->setRegisterInArrayValidator(false)
         ->addValidator('Int')
 		->addFilters(array('StripTags','StringTrim'))
-		 ->addMultiOptions(array(NULL => 'Choose type after choosing ruler'));
+		->addMultiOptions(array(NULL => 'Choose type after choosing ruler', 'Available types' => $type_options))
+		->addValidator('InArray', false, array(array_keys($type_options)));
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');

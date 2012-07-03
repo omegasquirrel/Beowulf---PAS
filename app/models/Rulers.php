@@ -127,7 +127,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 		$rulers = $this->getAdapter();
 		$select = $rulers->select()
 			->from($this->_name, array('id','term' => 'CONCAT(issuer," (",date1," - ",date2,")")'))
-			->where('period = ?',(int)49)
+			->where('period = ?',(int)47)
 			->where('valid = ?',(int)1)
 			->order('date1');
 	return $rulers->fetchPairs($select);

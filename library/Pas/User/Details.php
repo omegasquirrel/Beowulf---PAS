@@ -11,11 +11,10 @@ class Pas_User_Details {
 	if($this->_auth->hasIdentity()) {
 	$user = $this->_auth->getIdentity();
 	$id = $user->id;
-	return $id;
 	} else {
 	$id = '3';
-	return $id;
 	}
+		return $id;
 	}
 
 	public function getPerson(){

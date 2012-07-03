@@ -50,6 +50,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
      */
     public function myfindsAction() {
     $form = new SolrForm();
+	$form->q->setLabel('Search the database: ');
+    
     $this->view->form = $form;
 
     $params = $this->_getAllParams();
@@ -117,6 +119,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     */
     public function myinstitutionAction() {
     $form = new SolrForm();
+    $form->q->setLabel('Search the database: ');
     $this->view->form = $form;
 
     $params = $this->_getAllParams();

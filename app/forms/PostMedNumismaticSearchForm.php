@@ -53,6 +53,9 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 
 	$institutions = new Institutions();
 	$inst_options = $institutions->getInsts();
+	
+	$types = new MedievalTypes();
+	$type_options = $types->getMedievalTypesForm(36);
 
 	$this->setName('postmedsearch');
 
@@ -170,7 +173,8 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 	$type->setLabel('Coin type: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
-		->addMultiOptions(array(NULL => 'Available types depend on choice of ruler'));
+		->addMultiOptions(array(NULL => 'Choose type after choosing ruler', 'Available types' => $type_options))
+		->addValidator('InArray', false, array(array_keys($type_options)));
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');

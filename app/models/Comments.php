@@ -20,6 +20,7 @@ class Comments extends Pas_Db_Table_Abstract {
 	* @return array
 	*/
 	public function getFindComments($id){
+		
 	$comments = $this->getAdapter();
 	$select = $comments->select()
             ->from($this->_name, array(
@@ -40,6 +41,7 @@ class Comments extends Pas_Db_Table_Abstract {
 	* @return array
 	*/
 	public function getCommentsNews($id) {
+	if (!$data = $this->_cache->load('newscomments' . $id)) {
 	$comments = $this->getAdapter();
 	$select = $comments->select()
             ->from($this->_name, array(
@@ -51,7 +53,10 @@ class Comments extends Pas_Db_Table_Abstract {
             ->where('comments.comment_type  = ?','newscomments')
             ->where('comments.comment_approved = ?','approved')
             ->order('comments.created ASC');
-	return $comments->fetchAll($select);
+	$data = $comments->fetchAll($select);
+	$this->_cache->save($data, 'newscomments' . $id);
+	}
+	return $data;
     }
 
     /** Get comments list

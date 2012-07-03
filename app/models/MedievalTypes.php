@@ -249,4 +249,16 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 	}
 	return $data;
 	}
+	
+	public function getMedievalTypesForm($periodID){
+	if (!$data = $this->_cache->load('searchformedieval' . $periodID)) {
+	$select = $this->select()
+		->from($this->_name, array('id','term' => 'CONCAT(type," (",datefrom," - ",dateto,")")'))
+		->where('periodID = ? ', (int)$periodID)
+		->order($this->_primary);
+        $data = $this->getAdapter()->fetchPairs($select);
+    $this->_cache->save($data, 'searchformedieval' . $periodID);
+	}
+	return $data;
+    }
 }

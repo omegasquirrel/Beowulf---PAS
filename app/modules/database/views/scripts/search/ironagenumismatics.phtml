@@ -2,10 +2,9 @@
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/iacoinslinkedinit.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/ironAgeCoinSearch.js',$type='text/javascript');
 $this->headTitle('Perform an advanced numismatic search on the database');
 ?>
-<div>
 <h2>Iron age numismatic search</h2>
 <?php
 foreach($this->form->getMessages() as $message){
@@ -15,5 +14,4 @@ foreach($this->form->getMessages() as $message){
 }
 echo $this->form;
 ?>
-</div>
 
