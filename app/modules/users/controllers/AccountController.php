@@ -53,13 +53,13 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	*/
 	public function editAction() {
 	$form = new ProfileForm();
+	$form->removeElement('username');
 	$form->removeElement('password');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
 	$where = array();
 	$where[] = $this->_users->getAdapter()->quoteInto('id = ?', $this->getIdentityForForms());
-
 	$this->_users->update($form->getValues(), $where);
 	$this->_flashMessenger->addMessage('You updated your profile successfully.');
 	$this->_redirect('/users/account/');
@@ -118,8 +118,6 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
-	$email = $formData['email'];
-	$username = $formData['username'];
 	$results = $this->_users->findUser($form->getValue('email'), $form->getValue('username'));
 	if($results) {
 	$length = 6;
@@ -138,14 +136,14 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	}
 	}
 	$updatesdata = array (
-	'password' => SHA1($this->_helper->config->auth->salt . $password),
+	'password' => SHA1($this->_helper->config()->auth->salt . $password),
 	);
 	$to = array(array('email' => $form->getValue('email'), 'name' => $results[0]['fullname']));
 	$assignData = array_merge($results[0],array('password' => $password),$form->getValues());
 	$this->_helper->mailer($assignData, 'forgottenPassword', $to );
 	$where = array();
-	$where[] = $this->_users->getAdapter()->quoteInto('username = ?', (string)$username);
-	$where[] = $this->_users->getAdapter()->quoteInto('email = ?', (string)$email);
+	$where[] = $this->_users->getAdapter()->quoteInto('username = ?', (string)$form->getValue('username'));
+	$where[] = $this->_users->getAdapter()->quoteInto('email = ?', (string)$form->getValue('email'));
 	$this->_users->update($updatesdata, $where);
 	$assignData = array_merge($updatesdata,$form->getValues());
 
@@ -215,10 +213,10 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
         if ($form->isValid($form->getValues())) {
-	$password = SHA1($this->_helper->config->auth->salt . $form->getValue('password'));
+	$password = SHA1($this->_helper->config()->auth->salt . $form->getValue('password'));
 	$where = array();
-	$where[] = $users->getAdapter()->quoteInto('id = ?', $this->getIdentityForForms());
-	$users->update($form->getValues(),$where);
+	$where[] = $this->_users->getAdapter()->quoteInto('id = ?', $this->getIdentityForForms());
+	$this->_users->update(array('password' => $password),$where);
 	$this->_flashMessenger->addMessage('You have changed your password');
 	$this->_redirect('/users/account/');
 	} else {

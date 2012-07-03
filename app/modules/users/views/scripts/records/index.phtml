@@ -11,10 +11,16 @@ if($this->finds) :?>
     <div class="span3">
     
 <p><a class="btn btn-small" href="<?php echo $this->url(array('module' => 'users','controller' => 'records','action' => 'mapped'),NULL,true);?>" title="Map these finds">View these finds on a googlemap <i class="icon-map-marker"></i></a></p>
-    
+      <?php echo $this->resultsQuantityChooser($this->paginator);?>
+        <?php echo $this->thumbnailToggler();?>
+        <?php echo $this->resultsSorter($this->paginator);?>
+        <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
+        <?php echo $this->paginationControl($this->paginator,'elastic','structure/paginationSolr.phtml'); ?>
+		<?php echo $this->statGenerator($this->stats);?>    
         <?php
 echo $this->facetCreator($this->facets);
-?></div>
+?>
+</div>
 </div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 

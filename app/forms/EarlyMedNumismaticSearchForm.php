@@ -31,7 +31,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$rulers = new Rulers();
 	$ruler_options = $rulers->getEarlyMedRulers();
-
+	Zend_Debug::dump($ruler_options);
 	$denominations = new Denominations();
 	$denomination_options = $denominations->getOptionsEarlyMedieval();
 
@@ -41,7 +41,9 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	$axis = new Dieaxes();
 	$axis_options = $axis->getAxes();
 
-
+	$types = new MedievalTypes();
+	$type_options = $types->getMedievalTypesForm(47);
+	
 	$cats = new CategoriesCoins();
 	$cat_options = $cats->getPeriodEarlyMed();
 
@@ -160,7 +162,6 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$denomination = new Zend_Form_Element_Select('denomination');
 	$denomination->setLabel('Denomination: ')
-        ->setRegisterInArrayValidator(false)
         ->setRequired(false)
         ->addFilters(array('StripTags','StringTrim'))
         ->addValidator('Int')
@@ -170,7 +171,6 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$cat = new Zend_Form_Element_Select('category');
 	$cat->setLabel('Category: ')
-        ->setRegisterInArrayValidator(false)
         ->setRequired(false)
         ->addValidator(('Int'))
         ->addFilters(array('StripTags','StringTrim'))
@@ -180,28 +180,27 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Coin type: ')
-		->setRegisterInArrayValidator(false)
         ->setRequired(false)
         ->addValidator('Int')
 		->addFilters(array('StripTags','StringTrim'))
-		 ->addMultiOptions(array(NULL => 'Choose type after choosing ruler'));
+		->addMultiOptions(array(NULL => 'Choose type after choosing ruler', 'Available types' => $type_options))
+		->addValidator('InArray', false, array(array_keys($type_options)));
 
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
-        ->setRegisterInArrayValidator(false)
         ->setRequired(false)
         ->addValidator('Int')
         ->addFilters(array('StripTags','StringTrim'))
         ->addMultiOptions(array(NULL => 'Choose primary ruler',
-        'Available options' => $ruler_options));
+        'Available options' => $ruler_options))
+        ->addValidator('InArray', false, array(array_keys($ruler_options)));
 
 
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
 	$mint->setLabel('Issuing mint: ')
-        ->setRegisterInArrayValidator(false)
         ->setRequired(false)
         ->addValidator('Int')
         ->addFilters(array('StripTags','StringTrim'))

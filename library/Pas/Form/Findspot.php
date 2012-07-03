@@ -10,22 +10,14 @@
  *
  * @author Daniel Pett <dpett@britishmuseum.org>
  */
-class Pas_Form_Findspot
+class Pas_Form_Findspot {
 
   	protected $_view;
 
-  	protected $_findspot;
 
-    public function __construct($findspot) {
-    	$this->_view = $this->_actionController->view;
-    	$this->_findspot = $findspot;
+    public function __construct() {
+    	$this->_view = Zend_Controller_Front::getInstance()->getParam('bootstrap')->getResource('view');
     }
-
-    public function direct(){
-
-    return $this->optionsAddClone($this->_findspot);
-    }
-
 
     protected function _getIdentity(){
     	$user = new Pas_User_Details();
@@ -34,10 +26,9 @@ class Pas_Form_Findspot
 
 
 
-    public function optionsAddClone($data){
+    public function populate($data){
 	$this->_view->form->populate($data);
-    Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')
-    	->addMessage('Your last record data has been cloned');
+
     if(!is_null($data['county'])) {
     $districts = new Places();
     $district = $districts->getDistrictList($data['county']);

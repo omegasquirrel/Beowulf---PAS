@@ -182,7 +182,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose primary ruler' ,
 	'Available rulers' => $ruler_options))
-	->addValidator('inArray', false, array(array_keys($denom_options)));
+	->addValidator('inArray', false, array(array_keys($ruler_options)));
 
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');

@@ -98,6 +98,9 @@ class Pas_View_Helper_Breadcrumb
 		case 'events':
 			$nicemodule = 'Scheme events';
 			break;
+		case 'secrettreasures':
+			$nicemodule = 'Britain\'s Secret Treasures';
+			break;
 		 default: 
 		 	$nicemodule = $module;
 		 break;
@@ -243,6 +246,12 @@ class Pas_View_Helper_Breadcrumb
 			break;
 			case 'oneto50k':
 			$nicenameaction = 'One to 50K entry';
+			break;
+			case 'myfinds':
+			$nicenameaction = 'Finds I have recorded';	
+			break;
+			case 'myimages':
+			$nicenameaction = 'Images I have added';	
 			break;
 			default:
 			$nicenameaction = $action;

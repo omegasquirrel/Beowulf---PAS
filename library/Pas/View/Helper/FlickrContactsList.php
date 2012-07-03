@@ -71,7 +71,7 @@ class Pas_View_Helper_FlickrContactsList
 	 * @param int $total The total number of contacts to display
 	 */
 	public function buildHtml($contacts, $total){
-	$key = md5 ('contactslist');
+	$key = md5 ('contactslistFP');
 	if (!$friends = $this->_cache->load($key)) {
 	$html = '<h3>Our flickr contacts</h3>';
 	foreach($contacts->contact as $c){

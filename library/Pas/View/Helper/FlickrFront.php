@@ -50,15 +50,16 @@ class Pas_View_Helper_FlickrFront extends Zend_View_Helper_Abstract {
 	 */
 	private function getFlickr($access) {
 	$access = (object)$access;
-	if (!($this->_cache->test('flickrimagesfrontjson'))) {
+	$key = 'flickrfontrecent';
+	if (!($this->_cache->test($key))) {
 	$oauth = new Pas_Yql_Oauth();
 	$q = 'SELECT * FROM flickr.photos.search WHERE tag_mode ="all" AND user_id="' . $this->_userID
-	. '" AND extras="geo,license,url_sq,url_m" and api_key="' . $this->_flickrKey . '" LIMIT 8';
+	. '" AND extras="description,geo,license,url_sq,url_m" and api_key="' . $this->_flickrKey . '" LIMIT 12';
     $data = $oauth->execute($q, $access->access_token, $access->access_token_secret, $access->access_token_expiry, 
     $access->handle);
 	$this->_cache->save($data);
 	} else {
-	$data = $this->_cache->load('flickrimagesfrontjson');
+	$data = $this->_cache->load($key);
 	}	
 	if(is_array((array)$data)){
 	return $this->parseFlickr($data);
@@ -89,25 +90,41 @@ class Pas_View_Helper_FlickrFront extends Zend_View_Helper_Abstract {
 	 * @param array $recent
 	 */
 	public function buildHtml($recent) {
-	$html = '<h3>Our recent images</h3>';
-	$html .= '<div id="flickrbox">';
-	foreach($recent as $p){ 
-	$html .= '<a href="';
-	$html .= $p->url_m;
-	$html .= '" rel="lightbox" ';
-	$html .= 'title="';
-	$html .=$p->title;
-	$html .= '"><img src="';
-	$html .=$p->url_sq;
-	$html .= '" alt="';
-	$html .=$p->title;
-	$html .='" width="75" height="75"/></a>';
-		}
-	$html .= '<a href="';
-	$html .= $this->view->url(array('module' => 'flickr'),null,true);
-	$html .='" title="View our flickr images"><img src="';
-	$html .= $this->view->baseUrl();
-	$html .='/images/logos/flickr.png" alt="flickr\'s logo" height="39" width="140" id="badgeflickr"/></a><br /></div>';
+	$html = '<div class="container"><section id="carousel"><div class="span10">';
+	$html .= '<div id="myCarousel" class="carousel slide"><div class="carousel-inner">';
+	$html .= '<div class="item active">';
+	$html .= '<img src="http://farm7.staticflickr.com/6051/6266119088_ca20f47e2d_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>A pile of radiates</h4>
+                  <p>Probus stands out on this pile of radiates &raquo;</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="http://farm6.staticflickr.com/5260/5395524318_60ebafbd33_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>Geoff Egan, our late colleague</h4>
+                  <p>A lovely image of our friend and colleague, Geoff Egan.</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="http://farm6.staticflickr.com/5147/5621551253_68547bc4de_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The Hackney Hoard</h4>
+                  <p>An interesting Treasure case, with a human touch. The Hackney hoard relates to the sad
+                  story of the Sulzbacher family</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="http://farm5.staticflickr.com/4131/5200670881_373ed82088_b.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>The magnificent Frome hoard</h4>
+                  <p>150 kg of Roman coins were found by detectorist Dave Crisp.</p>
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          </div></div></div>';
 	return $html;
 	}
 	

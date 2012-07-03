@@ -82,7 +82,6 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	public function periodAction() {
 	if($this->_getParam('id',false)){
 	$this->view->periods = $this->_periods->getPeriodDetails($this->_getParam('id'));
-	$this->view->objects = $this->_periods->getObjectTypesByPeriod($this->_getParam('id'));
 	} else {
 		throw new Exception($this->_missingParameter);
 	}
