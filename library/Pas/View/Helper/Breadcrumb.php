@@ -146,6 +146,9 @@ class Pas_View_Helper_Breadcrumb
 		case 'osdata':
 			$nicename = 'Ordnance Survery Open Data';
 			break;
+		case 'theyworkforyou':
+			$nicename = 'Data from TheyWorkForYou';
+			break;
 		default:
 			$nicename = $controller;
 			break;
@@ -252,6 +255,9 @@ class Pas_View_Helper_Breadcrumb
 			break;
 			case 'myimages':
 			$nicenameaction = 'Images I have added';	
+			break;
+			case 'mp':
+			$nicenameaction = 'Member of Parliament';
 			break;
 			default:
 			$nicenameaction = $action;

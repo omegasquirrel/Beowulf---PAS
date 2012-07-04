@@ -18,7 +18,7 @@ public function __construct($options = null){
 	$q->setLabel('Search content: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('size', 20);
+		->setAttribs(array('size' =>  20, 'class' => 'postcode'));
 
         $thumbnail = new Zend_Form_Element_Checkbox('thumbnail');
         $thumbnail->setLabel('Only with images?')
@@ -38,7 +38,7 @@ public function __construct($options = null){
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
+	$hash->setValue($this->_salt)->setTimeout(48000);
 
 	$this->addElements(array($q, $distance, $thumbnail, $submit, $hash ));
 

@@ -28,8 +28,10 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	/** Display of publications with filtration
 	*/
 	public function indexAction() {
-	$form = new SolrForm();
+		$form = new SolrForm();
         $form->removeElement('thumbnail');
+        $form->q->setLabel('Search the publications: ');
+        $form->q->setAttrib('placeholder', 'Try Geake for example');
         $this->view->form = $form;
 
         $params = $this->array_cleanup($this->_getAllParams());

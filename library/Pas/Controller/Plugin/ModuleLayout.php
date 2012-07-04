@@ -176,7 +176,7 @@ class Pas_Controller_Plugin_ModuleLayout
 	    $view->headTitle('A guide to Bronze Age objects')->setSeparator(' - ');
 		break;
 	case 'search';
-		$layouttype = 'database';
+		$layouttype = 'home';
 	    $view->headTitle('Sitewide search')->setSeparator(' - ');
 		break;
 	case 'api':

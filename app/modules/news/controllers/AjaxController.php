@@ -9,11 +9,14 @@
 */
 class News_AjaxController extends Pas_Controller_Action_Admin {
 
+	protected $_apikey;
+	
 	/** Initialise the ACL and contexts
 	*/ 
 	public function init() {
 		$this->_helper->_acl->allow(NULL);
-		$this->_helper->layout->disableLayout();  
+		$this->_helper->layout->disableLayout();
+		$this->_apikey = $this->_helper->config()->webservice->twfy->apikey;  
     }
 
     /** Index page, nothing happens here
@@ -46,10 +49,9 @@ class News_AjaxController extends Pas_Controller_Action_Admin {
 	*/ 
 	public function mpAction() {
 	$id = $this->_getParam('id');
-	$twfy = 'http://www.theyworkforyou.com/api/getPerson?key=CzhqDaDMAgkMEcjdvuGZeRtR&id=' . $id 
+	$twfy = 'http://www.theyworkforyou.com/api/getPerson?key=' . $this->_apikey . '&id=' . $id 
 	. '&output=js';
 	$data = json_decode($this->get($twfy));
-	//Zend_Debug::dump($data);
 	$this->view->data = $data;	
 	}
 
@@ -67,21 +69,22 @@ class News_AjaxController extends Pas_Controller_Action_Admin {
 	$auth = Zend_Auth::getInstance();
 	if($auth->hasIdentity()) {
 	$user = $auth->getIdentity();
-	{
-	if(!in_array($user->role,$restricted)) 
-	{
+	$geo = new Pas_Geo_Gridcalc($mapdata['fourFigure']);
+	$results = $geo->convert();
+	if(!in_array($user->role,$restricted))  {
 	$lat = $mapdata['declat'];
 	$long = $mapdata['declong']; 
 	} else {
-	$results = $this->GridCalc($mapdata['fourFigure']);
-	$lat = $results['Latitude'];
-	$long = $results['Longitude']; 
-	} 
+		$geo = new Pas_Geo_Gridcalc($mapdata['fourFigure']);
+	$results = $geo->convert();
+	$lat = $results['decimalLatLon']['decimalLatitude'];
+	$long = $results['decimalLatLon']['decimalLongitude']; 
 	} 
 	} else {
-	$results = $this->GridCalc($mapdata['fourFigure']);
-	$lat = $results['Latitude'];
-	$long = $results['Longitude']; 
+		$geo = new Pas_Geo_Gridcalc($mapdata['fourFigure']);
+	$results = $geo->convert();
+	$lat = $results['decimalLatLon']['decimalLatitude'];
+	$long = $results['decimalLatLon']['decimalLongitude'];  
 	}
 
 	 $html = '';

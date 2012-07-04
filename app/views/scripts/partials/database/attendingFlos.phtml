@@ -1,7 +1,13 @@
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'results','rallyID' => $this->rallyID, 'createdBy' => $this->id),null,true);?>" title="Find all records recorded at this rally by <?php echo $this->fullname;?>"><?php echo $this->fullname;?></a>
-
+<li><?php echo $this->fullname;?> [<a href="<?php echo $this->url(array(
+	'module' => 'database',
+	'controller' => 'search',
+	'action' => 'results',
+	'rallyID' => $this->rallyID, 
+	'createdBy' => $this->id),
+	null,true);?>" title="Find all records recorded at this rally by <?php echo $this->fullname;?>">Find all records created</a>
+]
 <?php if(isset($this->datefrom)):
-    $dates = array($this->datefrom, $this->dateto);
+    $dates = array($this->niceshortdate($this->datefrom), $this->niceshortdate($this->dateto));
     ?>
 
  Attended: <?php echo implode( ' - ', $dates);?>

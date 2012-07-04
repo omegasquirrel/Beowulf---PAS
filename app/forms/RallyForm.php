@@ -24,8 +24,7 @@ public function __construct($options = null) {
 	$rally_name = new Zend_Form_Element_Text('rally_name');
 	$rally_name->setLabel('Rally name: ')
 		->setRequired(true)
-		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Alnum',false,array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags','StringTrim', 'Purifier'))
 		->setAttrib('size',60)
 		->addErrorMessage('Come on it\'s not that hard, enter a name for the rally!');
 	

@@ -21,7 +21,7 @@ echo $this->Href(array('module' => 'database','controller'=>'rallies', 'action'=
 <ul id="yearrange">
 <?php echo $this->partialLoop('partials/database/archiveYearsRallies.phtml',$this->years);?>
 </ul>
-<span class="btn btn-small">View <a href="<?php echo $this->url(array('module' => 'database','controller' => 'rallies','action' => 'map'),NULL,true);?>" title="View rally locations">rally locations</a> on a map</span>
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'rallies','action' => 'map'),NULL,true);?>" title="View rally locations">View rally locations on a map <i class="icon-map-marker"></i></a> 
 <table class="table table-striped" summary="A list of all rallies we have attended">
 <caption>Rallies that the Scheme has attended</caption>
 <thead>

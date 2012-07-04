@@ -13,6 +13,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	/** Initialise the ACL and contexts
 	*/
 	public function init() {
+	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_helper->_acl->allow('public',array('index','rally','map'));
 	$this->_helper->_acl->deny('public',array('addflo','delete','deleteflo'));
 	$this->_helper->_acl->allow('flos',null);
@@ -47,8 +48,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	/** Index page for the list of rallies.
 	*/
 	public function indexAction() {
-	$rallies = $this->_rallies->getRallyNames((array)$this->_getAllParams());
-	$this->view->rallies = $rallies;
+	$this->view->rallies  = $this->_rallies->getRallyNames((array)$this->_getAllParams());
 	$this->view->years = $this->years();
 	}
 	/** Individual rally details
@@ -78,8 +78,8 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
-	$results = $this->GridCalc($form->getValue('gridref'));
-	$fourFigure = $this->FourFigure($form->getValue('gridref'));
+	$geo = new Pas_Geo_Gridcalc($form->getValue('gridref'));
+	$results = $geo->convert();
 	$insertData = array(
 	'rally_name' => $form->getValue('rally_name'),
 	'organiser' => $form->getValue('organiser'),
@@ -87,13 +87,13 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	'district' => $form->getValue('district'),
 	'parish' => $form->getValue('parish'),
 	'gridref' => $form->getValue('gridref'),
-	'easting' => $results['Easting'],
-	'northing' => $results['Northing'],
-	'latitude' => $results['Latitude'],
-	'longitude' => $results['Longitude'],
-	'map10k' => $results['Tenk'],
-	'map25k' => $results['2pt5K'],
-	'fourFigure' => $fourFigure,
+	'easting' => $results['easting'],
+	'northing' => $results['northing'],
+	'latitude' => $results['decimalLatLon']['decimalLatitude'],
+	'longitude' => $results['decimalLatLon']['decimalLongitude'],
+	'map10k' => $results['10kmap'],
+	'map25k' => $results['25kmap'],
+	'fourFigure' => $results['fourFigureGridRef'],
 	'comments' => $form->getValue('comments'),
 	'record_method' => $form->getValue('record_method'),
 	'date_from' => $form->getValue('date_from'),
@@ -121,8 +121,8 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
-	$results = $this->GridCalc($form->getValue('gridref'));
-	$fourFigure = $this->FourFigure($form->getValue('gridref'));
+	$geo = new Pas_Geo_Gridcalc($form->getValue('gridref'));
+	$results = $geo->convert();
 	$updateData = array(
 	'rally_name' => $form->getValue('rally_name'),
 	'organiser' => $form->getValue('organiser'),
@@ -130,13 +130,13 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	'district' => $form->getValue('district'),
 	'parish' => $form->getValue('parish'),
 	'gridref' => $form->getValue('gridref'),
-	'easting' => $results['Easting'],
-	'northing' => $results['Northing'],
-	'latitude' => $results['Latitude'],
-	'longitude' => $results['Longitude'],
-	'map10k' => $results['Tenk'],
-	'map25k' => $results['2pt5K'],
-	'fourFigure' => $fourFigure,
+	'easting' => $results['easting'],
+	'northing' => $results['northing'],
+	'latitude' => $results['decimalLatLon']['decimalLatitude'],
+	'longitude' => $results['decimalLatLon']['decimalLongitude'],
+	'map10k' => $results['10kmap'],
+	'map25k' => $results['25kmap'],
+	'fourFigure' => $results['fourFigureGridRef'],
 	'comments' => $form->getValue('comments'),
 	'record_method' => $form->getValue('record_method'),
 	'date_from' => $form->getValue('date_from'),
@@ -164,8 +164,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	// find id is expected in $params['id']
 	$id = (int)$this->_request->getParam('id', 0);
 	if ($id > 0) {
-	$rallies = new Rallies();
-	$rally = $rallies->fetchRow('id='.$id);
+	$rally = $this->_rallies->fetchRow('id='.$id);
 	if(count($rally)) {
 	$form->populate($rally->toArray());
 	} else {
@@ -199,9 +198,8 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$id = (int)$this->_request->getPost('id');
 	$del = $this->_request->getPost('del');
 	if ($del == 'Yes' && $id > 0) {
-	$rallies = new Rallies();
 	$where = 'id = ' . $id;
-	$rallies->delete($where);
+	$this->_rallies->delete($where);
 	$this->_cache->remove('rallydd');
 	$this->_flashMessenger->addMessage('Record for rally deleted!');
 	}
@@ -209,8 +207,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	} else {
 	$id = (int)$this->_request->getParam('id');
 	if ($id > 0) {
-	$rallies = new Rallies();
-	$this->view->rally = $rallies->fetchRow('id=' . $id);
+	$this->view->rally = $this->_rallies->fetchRow('id=' . $id);
 	}
 	}
 	}
@@ -236,7 +233,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	'created' => $this->getTimeForForms(),
 	'createdBy' => $this->getIdentityForForms()
 		);
-	$insert = $rallies->insert($insertData);
+	$insert = $this->_rallies->insert($insertData);
 	$this->_redirect(self::URL . 'rally/id/' . $rallyID);
 	$this->_flashMessenger->addMessage('Finds Liaison Officer added to a rally');
 	} else
@@ -259,8 +256,8 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	if ($del == 'Yes') {
 	$rallies = new RallyXFlo();
 	$where = array();
-	$where[] = $this->rallies->getAdapter()->quoteInto('staffID = ?', (int)$staffID);
-	$where[] = $rallies->getAdapter()->quoteInto('rallyID = ?', (int)$rallyID);
+	$where[] = $this->_rallies->getAdapter()->quoteInto('staffID = ?', (int)$staffID);
+	$where[] = $this->_rallies->getAdapter()->quoteInto('rallyID = ?', (int)$rallyID);
 	$rallies->delete($where);
 	$this->_flashMessenger->addMessage('Attending FLO for rally deleted!');
 	}
@@ -272,7 +269,6 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$where = array();
 	$where[] = $rallies->getAdapter()->quoteInto('staffID = ?', (int)$staffID);
 	$where[] = $rallies->getAdapter()->quoteInto('rallyID = ?', (int)$rallyID);
-
 	$this->view->rally = $rallies->fetchRow($where);
 	}
 	}

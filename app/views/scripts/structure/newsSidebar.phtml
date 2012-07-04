@@ -21,7 +21,7 @@ echo $this->menu('news','reviews','index','r');?>
 </li>
 <li><a href="<?php echo $this->url(array('module' => 'news','controller' => 'map'),'default',true);?>" title="View most recent news stories on a map">Geographic news map <i class="icon-map-marker"></i></a></li>
 <li <?php if($controller == 'theyworkforyou') { echo 'class="expandfirst"';};?>><a href="#" >Data from theyworkforyou <i class="icon-folder-open"></i></a>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'news','controller' => 'theyworkforyou'),'default',true);?>" title="View latest mentions of related terms in Parliament">Parliamentary news</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'news','controller' => 'theyworkforyou','action' => 'members'),'default',true);?>" title="Parliamentarian lookup by finds and record">Finds by Member of Parliament</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'news','controller' => 'theyworkforyou','action' => 'constituencies'),'default',true);?>" title="Parliamentary constituency find lookup">Finds by constituency</a></li>

@@ -34,6 +34,7 @@ class AddFloRallyForm extends Pas_Form{
 	$dateFrom = new ZendX_JQuery_Form_Element_DatePicker('dateFrom');
 	$dateFrom->setLabel('Attended from: ')
 	->setRequired(true)
+	->setJQueryParam('dateFormat', 'yy-mm-dd')
 	->addValidator('Datetime')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty')
@@ -42,7 +43,8 @@ class AddFloRallyForm extends Pas_Form{
 
 	$dateTo = new ZendX_JQuery_Form_Element_DatePicker('dateTo');
 	$dateTo->setLabel('Attended to: ')
-	->setRequired(true)
+	->setRequired(false)
+	->setJQueryParam('dateFormat', 'yy-mm-dd')
 	->addValidator('Datetime')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->setAttrib('size', 20);

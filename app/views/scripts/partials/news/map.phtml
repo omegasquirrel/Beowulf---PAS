@@ -188,7 +188,7 @@ clusterer.maxLinesPerInfoBox = 4;
 var request = GXmlHttp.create();
 
 request.open("GET", "<?php echo $this->baseUrl() . '/news/ajax/map/constituency/'
-        . $this->name;?>", true);
+        . urlencode($this->name);?>", true);
 
 request.onreadystatechange = function() {
 if (request.readyState == 4) {
