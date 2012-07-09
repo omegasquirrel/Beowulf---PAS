@@ -27,10 +27,11 @@ class IndexController extends Pas_Controller_Action_Admin
 
 	$news = new News();
 	$this->view->news = $news->getHeadlines();
-        $form = new SolrForm();
+        $form = new CombinedForm();
         $form->setAttrib('class', 'navbar-search pull-right');
         $this->view->form = $form;
         $form->removeElement('thumbnail');
+        $form->removeElement('submit');
         $form->q->removeDecorator('label');
         $form->q->setAttrib('class','input-large');
         if($this->getRequest()->isPost() && $form->isValid($_POST)){

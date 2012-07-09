@@ -6,7 +6,7 @@
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
 */
-class CombinedForm extends Pas_Form {
+class CombinedForm extends Pas_FormLite {
 	
 //	public function __construct($options = null) {
 //    parent::__construct($options);

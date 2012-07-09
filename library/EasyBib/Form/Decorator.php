@@ -699,7 +699,7 @@ class EasyBib_Form_Decorator
      * @param string $constFormat    Project_Plugin_FormDecoratorDefinition constants
      * @return NULL
      */
-    public static function setFormDecorator(Pas_Form $form, $format = self::BOOTSTRAP, $submit_str = 'submit', $cancel_str = 'cancel') {
+    public static function setFormDecorator($form, $format = self::BOOTSTRAP, $submit_str = 'submit', $cancel_str = 'cancel') {
         /**
          * - disable default decorators
          * - set form & displaygroup decorators

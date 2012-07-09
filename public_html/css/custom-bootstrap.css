@@ -116,3 +116,7 @@ ul.facetExpand li {
 #period-object-cloud li {
 	display:inline-block;
 }
+.question {
+	font-weight:bold;
+	color:maroon;
+}
