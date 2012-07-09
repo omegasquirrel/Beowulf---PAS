@@ -89,7 +89,8 @@ public function __construct($options = null)
 	'publications' => 'Publications',
 	'database' => 'Database front page',
 	'oai' => 'OAI instructions',
-	'bronzeage' => 'Bronze Age guide'))
+	'bronzeage' => 'Bronze Age guide',
+        'secret' => 'Secret Treasures'))
 	->setRequired(true)
 	->addErrorMessage('You must choose a section for this to be filed under');
 
