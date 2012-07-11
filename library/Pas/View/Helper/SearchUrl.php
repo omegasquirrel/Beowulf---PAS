@@ -9,12 +9,12 @@
  * @see Zend_View_Helper_Abstract
  */
 class Pas_View_Helper_SearchUrl extends Zend_View_Helper_Abstract  {
-   
-	
+
+
 	public function buildUrlString($data){
 	$parameters = $this->getParameters($data);
 	if(!is_null($parameters['route'])){
-	$route = $parameters['route']; 
+	$route = $parameters['route'];
 	} else {
 	$route = 'default';
 	}
@@ -26,7 +26,7 @@ class Pas_View_Helper_SearchUrl extends Zend_View_Helper_Abstract  {
 	$html .= 'title="View result">' . $name . '</a> section &raquo;';
 	return $html;
 	}
-	
+
 	public function getParameters($data){
 		$section = $data['section'];
 		$parameters = NULL;
@@ -254,6 +254,11 @@ class Pas_View_Helper_SearchUrl extends Zend_View_Helper_Abstract  {
 				$parameters['route'] = 'default';
 				$parameters['nicename'] = 'API documentation';
 			break;
+                        case($section === 'secret'):
+				$parameters['module'] = 'secrettreasures';
+				$parameters['route'] = 'default';
+				$parameters['nicename'] = 'Britain\'s Secret Treasures';
+			break;
 			default:
 				$parameters['module'] = 'contacts';
 				$parameters['controller'] = 'staff';
@@ -268,7 +273,7 @@ class Pas_View_Helper_SearchUrl extends Zend_View_Helper_Abstract  {
 	public function buildUrl($data){
 	$parameters = $this->getParameters($data);
 	if(!is_null($parameters['route'])){
-	$route = $parameters['route']; 
+	$route = $parameters['route'];
 	} else {
 	$route = 'default';
 	}
@@ -277,7 +282,7 @@ class Pas_View_Helper_SearchUrl extends Zend_View_Helper_Abstract  {
 	unset($parameters['nicename']);
 	return $this->view->url($parameters,$route,true);
 	}
-		
+
 	public function searchUrl($data, $rich = true){
 	if(is_array($data) && $rich === true){
 		return $this->buildUrlString($data);

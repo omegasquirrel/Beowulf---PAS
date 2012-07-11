@@ -5,13 +5,12 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 ?>
 
 
-<div class="span10">
-    <?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?>
-</div>
-<div class="container">
+<div class="row-fluid span10">
+    <div class="span8"><?php echo $this->partialLoop('partials/content/article.phtml',$this->contents);?></div>
+    <div class="container">
 <section id="carousel">
 
-        <div class="span10">
+        <div class="span4">
 
           <div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
@@ -44,6 +43,11 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 
         </div>
       </div>
+</div>
+<div class="span10">
+    <?php echo $this->britainSecretTreasureFront();?>
+</div>
+
 
 
 	<div class=" span10"><h3>Latest news</h3>

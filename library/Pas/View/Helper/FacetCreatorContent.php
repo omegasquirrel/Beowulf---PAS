@@ -160,15 +160,16 @@ class Pas_View_Helper_FacetCreatorContent extends Zend_View_Helper_Abstract {
 	'staffs' => 'Staffordshire hoard symposium',
 	'ironagecoins' => 'Iron Age coin guide',
 	'greekromancoins' => 'Greek and Roman coin guide',
-	'api' => 'API documentation'
+	'api' => 'API documentation',
+            'secret' => 'Britain\'s Secret Treasures'
 	);
-	
+
 	public function facetContentSection($string){
 	if(in_array($string,array_keys($this->sections))){
 	$text = " $string ";
 	foreach ($this->sections as $key => $value) {
-	$text = preg_replace( "|(?!<[^<>]*?)(?<![?.&])\b$key\b(?!:)(?![^<>]*?>)|msU", 
-	$value , $text );	
+	$text = preg_replace( "|(?!<[^<>]*?)(?<![?.&])\b$key\b(?!:)(?![^<>]*?>)|msU",
+	$value , $text );
 	}
 	} else {
 	$text = $string;

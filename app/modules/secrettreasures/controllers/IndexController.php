@@ -10,6 +10,8 @@ class Secrettreasures_IndexController extends Pas_Controller_Action_Admin
 
 
 	public function indexAction() {
+            $content = new Content();
+            $this->view->contents = $content->getFrontContent('secret');
 	}
 
 }

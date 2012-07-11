@@ -16,51 +16,53 @@ class Pas_View_Helper_LatestTweets
 	extends Zend_View_Helper_Abstract {
 
 	protected $_cache;
+
 	protected $_config;
 
 	/** Constructor
 	 *
 	 */
 	public function __construct(){
-	$this->_cache = Zend_Registry::get('rulercache');
+	$this->_cache = Zend_Registry::get('cache');
 	$this->_config = Zend_Registry::get('config');
 	}
 
-	/** Retrieve tokens (already generated elsewhere)
-	 * @access private
-	 * @return object $tokenList
-	 */
-	public function getTokens() {
-	if (!$tokenList = $this->_cache->load('latestweets')) {
-	$tokens = new OauthTokens();
-	$tokenList = $tokens->fetchRow($tokens->select()->where('service = ?', 'twitterAccess'));
-	$this->_cache->save($tokenList, 'latestweets');
-	}
-	return $tokenList;
-	}
+
 
 	/** Call Twitter after getting token for oauth
 	 *
 	 */
 	public function callTwitter() {
-	$token = $this->getTokens();
-	$token = unserialize($token->accessToken);
-	$twitter = new Zend_Service_Twitter(array('username' => 'findsorguk','accessToken' =>  $token));
-	$response = $twitter->status->userTimeline(array("count" => 2));
-	return $this->buildHtml($response);
+        if (!($this->_cache->test('findsorguk'))) {
+	$tokens = new OauthTokens();
+	$token = $tokens->fetchRow($tokens->select()->where('service = ?', 'twitterAccess'));
+
+	$twitter = new Zend_Service_Twitter(array('username' => 'findsorguk','accessToken' => unserialize($token->accessToken)));
+	$tweets = $twitter->status->userTimeline(array('id' => 'findsorguk', 'count' => 3));
+        $twits = array();
+        foreach($tweets as $xml){
+            $twits[] = $xml->asXml();
+        }
+        $this->_cache->save($twits);
+	} else {
+	$twits = $this->_cache->load('findsorguk');
+	}
+
+	return $this->buildHtml($twits);
 	}
 
 	/** Build the html
 	 *
 	 * @param array $response
 	 */
-	public function buildHtml($response){
+	public function buildHtml($twits){
 	$html = '';
 	$html .= '<ul>';
-	foreach($response as $post){
-	$html .= '<li>On <strong>'. date('m.d.y @ H:m:s',strtotime($post->created_at))
-	. '</strong>, <strong><a href="http://www.twitter.com/'.$post->user->screen_name
-	. '">' . $post->user->screen_name . '</a></strong> said: '. $this->view->autoLink($post->text)
+	foreach($twits as $post){
+            $xml = new SimpleXMLElement($post);
+	$html .= '<li>On <strong>'. date('m.d.y @ H:m:s',strtotime($xml->created_at))
+	. '</strong>, <strong><a href="http://www.twitter.com/'. $xml->user->screen_name
+	. '">' . $xml->user->screen_name . '</a></strong> said: '. $this->view->autoLink($xml->text)
 	. '</li>';
 	}
 	$html .= '</ul>';

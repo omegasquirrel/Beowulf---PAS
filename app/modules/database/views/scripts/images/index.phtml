@@ -28,11 +28,7 @@ $(this).hover(
 ?>
 });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
-?>
+
 
 
 <h2>All images on the database</h2>
@@ -46,7 +42,9 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
         $this->results);?>
     </ul>
     </div>
-    <div class="span3">
+    <div class="span3">        <?php echo $this->resultsQuantityChooser($this->paginator);?>
+        <?php echo $this->thumbnailToggler();?>
+        <?php echo $this->resultsSorter($this->paginator);?>
 	<?php echo $this->facetCreator($this->facets); ?>
 	</div>
 </div>
@@ -58,3 +56,27 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 <p>You have added no images to our database.</p>
 <?php endif; ?>
 
+<?php
+$this->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
+$this->inlineScript()->captureStart();
+?>
+$(document).ready(function() {
+	$('#print').click(function() {
+	window.print();
+	return false;
+	});
+
+    $('.overlay').click(function(e) {
+    e.preventDefault();
+    var href = $(e.target).attr('href');
+    if (href.indexOf('#') == 0) {
+        $(href).modal('open');
+    } else {
+        $.get(href, function(data) {
+            $('<div class="modal fade" >' + data + '</div>').modal();
+        });
+    }
+});
+
+	});
+<?php $this->inlineScript()->captureEnd();?>

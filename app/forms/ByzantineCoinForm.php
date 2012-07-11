@@ -150,13 +150,13 @@ public function __construct($options = null)
 	$ruler_qualifier, $denomination_qualifier,$status_qualifier,
 	$submit, $hash));
 
-	$this->addDisplayGroup(array('denomination', 'denomination_qualifier', 'ruler_id'
+	$this->addDisplayGroup(array('denomination', 'denomination_qualifier', 'ruler_id',
 	'ruler_qualifier', 'mint_id', 'mint_qualifier',
 	'status', 'status_qualifier', 'degree_of_wear',
 	'obverse_description', 'obverse_inscription', 'reverse_description',
 	'reverse_inscription', 'die_axis_measurement', 'die_axis_certainty'), 'details');
 
-	
+
 	$this->addDisplayGroup(array('submit'),'submit');
         parent::init();
 	}

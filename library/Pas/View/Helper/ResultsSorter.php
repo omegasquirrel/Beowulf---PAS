@@ -2,7 +2,7 @@
 /**
  *
  * @author dpett
- * @version 
+ * @version
  */
 
 /**
@@ -11,28 +11,29 @@
  * @uses viewHelper Pas_View_Helper
  */
 class Pas_View_Helper_ResultsSorter extends Zend_View_Helper_Abstract{
-	
+
 	protected $_fields = array(
-		'Object type' 	=> 'objectType', 
-		'Date created'	=> 'created', 
+		'Object type' 	=> 'objectType',
+		'Date created'	=> 'created',
 		'Broad period'	=> 'broadperiod',
 		'Recording institution'	=> 'institution',
-		'Workflow status' => 'workflow'
+		'Workflow status' => 'workflow',
+                'Updated'       => 'updated'
 	);
 
 	protected $_defaultDirection = 'desc';
-	
+
 	protected $_defaultSort = 'created';
-	
-	protected $_request; 
-	
+
+	protected $_request;
+
 	protected $_direction = array('descending' => 'desc', 'ascending' => 'asc');
-	
+
 	public function __construct(){
 		$this->_request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
 	}
 	/**
-	 * 
+	 *
 	 */
 	public function resultsSorter($results) {
 		if($results){
@@ -42,9 +43,9 @@ class Pas_View_Helper_ResultsSorter extends Zend_View_Helper_Abstract{
 		} else {
 			return null;
 		}
-		
+
 	}
-	
+
 	protected function _buildHtmlField(){
 		$request = $this->_request;
 		$html = '<p>Sort your search by: </p>';
@@ -55,8 +56,8 @@ class Pas_View_Helper_ResultsSorter extends Zend_View_Helper_Abstract{
 		}
 		$html .= '</ul>';
 		return $html;
-	} 
-	
+	}
+
 	protected function _buildHtmlDirection(){
 		$request = $this->_request;
 		$html = '<p>Which direction? ';
@@ -73,11 +74,11 @@ class Pas_View_Helper_ResultsSorter extends Zend_View_Helper_Abstract{
 			}
 			$sorter[] = '<a href="' . $this->view->url($request, 'default', true) . '">' . $k . '<i class="icon-arrow-' . $icon .'"></i></a> ';
 		}
-		
+
 		$html .= implode($sorter, ' | ') . '</p>';
 		return $html;
 	}
-	
+
 
 }
 

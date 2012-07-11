@@ -32,6 +32,11 @@ $this->headTitle('List all Scheduled Monuments of the National Monument record')
 
 <div class="span2">
 <p><a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'smr','action' => 'map'),'default',false);?>">Map these sites</a></p>
+        <?php echo $this->resultsQuantityChooser($this->paginator);?>
+        <?php echo $this->resultsSorter($this->paginator);?>
+        <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
+        <?php echo $this->paginationControl($this->paginator,'elastic','structure/paginationSolr.phtml'); ?>
+		<?php echo $this->statGenerator($this->stats);?>
 <?php echo $this->facetCreator($this->facets);?>
 </div>
 </div>
@@ -42,3 +47,27 @@ $this->headTitle('List all Scheduled Monuments of the National Monument record')
 <p>No Scheduled Monuments are available to you right now.</p>
 
 <?php endif;?>
+<?php
+$this->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
+$this->inlineScript()->captureStart();
+?>
+$(document).ready(function() {
+	$('#print').click(function() {
+	window.print();
+	return false;
+	});
+
+    $('.overlay').click(function(e) {
+    e.preventDefault();
+    var href = $(e.target).attr('href');
+    if (href.indexOf('#') == 0) {
+        $(href).modal('open');
+    } else {
+        $.get(href, function(data) {
+            $('<div class="modal fade" >' + data + '</div>').modal();
+        });
+    }
+});
+
+	});
+<?php $this->inlineScript()->captureEnd();?>
