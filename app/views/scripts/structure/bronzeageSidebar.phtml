@@ -1,7 +1,18 @@
+<?php $gold = array(
+'gold', 'dress-fasteners', 'gold-bracelets',
+'penannular-rings', 'lock-rings','sleeve-fasteners',
+'bullae', 'gorgets', 'collars',
+'torcs', 'stud-caps-on-stone-wristguards', 'basket-shaped-ornaments',
+'discs', 'lunulae', 'cups',
+'capes', 'ribbon-torcs','bar-torcs',
+'bar-bracelets', 'sheet-bracelets', 'composite-rings',
+'bar-twisted-rings'
+);
+$slug = Zend_Controller_Front::getInstance()->getRequest()->getParam('slug');?>
 <div class="well sidebar-nav" >
 <ul id="menu1" class="menu  nav nav-stacked nav-pills">
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage'),'default',true);?>">Introduction</a></li>
-<li><a href="#">Gold objects <i class="icon-folder-open"></i></a>
+<li <?php if(in_array($slug, $gold)) { echo ' class="expandfirst"';};?>><a href="#">Gold objects <i class="icon-folder-open"></i></a>
 <ul class="nav nav-stacked nav-pills menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'gold'),'bronzeage',true);?>">Introduction</a></li>
@@ -51,9 +62,23 @@
 'action' => 'index','slug' => 'bar-twisted-rings'),'bronzeage',true);?>">Bar Twisted Rings</a></li>
 </ul>
 </li>
-<li><a href="#">Other metal objects <i class="icon-folder-open"></i></a>
+<?php 
+$other = array(
+'other','bracelets','knife',
+'beads', 'awl', 'shield',
+'ingots', 'metal-working-debris','arrowheads',
+'wheeled-vehicle-equipment', 'horse-fittings', 'punches',
+'rings', 'crotals', 'chapes',
+'pins', 'flesh-hooks', 'fish-hooks',
+'saw-blades', 'hammers', 'gouges',
+'sickles', 'razors', 'bronze-torcs',
+'vessels', 'axes', 'spearheads',
+'halberd', 'rapiers-and-dirks', 'daggers'
+);
+$slug = Zend_Controller_Front::getInstance()->getRequest()->getParam('slug');?>
+<li <?php if(in_array($slug, $other)) { echo ' class="expandfirst"';};?>><a href="#">Other metal objects <i class="icon-folder-open"></i></a>
 <ul class="nav nav-stacked nav-pills menuindent">
-<li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
+<li ><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'other'),'bronzeage',true);?>">Introduction</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'bracelets'),'bronzeage',true);?>">Bracelets</a></li>
@@ -102,7 +127,7 @@
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'razors'),'bronzeage',true);?>">Razors</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
-'action' => 'index','slug' => 'torcs'),'bronzeage',true);?>">Torcs</a></li>
+'action' => 'index','slug' => 'bronze-torcs'),'bronzeage',true);?>">Torcs</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',
 'action' => 'index','slug' => 'buttons-and-studs'),'bronzeage',true);?>">Buttons and studs</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'bronzeage','controller' => 'objects',

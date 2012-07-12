@@ -29,7 +29,7 @@ class FindsAudit extends Pas_Db_Table_Abstract {
 			array('id','fullname','username'))
 			->where($this->_name  . '.recordID = ?',(int)$id)
 			->order($this->_name  . '.id DESC')
-			->group($this->_name  . '.created');
+			->group($this->_name  . '.editID');
 	return  $finds->fetchAll($select);
 	}
 

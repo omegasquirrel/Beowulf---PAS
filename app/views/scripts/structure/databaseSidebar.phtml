@@ -30,32 +30,7 @@ else
 }
 ?>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search', 'action' => 'results'),NULL,true);?>" title="All finds recorded on the database">All artefacts &amp; coins <i class="icon-list"></i></a></li>
-<li<?php if($controller == 'search') { echo ' class="expandfirst"';};?>><a href="#">Search database <i class="icon-search"></i></a>
-<ul class="nav nav-stacked nav-pills menuindent">
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search'),NULL,true);?>" title="Basic search our database" >Basic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'advanced'),NULL,true);?>" title="Advanced search our database" accesskey="4">Advanced search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'ironagenumismatics'),NULL,true);?>" title="Iron age numismatic search our database">Iron Age numismatic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'romannumismatics'),NULL,true);?>" title="Roman numismatic search our database">Roman numismatic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'greekroman'),NULL,true);?>" title="Greek and roman provincial numismatic search our database">Greek &amp; Roman numismatic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'earlymednumismatics'),NULL,true);?>" title="Early Medieval numismatic search our database">Early medieval numismatic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'byzantinenumismatics'),NULL,true);?>" title="Byzantine numismatic search our database">Byzantine numismatic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'mednumismatics'),NULL,true);?>" title="Medieval numismatic search our database">Medieval numismatic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'postmednumismatics'),NULL,true);?>" title="Post medieval numismatic search our database">Post medieval numismatic search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'spatial'),NULL,true);?>" title="Spatial search">Search via map</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'postcode'),NULL,true);?>" title="Post code search">Postcode search</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'savedsearches'),NULL,true);?>" title="All public saved searches on our database">Public saved searches</a></li>
-<?php
-$auth = Zend_Auth::getInstance();
-if($auth->hasIdentity())
-{
-$user = $auth->getIdentity();
-{?>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'savedsearches','by' => 'me'),NULL,true);?>" title="List of my saved searches">My saved searches</a></li>
-
-<?php
-}
-}
-?></ul>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search'),NULL,true);?>">Search database <i class="icon-search"></i></a>
 </li>
 <?php
 $auth = Zend_Auth::getInstance();

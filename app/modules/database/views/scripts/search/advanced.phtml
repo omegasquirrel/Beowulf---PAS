@@ -7,7 +7,7 @@ $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocompl
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript'); 
 $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 ->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/ui.datepicker.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/ui.datepicker.js',$type='text/javascript'); 
 $this->headTitle('Advanced search the database');
 
 ?>
@@ -17,7 +17,8 @@ $this->headTitle('Advanced search the database');
 $(document).ready(function() {
 $("#createdBefore").datepicker({ maxDate: '+1y'});
 $("#createdAfter").datepicker({ maxDate: '+1y' });
-
+$("#updatedBefore").datepicker({ maxDate: '+1y'});
+$("#updatedAfter").datepicker({ maxDate: '+1y' });
 
 	
 });

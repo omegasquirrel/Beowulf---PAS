@@ -27,7 +27,7 @@ class Pas_View_Helper_ChangesFindSpot
 	*/
 	public function buildHtml($a) {
 	$html = '';
-	$html .= '<li><a href="';
+	$html .= '<li><a class="overlay" href="';
 	$html .= $this->view->url(array(
 		'module' => 'database',
 		'controller' => 'ajax',

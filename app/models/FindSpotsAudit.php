@@ -45,7 +45,7 @@ class FindSpotsAudit extends Pas_Db_Table_Abstract {
 		$select = $finds->select()
 			->from($this->_name,array($this->_name . '.created', 'afterValue', 'fieldName', 'beforeValue'))
 			->joinLeft('users','users.id = '.$this->_name . '.createdBy',array('id', 'fullname', 'username'))
-			->where($this->_name . '.editID = ?', (int)$id);
+			->where($this->_name . '.editID = ?', $id);
 	return  $finds->fetchAll($select);
 	}
 

@@ -1,196 +1,193 @@
-<?php 
+<?php
 $config = Zend_Registry::get('config');
-$apikey = $config->googlemaps->apikey;
-$this->inlineScript()->appendFile('http://maps.google.com/maps?file=api&amp;v=2.x&key='.$apikey,$type='text/javascript');
+$apikey = $config->webservice->googlemaps->apikey;
+$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
+
+$this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
 ?>
 
-<?php $this->jQuery()->javascriptCaptureStart() ?>
- $(document).ready(function(){
- 
-if (GBrowserIsCompatible()) {
- 	  var gmarkers = [];
-      var htmls = [];
-      var i = 0;
-   	  var Icon = new GIcon();
-      
-      Icon.image = 'http://labs.google.com/ridefinder/images/mm_20_red.png';
-      Icon.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';
-      Icon.iconSize = new GSize( 12, 20 );
-      Icon.shadowSize = new GSize( 22, 20 );
-      Icon.iconAnchor = new GPoint( 6, 20 );
-      Icon.infoWindowAnchor = new GPoint( 5, 1 );
-      Icon.infoShadowAnchor = new GPoint( 5, 1 );
-	  
-	  var Yellow = new GIcon();
-      Yellow.image = 'http://labs.google.com/ridefinder/images/mm_20_yellow.png';
-      Yellow.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';
-      Yellow.iconSize = new GSize( 12, 20 );
-      Yellow.shadowSize = new GSize( 22, 20 );
-      Yellow.iconAnchor = new GPoint( 6, 20 );
-      Yellow.infoWindowAnchor = new GPoint( 5, 1 );
-      Yellow.infoShadowAnchor = new GPoint( 5, 1 );
-	  
-	  
-	  var Black = new GIcon();
-      Black.image = 'http://labs.google.com/ridefinder/images/mm_20_black.png';
-      Black.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';
-      Black.iconSize = new GSize( 12, 20 );
-      Black.shadowSize = new GSize( 22, 20 );
-      Black.iconAnchor = new GPoint( 6, 20 );
-      Black.infoWindowAnchor = new GPoint( 5, 1 );
-      Black.infoShadowAnchor = new GPoint( 5, 1 );
-	    
-	  var Green = new GIcon();
-      Green.image = 'http://labs.google.com/ridefinder/images/mm_20_green.png';
-      Green.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';
-      Green.iconSize = new GSize( 12, 20 );
-      Green.shadowSize = new GSize( 22, 20 );
-      Green.iconAnchor = new GPoint( 6, 20 );
-      Green.infoWindowAnchor = new GPoint( 5, 1 );
-      Green.infoShadowAnchor = new GPoint( 5, 1 );
-	  
-      var clusterIcon = new GIcon();
-      clusterIcon.image = 'http://labs.google.com/ridefinder/images/mm_20_blue.png';
-      clusterIcon.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';
-      clusterIcon.iconSize = new GSize( 12, 20 );
-      clusterIcon.shadowSize = new GSize( 22, 20 );
-      clusterIcon.iconAnchor = new GPoint( 6, 20 );
-      clusterIcon.infoWindowAnchor = new GPoint( 5, 1 );
-      clusterIcon.infoShadowAnchor = new GPoint( 5, 1 );
-   	
-   	  var copyOSM = new GCopyrightCollection('<a href="http://www.openstreetmap.org/">OpenStreetMap</a>');
-  	  copyOSM.addCopyright(new GCopyright(1,new GLatLngBounds(new GLatLng(-90, -180), new GLatLng(90, 180)),
-    	0, ' '));
-	
-	  var osmLayer = new GTileLayer(copyOSM, 0, 18, {
-    tileUrlTemplate: 'http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/998/256/{Z}/{X}/{Y}.png',
-    isPng: true,
-    opacity: 1.0
+<?php $this->inlineScript()->captureStart();?>
+$(document).ready(function() {
+
+
+var nlsmap = new google.maps.ImageMapType({
+	   getTileUrl: function(tile, zoom) { return NLSTileUrlOS(tile.x, tile.y, zoom); },
+	   tileSize: new google.maps.Size(256, 256),
+	   isPng: false,
+	   maxZoom: 14,
+	   minZoom: 1,
+	   name: 'Historic',
+	   alt: "NLS Historic Map"
+	});
+
+
+
+    var osmMapType = new google.maps.ImageMapType({
+        getTileUrl: function (coord, zoom) {
+            return "http://tile.openstreetmap.org/" +
+                zoom + "/" + coord.x + "/" + coord.y + ".png";
+
+        },
+        tileSize: new google.maps.Size(256, 256),
+        isPng: true,
+        alt: "OpenStreetMap layer",
+        name: "OSM",
+        maxZoom: 18
+    });
+
+   var soilMapType = new google.maps.ImageMapType({
+
+   getTileUrl: function(tile, zoom) {
+
+   var projection = map.getProjection();
+
+   var zpow = Math.pow(2, zoom);
+
+   var ul = new google.maps.Point(tile.x * 256.0 / zpow, (tile.y + 1) * 256.0 / zpow);
+
+   var lr = new google.maps.Point((tile.x + 1) * 256.0 / zpow, (tile.y) * 256.0 / zpow);
+
+   var ulw = projection.fromPointToLatLng(ul);
+
+   var lrw = projection.fromPointToLatLng(lr);
+
+   var baseURL ="http://geonetwork3.fao.org/ows/14116?LAYERS=world_soilmap&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&SRS=EPSG:4326";
+
+   var version = "1.1.1";
+
+   var request = "GetMap";
+
+   var format = "image/png"; //type of image returned  or image/jpeg
+
+
+   var layers = "world_soilmap";
+
+   var srs = "EPSG:4326";
+
+   var bbox = ulw.lng() + "," + ulw.lat() + "," + lrw.lng() + "," + lrw.lat();
+
+   var service = "WMS";
+
+   var width = "256";
+
+   var height = "256";
+
+
+   var styles = "default";
+
+   var url = baseURL +"&BBOX=" + bbox + "&WIDTH=" + width + "&HEIGHT=" + height;
+
+   return url;
+    },
+        tileSize: new google.maps.Size(256, 256),
+        isPng: true,
+        alt: "Soil layer",
+        name: "Soil types",
+        maxZoom: 18,
+        minZoom: 3,
+        opacity: 0.2,
+    });
+
+
+
+
+
+	var myOptions = {
+          center: new google.maps.LatLng( 53.2,-6.1),
+          zoom: 7,
+		  mapTypeControlOptions: {
+          mapTypeIds: [
+          google.maps.MapTypeId.TERRAIN,
+          google.maps.MapTypeId.SATELLITE,
+          'OSM',
+          'SOIL',
+          'historic'
+          ]
+    	  },
+    	  mapTypeControl: true,
+    	  style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          scaleControl: true,
+    	  zoomControl: true,
+          mapTypeId: 'OSM',
+          scrollwheel: false,
+        };
+
+
+        var map = new google.maps.Map(document.getElementById("map"),
+            myOptions);
+            map.mapTypes.set('OSM',osmMapType);
+            map.mapTypes.set('SOIL',soilMapType);
+            map.mapTypes.set('historic',nlsmap);
+
+            var infoWindow;
+
+
+       jQuery.get("/database/ajax/mapdata2/show/20/", function(data) {
+  jQuery(data).find("marker").each(function() {
+    var eachMarker = jQuery(this);
+    var markerCoords = new google.maps.LatLng(
+        parseFloat(eachMarker.find("lat").text()),
+        parseFloat(eachMarker.find("lng").text())
+    );
+
+    var content = eachMarker.find("content").text();
+    var html =  content;
+
+    var marker = addMarker(html, markerCoords);
+
+    });
   });
+// Create a marker for each XML entry
+function addMarker(html, markerCoords) {
 
-	  
- 	var osmMap = new GMapType(
-    [osmLayer], // list of layers
-    G_NORMAL_MAP.getProjection(), // borrow the Mercator projection from the standard map
-    'OSM' // name should be short enough to fit in button
-  );
-   	  
-   	  var map = new GMap2(document.getElementById("map"));
-		
-        map.addControl(new GSmallMapControl());
-		map.addControl(new GMenuMapTypeControl());
-		//map.addControl (new GHierarchicalMapTypeControl());
-		map.addMapType(G_PHYSICAL_MAP);
-		map.addMapType(osmMap);
-		map.addMapType(G_SATELLITE_3D_MAP);
-        map.setCenter(new GLatLng(52.6164, -1.0547), 6 , G_PHYSICAL_MAP);
-		map.enableContinuousZoom();
-		map.addControl(new GScaleControl());
-    	map.disableScrollWheelZoom(); 
-		map.enableRotation();
-		 map.checkResize();	  
-	  
-	  <?php
-		
-		
-$auth = Zend_Registry::get('auth');
-$allowed = array('flos','research','hero','fa','admin','treasure');
-if($auth->hasIdentity())
-{
-$user = $auth->getIdentity();
-{
- if(!in_array($user->role,$allowed)) 
- {
+// Place the new marker
+var marker = new google.maps.Marker({
+    animation: google.maps.Animation.DROP,
+    map: map,
+    position: markerCoords
+}); // end place the new marker
 
-		
-	    
-   echo "var mt = map.getMapTypes();for (var i=0; i<mt.length; i++) {
-        mt[i].getMinimumResolution = function() {return 2;}
-        mt[i].getMaximumResolution = function() {return 11;}
-      }"; 
-	  }
-	  } 
-	  
-	  } else {
-	   echo "var mt = map.getMapTypes();for (var i=0; i<mt.length; i++) {
-        mt[i].getMinimumResolution = function() {return 2;}
-        mt[i].getMaximumResolution = function() {return 11;}
-      }"; 
-	  }
-	  ?>
-	  var customIcons = [];
-	  customIcons["review"] = Icon;
-	  customIcons["quarantine"] = Black;
-	  customIcons["published"] = Green;
-	  customIcons["validation"] = Yellow;
+// Add event listener. On marker click, close all open infoWindows open current infoWindow.
+google.maps.event.addListener(marker, "click", function() {
+    if (infowindow) infowindow.close();
+    infowindow = new google.maps.InfoWindow({content: html});
+    infowindow.open(map, marker);
+}); // end add event listener
 
-      var clusterer = new Clusterer(map);
-      clusterer.icon = clusterIcon;      
-      clusterer.maxVisibleMarkers = 150;
-      clusterer.gridSize = 18;
-      clusterer.minMarkersPerClusterer = 2;
-      clusterer.maxLinesPerInfoBox = 4;
-	                  
-      var request = GXmlHttp.create();
-      request.open("GET", "<?php echo $this->baseUrl();?>/ajax/mapdata/ruler/<?php echo $this->monarchs['0']['id'];?>", true);
-      request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-          var xmlDoc = request.responseXML;
-          var markers = xmlDoc.documentElement.getElementsByTagName("marker");
-          for (var i = 0; i < markers.length; i++) {
-          var lat = parseFloat(markers[i].getAttribute("lat"));
-          var lng = parseFloat(markers[i].getAttribute("lng"));
-          var point = new GLatLng(lat,lng);
-          var html = markers[i].getAttribute("name");
-          var label = markers[i].getAttribute("name");
-		  var workflow = markers[i].getAttribute("workflow");
-		 
+// Display marker
+return marker;
 
-          var marker = createMarker(point,label,html,Icon);
-          clusterer.AddMarker(marker, label);
-          }
-         }
-		 
-		function createMarker(point,name,html,icon) {
-        var marker = new GMarker(point, customIcons[workflow]);
-		
-		 GEvent.addListener(marker, "click", function(){ 
-          marker.openInfoWindowHtml(html,{maxWidth:360,maxHeight:350});
-  	  });
-		
-        
-        gmarkers[i] = marker;
-        htmls[i] = html;
-        return marker;
-      }
-      }
-      request.send(null);
- }
- 
- 
-$('#tabs').tabs({ fx: { opacity: 'toggle' } }); 
-$('#tabs').bind('tabsshow', function(event, ui) {
-    if (ui.panel.id == "map") {
-        map.checkResize();
-    }	 
+} // end addMarker();
 
-jQuery('a[href=#map]').bind('click',fixMap);
+       <?php
+       $params = Zend_Controller_Front::getInstance()->getRequest();
+       $url = $this->serverUrl() . $this->url(array('module' => 'database','controller' => 'ajax','action' => 'mapdata', 'show' => '20',
+           'ruler' => $this->monarchs[0]['id']),'default',true);
+       ?>
 
-function fixMap(event) {
-	  
-	  
-	  }
-	
-		
+       var records = new google.maps.KmlLayer('<?php echo $url;?>' ,
+                                                 {preserveViewport: true, suppressInfoWindows: false });
+		records.setMap(map);
+
+             $('a[data-toggle="tab"]').on('shown', function (e) {
+  e.target // activated tab
+  e.relatedTarget // previous tab
+
+             google.maps.event.trigger(map, 'resize');
+             map.setZoom( map.getZoom() );
+            var latLngBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(49.871159, -6.379880),
+          new google.maps.LatLng(55.811741, 1.768960)
+        );
+    	map.fitBounds(latLngBounds);
+})
+
 });
 
- });
-<?php 
-$this->jQuery()->javascriptCaptureEnd(); 
-?>
-<?php
-$this->inlineScript()->appendFile($this->baseUrl().'/js/maps/clusterer.js',$type='text/javascript');
-?>
+
+
+<?php $this->inlineScript()->captureEnd();?>
+
 <?php echo $this->partialLoop('partials/numismatics/rulerProfile.phtml', $this->monarchs) ?>
 
 <?php 

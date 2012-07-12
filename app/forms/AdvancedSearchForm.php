@@ -191,29 +191,22 @@ class AdvancedSearchForm extends Pas_Form {
             'Available cultures' => $culture_options));
 
 
-	$from = new Zend_Form_Element_Text('from');
-	$from->setLabel('Start date greater than: ')
+	$from = new Zend_Form_Element_Text('fromdate');
+	$from->setLabel('Start date: ')
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidators(array('NotEmpty','Int'))
-	->addErrorMessage('Please enter a valid date');
+	->addErrorMessage('Please enter a valid date')
+	->setAttribs(array('placeholder' => 'Positive for AD, negative for BC'))
+	->setDescription('If you want to search for a date range, enter a start date in this box and and end in the box below. You do not need to add AD or BC');
 
-	$fromend = new Zend_Form_Element_Text('fromend');
-	$fromend->setLabel('Start date smaller than: ')
+	$to = new Zend_Form_Element_Text('todate');
+	$to->setLabel('End date: ')
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidators(array('NotEmpty','Int'))
-	->addErrorMessage('Please enter a valid date');
+	->addErrorMessage('Please enter a valid date')
+	->setAttribs(array('placeholder' => 'Positive for AD, negative for BC'));;
 
-	$to = new Zend_Form_Element_Text('to');
-	$to->setLabel('End date greater than: ')
-	->addFilters(array('StringTrim','StripTags'))
-	->addValidators(array('NotEmpty','Int'))
-	->addErrorMessage('Please enter a valid date');
-
-	$toend= new Zend_Form_Element_Text('toend');
-	$toend->setLabel('End date smaller than: ')
-	->addFilters(array('StringTrim','StripTags'))
-	->addValidators(array('NotEmpty','Int'))
-	->addErrorMessage('Please enter a valid date');
+	
 
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
@@ -393,6 +386,16 @@ class AdvancedSearchForm extends Pas_Form {
 	->addValidator('Datetime')
 	->addFilters(array('StringTrim','StripTags'));
 
+	$updated = new Zend_Form_Element_Text('updatedBefore');
+	$updated->setLabel('Date record updated on or before: ')
+	->addValidator('Datetime')
+	->addFilters(array('StringTrim','StripTags'));
+
+	$updated2 = new Zend_Form_Element_Text('updatedAfter');
+	$updated2->setLabel('Date record updated on or after: ')
+	->addValidator('Datetime')
+	->addFilters(array('StringTrim','StripTags'));
+	
 	$finder = new Zend_Form_Element_Text('finder');
 	$finder->setLabel('Found by: ')->addFilters(array('StringTrim','StripTags'));
 
@@ -450,12 +453,12 @@ class AdvancedSearchForm extends Pas_Form {
 	$workflow, $findofnote, $findofnotereason,
 	$rally, $rallyID, $hoard,
 	$hoardID, $other_ref, $manmethod,
-	$fromend, $toend, $notes,
+	 $notes,
 	$objdate1period, $objdate2period, $county,
 	$regionID, $district, $parish,
 	$fourFigure, $objdate1subperiod, $objdate2subperiod,
 	$treasure, $treasureID, $discoverydate,
-	$created, $created2, 
+	$created, $created2, $updated, $updated2,
 	$culture, $surftreat, $submit,
 	$material1, $elevation, $woeid,
 	$institution, $hash, $smrRef));
@@ -466,13 +469,13 @@ class AdvancedSearchForm extends Pas_Form {
 	$workflow, $findofnote, $findofnotereason,
 	$rally, $rallyID, $hoard,
 	$hoardID, $other_ref, $manmethod,
-	$fromend, $toend, $notes,
+	 $notes,
 	$objdate1period, $objdate2period, $county,
 	$regionID, $district, $parish,
 	$fourFigure, $elevation, $woeid,
 	$objdate1subperiod, $objdate2subperiod, $treasure,
 	$treasureID, $discoverydate, $created,
-	$created2, $idBy, $finder,
+	$created2, $updated, $updated2, $idBy, $finder,
 	$finderID, $recordby, $recorderID,
 	$identifierID, $culture, $surftreat,
 	$submit, $material1, $institution, 
@@ -494,9 +497,8 @@ class AdvancedSearchForm extends Pas_Form {
 	$this->addDisplayGroup(array(
 	'broadperiod', 'fromsubperiod', 'periodFrom',
 	'tosubperiod', 'periodTo', 'culture',
-	'from', 'fromend', 'to',
-	'toend'), 'Temporaldetails');
-	$this->Temporaldetails->setLegend('Temporal details: ');
+	'fromdate', 'todate',), 'Temporaldetails');
+	$this->Temporaldetails->setLegend('Dates and periods: ');
 
 	$this->addDisplayGroup(array(
 	'county', 'regionID', 'district',
@@ -509,7 +511,7 @@ class AdvancedSearchForm extends Pas_Form {
 	if(in_array($this->_role,$this->_restricted)) {
 	$this->addDisplayGroup(array(
 	'institution', 'createdAfter', 'createdBefore',
-	'discovered'), 'Discovery');
+	'updatedAfter', 'updatedBefore', 'discovered'), 'Discovery');
 	} else {
 	$this->addDisplayGroup(array(
 	'institution',

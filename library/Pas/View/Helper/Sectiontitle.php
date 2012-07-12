@@ -1,10 +1,14 @@
 <?php 
-class Pas_View_Helper_Sectiontitle extends Zend_View_Helper_Abstract
-{
+/** View helper for expanding section titles in admin backend
+ * 
+ * @author dpett
+ *
+ */
+class Pas_View_Helper_Sectiontitle 
+	extends Zend_View_Helper_Abstract {
 
-public function sectiontitle($string = NULL)
-{
-switch ($string) {
+public function sectiontitle($string = NULL) {
+	switch ($string) {
 		case 'ironagecoins':
 			$sec = 'Iron Age coin guide';
 			break;
@@ -82,6 +86,9 @@ switch ($string) {
 			break;
 		case 'frg':
 			$sec = 'Finds Recording Guide';
+			break;
+		case 'secret':
+			$sec = 'Britain\'s Secret Treasures';
 			break;
 		default:
 			$sec = 'Index';

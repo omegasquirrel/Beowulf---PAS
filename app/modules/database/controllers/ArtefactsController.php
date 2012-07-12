@@ -173,12 +173,12 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             && (!in_array($this->_cs->getCurrentContext(),array(
                 'xml','json','qrcode')))){
 
-    $wform = new WorkflowStageForm();
-    
-    $wform->id->setValue($id);
-    $wform->submit->setLabel('Change workflow');
-    $this->view->wform = $wform;
-    $response->insert('workflow', $this->view->render('structure/workflow.phtml'));
+//    $wform = new WorkflowStageForm();
+//    
+//    $wform->id->setValue($id);
+//    $wform->submit->setLabel('Change workflow');
+//    $this->view->wform = $wform;
+//    $response->insert('workflow', $this->view->render('structure/workflow.phtml'));
     } else {
     $findspotsdata = new Findspots();
     $this->view->findspots = $findspotsdata->getFindSpotData($id);

@@ -209,11 +209,66 @@ class Pas_Solr_Handler {
      */
     public function setParams(array $params){
     	if(is_array($params)){
-            $this->_params = $params;
+            $this->_params = $this->filterParams($params);
     	return $this->_params;
     	}
+    	
     }
 
+    public function filterParams($params){
+    	if(array_key_exists('created', $params)){
+    		$created = $params['created'];
+    		$queryDateA = $created . "T00:00:00.001Z";
+    		$queryDateB = $created . "T23:59:59.999Z";	
+    		$params['created'] = $queryDateA . ' TO ' . $queryDateB ;
+    	}
+     	if(array_key_exists('updated', $params)){
+    		$updated = $params['updated'];
+    		$queryDateA = $updated . "T00:00:00.001Z";
+    		$queryDateB = $updated . "T23:59:59.999Z";	
+    		$params['updated'] = $queryDateA . ' TO ' . $queryDateB ;
+    	}
+    	if(array_key_exists('createdBefore', $params) && array_key_exists('createdAfter', $params)){
+    		$queryDateA = $params['createdBefore'] . "T00:00:00.001Z";
+    		$queryDateB = $params['createdAfter'] . "T23:59:59.999Z";
+    		$params['created'] = $queryDateB . ' TO ' . $queryDateA;
+    		unset($params['createdBefore']);
+    		unset($params['createdAfter']);
+    	}
+    	if(array_key_exists('createdBefore', $params)){
+    		$queryDate = $params['createdBefore'] . "T23:59:59.999Z";
+    		$params['created'] = '* TO ' . $queryDate;
+    		unset($params['createdBefore']);
+    	}
+    	if(array_key_exists('createdAfter', $params)){
+    		$queryDate = $params['createdAfter'] . "T00:00:00.001Z";
+    		$params['created'] = $queryDate . ' TO * ';
+    		unset($params['createdAfter']);
+    	}
+    	
+    	if(array_key_exists('updatedBefore', $params) && array_key_exists('updatedAfter', $params)){
+    		$queryDateA = $params['updatedBefore'] . "T00:00:00.001Z";
+    		$queryDateB = $params['updatedAfter'] . "T23:59:59.999Z";
+    		$params['updated'] = $queryDateB . ' TO ' . $queryDateA;
+    		unset($params['updatedBefore']);
+    		unset($params['updatedAfter']);
+    	}
+    	if(array_key_exists('updatedBefore', $params)){
+    		$queryDate = $params['updatedBefore'] . "T23:59:59.999Z";
+    		$params['updated'] = '* TO ' . $queryDate;
+    		unset($params['updatedBefore']);
+    	}
+    	if(array_key_exists('updatedAfter', $params)){
+    		$queryDate = $params['updatedAfter'] . "T00:00:00.001Z";
+    		$params['updated'] = $queryDate . ' TO * ';
+    		unset($params['updatedAfter']);
+    	}
+    	
+   
+    	return $params;
+    	
+    }
+    
     /** Set fields to highlight
      *
      * @param array $highlights
@@ -508,9 +563,33 @@ class Pas_Solr_Handler {
     $select['query'] = $this->_params['q'];
             unset($this->_params['q']);
     }
+    
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
-	
+    if(array_key_exists('created', $this->_params)){
+    $this->_query->createFilterQuery('created')->setQuery('created:[' . $this->_params['created'] .']');
+    unset($this->_params['created']);	
+    }
+    if(array_key_exists('updated', $this->_params)){
+    $this->_query->createFilterQuery('updated')->setQuery('updated:[' . $this->_params['updated'] . ']');
+    unset($this->_params['updated']);	
+    }
+      if(array_key_exists('todate', $this->_params) && array_key_exists('fromdate', $this->_params)){
+    $this->_query->createFilterQuery('range')->setQuery('todate:[' . $this->_params['fromdate'] .  ' TO ' . $this->_params['todate'] . ']');
+    $this->_query->createFilterQuery('rangedate')->setQuery('fromdate:[' . $this->_params['fromdate'] .  ' TO ' . $this->_params['todate'] . ']');
+    
+    unset($this->_params['todate']);
+	unset($this->_params['fromdate']);	
+    }
+    if(array_key_exists('fromdate', $this->_params)){
+    $this->_query->createFilterQuery('datefrom')->setQuery('fromdate:[' . $this->_params['fromdate'] . ' TO * ]');
+    unset($this->_params['fromdate']);
+    }
+    if(array_key_exists('todate', $this->_params)){
+    $this->_query->createFilterQuery('todate')->setQuery('todate:[* TO ' . $this->_params['todate'] . ']');
+    unset($this->_params['todate']);
+    }
+  
  	if($this->_core === 'beowulf'){
 		$stats = $this->_query->getStats();
 		foreach($this->getStatsFields() as $field){
@@ -521,8 +600,8 @@ class Pas_Solr_Handler {
     if(array_key_exists('workflow', array_flip($this->_schemaFields))){
     $this->_query->createFilterQuery('workflow')->setQuery('workflow:[3 TO 4]');
     }
-    if(array_key_exists('parish', $this->_params) && ($this->_core === 'beowulf')){
-    $this->_query->createFilterQuery('knownas')->setQuery('knownas:["" TO *]');
+    if((array_key_exists('parish', $this->_params) || array_key_exists('fourFigure', $this->_params)) && ($this->_core === 'beowulf')){
+    $this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
 	}
     }
 

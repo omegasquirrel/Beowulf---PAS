@@ -77,6 +77,13 @@ class Pas_View_Helper_SearchParams
 		'obverseDescription' => 'Obverse description',
 		'reverseDescription' => 'Reverse description',
 		'show' => 'Show this many records per page',
+		'createdAfter' => 'Created after',
+		'createdBefore' => 'Created before',
+		'updatedAfter' => 'Updated after',
+		'updatedBefore' => 'Updated before',
+		'fromdate' => 'Date from',
+		'todate' => 'Date to',
+		'materialTerm' => 'Primary material'
 		
 	);
 
@@ -99,7 +106,36 @@ class Pas_View_Helper_SearchParams
 	$html .= '<ul>';
 
 	foreach($params as $k => $v){
-		$html .= '<li>' . $this->cleanKey($k) .': ' . $v . '</li>';
+		switch($k){
+			case 'fromdate':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->adbc($v) . '</li>';
+				break;
+			case 'todate':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->adbc($v) . '</li>';
+				break;
+			case 'updated':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->niceshortdate($v) . '</li>';
+				break;
+			case 'created':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->niceshortdate($v) . '</li>';
+				break;
+			case 'updatedAfter':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->niceshortdate($v) . '</li>';
+				break;
+			case 'updatedBefore':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->niceshortdate($v) . '</li>';
+				break;
+			case 'createdBefore':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->niceshortdate($v) . '</li>';
+				break;
+			case 'createdAfter':
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $this->view->niceshortdate($v) . '</li>';
+				break;
+			default:
+				$html .= '<li>' . $this->cleanKey($k) .': ' . $v . '</li>';
+				break;	
+		}
+		
 		$this->view->headTitle(  ' | ' . $this->cleanKey($k) . ': ' . $this->view->escape($v));
 	}
 

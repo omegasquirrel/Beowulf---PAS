@@ -19,7 +19,7 @@ class Pas_View_Helper_YahooGeoAdjacent
 	public function YahooGeoAdjacent($woeid) {
 	$adjacent = new GeoPlaces();
 	$places = $adjacent->getAdjacent($woeid);
-	if(count($places)){
+	if(count($places) && !is_null($places[0]['name'])){
 	$html = '<h3>Adjacent places</h3>';
 	$html .= '<ul>';
 	foreach($places as $p ) {

@@ -7,7 +7,7 @@
 * @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
 * @license    GNU General Public License
 */
-class Flickr_PhotosController
+class Secrettreasures_PhotosController
 	extends Pas_Controller_Action_Admin {
 
 	protected $_oauth, $_config, $_userid, $_cache, $_api;
@@ -18,7 +18,7 @@ class Flickr_PhotosController
 	$this->_helper->acl->allow('public',null);
 	$this->_config = Zend_Registry::get('config');
 	$this->_flickr = $this->_config->webservice->flickr;
-	$this->_cache = Zend_Registry::get('cache');
+	$this->_cache = Zend_Registry::get('flickrcache');
 	$this->_api	= new Pas_Yql_Flickr($this->_flickr);
 	}
 
@@ -26,7 +26,7 @@ class Flickr_PhotosController
 	*/
 	public function indexAction() {
 	$this->_flashMessenger->addMessage('You can only see photos at the index page');
-	$this->_redirect('/flickr/');
+	$this->_redirect('/secrettreasures/');
         }
 
         /** Retrieve the page number
@@ -123,8 +123,6 @@ class Flickr_PhotosController
 	$paginator->setPageRange(10);
 	$this->view->paginator = $paginator;
 	$this->view->pictures = $flickr;
-	Zend_Debug::dump($flickr);
-	
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}

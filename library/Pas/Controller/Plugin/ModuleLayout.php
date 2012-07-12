@@ -175,6 +175,11 @@ class Pas_Controller_Plugin_ModuleLayout
 		$response->insert('sidebar', $view->render('structure/bronzeageSidebar.phtml'));
 	    $view->headTitle('A guide to Bronze Age objects')->setSeparator(' - ');
 		break;
+	case 'secrettreasures';
+		$layouttype = 'database';
+		$response->insert('sidebar', $view->render('structure/secretTreasures.phtml'));
+	    $view->headTitle('Britain\'s Secret Treasures')->setSeparator(' - ');
+		break;
 	case 'search';
 		$layouttype = 'home';
 	    $view->headTitle('Sitewide search')->setSeparator(' - ');

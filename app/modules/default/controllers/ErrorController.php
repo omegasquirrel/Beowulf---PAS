@@ -90,7 +90,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 		return "<div class=\"codeFile\" errorid=\"$errorID\">".implode("<br />\n", $lines).'</div>';
 	}	
 	
-public function getLog()
+	public function getLog()
     {
         $bootstrap = $this->getInvokeArg('bootstrap');
         if (!$bootstrap->hasResource('Log')) {
@@ -207,7 +207,8 @@ public function getLog()
 				        $this->getResponse()->setHttpResponseCode(503);
 						$this->view->info  = $errors->exception;
                         $this->view->code = 503;
-						$this->view->message = 'There has been a SQL (that is the code that powers database queries) error. Our fault entirely.' ;
+						$this->view->message = 'There has been an error with our SQL (that is the code that powers database queries). Our fault entirely.
+						This has been logged and sent to admin.' ;
 						$this->view->compiled = $compiledTrace;
 						$message = $this->whois()."\n";
 						$message .= $this->view->CurUrl()."\n";

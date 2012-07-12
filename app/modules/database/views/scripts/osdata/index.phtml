@@ -46,3 +46,28 @@ $this->headMeta('These pages catalogue all sites in the Ordnance Survey 1:50K da
 <?php else:?>
 <p>No OS records are available to you right now.</p>
 <?php endif;?>
+
+<?php
+$this->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
+$this->inlineScript()->captureStart();
+?>
+$(document).ready(function() {
+	$('#print').click(function() {
+	window.print();
+	return false;
+	});
+
+    $('.overlay').click(function(e) {
+    e.preventDefault();
+    var href = $(e.target).attr('href');
+    if (href.indexOf('#') == 0) {
+        $(href).modal('open');
+    } else {
+        $.get(href, function(data) {
+            $('<div class="modal fade" >' + data + '</div>').modal();
+        });
+    }
+});
+
+	});
+<?php $this->inlineScript()->captureEnd();?>

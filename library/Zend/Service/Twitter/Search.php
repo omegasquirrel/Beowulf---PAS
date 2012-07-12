@@ -155,7 +155,7 @@ class Zend_Service_Twitter_Search extends Zend_Rest_Client
 
         switch($this->_responseType) {
             case 'json':
-                return Zend_Json::decode($response->getBody());
+                return json_decode($response->getBody());
                 break;
             case 'atom':
                 return Zend_Feed::importString($response->getBody());

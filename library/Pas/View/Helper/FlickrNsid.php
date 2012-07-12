@@ -26,6 +26,7 @@ class Pas_View_Helper_FlickrNsid
 	 * @return string $flickr
 	 */
 	public function flickrNsid( $username ) {
+		if(!is_null($username)){
 	if (!($this->_cache->test($username))) {
 	$flickr = $this->_api->findByUsername($username);
 	$this->_cache->save($flickr);
@@ -33,6 +34,7 @@ class Pas_View_Helper_FlickrNsid
 	$flickr = $this->_cache->load($username);
 	}
 	return $flickr;
+		}
 	}
 }
 

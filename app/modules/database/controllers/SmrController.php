@@ -27,6 +27,8 @@ class Database_SmrController extends Pas_Controller_Action_Admin {
 	public function indexAction() {
 	$form = new SolrForm();
     $form->removeElement('thumbnail');
+    $form->q->setLabel('Search SMR list: ');
+    $form->q->setAttribs(array('placeholder' => 'Try barrow for instance'));
     $this->view->form = $form;
 
     $params = $this->_getAllParams();

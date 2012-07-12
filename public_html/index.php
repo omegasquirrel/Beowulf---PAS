@@ -7,7 +7,8 @@ defined('APPLICATION_PATH')
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ?
     getenv('APPLICATION_ENV') : 'production'));
-
+defined('SOLR_PATH') 
+	|| define('SOLR_PATH', realpath(dirname(__FILE__) . '/../solr/solr/'));
 // Ensure library/ is on include_path
 // directory setup and class loading
 // directory setup and class loading
