@@ -40,7 +40,9 @@ echo 'Parish: '. ucwords(strtolower($this->parish)).'<br />';
 	$pm = new Pas_Service_Geo_Placemaker($config->webservice->ydnkeys->appid);
 	$place = $pm->getSingle($this->parish.','.$this->county.' United Kingdom');
 	if(!is_null($place)){
+            if(!is_null($place->type)){
 	echo 'Settlement type: '.$place->type.'<br />';
+            }
 	if(isset($place->postal)) {
 	echo 'Postcode: '.$place->postal.'<br />';
 	}
