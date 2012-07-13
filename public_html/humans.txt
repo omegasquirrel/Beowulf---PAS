@@ -16,5 +16,5 @@ Components: jQuery, php, flash
 Software: Zend Studio
 
 /* COLOPHON */
-Here be dragons. St George is coming to get them.
+Hic sunt dracones - Here be dragons. St George is coming to get them.
 Shalom y'all.

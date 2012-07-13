@@ -36,7 +36,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	$this->bootstrap('db');
 	$resource = $this->getPluginResource('db');
 	$database = Zend_Registry::get('config')->resources->db;
-	
+
 	try {
 	// setup database
 	$db = Zend_Db::factory($database);
@@ -107,7 +107,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	if (isset($options['resources']['view']['contentType'])) {
 	$view->headMeta()->appendHttpEquiv('Content-Type',$options['resources']['view']['contentType']);
 	}
-	$view->headTitle()->setSeparator(' - ')->prepend('The Portable Antiquities Scheme');
+//	$view->headTitle()->setSeparator(' - ')->prepend('The Portable Antiquities Scheme');
 	$view->setScriptPath('app/views/scripts/');
 	foreach($options['resources']['view']['helperPath'] as $k =>   $v) {
 	$view->addHelperPath($v, $k);

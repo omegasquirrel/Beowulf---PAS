@@ -1,7 +1,7 @@
 <?php
 /**
  * A view helper for displaying the correct meta data
- * 
+ *
  * @category   Pas
  * @package    Pas_View_Helper
  * @subpackage Abstract
@@ -15,13 +15,13 @@
 
  	protected $_keywords = NULL;
 	/** Display meta data
-	 * 
+	 *
 	 * @param string $keywords
 	 * @uses Pas_View_Helper_CurUrl
 	 * @uses Zend_View_Helper_PartialLoop
 	 * @uses Zend_View_Helper_HeadMeta
 	 * @uses Pas_View_Helper_Title
-	 * 
+	 *
 	 */
 	public function meta(){
 	$date = new Zend_Date();
@@ -30,14 +30,14 @@
 		->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
 		->appendHttpEquiv('Content-Language', 'en-GB')
 		->appendHttpEquiv('imagetoolbar', 'no');
-	$this->view->headMeta($this->view->partialLoop('partials/database/author.phtml', 
+	$this->view->headMeta($this->view->partialLoop('partials/database/author.phtml',
 	$this->view->peoples),'dc.creator');
 	$this->view->headMeta($this->view->CurUrl(),'dc.identifier');
 	$this->view->headMeta($this->view->title(),'dc.title');
 	$this->view->headMeta($keywords,'dc.keywords');
 	$this->view->headMeta('The Portable Antiquities Scheme and the British Museum','dc.publisher');
-	$this->view->headMeta(strip_tags($this->view->partialLoop('partials/database/description.phtml', 
-	$this->view->finds)),'dc.description');
+	$this->view->headMeta(strip_tags($this->view->partialLoop('partials/database/description.phtml',
+	$this->view->finds)),'description');
 	$this->view->headMeta($this->view->partialLoop('partials/database/datecreated.phtml',
 	$this->view->finds),'dc.date.created');
 	$this->view->headMeta('Archaeological artefact found in England or Wales','dc.subject');

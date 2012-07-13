@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * A view helper for producing COINS metadata for Zotero
  * This might have come from inspiration at omeka....
@@ -20,7 +20,7 @@ class Pas_View_Helper_Coins extends Zend_View_Helper_Abstract {
 	}
 
 	/** Set up the constants for the metadata
-	 * 
+	 *
 	 * @var unknown_type
 	 */
 	const COINS_SPAN_CLASS 						= 'Z3988';
@@ -32,35 +32,35 @@ class Pas_View_Helper_Coins extends Zend_View_Helper_Abstract {
 	const ELEMENT_DESCRIPTION_TRUNCATE_LENGTH	= 500;
 	const ELEMENT_SUBJECT 						= 'Archaeology';
 	const ELEMENT_LANGUAGE 						= 'English';
-	const ELEMENT_RIGHTS 						= 'Creative Commons';
+	const ELEMENT_RIGHTS 						= 'CC BY-SA';
 	const ELEMENT_PUBLISHER 					= 'The Portable Antiquities Scheme';
 	const ELEMENT_TYPE 							= 'WebPage';
 	const ELEMENT_FORMAT 						= 'Text';
-	
+
 	/** Create the coinsdata array
-	 * 
+	 *
 	 * @var unknown_type
 	 */
-	private $_coinsData = array();	
-	
+	private $_coinsData = array();
+
 	/** Generate the metadata for insert
-	 * 
+	 *
 	 * @param string $title
 	 * @param string $author
 	 * @param date $published
 	 * @param string $description
 	 */
 	public function Coins($title = NULL, $author = NULL,$published = NULL,$description = NULL)  {
-	
+
 	$description = substr($description, 0, self::ELEMENT_DESCRIPTION_TRUNCATE_LENGTH);
-	
+
 	//Create the array for the data
 	$this->_coinsData['ctx_ver']     = self::CTX_VER;
 	$this->_coinsData['rft_val_fmt'] = self::RFT_VAL_FMT;
 	$this->_coinsData['rfr_id']      = self::RFR_ID;
 	$this->_coinsData['rft.title']  = $title . ' - Portable Antiquities Scheme';
-	$this->_coinsData['rft.subject'] = self::ELEMENT_SUBJECT; 
-	$this->_coinsData['rft.language'] = self::ELEMENT_LANGUAGE; 
+	$this->_coinsData['rft.subject'] = self::ELEMENT_SUBJECT;
+	$this->_coinsData['rft.language'] = self::ELEMENT_LANGUAGE;
 	$this->_coinsData['rft.publisher'] = self::ELEMENT_PUBLISHER;
 	$this->_coinsData['rft.creator'] = $author;
 	$this->_coinsData['rft.creator'] = $author;

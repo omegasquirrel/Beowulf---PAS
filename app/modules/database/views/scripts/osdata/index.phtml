@@ -1,11 +1,11 @@
-<?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
+<?php
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',
 $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',
-$type='text/javascript'); 
+$type='text/javascript');
 $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
 $this->headTitle('List of all antiquities in the OS 1:50k Gazetteer');
 $this->headMeta('These pages catalogue all sites in the Ordnance Survey 1:50K dataset that can be obtained from the opendata download.','description')
@@ -19,7 +19,7 @@ $this->headMeta('These pages catalogue all sites in the Ordnance Survey 1:50K da
 <?php echo $this->form;?>
 <?php if($this->results):?>
 <div class="row-fluid">
-<div class="span8">
+<div class="span9">
 <table class="table table-striped" summary="A list of all ordnance survey listed monuments">
 <thead>
 <tr>
@@ -28,7 +28,7 @@ $this->headMeta('These pages catalogue all sites in the Ordnance Survey 1:50K da
 <th>Feature type</th>
 </tr>
 </thead>
-<tr><?php 
+<tr><?php
 //echo $this->form;
 ?></tr>
 <tbody>
@@ -36,7 +36,7 @@ $this->headMeta('These pages catalogue all sites in the Ordnance Survey 1:50K da
 </tbody>
 </table>
 </div>
-<div class="span2">
+<div class="span3">
 <p><a class="btn btn-small" href="<?php echo $this->url(array('module' => 'database','controller' => 'osdata','action' => 'map'),'default',false);?>">Map these sites</a></p>
 <?php echo $this->facetCreator($this->facets);?>
 </div>

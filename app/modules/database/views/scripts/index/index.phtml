@@ -1,7 +1,9 @@
 <?php
 $this->headTitle("Welcome to the Scheme's database");
-$this->headMeta('This database is maintained by the Scheme and contains records of archaeological objects found by the public in England and Wales. It is first and foremost a research resource, but it is also a record of our rural archaeological record','description');
-$this->headMeta('archaeology,database,England,Wales,discovery,archaeological','dc.keywords');
+$this->metaBase('This database is maintained by the Scheme and contains records of archaeological objects found by the public in England and Wales. It is first and foremost a research resource, but it is also a record of our rural archaeological record',
+'archaeological database',
+ 'archaeology,database,England,Wales,discovery,archaeological'
+        );
 ?>
 <?php
 echo $this->googleDynamicMap();
@@ -11,7 +13,7 @@ $this->inlineScript()->appendFile('http://maps.stamen.com/js/tile.stamen.js',$ty
 <?php $this->inlineScript()->captureStart();?>
 $(document).ready(function() {
 
-<?php 
+<?php
 	$user = new Pas_User_Details();
 	$person = $user->getPerson()->role;
 	$allowed = array('admin', 'fa', 'flos', 'research', 'treasure');
@@ -23,7 +25,7 @@ $(document).ready(function() {
 		$minzoom = 1;
 	}
 ?>
-		
+
 	var max = <?php echo $maxzoom;?>;
 	var min = <?php echo $minzoom;?>;
 	var osmMapType = new google.maps.ImageMapType({
@@ -38,8 +40,8 @@ $(document).ready(function() {
         name: "OSM",
         maxZoom: max
     });
-	
-	
+
+
 
 	var myOptions = {
           center: new google.maps.LatLng(54,-2),
@@ -66,7 +68,7 @@ $(document).ready(function() {
             myOptions);
             map.mapTypes.set('OSM',osmMapType);
             map.setTilt(45);
-      
+
        google.maps.event.trigger(map, 'resize');
        map.setZoom( map.getZoom() );
        map.mapTypes.set("Watercolor", new google.maps.StamenMapType("watercolor"));
@@ -80,7 +82,7 @@ $(document).ready(function() {
 		myTextDiv.appendChild(myTitle);
 
 		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
-		
+
 	<?php
 	$request = Zend_Controller_Front::getInstance()->getRequest();
 	$params = array('module' => 'database', 'controller' => 'ajax', 'action' => 'mapdata2');
@@ -89,7 +91,7 @@ $(document).ready(function() {
 	$url = $this->serverUrl() . $this->url($params,'default',true);
 	       ?>
 	var infowindow = new google.maps.InfoWindow();
-	
+
 
     jQuery.get("<?php echo $url;?>", {}, function(data) {
 
@@ -101,10 +103,10 @@ $(document).ready(function() {
         );
         var title = markerXML.attr("title");
         var marker = new google.maps.Marker({
-        	position: latlng, 
-        	map: map,  
+        	position: latlng,
+        	map: map,
         	title: title,
-        	icon: '<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png', 
+        	icon: '<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png',
         	});
         markerInfoWindow(marker, markerXML.attr("content"));
     });
