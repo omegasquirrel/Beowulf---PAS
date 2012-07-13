@@ -200,7 +200,7 @@ class News extends Pas_Db_Table_Abstract {
 		$data['longitude']  = NULL;
 		$data['woeid'] = NULL;
 	}
-
+	unset($data['csrf']);
 	return parent::insert($data);
 	} else {
 		throw new Exception(('The insert data must be in array format.'));

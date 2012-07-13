@@ -20,7 +20,7 @@ class Pas_Filter_EmailTextOnly implements Zend_Filter_Interface {
 	public function __construct($options = null) {
 	$config = HTMLPurifier_Config::createDefault();
 	$this->_htmlPurifier = new HTMLPurifier($config);
-	$config->set('Cache.SerializerPath',  'app/cache/htmlpurifier');
+	$config->set('Cache.SerializerPath',  APPLICATION_PATH . '/cache/htmlpurifier');
 	$config->set('HTML.Allowed', 'a[href]');
 	$config->set('AutoFormat.RemoveEmpty.RemoveNbsp',TRUE);
 	$config->set('AutoFormat.RemoveEmpty', TRUE);

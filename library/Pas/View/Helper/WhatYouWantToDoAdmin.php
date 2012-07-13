@@ -62,7 +62,6 @@ class Pas_View_Helper_WhatYouWantToDoAdmin extends Zend_View_Helper_Abstract {
 	$html .= $this->buildNews();
 	$html .= $this->buildVacancy();
 	$html .= $this->buildEvent();
-	$html .= $this->view->CommentsModerate();
 
 	$html .= '</ul>';
 	$html .= '</div><div id="clear"></div>';

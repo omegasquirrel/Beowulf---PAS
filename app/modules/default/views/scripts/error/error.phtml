@@ -1,7 +1,10 @@
 
 
-<h1>An error occurred with error code: <?php echo $this->code;?></h1>
-<h2><?php echo $this->message ?></h2>
+<h1>An error has occurred</h3>
+
+<p>We're aware this is frustrating and the system has flagged this via email to us.</p>
+<p>For your reference, quote error code: <strong><?php echo $this->code;?></strong> and the following message if you contact us:</p>
+<div class="well hero-unit"><h2><?php echo $this->code;?>: <?php echo $this->message ?></h2></div>
 
     <h3>Exception information:</h3>
     <p>
@@ -9,8 +12,8 @@
 		<?php echo $this->exception->getMessage();
 		$this->actionerrors()?>
     </p>
-<h3>The PAStexplorers are on the case!</h3>
-<img src="<?php echo $this->baseUrl();?>/images/children.png">
+<img src="<?php echo $this->serverUrl();?>/assets/indy.jpg">
+<p><a href="http://www.flickr.com/photos/donsolo/2354816855/">Indy helps out with the egg hunt</a>: a photo by Don Solo on Flickr.</p>
 
 
 

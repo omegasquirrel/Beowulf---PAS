@@ -61,6 +61,28 @@ class Content extends Pas_Db_Table_Abstract {
 	return $data;
 	}
 
+/** Retrieves content by section, slug and when publication status is set to published
+     * @param string $section
+     * @param string $slug
+     * @return array
+	*/
+	public function getSecretContent($section, $slug)	{
+	$key = 'secretcontent'.md5($slug);
+	if (!$data = $this->_cache->load($key)) {
+	$content = $this->getAdapter();
+	$select = $content->select()
+		->from($this->_name,array(
+		'body', 'metaDescription', 'metaKeywords',
+		'title', 'created', 'updated', 'menutitle'))
+		->joinLeft('users','users.id = content.author',array('fullname'))
+		->where('publishState = 3')
+		->where('slug = ?',(string)$slug);
+	$data = $content->fetchAll($select);
+	$this->_cache->save($data, $key);
+	}
+	return $data;
+	}
+	
 	/** Retrieves all content in administration interface
      * @param integer $page
      * @return array

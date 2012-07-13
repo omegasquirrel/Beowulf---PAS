@@ -16,11 +16,16 @@ $feed->addHub('http://pubsubhubbub.appspot.com/');
 ));
 foreach($this->results as $find){
 
+
 $entry = $feed->createEntry();
 $entry->setTitle($find['old_findID'] . ' '.$find['objecttype'] . ' ' . $find['broadperiod']);
 $entry->setLink($this->serverUrl() . '/database/artefacts/record/id/' . $find['id']);
-$entry->addAuthor(array( 'name'  => $find['creator'],
-));
+if(is_null($find['identifier'])){
+	$name = 'The Portable Antiquities Scheme';
+}else {
+	$name = $find['identifier'];
+}
+$entry->addAuthor(array( 'name'  => $name));
 $updated = new Zend_Date($find['updated'], 'YY-mm-dd hh:mm:ss');
 $created = new Zend_Date($find['created'], 'YY-mm-dd hh:mm:ss');
 $entry->setDateModified($updated);

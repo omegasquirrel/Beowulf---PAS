@@ -33,15 +33,16 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/lightbox.css', $type='screen');
 	$view->headLink()->appendStylesheet('http://assets.cookieconsent.silktide.com/current/style.min.css');
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.css', $type='screen');
+	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/print.css', $type='print');
 	$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 	$view->headMeta()->appendName('viewport','width=device-width, initial-scale=1.0');
-	$view->headLink()->appendAlternate($view->baseUrl().'/database/artefacts/index/format/atom/',
+	$view->headLink()->appendAlternate($view->serverUrl().'database/search/results/format/atom',
 		'application/rss+xml', 'Latest recorded finds feed')
-		->appendAlternate($view->baseUrl() . '/news/format/atom',
+		->appendAlternate($view->serverUrl(). '/news/index/format/atom',
 		'application/rss+xml', 'Latest Scheme news feed')
-		->appendAlternate($view->baseUrl() . '/getinvolved/vacancies/format/atom', 'application/atom+xml',
+		->appendAlternate($view->serverUrl() . '/getinvolved/vacancies/index/format/atom', 'application/atom+xml',
 		'Latest Scheme vacancies atom Feed')
-		->appendAlternate($view->baseUrl() . '/research/projects/index/format/atom',
+		->appendAlternate($view->serverUrl() . '/research/projects/index/format/atom',
 		'application/atom+xml', 'Research projects based on Scheme data')
 		->appendAlternate($view->serverUrl() . '/blogs/centralunit/feed/', 'application/atom+xml',
 		'Central unit blog posts')

@@ -19,6 +19,6 @@ class Secrettreasures_ContentController extends Pas_Controller_Action_Admin {
 	*/
 	function indexAction()	{
 		$content = new Content();
-		$this->view->contents = $content->getContent('secret',$this->getRequest()->getParam('slug'));
+		$this->view->contents = $content->getSecretContent('secret',$this->getRequest()->getParam('slug'));
 	}
 }

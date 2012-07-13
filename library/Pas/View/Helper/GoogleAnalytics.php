@@ -5,7 +5,7 @@
  *
  * @original http://www.zfsnippets.com/snippets/view/id/30
  */
-class Pas_View_Helper_GoogleAnalytics 
+class Pas_View_Helper_GoogleAnalytics
 	extends Zend_View_Helper_Placeholder_Container_Standalone
 {
     /**
@@ -200,7 +200,7 @@ class Pas_View_Helper_GoogleAnalytics
         $xhtml[] = 'document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));';
         $xhtml[] = '</script>';
 
-        $xhtml[] = '<script type="text/javascript">';
+        $xhtml[] = '<script type="text/plain" class="cc-onconsent-analytics">';
         $xhtml[] = 'try {';
 
         $i = 0;

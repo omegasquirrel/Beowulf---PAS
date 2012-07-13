@@ -1,7 +1,7 @@
 <dataConfig>
 	<dataSource type="JdbcDataSource"
    driver="com.mysql.jdbc.Driver"
-   url="jdbc:mysql://localhost/antiquities"
+   url="jdbc:mysql://localhost/antiquitiesTwo"
    user="webuser2"
    password="45jql11w"
    tinyInt1isBit="false"/>

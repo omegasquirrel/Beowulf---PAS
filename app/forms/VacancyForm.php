@@ -32,7 +32,6 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('StringTrim', 'StripTags'))
 		->setAttrib('size', 20)
-		->addValidator('Currency')
 		->addErrorMessage('You must enter a salary.');
 	
 	$specification = new Pas_Form_Element_RTE('specification');

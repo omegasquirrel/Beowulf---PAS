@@ -16,15 +16,6 @@ class IndexController extends Pas_Controller_Action_Admin
 	$quotes = new Quotes();
 	$this->view->quotes  = $quotes->getValidQuotes();
 
-	$finds = new Finds();
-	$this->view->finds = $finds->getCountAllFinds();
-
-	$people = new Peoples();
-	$this->view->people = $people->getCountAllPeople();
-
-	$users = new Users();
-	$this->view->users = $users->getCounter();
-
 	$news = new News();
 	$this->view->news = $news->getHeadlines();
         $form = new CombinedForm();

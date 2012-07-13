@@ -15,20 +15,20 @@ class Pas_View_Helper_SearchParams
 	extends Zend_View_Helper_Abstract {
 
 	/** The cache object
-	 * 
+	 *
 	 * @var unknown_type
 	 */
 	protected $_cache;
 
 	/** Create the cache object
-	 * 
+	 *
 	 */
 	public function __construct(){
 		$this->_cache = Zend_Registry::get('cache');
 	}
 
 	/** Array of cleaned names for display as a parameter
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $_niceNames = array(
@@ -84,13 +84,13 @@ class Pas_View_Helper_SearchParams
 		'fromdate' => 'Date from',
 		'todate' => 'Date to',
 		'materialTerm' => 'Primary material'
-		
+
 	);
 
 	/** Generate the search string from parameters submitted
 	 * @access public
 	 * @param array $params
-	 * @return string 
+	 * @return string
 	 */
 	public function SearchParams($params = NULL) {
 
@@ -104,7 +104,7 @@ class Pas_View_Helper_SearchParams
 	if(!is_null($params)) {
 	$html .= '<p>You searched for: </p>';
 	$html .= '<ul>';
-
+        $searches = array();
 	foreach($params as $k => $v){
 		switch($k){
 			case 'fromdate':
@@ -133,17 +133,20 @@ class Pas_View_Helper_SearchParams
 				break;
 			default:
 				$html .= '<li>' . $this->cleanKey($k) .': ' . $v . '</li>';
-				break;	
+				break;
 		}
-		
-		$this->view->headTitle(  ' | ' . $this->cleanKey($k) . ': ' . $this->view->escape($v));
-	}
+		$searches[] = $this->cleanKey($k) . ' ' . $v;
 
+
+	}
+        $this->view->headTitle('Search results from the database');
+        $this->view->headMeta(implode(' - ', $searches), 'description');
+        $this->view->headMeta(implode(',', $searches), 'keywords');
 	$html .= '</ul>';
 	}
 	return $html;
 	}
-	
+
 	/** Clean the key for nicename
 	 * @access public
 	 * @param string $string
