@@ -1,5 +1,11 @@
-<?php 
+<?php
 if (count($this->users) > 0) {
+?>
+<div class="hero-unit">
+<p>Thank you for trying the new version of the Scheme database. This is still
+    undergoing some maintenance to get it working properly. Until the 23rd July
+    you can use <a href="http://grendel.finds.org.uk">http://grendel.finds.org.uk</a> to record objects.</p></div>
+<?php
 echo $this->partialLoop('partials/users/profile.phtml',$this->users);
 echo $this->WhatYouWantToDo();
 echo $this->facebookPage();

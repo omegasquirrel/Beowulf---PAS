@@ -115,9 +115,9 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     /** Display a list of objects recorded with pagination
     */
     public function indexAction(){
-    $this->_redirect('database/search/results/');	
+    $this->_redirect('database/search/results/');
     }
-    
+
     /** Display individual record
      * @todo move comment functionality to a model
     */
@@ -174,7 +174,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
                 'xml','json','qrcode')))){
 
 //    $wform = new WorkflowStageForm();
-//    
+//
 //    $wform->id->setValue($id);
 //    $wform->submit->setLabel('Change workflow');
 //    $this->view->wform = $wform;
@@ -185,6 +185,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }
     $form = new CommentFindForm();
     $form->submit->setLabel('Add a new comment');
+    $form->removeElement('captcha');
     $this->view->form = $form;
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {
