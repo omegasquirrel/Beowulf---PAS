@@ -35,7 +35,7 @@ class Pas_View_Helper_SecretTreasureTweets
 	public function callTwitter() {
 	if (!($this->_cache->test('treasureTweets'))) {
 	$twitter = new Zend_Service_Twitter_Search('json');
-	$tweets = $twitter->search('#secrettreasure', array('lang' => 'en','rpp' => 20));
+	$tweets = $twitter->search('#secrettreasure OR #secrettreasures', array('lang' => 'en','rpp' => 20));
     $this->_cache->save($tweets);
 	} else {
 	$tweets = $this->_cache->load('treasureTweets');

@@ -28,10 +28,10 @@ class GetInvolved_ContactUsController extends Pas_Controller_Action_Admin {
         $form->removeElement('captcha');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
+        if ($form->isValid($form->getValues())) {
 	$insertData = $form->getValues();
 	$messages = new Messages();
-	$insert = $messages->addComplaint($data);
+        $messages->addComplaint($insertData);
 	$cc = array();
 	$cc[] = array(
 		'email' => $form->getvalue('comment_author_email'),

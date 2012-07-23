@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This class is to display the breadcrumbs 
+ * This class is to display the breadcrumbs
  * Load of rubbish, needs a rewrite
  * @category   Pas
  * @package    Pas_View_Helper
@@ -79,16 +79,16 @@ class Pas_View_Helper_Breadcrumb
 			break;
 		case 'earlymedievalcoins':
 			$nicemodule = 'Early Medieval coin guide';
-			break; 
+			break;
 		case 'greekandromancoins':
 			$nicemodule = 'Greek &amp; Roman Provincial coin guide';
-			break; 
+			break;
 		case 'byzantinecoins':
 			$nicemodule = 'Byzantine coin guide';
-			break; 
+			break;
 		case 'postmedievalcoins':
 			$nicemodule = 'Post Medieval coin guide';
-			break; 
+			break;
 		case 'getinvolved':
 			$nicemodule = 'Get involved';
 			break;
@@ -101,7 +101,7 @@ class Pas_View_Helper_Breadcrumb
 		case 'secrettreasures':
 			$nicemodule = 'Britain\'s Secret Treasures';
 			break;
-		 default: 
+		 default:
 		 	$nicemodule = $module;
 		 break;
 	}
@@ -152,7 +152,7 @@ class Pas_View_Helper_Breadcrumb
 		default:
 			$nicename = $controller;
 			break;
-	}		
+	}
 
 
 	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
@@ -168,7 +168,7 @@ class Pas_View_Helper_Breadcrumb
 			break;
 		case 'regionalstats':
 			$nicenameaction = 'Regional statistics';
-			break;		
+			break;
 		case 'institutionstats':
 			$nicenameaction = 'Institutional statistics';
 			break;
@@ -251,13 +251,16 @@ class Pas_View_Helper_Breadcrumb
 			$nicenameaction = 'One to 50K entry';
 			break;
 			case 'myfinds':
-			$nicenameaction = 'Finds I have recorded';	
+			$nicenameaction = 'Finds I have recorded';
 			break;
 			case 'myimages':
-			$nicenameaction = 'Images I have added';	
+			$nicenameaction = 'Images I have added';
 			break;
 			case 'mp':
 			$nicenameaction = 'Member of Parliament';
+			break;
+                        case 'inaset':
+			$nicenameaction = 'In a set';
 			break;
 			default:
 			$nicenameaction = $action;
@@ -277,13 +280,13 @@ class Pas_View_Helper_Breadcrumb
 
 	// If our module is default
 	if($l_m == 'default') {
-	
+
 	if($l_a == 'index'){
 	$crumbs .= ucfirst($nicename);
 	} else {
 	$crumbs .= " <a href='{$url}/{$controller}/' title='Return to {$nicename} section'>$nicename</a> &raquo; $nicenameaction ";
-	
-	
+
+
 	}
 	} else {
 	// Non Default Module
@@ -291,14 +294,14 @@ class Pas_View_Helper_Breadcrumb
 	$crumbs .= ucfirst($nicemodule);
 	} else {
 	$crumbs .= "<a href='{$url}/{$module}/' title='Return to $nicemodule home'>" . ucfirst($nicemodule) . "</a> &raquo; ";
-	
+
 	if($l_a == 'index') {
 	$crumbs .= ucfirst($nicename);
 	} else {
 	$crumbs .= " <a href='{$url}/{$module}/{$controller}/' title='Return to $nicename home'> " . ucfirst($nicename) . "</a> &raquo; " . ucfirst($nicenameaction);
 	}
 	}
-	
+
 	}
 	return $crumbs;
 	}
