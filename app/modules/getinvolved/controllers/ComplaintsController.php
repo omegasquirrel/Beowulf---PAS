@@ -1,6 +1,6 @@
 <?php
 /** Controller for getting complaints based form and submitting it
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -10,16 +10,17 @@
 class GetInvolved_ComplaintsController extends Pas_Controller_Action_Admin {
 
 	/** Initialise the ACL and contexts
-	*/ 
+	*/
     public function init() {
 		$this->_helper->acl->allow('public',null);
 		$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	}
-		
+
 	/** Submit complaints action
-	*/ 
+	*/
 	public function indexAction() {
 	$form = new ComplaintsForm();
+        $form->removeElement('captcha');
 	$this->view->form = $form;
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {

@@ -1,6 +1,6 @@
 <?php
 /** Controller for manipulating news added by a user
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -9,15 +9,15 @@
 */
 class Users_NewsController extends Pas_Controller_Action_Admin {
 	/** Set up variables
-	 * 
+	 *
 	 * @var string $_gmapskey
 	 * @var object $_config
 	 * @var object $_geocoder
-	*/	
+	*/
 	protected $_gmapskey,$_config,$_geocoder;
 
 	/** Set up the ACL and contexts
-	*/		
+	*/
 	public function init() {
 		$this->_helper->_acl->allow('flos',null);
 		$this->_helper->_acl->allow('fa',null);
@@ -25,18 +25,18 @@ class Users_NewsController extends Pas_Controller_Action_Admin {
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         $this->_config = Zend_Registry::get('config');
         $this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-        $this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
+        $this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
     }
-    
+
 	const REDIRECT = '/users/news/';
 	/** Set up the index page
-	*/	
+	*/
 	public function indexAction() {
 	$news = new News();
 	$this->view->news = $news->getAllNewsArticlesAdmin($this->_getAllParams());
 	}
 	/** Add a news story
-	*/	
+	*/
 	public function addAction() {
 	$form = new NewsStoryForm();
 	$form->submit->setLabel('Add a news story');
@@ -48,7 +48,7 @@ class Users_NewsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
@@ -81,9 +81,9 @@ class Users_NewsController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
 	/** Edit a news story
-	*/	
+	*/
 	public function editAction() {
 	$form = new NewsStoryForm();
 	$form->submit->setLabel('Update details...');
@@ -95,7 +95,7 @@ class Users_NewsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
@@ -136,7 +136,7 @@ class Users_NewsController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete a news story
-	*/	
+	*/
 	public function deleteAction() {
 	if ($this->_request->isPost()) {
 	$id = (int)$this->_request->getPost('id');

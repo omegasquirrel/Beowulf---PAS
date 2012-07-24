@@ -1,15 +1,15 @@
 <div typeof="pas:record" about="[<?php echo $this->old_findID;?>]" class="well">
     
-   	<div> 
+   	<div id="preview"> 
     <?php if(isset($this->thumbnail)):?>
      <?php
         $path = '/images/thumbnails/';
         $ext = '.jpg';
         list($w,$h) = getimagesize($this->serverUrl() . $path . $this->thumbnail . $ext );
         ?>
-    <ul class="thumbnails" style="float:right;">
+    <ul class="thumbnailSmall">
         <li >
-            <div class="thumbnail">
+            <div >
             <a href="<?php echo $this->serverUrl() . '/' . $this->imagedir?>medium/<?php echo urlencode(strtolower($this->filename));?>" rel="lightbox" title="View larger image of <?php echo $this->old_findID;?>"><img src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
                     alt="Thumbnail image of <?php echo $this->old_findID;?>"
                     width="<?php echo $w;?>" height="<?php echo $h;?>"/></a>

@@ -25,3 +25,23 @@
 <p>No messages are listed or available to you</p>
 <?php endif;?>
 <?echo $this->paginationControl($this->messages, 'Sliding', 'structure/pagination.phtml'); ?>
+
+<?php 
+$this->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
+$this->inlineScript()->captureStart();
+?>
+$(document).ready(function() {
+	$('.overlay').click(function(e) {
+    e.preventDefault();
+    var href = $(e.target).attr('href');
+    if (href.indexOf('#') == 0) {
+        $(href).modal('open');
+    } else {
+        $.get(href, function(data) {
+            $('<div class="modal fade" >' + data + '</div>').modal();
+        });
+    }
+});
+
+	}); 
+<?php $this->inlineScript()->captureEnd();?>

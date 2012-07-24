@@ -27,7 +27,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
 
     $this->_peoples = new Peoples();
     $this->_gmapskey = $this->_helper->config->webservice->googlemaps->apikey;
-    $this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
+    $this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
 	}
 
     const REDIRECT = 'database/people/';
@@ -244,6 +244,6 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     }
 
     public function mapAction(){
-    	
+
     }
 }

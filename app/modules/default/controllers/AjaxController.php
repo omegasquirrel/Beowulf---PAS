@@ -826,4 +826,9 @@ class AjaxController extends Pas_Controller_Action_Ajax
         $this->view->emperors = $emps->getEmperorsTimeline();
         }
 
+        public function messagereplyAction(){
+        	$replies = new Replies();
+        	$this->view->replies = $replies->fetchRow('messageID=' . $this->_getParam('id'))->toArray();
+        	$this->_helper->viewRenderer->setNoRender(false);
+        }
 }

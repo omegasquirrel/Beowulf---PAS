@@ -37,10 +37,14 @@ class Admin_MessagesController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() 
         && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
-	$data = $form->getValues();
+    $reply = array();
+	$reply['messagetext'] = $form->getValue('messagetext');
+	$reply['messageID'] = $this->_getParam('id');
 	$data['replied'] = 1;
 	$where =  $this->_messages->getAdapter()->quoteInto('id= ?', $this->_getParam('id'));
 	$update = $this->_messages->update($data, $where);
+	$replies = new Replies();
+	$replies->add($reply);
 	$contact = array(array(
 	'email' => $form->getValue('comment_author_email'), 
 	'name' => $form->getValue('comment_author')
@@ -66,6 +70,24 @@ class Admin_MessagesController extends Pas_Controller_Action_Admin {
 	}
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
+	}
+	}
+	
+	public function deleteAction(){
+	if ($this->_request->isPost()) {
+	$id = (int)$this->_request->getPost('id');
+	$del = $this->_request->getPost('del');
+	if ($del == 'Yes' && $id > 0) {
+	$where = 'id = ' . $id;
+	$this->_messages->delete($where);
+	$this->_flashMessenger->addMessage('Message deleted!');
+	}
+	$this->_redirect( '/admin/messages');
+	}  else  {
+	$id = (int)$this->_request->getParam('id');
+	if ($id > 0) {
+	$this->view->message = $this->_messages->fetchRow('id =' . $id);
+	}
 	}
 	}
 	

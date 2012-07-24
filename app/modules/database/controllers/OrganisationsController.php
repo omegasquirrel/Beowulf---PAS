@@ -1,34 +1,34 @@
 <?php
 
 class Database_OrganisationsController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_gmapskey,$_config,$_geocoder, $_organisations;
 
 	/** Set up the ACL and contexts
-	*/		
+	*/
 	public function init() {
 	$this->_helper->_acl->allow('flos',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_config = Zend_Registry::get('config');
 	$this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-	$this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
+	$this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
 	$this->_organisations = new Organisations();
     }
-    
+
 	const REDIRECT = 'database/organisations/';
     /** Index page, listing all organisations
-	*/	
+	*/
 	public function indexAction() {
 	$organisations = new Organisations();
 	$paginator = $organisations->getOrganisations((array)$this->_getAllParams());
-	$this->view->paginator = $paginator; 
+	$this->view->paginator = $paginator;
 	$form = new OrganisationFilterForm();
 	$this->view->form = $form;
 	$form->organisation->setValue($this->_getParam('organisation'));
 	$form->contact->setValue($this->_getParam('contact'));
 	$form->contactpersonID->setValue($this->_getParam('contactpersonID'));
 	$form->county->setValue($this->_getParam('county'));
-	
+
 	if ($this->_request->isPost() && !is_null($this->_getParam('submit'))) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
@@ -76,14 +76,14 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
-	
-	$address = $form->getValue('address') . ',' . $form->getValue('town_city') . ',' 
+
+	$address = $form->getValue('address') . ',' . $form->getValue('town_city') . ','
 	. $form->getValue('county') . ',' . $form->getValue('postcode') . ','
 	. $form->getValue('country');
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$lon = $coords['lon']; 
+		$lon = $coords['lon'];
 		$pm = new Pas_Service_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
@@ -92,7 +92,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 		$lon = NULL;
 		$woeid = NULL;
 	}
-	
+
 	$updateData = array();
 	$updateData['name'] = $form->getValue('name');
 	$updateData['website'] = $form->getValue('website');
@@ -115,16 +115,16 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
         $updateData[$key] = NULL;
       }
 	 }
-	
+
 	$auditData = $updateData;
 	$audit = $this->_organisations->fetchRow('id=' . $this->_getParam('id'));
 	$oldarray = $audit->toArray();
-	
-	
+
+
 	$where = array();
 	$where =  $this->_organisations->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$update = $this->_organisations->update($updateData,$where);
-	
+
 	if (!empty($auditData)) {
         // look for new fields with empty/null values
         foreach ($auditData as $item => $value) {
@@ -137,7 +137,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
                 // remove slashes (escape characters) from $newarray
                 $auditData[$item] = stripslashes($auditData[$item]);
             } // if
-        } // foreach 
+        } // foreach
         // remove entry from $oldarray which does not exist in $newarray
         foreach ($oldarray as $item => $value) {
             if (!array_key_exists($item, $auditData)) {
@@ -165,7 +165,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
             $fieldarray[$ix]['afterValue'] = '';
         } // if
     } // foreach
-    
+
     // process any unmatched details remaining in $newarray
     foreach ($auditData as $field_id => $new_value) {
         $ix++;
@@ -175,8 +175,8 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 		$fieldarray[$ix]['createdBy']     = $this->getIdentityForForms();
         $fieldarray[$ix]['fieldName']     = $field_id;
         $fieldarray[$ix]['afterValue']    = $new_value;
-		
-    } 
+
+    }
 	function filteraudit($fieldarray)
 	{
 	if ($fieldarray['afterValue'] != $fieldarray['beforeValue'])
@@ -184,9 +184,9 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	return true;
 	  }
 	}
-	
+
 	$fieldarray = array_filter($fieldarray,'filteraudit');
-	
+
 	foreach($fieldarray as $f){
 	foreach ($f as $key => $value) {
       if (is_null($value) || $value=="") {
@@ -212,7 +212,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	}
 	}
    /** Add an organisation
-	*/		
+	*/
 	public function addAction() {
 	$form = new OrganisationForm();
 	$form->submit->setLabel('Add a new organisation');
@@ -226,7 +226,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$lon = $coords['lon']; 
+		$lon = $coords['lon'];
 		$pm = new Pas_Service_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
@@ -265,9 +265,9 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
-	
+
    /** Delete an organisation
-	*/		
+	*/
 	public function deleteAction() {
 	if($this->_getParam('id',false)) {
 	if ($this->_request->isPost()) {
@@ -290,5 +290,5 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 }

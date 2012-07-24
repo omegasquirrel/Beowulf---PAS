@@ -147,8 +147,6 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$insertData['county'] = $form->getValue('county');
 	$insertData['period'] = $form->getValue('period');
 	$insertData['filedate'] = $this->getTimeForForms();
-	$insertData['created'] = $this->getTimeForForms();
-	$insertData['createdBy'] = $this->getIdentityForForms();
 	$insertData['filesize'] = $filesize;
 	$insertData['imagerights'] = $form->getValue('copyrighttext');
 	$insertData['secuid'] = $secuid;
@@ -238,8 +236,6 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$updateData['imagerights'] = $form->getValue('imagerights');
 	$updateData['county'] = $form->getValue('county');
 	$updateData['period'] = $form->getValue('period');
-	$updateData['updated'] = $this->getTimeForForms();
-	$updateData['updatedBy'] = $this->getIdentityForForms();
 	foreach ($updateData as $key => $value) {
       if (is_null($value) || $value=="") {
         unset($updateData[$key]);
@@ -387,7 +383,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	unlink(strtolower($original));
 	unlink(strtolower($medium));
 	unlink($zoom);
-	$this->_helper->cache->remove('findtoimage' . $imagedata['0']['id']);
+	//$this->_helper->cache->remove('findtoimage' . $imagedata['0']['id']);
 
 	}
 	$this->_flashMessenger->addMessage('Image and metadata deleted!');
@@ -395,7 +391,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	}  else  {
 	$id = (int)$this->_request->getParam('id');
 	if ((int)$id > 0) {
-	$this->view->slide = $this->_images->fetchRow('imageID ='.$id);
+	$this->view->slide = $this->_images->fetchRow('imageID =' . $id);
 	}
 	}
 	}

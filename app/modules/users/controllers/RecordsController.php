@@ -47,7 +47,7 @@ class Users_RecordsController extends Pas_Controller_Action_Admin {
     $this->view->finds = $search->_processResults();
     $this->view->facets = $search->_processFacets();
     } else {
-        throw new Pas_Exception_Param('Your account needs linking to your userid');
+        $this->_redirect('/error/accountproblem');
     }
     }
     /** Display the map

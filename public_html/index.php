@@ -1,5 +1,6 @@
 <?php
-
+//echo 'Down for upgrade of server - back at 17:15 GMT';
+//exit;
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/app/'));

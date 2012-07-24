@@ -35,6 +35,7 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.css', $type='screen');
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/print.css', $type='print');
 	$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
+	$view->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=Edge');
 	$view->headMeta()->appendName('viewport','width=device-width, initial-scale=1.0');
 	$view->headLink()->appendAlternate($view->serverUrl().'database/search/results/format/atom',
 		'application/rss+xml', 'Latest recorded finds feed')

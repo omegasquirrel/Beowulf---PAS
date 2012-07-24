@@ -54,10 +54,9 @@ class Pas_View_Helper_FindSpotEditCheck
 	$this->_auth = $auth; 
     }
 
-    /** Get the user's role
-     */
-	public function getRole(){
-	if($this->_auth->hasIdentity()){
+    public function getRole()
+	{
+	if($this->_auth->hasIdentity()) {
 	$user = $this->_auth->getIdentity();
 	$role = $user->role;
 	} else {
@@ -65,10 +64,9 @@ class Pas_View_Helper_FindSpotEditCheck
 	}	
 	return $role;
 	}
-
-	/** Get the identity for forms
-	 */
-	public function getIdentityForForms(){
+	
+	public function getIdentityForForms()
+	{
 	if($this->_auth->hasIdentity()){
 	$user = $this->_auth->getIdentity();
 	$id = $user->id;
@@ -79,45 +77,49 @@ class Pas_View_Helper_FindSpotEditCheck
 	}
 	}
 	
-	/** Check for access via user institution
-	 * @return boolean
-	 * @param string $findspotID
-	 */
-	public function checkAccessbyInstitution( $findspotID ) {
-	$find = explode('-', $findspotID);
+	public function getUserID()
+	{
+	if($this->_auth->hasIdentity())
+	{
+	$user = $this->_auth->getIdentity();
+	$id = $user->id;
+	return $id;
+	}
+	}
+	public function checkAccessbyUserID($createdBy)
+	{
+	if(!in_array($this->getRole(),$this->_restricted)) {
+	return true;
+	} else if(in_array($this->getRole(),$this->_restricted)) {
+	if($createdBy == $this->getUserID()) {
+	return true;
+	}
+	} else {
+	return false;
+	}
+	}
+	public function checkAccessbyInstitution($oldfindID)
+	{
+	$find = explode('-', $oldfindID);
 	$id = $find['0'];
 	$inst = $this->getInst();
-	if((in_array($this->getRole(),$this->recorders) && ($id == 'PUBLIC'))) {
-	return true;
-	} else if($id === $inst) {
-	return true;
-	} else {
-		return false;
-	}
-	}
-
-	/** Check for access via user userid
-	 * 
-	 * @param int $userID
-	 * @param int $createdBy
-	 */
-	public function checkAccessbyUserID($userID,$createdBy){
-	if($userID == $createdBy) {
+	if($id == $inst) {
 	return true;
 	}
 	}
-
-	/** Check for user institution
-	 */
-	public function getInst(){
-	if($this->_auth->hasIdentity()){
+	
+	public function getInst()
+	{
+	if($this->_auth->hasIdentity())	{
 	$user = $this->_auth->getIdentity();
 	$inst = $user->institution;
+	if(is_null($inst)){
+	throw new Exception($this->_missingGroup);	
+	}
 	return $inst;
 	} else {
 	return FALSE;
 	}	
-	
 	}
 	
 	/** Check the findspot edit permissions
@@ -125,22 +127,28 @@ class Pas_View_Helper_FindSpotEditCheck
 	 * @param string $findspotID
 	 * @param int $createdBy
 	 */
-	public function findSpotEditCheck($findspotID,$createdBy) {
+	public function findSpotEditCheck($findspotID, $createdBy) {
 	$byID = $this->checkAccessbyUserID($this->getIdentityForForms(), $createdBy);
 	$instID = $this->checkAccessbyInstitution($findspotID);
-	if(in_array($this->getRole(),$this->restricted)) {
-	if(($byID == TRUE && $instID == TRUE) || ($byID == TRUE && $instID == FALSE)) {
-	return TRUE;
+	if(in_array($this->getRole(),$this->_restricted)) {
+	if($createdBy == $this->getIdentityForForms()) {
+	if(($byID == true && $instID == true) || ($byID == true  && $instID == FALSE)) {
+	return true;
+	} else {
+	throw new Pas_NotAuthorisedException($this->_message);
 	}
-	} else if(in_array($this->getRole(),$this->higherLevel)) {
-	return TRUE;
-	} elseif (in_array($this->getRole(),$this->recorders)){
-	if(($byID == TRUE && $instID == TRUE) || ($instID == TRUE && $byID == FALSE)
-	 || ($byID == FALSE && $instID == TRUE)) {
-	return TRUE;
+	} else if(in_array($this->getRole(),$this->_higherLevel)) {
+	return true;
+	} else if (in_array($this->getRole(),$this->_recorders)){
+	if(($byID == true && $instID == true) || ($byID == false && $instID == true) ||
+	($byID == true && $instID == false)) {
+	return true;
+	} else {
+	throw new Pas_NotAuthorisedException($this->_message);
 	}
 	} else {
-	throw new Pas_Exception_NotAuthorised($this->_message);
+	throw new Pas_NotAuthorisedException($this->_message);
+	}
 	}
 	}
 

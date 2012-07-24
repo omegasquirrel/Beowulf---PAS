@@ -13,7 +13,7 @@ $allowedAccess = array('member','flos','hero','research','fa','admin', 'treasure
 if(in_array($user->role,$allowedAccess))
 {
 ?>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myfinds'),null,true);?>" title="View all finds I have recorded">My finds  <i class="icon-list"></i></a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myfinds'),null,true);?>" title="View all finds I have recorded">Finds I recorded  <i class="icon-list"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myinstitution'),null,true);?>" title="View everything recorded at my workplace">My institution's records  <i class="icon-list"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme','action' => 'myimages'),null,true);?>">My images <i class="icon-camera"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'images'),null,true);?>">All images <i class="icon-picture"></i></a></li>
@@ -29,6 +29,9 @@ else
 
 }
 ?>
+<?php if($user->role === 'member'):?>
+<li><a href="<?php echo $this->url(array('module' => 'users','controller'=>'records'),null,true);?>" title="View finds recorded for me by the Scheme">My finds recorded by FLOs</a></li>
+<?php endif;?>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search', 'action' => 'results'),NULL,true);?>" title="All finds recorded on the database">All artefacts &amp; coins <i class="icon-list"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search'),NULL,true);?>">Search database <i class="icon-search"></i></a>
 </li>
@@ -97,7 +100,7 @@ title="List of OS data">Ordnance Survey data  <i class="icon-list"></i></a></li>
 
 </ul></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'rallies'),null,true);?>" title="View list of rallies we have recorded at">Rallies</a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'comments'),null,true);?>" title="View comments attached to finds">Commentary  <i class="icon-comment"></i></a></li>
+<!-- <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'comments'),null,true);?>" title="View comments attached to finds">Commentary  <i class="icon-comment"></i></a></li> -->
 <li <?php if($controller == 'statistics') { echo 'class="expandfirst"';};?>><a href="#">Statistics <i class="icon-folder-open"></i></a>
 <ul class="nav nav-pills nav-stacked  menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'statistics'),null,true);?>" title="Find out what was recorded daily">Archives by day</a></li>

@@ -18,7 +18,7 @@ class Pas_View_Helper_CoinDataDisplay extends Zend_View_Helper_Abstract {
 
     protected $_broadperiods = array('IRON AGE', 'ROMAN', 'BYZANTINE',
         'EARLY MEDIEVAL', 'GREEK AND ROMAN PROVINCIAL', 'MEDIEVAL', 'POST MEDIEVAL',
-        'MODERN');
+        'MODERN', 'UNKNOWN');
 
     public function coinDataDisplay($objectType, $broadperiod, $coins, $finds){
 		$types = array_merge($this->_numismatics, $this->_objects);

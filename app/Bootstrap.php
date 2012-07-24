@@ -43,8 +43,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	Zend_Registry::set('db',$db);
 	Zend_Db_Table::setDefaultAdapter($db);
 	} catch (Exception $e) {
-	echo '<h1>Server borked</h1>';
-	exit;
+	$this->_redirect('/error/databasedown');
 	}
 	}
 

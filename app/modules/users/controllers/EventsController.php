@@ -1,6 +1,6 @@
 <?php
 /** Controller for managing events data
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,19 +8,19 @@
 * @license    GNU General Public License
 */
 class Users_EventsController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_gmapskey,$_config,$_geocoder;
 	/** Set up the ACL and contexts
 	*/
-	public function init() {	
+	public function init() {
 	$this->_helper->_acl->allow('flos',NULL);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->view->jQuery()->addJavascriptFile($this->view->baseUrl() 
+	$this->view->jQuery()->addJavascriptFile($this->view->baseUrl()
 	. '/js/JQuery/ui.datepicker.js', $type='text/javascript');
 	$this->view->headLink()->appendStylesheet($this->view->baseUrl() . '/css/ui.datepicker.css');
 	$this->_config = Zend_Registry::get('config');
 	$this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-	$this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
+	$this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
     }
 	/** List a paginated events data set
 	*/
@@ -29,7 +29,7 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	$this->view->events = $eventsList->getEventsAdmin($this->_getParam('page'));
 	}
 	/** Add a new event
-	*/	
+	*/
 	public function addAction(){
 	$form = new EventForm();
 	$form->details->setLegend('Add a new event');
@@ -42,7 +42,7 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
@@ -59,7 +59,7 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	'eventRegion' => $form->getValue('eventRegion'),
 	'adultsAttend' => $form->getValue('adultsAttend'),
 	'childrenAttend' => $form->getValue('childrenAttend'),
-	'organisation' => $form->getValue('organisation'), 
+	'organisation' => $form->getValue('organisation'),
 	'eventType' => $form->getValue('eventType'),
 	'latitude' => $lat,
 	'longitude' => $long,
@@ -94,7 +94,7 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 		$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 	} else {
 		$lat = NULL;
 		$lon = NULL;
@@ -103,7 +103,7 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	'eventTitle' => $form->getValue('eventTitle'),
 	'eventDescription' => $form->getValue('eventDescription'),
 	'eventLocation' => $form->getValue('eventLocation'),
-	'organisation' => $form->getValue('organisation'), 
+	'organisation' => $form->getValue('organisation'),
 	'eventStartTime' => $form->getValue('eventStartTime'),
 	'eventEndTime' => $form->getValue('eventEndTime'),
 	'eventStartDate' => $form->getValue('eventStartDate'),
@@ -114,8 +114,8 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	'longitude' => $long,
 	'adultsAttend' => $form->getValue('adultsAttend'),
 	'childrenAttend' => $form->getValue('childrenAttend'),
-	'updated' => $this->getTimeForForms(), 
-	'updatedBy' => $this->getIdentityForForms() 
+	'updated' => $this->getTimeForForms(),
+	'updatedBy' => $this->getIdentityForForms()
 	);
 		foreach ($insertData as $key => $value) {
 		  if (is_null($value) || $value=="") {
@@ -163,5 +163,5 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	$this->view->event = $events->fetchRow('id ='.$id);
 	}
 	}
-	}	
+	}
 }

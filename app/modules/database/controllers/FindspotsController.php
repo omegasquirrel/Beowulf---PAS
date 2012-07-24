@@ -109,9 +109,10 @@ class Database_FindspotsController
     $where = array();
     $where[] = $this->_findspots->getAdapter()->quoteInto('id = ?', 
              $this->_getParam('id'));
-    $findspot = $this->_findspots->fetchRow($where)->toArray();
+    $findspot = $this->_findspots->fetchRow($where);
+    $this->view->findspot = $findspot;
 	$fill = new Pas_Form_Findspot();
-	$fill->populate($findspot);
+	$fill->populate($findspot->toArray());
 
     }
     }
@@ -120,9 +121,10 @@ class Database_FindspotsController
     if ($id > 0) {
     $where = array();
     $where[] = $this->_findspots->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-    $findspot = $this->_findspots->fetchRow($where)->toArray();
+    $findspot = $this->_findspots->fetchRow($where);
+        $this->view->findspot = $findspot;
 	$fill = new Pas_Form_Findspot();
-	$fill->populate($findspot);
+	$fill->populate($findspot->toArray());
 
     }
     }

@@ -11,26 +11,27 @@
  *
  */
 class GetInvolved_ContactUsController extends Pas_Controller_Action_Admin {
-	
+
 	/** Initialise controller
-	 * 
+	 *
 	 */
     public function init() {
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_helper->acl->allow('public',null);
 	}
-		
+
 	/** Method to submit a contact us comment to the Scheme
-	 * 
+	 *
 	 */
 	public function indexAction() {
 	$form = new ContactUsForm();
+        $form->removeElement('captcha');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
+        if ($form->isValid($form->getValues())) {
 	$insertData = $form->getValues();
 	$messages = new Messages();
-	$insert = $messages->addComplaint($data);
+        $messages->addComplaint($insertData);
 	$cc = array();
 	$cc[] = array(
 		'email' => $form->getvalue('comment_author_email'),

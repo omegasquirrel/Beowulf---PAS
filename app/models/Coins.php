@@ -49,7 +49,7 @@ class Coins extends Pas_Db_Table_Abstract {
 		->joinLeft('medievaltypes','medievaltypes.id = coins.typeID', array('type'))
 		->joinLeft('moneyers','moneyers.id = coins.moneyer', array('name'))
 		->joinLeft('emperors','emperors.pasID = rulers.id', array('pasID','empid' => 'emperors.id'))
-		->joinLeft('romanmints','romanmints.pasID = mints.id', array('mintid' => 'id'))
+		->joinLeft('romanmints','romanmints.pasID = mints.id', array('mintid' => 'id', 'pleiadesID'))
 		->joinLeft('revtypes','coins.revtypeID = revtypes.id',array('revname' => 'type'))
 		->joinLeft('statuses','coins.status = statuses.id', array('status' => 'term'))
 		->where('finds.id = ?', $id)

@@ -53,7 +53,7 @@ class Pas_View_Helper_CommentType extends Zend_View_Helper_Abstract{
      */
     public function buildHtml(Zend_Db_Table_Row $data,  $type,  $id){
         switch($type){
-            case 'findComment':
+            case 'recordcomment':
                 $url = $this->view->url(array('module' => 'database',
                     'controller' => 'artefacts',
                     'action' => 'record',

@@ -59,7 +59,10 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 
 
 	private function array_cleanup( $array ) {
-        $todelete = array('submit','action','controller','module','page','csrf');
+      $todelete = array(
+        	'submit','action','controller',
+        	'module','page','csrf',
+        	'finder', 'idby', 'recordby');
 	foreach( $array as $key => $value ) {
         foreach($todelete as $match){
     	if($key == $match){
@@ -335,7 +338,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost())){
 	if ($form->isValid($form->getValues())) {
         $postcode = str_replace(' ','',$form->getValue('postcode'));
-        $area = new Pas_Geo_Mapit_Postcode();
+        $area = new Pas_Geo_MapIt_Postcode();
         $area->setPartialPostCode($postcode);
 
         $xy = $area->get();

@@ -3,8 +3,8 @@
    driver="com.mysql.jdbc.Driver"
    url="jdbc:mysql://localhost/antiquitiesTwo"
    batchSize="-1"
-   user=""
-   password=""
+   user="webuser2"
+   password="45jql11w"
    tinyInt1isBit="false"/>
 	<document name="content">
         <entity name="images" transformer="HTMLStripTransformer"

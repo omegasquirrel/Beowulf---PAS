@@ -16,20 +16,7 @@ parent::__construct($options);
 
 	$this->setName('comments');
 
-	$comment_author_IP = new Zend_Form_Element_Hidden('comment_author_IP');
-	$comment_author_IP->removeDecorator('HtmlTag')
-	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
-	->setValue($_SERVER['REMOTE_ADDR'])
-	->addValidator('Ip');
 
-	$comment_agent = new Zend_Form_Element_Hidden('comment_agent');
-	$comment_agent->removeDecorator('HtmlTag')
-	->removeDecorator('DtDdWrapper')
-	->removeDecorator('Label')
-	->setValue($_SERVER['HTTP_USER_AGENT'])
-	->setRequired(false);
 
 	$comment_author = new Zend_Form_Element_Text('comment_author');
 	$comment_author->setLabel('Enter your name: ')
@@ -91,7 +78,7 @@ parent::__construct($options);
 	$auth = Zend_Auth::getInstance();
 	if(!$auth->hasIdentity()) {
 	$this->addElements(array(
-	$comment_author_IP, $comment_agent,	$comment_author,
+	$comment_author,
 	$comment_author_email, $comment_content,	$comment_author_url,
 	$captcha, $submit, $hash));
 
@@ -106,7 +93,7 @@ parent::__construct($options);
 	$comment_author_email->setValue($user->email);
 
 	$this->addElements(array(
-	$comment_author_IP,	$comment_agent, $comment_author,
+	$comment_author,
 	$comment_author_email, $comment_content,$comment_author_url,
 	$submit, $hash));
 
@@ -116,7 +103,7 @@ parent::__construct($options);
 	$this->details->setLegend('Enter your comments: ');
 	}
 	$this->addDisplayGroup(array('submit'), 'submit');
-        
+
 	parent::init();
 	}
 

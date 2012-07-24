@@ -517,7 +517,7 @@ class AdvancedSearchForm extends Pas_Form {
 	'institution',
 	'finder', 'idby', 'identifierID',
 	'recordby', 'recorderID', 'createdAfter',
-	'createdBefore','discovered'), 'Discovery');
+	'createdBefore','updatedAfter', 'updatedBefore', 'discovered'), 'Discovery');
     }
 
 	$this->Discovery->setLegend('Discovery details: ');

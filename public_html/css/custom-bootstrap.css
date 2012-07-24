@@ -121,3 +121,9 @@ ul.facetExpand li {
 	font-weight:bold;
 	color:maroon;
 }
+#preview .thumbnailSmall img{
+	float:right;
+}
+#preview li {
+	list-style:none;
+}

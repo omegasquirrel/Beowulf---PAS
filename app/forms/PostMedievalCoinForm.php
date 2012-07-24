@@ -13,7 +13,7 @@ public function __construct($options = null) {
 	$cat_options = $cats->getPeriodPostMed();
 	
 	$denominations = new Denominations();
-	$denomination_options = $denominations->getOptionsMedieval();
+	$denomination_options = $denominations->getOptionsPostMedieval();
 	
 	$statuses = new Statuses();
 	$status_options = $statuses->getCoinStatus();
@@ -35,7 +35,7 @@ parent::__construct($options);
        
 	$this->setName('postmedievalcoin');
 
-		
+		Zend_Debug::dump($denomination_options);
 	$denomination = new Zend_Form_Element_Select('denomination');
 	$denomination->setLabel('Denomination: ')
 		->addFilters(array('StripTags','StringTrim'))
@@ -132,6 +132,7 @@ parent::__construct($options);
 	
 	$typeID = new Zend_Form_Element_Select('typeID');
 	$typeID->setLabel('Coin type: ')
+		->setRegisterInArrayValidator(false)
 		->setRequired(false)
 		->addFilters(array('StripTags','StringTrim'));
 	

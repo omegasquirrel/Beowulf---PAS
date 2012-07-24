@@ -1,6 +1,6 @@
 <?php
 /** Controller for setting up and manipulating staff contacts
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,15 +8,15 @@
 * @license    GNU General Public License
 */
 class Admin_EventsController extends Pas_Controller_Action_Admin {
-	
-	protected $higherLevel = array('admin','flos'); 
-	
+
+	protected $higherLevel = array('admin','flos');
+
 	protected $researchLevel = array('member','heros','research');
-	
+
 	protected $restricted = array('public');
 
 	/** Set up the ACL and contexts
-	*/	
+	*/
 	public function init() {
 	$flosActions = array('index',);
 	$faActions = array('add','edit','delete','index');
@@ -26,16 +26,16 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_config = Zend_Registry::get('config');
 	$this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-	$this->_geocoder = new Pas_Service_Geocoder($this->_gmapskey);
+	$this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
 	}
 	/** Set up index of events
-	*/	
+	*/
 	public function indexAction() {
 	$eventsList = new Events();
 	$this->view->events = $eventsList->getEventsAdmin($this->_getParam('page'));
 	}
 	/** Add an event
-	*/		
+	*/
 	public function addAction() {
 	$form = new EventForm();
 	$form->details->setLegend('Add a new event');
@@ -48,7 +48,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 		$pm = new Pas_Service_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
@@ -68,7 +68,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	'eventRegion' => $form->getValue('eventRegion'),
 	'adultsAttend' => $form->getValue('adultsAttend'),
 	'childrenAttend' => $form->getValue('childrenAttend'),
-	'organisation' => $form->getValue('organisation'), 
+	'organisation' => $form->getValue('organisation'),
 	'eventType' => $form->getValue('eventType'),
 	'latitude' => $lat,
 	'longitude' => $long,
@@ -90,7 +90,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Edit an event
-	*/		
+	*/
 	public function editAction() {
 	$form = new EventForm();
 	$form->details->setLegend('Edit event');
@@ -103,7 +103,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon']; 
+		$long = $coords['lon'];
 		$pm = new Pas_Service_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
@@ -116,7 +116,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	'eventTitle' => $form->getValue('eventTitle'),
 	'eventDescription' => $form->getValue('eventDescription'),
 	'eventLocation' => $form->getValue('eventLocation'),
-	'organisation' => $form->getValue('organisation'), 
+	'organisation' => $form->getValue('organisation'),
 	'eventStartTime' => $form->getValue('eventStartTime'),
 	'eventEndTime' => $form->getValue('eventEndTime'),
 	'eventStartDate' => $form->getValue('eventStartDate'),
@@ -127,8 +127,8 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	'longitude' => $long,
 	'adultsAttend' => $form->getValue('adultsAttend'),
 	'childrenAttend' => $form->getValue('childrenAttend'),
-	'updated' => $this->getTimeForForms(), 
-	'updatedBy' => $this->getIdentityForForms() 
+	'updated' => $this->getTimeForForms(),
+	'updatedBy' => $this->getIdentityForForms()
 	);
 		foreach ($insertdata as $key => $value) {
 		  if (is_null($value) || $value=="") {
@@ -155,7 +155,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** Delete an event
-	*/		
+	*/
 	public function deleteAction() {
 	if ($this->_request->isPost()) {
 	$this->_flashMessenger->addMessage('No changes implemented.');
@@ -175,5 +175,5 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	$this->view->event = $events->fetchRow('id =' . $id);
 	}
 	}
-	}	
+	}
 }

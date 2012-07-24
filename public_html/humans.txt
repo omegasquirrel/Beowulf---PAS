@@ -1,13 +1,14 @@
 /* TEAM */
-Project lead, developer, designer, debugger, tester: Daniel Pett
+Project lead, developer, designer, debugger, tester, gopher, muppet: Daniel Pett
 Twitter: @portableant
-Location: The British Museum, Great Russell Street
+Location: The British Museum, Great Russell Street, WC1B 3DG
+Geo: 51.519222, -0.124285 or thereabouts 9-5 M-F
 
 
 
 /* THANKS */
-Tom Elliot, Sean Gillies, Tom Goskar, Sebastian Heath, Tyler Bell
-Andrew Larcomber, Yegor Veter
+Tom Elliot, Sean Gillies, Sebastian Heath, Ethan Gruber and the original people
+I learnt from Tyler Bell, Vuk Trifkovic, Andrew Larcombe and Yegor Veter.
 
 /* SITE */
 Last update: 2011/09/29

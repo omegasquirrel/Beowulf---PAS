@@ -29,7 +29,6 @@ public function __construct($options = null) {
 
 	$public = new Zend_Form_Element_Checkbox('public');
 	$public->setLabel('Show this to public users?: ')
-		->setRequired(true)
 		->addErrorMessage('You must set the status of this search')
 		->setDescription('By setting this option, you can show this search on your profile and allow others to make use of it');
 

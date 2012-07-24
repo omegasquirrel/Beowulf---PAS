@@ -16,8 +16,14 @@ echo $this->gravatar($this->comment_author_email,array(
 <td class="comment column-comment"><div id="submitted-on">Submitted:<br />
 <?php echo $this->comment_date ;?></div><?php echo 
 $this->ellipsisstring(strip_tags($this->comment_content),200);?></td>
-<td><?php if($this->replied == 1) { echo 'Replied '.$this->timeagoinwords($this->updated);} else { echo 'Reply needed';}?></td>
+<td><?php if($this->replied == 1) { 
+	echo 'Replied '.$this->timeagoinwords($this->updated);
+	?> 
+	<br /><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'ajax', 'action' => 'messagereply','id' => $this->id),null,true);?>" class="overlay">View reply</a>
+	<?php 
+} else { echo 'Reply needed';}?></td>
 <td><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'messages',
-'action' => 'reply','id' => $this->id),'default',true);?>" title="Reply to this message">Reply | Delete</a>
+'action' => 'reply','id' => $this->id),'default',true);?>" title="Reply to this message">Reply</a> | <a href="<?php echo $this->url(array('module' => 'admin','controller' => 'messages',
+'action' => 'delete','id' => $this->id),'default',true);?>" title="Delete this message">Delete</a>
 </td>
 </tr>

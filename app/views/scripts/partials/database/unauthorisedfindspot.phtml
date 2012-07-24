@@ -143,6 +143,33 @@ Parish: <?php echo $this->escape(ucwords(strtolower($this->parish)));?>
 <?php if(!is_null($this->knownas)) :?>
 <br /><span class="knownas">To be known as: <?php echo $this->escape($this->knownas);?></span>
 <?php endif;?>
+<<<<<<< HEAD
+=======
+
+<?php
+if(!is_null($this->parish) && (empty($this->knownas)))
+{
+$this->headMeta(substr($this->declat,0,4).';' .substr($this->declong,0,4),'geo.position');
+$this->headMeta($this->parish.','.$this->county, 'geo.placename');
+
+echo 'Parish: '. ucwords(strtolower($this->parish)).'<br />';
+
+
+	$pm = new Pas_Service_Geo_Placemaker($config->webservice->ydnkeys->appid);
+	$place = $pm->getSingle($this->parish.','.$this->county.' United Kingdom');
+	if(!is_null($place)){
+            if(!is_null($place->type)){
+	echo 'Settlement type: '.$place->type.'<br />';
+            }
+	if(isset($place->postal)) {
+	echo 'Postcode: '.$place->postal.'<br />';
+	}
+	echo 'WOEID: '.$place->woeid.'<br />';
+	echo 'Some of the spatially enriched data provided here was sourced from the excellent Places/Placemaker service from Yahoo\'s geo team.';
+}
+}
+?>
+>>>>>>> origin/master
 </p>
 </div>
 

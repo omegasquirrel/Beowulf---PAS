@@ -1,5 +1,11 @@
-<?php 
+<?php
 if (count($this->users) > 0) {
+?>
+<div class="hero-unit">
+<p>Thank you for trying the new version of the Scheme database. There will be some glitches and if you find them 
+email Daniel Pett (<a href="mailto:dpett@britishmuseum.org">dpett@britishmuseum.org</a>) with details of the problem. You will 
+need to state what you did, what the error message was and code if applicable.</p></div>
+<?php
 echo $this->partialLoop('partials/users/profile.phtml',$this->users);
 echo $this->WhatYouWantToDo();
 echo $this->facebookPage();

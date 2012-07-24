@@ -1,5 +1,5 @@
 <?php
-
+ini_set('memory_limit', '64M');
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -26,9 +26,9 @@ class Pas_Exporter_Nms extends Pas_Exporter_Generate {
      * @var array
      */
     protected $_nmsFields = array(
-	'id','old_findID','description',
+		'id','old_findID','description',
         'fourFigure','gridref', 'county',
-	'district', 'parish','knownas',
+		'district', 'parish','knownas',
         'finder', 'smrRef','otherRef',
         'identifier', 'objecttype', 'broadperiod'
         );
