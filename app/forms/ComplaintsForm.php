@@ -50,6 +50,7 @@ class ComplaintsForm extends Pas_Form {
 	->setRequired(true)
 	->setAttrib('rows',10)
 	->setAttrib('cols',80)
+	->setAttrib('ToolbarSet', 'Finds')
 	->addFilters(array('HtmlBody','EmptyParagraph','WordChars'))
 	->addErrorMessage('Please enter something in the comments box!');
 

@@ -127,3 +127,34 @@ ul.facetExpand li {
 #preview li {
 	list-style:none;
 }
+@media (max-width: 900px) {
+  .pagination .pageAway-4 {
+    display:none;
+  }
+}
+@media (max-width: 825px) {
+.pagination .pageAway-4 {
+    display:none;
+  }
+  .pagination .pageAway-3 {
+    display:none;
+  }
+}
+@media (max-width: 750px) {
+.pagination .pageAway-6 {
+    display:none;
+  }
+.pagination .pageAway-5 {
+    display:none;
+  }
+.pagination .pageAway-4 {
+    display:none;
+  }
+  .pagination .pageAway-3 {
+    display:none;
+  }
+  .pagination .pageAway-2 {
+    display:none;
+  }
+}
+

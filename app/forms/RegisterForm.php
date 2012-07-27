@@ -27,9 +27,6 @@ public function init()
 
 
 
-$this->addElement('rawText', 'text1', array(
-    'value' => '<p class="info">By registering you agree to these <a href="#toc" rel="facebox">terms and conditions</a> of the database.</p>',
-));
 
     $username = $this->addElement('Text', 'username', array('label' => 'Username'))->username;
     $username = $this->getElement('username')

@@ -12,7 +12,11 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	const LOGOPATH = './images/logos/';
 
 	const STAFFPATH = './images/staffphotos/';
-
+	
+	protected $_geoPlanet;
+	
+	protected $_geocoder;
+	
 	protected $_redirectUrl = 'admin/contacts/';
 	/** Set up the ACL and contexts
 	*/
@@ -22,6 +26,8 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$this->_helper->_acl->allow('fa',null);
 	$this->_helper->_acl->allow('admin',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+	$this->_geoPlanet = new Pas_Service_Geo_Geoplanet($this->_config->webservice->ydnkeys->appid);
+	$this->_geocoder = new Pas_Service_Geo_Coder($this->_config->webservice->googlemaps->apikey);
     }
 	/** Display the index page
 	*/
@@ -56,9 +62,8 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon'];
-		$pm = new Pas_Service_Geoplanet();
-		$place = $pm->reverseGeoCode($lat,$lon);
+		$lon = $coords['lon'];
+		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
 	} else {
 		$lat = NULL;
@@ -121,9 +126,8 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon'];
-		$pm = new Pas_Service_Geoplanet();
-		$place = $pm->reverseGeoCode($lat,$lon);
+		$lon = $coords['lon'];
+		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
 	} else {
 		$lat = NULL;

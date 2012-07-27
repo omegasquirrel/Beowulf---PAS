@@ -49,6 +49,7 @@ parent::__construct($options);
 	->setAttrib('rows',10)
 	->setAttrib('cols',40)
 	->setAttrib('Height',400)
+	->setAttrib('ToolbarSet', 'Finds')
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'))
 	->addErrorMessage('Please enter something in the comments box!');
 

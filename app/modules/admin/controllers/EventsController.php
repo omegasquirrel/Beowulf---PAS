@@ -48,8 +48,8 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon'];
-		$pm = new Pas_Service_Geoplanet();
+		$lon = $coords['lon'];
+		$pm = new Pas_Service_Geo_Geoplanet($this->_helper->config()->webservice->ydnkeys->appid);
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
 	} else {
@@ -103,8 +103,8 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	$coords = $this->_geocoder->getCoordinates($address);
 	if($coords){
 		$lat = $coords['lat'];
-		$long = $coords['lon'];
-		$pm = new Pas_Service_Geoplanet();
+		$lon = $coords['lon'];
+		$pm = new Pas_Service_Geo_Geoplanet($this->_helper->config()->webservice->ydnkeys->appid);
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
 	} else {

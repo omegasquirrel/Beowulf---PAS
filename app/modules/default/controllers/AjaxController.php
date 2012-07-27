@@ -821,14 +821,14 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 	}
 
-        public function emperorsAction(){
-        $emps = new Emperors();
-        $this->view->emperors = $emps->getEmperorsTimeline();
-        }
+    public function emperorsAction(){
+    $emps = new Emperors();
+    $this->view->emperors = $emps->getEmperorsTimeline();
+    }
 
-        public function messagereplyAction(){
-        	$replies = new Replies();
-        	$this->view->replies = $replies->fetchRow('messageID=' . $this->_getParam('id'))->toArray();
-        	$this->_helper->viewRenderer->setNoRender(false);
+    public function messagereplyAction(){
+    $replies = new Replies();
+    $this->view->replies = $replies->fetchRow('messageID=' . $this->_getParam('id'));
+    $this->_helper->viewRenderer->setNoRender(false);
         }
 }

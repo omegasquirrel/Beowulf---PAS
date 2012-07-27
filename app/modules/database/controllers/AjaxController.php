@@ -368,6 +368,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    	public function facetAction(){
    	$params = $this->_getAllParams();
 	$params['format'] = 'json';
+	$params['module'] = 'database';
 	$params['controller'] = 'search';
 	$params['action'] = 'results';
    	$config = array(
@@ -450,4 +451,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    }
    } 
    
+   public function forceindexupdateAction(){
+	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));	
+   }
 }

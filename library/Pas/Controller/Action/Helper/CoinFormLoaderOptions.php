@@ -50,6 +50,7 @@ class Pas_Controller_Action_Helper_CoinFormLoaderOptions
         $geography_options = $geographies->getIronAgeGeographyMenu($coinDataFlat['denomination']);
         $this->_view->form->geographyID->addMultiOptions(array(NULL =>
             'Choose geographic region', 'Available regions' => $geography_options));
+        $this->_view->form->geographyID->addValidator('InArray', false, array(array_keys($geography_options)));
         }
         break;
     case 'ROMAN':

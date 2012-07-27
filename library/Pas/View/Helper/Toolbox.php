@@ -15,7 +15,13 @@
 class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 
 	protected $_allowed = array('fa','flos','admin');
-
+	
+	protected $_role;
+	
+	public function __construct(){
+	$person = new Pas_User_Details();
+	$this->_role = $person->getPerson()->role;	
+	}
 	/** Display the toolbox, crappy code
 	 *
 	 * @param integer $id
@@ -23,7 +29,7 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 	 * @param string $createdBy
 	 */
 	public function toolbox($id, $oldfindID, $createdBy) {
-        $this->view->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
+	$this->view->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
 	$this->view->inlineScript()->captureStart();
 	echo '$(document).ready(function() {
 	$(\'#print\').click(function() {
@@ -66,8 +72,14 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
                 'accesskey' => 'a',
                 'class' => 'btn btn-small btn-primary')
             ));
-	echo ' <a class="' . $class . '" href="'.$this->view->url(array('module' => 'database','controller' => 'artefacts','action' => 'record','id' => $id,'format' => 'pdf'),null,true)
-	. '" title="Report format">Report</a>';
+	//echo ' <a class="' . $class . '" href="'.$this->view->url(array('module' => 'database','controller' => 'artefacts','action' => 'record','id' => $id,'format' => 'pdf'),null,true)
+	//. '" title="Report format">Report</a>';
+	if(in_array($this->_role,$this->_allowed)){
+	echo ' <a class="' . $class . '"  href="'. $this->view->url(array(
+            'module' => 'database',
+            'controller'=>'ajax',
+            'action'=>'forceindexupdate','findID' => $id),null,true) . '">Force index update</a>';	
+	}
 	echo'</p></div>';
 	}
 

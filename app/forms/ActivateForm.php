@@ -1,38 +1,65 @@
 <?php
 
-/** Form for activating an account
+/**
+* Form for changing a user's password
 *
-* @category   	Pas
-* @package    	Pas_Form
-* @copyright  	Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
-* @todo 	  	Check still active
-* @author		Daniel Pett
-* @license 		GNU General Public License
-* @version 		1
-* @since 		22 September 2011
+* @category   Pas
+* @package    Pas_Form
+* @copyright  Copyright (c) 2011 DEJ Pett dpett @ britishmuseum . org
+* @license    GNU General Public License
 */
-class ActivateForm extends Pas_Form {
+class ActivateForm extends Pas_Form
+{
+
+    public function __construct($actionUrl = null, $options=null) {
+        parent::__construct($options);
+        $this->init();
+    }
 
 
     public function init() {
 
-        $username = $this->addElement('text', 'username',
-            array('label' => 'Username'));
-        $username = $this->getElement('username')
-                  ->addValidator('Alnum')
-                  ->setRequired(true)
-                  ->addFilter('StringTrim')
-                  ->addValidator('Authorise');
-        $username->getValidator('Alnum')
-                 ->setMessage('Your username should include letters and numbers only');
+    	$username = new Zend_Form_Element_Text('username');
+    	$username->setLabel('Your username');
+    	$username->setRequired(true)
+    		->addFilters(array('StringTrim', 'StripTags'))
+    		->addValidator('Db_RecordExists', false, array('table' => 'users',
+                                                           'field' => 'username'));
+    	
+    	
+    	$activationKey = new Zend_Form_Element_Text('activationKey');
+		$activationKey->setLabel('Your activation key');
+		$activationKey->setDescription('Your key was sent in your activation email')->setRequired(true)
+		->addFilters(array('StringTrim', 'StripTags'))
+		->addValidator('Db_RecordExists', false, array('table' => 'users',
+                                                           'field' => 'activationKey'));
+		
+		$email = new Zend_Form_Element_Text('email');
+		$email->setLabel('Your email address');
+		$email->setRequired(true)
+    		->addValidator('Db_RecordExists', false, array('table' => 'users',
+                                                           'field' => 'email'))
+    		->addValidator('EmailAddress',false, array('mx' => true));
+
+	    // identical field validator with custom messages
+	   	$hash = new Zend_Form_Element_Hash('csrf');
+		$hash->setValue($this->_salt)->setTimeout(480);
+
+		       //Submit button
+    $submit = new Zend_Form_Element_Submit('submit');
+   $submit->setLabel('Activate me!');
+
+    $this->addElement($submit);
+		
+		$this->addElements(array( $username, $activationKey, $email,  $hash));
 
 
+		$this->addDisplayGroup(array('username','email','activationKey'), 'userdetails');
+$this->addDisplayGroup(array('submit'), 'submit');
 
-        $submit = $this->addElement('submit', 'Login');
+		$this->setLegend('Enter details: ');
 
-
-	$this->setLegend('Activate your account on Beowulf: ');
-	parent::init();
+    	parent::init();
 	}
 
 }

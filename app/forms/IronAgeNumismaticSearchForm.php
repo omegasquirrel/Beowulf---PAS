@@ -279,12 +279,12 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$va_type = new Zend_Form_Element_Text('vaType');
-	$va_type->setLabel('Van Arsdell Number: ')
+	$va_type->setLabel('Van Arsdell Number (VA): ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$rudd_type = new Zend_Form_Element_Text('ruddType');
-	$rudd_type->setLabel('Ancient British Coinage number: ')
+	$rudd_type->setLabel('Ancient British Coins number (ABC): ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 

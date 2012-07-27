@@ -51,20 +51,20 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     public function myfindsAction() {
     $form = new SolrForm();
 	$form->q->setLabel('Search the database: ');
-    
+    Zend_Debug::dump($this->_getDetails()->id);
     $this->view->form = $form;
 
     $params = $this->_getAllParams();
 
-    $search = new Pas_Solr_Handler('beowulf');
+    $search = new Pas_Solr_HandlerPersonal('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county')
+    	'description', 'county', 'workflow')
     );
 
-    $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow'));
+    $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow', 'creator'));
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
                 && !is_null($this->_getParam('submit'))){
 
@@ -80,8 +80,6 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
 
     $params = $this->_getAllParams();
     $form->populate($this->_getAllParams());
-
-
     }
 
     if(!isset($params['q']) || $params['q'] == ''){
@@ -96,6 +94,32 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $this->view->facets = $search->_processFacets();
     }
 
+    public function recordedbyflosAction(){
+    if(!is_null($this->_getDetails()->peopleID)){
+    $params = $this->_getAllParams();
+    $params['finderID'] = $this->_getDetails()->peopleID;
+
+    $params['-createdBy'] = $this->_getDetails()->id;
+    $search = new Pas_Solr_Handler('beowulf');
+    $search->setFields(array(
+    	'id', 'identifier', 'objecttype',
+    	'title', 'broadperiod','imagedir',
+    	'filename','thumbnail','old_findID',
+    	'description', 'county', 'workflow')
+    );
+
+    $search->setFacets(array('objectType','county','broadperiod','institution'));
+    $search->setParams($params);
+    $search->execute();
+    $this->view->paginator = $search->_createPagination();
+    $this->view->finds = $search->_processResults();
+    $this->view->facets = $search->_processFacets();
+    } else {
+        $this->_redirect('/error/accountproblem');
+    }
+    }
+    
+    
     public function mapAction(){
     $this->view->id = $this->_getDetails()->id;	
     }
@@ -129,7 +153,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county',
+    	'description', 'county', 'workflow'
         )
     );
     $search->setFacets(array('objectType','county','broadperiod','institution','workflow'));
@@ -219,7 +243,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county',
+    	'description', 'county', 'workflow'
         )
     );
     $search->setFacets(array('objectType','county','broadperiod', 'discovered', 'institution','workflow'));

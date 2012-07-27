@@ -59,7 +59,6 @@ class NotifyFloForm extends Pas_Form {
 
 	$this->addDisplayGroup(array('flo','type', 'content', ), 'details');
 
-	$this->details->setLegend('Enter your error report: ');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');
 	

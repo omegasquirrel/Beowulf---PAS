@@ -28,7 +28,7 @@ class Pas_View_Helper_CommentType extends Zend_View_Helper_Abstract{
      */
     public function getData( $id,  $type){
         switch($type){
-            case 'findComment':
+            case 'recordcomment':
                 $finds = new Finds();
                 $data = $finds->fetchRow($finds->select()->where('id = ?', $id));
                 break;

@@ -34,7 +34,8 @@ class Coins extends Pas_Db_Table_Abstract {
 		'die' => 'die_axis_measurement', 'wearID'=> 'degree_of_wear',
 		'moneyer', 'revtypeID','categoryID',
 		'typeID', 'tribeID' => 'tribe', 'createdBy',
-		'reverse_mintmark', 'initial_mark'))
+		'reverse_mintmark', 'initial_mark', 'bmc_type',
+		'rudd_type'))
 		->joinLeft('finds','finds.secuid = coins.findID', array('broadperiod','returnID' => 'id', 'old_findID'))
 		->joinLeft('ironagetribes','coins.tribe = ironagetribes.id', array('tribe'))
 		->joinLeft('geographyironage','geographyironage.id = coins.geographyID', array('r' => 'region','a' => 'area'))

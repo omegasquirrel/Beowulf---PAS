@@ -91,9 +91,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('rss',array('suffix' => 'rss'))
             ->addContext('atom',array('suffix' => 'atom'))
             ->addContext('rdf',array('suffix' => 'rdf'))
-            ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
-            ->addActionContext('record', array('csv','pdf','qrcode', 'json'))
+            ->addActionContext('record', array('csv','qrcode', 'json'))
             ->addActionContext('index', array('rss','atom'))
             ->initContext();
     $this->_finds = new Finds();
@@ -396,9 +395,11 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
      * @todo move insert logic to model
     */
     public function errorreportAction() {
-    if($this->_getParam('id',false)) {
+//	$this->_flashMessenger->addMessage('Function disabled until the 23rd July');
+//    $this->_redirect('/database/');
+	if($this->_getParam('id',false)) {
     $form = new CommentOnErrorFindForm();
-    $form->submit->setLabel('Submit your error report');
+	$form->submit->setLabel('Submit your error report');
     $finds = $this->_finds->getRelevantAdviserFind($this->_getParam('id',0));
     $this->view->form = $form;
     $this->view->finds = $finds;
@@ -458,9 +459,9 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     /** Provide a notification for an object
     */
     protected function notify($objecttype, $broadperiod, $data) {
-    $finds = new Users();
-    $to = $finds->getOwner($data['comment_findID']);
-    $cc = $this->_getAdviser($objecttype, $broadperiod);
+    $users = new Contacts();
+    $to = $users->getOwner($data['comment_findID']);
+    $cc = $this->getAdviser($objecttype,$broadperiod);
     $from = array(array(
         'email' => $this->_user->email,
         'name' => $this->_user->fullname));
@@ -475,7 +476,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }
     /** Determine adviser to email
     */
-    private function _getAdviser($objecttype, $broadperiod) {
+    private function getAdviser($objecttype, $broadperiod) {
+
     $this->_romancoinsadviser = $this->_config->findsadviser->romancoins;
     $this->_romancoinsadviseremail = $this->_config->findsadviser->romcoins->email;
 
@@ -510,7 +512,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $adviserdetails = $this->_medievalcoinsadviser;
             $adviseremail = $this->_medievalcoinsadviseremail;
             break;
-	case (in_array($objecttype,$this->_coinarray) && in_array($broadperiod,$this->_postMed)):
+    case (in_array($objecttype,$this->_coinarray) && in_array($broadperiod,$this->_postMed)):
             $adviserdetails = $this->_medievalcoinsadviser;
             $adviseremail = $this->_medievalcoinsadviseremail;
             break;
@@ -526,7 +528,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $adviserdetails = $this->_medievalobjects;
             $adviseremail = $this->_medievalobjectsemail;
             break;
-    case (!in_array($objecttype,$this->_coinarray) && in_array($broadperiod,$this->_earlyMed)):
+    case (!in_array($objecttype, $this->_coinarray) && in_array($broadperiod,$this->_earlyMed)):
             $adviserdetails = $this->_earlymedievalobjects;
             $adviseremail = $this->_earlymedievalobjectsemail;
             break;

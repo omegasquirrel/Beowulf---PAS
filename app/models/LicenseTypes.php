@@ -1,5 +1,5 @@
 <?php
-/** Model for manipulating copyright data
+/** Model for manipulating completeness details
 * @category Pas
 * @package Pas_Db_Table
 * @subpackage Abstract
@@ -8,24 +8,27 @@
 * @license 		GNU General Public License
 * @version 		1
 * @since 		22 September 2011
-* */
+* @todo add some caching to model
+*/
+class LicenseTypes extends Pas_Db_Table_Abstract {
 
-class Copyrights extends Pas_Db_Table_Abstract {
+	protected $_name = 'licenseType';
 	
-	protected $_name = 'copyrights';
 	protected $_primary = 'id';
+	
 	/** Get dropdown values for personal copyrights
     * @param integer $id
 	* @return array
 	*/
-	public function getStyles() {
-	if (!$options = $this->_cache->load('imagecopyright')) {
+	public function getList() {
+	if (!$options = $this->_cache->load('cclicenses')) {
 	$select = $this->select()
-		->from($this->_name, array('copyright', 'copyright'))
-		->order('copyright');
+		->from($this->_name, array('id', 'license'))
+		->order('id');
 	$options = $this->getAdapter()->fetchPairs($select);
-	$this->_cache->save($options, 'imagecopyright');
+	$this->_cache->save($options, 'cclicenses');
 	}
 	return $options;
 	}
+	
 }

@@ -16,7 +16,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('public',array(
 	'forgotten', 'register', 'activate',
 	'index', 'logout', 'edit',
-	'forgotusername'));
+	'forgotusername', 'success'));
 	$this->_helper->_acl->allow('member',NULL);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_auth = Zend_Registry::get('auth');
@@ -24,6 +24,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	}
 
 	const PATH = './images/';
+	
 	/** Set up index page
 	*/
 	public function indexAction() {
@@ -101,7 +102,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_redirect('/users/');
 	} else {
 	$this->_flashMessenger->addMessage('Problems have been found with your submission');
-	$form->populate($formData);
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -162,21 +163,29 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	/** Register for an account
 	*/
 	public function registerAction() {
-
 	if($this->_auth->hasIdentity()) {
 	$this->_flashMessenger->addMessage('You are already logged in and registered.');
 	$this->_redirect('/users/account');
 	} else {
 	$salt = $config->auth->salt;
 	$form = new RegisterForm();
+	$form->removeElement('captcha');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-        if ($form->isValid($form->getValues())) {
-        $to = array(array('email' => $form->getValue('email'),'name' => $form->getValue('fullname')));
+    if ($form->isValid($form->getValues())) {
+    $to = array(array(
+    	'email' => $form->getValue('email'),
+    	'name' => $form->getValue('first_name') . ' ' . $form->getValue('last_name'))
+    );
+    $emailData = array(
+    	'email' => $form->getValue('email'),
+    	'name' => $form->getValue('first_name') . ' ' . $form->getValue('last_name'),
+    	'activationKey' => md5($form->getValue('username') . $form->getValue('first_name'))
+    );
 	$this->_users->register($form->getValues());
-	$this->_helper->mailer($form->getValues(), 'activateAccount', $to);
+	$this->_helper->mailer($emailData, 'activateAccount', $to);
 	$this->_flashMessenger->addMessage('Your account has been created. Please check your email.');
-	$this->_redirect('/users/');
+	$this->_redirect('/users/account/activate/');
 	} else {
 	$form->populate($form->getValues());
 	$this->_flashMessenger->addMessage('There are a few problems with your registration<br/>
@@ -185,18 +194,46 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
+	
 	/** Activate an account
 	*/
 	public function activateAction(){
-	$results = $this->_users->activation($this->_getParam['activationKey'], $this->_getParam['username']);
-	if ($results) {
-	$this->_users->activate($results);
-	$this->_flashMessenger->addMessage('Your account has been activated');
-	$this->_redirect('/users/');
-	} else {			{
-	$this->_flashMessenger->addMessage('There has been a problem activating your account');
+	$form = new ActivateForm();
+	$this->view->form = $form;
+	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
+    if ($form->isValid($form->getValues())) {
+	$this->_users->activate($form->getValues());
+	$this->_flashMessenger->addMessage('Your account has been activated.');
+	$this->_redirect('users/account/success/');
+	} else {
 	$form->populate($form->getValues());
+	$this->_flashMessenger->addMessage('Please review and correct problems');
 	}
+	}
+	
+    }
+	
+    public function successAction(){
+    if(null === $this->_auth->getIdentity()) {
+	$this->view->headTitle('Login to the system');
+	$form = new LoginForm();
+	$this->view->form = $form;
+	if ($this->_request->isPost()) {
+	$formData = $this->_request->getPost();
+	if ($form->isValid($formData)) {
+	$authAdapter = $form->username->getValidator('Authorise')->getAuthAdapter();
+	$data = $authAdapter->getResultRowObject(NULL,'password');
+	$this->_auth->getStorage()->write($data);
+	$this->_redirect('/users/account/');
+	} else {
+	$this->_auth->clearIdentity();
+	$this->_flashMessenger->addMessage('Sorry, there was a problem with your submission. 
+	Please check and try again');
+	$form->populate($formData);
+	}
+	} 
+	} else {
+	$this->_redirect(self::REDIRECT);
 	}
     }
 	/** List user's logins
@@ -206,21 +243,23 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->view->logins = $logins->myLogins($this->getUsername(),$this->_getParam('page'));
 	$this->view->ips = $logins->myIps($this->getUsername());
 	}
+	
+	
 	/** Change a password
 	*/
 	public function changepasswordAction() {
 	$form = new ChangePasswordForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-        if ($form->isValid($form->getValues())) {
+	if ($form->isValid($form->getValues())) {
 	$password = SHA1($this->_helper->config()->auth->salt . $form->getValue('password'));
 	$where = array();
 	$where[] = $this->_users->getAdapter()->quoteInto('id = ?', $this->getIdentityForForms());
-	$this->_users->update(array('password' => $password),$where);
+	$this->_users->update(array('password' => $password), $where);
 	$this->_flashMessenger->addMessage('You have changed your password');
 	$this->_redirect('/users/account/');
 	} else {
-	$form->populate($formData);
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -234,10 +273,10 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$form = new AccountUpgradeForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-        if ($form->isValid($form->getValues())) {
+	if ($form->isValid($form->getValues())) {
 	$where = array();
-	$where[] =  $this->_users->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
-	$update = $this->_users->update($updateData, $where);
+	$where[] =  $this->_users->getAdapter()->quoteInto('id = ?', (int)$this->getAccount()->id);
+	$update = $this->_users->update($form->getValues(), $where);
 	$to = array(array('email' => $user->email, 'name' => $user->fullname));
 	$attachments = array('/home/beowulf/public_html/documents/tac.pdf');
 	$assignData = array_merge($to[0], $form->getValues());

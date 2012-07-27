@@ -4,6 +4,7 @@ $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerN
 ?>
 
 <ul id="menu1" class="menu collapsible nav nav-pills nav-stacked">
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search', 'action' => 'results'),NULL,true);?>" title="All finds recorded on the database">All artefacts &amp; coins <i class="icon-list"></i></a></li>
 <?php
 $auth = Zend_Auth::getInstance();
 if($auth->hasIdentity()) {
@@ -13,8 +14,11 @@ $allowedAccess = array('member','flos','hero','research','fa','admin', 'treasure
 if(in_array($user->role,$allowedAccess))
 {
 ?>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myfinds'),null,true);?>" title="View all finds I have recorded">Finds I recorded  <i class="icon-list"></i></a></li>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myinstitution'),null,true);?>" title="View everything recorded at my workplace">My institution's records  <i class="icon-list"></i></a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myfinds'),null,true);?>" title="View all finds I have recorded">Finds recorded by me  <i class="icon-list"></i></a></li>
+<?php if($user->role === 'member'):?>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'recordedbyflos'),null,true);?>" title="View all finds recorded by PAS staff for me">Finds recorded for me by flos</a></li>
+<?php endif;?>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme', 'action' => 'myinstitution'),null,true);?>" title="View everything recorded by people with my prefix">My institution's records  <i class="icon-list"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'myscheme','action' => 'myimages'),null,true);?>">My images <i class="icon-camera"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'images'),null,true);?>">All images <i class="icon-picture"></i></a></li>
 <?php
@@ -29,10 +33,6 @@ else
 
 }
 ?>
-<?php if($user->role === 'member'):?>
-<li><a href="<?php echo $this->url(array('module' => 'users','controller'=>'records'),null,true);?>" title="View finds recorded for me by the Scheme">My finds recorded by FLOs</a></li>
-<?php endif;?>
-<li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search', 'action' => 'results'),NULL,true);?>" title="All finds recorded on the database">All artefacts &amp; coins <i class="icon-list"></i></a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search'),NULL,true);?>">Search database <i class="icon-search"></i></a>
 </li>
 <?php

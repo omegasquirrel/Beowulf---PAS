@@ -61,26 +61,31 @@ class Users extends Pas_Db_Table_Abstract {
     }
 
     public function register($data){
+    unset($data['csrf']);
 	$data['password'] = SHA1($this->_config->auth->salt. $data['password']);		
 	$data['activationKey'] = md5($data['username'] . $data['first_name']);
+	$data['fullname'] = $data['first_name'] . ' ' . $data['last_name'];
 	$data['valid'] = 0;
 	$data['role'] = 'member';
 	$data['institution'] = 'PUBLIC';
 	$data['imagedir'] = 'images/' . $data['username'] . '/';
+	$data['created'] = parent::timeCreation();
+	$data['createdBy'] = parent::userNumber();
 	return parent::insert($data);
     }
     
     public function activate($data){
-  
+  	unset($data['csrf']);
 	$where = array();
-	foreach($data as $k => $v){
-	$where[] = $this->getAdapter()->quoteInto($k . ' = ?', $v);
-	}
+	
+	$where[] = $this->getAdapter()->quoteInto('activationKey = ?', $data['activationKey']);
+	$where[] = $this->getAdapter()->quoteInto('username = ?', $data['username']);
+	$where[] = $this->getAdapter()->quoteInto('email = ?', $data['email']);
 	$data = array (
-	'valid' => '1',
+	'valid' => 1,
 	'activationKey' => NULL,
 	);
-	
+	$username = $data['username'];
 
 	$perm = 0775;
 	mkdir(PATH . $username, $perm);
@@ -182,6 +187,7 @@ class Users extends Pas_Db_Table_Abstract {
 	$users = $this->getAdapter();
 	$select = $this->select()
 		->from($this->_name)
+		->where('valid = ?',1)
 		->order('lastlogin DESC');
 	if(isset($params['username']) && ($params['username'] != "")) {
 	$un = strip_tags($params['username']);

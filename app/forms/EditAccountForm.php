@@ -66,10 +66,10 @@ class EditAccountForm extends Pas_Form
 		->setRequired(true)
 		->addErrorMessage('Please enter a valid address!');
 
-		$password = $this->addElement('password', 'password',array('label' => 'Change password: ',
-		'size' => '30'))
-		->password;
-        $password->setRequired(false);
+//		$password = $this->addElement('password', 'password',array('label' => 'Change password: ',
+//		'size' => '30'))
+//		->password;
+//        $password->setRequired(false);
 
         $institution = $this->addElement('select', 'institution',array('label' => 'Recording institution: '))->institution;
         $institution->addMultiOptions(array(

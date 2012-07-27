@@ -3,6 +3,9 @@
 $this->old_findID,$this->id,$this->broadperiod,
 $this->secuid,$this->returnID,$this->createdBy);?>
 <p>
+<?php if(!is_null($this->cciNumber)):?>
+<strong>Celtic Coin Index Number:</strong> <?php echo $this->escape($this->cciNumber);?><br />
+<?php endif;?>
 
 <?php if(!is_null($this->d)) :?>
 Denomination: <?php echo $this->escape($this->d);?> <span class="scope">[<a href="<?php echo $this->url(array('module' => 'ironagecoins','controller'=>'denominations','action'=>'denomination','id' => $this->denom),null,true);?>" title="Read scope note for <?php echo $this->d;?>">scope notes</a> |  <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','denomination' => $this->denom),null,true);?>" title="view all records assigned to denomination: <?php echo $this->d;?>">view all attributed records</a>]</span><br />
@@ -24,8 +27,8 @@ Tribe: <?php echo $this->escape($this->tribe);?> <span class="scope">[<a href="<
 Geographic provenance: <?php echo $this->escape($this->a);?> <?php echo $this->escape($this->r);?> <span class="scope">[scope notes | view all attributed records]</span><br />
 <?php endif;?>
 
-<?php if(!is_null($this->cciNumber)):?>
-Celtic Coin Index Number: <?php echo $this->escape($this->cciNumber);?><br />
+<?php if(!is_null($this->bmc_type)):?>
+British Museum Catalogue type: <?php echo $this->escape($this->bmc_type);?> <br />
 <?php endif;?>
 
 <?php if(!is_null($this->allen_type)):?>
@@ -37,7 +40,11 @@ Mack Type: <?php echo $this->escape($this->mack);?> <span class="scope">[<a href
 <?php endif;?>
 
 <?php if(!is_null($this->va_type)):?>
-Van Arsdell Type: <?php echo $this->escape($this->va_type);?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'ironagecoins','controller' => 'vanarsdelltypes','action'=>'type','id' => $this->va_type),null,true);?>" title="Read scope note for <?php echo $this->va_type;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','va' => $this->va_type),null,true);?>" title="view all records assigned to <?php echo $this->va_type;?>">View all attributed records</a></span><br />
+Van Arsdell Type (VA): <?php echo $this->escape($this->va_type);?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'ironagecoins','controller' => 'vanarsdelltypes','action'=>'type','id' => $this->va_type),null,true);?>" title="Read scope note for <?php echo $this->va_type;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','va' => $this->va_type),null,true);?>" title="view all records assigned to <?php echo $this->va_type;?>">View all attributed records</a></span><br />
+<?php endif;?>
+
+<?php if(!is_null($this->rudd_type)):?>
+Ancient British Coins (ABC): <?php echo $this->escape($this->rudd_type);?> <br />
 <?php endif;?>
 
 <?php if(!is_null($this->mint_name)) :?>

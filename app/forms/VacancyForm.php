@@ -39,7 +39,6 @@ public function __construct($options = null) {
 		->setRequired(true)
 		->addFilters(array('BasicHtml', 'StringTrim'))
 		->setAttribs(array('cols' => 50, 'rows' => 10, 'Height' => 400))
-		->setAttrib('ToolbarSet','Basic')
 		->addErrorMessage('You must enter a job description.');
 	
 	$regionID = new Zend_Form_Element_Select('regionID');

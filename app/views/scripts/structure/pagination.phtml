@@ -14,7 +14,7 @@
 <?php foreach ($this->pagesInRange as $page): ?>
 <li>
 <?php if ($page != $this->current): ?>
-<a href="<?php echo $this->url(array('page' => $page)); ?>" ><?php echo $page; ?></a>
+<a class="pageAway-<?php echo abs($this->current - $page);?>" href="<?php echo $this->url(array('page' => $page)); ?>" ><?php echo $page; ?></a>
 </li>
 <?php else: ?>
 <a href="#" class="active"><?php echo $page; ?></a>

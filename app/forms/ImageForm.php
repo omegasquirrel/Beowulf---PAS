@@ -24,16 +24,27 @@ class ImageForm extends Pas_Form
 
 	$copyrights = new Copyrights();
 	$copy = $copyrights->getStyles();
+	
+	$licenses = new LicenseTypes();
+	$license = $licenses->getList();
 
 	$auth = Zend_Auth::getInstance();
 	$this->_auth = $auth;
 	if($this->_auth->hasIdentity()) {
 	$user = $this->_auth->getIdentity();
+	
+	if(!is_null($user->copyright)){
 	$this->_copyright = $user->copyright;
-	} else {
-	$this->_copyright = 'The Portable Antiquities Scheme';
-	}
-
+		} elseif(!is_null($user->fullname)) {
+			$this->_copyright = $user->forename . ' ' . $user->surname;
+		} else {
+			$this->_copyright = $user->fullname;
+		}
+	} 
+		
+	
+	
+	$copyList = array_filter(array_merge(array($this->_copyright => $this->_copyright), $copy));
 	parent::__construct($options);
 
 
@@ -74,8 +85,19 @@ class ImageForm extends Pas_Form
 	$copyright->setLabel('Image copyright: ')
 	->setRequired(true)
 	->addErrorMessage('You must enter a licence holder')
-	->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copy))
+	->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copyList))
+	->setDescription('You can set the copyright of your image here to your institution. If you are a public recorder, it 
+	should default to your full name. For institutions that do not appear contact head office for getting it added.')
 	->setValue($this->_copyright);
+	
+	$licenseField = new Zend_Form_Element_Select('ccLicense');
+	$licenseField->setDescription('Our philosophy is to make our content available openly, by default we set the license as
+	use by attribution to gain the best public benefit. You can choose a different license if you wish.');
+	$licenseField->setRequired(true)
+	->setLabel('Creative Commons license:')
+	->addMultiOptions(array(NULL => 'Select a license', 'Available licenses' => $license))
+	->setValue(5)
+	->addValidator('Int');
 
 	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Image type: ')
@@ -89,12 +111,12 @@ class ImageForm extends Pas_Form
 	$this->addElements(array(
 	$image, $imagelabel, $county,
 	$period, $copyright, $type,
-	$submit));
+	$licenseField, $submit));
 	$this->setMethod('post');
 	$this->addDisplayGroup(array(
 	'image', 'label', 'county',
-	'period', 'copyrighttext', 'type'),
-	'details');
+	'period', 'copyrighttext', 'ccLicense',
+	'type'),'details');
 
 
 	$this->addDisplayGroup(array('submit'), 'submit')->removeDecorator('HtmlTag');

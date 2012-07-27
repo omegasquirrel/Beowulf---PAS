@@ -39,8 +39,8 @@ class Pas_Controller_Action_Helper_SolrUpdater
     }
     }
     
-    public function update($core, $id, $model){
-    $data = $this->getUpdateData($core, $id, $model);
+    public function update($core, $id){
+    $data = $this->getUpdateData($core, $id);
 
     $this->_solr = $this->getSolrConfig($core);
     $update = $this->_solr->createUpdate();

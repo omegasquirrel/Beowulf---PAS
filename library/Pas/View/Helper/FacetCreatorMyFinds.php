@@ -71,6 +71,7 @@ class Pas_View_Helper_FacetCreatorMyFinds extends Zend_View_Helper_Abstract {
         $url = $this->view->url($request,'default',true);
         
         $html .= '<li>';
+        
         if($facetName !== 'workflow'){
         $html .= '<a href="' . $url . '" title="Facet query for ' . $this->view->facetContentSection($key);
         $html .= '">';
@@ -145,6 +146,9 @@ class Pas_View_Helper_FacetCreatorMyFinds extends Zend_View_Helper_Abstract {
             	break;	
             case 'materialTerm':
             	$clean = 'Material';
+            	break;
+            case 'creator':
+            	$clean = 'Created by user';
             	break;
             default:
                 $clean = ucfirst($name);

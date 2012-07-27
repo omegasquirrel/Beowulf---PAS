@@ -13,6 +13,7 @@ class Admin_VacanciesController extends Pas_Controller_Action_Admin {
 	/** Setup the contexts by action and the ACL.
 	*/
 	public function init() {
+	$this->_helper->_acl->allow('flos',null);
 	$this->_helper->_acl->allow('fa',null);
 	$this->_helper->_acl->allow('admin',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');

@@ -146,6 +146,9 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
             case 'materialTerm':
             	$clean = 'Material';
             	break;
+            case 'createdBy':
+            	$clean = 'Created by user';
+            	break;
             default:
                 $clean = ucfirst($name);
                 break;
