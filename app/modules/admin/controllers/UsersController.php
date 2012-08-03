@@ -59,8 +59,6 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	if($this->_getParam('username',false)) {
 	$users = new Users();
 	$this->view->users = $users->findUserAccount((string)$this->_getParam('username'));
-	$slides = new Slides();
-	$this->view->images = $slides->recentFinds((string)$this->_getParam('username'),4);
 	} else {
 		throw new Pas_Exception_Param('Parameter not found');
 	}

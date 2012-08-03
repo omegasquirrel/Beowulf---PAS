@@ -27,7 +27,7 @@ class Pas_Service_Geo_Coder{
     public function _getGeocodedLatitudeAndLongitude($address) {
         $client = new Zend_Http_Client();
         $client->setUri(self::GEOCODEURI);
-        $client->setParameterGet('q', urlencode($address))
+        $client->setParameterGet('q', $address)
                ->setParameterGet('output', 'json')
                ->setParameterGet('sensor', 'false')
                ->setParameterGet('key', (string)$this->_key);

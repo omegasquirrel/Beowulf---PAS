@@ -93,7 +93,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('rdf',array('suffix' => 'rdf'))
             ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
-            ->addActionContext('record', array('csv','pdf','qrcode', 'json'))
+            ->addActionContext('record', array('qrcode', 'json'))
             ->addActionContext('index', array('rss','atom'))
             ->initContext();
     $this->_finds = new Finds();
@@ -247,7 +247,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $secuid = $this->secuid();
     $fullname = $user->fullname;
     $secure = $user->peopleID;
-    if(is_null($secure)){
+    $canRecord = $user->canRecord;
+    if((is_null($secure) && is_null($canRecord)) || (!is_null($secure) && is_null($canRecord)) ){
     $this->_redirect('/error/accountproblem');
     }
     $last = $this->_getParam('copy');
@@ -410,10 +411,12 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }  else  {
     $data['comment_approved'] =  '1';
     }
-
-    $errors = new ErrorReports();
-    $this->notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$data);
+	$errors = new ErrorReports();
     $errors->add($data);
+	$data = array_merge($finds['0'], $data);
+
+    $this->notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$finds['0']['institution'],$finds['0']['createdBy'],$data);
+    
     $this->_flashMessenger->addMessage('Your error report has been submitted. Thank you!');
     $this->_redirect(self::REDIRECT.'record/id/' . $this->_getParam('id'));
     } else {
@@ -441,6 +444,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $from[] = array('email' => $this->_user->email, 'name' => $this->_user->fullname);
     $cc = array_merge($cc,$from);
     $assignData = array_merge($find->toArray(),$form->getValues(),$to['0']);
+    
     $this->_helper->mailer($assignData, 'publicFindToFlo', $to, $cc, $from);
     $this->_flashMessenger->addMessage('Your message has been sent');
     $this->_redirect('database/artefacts/record/id/' . $find->id);
@@ -453,13 +457,70 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }
     }
 
-
+public function workflowAction(){
+   	if($this->_getParam('findID',false)){
+   	$people = new Peoples();
+   	$exist = $people->checkEmailOwner($this->_getParam('findID'));
+   	$user = new Pas_User_Details();
+   	$person = $user->getPerson();
+   	$from = array('name' => $person->fullname, 'email' => $person->email);
+   	$this->view->from = $exist;
+   	$form = new ChangeWorkFlowForm();
+	$findStatus = $this->_finds->fetchRow($this->_finds->select()->where('id = ?', $this->_getParam('findID')));
+   	$this->view->find = $findStatus->old_findID;
+   	$form->populate($findStatus->toArray());
+   	$this->view->form = $form;
+   	if(is_null($exist['0']['email'])){
+   		$form->finder->setAttrib('disabled', 'disabled');
+   		$form->finder->setDescription('No email associated with finder yet.');
+   		$form->removeElement('content');
+   	}
+	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
+	if ($form->isValid($form->getValues())) {
+    $updateData = array('secwfstage' => $form->getValue('secwfstage'));	
+    if(strlen($form->getValue('finder')) > 0){
+    	$assignData = array(
+    	'name' => $exist['0']['name'],
+    	'old_findID' => $findStatus->old_findID,
+    	'id' => $this->_getParam('findID'),
+    	'from' => $person->fullname,
+    	'workflow' => $form->getValue('secwfstage'),
+    	'content' => $form->getValue('content')
+ 	);
+	$this->_helper->mailer($assignData, 'informFinderWorkflow', $exist, array($from), array($from),null,null);
+    }
+    $where = array();
+	$where[] = $this->_finds->getAdapter()->quoteInto('id = ?', $this->_getParam('findID'));
+	$this->_finds->update($updateData, $where);
+    $this->_helper->audit($updateData, $findStatus->toArray(), 'FindsAudit',  $this->_getParam('findID'),
+    	$this->_getParam('findID'));
+    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));	
+    $this->_flashMessenger->addMessage('Workflow status changed');
+	$this->_redirect('database/artefacts/record/id/' . $this->_getParam('findID'));
+    $this->_request->setMethod('GET');
+    } else {
+    $this->_flashMessenger->addMessage('There were problems changing the workflow');
+    $form->populate($form->getValues());
+    }
+    }
+   	} else {
+            throw new Pas_Exception_Param($this->_missingParameter);
+    }
+   }
 
     /** Provide a notification for an object
     */
-    protected function notify($objecttype, $broadperiod, $data) {
-    $finds = new Users();
-    $to = $finds->getOwner($data['comment_findID']);
+    protected function notify($objecttype, $broadperiod, $institution, $createdBy, $data) {
+    if($institution === 'PUBLIC') {
+    $users = new Users();
+    $responsible = $users->fetchRow('id = ' . $createdBy);
+  
+    $to = array(array('email' => $responsible->email, 'name' => $responsible->fullname));	
+    } else {
+    $responsible = new Contacts();
+    $to = $responsible->getOwner($data['comment_findID']);
+    }
+  
     $cc = $this->_getAdviser($objecttype, $broadperiod);
     $from = array(array(
         'email' => $this->_user->email,
@@ -476,6 +537,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     /** Determine adviser to email
     */
     private function _getAdviser($objecttype, $broadperiod) {
+    	
     $this->_romancoinsadviser = $this->_config->findsadviser->romancoins;
     $this->_romancoinsadviseremail = $this->_config->findsadviser->romcoins->email;
 

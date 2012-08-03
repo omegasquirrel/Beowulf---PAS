@@ -555,7 +555,7 @@
 	<field name="allenType" type="string" indexed="true" stored="true" />
 	<field name="mackType" type="string" indexed="true" stored="true" />
 	<field name="abcType" type="string" indexed="true" stored="true" />
-	<field name="vaType" type="string" indexed="true" stored="true" />
+	<field name="vaType" type="double" indexed="true" stored="true" />
 	<field name="category" type="int" indexed="true" stored="true"  />
 	<field name="categoryTerm" type="string" indexed="true" stored="true" />
 	<field name="type" type="int" indexed="true" stored="true" />
@@ -717,6 +717,10 @@
 	<copyField source="objecttype" dest="objectType" />
 	<copyField source="reverseType" dest="text" />
 	<copyField source="cciNumber" dest="text" />
+	<copyField source="allenType" dest="text" />
+	<copyField source="mackType" dest="text" />
+	<copyField source="abcType" dest="text" />
+	<copyField source="vaType" dest="text" />
 
    <!-- Above, multiple source fields are copied to the [text] field.
 	  Another way to map multiple source fields to the same

@@ -2,7 +2,7 @@
 <?php echo $this->CoinEditDeleteLink($this->old_findID,$this->id,$this->broadperiod,$this->secuid,$this->returnID,$this->createdBy);?>
 <p>
 <?php if(!is_null($this->d )):?>
-Denomination: <?php echo $this->escape($this->d);?> <span class="scope">[<a href="<?php echo $this->url(array('module' => 'greekromancoins','controller'=>'denominations','action'=>'denomination','id' => $this->denom),null,true);?>" title="Read scope note for <?php echo $this->d;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action'=>'results','denomination' => $this->denom),null,true);?>" title="view all records assigned to denomination: <?php echo $this->d;?>">View all attributed records</a>]</span><br />
+Denomination: <?php echo $this->escape($this->d);?> <span class="scope">[<a href="<?php echo $this->url(array('module' => 'greekromancoins','controller'=>'denominations','action'=>'denomination','id' => $this->denom),null,true);?>" title="Read scope note for <?php echo $this->d;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action'=>'results','denomination' => $this->denom),null,true);?>" title="view all records assigned to denomination: <?php echo $this->d;?>">view all attributed records</a>]</span><br />
 <?php endif;?>
 <?php if(!is_null($this->ruler1 )):?>
 Ruler/issuer: <?php echo $this->escape($this->ruler1);?> <br />
@@ -11,7 +11,7 @@ Ruler/issuer: <?php echo $this->escape($this->ruler1);?> <br />
 Secondary ruler/issuer: <?php echo $this->escape($this->ruler2);?><br />
 <?php endif;?>
 <?php if(!is_null($this->mint_name )):?>
-Mint or issue place: <?php echo $this->escape($this->mint_name);?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'greekromancoins','controller' => 'mints','action'=>'mint','id' => $this->mint_id),null,true);?>" title="Read scope note for <?php echo $this->mint_name;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','mint' => $this->mint_id),null,true);?>" title="view all records assigned to <?php echo $this->mint_name;?>">View all attributed records</a>]</span><br />
+Mint or issue place: <?php echo $this->escape($this->mint_name);?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'greekromancoins','controller' => 'mints','action'=>'mint','id' => $this->mint_id),null,true);?>" title="Read scope note for <?php echo $this->mint_name;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','mint' => $this->mint_id),null,true);?>" title="view all records assigned to <?php echo $this->mint_name;?>">view all attributed records</a>]</span><br />
 <?php endif;?>
 <?php if(!is_null($this->obverse_description )):?>
 Obverse description: <?php echo $this->obverse_description;?><br />

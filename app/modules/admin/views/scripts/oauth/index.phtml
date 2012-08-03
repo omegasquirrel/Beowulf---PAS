@@ -8,8 +8,9 @@
 $tokens = ((object)$this->tokens);
 foreach($tokens as $t){
 ?><tr><td><?php echo $t->service; ?></td>
-<td><?php echo $this->timeagoinwords($t->created);?> </td>
-<td><?php echo $this->timeagoinwords($t->expires);?> </td></tr>
+<td><?php echo $t->created;?> </td>
+<td><?php echo $t->expires;?> </td>
+</tr>
 <?php
 }?>
 </table>

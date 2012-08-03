@@ -94,6 +94,8 @@ public function __construct($options = null) {
 		'Existing accounts' => $users_options))
 		->addErrorMessage('You must enter a database account.');
 
+	$canRecord = $this->addElement('checkbox', 'canRecord',array('label' => 'Allowed to record: '))->canRecord;
+		
 	$address = new Zend_Form_Element_Text('address');
 	$address->SetLabel('Address: ')
 		->addFilters(array('StripTags','StringTrim', 'Purifier'))
@@ -169,25 +171,22 @@ public function __construct($options = null) {
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	$this->addElements(array(
 	$title, $forename, $surname,
 	$fullname, $email, $address,
 	$town_city, $county, $postcode,
-	$country, $dbaseID, $hometel,
+	$country, $dbaseID, $canRecord, $hometel,
 	$worktel, $fax, $comments,
-	$organisationID, $primary_activity, $submit,
-	$hash));
+	$organisationID, $primary_activity, $submit));
 
 	$this->addDisplayGroup(array(
 	'title','forename','surname',
 	'fullname','email','address',
 	'town_city','county','postcode',
-	'country','dbaseID','hometel',
-	'worktel','faxno','comments',
-	'organisationID','primary_activity'), 
+	'country','dbaseID', 'canRecord',
+	'hometel','worktel','faxno',
+	'comments',	'organisationID','primary_activity'), 
 	'details');
 	$this->details->setLegend('Person details: ');
 	

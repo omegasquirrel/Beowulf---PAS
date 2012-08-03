@@ -149,7 +149,7 @@ class Contacts extends Pas_Db_Table_Abstract {
 		'longitude','latitude','image'))
 		->joinLeft(array('position' => 'staffroles'),'staff.role = position.ID',
 		array('staffroles' => 'role'))
-		->where('staff.role IN (1,2,3,4) AND alumni =1')
+		->where('staff.role IN (1,2,3,4,24) AND alumni =1')
 		->order('lastname');
 	$data =  $persons->fetchAll($select);
 	$this->_cache->save($data, 'centralUnit');

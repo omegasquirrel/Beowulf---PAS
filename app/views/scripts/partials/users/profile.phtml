@@ -5,13 +5,14 @@ $this->headTitle('User account details for ' . $this->fullname . ' - '
 
 <h2>User account details for: <?php echo $this->fullname;?></h2>
 
-<div id="gravatar"><?php 
+<div id="gravatar" class="flow"><?php 
 echo $this->gravatar($this->email,array(
 'imgSize' => 80, 'defaultImg' => 'monsterid', 'secure' => true),
-array('class' => 'avatar flow', 'title' => $this->fullname 
+array('class' => 'avatar', 'title' => $this->fullname 
       . '\'s gravatar representation',
       'rating' => 'G'));
 ?>
+<p>You probably don't like your alien representation, if you follow <a href="http://finds.org.uk/help/database/topic/id/4">instructions here</a>, you can change it!</p>
 </div>
 
 <p>
@@ -32,8 +33,13 @@ echo '<br />' . $more . ' people have visited the site more frequently than you!
 echo '<br />You are the most frequent visitor!';
 }?>
 <br>
-Last visit registered at: <?php echo $this->escape($this->timeagoinwords($this->lastLogin));?><br>
-Your specified role on the site is: <?php echo ucfirst($this->role);?><br>
-Your account was last updated by <?php echo $this->updater;?>, <?php echo $this->escape($this->timeagoinwords($this->updated));?>.<br>Your account was created by: <?php echo $this->creator;?>.<br>
-Your account was created: <?php echo $this->escape($this->timeagoinwords($this->created));?>.<br>
+Last visit registered at: <?php echo $this->escape($this->timeagoinwords($this->lastLogin));?><br />
+Your specified role on the site is: <?php echo ucfirst($this->role);?><br />
+Your account was last updated by <?php echo $this->updater;?>, <?php echo $this->escape($this->timeagoinwords($this->updated));?>.<br>Your account was created by: <?php echo $this->creator;?>.<br/ >
+Your account was created: <?php echo $this->escape($this->timeagoinwords($this->created));?>.<br/ >
+<?php if(!is_null($this->canRecord)):?>
+Your account has permission to record objects
+<?php else:?>
+Your account does not have permission to record objects, if you want to do so, contact your local FLO.
+<?php endif;?>
 </p>

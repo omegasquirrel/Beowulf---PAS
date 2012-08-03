@@ -83,7 +83,10 @@ class Pas_View_Helper_SearchParams
 		'updatedBefore' => 'Updated before',
 		'fromdate' => 'Date from',
 		'todate' => 'Date to',
-		'materialTerm' => 'Primary material'
+		'materialTerm' => 'Primary material',
+		'identifier1ID' => 'Primary identifier (obfuscated for security)',
+		'identifier2ID' => 'Secondary identifier (obfuscated for security)',
+		'recorderID' => 'Recorded by (obfuscated for security)'
 
 	);
 

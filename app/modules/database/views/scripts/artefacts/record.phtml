@@ -163,9 +163,8 @@
 <!--  End of spatial data -->
 
 <!--  Start of the references section -->
-<div class="row-fluid">
+<div class="row-fluid" id="references">
 <h4>References cited</h4>
-<div id="references">
 <?php
 if (count($this->refs) > 0) : ?>
 <p>
@@ -176,7 +175,7 @@ if (count($this->refs) > 0) : ?>
         $this->finds['0']['createdBy']);?>
 </p>
 
-<ul id="related">
+<ul>
 <?php echo $this->partialLoop('partials/database/harvardbook.phtml', $this->refs);?>
 </ul>
 <?php else:?>
@@ -186,12 +185,11 @@ if (count($this->refs) > 0) : ?>
 $this->finds['0']['secuid'],$this->finds['0']['createdBy']);?>
 <?php endif;?>
 </div>
-</div>
 
 <!--  End of references section -->
 </div>
 <!-- The more like this section -->
-<div class="row-fluid">
+<div class="row-fluid" id="morelikethis">
 <?php
 	echo $this->moreLikeThis('old_findID:' . $this->finds['0']['old_findID']);
 ?>
@@ -202,7 +200,7 @@ $this->finds['0']['secuid'],$this->finds['0']['createdBy']);?>
 <!--  End of main body of record -->
 
 <!--  Start of commentary section -->
-<div class="row-fluid">
+<div class="row-fluid" id="commentary">
 
 <p>
 <a class="btn btn-small" href="<?php echo $this->url(array(

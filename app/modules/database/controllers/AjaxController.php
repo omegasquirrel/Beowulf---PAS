@@ -13,12 +13,13 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     */
     public function init() {
 	$this->_helper->_acl->allow('public',NULL);
-	$this->_helper->_acl->deny('public',array('nearest', 'kml', 'her', 'gis'));
-	$this->_helper->_acl->deny('member',array('nearest', 'kml', 'her', 'gis'));
+	$this->_helper->_acl->deny('public',array('nearest', 'kml', 'her', 'gis','workflow'));
+	$this->_helper->_acl->deny('member',array('nearest', 'kml', 'her', 'gis','workflow'));
 	$this->_helper->_acl->allow('flos',NULL);
 	$this->_helper->_acl->allow('hero',NULL);
 	$this->_helper->_acl->allow('research',NULL);
 	$this->_helper->layout->disableLayout();
+	    $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     }
 
     const REDIRECT = '/database/artefacts/';
@@ -454,4 +455,6 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
    public function forceindexupdateAction(){
 	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));	
    }
+   
+  
 }

@@ -5,13 +5,13 @@ $auth = Zend_Registry::get('auth');
 if($auth->hasIdentity()){
 $user = $auth->getIdentity();
 {
-$allowed = array('fa','admin','flos','hero','research');
+$allowed = array('fa','admin','flos','hero');
 if(in_array($user->role,$allowed)){ 
 ?>
-Found by: <span property="pas:finder" ><?php echo $this->escape($this->tit1);?> <?php echo $this->escape($this->fore);?> 
+Found by: <span property="pas:finder foaf:name" instanceof="foaf:person"><?php echo $this->escape($this->tit1);?> <?php echo $this->escape($this->fore);?> 
 <?php echo $this->escape($this->sur);?></span> - <span class="scope">[<a href="
-<?php echo $this->url(array('module' => 'database','controller' => 'ajax',
-'action' => 'otherdiscoveries', 'id' => $this->secuid),null,true);?>" title="View other discoveries" 
+<?php echo $this->url(array('module' => 'database','controller' => 'search',
+'action' => 'results', 'finderID' => $this->secuid),null,true);?>" title="View other discoveries" 
 rel="facebox">view other discoveries by this finder</a>]</span><br />
 <?php
 }
@@ -25,7 +25,7 @@ Found by: This information is restricted for your login. <br />
 ?>
 
 <?php if(!is_null($this->recorderID)) : ?> 
-Recorded by: <span property="pas:recorder foaf:name"><?php echo 
+Recorded by: <span property="pas:recorder foaf:name" instanceof="foaf:person"><?php echo 
 $this->escape($this->tit3);?> <?php echo $this->escape($this->fore3);?> 
 <?php echo $this->escape($this->sur3);?></span> 
 - <span class="scope">[ 
@@ -41,14 +41,14 @@ $this->escape($this->tit3);?> <?php echo $this->escape($this->fore3);?>
 <?php endif;?>
 
 <?php if(!is_null($this->identifier1ID)) :?>
-Identified by: <span property="pas:identifier foaf:name" ><?php echo 
+Identified by: <span property="pas:identifier foaf:name" instanceof="foaf:person"><?php echo 
 $this->escape($this->tit2);?> <?php echo $this->escape($this->fore2);?> 
 <?php echo $this->escape($this->sur2);?></span> - <span class="scope">[<a href="
 <?php echo $this->url(array(
     'module' => 'database',
     'controller' => 'search',
     'action' => 'results',
-    'idby' => $this->identifier1ID),null,true);?>" title="Search database for 
+    'identifierID' => $this->identifier1ID),null,true);?>" title="Search database for 
     all records identified by <?php echo $this->escape($this->tit2);?> 
 <?php echo $this->escape($this->fore2);?> <?php echo $this->escape($this->sur2);
 ?>">view all attributed records</a>]</span><br />
@@ -63,7 +63,7 @@ Secondary identifier: <span property="pas:identifierSecondary foaf:name"
      'module' => 'database',
      'controller' => 'search',
      'action' => 'results',
-     'idby2' => $this->identifier1ID),null,true);?>" title="Search database for 
+     'identifier2ID' => $this->identifier2ID),null,true);?>" title="Search database for 
      all records identifed by <?php echo $this->escape($this->tit5);?> 
      <?php echo $this->escape($this->fore5);?> <?php echo $this->escape($this->sur5);?>">
          view all attributed records</a>]</span><br />

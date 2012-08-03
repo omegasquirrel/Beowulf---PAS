@@ -14,7 +14,7 @@
 
 class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 
-	protected $_allowed = array('fa','flos','admin');
+	protected $_allowed = array('fa','flos','admin', 'treasure');
 	
 	protected $_role;
 	
@@ -75,6 +75,10 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 	//echo ' <a class="' . $class . '" href="'.$this->view->url(array('module' => 'database','controller' => 'artefacts','action' => 'record','id' => $id,'format' => 'pdf'),null,true)
 	//. '" title="Report format">Report</a>';
 	if(in_array($this->_role,$this->_allowed)){
+	echo  ' <a class="btn btn-small btn-danger" href="'. $this->view->url(array(
+            'module' => 'database',
+            'controller'=>'artefacts',
+            'action'=>'workflow','findID' => $id),null,true) . '">Change workflow</a>';	
 	echo ' <a class="' . $class . '"  href="'. $this->view->url(array(
             'module' => 'database',
             'controller'=>'ajax',

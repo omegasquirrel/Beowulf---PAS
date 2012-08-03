@@ -265,20 +265,20 @@ Specific landuse: <?php echo $this->escape($this->landuse);?>
 
 <div class="row-fluid">
 <?php if(!is_null($this->description) && ($this->description != '')):?>
-<p>Findspot description: <?php echo $this->description;?></p>
+<p>Findspot description: <?php echo strip_tags($this->description);?><br />
 <?php endif;?>
-
 <?php if(!is_null($this->comments) && ($this->comments != '')):?>
-<p>Findspot comments: <?php echo $this->comments;?></p>
+Findspot comments: <?php echo strip_tags($this->comments);?><br />
 <?php endif;?>
 
-<?php if(!is_null($this->fullname)):?>
-<p>Land is owned by: <?php echo $this->fullname;?></p>
+<?php if(!is_null($this->landownername)):?>
+Land is owned by: <?php echo $this->landownername;?><br />
 <?php endif;?>
 <?php if(!is_null($this->address)):?>
-<p>Address: <?php echo $this->escape($this->address);?></p>
+Address: <?php echo $this->escape($this->address);?><br />
 <?php  endif;?>
 <?php if(!is_null($this->postcode)):?>
-<p>Postcode: <?php echo $this->escape($this->postcode);?></p>
+Postcode: <?php echo $this->escape($this->postcode);?>
 <?php  endif;?>
+</p>
 </div>

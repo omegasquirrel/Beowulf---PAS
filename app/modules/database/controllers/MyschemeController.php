@@ -90,7 +90,6 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
-
     $this->view->facets = $search->_processFacets();
     }
 
@@ -107,9 +106,10 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'filename','thumbnail','old_findID',
     	'description', 'county', 'workflow')
     );
-
+	
     $search->setFacets(array('objectType','county','broadperiod','institution'));
     $search->setParams($params);
+    $search->debugQuery();
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->finds = $search->_processResults();

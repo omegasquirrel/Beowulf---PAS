@@ -1,3 +1,5 @@
+<?php if(!is_null($this->smr_ref) || !is_null($this->other_ref) 
+|| !is_null($this->treasureID || !is_null($this->musaccno))):?>
 <h4>Other reference numbers</h4>
 <p>
 <?php if(isset($this->smr_ref)|| ($this->smr_ref != '')):?>
@@ -13,3 +15,4 @@ Treasure case number: <?php echo $this->escape($this->treasureID);?><br />
 Museum accession number: <?php echo $this->escape($this->musaccno);?>
 <?php endif;?>
 </p>
+<?php endif;?>

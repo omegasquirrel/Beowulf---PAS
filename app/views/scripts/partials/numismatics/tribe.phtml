@@ -2,7 +2,7 @@
 <?php
  //echo $this->description;
  ?>
-<p><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'results','tribe' => $this->id),null, true);?>" title="View all attributed records for <?php echo $this->tribe;?>">View all attributed records for the <?php echo $this->escape($this->tribe); ?></a></p>
+<p><a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action' => 'results','tribe' => $this->id),null, true);?>" title="view all attributed records for <?php echo $this->tribe;?>">view all attributed records for the <?php echo $this->escape($this->tribe); ?></a></p>
 <?php 
 ini_set('display_errors', '0');     # don't show any errors...
 error_reporting(E_ALL | E_STRICT);  # ...but do log them		

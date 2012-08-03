@@ -60,15 +60,7 @@ class Admin_HelpController extends Pas_Controller_Action_Admin {
 	$form->populate($form->getValues());
 	}
 	} else {
-	// find id is expected in $params['id']
-	$id = (int)$this->_request->getParam('id', 0);
-	if ($id > 0) {
-	if(count($content)) {
-	$form->populate($this->_help->fetchRow('id='.(int)$id)->toArray());
-	} else {
-	throw new Pas_Exception_Param($this->_nothingFound);
-	}
-	}
+	$form->populate($this->_help->fetchRow('id= '.$this->_getParam('id'))->toArray());
 	}
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);

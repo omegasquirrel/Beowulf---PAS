@@ -115,6 +115,8 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	/** Add a new image
 	*/
 	public function addAction()	 {
+	$help = new Help();
+	$this->view->contents = $help->fetchRow('id = 14')->toArray();
 	$form = new ImageForm();
 	$form->submit->setLabel('Submit a new image.');
 	$user = $this->getUserDetails();
@@ -197,7 +199,6 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$linkData['secuid'] = $this->secuid();
 	$imagelink = new FindsImages();
 	$insertedlink = $imagelink->insert($linkData);
-	$this->_cache->remove('findtoimage' . $this->_getParam('id'));
 
 	$this->_flashMessenger->addMessage('The image has been resized and added!');
 	$this->_redirect('/database/artefacts/record/id/' . $this->_getParam('id'));
@@ -331,7 +332,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$update = $this->_images->update($updateData, $where);
 		//Update the solr instance
 	$this->_helper->solrUpdater->update('beoimages', $this->_getParam('id'));
-//	$this->_helper->cache->remove('findtoimage' . $this->_getParam('id'));
+	
 	$this->_flashMessenger->addMessage('Image and metadata updated!');
 	$this->_redirect(self::REDIRECT . 'image/id/' . $this->_getParam('id'));
 
@@ -371,7 +372,6 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$medium = './'.$imagedir.'medium/'.$filename;
 	$original = './'.$imagedir.$filename;
 	$where = 'imageID = ' . $id;
-
 	$this->_images->delete($where);
 	$linked = new FindsImages();
 	$wherelinks = array();
@@ -388,8 +388,6 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	unlink(strtolower($original));
 	unlink(strtolower($medium));
 	unlink($zoom);
-	$this->_helper->cache->remove('findtoimage' . $imagedata['0']['id']);
-
 	}
 	$this->_flashMessenger->addMessage('Image and metadata deleted!');
 	$this->_redirect('/database/myscheme/myimages/');
@@ -425,9 +423,9 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$findID = $form->getValue('findID');
 	$finds = new Finds();
 	$returns = $finds->fetchRow($finds->select()->where('secuid = ?',$findID));
-
+	$this->_helper->solrUpdater->update('beoimages', $this->_getParam('imageID'));
+	$this->_helper->solrUpdater->update('beowulf', $findID);
 	$returnID = $returns->id;
-//	$this->_helper->cache->remove('findtoimage' . $returnID);
 	$this->_flashMessenger->addMessage('You just linked an image to this record');
 	$this->_redirect('/database/artefacts/record/id/' . $returnID);
 	}
@@ -455,10 +453,12 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 
 	$where[] = $linked->getAdapter()->quoteInto('image_id = ?', $imageID);
 	$where[] = $linked->getAdapter()->quoteInto('find_id = ?', $findID);
+	
 	$linked->delete($where);
+	$this->_helper->solrUpdater->update('beoimages', $imageID);
+	$this->_helper->solrUpdater->update('beowulf', $findID);
 	$this->_flashMessenger->addMessage('Links deleted!');
 	$this->_redirect('/database/artefacts/record/id/' . $this->_getParam('returnID'));
-//	$this->_helper->cache->remove('findtoimage' . $returnID);
 	}
 	} else {
 	$id = (int)$this->_request->getParam('id');

@@ -1514,7 +1514,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getRelevantAdviserFind($findID){
 		$finds = $this->getAdapter();
 		$select = $finds->select()
-			->from($this->_name,array('objecttype','id','broadperiod','old_findID','secuid'))
+			->from($this->_name,array('objecttype','id','broadperiod','old_findID','secuid', 'institution', 'createdBy','created'))
 			->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
 			->where('finds.id = ?',$findID)
 			->limit(1);
@@ -1848,7 +1848,8 @@ class Finds extends Pas_Db_Table_Abstract {
 		'culture',
 		'finderID',
 		'recorderID',
-		'identifierID' => 'identifier1ID'))
+		'identifierID' => 'identifier1ID',
+		'createdBy'))
 		->joinLeft('findspots','finds.secuid = findspots.findID', array(
 		'regionID',
 		'county',
@@ -1863,8 +1864,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		'woeid',
 		'easting',
 		'northing',
-		'coordinates' => 'CONCAT(declat,",",declong)',
-		'createdBy'
+		'coordinates' => 'CONCAT(declat,",",declong)'
 		))
 		->joinLeft('coins', 'finds.secuid = coins.findID',array(
 		'geographyID',

@@ -22,6 +22,7 @@ echo $this->gravatar($this->email,array(
         'title' => $this->fullname . '\'s gravatar representation',
         'rating' => 'G'));
 ?>
+<p>You probably don't like your alien representation, if you follow <a href="http://finds.org.uk/help/database/topic/id/4">instructions here</a>, you can change it!</p>
 </div>
 
 </div>
@@ -36,16 +37,25 @@ Fullname: <?php echo $this->fullname;?><br />
 Firstname: <?php echo $this->first_name;?><br />
 <?php endif;?>
 <?php if(isset($this->last_name)):?>
-Lastname: <?php echo $this->last_name;?>
+Lastname: <?php echo $this->last_name;?><br />
+<?php endif;?>
+<?php if(isset($this->email)):?>
+Email address: <a href="mailto:<?php echo $this->email;?>"><?php echo $this->email;?></a>
 <?php endif;?>
 </p>
 <h3>System data</h3>
 <p>
-Assigned role: <?php echo $this->role;?><br>
-Recording institution prefix: <?php echo $this->institution;?><br>
-Last login to the database: <?php echo $this->timeagoinwords($this->escape(
-        $this->lastLogin));?><br>
-Number of visits: <?php echo $this->visits;?><br>
+Assigned role: <?php echo $this->role;?><br />
+Recording institution prefix: <?php echo $this->institution;?><br />
+Last login to the database: 
+<?php echo $this->timeagoinwords($this->escape($this->lastLogin));?><br />
+Number of visits: <?php echo $this->visits;?><br />
+<?php if(!is_null($this->canRecord)):?>
+Copyright: <?php echo $this->copyright;?><br />
+Allowed to record: Yes.
+<?php else:?>
+<strong>They are not set up for recording</strong>
+<?php endif;?>
 </p>
 
 <?php if(isset($this->researchOutline)) {?>

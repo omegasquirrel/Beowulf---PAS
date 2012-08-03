@@ -39,6 +39,7 @@ LEFT JOIN finds ON finds_images.find_id = finds.secuid
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN users ON slides.createdBy = users.id
 LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
+WHERE finds.secwfstage > 1
 "
 >
 		<field column="identifier" name="identifier" />

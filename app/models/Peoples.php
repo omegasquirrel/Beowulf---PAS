@@ -212,7 +212,8 @@ class Peoples extends Pas_Db_Table_Abstract {
 			'lon','lat',
 			'email','created','updated',
 			'coordinates' => 'CONCAT(lat,",",lon)',
-			'place' => 'CONCAT(address," ",town_city," ",county)'
+			'place' => 'CONCAT(address," ",town_city," ",county)',
+		'county', 'postcode'
 			 ))
 		->joinLeft('primaryactivities',$this->_name . '.primary_activity = primaryactivities.id',
 		array('activity' => 'term'))
@@ -220,4 +221,37 @@ class Peoples extends Pas_Db_Table_Abstract {
 	return	$persons->fetchAll($select);
 	}
 
+	public function add($data){
+	if(array_key_exists('csrf', $data)){
+            unset($data['csrf']);
+    }
+	if(empty($data['created'])){
+		$data['created'] = $this->timeCreation();
+	}
+	if(empty($data['createdBy'])){
+		$data['createdBy'] = $this->userNumber();
+	}
+        foreach($data as $k => $v) {
+
+            if ( $v == "") {
+            $data[$k] = NULL;
+            }
+        }
+	$secuid = new Pas_Generator_SecuID();
+	$data['secuid'] = $secuid->secuid();
+	return self::insert($data);
+	}
+	
+	public function checkEmailOwner($findID){
+//	if (!$data = $this->_cache->load('valuers')) {
+	$persons = $this->getAdapter();
+	$select = $persons->select()
+		->from($this->_name,array('name' => 'fullname', 'email'))
+		->joinLeft('finds', 'finds.finderID = people.secuid',array())
+		->where('finds.id = ?', $findID);
+    $data = $persons->fetchAll($select);
+//	$this->_cache->save($data, 'valuers');
+//	}
+    return $data;	
+	}
 }

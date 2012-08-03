@@ -26,7 +26,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
             ->initContext();
 
     $this->_peoples = new Peoples();
-    $this->_gmapskey = $this->_helper->config->webservice->googlemaps->apikey;
+    $this->_gmapskey = $this->_helper->config()->webservice->googlemaps->apikey;
     $this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
 	}
 
@@ -61,6 +61,8 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     } else {
 
     $params = $this->_getAllParams();
+    $params['sort'] = 'surname';
+    $params['direction'] = 'asc';
     $form->populate($this->_getAllParams());
 
 
@@ -127,6 +129,8 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $secuid = $this->secuid();
     $form = new PeopleForm();
     $form->submit->setLabel('Add a new person');
+    $form->removeElement('dbaseID');
+    $form->removeElement('canRecord');
     $this->view->form = $form;
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
@@ -147,14 +151,6 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
 
     $updateData['lat'] = $lat;
     $updateData['lon'] = $lon;
-
-    if(array_key_exists('dbaseID',$updateData)){
-    $users = new Users();
-    $user = array('peopleID' => $audit['secuid']);
-    $where =  $users->getAdapter()->quoteInto('id = ?',
-            $updateData['dbaseID']);
-    $updateUsers = $users->update($user,$where);
-    }
     $insert = $this->_peoples->add($updateData);
 
 	$this->_helper->solrUpdater->update('beopeople', $insert);
@@ -179,7 +175,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     . $form->getValue('county') . ',' . $form->getValue('postcode');
 
     $coords = $this->_geocoder->getCoordinates($address);
-
+	
     if($coords){
         $lat = $coords['lat'];
         $lon = $coords['lon'];
@@ -196,6 +192,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     if(array_key_exists('dbaseID',$updateData)){
     $users = new Users();
     $userdetails = array('peopleID' => $oldData['secuid']);
+    $userdetails['canRecord'] = $updateData['canRecord'];
     $whereUsers =  $users->getAdapter()->quoteInto('id = ?', $updateData['dbaseID']);
     $updateUsers = $users->update($userdetails, $whereUsers);
     }

@@ -34,7 +34,7 @@ Ruler/issuer: <?php echo $this->escape($this->ruler1);?> <span class="scope">[
         'action'=>'results',
         'ruler' => $this->ruler_id),null,true);?>" 
         title="view all records assigned to <?php echo $this->ruler1;?>">
-        View all attributed records</a>]</span><br />
+        view all attributed records</a>]</span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->mint_name )):?>
@@ -51,7 +51,7 @@ $this->url(array(
         'action'=>'results',
         'mint' => $this->mint_id),null,true);?>" 
         title="view all records assigned to <?php echo $this->mint_name;?>">
-    View all attributed records</a>]</span><br />
+    view all attributed records</a>]</span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->category )):?>
@@ -84,7 +84,7 @@ $this->url(array(
         'controller'=>'search',
         'action'=>'results',
         'typeID' => $this->typeID),null,true);?>" title="view all records
-        assigned to <?php echo $this->type;?>">View all attributed records</a>]
+        assigned to <?php echo $this->type;?>">view all attributed records</a>]
 </span><br />
 <?php endif;?>
 
@@ -125,7 +125,7 @@ Die axis measurement: <?php echo $this->escape($this->die_axis_name);?> <span
         'controller'=>'search',
         'action'=>'results',
         'axis' => $this->die),null,true);?>" title="view all records assigned to 
-<?php echo $this->die_axis_name;?>">View all attributed records</a>]</span><br />
+<?php echo $this->die_axis_name;?>">view all attributed records</a>]</span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->wear )):?>
@@ -141,6 +141,6 @@ Degree of wear: <?php echo $this->escape($this->wear);?> <span class="scope">[
         'controller'=>'search',
         'action'=>'results',
         'wear' => $this->wearID),null,true);?>" title="view all records assigned
-        to <?php echo $this->wear;?>">View all attributed records</a>]</span>
+        to <?php echo $this->wear;?>">view all attributed records</a>]</span>
 <?php endif;?>
 </p>

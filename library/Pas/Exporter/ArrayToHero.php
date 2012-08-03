@@ -41,7 +41,7 @@ class Pas_Exporter_ArrayToHero {
 
         foreach($data as $dat){
 //            Zend_Debug::dump($dat,'ORIGINAL');
-
+set_time_limit(0);
             $dat['SecUID'] = $dat['secuid'];
             $dat['FindID'] = $dat['old_findID'];
             $dat['ObjectType'] = $dat['objecttype'];

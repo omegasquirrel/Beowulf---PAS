@@ -233,7 +233,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	}
 	} 
 	} else {
-	$this->_redirect(self::REDIRECT);
+	$this->_redirect('/users/');
 	}
     }
 	/** List user's logins

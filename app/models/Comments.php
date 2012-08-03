@@ -29,7 +29,7 @@ class Comments extends Pas_Db_Table_Abstract {
                 'comment_author_email'))
             ->joinLeft('finds','finds.id = comments.contentID',array())
             ->where('finds.id = ?',$id)
-            ->where('comments.comment_type  = ?','recordcomment')
+            ->where('comments.comment_type  = ?','findComment')
             ->where('comments.comment_approved = ?','approved')
             ->order('comments.created ASC');
 	return $comments->fetchAll($select);
@@ -129,7 +129,7 @@ class Comments extends Pas_Db_Table_Abstract {
 		->joinLeft('finds','finds.id = comments.contentID',array('id','old_findID','broadperiod',
 		'objecttype'))
 		->where('finds.createdBy = ?',(int)$userid)
-		->where('comments.comment_type = ?', 'recordcomment');
+		->where('comments.comment_type = ?', 'findComment');
 	if(isset($approval) && $approval == 'spam') {
 	$select->where('comments.comment_approved = ?',(string)'spam');
 	}

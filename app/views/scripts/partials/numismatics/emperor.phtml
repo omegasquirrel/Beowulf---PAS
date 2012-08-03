@@ -53,25 +53,29 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
 
 SELECT *
-
 WHERE {
-?king foaf:page <http://en.wikipedia.org/wiki/' . $this->dbpedia . '> .
-OPTIONAL {?king dbpedia-owl:abstract ?abstract} .
+{
+?king foaf:isPrimaryTopicOf <http://en.wikipedia.org/wiki/' . $this->dbpedia .'> .
+?king<http://dbpedia.org/ontology/abstract> ?abstract .
+?king dbpedia2:name ?name .
+
 OPTIONAL {?king foaf:depiction ?depiction}.
 OPTIONAL {?king dbpedia-owl:thumbnail ?thumb} .
 OPTIONAL {?king dbpedia2:imgw ?imgw} .
 
 
-?king foaf:page ?page.
-FILTER langMatches( lang(?abstract), "en")
-
+?king foaf:isPrimaryTopicOf ?page.
+FILTER langMatches( lang(?abstract), \'en\')
+FILTER langMatches( lang(?name), \'en\')}
 }
+
 LIMIT 1
 ';
 //process the results
 
-//Zend_Debug::dump($q);
+
 $results = array();
+
 if ($rows = $store->query($q, 'rows')) {
 foreach ($rows as $row) {
 //Zend_Debug::dump($row);

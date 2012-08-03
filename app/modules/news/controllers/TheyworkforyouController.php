@@ -23,7 +23,8 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
          */
 	public function init() {
  	$this->_helper->_acl->allow(null);
-      	$this->_helper->contextSwitch()
+ 	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+	$this->_helper->contextSwitch()
             ->setAutoDisableLayout(true)
             ->addContext('kml',array('suffix' => 'kml'))
             ->addContext('rss',array('suffix' => 'rss'))
@@ -33,8 +34,8 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
             ->addActionContext('constituencies',array('xml','json'))
             ->addActionContext('index',array('xml','json'))
              ->initContext();
-        $this->_cache = Zend_Registry::get('cache');
-        }
+	$this->_cache = Zend_Registry::get('cache');
+	}
 
 
         /** Retrieve the page number
@@ -129,8 +130,14 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
          */
 	public function constituenciesAction() {
 	$cons = new Pas_Twfy_Constituencies();
-        $data = $cons->get('2010-05-07');
-	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data));
+ 	$data = $cons->get('2010-05-07');
+ 	$clean = array();
+ 	foreach($data as $dat){
+ 		foreach($dat as $k => $v){
+ 		$clean[] = array( 'name' => utf8_encode($v));
+ 		}
+ 	} 
+	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($clean));
 	$paginator->setCurrentPageNumber($this->getPage())
 			->setItemCountPerPage(40)
 			->setCache($this->_cache);
@@ -146,21 +153,11 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	$members = new Pas_Twfy_Mps();
 	$data = $members->get();
 	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data));
-        $paginator->setCurrentPageNumber((int)$this->getPage());
+	$paginator->setCurrentPageNumber((int)$this->getPage());
 	$paginator->setItemCountPerPage(30)
     	      ->setPageRange(10)
     	      ->setCache($this->_cache);
-   	if(in_array($this->_helper->contextSwitch()->getCurrentContext(), array('xml','json'))){
-	$this->view->data = $data;
-   	$members = array();
-   	foreach($paginator as $k => $v){
-   	$members[]=array();
-	$members[$k] = $v;
-   	}
-   	$this->view->members = $members;
-   	} else {
-	$this->view->data = $paginator;
-   	}
+   	$this->view->data = $paginator;
 	}
 
 }

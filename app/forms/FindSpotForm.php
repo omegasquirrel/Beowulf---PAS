@@ -59,7 +59,7 @@ public function __construct($options = null) {
 	$gridref->setLabel('Grid reference: ')
 	->addValidators(array('NotEmpty','ValidGridRef'))
 	->addValidator('Alnum',array('allowWhiteSpace' => true))
-	->addFilters(array('StripTags', 'StringTrim'));
+	->addFilters(array('StripTags', 'StringTrim', 'StringToUpper'));
 
 	$gridrefsrc = new Zend_Form_Element_Select('gridrefsrc');
 	$gridrefsrc->setLabel('Grid reference source: ')
@@ -178,7 +178,7 @@ public function __construct($options = null) {
 
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->setLabel('Postcode: ')
-	->addValidators(array('NotEmpty', 'ValidPostcode'))
+	->addValidators(array('NotEmpty', 'ValidPostCode'))
 	->addFilters(array('StripTags', 'StringTrim','StringToUpper'));
 
 	$knownas = new Zend_Form_Element_Text('knownas');
@@ -234,7 +234,7 @@ public function __construct($options = null) {
 	$county, $district, $parish,
 	$knownas, $depthdiscovery, $description,
 	$comments, $regionID, $gridref,
-	$findsecuid, $gridrefsrc, $gridrefcert,
+	$gridrefsrc, $gridrefcert,
 	$address, $postcode, $landusevalue,
 	$landusecode, $landownername, $landowner,
 	$submit, $hash));

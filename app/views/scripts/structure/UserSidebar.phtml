@@ -26,7 +26,7 @@ if(in_array($user->role,$allowed)) {
 <?php
 }
 ?>
-<li><a href="<?php echo $this->url(array('module' => 'users','controller'=>'records'),null,true);?>" title="View finds recorded for me by the Scheme">My finds recorded by FLOs</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'database','controller'=>'myscheme','action'=>'recordedbyflos'),null,true);?>" title="View finds recorded for me by the Scheme">My finds recorded by FLOs</a></li>
 
 <li><a href="<?php echo $this->url(array('module' => 'database','controller'=>'myscheme','action'=>'myfinds'),null,true);?>" title="View finds I have recorded">Finds I recorded</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'database','controller'=>'myscheme','action'=>'myinstitution'),null,true);?>" title="View finds my institution has recorded">My institution's finds</a></li>

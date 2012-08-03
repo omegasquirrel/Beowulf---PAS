@@ -52,8 +52,15 @@ class EditAccountForm extends Pas_Form
 		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 		->addErrorMessage('You must enter a surname');
 
-        $fullname = $this->addElement('text', 'fullname',
+		$preferred_name = $this->addElement('text', 'preferred_name',
 		array('label' => 'Preferred Name: ', 'size' => '30'))
+		->preferred_name;
+        $preferred_name->setRequired(true)
+		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
+		->addErrorMessage('You must enter your preferred name');
+		
+        $fullname = $this->addElement('text', 'fullname',
+		array('label' => 'Full name: ', 'size' => '30'))
 		->fullname;
         $fullname->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
@@ -76,7 +83,8 @@ class EditAccountForm extends Pas_Form
             NULL => 'Choose institution',
             'Available institutions'=> $inst_options
             ));
-
+		$canRecord = $this->addElement('checkbox', 'canRecord',array('label' => 'Allowed to record: '))->canRecord;
+		
         $role = $this->addElement('select', 'role',array('label' => 'Site role: '))->role;
         $role->addMultiOptions(array(NULL => NULL,'Choose role' => $role_options));
 
@@ -93,8 +101,8 @@ class EditAccountForm extends Pas_Form
 
 		$this->addDisplayGroup(array(
             'username','first_name','last_name',
-            'fullname','email','institution',
-            'role','password','person','peopleID'), 'userdetails');
+            'fullname', 'preferred_name', 'email','institution',
+            'role','password','person','peopleID', 'canRecord'), 'userdetails');
 
 	$this->addDisplayGroup(array('submit'),'submit');
 

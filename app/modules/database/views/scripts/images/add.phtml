@@ -8,3 +8,5 @@ $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');?>
 	'action' => 'record', 'id' => $id),null,true);?>" title="return to the record">Return to record</a></p>
 <?php echo $this->form;
 ?>
+
+ <div><?php echo $this->partial('partials/content/article.phtml',$this->contents);?></div>

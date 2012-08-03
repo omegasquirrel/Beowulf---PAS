@@ -135,15 +135,16 @@ Region: <?php echo $this->escape(ucwords(strtolower($this->region)));?><br />
 County: <?php echo $this->escape(ucwords(strtolower($this->county)));?><br />
 <?php endif;?>
 <?php if(!is_null($this->district)) :?>
-District: <?php echo $this->escape(ucwords(strtolower($this->district)));?><br />
+District: <?php echo $this->escape(ucwords(strtolower($this->district)));?>
 <?php endif;?>
 <?php if(!is_null($this->parish) && is_null($this->knownas))  :?>
-Parish: <?php echo $this->escape(ucwords(strtolower($this->parish)));?>
+<br />Parish: <?php echo $this->escape(ucwords(strtolower($this->parish)));?>
 <?php endif;?>
 <?php if(!is_null($this->knownas)) :?>
 <br /><span class="knownas">To be known as: <?php echo $this->escape($this->knownas);?></span>
 <?php endif;?>
 </p>
+
 </div>
 
 <div class="span4">
@@ -155,7 +156,9 @@ Parish: <?php echo $this->escape(ucwords(strtolower($this->parish)));?>
 1:25K map: <?php echo $this->map25k;?><br />
 1:10K map: <?php echo $this->map10k;?><br />
 <?php endif;?>
+<?php if($this->source):?>
 Grid reference source: <?php echo $this->escape($this->source);?><br />
+<?php endif;?>
 Grid reference accurate to a <?php echo $this->GetAccuracy($this->gridref);?> metre square.
 
 </p>

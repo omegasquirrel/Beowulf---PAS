@@ -28,7 +28,7 @@ class Pas_View_Helper_SearchExportTools extends Zend_View_Helper_Abstract {
 	 *
 	 * @var unknown_type
 	 */
-	protected $_allowed = array('flos','member','fa','admin','treasure', 'research');
+	protected $_allowed = array('flos','member','fa','admin','treasure', 'research', 'hero');
 
 	/** Construct the user object
 	 *

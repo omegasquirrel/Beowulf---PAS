@@ -123,7 +123,6 @@ class Flickr_PhotosController
 	$paginator->setPageRange(10);
 	$this->view->paginator = $paginator;
 	$this->view->pictures = $flickr;
-	Zend_Debug::dump($flickr);
 	
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);

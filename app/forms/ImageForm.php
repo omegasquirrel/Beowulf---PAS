@@ -64,7 +64,8 @@ class ImageForm extends Pas_Form
 	->setRequired(true)
 	->setAttrib('size',60)
 	->addErrorMessage('You must enter a label')
-	->setDescription('This must be descriptive text about the image - NOT THE FILE or FIND NUMBER/NAME')
+	->setDescription('This must be descriptive text about the image - NOT THE FILE or FIND NUMBER/NAME - and follow the 
+	conventions outlined below this form')
 	->addFilters(array('StripTags','StringTrim'));
 
 	$period = new Zend_Form_Element_Select('period');
