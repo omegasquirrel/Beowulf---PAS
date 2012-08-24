@@ -8,7 +8,7 @@
  $url['action'] = 'map';
  ?>
 
- <p><a href="<?php echo $this->url($url,null,true);?>" class="btn-small btn">Map results<i class="icon-map-marker"></i></a> <?php echo $this->searchExportTools();?></p>
+ <p><a href="<?php echo $this->url($url,null,true);?>" class="btn-small btn">Map results<i class="icon-map-marker"></i></a> <?php echo $this->searchExportTools($this->paginator->getTotalItemCount());?></p>
 
 <div class="row-fluid">
 <ul><?php echo $this->SearchParams(Zend_Controller_Front::getInstance()->getRequest()->getParams());?></ul>
@@ -16,7 +16,8 @@
 
 <div class="row-fluid">
 
-    	<?php if ($this->results): ?>
+    	<?php if ($this->results): 
+    	?>
 
 
 

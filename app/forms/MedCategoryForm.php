@@ -22,15 +22,15 @@ public function __construct($options = null) {
 	$category->setLabel('Medieval coin category: ')
 		->setRequired(true)
 		->setAttrib('size',60)
-		->addFilter(array('StringTrim', 'StripTags'))
+		->addFilters(array('StringTrim', 'StripTags'))
 		->addErrorMessage('You must enter a category name.');
 
 	$periodID = new Zend_Form_Element_Select('periodID');
 	$periodID->setLabel('Medieval period: ')
 		->setRequired(true)
-		->addFilter(array('StringTrim', 'StripTags'))
+		->addFilters(array('StringTrim', 'StripTags'))
 		->addErrorMessage('You must enter a period for this type')
-		->addMultioptions(array(NULL => NULL,'Choose a period' => $period_options));
+		->addMultioptions(array(NULL => 'Choose a period', 'Available Options' => $period_options));
 
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Description: ')

@@ -1,20 +1,35 @@
-<?php $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript'); ?>
-<?php $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinitPeople.js',$type='text/javascript'); ?>
-<?php $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/ui.datepicker.js',$type='text/javascript'); ?>
-<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
-->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');
+<?php
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/autocompleteinitPeople.js',$type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
+	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css');
 $this->headTitle('Edit find details');?>
-
-
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 $(document).ready(function() {
-$("#datefound1").datepicker({ maxDate: '+1y'});
-$("#datefound2").datepicker({ maxDate: '+1y' });
+$("#datefound1").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
+$("#datefound2").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
+
 });
+
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
 <?php $this->DataEditDeleteCheck($this->find->old_findID,$this->find->createdBy);
 ?>
 <?php echo $this->partial('partials/database/editFindH2.phtml',$this->find);?>
+<div class="well"><h3>Annoying reminder: <?php 
+$welcome = array(
+	'Data in = data out', 
+	'Do it right, do it once', 
+	'Remember the AD/BC style guide',
+	'Does this record follow the PAS recording guide?',
+	'If you are not sure, ask a finds adviser',
+	'Everything you write is audited and can be requested under Freedom of Information, be sensible',
+	'Is it a Treasure case, have you got a number and filled it in?',
+	'The classification and sub classification boxes are for typologies, not numismatic information',
+	'Is the record finished? If so can it be made public?'
+);
+echo  $welcome[array_rand($welcome)];
+
+?></h3></div>
 <?php
 echo $this->form;
 ?>

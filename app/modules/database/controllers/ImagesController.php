@@ -165,9 +165,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 
 	$location = self::PATH . $username . '/' . $filename;
 	$id = $this->_images->insert($insertData);
-	//Update the solr instance
-	$this->_helper->solrUpdater->update('beoimages', $id);
-	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('id'));
+	
 	$largepath   = self::PATH . $username . '/';
 	$mediumpath  = self::PATH . $username . '/medium/';
 	$smallpath   = self::PATH . $username . '/small/';
@@ -199,7 +197,9 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$linkData['secuid'] = $this->secuid();
 	$imagelink = new FindsImages();
 	$insertedlink = $imagelink->insert($linkData);
-
+	//Update the solr instance
+	$this->_helper->solrUpdater->update('beoimages', $id);
+	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('id'));
 	$this->_flashMessenger->addMessage('The image has been resized and added!');
 	$this->_redirect('/database/artefacts/record/id/' . $this->_getParam('id'));
 	} else {
@@ -373,6 +373,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$original = './'.$imagedir.$filename;
 	$where = 'imageID = ' . $id;
 	$this->_images->delete($where);
+	$this->_helper->solrUpdater->deleteById('beoimages', $id);
 	$linked = new FindsImages();
 	$wherelinks = array();
 	$wherelinks[] = $linked->getAdapter()->quoteInto('image_id = ?', $imagedata['0']['secuid']);

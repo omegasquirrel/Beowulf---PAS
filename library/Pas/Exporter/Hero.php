@@ -98,6 +98,7 @@ class Pas_Exporter_Hero extends Pas_Exporter_Generate {
     $clean = $converter->convert($data);
     if($iterator > 300) {
             set_time_limit(0);
+            ini_set('memory_limit', '256M');
         }
     $file = fopen('php://temp/maxmemory:'. (12*1024*1024), 'r+');
     fputcsv($file,$this->_exegesis,',','""');

@@ -33,7 +33,13 @@ $this->headMeta('Archaeology','dc.subject');
 <li>Publication type: <?php echo $this->escape($this->publicationType);?></li>
 <?php endif;?>
 <?php if(!is_null($this->ISBN)):?>
-<li>ISBN number: <span property="bibo:isbn10"><?php echo $this->escape($this->ISBN);?></li>
+<li>ISBN number: <span property="bibo:isbn10"><?php echo $this->escape($this->ISBN);?></span></li>
+<?php endif;?>
+<?php if(!is_null($this->biab)):?>
+<li>British and Irish Archaeological Bibliography entry number: <a href="http://biab.ac.uk/contents/<?php echo $this->escape($this->biab);?>" title="View entry on BIAB"><?php echo $this->escape($this->biab);?></a></li>
+<?php endif;?>
+<?php if(!is_null($this->doi)):?>
+<li>Digital Object Identifier (DOI): <a href="http://dx.doi.org/<?php echo $this->escape($this->doi);?>" title="Resolve this DOI"><?php echo $this->escape($this->doi);?></a></li>
 <?php endif;?>
 <li>This was created by: <?php echo $this->escape($this->createdBy);?> on the: <?php echo $this->timeagoinwords($this->created);?></li>
 <?php if(!is_null($this->updated)):?>

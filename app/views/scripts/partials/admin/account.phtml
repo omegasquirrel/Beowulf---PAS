@@ -50,7 +50,7 @@ Recording institution prefix: <?php echo $this->institution;?><br />
 Last login to the database: 
 <?php echo $this->timeagoinwords($this->escape($this->lastLogin));?><br />
 Number of visits: <?php echo $this->visits;?><br />
-<?php if(!is_null($this->canRecord)):?>
+<?php if($this->canRecord === '1'):?>
 Copyright: <?php echo $this->copyright;?><br />
 Allowed to record: Yes.
 <?php else:?>

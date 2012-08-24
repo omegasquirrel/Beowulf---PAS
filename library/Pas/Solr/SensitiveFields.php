@@ -21,27 +21,21 @@ class Pas_Solr_SensitiveFields {
 
     if(!in_array($role, $this->_allowed) && $core == 'beowulf'){
 
-       return $this->_processGeoData($data);
+       return $this->_processGeoData($data, $role);
     } else {
         return $data;
     }
 
     }
 
-    protected function _processGeoData($data){
+    protected function _processGeoData($data, $role){
 
         if(is_array($data)){
 		$clean = array();
             foreach($data as $record){
                 if(!is_null($record['knownas'])){
-                    $record['gridref'] = NULL;
                     $record['parish'] = 'Restricted Access';
-                    $record['fourFigure'] = NULL;
-                    $record['easting'] = NULL;
-                    $record['northing'] = NULL;
-                    $record['latitude'] = NULL;
-                    $record['longitude'] = NULL;
-                    $record['woeid'] = NULL;
+                    $record['fourFigure'] = 'Restricted Access';
 
                 } else if(!is_null($record['gridref']) && is_null($record['knownas'])) {
                     $geo = new Pas_Geo_Gridcalc($record['fourFigure']);
@@ -53,7 +47,7 @@ class Pas_Solr_SensitiveFields {
                     $record['longitude'] = $coords['decimalLatLon']['decimalLongitude'];
                     $record['easting'] = $coords['easting'];
                     $record['northing'] = $coords['northing'];
-                    $record['woeid'] = NULL;
+//                    $record['woeid'] = NULL;
 
                 }
                 if(!in_array($role, $this->_personal)){

@@ -21,7 +21,7 @@ class Database_JettonsController extends Pas_Controller_Action_Admin {
     /** redirect of the user due to no action existing.
     */
     public function indexAction() {
-    $this->_flashMessenger->addMessage('There is not a root action for jettons');
+    $this->_helper->flashMessenger->addMessage('There is not a root action for jettons');
     $this->_redirect(Zend_Controller_Request_Http::getServer('referer'));
     }
     /** Add jetton data
@@ -53,7 +53,7 @@ class Database_JettonsController extends Pas_Controller_Action_Admin {
 
     $last = $this->_getParam('copy');
     if($last == 'last') {
-    $this->_flashMessenger->addMessage('Your last record data has been cloned');
+    $this->_helper->flashMessenger->addMessage('Your last record data has been cloned');
     $coindata = $this->_coins->getLastRecord($this->getIdentityForForms());
     foreach($coindata as $coindataflat){
     $form->populate($coindataflat);
@@ -66,9 +66,9 @@ class Database_JettonsController extends Pas_Controller_Action_Admin {
     $insertData = $form->getValues();
     $insertData['secuid'] = $this->secuid();
     $insertData['findID'] = $this->_getParam('findID');
-    $insert = $this->_coins->insert($insertData);
+    $insert = $this->_coins->add($insertData);
 	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('returnID'));
-    $this->_flashMessenger->addMessage('Jetton data saved for this record.');
+    $this->_helper->flashMessenger->addMessage('Jetton data saved for this record.');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('returnID'));
     }  else {
     $form->populate($_POST);
@@ -118,14 +118,14 @@ class Database_JettonsController extends Pas_Controller_Action_Admin {
     $this->_helper->audit($updateData, $oldData, 'CoinsAudit', 
             $this->_getParam('id'), $this->_getParam('returnID'));
 
-    $this->_flashMessenger->addMessage('Numismatic details updated.');
+    $this->_helper->flashMessenger->addMessage('Numismatic details updated.');
 
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('returnID'));
     
     $this->_helper->solrUpdater->update('beowulf', $this->_getParam('returnID'));
 
     } else {
-    $this->_flashMessenger->addMessage('Please check your form for errors');
+    $this->_helper->flashMessenger->addMessage('Please check your form for errors');
     $form->populate($_POST);
     }
     } else {
@@ -152,7 +152,7 @@ class Database_JettonsController extends Pas_Controller_Action_Admin {
     if ($del == 'Yes' && $id > 0) {
     $where = 'id = ' . $id;
     $this->_coins->delete($where);
-    $this->_flashMessenger->addMessage('Numismatic data deleted!');
+    $this->_helper->flashMessenger->addMessage('Numismatic data deleted!');
     $this->_helper->solrUpdater->update('beowulf', $returnID);
     $this->_redirect(self::REDIRECT.'record/id/' . $returnID);
     }

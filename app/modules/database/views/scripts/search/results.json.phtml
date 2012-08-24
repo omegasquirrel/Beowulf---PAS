@@ -1,7 +1,9 @@
 <?php 
 $paginator = $this->paginator;
 $results = array();
+
 foreach($this->results as $result){
+	
 	
 	if(isset($result['knownas'])){
 		unset($result['parish']);

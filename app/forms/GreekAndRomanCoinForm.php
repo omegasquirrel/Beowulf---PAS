@@ -64,7 +64,7 @@ public function __construct($options = null) {
 	$mint_ID->setLabel('Issuing mint: ')
 	->addValidators(array('NotEmpty','Int'))
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose denomination' => $mint_options))
+	->addMultiOptions(array(NULL => 'Choose denomination', 'Available options' => $mint_options))
 	->addValidator('InArray', false, array(array_keys($mint_options)));
 
 	$mint_qualifier = new Zend_Form_Element_Radio('mint_qualifier');
@@ -77,7 +77,7 @@ public function __construct($options = null) {
 	$status->setLabel('Status: ')
 	->setValue(1)
 	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $status_options))
+	->addMultiOptions(array(NULL => 'Choose coin status', 'Available options' => $status_options))
 	->addValidator('InArray', false, array(array_keys($status_options)));
 
 	$status_qualifier = new Zend_Form_Element_Radio('status_qualifier');
@@ -89,18 +89,18 @@ public function __construct($options = null) {
 
 	$degree_of_wear = new Zend_Form_Element_Select('degree_of_wear');
 	$degree_of_wear->setLabel('Degree of wear: ')
-	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $wear_options))
+	->addMultiOptions(array(NULL => 'Choose degree of wear', 'Available options' => $wear_options))
 	->addValidator('InArray', false, array(array_keys($wear_options)))
 	->addFilters(array('StringTrim','StripTags'));
 
 	$obverse_inscription = new Zend_Form_Element_Text('obverse_inscription');
 	$obverse_inscription->setLabel('Obverse inscription: ')
-	->setAttrib('size',60)
+	->setAttrib('class', 'span6')
 	->addFilters(array('StringTrim','StripTags','BasicHtml','EmptyParagraph'));
 
 	$reverse_inscription = new Zend_Form_Element_Text('reverse_inscription');
 	$reverse_inscription->setLabel('Reverse inscription: ')
-	->setAttrib('size',60)
+	->setAttrib('class','span6')
 	->addFilters(array('StringTrim','StripTags','BasicHtml','EmptyParagraph'));
 
 	$obverse_description = new Zend_Form_Element_Textarea('obverse_description');
@@ -108,6 +108,7 @@ public function __construct($options = null) {
 	->addValidators(array('NotEmpty'))
 	->setAttrib('rows',8)
 	->setAttrib('cols',60)
+	->setAttrib('class', 'span6')
 	->addFilters(array('StringTrim','StripTags','BasicHtml','EmptyParagraph'));
 
 	$reverse_description = new Zend_Form_Element_Textarea('reverse_description');
@@ -115,11 +116,12 @@ public function __construct($options = null) {
 	->addValidators(array('NotEmpty'))
 	->setAttrib('rows',8)
 	->setAttrib('cols',60)
+	->setAttrib('class', 'span6')
 	->addFilters(array('StringTrim','StripTags','BasicHtml','EmptyParagraph'));
 
 	$die_axis_measurement = new Zend_Form_Element_Select('die_axis_measurement');
 	$die_axis_measurement->setLabel('Die axis measurement: ')
-	->addMultiOptions(array(NULL => NULL,'Choose die axis' => $die_options))
+	->addMultiOptions(array(NULL => 'Choose die axis', 'Available options' => $die_options))
 	->addValidator('InArray', false, array(array_keys($die_options)))
 	->addFilters(array('StringTrim','StripTags'));
 

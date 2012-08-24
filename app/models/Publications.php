@@ -87,7 +87,7 @@ class Publications extends Pas_Db_Table_Abstract {
 		->from($this->_name,array('id','created','updated', 
 		'title','publisher','authors',
 		'ISBN','publication_year','publication_place',
-		'editors','in_publication'))
+		'editors','in_publication', 'biab', 'doi'))
 		->joinLeft('publicationtypes','publications.publication_type = publicationtypes.id',array('publicationType' => 'term'))
 		->joinLeft('users','publications.createdBy = users.id', array('createdBy' => 'fullname'))
 		->joinLeft(array('users2' => 'users'),'publications.updatedBy = users2.id',array('updatedBy' => 'fullname'))

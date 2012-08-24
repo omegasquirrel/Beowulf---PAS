@@ -13,12 +13,12 @@
 class Pas_View_Helper_ResultsSorter extends Zend_View_Helper_Abstract{
 
 	protected $_fields = array(
-		'Object type' 	=> 'objectType',
 		'Date created'	=> 'created',
+		'Object type' 	=> 'objectType',
 		'Broad period'	=> 'broadperiod',
 		'Recording institution'	=> 'institution',
 		'Workflow status' => 'workflow',
-                'Updated'       => 'updated'
+		'Updated'       => 'updated'
 	);
 
 	protected $_defaultDirection = 'desc';
@@ -52,7 +52,13 @@ class Pas_View_Helper_ResultsSorter extends Zend_View_Helper_Abstract{
 		$html .= '<ul>';
 		foreach($this->_fields as $k => $v){
 			$request['sort'] = $v;
-			$html .= '<li><a href="' . $this->view->url($request, 'default', true) . '">' . $k . '</a></li>';
+			$html .= '<li><a href="' . $this->view->url($request, 'default', true) . '"';
+			if(array_key_exists('sort', $this->_request) && $this->_request['sort'] === $v){
+				$html .= ' class="highlight" ';
+			}elseif (!array_key_exists('sort', $this->_request) && $v === 'created'){
+				$html .= ' class="highlight" ';
+			}
+			$html .= '>' . $k . '</a></li>';
 		}
 		$html .= '</ul>';
 		return $html;
@@ -72,7 +78,14 @@ class Pas_View_Helper_ResultsSorter extends Zend_View_Helper_Abstract{
 					$icon = 'up';
 					break;
 			}
-			$sorter[] = '<a href="' . $this->view->url($request, 'default', true) . '">' . $k . '<i class="icon-arrow-' . $icon .'"></i></a> ';
+		$sort = '<a href="' . $this->view->url($request, 'default', true) . '" '; 
+		if(array_key_exists('direction', $this->_request) && $this->_request['direction'] === $v){
+				$sort .= ' class="highlight" ';
+			} elseif (!array_key_exists('direction', $this->_request) && $v === 'desc'){
+				$sort .= ' class="highlight" ';
+			}
+			$sort .= '>' . $k . '<i class="icon-arrow-' . $icon .'"></i></a> ';
+			$sorter[] = $sort;
 		}
 
 		$html .= implode($sorter, ' | ') . '</p>';

@@ -24,7 +24,7 @@ class Database_SitemapController extends Pas_Controller_Action_Admin {
 	 */
 	public function indexAction() {
 	$page = $this->_getParam('page');
-	$config = new Zend_Config_Xml('http://www.finds.org.uk/database/sitemap/configuration/page/' 
+	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/databaserecords/page/' 
 	. $page,'nav');#
    	$navigation = new Zend_Navigation($config);
    	$this->view->navigation($navigation);
@@ -32,12 +32,6 @@ class Database_SitemapController extends Pas_Controller_Action_Admin {
 		->sitemap()
 		->setFormatOutput(true); // default is false
 	}
-	/**
-	 * Configuration page
-	 */	
-	public function configurationAction() {
-	$finds = new DbSitemap();
-	$this->view->finds = $finds->getSitemap($this->_getParam('page'));
-	}
+	
 }
 

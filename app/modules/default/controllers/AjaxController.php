@@ -552,66 +552,67 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	}
 
 	public function mapdataAction()	{
-	$params = $this->_getAllParams();
-	$mapdata = new Finds();
-	$mapdatas = $mapdata->getMapSearchResultsExport($params,2000);
-	$dom = new DOMDocument("1.0");
-	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node);
-	foreach($mapdatas as $mapdata){
-	$restricted = array('public','member');
-	if(!is_null($mapdata['fourFigure'])) {
-
-
-	if(!in_array($this->_user->role,$restricted)){
-	$lat = $mapdata['declat'];
-	$long = $mapdata['declong'];
-	} else {
-	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
-	$lat = $results['Latitude'];
-	$long = $results['Longitude'];
-	}
-	} else {
-	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
-
-	$lat = $results['Latitude'];
-	$long = $results['Longitude'];
-	}
-        $html = '';
-        if(isset($mapdata['i'])) {
-	$html .=  '<div id="tmb"><img src="';
-        $html .= 'http://' . $_SERVER['SERVER_NAME'] . '/images/thumbnails/';
-	$html .=  $mapdata['i'] .'.jpg"/></div>';
-	}
-	}
-	  $html .= '<div id="detailsmap"><p>'
-	  . ucwords(strtolower($mapdata['county']))
-	  . ' - <a href="http://'
-	  . $_SERVER['SERVER_NAME']
-	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
-	  . '" title="View record\'s details">'
-	  . $mapdata['old_findID']
-	  . '</a><br />'
-	  . $mapdata['objecttype']
-	  .'<br />'
-	  .$mapdata['broadperiod']
-	  .'</p></div>';
-
-	  $node = $dom->createElement("marker");
-	  $newnode = $parnode->appendChild($node);
-	  $newnode->setAttribute("name", $html);
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
-	  $newnode->setAttribute("lat", $lat);
-	  $newnode->setAttribute("lng", $long);
-	  $newnode->setAttribute("type", $mapdata['objecttype']);
-	  $newnode->setAttribute("workflow",
-	  str_replace(array('1','2','3','4'),
-	  array('quarantine','review','published','validation'),
-	  $mapdata['secwfstage']))
-	  ;
-
-	header('Content-Type: text/xml');
-	echo $dom->saveXML();
+	$this->_helper->Redirector->gotoSimple('mapdata','ajax','database',$this->_getAllParams());
+//	$params = $this->_getAllParams();
+//	$mapdata = new Finds();
+//	$mapdatas = $mapdata->getMapSearchResultsExport($params,2000);
+//	$dom = new DOMDocument("1.0");
+//	$node = $dom->createElement("markers");
+//	$parnode = $dom->appendChild($node);
+//	foreach($mapdatas as $mapdata){
+//	$restricted = array('public','member');
+//	if(!is_null($mapdata['fourFigure'])) {
+//
+//
+//	if(!in_array($this->_user->role,$restricted)){
+//	$lat = $mapdata['declat'];
+//	$long = $mapdata['declong'];
+//	} else {
+//	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
+//	$lat = $results['Latitude'];
+//	$long = $results['Longitude'];
+//	}
+//	} else {
+//	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
+//
+//	$lat = $results['Latitude'];
+//	$long = $results['Longitude'];
+//	}
+//        $html = '';
+//        if(isset($mapdata['i'])) {
+//	$html .=  '<div id="tmb"><img src="';
+//        $html .= 'http://' . $_SERVER['SERVER_NAME'] . '/images/thumbnails/';
+//	$html .=  $mapdata['i'] .'.jpg"/></div>';
+//	}
+//	}
+//	  $html .= '<div id="detailsmap"><p>'
+//	  . ucwords(strtolower($mapdata['county']))
+//	  . ' - <a href="http://'
+//	  . $_SERVER['SERVER_NAME']
+//	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
+//	  . '" title="View record\'s details">'
+//	  . $mapdata['old_findID']
+//	  . '</a><br />'
+//	  . $mapdata['objecttype']
+//	  .'<br />'
+//	  .$mapdata['broadperiod']
+//	  .'</p></div>';
+//
+//	  $node = $dom->createElement("marker");
+//	  $newnode = $parnode->appendChild($node);
+//	  $newnode->setAttribute("name", $html);
+//	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
+//	  $newnode->setAttribute("lat", $lat);
+//	  $newnode->setAttribute("lng", $long);
+//	  $newnode->setAttribute("type", $mapdata['objecttype']);
+//	  $newnode->setAttribute("workflow",
+//	  str_replace(array('1','2','3','4'),
+//	  array('quarantine','review','published','validation'),
+//	  $mapdata['secwfstage']))
+//	  ;
+//
+//	header('Content-Type: text/xml');
+//	echo $dom->saveXML();
 	}
 
 

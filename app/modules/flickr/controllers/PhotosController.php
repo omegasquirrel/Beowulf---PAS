@@ -75,7 +75,7 @@ class Flickr_PhotosController
 	$key = md5('woeid' . $woeid . $page);
 	if (!($this->_cache->test($key))) {
 	$flickr = $this->_api->getWoeidRadius( $woeid, $radius = 500, $units = 'm',
-	$per_page = 20, $start, 'archaeology', '1,2,3,4,5,6,7');
+	$per_page = 20, $page, 'archaeology', '1,2,3,4,5,6,7');
 	$this->_cache->save($flickr);
 	} else {
 	$flickr = $this->_cache->load($key);
@@ -151,7 +151,7 @@ class Flickr_PhotosController
 	/** Find images tagged in a certain way.
 	*/
 	public function taggedAction() {
-	if($this->_getParam('as',false)){
+//	if($this->_getParam('as',false)){
 	$tags = $this->_getParam('as');
 	$page = $this->getPage();
 	$key = md5('tagged' . $tags . $page);
@@ -165,17 +165,18 @@ class Flickr_PhotosController
 	if(!is_null($flickr)){
 	$total = $flickr->total;
 	$photos = array();
+	if($flickr->photo){
 	foreach($flickr->photo as $k => $v) {
 
 	$photos[$k] = $v;
 	}
-
+	}
 	$this->view->tagtitle = $tags;
 	$pagination = array(
 	'page'          => $page,
 	'results' 		=> $photos,
 	'per_page'      => 20,
-        'total_results' => (int) $total
+  	'total_results' => (int) $total
 	);
 	$paginator = Zend_Paginator::factory($pagination['total_results']);
 	$paginator->setCurrentPageNumber($pagination['page']) ;
@@ -184,16 +185,16 @@ class Flickr_PhotosController
 	$this->view->paginator = $paginator;
 	$this->view->pictures = $photos;
 	}
-	} else {
-		throw new Pas_Exception_Param($this->_missingParameter);
-	}
+//	} else {
+//		throw new Pas_Exception_Param($this->_missingParameter);
+//	}
 	}
 
 	/** Get a list of our favourite images
 	*/
 	public function favouritesAction() {
 	$page = $this->getPage();
-	$key = md5('faves' . $start);
+	$key = md5('faves' . $page);
 	if (!($this->_cache->test($key))) {
 	$flickr = $this->_api->getPublicFavourites( NULL, NULL, 20, $page);
 	$this->_cache->save($flickr);
@@ -203,7 +204,7 @@ class Flickr_PhotosController
 	$pagination = array(
 	'page'          => $page,
 	'per_page'      => (int)$flickr->perpage,
-        'total_results' => (int)$flickr->total
+	'total_results' => (int)$flickr->total
 	);
 	$paginator = Zend_Paginator::factory($pagination['total_results']);
 	$paginator->setCurrentPageNumber($page)

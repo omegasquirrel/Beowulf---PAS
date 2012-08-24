@@ -1,4 +1,4 @@
-<div class="vcard well span12" typeof="foaf:Person">
+<div class="vcard span12 well" typeof="foaf:Person">
 
     <?php if(isset($this->image)):?>
      <?php
@@ -16,16 +16,16 @@
 	<?php endif;?>
 
 
-<a href="<?php echo $this->url(array('module' => 'contacts', 'controller' => 'staff',
+<h4><a href="<?php echo $this->url(array('module' => 'contacts', 'controller' => 'staff',
 'action'=>'profile', 'id' => $this->id));?>" title="Read <?php echo $this->escape($this->firstname);?>
 <?php echo $this->escape($this->lastname);?>'s profile"><span class="fn n" property="foaf:name">
-<span class="given-name"><h4>
+<span class="given-name">
 <?php echo $this->escape($this->firstname);?>
 </span>
 <span class="family-name">
 <?php echo $this->escape($this->lastname);?>
 </span>
-        </h4></span></a><br />
+        </span></a></h4>
 
 <strong><span class="title"><?php
 if(!is_null($this->staffroles)) {
@@ -66,4 +66,4 @@ E: <a rel="foaf:mbox" class="email" href="mailto:<?php echo $this->escape($this-
 <a href="<?php echo $this->url(array('module' => 'contacts' , 'controller' => 'staff','action' => 'profile','id' => $this->id,'format' => 'vcf'),null,true);?>">Vcard</a> | <a rel="foaf" href="<?php echo $this->url(array('module' => 'contacts' , 'controller' => 'staff','action' => 'profile','id' => $this->id,'format' => 'foaf'),null,true);?>">FOAF</a><br />
 
 </div>
-<br />
+

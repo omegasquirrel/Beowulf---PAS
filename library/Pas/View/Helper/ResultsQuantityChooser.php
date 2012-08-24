@@ -33,8 +33,15 @@ class Pas_View_Helper_ResultsQuantityChooser extends Zend_View_Helper_Abstract{
 	
 	protected function _buildHtml($urls){
 		$html = '<p>Records per page: ';
+		$request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
 		foreach($urls as $k => $v){
-			$html .= '<a href="' . $v . '" title="show ' . $k . ' records">' . $k . '</a> ';
+			$html .= '<a href="' . $v . '" title="show ' . $k . ' records" ';
+			if(!array_key_exists('show', $request) &&  $k === 20) {
+				$html .= ' class="highlight" ';
+			}
+			if($request['show'] === (string)$k){
+				$html .= ' class="highlight" ';			}
+			$html .= '>' . $k . '</a> ';
 		}
 		$html .= '</p>';
 		return $html;

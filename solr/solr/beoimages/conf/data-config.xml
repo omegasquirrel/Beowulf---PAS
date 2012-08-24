@@ -31,7 +31,9 @@ users.fullname,
 licenseType.acronym AS licenseAcronym,
 licenseType.flickrID as license,
 finds.objecttype,
-slides.institution
+slides.institution,
+finds.secwfstage AS workflow,
+finds.objecttype
 FROM slides
 LEFT JOIN periods ON slides.period = periods.id
 LEFT JOIN finds_images ON finds_images.image_id = slides.secuid
@@ -61,7 +63,9 @@ WHERE finds.secwfstage > 1
 	    <field column="licenseAcronym" name="licenseAcronym" />
 	    <field column="broadperiod" name="broadperiod" />
 	    <field column="createdBy" name="createdBy" />
-            <field column="institution" name="institution" />
+		<field column="institution" name="institution" />
+		<field column="workflow" name="workflow" />
+		<field column="objecttype" name="objecttype" />
 
 		</entity>
 

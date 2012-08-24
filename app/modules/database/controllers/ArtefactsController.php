@@ -94,7 +94,6 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
             ->addActionContext('record', array('qrcode', 'json'))
-            ->addActionContext('index', array('rss','atom'))
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');

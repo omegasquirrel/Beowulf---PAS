@@ -89,7 +89,7 @@ class ComplaintsForm extends Pas_Form {
 	$comment_author->setValue($user->fullname);
 	$comment_author_email->setValue($user->email);
 	$this->addElements(array(
-	$comment_author_IP, $comment_agent, $comment_author,
+	$comment_author,
 	$comment_author_email, $comment_content, $comment_author_url,
 	$submit, $hash));
 

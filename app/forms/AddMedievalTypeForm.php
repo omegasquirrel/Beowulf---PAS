@@ -25,32 +25,31 @@ class AddMedievalTypeForm extends Pas_Form {
 	$type->setLabel('Medieval type: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim'))
-	->setAttribs(array('class'=> 'textInput','size' => 60));
+	->setAttribs(array('class'=> 'textInput','class' => 'span8'));
 
 	$broadperiod = new Zend_Form_Element_Select('periodID');
 	$broadperiod->setLabel('Broadperiod for type: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->setAttribs(array('class'=> 'textInput'))
-	->addMultioptions(array(NULL => NULL, 'Choose broadperiod' => array(
+	->addMultioptions(array(NULL => 'Choose broadperiod', 'Available options' => array(
 		'47' => 'Early Medieval','29' => 'Medieval','36' => 'Post Medieval')
 	));
 
 	$category = new Zend_Form_Element_Select('categoryID');
 	$category->setLabel('Coin category: ')
 	->setAttribs(array('class'=> 'textInput'))
-	->addValidator('Int')
 	->addFilter('StringTrim')
-	->addMultioptions( array(NULL => NULL, 'Choose a category' =>$cat_options))
-	->addValidator('InArray', true, array($cat_options));
+	->setAttrib('class', 'span6')
+	->addMultioptions( array(NULL => 'Choose a category', 'Available options' => $cat_options))
+	->addValidator('InArray', false, array(array_keys($cat_options)));
 
 	$ruler = new Zend_Form_Element_Select('rulerID');
 	$ruler->setLabel('Ruler assigned to: ')
 	->setAttribs(array('class'=> 'textInput'))
-	->addValidator('Int')
 	->addFilter('StringTrim')
-	->addMultioptions(array(NULL => NULL, 'Choose a category' => $ruler_options))
-	->addValidator('inArray', true, array($ruler_options));
+	->addMultioptions(array(NULL => 'Choose a ruler', 'Available options' => $ruler_options))
+	->addValidator('inArray', false, array(array_keys($ruler_options)));
 
 	$datefrom = new Zend_Form_Element_Text('datefrom');
 	$datefrom->setLabel('Date type in use from: ')
@@ -66,16 +65,13 @@ class AddMedievalTypeForm extends Pas_Form {
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
-	$submit->setLabel('Submit details for medieval coin type')
-	->setAttribs(array('class'=> 'large'));
+	$submit->setLabel('Submit details for medieval coin type');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(60);
 
 	$this->addElements(array(
 		$type,$broadperiod,$category,
 		$ruler,$datefrom,$dateto,
-		$submit, $hash))
+		$submit))
 	->setLegend('Add an active type of Medieval coin')
 	->setMethod('post');
 

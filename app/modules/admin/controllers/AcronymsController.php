@@ -64,7 +64,7 @@ class Admin_AcronymsController extends Pas_Controller_Action_Admin {
     $this->_flashMessenger->addMessage('Acronym details updated.');
     $this->_redirect(self::REDIRECT);
     } else {
-    $form->populate($formData);
+    $form->populate($updateData);
     }
     } else {
     // find id is expected in $params['id']

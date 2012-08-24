@@ -281,7 +281,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
     if ($form->isValid($form->getValues())) {
 	$surfaces = new Surftreatments();
-	$update = $surfaces->add($from->getValues());
+	$update = $surfaces->add($form->getValues());
 	$this->_flashMessenger->addMessage('A new surface treatment has been created on the system!');
 	$this->_redirect($this->_redirectUrl . 'surfaces');
 	} else  {
@@ -397,7 +397,7 @@ class Admin_TerminologyController extends Pas_Controller_Action_Admin {
 	if ($del == 'Yes' && $id > 0) {
 	$periods = new Periods();
 	$where = 'id = ' . $id;
-	$rallies->delete($where);
+	$periods->delete($where);
 	}
 	$this->_flashMessenger->addMessage( self::DELETED );
 	$this->_redirect($this->_redirectUrl . 'periods/');

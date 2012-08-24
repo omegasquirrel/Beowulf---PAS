@@ -15,6 +15,22 @@ $this->FindSpotEditCheck($this->findspot->old_findspotid,$this->findspot->create
 <?php $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');?>
 
 <p><a class="btn btn-success" href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts','action' => 'record', 'id' => $id),null,false);?>" title="return to the record">Return to record</a></p>
+
+<div class="well"><h3>Annoying reminder: <?php 
+$welcome = array(
+	'Data in = data out', 
+	'Do it right, do it once', 
+	'Does this record follow the PAS recording guide?',
+	'If you are not sure, ask a finds adviser',
+	'Everything you write is audited and can be requested under Freedom of Information, be sensible',
+	'Is the record finished? If so can it be made public?',
+	'Have you got the grid reference? If not the record is not useful for research',
+	'Have you filled in all the details for the place of discovery? Region, County, District, Parish',
+	'Hide the find spot by using known as, but do you really need to?'
+);
+echo  $welcome[array_rand($welcome)];
+
+?></h3></div>
 <?php 
 echo $this->form;
 ?>

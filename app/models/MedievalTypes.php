@@ -124,7 +124,7 @@ class MedievalTypes extends Pas_Db_Table_Abstract {
 	$select = $rulers->select()
 		->from($this->_name, array('id','term' => 'CONCAT(type," (",datefrom," - ",dateto,")")'))
 		->joinLeft('rulers','rulers.id = medievaltypes.rulerID', array())
-		->where('period = ?', (int)29)
+//		->where('period = ?', (int)29)
 		->where('medievaltypes.rulerID = ?',(int)$rulerID)
 		->order('medievaltypes.id');
 	return $rulers->fetchPairs($select);

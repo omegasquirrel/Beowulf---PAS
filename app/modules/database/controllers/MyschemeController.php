@@ -61,7 +61,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county', 'workflow')
+    	'description', 'county', 'workflow',
+    	'fourFigure', 'knownas')
     );
 
     $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow', 'creator'));
@@ -104,7 +105,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county', 'workflow')
+    	'description', 'county', 'workflow',
+    	'knownas', 'fourFigure')
     );
 	
     $search->setFacets(array('objectType','county','broadperiod','institution'));
@@ -153,7 +155,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county', 'workflow'
+    	'description', 'county', 'workflow',
+    	'fourFigure', 'knownas'
         )
     );
     $search->setFacets(array('objectType','county','broadperiod','institution','workflow'));

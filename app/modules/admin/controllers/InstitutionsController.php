@@ -11,20 +11,21 @@ class Admin_InstitutionsController extends Pas_Controller_Action_Admin {
 
 	protected $_institutions;
 	
-	protected $_redirectUrl = 'admin/contacts/';
+	protected $_redirectUrl = 'admin/';
 	/** Set up the ACL and contexts
 	*/		
 	public function init() {
-		$flosActions = array('index',);
- 		$this->_helper->_acl->allow('flos',$flosActions);
+		$flosActions = array('index');
+		$this->_helper->_acl->allow('admin',null);
+ 		$this->_helper->_acl->allow('fa',$flosActions);
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-        $this->_institution = new Institutions();
+        $this->_institutions = new Institutions();
     }
     
   	/** Display the index page
 	*/	  
 	public function indexAction() {
-	$this->view->insts = $institutions->getValidInsts($this->_getAllParams());
+	$this->view->insts = $this->_institutions->getValidInsts($this->_getAllParams());
 	}
 	/** Add an institution
 	*/	

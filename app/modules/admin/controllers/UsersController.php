@@ -103,7 +103,9 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	'role' => $form->getValue('role'),
 	'peopleID' => $form->getValue('peopleID'),
 	'updated' => $this->getTimeForForms(),
-	'updatedBy' => $this->getIdentityForForms());
+	'updatedBy' => $this->getIdentityForForms(),
+	'preferred_name' => $form->getValue('preferred_name'),
+	'canRecord' => $form->getValue('canRecord'));
 	}
 	foreach ($updateData as $key => $value) {
       if (is_null($value) || $value=="") {

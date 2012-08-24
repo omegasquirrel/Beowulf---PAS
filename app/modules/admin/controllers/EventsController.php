@@ -71,13 +71,13 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	'organisation' => $form->getValue('organisation'),
 	'eventType' => $form->getValue('eventType'),
 	'latitude' => $lat,
-	'longitude' => $long,
+	'longitude' => $lon,
 	'created' => $this->getTimeForForms(),
 	'createdBy' => $this->getIdentityForForms()
 	);
-		foreach ($insertData as $key => $value) {
+		foreach ($insertdata as $key => $value) {
 		  if (is_null($value) || $value=="") {
-			unset($insertData[$key]);
+			unset($insertdata[$key]);
 		  }
 		}
 	$events = new Events();
@@ -124,7 +124,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	'eventRegion' => $form->getValue('eventRegion'),
 	'eventType' => $form->getValue('eventType'),
 	'latitude' => $lat,
-	'longitude' => $long,
+	'longitude' => $lon,
 	'adultsAttend' => $form->getValue('adultsAttend'),
 	'childrenAttend' => $form->getValue('childrenAttend'),
 	'updated' => $this->getTimeForForms(),

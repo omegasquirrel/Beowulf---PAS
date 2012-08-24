@@ -2,16 +2,15 @@
 	$this->jQuery()->addJavascriptFile($this->baseUrl() .
 	'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/autocompleteinitPeople.js',$type='text/javascript');
-	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/ui.datepicker.js',$type='text/javascript');
-	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
-			->appendStylesheet($this->baseUrl() . '/css/ui.datepicker.css');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
+	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css');
 	$this->headTitle('Add a find');
 ?>
 
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 $(document).ready(function() {
-$("#datefound1").datepicker({ maxDate: '+1y'});
-$("#datefound2").datepicker({ maxDate: '+1y' });
+$("#datefound1").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
+$("#datefound2").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
 
 });
 
@@ -23,7 +22,23 @@ $("#datefound2").datepicker({ maxDate: '+1y' });
 	'action' => 'add',
 	'copy' => 'last'),
 	null,true);?>"
-title="Autofill form fields from last record you created" id="populate" accesskey="c">Copy last record</a></p>
+title="Autofill form fields from last record you created" id="populate" accesskey="c">Copy last record</a> </p>
+<div class="well"><h3>Annoying reminder: <?php 
+$welcome = array(
+	'Data in = data out', 
+	'Do it right, do it once', 
+	'Remember the AD/BC style guide',
+	'Does this record follow the PAS recording guide?',
+	'If you are not sure, ask a finds adviser',
+	'Everything you write is audited and can be requested under Freedom of Information, be sensible',
+	'Is this a Treasure case, have you got a T number and entered it in the correct box?',
+	'The classification and sub classification boxes are for typologies, not numismatic information',
+	'Two fields are mandatory, object type and method of discovery, you might need to change the default setting of metal detecting'
+);
+echo  $welcome[array_rand($welcome)];
+
+?></h3>
+</div>
 <?php
 echo $this->form;
 ?>

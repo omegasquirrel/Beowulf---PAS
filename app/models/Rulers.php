@@ -674,7 +674,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 	public function getRulerProfileMed($rulerID) {
 		$monarchs = $this->getAdapter();
 		$select = $monarchs->select()
-			->from($this->_name, array('id','issuer','date1','date2'))
+			->from($this->_name, array('id','issuer','date1','date2', 'dbpedia', 'viaf'))
 			->joinLeft('monarchs','rulers.id = monarchs.dbaseID',array('name','biography','styled','alias','born','died','created','createdBy','updated','updatedBy'))
 			->where('valid',(int)1)
 			->where('rulers.id = ?',(int)$rulerID);

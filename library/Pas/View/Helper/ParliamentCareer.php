@@ -21,7 +21,7 @@ class Pas_View_Helper_ParliamentCareer extends Zend_View_Helper_Abstract{
         $html .= '<div id="career">';
         foreach($data as $d){
         $html .= $this->view->partial('partials/news/mp.phtml',
-                get_object_vars($d));
+                $d);
         }
         $html .= '</div>';
         return $html;

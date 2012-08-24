@@ -108,7 +108,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county')
+    	'description', 'county', 'workflow')
     );
     $params['finderID'] = $person['0']['secuid'];
     $params['page'] = $this->_getParam('page');

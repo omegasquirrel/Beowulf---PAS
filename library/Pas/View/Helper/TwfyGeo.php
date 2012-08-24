@@ -17,9 +17,9 @@ class Pas_View_Helper_TwfyGeo extends Zend_View_Helper_Abstract {
 	 * @param string $constituency
 	 */
 	public function TwfyGeo($data) {
-	$geo = new Pas_Twfy_Geometry;
+		$geo = new Pas_Twfy_Geometry;
 
-        $geo = $geo->get($data->constituency);
+        $geo = $geo->get($data['constituency']);
 
         return $this->buildMap($geo, $data);
         }

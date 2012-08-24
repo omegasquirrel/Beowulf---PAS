@@ -42,6 +42,7 @@ class MedievalCoins_RulersController extends Pas_Controller_Action_Admin {
 	$this->view->imitate 	= $this->_rulers->getForeign($this->_period, $country = '4');
 	$this->view->portugal 	= $this->_rulers->getForeign($this->_period, $country = '5');
 	$this->view->shortlongs = $this->_rulers->getForeign($this->_period, $country = '6');
+	$this->view->french		= $this->_rulers->getForeign($this->_period, $country = '7');
 	}
 	/** Individual ruler pages
 	*/	

@@ -3,11 +3,11 @@ $this->navigation()
       ->sitemap()
       ->setFormatOutput(true); // default is false
  
-// other possible methods:
-// ->setUseXmlDeclaration(false); // default is true
-// ->setServerUrl('http://my.otherhost.com');
-// default is to detect automatically
- 
-// print sitemap
-echo $this->navigation()->sitemap();
+
+$doc = new DOMDocument(); 
+$doc->loadXML($this->navigation()->sitemap());
+$xslt = $doc->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="' . $this->serverUrl() . '/xsl/sitemap.xsl"');
+$urlset = $doc->getElementsByTagName('urlset');
+$doc->insertBefore($xslt, $urlset->item(0));
+echo $doc->saveXML();
 ?>

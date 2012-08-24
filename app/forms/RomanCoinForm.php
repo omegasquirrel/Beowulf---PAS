@@ -96,7 +96,8 @@ public function __construct($options = null)
 	$moneyer->setLabel('Republican Moneyer: ')
 		->addMultiOptions(array(NULL => 'Choose a moneyer', 'Valid moneyers' => $moneyers))
 		->addValidator('InArray', false, array(array_keys($moneyers)))
-		->addFilters(array('StripTags', 'StringTrim'));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->setAttribs(array('class' => 'span6'));
 	
 	$moneyer_qualifier = new Zend_Form_Element_Radio('moneyer_qualifier');
 	$moneyer_qualifier->setLabel('Republican Moneyer qualifier: ')
@@ -108,7 +109,8 @@ public function __construct($options = null)
 	$revtypeID->setLabel('Reverse type: ')
 		->addMultiOptions(array(NULL => 'Choose a reverse type', 'Valid reverses' => $reverses))
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('InArray', false, array(array_keys($reverses)));
+		->addValidator('InArray', false, array(array_keys($reverses)))
+		->setAttribs(array('class' => 'span6'));
 	
 	$revTypeID_qualifier = new Zend_Form_Element_Radio('revTypeID_qualifier');
 	$revTypeID_qualifier->setLabel('Reverse type qualifier: ')
@@ -121,8 +123,7 @@ public function __construct($options = null)
 		->setValue(1)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose coin status', 'Valid options' => $statuses))
-		->addValidator('InArray', false, array(array_keys($statuses)))
-		;
+		->addValidator('InArray', false, array(array_keys($statuses)))		;
 	
 	$status_qualifier = new Zend_Form_Element_Radio('status_qualifier');
 	$status_qualifier->setLabel('Status qualifier: ')
@@ -139,27 +140,27 @@ public function __construct($options = null)
 	
 	$obverse_inscription = new Zend_Form_Element_Text('obverse_inscription');
 	$obverse_inscription->setLabel('Obverse inscription: ')
-		->setAttrib('size',50)
+		->setAttrib('class','span6')
 		->addFilters(array('StripTags', 'StringTrim'));
 	
 	$reverse_inscription = new Zend_Form_Element_Text('reverse_inscription');
 	$reverse_inscription->setLabel('Reverse inscription: ')
-		->setAttrib('size',50)
+		->setAttrib('class','span6')
 		->addFilters(array('StripTags', 'StringTrim'));
 	
 	$obverse_description = new Zend_Form_Element_Textarea('obverse_description');
 	$obverse_description->setLabel('Obverse description: ')
-		->setAttribs(array('rows' => 3, 'cols' => 80))
+		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'span6'))
 		->addFilters(array('StripTags', 'StringTrim'));
 	
 	$reverse_description = new Zend_Form_Element_Textarea('reverse_description');
 	$reverse_description->setLabel('Reverse description: ')
-		->setAttribs(array('rows' => 3, 'cols' => 80))
+		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'span6'))
 		->addFilters(array('StripTags', 'StringTrim'));
 	
 	$reverse_mintmark = new Zend_Form_Element_Textarea('reverse_mintmark');
 	$reverse_mintmark->setLabel('Reverse mintmark: ')
-		->setAttribs(array('rows' => 3, 'cols' => 80))
+		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'span6'))
 		->addFilters(array('StripTags', 'StringTrim'));
 	
 	
@@ -175,28 +176,25 @@ public function __construct($options = null)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->setOptions(array('separator' => ''));
 	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)
-		->setTimeout(4800);
 	
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
 				  
-	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
-	if($action == 'edit') {
-		$rulers = new Rulers();
-		$ruler_options = $rulers->getRomanRulers();
-		$ruler->addMultiOptions(array(NULL => NULL,'Choose ruler' => $ruler_options))
-			->addValidator('InArray', false, array(array_keys($ruler_options)));
-		$mints = new Mints();
-		$mint_options = $mints->getRomanMints();
-		$mint_id->addMultiOptions(array(NULL => NULL,'Choose Roman mint' => $mint_options))
-			->addValidator('InArray', false, array(array_keys($mint_options)));
-		$reeces = new Reeces();
-		$reece_options = $reeces->getReeces();
-		$reeceID->addMultiOptions(array(NULL => NULL,'Choose Reece period' => $reece_options))
-			->addValidator('InArray', false, array(array_keys($reece_options)));
-	}
+//	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+//	if($action == 'edit') {
+//		$rulers = new Rulers();
+//		$ruler_options = $rulers->getRomanRulers();
+//		$ruler->addMultiOptions(array(NULL => NULL,'Choose ruler' => $ruler_options))
+//			->addValidator('InArray', false, array(array_keys($ruler_options)));
+//		$mints = new Mints();
+//		$mint_options = $mints->getRomanMints();
+//		$mint_id->addMultiOptions(array(NULL => NULL,'Choose Roman mint' => $mint_options))
+//			->addValidator('InArray', false, array(array_keys($mint_options)));
+//		$reeces = new Reeces();
+//		$reece_options = $reeces->getReeces();
+//		$reeceID->addMultiOptions(array(NULL => NULL,'Choose Reece period' => $reece_options))
+//			->addValidator('InArray', false, array(array_keys($reece_options)));
+//	}
 	
 	$this->addElements(array(
 	$ruler, $denomination, $moneyer,
@@ -206,7 +204,7 @@ public function __construct($options = null)
 	$die_axis_measurement, $die_axis_certainty, $mint_qualifier,
 	$ruler_qualifier, $denomination_qualifier, $status_qualifier,
 	$revTypeID_qualifier, $reverse_mintmark,
-	$submit, $hash));
+	$submit));
 	
 	$this->addDisplayGroup(array(
 	'denomination','denomination_qualifier','ruler_id',

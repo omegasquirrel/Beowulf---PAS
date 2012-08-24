@@ -43,7 +43,15 @@
         <?php endif;?>
         <?php if(!is_null($this->description)):?>
         <?php echo $this->ellipsisstring($this->description,600);?><br />
-        
+		<?php endif;?>
+		<?php 
+		if($this->fourFigure):?>
+		<span class="question">Spatial data recorded. <i class="icon-map-marker"></i></span>
+		<?php else:?>
+		No spatial data available. <i class="icon-map-marker"></i>
+		<?php endif;?>
+		<?php if($this->knownas):?>
+		 <span class="question">This findspot is protected</span>
 		<?php endif;?>
     </p>
 

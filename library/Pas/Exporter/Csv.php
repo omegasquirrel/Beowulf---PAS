@@ -28,7 +28,7 @@ class Pas_Exporter_Csv extends Pas_Exporter_Generate {
         'tribeName', 'reeceID', 'categoryTerm',
         'typeTerm', 'geography', 'axis',
         'moneyerName', 'obverseDescription', 'reverseDescription',
-        'obverseInscription','reverseInscription', 'mintmark',
+        'obverseLegend','reverseLegend', 'mintmark',
         'cciNumber', 'reverseType', 'datefound1',
         'datefound2','regionName', 'county',
         'district', 'parish', 'knownas',
@@ -62,6 +62,7 @@ class Pas_Exporter_Csv extends Pas_Exporter_Generate {
     $clean = $converter->convert($data);
     if($iterator > 300) {
             set_time_limit(0);
+            ini_set('memory_limit', '256M');
         }
     $file = fopen('php://temp/maxmemory:'. (12*1024*1024), 'r+');
     fputcsv($file,$this->_csvFields,',','""');

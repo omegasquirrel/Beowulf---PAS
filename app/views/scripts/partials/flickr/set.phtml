@@ -24,7 +24,7 @@ $tags = $this->tags;
 $pieces = explode(" ", $tags);
 	foreach($pieces as $t)
 	{
-	$url = 'http://www.flickr.com/photos/tags/'.$t;
+	$url = 'http://finds.org.uk/flickr/photos/tagged/as/'.$t;
 	$separator = ' ';
 	echo '<a href="'.$url.'" title="View all tagged photos on flickrwith this tag">'.$t.'</a>'.$separator;
 	}?><br />

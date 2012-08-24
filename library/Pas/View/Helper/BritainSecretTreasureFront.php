@@ -19,9 +19,9 @@ class Pas_View_Helper_BritainSecretTreasureFront extends Zend_View_Helper_Abstra
         }
 
         public function BritainSecretTreasureFront(){
-	$difference = $this->_date->isLater($this->_finishDate);
-	if($difference === false){
+//	$difference = $this->_date->isLater($this->_finishDate);
+//	if($difference === false){
             return $this->view->partial('structure/Bst.phtml',null);
-        }
+//        }
 	}
 }

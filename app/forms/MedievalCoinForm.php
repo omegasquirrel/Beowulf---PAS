@@ -39,7 +39,7 @@ public function __construct($options = null) {
 		
 	$denomination = new Zend_Form_Element_Select('denomination');
 	$denomination->setLabel('Denomination: ')
-	->addMultiOptions(array(NULL => NULL, 'Choose denomination' => $denomination_options))
+	->addMultiOptions(array(NULL => 'Choose denomination', 'Available denominations' => $denomination_options))
 	->addValidator('InArray', false, array(array_keys($denomination_options)))
 	->addValidator('Digits')
 	->addFilters(array('StripTags', 'StringTrim'));
@@ -54,14 +54,16 @@ public function __construct($options = null) {
 	$categoryID->setLabel('Category of coin: ')
 	->addValidators(array('NotEmpty','Digits'))
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => NULL,'Choose category' => $cat_options))
+	->addMultiOptions(array(NULL => 'Choose category', 'Available categories' => $cat_options))
+	->setAttribs(array('class' => 'span6'))
 	->addValidator('InArray', false, array(array_keys($cat_options)));
 	
 	$ruler= new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler: ')
 	->addValidators(array('NotEmpty','Digits'))
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => NULL,'Choose a ruler' => $ro))
+	->setAttribs(array('class' => 'span6'))
+	->addMultiOptions(array(NULL => 'Choose a ruler', 'Available rulers' => $ro))
 	->addValidator('InArray', false, array(array_keys($ro)));
 	
 	$ruler_qualifier = new Zend_Form_Element_Radio('ruler_qualifier');
@@ -74,14 +76,14 @@ public function __construct($options = null) {
 	$mint_id->setLabel('Issuing mint: ')
 	->setRegisterInArrayValidator(true)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => NULL,'Choose a mint' => $mo))
+	->addMultiOptions(array(NULL => 'Choose a mint', 'Available mints' => $mo))
 	->addValidator('InArray', false, array(array_keys($mo)));
 	
 	$status = new Zend_Form_Element_Select('status');
 	$status->setLabel('Status: ')
 	->setRegisterInArrayValidator(true)
 	->setValue(1)
-	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $status_options))
+	->addMultiOptions(array(NULL => 'Choose coin status', 'Available statuses' => $status_options))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('InArray', false, array(array_keys($status_options)))
 	->addValidator('Digits');
@@ -97,55 +99,47 @@ public function __construct($options = null) {
 	$degree_of_wear->setLabel('Degree of wear: ')
 	->setRegisterInArrayValidator(true)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $wear_options))
+	->addMultiOptions(array(NULL => 'Choose degree of wear','Available options' => $wear_options))
 	->addValidator('InArray', false, array(array_keys($wear_options)))
 	->addValidator('Digits');
 	
 	$obverse_inscription = new Zend_Form_Element_Text('obverse_inscription');
 	$obverse_inscription->setLabel('Obverse inscription: ')
-	->setAttrib('size',60)
+	->setAttrib('class','span6')
 	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'));
 	
 	$reverse_inscription = new Zend_Form_Element_Text('reverse_inscription');
 	$reverse_inscription->setLabel('Reverse inscription: ')
-	->setAttrib('size',60)
+	->setAttrib('class','span6')
 	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'));
 	
 	$obverse_description = new Zend_Form_Element_Textarea('obverse_description');
 	$obverse_description->setLabel('Obverse description: ')
 	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'))
-	->setAttrib('rows',3)
-	->setAttrib('cols',80)
-	->setAttrib('class','expanding');
+	->setAttribs(array('rows' => 5, 'cols' => 40, 'class' => 'span6'));
 	
 	$reverse_description = new Zend_Form_Element_Textarea('reverse_description');
 	$reverse_description->setLabel('Reverse description: ')
 	->addValidators(array('NotEmpty'))
-	->setAttrib('rows',3)
-	->setAttrib('cols',80)
-	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'))
-	->setAttrib('class','expanding');
+	->setAttribs(array('rows' => 5, 'cols' => 40, 'class' => 'span6'))
+	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'));
 	
 	$rev_mm = new Zend_Form_Element_Textarea('reverse_mintmark');
 	$rev_mm->setLabel('Reverse mintmark: ')
 	->addValidators(array('NotEmpty'))
-	->setAttrib('rows',3)
-	->setAttrib('cols',80)
-	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'))
-	->setAttrib('class','expanding');
+	->setAttribs(array('rows' => 5, 'cols' => 40, 'class' => 'span6'))
+	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'));
 	
 	$initial = new Zend_Form_Element_Textarea('initial_mark');
 	$initial->setLabel('Initial mark: ')
 	->addValidators(array('NotEmpty'))
-	->setAttrib('rows',3)
-	->setAttrib('cols',80)
-	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'))
-	->setAttrib('class','expanding');
+	->setAttribs(array('rows' => 5, 'cols' => 40, 'class' => 'span6'))
+	->addFilters(array('StripTags', 'StringTrim','BasicHtml','WordChars','EmptyParagraph'));
 	
 	$die_axis_measurement = new Zend_Form_Element_Select('die_axis_measurement');
 	$die_axis_measurement->setLabel('Die axis measurement: ')
 	->setRegisterInArrayValidator(false)
-	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $die_options))
+	->addMultiOptions(array(NULL => 'Choose die axis','Available options' => $die_options))
 	->addValidator('InArray', false, array(array_keys($die_options)));
 	
 	$die_axis_certainty = new Zend_Form_Element_Radio('die_axis_certainty');
@@ -158,10 +152,9 @@ public function __construct($options = null) {
 	$type->setLabel('Coin type: ')
 	->setRegisterInArrayValidator(false)
 	->setRequired(false)
+	->setAttribs(array('class' => 'span6'))
 	->addFilters(array('StripTags', 'StringTrim'));
 	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	$submit = new Zend_Form_Element_Submit('submit');
 	
@@ -172,7 +165,7 @@ public function __construct($options = null) {
 	$degree_of_wear, $obverse_description, $obverse_inscription,	
 	$reverse_description, $reverse_inscription, $die_axis_measurement,
 	$die_axis_certainty, $rev_mm, $submit, $initial,
-	$hash));
+	));
 	
 	$this->addDisplayGroup(array(
 	'categoryID','ruler_id','typeID',

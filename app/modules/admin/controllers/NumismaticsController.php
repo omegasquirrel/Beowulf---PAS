@@ -913,7 +913,7 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($formData)) {
 	$reverses = new Revtypes();
 	$where = array();
-	$where[] = $reverses->getAdapter()->quoteInto('id = ?', $id);
+	$where[] = $reverses->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$updateData = array(
 	'type' => $form->getValue('type'),
 	'description' => $form->getValue('description'),
@@ -1369,7 +1369,7 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	'created' => $this->getTimeForForms(),
 	'createdBy' => $this->getIdentityForForms()
 	);
-	$insert = $tribe->insert($insertData);
+	$insert = $tribes->insert($insertData);
 	$this->_flashMessenger->addMessage('You have created the iron age tribe: '
 	. $form->getValue('tribe'));
 	$this->_redirect($this->_redirectUrl . 'tribes');
@@ -1448,12 +1448,14 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($formData)) {
 	$geog = new Geography();
 	$where = array();
-	$where[] = $tribes->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
+	$where[] = $geog->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$updateData = array(
+	'area' => $form->getValue('area'),
+	'region' => $form->getValue('region'),
 	'tribe' =>  $form->getValue('tribe'),
 	'description' => $form->getValue('description'),
-	'updated' => $this->getTimeForForms(),
-	'updatedBy' => $this->getIdentityForForms()
+	'created' => $this->getTimeForForms(),
+	'createdBy' => $this->getIdentityForForms()
 	);
 	$update = $geog->update($updateData,$where);
 	$this->_flashMessenger->addMessage('Details updated!');

@@ -7,6 +7,13 @@ $this->headMeta('kings,doges,foreign,low countries,venice,medieval,imitations,
 
 <h2>Foreign issuing rulers of the Medieval period</h2>
 
+<h3>Late medieval French coins</h3>
+<p>This period had <?php echo count($this->french);?> issuers.</p>
+<ul id="related">
+<?php 
+echo $this->partialLoop('partials/numismatics/rulers.phtml', $this->french); ?>
+</ul>
+
 <h3>Coins of Scotland</h3>
 <p>This period had <?php echo count($this->scots);?> issuers.</p>
 <ul id="related">

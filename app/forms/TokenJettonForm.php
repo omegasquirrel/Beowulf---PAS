@@ -24,7 +24,7 @@ class TokenJettonForm extends Pas_Form {
 	$denomination->setLabel('Denomination: ')
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL,
+		->addMultiOptions(array(NULL => 'Choose denomination',
 		'Choose denomination' => array(
 		'64' => 'Jetton')
 		))
@@ -43,7 +43,7 @@ class TokenJettonForm extends Pas_Form {
 	$ruler= new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler: ')
 		->setRegisterInArrayValidator(false)
-		->addMultiOptions(array(NULL => "Choose an issuer",'Available rulers' => $ro))
+		->addMultiOptions(array(NULL => 'Choose an issuer','Available rulers' => $ro))
 		->addValidator('InArray', false, array(array_keys($ro)));
 	
 	$ruler_qualifier = new Zend_Form_Element_Radio('ruler_qualifier');
@@ -56,7 +56,7 @@ class TokenJettonForm extends Pas_Form {
 	$mint_id->setLabel('Issuing mint: ')
 		->setRegisterInArrayValidator(true)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => NULL,'Choose a mint' => array('286' => 'Nuremberg')));
+		->addMultiOptions(array(NULL => 'Choose a mint', 'Available mints' => array('286' => 'Nuremberg')));
 	
 	$mint_qualifier = new Zend_Form_Element_Radio('mint_qualifier');
 	$mint_qualifier->setLabel('Mint qualifier: ')
@@ -66,7 +66,7 @@ class TokenJettonForm extends Pas_Form {
 	
 	$degree_of_wear = new Zend_Form_Element_Select('degree_of_wear');
 	$degree_of_wear->setLabel('Degree of wear: ')
-		->addMultiOptions(array(NULL => NULL,'Choose coin status' => $wear_options))
+		->addMultiOptions(array(NULL => 'Choose degree of wear', 'Available options' => $wear_options))
 		->addValidator('InArray', false, array(array_keys($wear_options)));
 	
 	$obverse_inscription = new Zend_Form_Element_Text('obverse_inscription');
@@ -98,7 +98,7 @@ class TokenJettonForm extends Pas_Form {
 	
 	$die_axis_measurement = new Zend_Form_Element_Select('die_axis_measurement');
 	$die_axis_measurement->setLabel('Die axis measurement: ')
-		->addMultiOptions(array(NULL => NULL,'Choose die axis' => $die_options))
+		->addMultiOptions(array(NULL => 'Choose die axis', 'Available dies' => $die_options))
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('InArray', false, array(array_keys($die_options)));
 	
@@ -109,8 +109,6 @@ class TokenJettonForm extends Pas_Form {
 		->addFilter('StringTrim')
 		->setOptions(array('separator' => ''));
 	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
 		
 	//Submit button 
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -120,7 +118,7 @@ class TokenJettonForm extends Pas_Form {
 	$obverse_description, $obverse_inscription,	$reverse_description,
 	$reverse_inscription, $die_axis_measurement, $die_axis_certainty,
 	$mint_id, $mint_qualifier, $ruler_qualifier,
-	$denomination_qualifier, $hash, $submit));
+	$denomination_qualifier,  $submit));
 	
 	$this->addDisplayGroup(array(
 	'denomination','denomination_qualifier', 'ruler_id',

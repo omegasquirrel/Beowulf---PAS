@@ -47,7 +47,7 @@ class Admin_CommentsController extends Pas_Controller_Action_Admin {
     $this->_redirect('/admin/comments/');
     } else {
     $this->_flashMessenger->addMessage('There is a problem with the form, please check and resubmit');
-    $form->populate($formData);
+    $form->populate($data);
     }
     } else {
     // find id is expected in $params['id']

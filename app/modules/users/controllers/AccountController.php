@@ -198,6 +198,9 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	/** Activate an account
 	*/
 	public function activateAction(){
+	if (!is_null($this->_auth->getIdentity())) {
+	$this->_redirect('users/account/');
+	}
 	$form = new ActivateForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
@@ -210,7 +213,6 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger->addMessage('Please review and correct problems');
 	}
 	}
-	
     }
 	
     public function successAction(){
@@ -276,7 +278,9 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($form->getValues())) {
 	$where = array();
 	$where[] =  $this->_users->getAdapter()->quoteInto('id = ?', (int)$this->getAccount()->id);
-	$update = $this->_users->update($form->getValues(), $where);
+	$updateData = $form->getValues();
+	$updateData['higherLevel'] = 1;
+	$update = $this->_users->update($updateData, $where);
 	$to = array(array('email' => $user->email, 'name' => $user->fullname));
 	$attachments = array('/home/beowulf/public_html/documents/tac.pdf');
 	$assignData = array_merge($to[0], $form->getValues());

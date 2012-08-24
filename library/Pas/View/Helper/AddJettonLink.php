@@ -107,9 +107,10 @@ class Pas_View_Helper_AddJettonLink extends Zend_View_Helper_Abstract
 	
 	public function buildHtml($findID,$secuid,$broadperiod)
 	{
-	$url = $this->view->url(array('module' => 'database','controller' => 'jettons','action' => 'add', 'broadperiod' => $broadperiod,
-	'findID' => $secuid,'returnID' => $findID),NULL,TRUE);
-	$string = '<a href="'.$url.'" title="Add a jetton\'s coin data" accesskey="m">Add jetton data</a>';
+	$url = $this->view->url(array('module' => 'database','controller' => 'jettons','action' => 'add', 
+	'broadperiod' => $broadperiod,'findID' => $secuid, 'returnID' => $findID),NULL,TRUE);
+	$string = '<a class="btn btn-primary" href="' . $url . '" title="Add ' 
+	. $broadperiod . ' coin data" accesskey="m">Add jetton data</a>';
 	return $string;
 	}
 

@@ -85,7 +85,7 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
 
    			$html .= '<div class="span3 well">';
    			 if(($document->thumbnail)){
-			$html .= '<img src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
+			$html .= '<img class="flow" src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
    			 }
 			$html .= '<div class="caption"><p>Find number: ';
 			$html .= '<a href="' . $this->view->serverUrl() . '/database/artefacts/record/id/'
@@ -93,6 +93,9 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
 			$html .= $document->old_findID;
 			$html .= '</a><br />Object type: ' . $document->objecttype;
 			$html .= '<br />Broadperiod: ' . $document->broadperiod;
+			$html .= '<br/>' . $this->view->ellipsisstring($document->description,150);
+			$html .= '<br />Workflow: ' . $this->view->workflowStatus($document->workflow);
+			$html .= $this->view->workflow($document->workflow);
             $html .= '</p></div>';
             $html .= '</div>';
        

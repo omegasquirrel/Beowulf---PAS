@@ -38,12 +38,12 @@ class Admin_RolesController extends Pas_Controller_Action_Admin {
 	$form = new StaffRoleForm();
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
-        if ($form->isValid($form->getValues())) {
+	if ($form->isValid($form->getValues())) {
 	$this->_staffroles->add($form->getValues());
 	$this->_flashMessenger->addMessage('A new staff role has been created.');
 	$this->_redirect($this->_redirectUrl . 'roles/');
 	} else {
-	$form->populate($formData);
+	$form->populate($form->getValues());
 	}
 	}
 	}
@@ -60,11 +60,11 @@ class Admin_RolesController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger->addMessage($form->getValue('role') . '\'s details updated.');
 	$this->_redirect($this->_redirectUrl . 'roles/');
 	} else {
-	$form->populate($formData);
+	$form->populate($form->getValues());
 	}
 	} else {
 	// find id is expected in $params['id']
-	$form->populate($this->_staffroles->fetchRow('id=' . $id)->toArray());
+	$form->populate($this->_staffroles->fetchRow('id=' . $this->_getParam('id'))->toArray());
 	}
 	}
 	/** Delete a role

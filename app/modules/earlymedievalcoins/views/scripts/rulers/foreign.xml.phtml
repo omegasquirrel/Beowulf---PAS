@@ -56,7 +56,15 @@ $rulerElem = $dom->createElement('ruler');
 $rulersElem->appendChild( $rulerElem );
 }
 
-
+foreach($this->french as $r){
+$rulerElem = $dom->createElement('ruler');
+   foreach($r as $k => $a){
+      
+       $rulerElem->appendChild( $dom->createElement($k, htmlspecialchars($a))); 
+   }
+	
+$rulersElem->appendChild( $rulerElem );
+}
 
 
 $dom->appendChild( $rulers );

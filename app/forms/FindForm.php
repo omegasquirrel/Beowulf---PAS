@@ -147,14 +147,16 @@ public function __construct($options = null) {
 	$class->setLabel('Classification: ')
 	->setAttrib('size',60)
 	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim', 'Purifier'));
+	->addFilters(array('StripTags','StringTrim', 'Purifier'))
+        ->setDescription('Do not put numismatic information here (such as penny), it is the wrong place for it.');
 
 	//Find subclassification
 	$subclass = new Zend_Form_Element_Text('subclass');
 	$subclass->setLabel('Sub-classification: ')
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim', 'Purifier'))
-	->setAttrib('size',60);
+	->setAttrib('class','large')
+        ->setDescription('Do not put numismatic information here (such as penny), it is the wrong place for it.');
 
 	//Inscription: Only available if !=coin
 	$inscription = new Zend_Form_Element_Text('inscription');
@@ -543,14 +545,12 @@ public function __construct($options = null) {
 	$subs_action->setLabel('Subsequent action: ')
 	->addFilters(array('StripTags','StringTrim'))
 
-	->addMultiOptions(array(NULL => 'Choose a subsquent action',
+	->addMultiOptions(array(NULL => 'Choose a subsequent action',
 	'Available options' => $actionsDD))
 	->setValue(1)
 	->addValidator('InArray', false, array(array_keys($actionsDD)))
 	->addValidator('Int');
 
- 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -577,13 +577,13 @@ public function __construct($options = null) {
 	$completeness, $findofnotereason, $rally,
 	$objecttypecert, $rallyID, $objdate1cert,
 	$objdate2cert, $submit,	$subs_action,
-	$numdate1qual, $numdate2qual, $hash));
+	$numdate1qual, $numdate2qual));
 
 	$this->addDisplayGroup(array('objecttype','objecttypecert','classification',
 	'subclass','description','notes',
 	'inscription','findofnote','findofnotereason',
 	'treasure','treasureID'), 'objectdetails');
-	
+
 	$this->objectdetails->setLegend('Object details');
 
 	$this->addDisplayGroup(array('broadperiod','objdate1period','objdate1cert',

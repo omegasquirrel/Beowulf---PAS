@@ -2,8 +2,8 @@
 	<dataSource type="JdbcDataSource"
    driver="com.mysql.jdbc.Driver"
    url="jdbc:mysql://localhost/antiquitiesTwo"
-   user="" 
-   password=""
+   user="webuser2" 
+   password="45jql11w"
    tinyInt1isBit="false"/>
 	<document name="content">
         <entity name="content" transformer="HTMLStripTransformer" 
@@ -16,6 +16,8 @@ authors,
 editors,
 in_publication AS inPublication,
 isbn,
+doi,
+biab,
 publication_place AS placePublished,
 publication_year AS yearPublished,
 publications.updated,
@@ -23,7 +25,7 @@ publications.created,
 publisher,
 publicationtypes.term AS pubType
 FROM publications
-LEFT JOIN publicationtypes ON publications.publication_type = publications.id
+LEFT JOIN publicationtypes ON publications.publication_type = publicationtypes.id
 " 
 >        
 	<field column="id" name="id" />
@@ -38,6 +40,8 @@ LEFT JOIN publicationtypes ON publications.publication_type = publications.id
 	<field column="isbn" name="isbn"  />
 	<field column="created" name="created"  />
 	<field column="updated" name="updated"  />
+	<field column="doi" name="doi" />
+	<field column="biab" name="biab" />
 	<field column="inPublication" name="inPublication"  />
 		</entity>
 

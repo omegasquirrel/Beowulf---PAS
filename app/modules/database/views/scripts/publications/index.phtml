@@ -33,7 +33,10 @@ echo $this->Href(array(
 ?>
 <?php echo $this->form;?>
 
-<?php if ($this->results): ?>
+<?php if ($this->results): 
+Zend_Debug::dump($this->results)
+?>
+
 <table class="table table-striped" summary="A list of all publications on the Scheme's database">
 <caption>All publications listed on the Scheme's database</caption>
     <thead>

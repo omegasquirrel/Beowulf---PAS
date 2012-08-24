@@ -84,7 +84,19 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	public function mpAction() {
 	if($this->_getParam('id',false)) {
 	$person =  new Pas_Twfy_Person();
-        $this->view->data = $person->get($this->_getParam('id'));
+	$unclean = $person->get($this->_getParam('id'));
+	$clean = array();
+	foreach($unclean as $object){
+		$mp = array(); 
+		$object = get_object_vars($object);
+		foreach($object as $k => $v){
+			
+		$mp[$k] = utf8_encode($v);
+		
+		}
+		$clean[] = $mp;
+	}
+	$this->view->data = $clean;	
 	} else {
 	throw new Pas_Exception_Param($this->_missingParameter);
 	}
@@ -152,7 +164,15 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
 	public function membersAction() {
 	$members = new Pas_Twfy_Mps();
 	$data = $members->get();
-	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($data));
+	$clean = array();
+	foreach($data as $d){
+		$mp = array();
+		foreach($d as $k => $v){
+			$mp[$k] = utf8_encode($v);
+		}
+	$clean[] = (object)$mp;		
+	}
+	$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($clean));
 	$paginator->setCurrentPageNumber((int)$this->getPage());
 	$paginator->setItemCountPerPage(30)
     	      ->setPageRange(10)

@@ -86,6 +86,7 @@ class EarlyMedievalCoins_RulersController extends Pas_Controller_Action_Admin {
     $this->view->francia = $this->_rulers->getEarlyMedievalRulers(1);
     $this->view->islamic = $this->_rulers->getEarlyMedievalRulers(10);
     $this->view->hiberno = $this->_rulers->getEarlyMedievalRulers(28);
+    $this->view->french  = $this->_rulers->getEarlyMedievalRulers(35);
     }
 
 }

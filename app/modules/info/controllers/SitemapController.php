@@ -20,7 +20,7 @@ class Info_SitemapController extends Pas_Controller_Action_Admin {
 	 * The default action - show the home page
 	 */
 	public function indexAction() {
-	$config = new Zend_Config_Xml('http://www.finds.org.uk/info/sitemap/configuration/','nav');
+	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/configuration/','nav');
    	$navigation = new Zend_Navigation($config);
    	$this->view->navigation($navigation);
 	$this->view->navigation()
@@ -31,12 +31,20 @@ class Info_SitemapController extends Pas_Controller_Action_Admin {
 	 * Show the locational XML
 	 */
 	public function locationsAction() {
-	$config = new Zend_Config_Xml(APPLICATION_PATH '/../config/sitemaps.xml','locations');
+	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/databaseconfig','locations');
    	$navigation = new Zend_Navigation($config);
    	$this->view->navigation($navigation);
 	$this->view->navigation()
       ->sitemap()
       ->setFormatOutput(true); // default is false	
+	}
+	
+	public function databaseconfigAction(){
+		
+	}
+	
+	public function databaserecordsAction(){
+		
 	}
 	public function configurationAction() {
 	$content = new Content();

@@ -89,7 +89,7 @@ class Pas_View_Helper_FindsWithinConst extends Zend_View_Helper_Abstract {
 
 	$data = $this->getSolr($constituency);
 
-        return $this->buildHtml($data);
+        return $this->buildHtml($data, $constituency);
 
 	}
 
@@ -99,13 +99,13 @@ class Pas_View_Helper_FindsWithinConst extends Zend_View_Helper_Abstract {
          * @param int $data
          * @return string|boolean
          */
-	public function buildHtml($data){
+	public function buildHtml($data, $constituency){
 	if($data > 0){
         $url = $this->view->url(array(
             'module' => 'news',
             'controller' => 'theyworkforyou',
             'action' => 'finds',
-            'bbox' => $this->_geometry,
+            'constituency' => $constituency,
             ),'default',true);
 	$html = '<p>There are <a href="' . $url . '" title ="View finds for this
             constituency">' . $data  . ' finds</a> recorded in this constituency.</p>';

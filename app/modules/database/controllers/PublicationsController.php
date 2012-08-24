@@ -27,7 +27,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 
 	/** Display of publications with filtration
 	*/
-	public function indexAction() {
+		public function indexAction() {
 		$form = new SolrForm();
         $form->removeElement('thumbnail');
         $form->q->setLabel('Search the publications: ');
@@ -46,7 +46,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 
         if ($form->isValid($form->getValues())) {
         $params = $this->array_cleanup($form->getValues());
-
+		
         $this->_helper->Redirector->gotoSimple('index','publications','database',$params);
         } else {
         $form->populate($form->getValues());
@@ -64,6 +64,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
             $params['q'] = '*';
         }
         $params['sort'] = 'title';
+		$params['direction'] = 'asc';
         $search->setParams($params);
         $search->execute();
         $this->view->facets = $search->_processFacets();

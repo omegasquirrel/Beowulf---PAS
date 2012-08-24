@@ -90,9 +90,11 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $this->_helper->flashMessenger->addMessage('Numismatic details updated.');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('returnID'));
     } else {
-    $form->populate($form->getValues());
+//    	Zend_Debug::dump($this->_request->getPost());
+    $form->populate($_POST);
     }
     } else {
+//    	Zend_Debug::dump($this->_request->getPost());
     // find id is expected in $params['id']
     $id = (int)$this->_getParam('id', 0);
     if ($id > 0) {

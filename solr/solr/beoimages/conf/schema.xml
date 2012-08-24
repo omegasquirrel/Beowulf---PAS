@@ -473,6 +473,7 @@
 	<field name="licenseAcronym" type="string" indexed="true" stored="true" />
 	<field name="broadperiod" type="string" indexed="true" stored="true" />
 	<field name="createdBy" type="int" indexed="true" stored="true" />
+	<field name="workflow" type="int" indexed="true" stored="true" />
         <field name="objecttype" type="string" indexed="true" stored="true" />
         <field name="institution" type="string" indexed="true" stored="true" />
    <!--
@@ -483,7 +484,7 @@
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
    <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
-
+	<field name="objectType" type="string" indexed="true" stored="false" multiValued="false" />
    <!-- catchall text field that indexes tokens both normally and in reverse for efficient
         leading wildcard queries. -->
    <field name="text_rev" type="text_rev" indexed="true" stored="false" multiValued="true"/>
@@ -559,9 +560,9 @@
 	<copyField source="keywords" dest="text" />
 	<copyField source="county" dest="text" />
 	<copyField source="broadperiod" dest="text" />
-        <copyField source="objecttype" dest="text" />
-        <copyField source="old_findID" dest="text" />
-
+	<copyField source="objecttype" dest="text" />
+	<copyField source="old_findID" dest="text" />
+	<copyField source="objecttype" dest="objectType" />
    <!-- Above, multiple source fields are copied to the [text] field.
 	  Another way to map multiple source fields to the same
 	  destination field is to use the dynamic field syntax.
