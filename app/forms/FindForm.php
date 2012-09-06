@@ -88,9 +88,8 @@ public function __construct($options = null) {
 	$objecttype->setLabel('Object type: ')
 	->setRequired(true)
 	->setAttrib('size',50)
-	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('ValidObjectType')
-	;
+	->addFilters(array('StripTags','StringTrim', 'StringToUpper'))
+	->addValidator('ValidObjectType');
 
 	$objecttypecert = new Zend_Form_Element_Radio('objecttypecert');
 	$objecttypecert->setLabel('Object type certainty: ')
@@ -98,8 +97,7 @@ public function __construct($options = null) {
 	->setValue(1)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
-        ->setOptions(array('separator' => ''))
-	;
+	->setOptions(array('separator' => ''));
 
 
 	//Object description
@@ -147,21 +145,21 @@ public function __construct($options = null) {
 	$class->setLabel('Classification: ')
 	->setAttrib('size',60)
 	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim', 'Purifier'))
-        ->setDescription('Do not put numismatic information here (such as penny), it is the wrong place for it.');
+	->setAttribs(array('class' => 'span6', 'placeholder' => 'Do not put numismatic information here (such as penny), it is the wrong place for it.'))
+	->addFilters(array('StripTags','StringTrim', 'Purifier'));
 
 	//Find subclassification
 	$subclass = new Zend_Form_Element_Text('subclass');
 	$subclass->setLabel('Sub-classification: ')
 	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim', 'Purifier'))
-	->setAttrib('class','large')
-        ->setDescription('Do not put numismatic information here (such as penny), it is the wrong place for it.');
+	->setAttribs(array('class' => 'span6', 'placeholder' => 'Do not put numismatic information here (such as penny), it is the wrong place for it.'))
+	->addFilters(array('StripTags','StringTrim', 'Purifier'));
 
 	//Inscription: Only available if !=coin
 	$inscription = new Zend_Form_Element_Text('inscription');
 	$inscription->setLabel('Inscription: ')
 	->setRequired(false)
+	->setAttribs(array('class' => 'span6', 'placeholder' => 'This is for the inscription on objects, not coins'))
 	->addFilters(array('StripTags','StringTrim', 'Purifier'))
 	->setAttrib('size',60);
 
@@ -178,6 +176,7 @@ public function __construct($options = null) {
 	$treasureID = new Zend_Form_Element_Text('treasureID');
 	$treasureID->setLabel('Treasure number: ')
 	->setRequired(false)
+	->setAttribs(array('placeholder' => 'T numbers are in the format of YYYYT1234', 'class' => 'span6'))
 	->addValidator('Alnum', false, array('allowWhiteSpace' => false))
 	->addFilters(array('StripTags','StringTrim', 'StringToUpper'));
 
@@ -259,6 +258,7 @@ public function __construct($options = null) {
 	$numdate1 = new Zend_Form_Element_Text('numdate1');
 	$numdate1->setLabel('Date from: ')
 	->setAttrib('size',10)
+	->setAttribs(array('placeholder' => 'Year in format YYYY'))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int');
 
@@ -274,6 +274,7 @@ public function __construct($options = null) {
 	$numdate2 = new Zend_Form_Element_Text('numdate2');
 	$numdate2->setLabel('Date to: ')
 	->setAttrib('size',10)
+	->setAttribs(array('placeholder' => 'Year in format YYYY'))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int');
 
@@ -307,6 +308,7 @@ public function __construct($options = null) {
 	$weight->setLabel('Weight: ')
 	->setAttrib('size',5)
 	->addValidator('Float')
+	->setAttribs(array('placeholder' => 'Value in grammes - NOT kilogrammes'))
 	->addFilters(array('StripTags','StringTrim'));
 
 	//Height: millimetres
@@ -314,6 +316,7 @@ public function __construct($options = null) {
 	$height->setLabel('Height: ')
 	->setAttrib('size',5)
 	->addValidator('Float')
+	->setAttribs(array('placeholder' => 'Value in millimetres'))
 	->addFilters(array('StripTags','StringTrim'));
 
 	//Length: millimetres
@@ -321,12 +324,14 @@ public function __construct($options = null) {
 	$length->setLabel('Length: ')
 	->setAttrib('size',5)
 	->addValidator('Float')
+	->setAttribs(array('placeholder' => 'Value in millimetres'))
 	->addFilters(array('StripTags','StringTrim'));
 
 	//Diameter: millimetres
 	$diameter = new Zend_Form_Element_Text('diameter');
 	$diameter->setLabel('Diameter: ')
 	->setAttrib('size',5)
+	->setAttribs(array('placeholder' => 'Value in millimetres'))
 	->addValidator('Float')
 	->addFilters(array('StripTags','StringTrim'));
 
@@ -334,6 +339,7 @@ public function __construct($options = null) {
 	$width = new Zend_Form_Element_Text('width');
 	$width->setLabel('Width: ')
 	->setAttrib('size',5)
+	->setAttribs(array('placeholder' => 'Value in millimetres'))
 	->addValidator('Float')
 	->addFilters(array('StripTags','StringTrim'));
 
@@ -341,6 +347,7 @@ public function __construct($options = null) {
 	$thickness = new Zend_Form_Element_Text('thickness');
 	$thickness->setLabel('Thickness: ')
 	->setAttrib('size',5)
+	->setAttribs(array('placeholder' => 'Value in millimetres'))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Float');
 
@@ -499,6 +506,7 @@ public function __construct($options = null) {
 	$disccircum = new Zend_Form_Element_Text('disccircum');
 	$disccircum->setLabel('Discovery circumstances: ')
 	->setAttrib('size',50)
+	->setAttrib('class' , 'span6')
 	->addFilters(array('StripTags','StringTrim'));
 
 	//Date found from

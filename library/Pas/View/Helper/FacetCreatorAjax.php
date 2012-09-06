@@ -39,6 +39,7 @@ class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
         if(is_array($facets)){
         $html = '';
         foreach($facets as $facetName => $facet){
+        	
             $html .= $this->_processFacet($facet, $facetName);
         }
         return $html;
@@ -58,7 +59,7 @@ class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
      */
     protected function _processFacet(array $facets, $facetName){
         if(is_array($facets)){
-        	if(count($facets)){
+		if(count($facets)){
         $html = '<div id="facet-' . $facetName .'">';
         $html .= '<ul class="facetExpand">';
 
@@ -95,12 +96,10 @@ class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
         if(isset($request['page'])){
             unset($request['page']);
         }
-		if(count($facet) > 10){
+		if(count($facets) > 10){
 			$request['controller'] = 'ajax';
 			$request['action'] = 'facet';
 			unset($request['facetType']);
-			Zend_Debug::dump($request);
-			exit;
 			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',false) . '" rel="facebox">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
         $facet = $request[$facetName];

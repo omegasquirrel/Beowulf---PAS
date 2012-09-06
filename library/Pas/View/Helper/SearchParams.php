@@ -107,7 +107,7 @@ class Pas_View_Helper_SearchParams
 	if(!is_null($params)) {
 	$html .= '<p>You searched for: </p>';
 	$html .= '<ul>';
-        $searches = array();
+   	$searches = array();
 	foreach($params as $k => $v){
 		switch($k){
 			case 'fromdate':

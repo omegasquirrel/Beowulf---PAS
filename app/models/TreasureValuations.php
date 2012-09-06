@@ -11,7 +11,7 @@
 * @todo sort out cache and cleaning
 * @todo add delete method
 */
-class AgreedTreasureValuations extends Pas_Db_Table_Abstract {
+class TreasureValuations extends Pas_Db_Table_Abstract {
 	
 	protected $_treasureID, $_time;
 	

@@ -84,7 +84,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	if($coords){
 		$lat = $coords['lat'];
 		$lon = $coords['lon'];
-		$pm = new Pas_Service_Geoplanet();
+		$pm = new Pas_Service_Geo_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
 	} else {
@@ -227,7 +227,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	if($coords){
 		$lat = $coords['lat'];
 		$lon = $coords['lon'];
-		$pm = new Pas_Service_Geoplanet();
+		$pm = new Pas_Service_Geo_Geoplanet();
 		$place = $pm->reverseGeoCode($lat,$lon);
 		$woeid = $place['woeid'];
 	} else {

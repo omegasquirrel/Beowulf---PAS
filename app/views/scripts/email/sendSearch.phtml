@@ -7,11 +7,11 @@
 $actions = array('action' => 'results');
 $url = array_merge($actions,$this->url); ?>
 
-<p>Search string: <a href="<?php echo $this->serverUrl($this->url($url, 'default', $reset));?>"><?php echo $this->serverUrl($this->url($url, 'default', $reset));?></a></p>
+<p>Search string: <a href="<?php echo $this->serverUrl($this->url($url, 'default', false));?>"><?php echo $this->serverUrl($this->url($url, 'default', false));?></a></p>
 
 <?php echo $this->purify($this->message);?>
 
-<p>The search is located at this url:  <?php echo $this->serverUrl($this->url($url, 'default', $reset));?></p>
+<p>The search is located at this url:  <?php echo $this->serverUrl($this->url($url, 'default', false));?></p>
 
 <p>Best wishes,</p>
 

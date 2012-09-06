@@ -43,7 +43,7 @@ class Database_OaiController extends Pas_Controller_Action_Admin {
             	break;
             case $request->isPost():
 //            	$query = &$_POST;
-            	throw new Pas_Exception('Post requests are not valid');
+            	throw new Zend_Exception('Post requests are not valid');
             	break;
             default: die('Error determining request type.');
         }

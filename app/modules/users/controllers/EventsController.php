@@ -66,9 +66,9 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	'created' => $this->getTimeForForms(),
 	'createdBy' => $this->getIdentityForForms()
 	);
-		foreach ($insertData as $key => $value) {
+		foreach ($insertdata as $key => $value) {
 		  if (is_null($value) || $value=="") {
-			unset($insertData[$key]);
+			unset($insertdata[$key]);
 		  }
 		}
 	$events = new Events();
@@ -117,9 +117,9 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	'updated' => $this->getTimeForForms(),
 	'updatedBy' => $this->getIdentityForForms()
 	);
-		foreach ($insertData as $key => $value) {
+		foreach ($insertdata as $key => $value) {
 		  if (is_null($value) || $value=="") {
-			unset($insertData[$key]);
+			unset($insertdata[$key]);
 		  }
 		}
 	$events = new Events();

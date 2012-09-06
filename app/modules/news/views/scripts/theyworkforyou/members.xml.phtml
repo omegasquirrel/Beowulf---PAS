@@ -14,10 +14,10 @@ $members  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
 $members->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
-$meta->appendChild( $dom->createElement('currentPage',$this->data['pageNumber']));
-$meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->data['itemsReturned']));
+$meta->appendChild( $dom->createElement('totalItems',$this->data->getTotalItemCount()));
+$meta->appendChild( $dom->createElement('currentPage',$this->data->getCurrentPageNumber()));
+$meta->appendChild( $dom->createElement('totalPages',ceil($this->data->getTotalItemCount()/$this->data->getItemCountPerPage())));
+$meta->appendChild( $dom->createElement('itemsReturned',$this->data->getItemCountPerPage()));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k){
@@ -29,7 +29,7 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 //1st item
 $membersElem = $dom->createElement('membersOfParliament');
 $members->appendChild($membersElem);
-foreach($this->members as $r => $v) {
+foreach($this->data as $r => $v) {
      $memberElem = $dom->createElement('member');
    foreach($v as $k => $a){
       

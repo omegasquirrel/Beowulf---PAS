@@ -26,7 +26,7 @@ class Guide_TorecordingController extends Pas_Controller_Action_Admin {
 	$content = new Content();
 	$this->view->content = $content->getContent('frg', $this->_getParam('slug'));
 	} else {
-	throw new Pas_ParamException($this->_missingParameter);
+	throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
 

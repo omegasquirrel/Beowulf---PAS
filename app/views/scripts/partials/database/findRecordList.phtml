@@ -51,7 +51,7 @@
 		No spatial data available. <i class="icon-map-marker"></i>
 		<?php endif;?>
 		<?php if($this->knownas):?>
-		 <span class="question">This findspot is protected</span>
+		 <span class="question">This findspot is known as '<?php echo $this->escape($this->knownas);?>', grid reference and parish protected.</span>
 		<?php endif;?>
     </p>
 

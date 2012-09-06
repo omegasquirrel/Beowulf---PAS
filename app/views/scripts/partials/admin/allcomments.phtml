@@ -38,7 +38,7 @@ break;
 }
 ?>
 
-<tr id="comment-<?php echo $this->comment_ID;?>" class="status-<?php echo $this->comment_approved;?>">
+<tr id="comment-<?php echo $this->commentID;?>" class="status-<?php echo $this->comment_approved;?>">
 <td class="author column-author" >
 <?php
 echo $this->gravatar($this->comment_author_email,array(
@@ -66,7 +66,7 @@ $this->ellipsisstring(strip_tags($this->comment_content),200);?></td>
     'id' => $this->id),null,true);?>"><?php echo $this->commentType($this->contentID, $this->comment_type);?></a>
 </td>
 <td><?php echo $t;?></td>
-<td><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'publish','id' => $this->id),'default',true);?>" title="Publish comment on record: <?php echo $this->old_findID;?>">Moderate</a> <br /> <a href="#" title="Delete this comment" class="delete">Delete</a><br />
+<td><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'publish','id' => $this->commentID),'default',true);?>" title="Publish comment on record: <?php echo $this->old_findID;?>">Moderate</a> <br /> <a href="#" title="Delete this comment" class="delete">Delete</a><br />
 Status: <?php echo $status;?>
 </td>
 </tr>

@@ -21,6 +21,7 @@ $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerN
 <?php
 if(in_array($user->role,$allowed)) {
 ?>
+<li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'backups'),null,true);?>" title="View latest backups">Database CSV downloads</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'news'),null,true);?>" title="Change and update news stories you entered">Administer news</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'users','controller' => 'events'),null,true);?>" title="Change and update events you entered">Administer events</a></li>
 <?php

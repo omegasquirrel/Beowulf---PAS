@@ -290,3 +290,6 @@ ul.facetExpand li {
 .highlight {
 	font-weight:bolder;
 }
+.privatedata {
+	border:solid 2px red;
+}

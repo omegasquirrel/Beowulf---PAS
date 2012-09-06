@@ -8,29 +8,53 @@
 */
 class ImageEditForm extends Pas_Form {
 	
+	protected $_auth = NULL;
+
+	protected $_copyright = NULL;
+	
 	public function __construct($options = null) {
 		
 	$counties = new Counties();
 	$county_options = $counties->getCountyName2();
+	
 	$periods = new Periods();
 	$period_options = $periods->getPeriodFrom();
+	
+	$copyrights = new Copyrights();
+	$copy = $copyrights->getStyles();
+	
+	$licenses = new LicenseTypes();
+	$license = $licenses->getList();
 
+	$auth = Zend_Auth::getInstance();
+	$this->_auth = $auth;
+	if($this->_auth->hasIdentity()) {
+	$user = $this->_auth->getIdentity();
+	
+	if(!is_null($user->copyright)){
+	$this->_copyright = $user->copyright;
+		} elseif(!is_null($user->fullname)) {
+			$this->_copyright = $user->forename . ' ' . $user->surname;
+		} else {
+			$this->_copyright = $user->fullname;
+		}
+	} 
+	
 	parent::__construct($options);
-
+	$copyList = array_filter(array_merge(array($this->_copyright => $this->_copyright), $copy));
 	$this->setName('imageeditfind');
 
 
 	$imagelabel = new Zend_Form_Element_Text('label');
 	$imagelabel->setLabel('Image label')
 	->setRequired(true)
-	->setAttrib('size',70)
+	->setAttribs(array('size' => 70, 'class' => 'span6' ))
 	->addErrorMessage('You must enter a label')
 	->addFilters(array('StringTrim','StripTags'));
 		
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
 	->setRequired(true)
-
 	->addMultiOptions(array(NULL => NULL,'Choose a period' => $period_options))
 	->addValidator('inArray', false, array(array_keys($period_options)));
 
@@ -41,10 +65,25 @@ class ImageEditForm extends Pas_Form {
 	->addMultiOptions(array(NULL => NULL,'Choose a county' => $county_options))
 	->addValidator('inArray', false, array(array_keys($county_options)));
 
-	$copyright = new Zend_Form_Element_Text('imagerights');
-	$copyright->setLabel('Image copyright')
-	->setAttrib('size',70)
-	->addFilters(array('StringTrim','StripTags'));
+	$copyright = new Zend_Form_Element_Select('copyrighttext');
+	$copyright->setLabel('Image copyright: ')
+	->setRequired(true)
+	->setAttrib('class','span6')
+	->addErrorMessage('You must enter a licence holder')
+	->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copyList))
+	->setDescription('You can set the copyright of your image here to your institution. If you are a public recorder, it 
+	should default to your full name. For institutions that do not appear contact head office for getting it added.')
+	->setValue($this->_copyright);
+	
+	$licenseField = new Zend_Form_Element_Select('ccLicense');
+	$licenseField->setDescription('Our philosophy is to make our content available openly, by default we set the license as
+	use by attribution to gain the best public benefit. You can choose a different license if you wish.');
+	$licenseField->setRequired(true)
+	->setAttrib('class','span6')
+	->setLabel('Creative Commons license:')
+	->addMultiOptions(array(NULL => 'Select a license', 'Available licenses' => $license))
+	->setValue(5)
+	->addValidator('Int');
 		
 	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Image type: ')
@@ -77,7 +116,7 @@ class ImageEditForm extends Pas_Form {
 
 	$this->addElements(array(
 	$imagelabel, $county, $period,
-	$copyright, $type, $rotate,
+	$copyright, $licenseField, $type, $rotate,
 	$regenerate, $filename, $imagedir,
 	$submit));
 
@@ -85,7 +124,7 @@ class ImageEditForm extends Pas_Form {
 	
 	$this->addDisplayGroup(array(
 	'label', 'county', 'period',
-	'imagerights', 'type', 'rotate',
+	'imagerights', 'copyrighttext', 'ccLicense','type', 'rotate',
 	'regenerate'), 'details');
 	
 	$this->addDisplayGroup(array('submit'), 'submit');

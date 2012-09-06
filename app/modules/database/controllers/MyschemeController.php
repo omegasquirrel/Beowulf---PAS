@@ -111,7 +111,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
 	
     $search->setFacets(array('objectType','county','broadperiod','institution'));
     $search->setParams($params);
-    $search->debugQuery();
+//    $search->debugQuery();
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->finds = $search->_processResults();

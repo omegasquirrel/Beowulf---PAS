@@ -116,12 +116,10 @@ class News_TheyworkforyouController extends Pas_Controller_Action_Admin {
             $cons->max_lat,
             $cons->max_lon);
 	$search = new Pas_Solr_Handler('beowulf');
-        $search->setFields(array(
-    	'id', 'identifier', 'objecttype',
-    	'title', 'broadperiod','imagedir',
-    	'filename','thumbnail','old_findID',
-    	'description', 'county')
-        );
+    $context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	
+	$search->setFields($fields->getFields());
         $params = $this->_getAllParams();
         $params['bbox'] = implode(',',$bbox);
         $search->setFacets(array('objectType','county','broadperiod','institution','workflow'));

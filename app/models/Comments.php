@@ -71,18 +71,19 @@ class Comments extends Pas_Db_Table_Abstract {
 	$select = $comments->select()
 		->from($this->_name, array($this->_primary,'df' => 'DATE_FORMAT(comments.created,"%T @ %D %M %Y")',
 		'comment_author','comment_author_url','comment_content','comment_approved','user_ip',
-		'comment_author_email','comment_type','contentID', 'user_agent'))
+		'comment_author_email','comment_type','contentID', 'user_agent', 'commentID' => 'id'))
 		->joinLeft('finds','finds.id = comments.contentID',array('id','old_findID',
 		'broadperiod','objecttype'))
 		->order('comments.created DESC');
 	if(isset($params['approval']) && $params['approval'] == 'spam') {
-	$select->where('comments.commentStatus = ?',(string)'isSpam');
+	$select->where('comments.commentStatus = ?', (string)'spam');
 	}
 	if(isset($params['approval']) && $params['approval'] == 'approved'){
-	$select->where('comments.comment_approved = ?',(string)'approved');
+	$select->where('comments.comment_approved = ?', (string)'approved');
 	}
 	if(isset($params['approval']) && $params['approval'] == 'moderation'){
-	$select->where('comments.comment_approved = ?',(string)'moderation');
+	$select->where('comments.comment_approved = ?', (string)'moderation')
+	->where('comments.commentStatus != ?', (string)'spam');
 	}
 	if(isset($userID)){
 	$select->where('comments.createdBy = ?',(int)$userID);

@@ -263,6 +263,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $form->idBy->setValue($fullname);
     }
     if(in_array($this->getRole(),$this->_restricted)) {
+    $form->finderID->setValue($secure);
     $form->removeDisplayGroup('discoverers');
     $form->removeElement('finder');
     $form->removeElement('secondfinder');
@@ -309,18 +310,21 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     */
     public function editAction() {
     if($this->_getParam('id',false)){
+	$user = $this->getAccount();
     $form = new FindForm();
     $form->submit->setLabel('Update record');
     $this->view->form = $form;
     if(in_array($this->getRole(),$this->_restricted)) {
     $form->removeDisplayGroup('discoverers');
     $form->removeElement('finder');
+    $form->finderID->setValue($user->peopleID);
     $form->removeElement('secondfinder');
     $form->removeElement('idBy');
     $form->recordername->setAttrib('disabled', true);
     $form->removeElement('id2by');
     }
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
+    $data = $form->getValues();
     if ($form->isValid($form->getValues())) {
     $updateData = $form->getValues();
 //    $updateData = array_filter($updateData);
@@ -345,7 +349,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     } else {
     $this->view->find = $this->_finds->fetchRow('id='.$this->_getParam('id'));
-    $form->populate($this->_request->getPost());
+    $form->populate($data);
     }
     } else {
     $id = (int)$this->_request->getParam('id', 0);

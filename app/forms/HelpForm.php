@@ -51,8 +51,8 @@ public function __construct($options = null) {
 	->setAttrib('rows',10)
 	->setAttrib('cols',40)
 	->setAttrib('Height',400)
-	->setAttrib('ToolbarSet','Finds')
-	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
+//	->setAttrib('ToolbarSet','Finds')
+	->addFilters(array('StringTrim', 'HtmlBody', 'EmptyParagraph', 'WordChars'));
 
 	$section = new Zend_Form_Element_Select('section');
 	$section->setLabel('Set site section to appear under: ')

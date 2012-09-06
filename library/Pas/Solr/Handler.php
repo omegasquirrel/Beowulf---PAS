@@ -263,7 +263,11 @@ class Pas_Solr_Handler {
     		$params['updated'] = $queryDate . ' TO * ';
     		unset($params['updatedAfter']);
     	}
-    	
+    	foreach($params as $k => $v){
+    		if(is_null($v) || ($v === '')){
+    			unset($params[$k]);
+    		}
+    	}
    
     	return $params;
     	

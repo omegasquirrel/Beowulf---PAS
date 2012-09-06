@@ -32,6 +32,25 @@ class Database_SitemapController extends Pas_Controller_Action_Admin {
 		->sitemap()
 		->setFormatOutput(true); // default is false
 	}
-	
+	public function imagesAction() {
+	$page = $this->_getParam('page');
+	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/images/page/' 
+	. $page,'nav');#
+   	$navigation = new Zend_Navigation($config);
+   	$this->view->navigation($navigation);
+	$this->view->navigation()
+		->sitemap()
+		->setFormatOutput(true); // default is false
+	}
+	public function booksAction() {
+	$page = $this->_getParam('page');
+	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/books/page/' 
+	. $page,'nav');#
+   	$navigation = new Zend_Navigation($config);
+   	$this->view->navigation($navigation);
+	$this->view->navigation()
+		->sitemap()
+		->setFormatOutput(true); // default is false
+	}
 }
 

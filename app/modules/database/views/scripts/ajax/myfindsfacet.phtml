@@ -33,7 +33,7 @@
             	$clean = 'institution';
             	break;		
             default:
-                $clean = $name;
+                $clean = $this->facetName;
                 break;
         }
     ?>
@@ -45,7 +45,7 @@
 <div class="row span12">
 <?php 
 $string = $this->facetName;
-$facets = array($this->facetName => get_object_vars($this->data->facets->$string));
+$facets = array($this->facetName => $this->data['facets'][$string]);
 echo $this->facetCreatorAjaxMyFinds($facets);?>
 </div>
 

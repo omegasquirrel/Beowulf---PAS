@@ -381,7 +381,9 @@ class Users extends Pas_Db_Table_Abstract {
 	$users = $this->getAdapter();
 	$select = $users->select()
 	->from($this->_name,array('username'))
-	->where('created >= CURDATE()');
+	->where('created >= CURDATE()')
+	->where('activationKey IS NULL')
+	->where('valid = ?', 1);
     $accounts = $users->fetchAll($select);
 	$this->_cache->save($accounts, 'newusers');
 	}

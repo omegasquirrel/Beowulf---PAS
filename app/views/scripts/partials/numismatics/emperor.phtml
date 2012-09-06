@@ -4,15 +4,19 @@ $this->headMeta('Biographical and related data for '.$this->name,'Description');
 $this->headMeta('roman,numismatics,biography,emperor,'.$this->name.',portable antiquities','Keywords');
 
 $this->headLink()->appendAlternate($this->url(array('module' => 'database','controller' => 'search','action' => 'results','ruler' => $this->pasID,'format' => 'rss'),null,true), 'application/rss+xml', 'Latest finds for '. $this->name .'- RSS Feed'); ?>
-<div about="<?php echo $this->name;?>" typeof="nm:roman_emperor">
+<div about="nm:<?php echo $this->name;?>" typeof="nm:roman_emperor" property="dcterms:partof" resource="roman_numismatics">
 <h2 property="skos:prefLabel"><?php echo $this->escape($this->name);?></h2>
 <?php if(isset($this->p)):?>
-<p>Reece Period attributed: <a href="<?php echo $this->url(array('module' => 'romancoins','controller' => 'reeceperiods','action' => 'period','id'=> $this->reeceID, 'name' => $this->urlslug($this->p)),'default',true);?>" title="View scope notes for <?php echo $this->p;?>"><?php echo $this->escape($this->p);?></a></p>
+<p>Reece Period attributed: <a href="<?php echo $this->url(array('module' => 'romancoins','controller' => 'reeceperiods','action' => 'period','id'=> $this->reeceID),'default',true);?>" title="View scope notes for <?php echo $this->p;?>"><?php echo $this->escape($this->p);?></a></p>
 <?php endif;?>
 
 <?php if (!is_null($this->filename)) {
 list($w, $h) = getimagesize('./images/rulers/resized/'.$this->escape($this->filename));
-echo '<a href="'.$this->baseUrl().'/images/rulers/'.$this->escape($this->filename).'" "title="View high resolution image of '. $this->name.'" rel="lightbox"><img rel="foaf:depiction" src="'.$this->baseUrl().'/images/rulers/resized/'.$this->escape($this->filename).'" class="portrait" alt="Obverse image of a coin of '. $this->name.'" width="'.$w.'" height="'.$h.'" /></a>';
+echo '<a href="'.$this->baseUrl().'/images/rulers/'.$this->escape($this->filename) 
+. '" "title="View high resolution image of '. $this->name 
+. '" rel="lightbox"><img property="foaf:depicts" src="'.$this->baseUrl().'/images/rulers/resized/'
+.$this->escape($this->filename).'" class="portrait" alt="Obverse image of a coin of '
+. $this->name.'" width="'.$w.'" height="'.$h.'" /></a>';
 }
 ?>
 <p>Member of the <a href="<?php echo $this->url(array('module' => 'romancoins','controller' => 'dynasties','action' => 'dynasty', 'id' => $this->i),null,true);?>" title="View details for the <?php echo $this->dyn;?>"><?php echo $this->escape($this->dyn);?></a> dynasty.</p>
@@ -86,7 +90,7 @@ $chunks = split('\. ',str_replace('c.','circa',$row['abstract']));
  $abs = '<p>'.join($chunks).'</p>';
 echo '<h4>Wikipedia derived information</h4>';
 if(isset($row['thumb'])) {
-echo '<a href="'.$row['depiction'].'" rel="lightbox" title="' .str_replace('"','',$row['caption']) .'"><img rel="foaf:depiction" src="'.$row['thumb'].'" class="flow" alt="' .str_replace('"','',$row['caption']) .'" width="'.$row['imgw'].'"/></a>';
+echo '<img about="' . $this->name . '" rel="foaf:depicts" src="'.$row['thumb'].'" class="flow" alt="' .str_replace('"','',$row['caption']) .'" width="'.$row['imgw'].'"/>';
 }
 echo '<div property="skos:definition" >' . $abs . '</div>';
 echo '<p>';

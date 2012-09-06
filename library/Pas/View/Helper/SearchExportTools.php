@@ -119,7 +119,7 @@ class Pas_View_Helper_SearchExportTools extends Zend_View_Helper_Abstract {
 	 * @access public
 	 * @return string
 	 */
-	public function searchExportTools($quantity) {
+	public function searchExportTools($quantity = 0) {
 		if(in_array($this->_user->role, $this->_allowed)){
 			return $this->_generateHtml($quantity);
 		} else {

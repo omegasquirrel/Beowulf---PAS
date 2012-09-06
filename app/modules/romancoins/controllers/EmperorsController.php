@@ -11,7 +11,7 @@ class RomanCoins_EmperorsController extends Pas_Controller_Action_Admin {
 
 	protected $_emperors;
 	
-	protected $_contexts = array('xml','json');
+	protected $_contexts = array('xml','json', 'rdf');
 	
 	/** Set up the ACL and contexts
 	* @todo Move the api key to the view
@@ -21,6 +21,10 @@ class RomanCoins_EmperorsController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
+		->addContext('rdf',array('suffix' => 'rdf',
+                  'headers' => array(
+                      'Content-Type'          => 'application/rdf+xml',
+              )))
 		->addActionContext('index', $this->_contexts)
 		->addActionContext('emperor', $this->_contexts)
 		->initContext();

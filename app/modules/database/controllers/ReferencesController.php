@@ -72,7 +72,7 @@ class Database_ReferencesController extends Pas_Controller_Action_Admin {
 	$updateData['updatedBy'] = $this->getIdentityForForms();
 	foreach ($updateData as $key => $value) {
       if (is_null($value) || $value=="") {
-        unset($updateDataData[$key]);
+        unset($updateData[$key]);
       }
 	 }
 	$where = array();

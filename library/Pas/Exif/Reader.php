@@ -654,7 +654,6 @@ class Pas_Exif_Reader {
      *
     */
     public function _processExifDir($DirStart, $OffsetBase, $ExifLength) {
-
         $NumDirEntries = 0;
         $ValuePtr = array();
 
@@ -663,6 +662,7 @@ class Pas_Exif_Reader {
         $this->debug("<br>Directory with $NumDirEntries entries\n");
 
         for ($de=0;$de < $NumDirEntries;$de++){
+        	 ini_set('memory_limit', '256M');
             //$DirEntry = array_slice($DirStart,2+12*$de);
             $DirEntry = substr($DirStart,2+12*$de);
 

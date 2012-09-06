@@ -75,7 +75,7 @@ class Secrettreasures_PhotosController
 	$key = md5('woeid' . $woeid . $page);
 	if (!($this->_cache->test($key))) {
 	$flickr = $this->_api->getWoeidRadius( $woeid, $radius = 500, $units = 'm',
-	$per_page = 20, $start, 'archaeology', '1,2,3,4,5,6,7');
+	$per_page = 20, $page, 'archaeology', '1,2,3,4,5,6,7');
 	$this->_cache->save($flickr);
 	} else {
 	$flickr = $this->_cache->load($key);
@@ -192,7 +192,7 @@ class Secrettreasures_PhotosController
 	*/
 	public function favouritesAction() {
 	$page = $this->getPage();
-	$key = md5('faves' . $start);
+	$key = md5('faves' . $page);
 	if (!($this->_cache->test($key))) {
 	$flickr = $this->_api->getPublicFavourites( NULL, NULL, 20, $page);
 	$this->_cache->save($flickr);

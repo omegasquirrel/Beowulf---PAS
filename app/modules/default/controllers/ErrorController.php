@@ -23,40 +23,42 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	}	
 	
 	public function whois() {
-	$user = $this->getAccount();
-	if(is_null($user->username)) {
-	$name = 'A public user';
-	$string = $name .' had this error displayed below.';
+	$user = new Pas_User_Details();
+	if(is_null($user->getPerson()->username)) {
+	$string = 'Public user';
 	} else {
-	$name = $user->fullname;
-	$account = $user->username;
-	$string = $name . ' with the username ' . $account . ' had this error displayed below.';
+	$name = $user->getPerson()->fullname;
+	$account = $user->getPerson()->username;
+	$string = $name . ' with the account username of ' . $account;
 	}	
 	return $string; 
 	}
 	
-	public function ipAgent() {
-	$ip = $_SERVER['REMOTE_ADDR'];
-	$method = $_SERVER['REQUEST_METHOD'];
-	$agent = $_SERVER['HTTP_USER_AGENT'];
-	$referrer = $_SERVER['HTTP_REFERER'];
-	$details = 'Connection originated from: ' . $ip ."\n";
-	$details .= 'Connection method: '. $method."\n";
-	$details .= 'User agent: ' . $agent."\n";
-	if(!is_null($referrer)) {
-	$details .= 'Referrer: ' . $referrer."\n";
-	}
+	protected function _mailData() {
+	$details = array();
+	$details['username'] = $this->whois();
+	$errors = $this->_getParam('error_handler');
+	$details['file'] = get_class($errors['exception']);
+	$details['ip'] = $_SERVER['REMOTE_ADDR'];
+	$details['method'] = $_SERVER['REQUEST_METHOD'];
+	$details['agent'] = $_SERVER['HTTP_USER_AGENT'];
+	$details['referrer'] = $_SERVER['HTTP_REFERER'];
+	$details['url'] = $this->view->CurUrl();
+	$details['exception'] = $errors->exception->getMessage();
+	$details['type'] = $errors['type'];
+	$details['code'] = $errors['exception']->getCode();
+	$details['exceptionDetails']= $errors->exception;
+	
 	return $details;
 	}
 	
-	public function sendEmail($message) {
-	$mail = new Zend_Mail();
-	$mail->addHeader('X-MailGenerator', 'The Portable Antiquities Scheme - Beowulf');
-	$mail->setBodyText('Server down!' . "\n" . $message);
-	$mail->setFrom('info@finds.org.uk', 'The Portable Antiquities Scheme');
-	$mail->addTo('danielpett@gmail.com', 'Daniel Pett');
-	$mail->setSubject('Do something about server');
-	$mail->send();
+	
+	public function sendEmail() {
+	$to[] = array('name' => 'Daniel Pett', 'email' => 'dpett@britishmuseum.org');
+	$cc[] = array('name' => 'Daniel Pett', 'email' => 'danielpett@gmail.com');
+	$from[] = array('name' => 'The Portable Antiquities Server', 'email' => 'info@finds.org.uk');
+	$assignData = array_merge($this->_mailData(),$to['0']);
+	return $this->_helper->mailer($assignData, 'serverError', $to, $cc, $from, null,null);
 	}
 	
 	private static function formatArgValues ($args) {
@@ -106,12 +108,13 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	}	
 	public function errorAction($extended =false) 
     { 
+    	
         // Ensure the default view suffix is used so we always return good 
         // content
-		$this->view->headTitle('An error has occurred.');
         $this->_helper->viewRenderer->setViewSuffix('phtml');
         // Grab the error object from the request
         $errors = $this->_getParam('error_handler'); 
+        Zend_Debug::dump(get_class($errors['exception']));
 		if($errors) {
 		$data = array();
 		$data['errorMessage'] = $errors['exception']->getMessage();
@@ -151,18 +154,20 @@ class ErrorController extends Pas_Controller_Action_Admin {
       case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
         // 404 error -- controller or action not found
         $this->getResponse()->setHttpResponseCode(404);
+        $this->renderScript('error/notfound.phtml');
         $this->view->message = 'Page not found';
         $this->view->code  = 404;
         if ($errors->type == Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER) {
-
-          $this->view->info = sprintf(
+		$this->view->info = sprintf(
                       'Unable to find controller "%s" in module "%s"',
                       $errors->request->getControllerName(),
                       $errors->request->getModuleName()
                     );
         }
         if ($errors->type == Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION) {
-          $this->view->message = sprintf(
+		$this->renderScript('error/notfound.phtml');
+		$this->view->code  = 404;
+		$this->view->message = sprintf(
                       'Unable to find action "%s" in controller "%s" in module "%s"',
                       $errors->request->getActionName(),
                       $errors->request->getControllerName(),
@@ -177,15 +182,16 @@ class ErrorController extends Pas_Controller_Action_Admin {
 
         }
 		break;
-	  case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_OTHER:
+	  
+		case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_OTHER:
 	  	switch (get_class($errors['exception'])) {
                     case 'Pas_Exception_NotAuthorised' :
-					        $this->getResponse()->setHttpResponseCode(401);
-					        $this->view->message = 'This record falls outside your access levels. If you contact us, 
+						$this->getResponse()->setHttpResponseCode(401);
+						$this->view->message = 'This record falls outside your access levels. If you contact us, 
 					        we can let you know when you can see it. This normally means the record is not on public view.';
-							$this->view->info  = $errors->exception;
-							$this->view->code  = 403;
-							$this->view->headTitle('Not authorised.');
+						$this->view->info  = $errors->exception;
+						$this->view->code  = 403;
+						$this->view->headTitle('Not authorised.');
                     break;
 					case 'Pas_Exception_BadJuJu':
 					        $this->getResponse()->setHttpResponseCode(500);
@@ -193,16 +199,19 @@ class ErrorController extends Pas_Controller_Action_Admin {
 							$this->view->info  = $errors->exception;
 							$this->view->code  = 500;
 							$this->view->compiled = $compiledTrace;
+							$this->view->headTitle('bad juju.');
 	
                     break;
-					case 'Pas_Exception_Param':
+					
+                    case 'Pas_Exception_Param':
 					        $this->getResponse()->setHttpResponseCode(500);
-							$this->view->message = 'Something has gone wrong with what you are trying to do';
+							$this->view->message = 'The url you used is missing a parameter';
 							$this->view->info  = $errors->exception;
 							$this->view->code  = 500;
 							$this->view->compiled = $compiledTrace;
-							
+							$this->view->headTitle('A parameter is missing from your url.');
                     break;
+                    
 					case 'Zend_Db_Statement_Exception' :
 				        $this->getResponse()->setHttpResponseCode(503);
 						$this->view->info  = $errors->exception;
@@ -210,68 +219,77 @@ class ErrorController extends Pas_Controller_Action_Admin {
 						$this->view->message = 'There has been an error with our SQL (that is the code that powers database queries). Our fault entirely.
 						This has been logged and sent to admin.' ;
 						$this->view->compiled = $compiledTrace;
-						$message = $this->whois()."\n";
-						$message .= $this->view->CurUrl()."\n";
-						$message .= $this->ipAgent()."\n";
-						$message .= $errors->exception;
-						$this->sendEmail($message);
-							
+						$this->sendEmail();
+						$this->view->headTitle('SQL error returned');	
                     break;
-					case 'Zend_Db_Adapter_Exception':
+					
+                    case 'Zend_Db_Adapter_Exception':
 						$this->getResponse()->setHttpResponseCode(500);
+						$this->view->code = 500;
 						$this->view->message = 'Server has gone away (usually being restarted or processes killed.)';
-						$message = $this->whois()."\n";
-						$message .= $this->view->CurUrl()."\n";
-						$message .= $this->ipAgent()."\n";
-						$message .= $errors->exception;
-						$this->sendEmail($message);
+						$this->sendEmail();
+						$this->view->headTitle('The database is down.');
 					break;
+					
 					case 'Zend_Db_Table_Exception':
 						if(preg_match("/primary/i",$errors->exception->getMessage())){
 						$cache = Zend_Registry::get('cache');
 						$cache->clean(Zend_Cache::CLEANING_MODE_ALL);
 						$this->getResponse()->setHttpResponseCode(500);
 						$this->view->message = 'Cache file needs a clean! Please try again.';
-						$message = $this->whois()."\n";
-						$message .= $this->view->CurUrl()."\n";
-						$message .= $this->ipAgent()."\n";
-						$message .= $errors->exception;
-						$this->sendEmail($message);	
+						$this->view->code = 500;
+						$this->sendEmail();	
+						$this->view->headTitle('Cache file needs cleaning - retry.');
 						}
 					break;
+					
 					case 'Zend_Db_Statement_Mysqli_Exception':
 					 	$this->getResponse()->setHttpResponseCode(500);
+					 	$this->view->code = 500;
 						$this->view->message = 'Server has gone away';
-						$message = $this->whois()."\n";
-						$message .= $this->view->CurUrl()."\n";
-						$message .= $errors->exception;
-						$this->sendEmail($message);
+						$this->sendEmail();
+						$this->view->headTitle('The server adapter has gone away.');
 					break;
+					
 					case 'PDOException':
 					 	$this->getResponse()->setHttpResponseCode(500);
+					 	$this->view->code = 500;
 						$this->view->message = 'PDO exception has been caught';
-						$message = $this->whois()."\n";
-						$message .= $this->view->CurUrl()."\n";
-						$message .= $this->ipAgent()."\n";
-						$message .= $errors->exception;
-						$this->sendEmail($message);
+						$this->sendEmail();
+						$this->view->headTitle('PDO data error.');
 					break;
-			
+					case 'Pas_Solr_Exception':
+						$this->getResponse()->setHttpResponseCode(500);
+						$this->view->code = 500;
+						$this->view->message = 'The search handler has an error';
+						$this->sendEmail();
+						$this->view->headTitle('The search engine has an error.');
+					break;
+					case 'Solarium_Client_HttpException':
+						$this->getResponse()->setHttpResponseCode(500);
+						$this->view->code = 500;
+						$this->view->message = 'Search engine error';
+						$this->sendEmail();
+						$this->view->headTitle('Problem with search engine');
+					break;
+					case 'Zend_Loader_PluginLoader_Exception':
+						break;
 					case 'Zend_View_Exception' :
 				        $this->getResponse()->setHttpResponseCode(500);
                         $this->view->code =500;
 						$this->view->message = 'Rendering of view error.';
 						$this->view->compiled = $compiledTrace;
+						$this->view->headTitle('View cannot be displayed.');
                     break;
-	}
+			}
 		break;
-     default:
-        // application error
-        $this->getResponse()->setHttpResponseCode(500);
-        $this->view->message = 'Application error';
-        $this->view->code  = 500;
-        $this->view->info  = $errors->exception;
-	      break;      
+	     	default:
+	        // application error
+	        $this->getResponse()->setHttpResponseCode(500);
+	        $this->view->message = 'Application error';
+	        $this->view->code  = 500;
+	        $this->view->info  = $errors->exception;
+		      break;      
     }
 
         
@@ -282,7 +300,6 @@ class ErrorController extends Pas_Controller_Action_Admin {
         $this->view->request   = $errors->request; 
 		//Zend_Debug::dump($errors->type);
 		} else {
-		
 		$this->_redirect('/error/notauthorised');
 		}
     } 
@@ -301,6 +318,10 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	}
 	
 	public function databasedownAction(){
+		
+	}
+	
+	public function accountconnectionAction(){
 		
 	}
 	

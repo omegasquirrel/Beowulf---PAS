@@ -95,12 +95,10 @@ class Pas_View_Helper_FacetCreatorAjaxMyImages extends Zend_View_Helper_Abstract
         if(isset($request['page'])){
             unset($request['page']);
         }
-		if(count($facet) > 10){
+		if(count($facets) > 10){
 			$request['controller'] = 'ajax';
 			$request['action'] = 'facet';
 			unset($request['facetType']);
-			Zend_Debug::dump($request);
-			exit;
 			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',false) . '" rel="facebox">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
         $facet = $request[$facetName];

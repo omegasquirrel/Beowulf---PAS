@@ -24,7 +24,8 @@ $this->headTitle('All finds created by me');
         <?php echo $this->resultsSorter($this->paginator);?>
         <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
         <?php echo $this->paginationControl($this->paginator,'elastic','structure/paginationSolr.phtml'); ?>
-		<?php echo $this->statGenerator($this->stats);?>        <?php echo $this->facetCreatorMyFinds($this->facets); ?>
+		<?php echo $this->statGenerator($this->stats);?>        
+		<?php echo $this->facetCreatorMyFinds($this->facets); ?>
 		</div>
         <?php else:?>
     

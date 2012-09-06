@@ -29,6 +29,7 @@ class Database_IndexController extends Pas_Controller_Action_Admin {
 	$this->view->form = $form;
 	$values = $form->getValues();
 	if($this->getRequest()->isPost() && $form->isValid($_POST)) 	 {
+	$data = $form->getValues();
 	if ($form->isValid($form->getValues())) {
 	$params = array_filter($form->getValues());
 	$params = $this->array_cleanup($params);

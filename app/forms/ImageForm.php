@@ -63,6 +63,7 @@ class ImageForm extends Pas_Form
 	$imagelabel->setLabel('Image label: ')
 	->setRequired(true)
 	->setAttrib('size',60)
+	->setAttrib('class','span6')
 	->addErrorMessage('You must enter a label')
 	->setDescription('This must be descriptive text about the image - NOT THE FILE or FIND NUMBER/NAME - and follow the 
 	conventions outlined below this form')
@@ -85,6 +86,7 @@ class ImageForm extends Pas_Form
 	$copyright = new Zend_Form_Element_Select('copyrighttext');
 	$copyright->setLabel('Image copyright: ')
 	->setRequired(true)
+	->setAttrib('class','span6')
 	->addErrorMessage('You must enter a licence holder')
 	->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copyList))
 	->setDescription('You can set the copyright of your image here to your institution. If you are a public recorder, it 
@@ -95,6 +97,7 @@ class ImageForm extends Pas_Form
 	$licenseField->setDescription('Our philosophy is to make our content available openly, by default we set the license as
 	use by attribution to gain the best public benefit. You can choose a different license if you wish.');
 	$licenseField->setRequired(true)
+	->setAttrib('class','span6')
 	->setLabel('Creative Commons license:')
 	->addMultiOptions(array(NULL => 'Select a license', 'Available licenses' => $license))
 	->setValue(5)

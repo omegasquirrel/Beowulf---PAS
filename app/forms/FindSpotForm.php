@@ -22,6 +22,7 @@ public function __construct($options = null) {
 
 	$landusecodes = new Landuses();
 	$landcodes_options = $landusecodes->getCodesValid();
+	$this->addElementPrefixPath('Pas_Filter', 'Pas/Filter/', 'filter');
 
 	parent::__construct($options);
 
@@ -58,8 +59,8 @@ public function __construct($options = null) {
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')
 	->addValidators(array('NotEmpty','ValidGridRef'))
-	->addValidator('Alnum',array('allowWhiteSpace' => true))
-	->addFilters(array('StripTags', 'StringTrim', 'StringToUpper'));
+	->addFilters(array('StripTags', 'StringTrim', 'StringToUpper', 'StripSpaces'))
+	->setAttribs(array('placeholder' => 'A grid reference is in the format SU123123', 'class' => 'span4'));
 
 	$gridrefsrc = new Zend_Form_Element_Select('gridrefsrc');
 	$gridrefsrc->setLabel('Grid reference source: ')
@@ -173,8 +174,8 @@ public function __construct($options = null) {
 	->setAttrib('rows',5)
 	->setAttrib('cols',40)
 	->addFilters(array('BasicHtml', 'StringTrim', 'EmptyParagraph'))
-	->setAttrib('class','expanding')
-	->setAttrib('class','privatedata');
+	->setAttribs(array('placeholder' => 'This data is not shown to the public'))
+	->setAttrib('class','privatedata span6');
 
 	$postcode = new Zend_Form_Element_Text('postcode');
 	$postcode->setLabel('Postcode: ')
@@ -183,13 +184,14 @@ public function __construct($options = null) {
 
 	$knownas = new Zend_Form_Element_Text('knownas');
 	$knownas->setLabel('Findspot to be known as: ')
-	->setAttrib('class','privatedata')
+	->setAttribs(array('placeholder' => 'If you fill in this, it will hide the grid references and parish', 'class' => 'span6 privatedata'))
 	->addFilters(array('StripTags', 'StringTrim', 'Purifier'));
 
 	$landownername = new Zend_Form_Element_Text('landownername');
 	$landownername->setLabel('Landowner: ')
 	->addValidators(array('NotEmpty'))
 	->setAttrib('class','privatedata')
+	->setAttribs(array('placeholder' => 'This data is not shown to the public'))
 	->addFilters(array('StripTags', 'StringTrim'));
 
 	$landowner = new Zend_Form_Element_Hidden('landowner');
@@ -197,25 +199,20 @@ public function __construct($options = null) {
 
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Findspot description: ')
-	->setAttrib('rows',10)
-	->setAttrib('cols',40)
-	->setAttrib('Height',400)
-	->setAttrib('ToolbarSet','Finds')
+	->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400, 'class' => 'privatedata span6'))
+	->setAttrib('ToolbarSet','Basic')
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 	$comments = new Pas_Form_Element_RTE('comments');
 	$comments->setLabel('Findspot comments: ')
-	->setAttrib('rows',10)
-	->setAttrib('cols',40)
-	->setAttrib('Height',400)
-	->setAttrib('ToolbarSet','Finds')
+	->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400, 'class' => 'privatedata span6'))
+	->setAttrib('ToolbarSet','Basic')
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(600);
+	
 
 	if($action == 'edit') {
 	$this->addElements(array(
@@ -228,7 +225,7 @@ public function __construct($options = null) {
 	$gridrefsrc, $gridrefcert, $depthdiscovery,
 	$postcode, $landusevalue, $landusecode,
 	$landownername, $landowner,	$submit,
-	$hash));
+	));
 	} else {
 	$this->addElements(array(
 	$county, $district, $parish,
@@ -237,7 +234,7 @@ public function __construct($options = null) {
 	$gridrefsrc, $gridrefcert,
 	$address, $postcode, $landusevalue,
 	$landusecode, $landownername, $landowner,
-	$submit, $hash));
+	$submit, ));
 	}
 
 

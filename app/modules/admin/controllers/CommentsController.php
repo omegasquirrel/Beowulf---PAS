@@ -38,7 +38,9 @@ class Admin_CommentsController extends Pas_Controller_Action_Admin {
         && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
     $data = $form->getValues();
-    $to[] = array('name' => $form->getValue('comment_author'), 'email' => $form->getValue('comment_author_email'));
+    $to[] = array(
+    'name' => $form->getValue('comment_author'), 
+    'email' => $form->getValue('comment_author_email'));
     $where =  $this->_comments->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
     $this->_comments->update($data,$where);
 
@@ -53,7 +55,7 @@ class Admin_CommentsController extends Pas_Controller_Action_Admin {
     // find id is expected in $params['id']
     $id = (int)$this->_request->getParam('id', 0);
     if ($id > 0) {
-    $comment = $this->_comments->fetchRow($this->_comments->select()->where('contentID = ?', $id))->toArray();
+    $comment = $this->_comments->fetchRow($this->_comments->select()->where('id = ?', $id))->toArray();
 
     if($comment) {
     $form->populate($comment);

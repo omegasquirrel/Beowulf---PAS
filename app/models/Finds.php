@@ -1896,7 +1896,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		array('updatedBy' => 'fullname'))
 		->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('materialTerm' =>'term'))
 		->joinLeft(array('mat2' =>'materials'),'finds.material2 = mat2.id', array('secondaryMaterialTerm' => 'term'))
-		->joinLeft('decmethods','finds.decmethod = decmethods.id', array('decoration' => 'term'))
+//		->joinLeft('decmethods','finds.decmethod = decmethods.id', array('decoration' => 'term'))
 		->joinLeft('decstyles','finds.decstyle = decstyles.id', array('decstyleTerm' => 'term'))
 		->joinLeft('manufactures','finds.manmethod = manufactures.id', array('manufactureTerm' => 'term'))
 		->joinLeft('surftreatments','finds.surftreat = surftreatments.id', array('treatment' => 'term'))

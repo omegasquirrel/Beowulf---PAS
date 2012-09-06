@@ -39,13 +39,46 @@ class Info_SitemapController extends Pas_Controller_Action_Admin {
       ->setFormatOutput(true); // default is false	
 	}
 	
+	public function imagelocationsAction() {
+	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/imageconfig','locations');
+   	$navigation = new Zend_Navigation($config);
+   	$this->view->navigation($navigation);
+	$this->view->navigation()
+      ->sitemap()
+      ->setFormatOutput(true); // default is false	
+	}
+	
+	public function booklocationsAction() {
+	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/bookconfig','locations');
+   	$navigation = new Zend_Navigation($config);
+   	$this->view->navigation($navigation);
+	$this->view->navigation()
+      ->sitemap()
+      ->setFormatOutput(true); // default is false	
+	}
+	
 	public function databaseconfigAction(){
 		
 	}
 	
+	public function imageconfigAction(){
+		
+	}
+	
+	public function bookconfigAction(){
+		
+	}
 	public function databaserecordsAction(){
 		
 	}
+	
+	public function imagesAction(){
+		
+	}
+	public function booksAction(){
+		
+	}
+	
 	public function configurationAction() {
 	$content = new Content();
 	$this->view->conservation = $content->getConservationNotes();

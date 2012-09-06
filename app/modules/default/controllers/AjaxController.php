@@ -815,7 +815,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function deletecommentAction(){
 	if($this->_getParam('id',false)){
 	$comments = new Comments();
-	$where = $comments->getAdapter()->quoteInto('comment_id = ?', (int)$this->_getParam('id'));
+	$where = $comments->getAdapter()->quoteInto('id = ?', (int)$this->_getParam('id'));
 	$comments->delete($where);
 	} else {
 	throw new Exception('No comment ID has been specified',500);

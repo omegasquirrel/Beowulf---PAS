@@ -367,90 +367,95 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	}
    
    	public function facetAction(){
-   	$params = $this->_getAllParams();
-	$params['format'] = 'json';
-	$params['module'] = 'database';
-	$params['controller'] = 'search';
-	$params['action'] = 'results';
-   	$config = array(
-    'adapter'   => 'Zend_Http_Client_Adapter_Curl',
-    'curloptions' => array(
-        CURLOPT_POST =>  true,
-        CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_LOW_SPEED_TIME => 1
-	),
-	);
-		
-	$client = new Zend_Http_Client($this->view->serverUrl() . $this->view->url($params));
-    $response = $client->request();
-
-	if($response->isSuccessful()){
-	$data =  json_decode($response->getBody());
+   	$search = new Pas_Solr_Handler('beowulf');
+	$context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$search->setFields($fields->getFields());
+	$search->setFacets(array(
+    'objectType','county', 'broadperiod',
+    'institution', 'rulerName', 'denominationName', 
+    'mintName', 'materialTerm', 'workflow'));
+	$search->setParams($this->_getAllParams());
+	$search->execute();
+    $data = array('facets' => $search->_processFacets());
 	$this->view->data = $data;
-	$this->view->facetName = $params['facetType'];
-   }
-   } 
+	$this->view->facetName = $this->_getParam('facetType');
+	} 
    
-   public function myfindsfacetAction(){
-   	$params = $this->_getAllParams();
-	$params['format'] = 'json';
-	$params['controller'] = 'search';
-	$params['action'] = 'results';
+	public function imagefacetAction(){
+	$search = new Pas_Solr_Handler('beoimages');
+	$context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$search->setFields($fields->getFields());
+	$search->setFacets(array(
+	'licenseAcronym','broadperiod','county', 
+    'objecttype','institution'));
+	$search->setParams($this->_getAllParams());
+	$search->execute();
+    $data = array('facets' => $search->_processFacets());
+	$this->view->data = $data;
+	$this->view->facetName = $this->_getParam('facetType');
+	$this->renderScript('ajax/imagesfacet.phtml');
+	}
+	
+	public function myfindsfacetAction(){
+	$search = new Pas_Solr_Handler('beowulf');
+	$context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$search->setFields($fields->getFields());
+	$search->setFacets(array(
+    'objectType','county', 'broadperiod',
+    'institution', 'rulerName', 'denominationName', 
+    'mintName', 'materialTerm', 'workflow'));
 	$params['createdBy'] = $this->_getDetails()->id;
-   	$config = array(
-    'adapter'   => 'Zend_Http_Client_Adapter_Curl',
-    'curloptions' => array(
-        CURLOPT_POST =>  true,
-        CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_LOW_SPEED_TIME => 1
-	),
-	);
-		
-	$client = new Zend_Http_Client($this->view->serverUrl() . $this->view->url($params));
-    $response = $client->request();
-
-	if($response->isSuccessful()){
-	$data =  json_decode($response->getBody());
+	$search->setParams($params);
+	$search->execute();
+    $data = array('facets' => $search->_processFacets());
 	$this->view->data = $data;
-	$this->view->facetName = $params['facetType'];
-   }
-   } 
+	$this->view->facetName = $this->_getParam('facetType');
+	} 
    
+	public function myinstitutionfacetAction(){
+	$search = new Pas_Solr_Handler('beowulf');
+	$context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$search->setFields($fields->getFields());
+	$search->setFacets(array(
+	'objectType','county', 'broadperiod',
+    'institution', 'rulerName', 'denominationName', 
+    'mintName', 'materialTerm', 'workflow'
+    )
+	);
+	$params['institution'] = $this->_getDetails()->institution;
+	$search->setParams($params);
+	$search->execute();
+    $data = array('facets' => $search->_processFacets());
+	$this->view->data = $data;
+	$this->view->facetName = $this->_getParam('facetType');
+	$this->renderScript('ajax/facet.phtml');
+	}
+	
 	protected function _getDetails() {
     $user = new Pas_User_Details();
     return $user->getPerson();
     }
    
-   public function myimagesfacetAction(){
-   $params = $this->_getAllParams();
-	$params['format'] = 'json';
-	$params['module'] = 'database';
-	$params['controller'] = 'images';
-	$params['action'] = 'index';
+	public function myimagesfacetAction(){
+   	$search = new Pas_Solr_Handler('beoimages');
+	$context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$search->setFields($fields->getFields());
+	$search->setFacets(array(
+	'licenseAcronym','broadperiod','county', 
+    'objecttype','institution'));
+	$params = $this->_getAllParams();
 	$params['createdBy'] = $this->_getDetails()->id;
-   	$config = array(
-    'adapter'   => 'Zend_Http_Client_Adapter_Curl',
-    'curloptions' => array(
-        CURLOPT_POST =>  true,
-        CURLOPT_USERAGENT =>  $_SERVER["HTTP_USER_AGENT"],
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_LOW_SPEED_TIME => 1
-	),
-	);
-	
-	$client = new Zend_Http_Client($this->view->serverUrl() . $this->view->url($params));
-    $response = $client->request();
-	if($response->isSuccessful()){
-	$data =  json_decode($response->getBody());
+	$search->setParams($params);
+	$search->execute();
+    $data = array('facets' => $search->_processFacets());
 	$this->view->data = $data;
-	$this->view->facetName = $params['facetType'];
-   }
-   } 
+	$this->view->facetName = $this->_getParam('facetType');
+	} 
    
    public function forceindexupdateAction(){
 	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));	
