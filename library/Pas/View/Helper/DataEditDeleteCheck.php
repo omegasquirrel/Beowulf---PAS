@@ -93,7 +93,7 @@
 	if(($byID == true && $instID == true) || ($byID == true  && $instID == FALSE)) {
 	return true;
 	} else {
-	throw new Pas_NotAuthorisedException($this->_message);
+	throw new Pas_Exception_NotAuthorised($this->_message);
 	}
 	} else if(in_array($this->getRole(),$this->higherLevel)) {
 	return true;
@@ -102,10 +102,10 @@
 	($byID == true && $instID == false)) {
 	return true;
 	} else {
-	throw new Pas_NotAuthorisedException($this->_message);
+	throw new Pas_Exception_NotAuthorised($this->_message);
 	}
 	} else {
-	throw new Pas_NotAuthorisedException($this->_message);
+	throw new Pas_Exception_NotAuthorised($this->_message);
 	}
 	}
 	}

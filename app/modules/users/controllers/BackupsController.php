@@ -18,4 +18,5 @@ class Users_BackupsController extends Pas_Controller_Action_Admin {
 	public function indexAction() {
 
 	}
+	
 }

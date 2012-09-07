@@ -135,7 +135,7 @@ class Pas_View_Helper_FindSpotEditCheck
 	if(($byID == true && $instID == true) || ($byID == true  && $instID == FALSE)) {
 	return true;
 	} else {
-	throw new Pas_NotAuthorisedException($this->_message);
+	throw new Pas_Exception_NotAuthorised($this->_message);
 	}
 	} else if(in_array($this->getRole(),$this->_higherLevel)) {
 	return true;
@@ -144,10 +144,10 @@ class Pas_View_Helper_FindSpotEditCheck
 	($byID == true && $instID == false)) {
 	return true;
 	} else {
-	throw new Pas_NotAuthorisedException($this->_message);
+	throw new Pas_Exception_NotAuthorised($this->_message);
 	}
 	} else {
-	throw new Pas_NotAuthorisedException($this->_message);
+	throw new Pas_Exception_NotAuthorised($this->_message);
 	}
 	}
 	}

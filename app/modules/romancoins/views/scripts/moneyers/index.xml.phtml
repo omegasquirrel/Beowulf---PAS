@@ -1,6 +1,6 @@
 <?php 
 
-$site = Zend_Registry::get('siteurl');
+$site = $this->serverUrl();
 $module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();	
 $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();	
 $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();

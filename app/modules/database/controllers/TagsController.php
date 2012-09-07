@@ -20,15 +20,11 @@ class Database_TagsController extends Pas_Controller_Action_Admin {
 	/** Display index page
 	*/	
 	public function indexAction() {
-	$this->view->tags = $this->_opencalais->getTagsCloud();
-	$this->view->geotags = $this->_opencalais->getGeoTagCloud();
 	}
 	/** Tags created by opencalais
 	*/	
 	public function opencalaisAction() {
 	if($this->_getParam('tag',false)) {
-	$this->view->headTitle('All records tagged by opencalais with: ' . $this->_getParam('tag'));
-	$this->view->tags = $this->_opencalais->getRecordsByTag($this->_getAllParams());
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
@@ -37,8 +33,6 @@ class Database_TagsController extends Pas_Controller_Action_Admin {
 	*/	
 	public function geotagAction() {
 	if($this->_getParam('tag',false)) {
-	$this->view->headTitle('All records tagged by Yahoo! Geo Placemaker with: '.$this->_getParam('tag'));
-	$this->view->tags = $this->_opencalais->getRecordsByGeoTag($this->_getAllParams());
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}

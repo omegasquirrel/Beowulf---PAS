@@ -44,10 +44,12 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	$details['agent'] = $_SERVER['HTTP_USER_AGENT'];
 	$details['referrer'] = $_SERVER['HTTP_REFERER'];
 	$details['url'] = $this->view->CurUrl();
+	if($errors){
 	$details['exception'] = $errors->exception->getMessage();
 	$details['type'] = $errors['type'];
 	$details['code'] = $errors['exception']->getCode();
 	$details['exceptionDetails']= $errors->exception;
+	}
 	
 	return $details;
 	}
@@ -114,7 +116,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
         $this->_helper->viewRenderer->setViewSuffix('phtml');
         // Grab the error object from the request
         $errors = $this->_getParam('error_handler'); 
-        Zend_Debug::dump(get_class($errors['exception']));
+//        Zend_Debug::dump(get_class($errors['exception']));
 		if($errors) {
 		$data = array();
 		$data['errorMessage'] = $errors['exception']->getMessage();
@@ -174,9 +176,11 @@ class ErrorController extends Pas_Controller_Action_Admin {
                       $errors->request->getModuleName()
                     );
 		$priority = Zend_Log::NOTICE;
-        if ($log = $this->getLog()) {
+		$log = $this->getLog();
+        if ($log) {
             $log->log($this->view->message . ' ' . $errors->exception, $priority, $errors->exception);
-            $log->log('Request Parameters' . ' ' . $errors->request->getParams(), $priority, $errors->request->getParams());
+            $log->log('Request Parameters' . ' ' . $errors->request->getParams(), $priority, 
+            $errors->request->getParams());
         }        
 		$this->view->compiled = $compiledTrace;
 
@@ -185,14 +189,17 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	  
 		case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_OTHER:
 	  	switch (get_class($errors['exception'])) {
-                    case 'Pas_Exception_NotAuthorised' :
+                    
+	  				case 'Pas_Exception_NotAuthorised' :
 						$this->getResponse()->setHttpResponseCode(401);
 						$this->view->message = 'This record falls outside your access levels. If you contact us, 
 					        we can let you know when you can see it. This normally means the record is not on public view.';
 						$this->view->info  = $errors->exception;
 						$this->view->code  = 403;
+						$this->sendEmail();
 						$this->view->headTitle('Not authorised.');
                     break;
+                    
 					case 'Pas_Exception_BadJuJu':
 					        $this->getResponse()->setHttpResponseCode(500);
 							$this->view->message = 'There has been an internal server error!';
@@ -216,8 +223,8 @@ class ErrorController extends Pas_Controller_Action_Admin {
 				        $this->getResponse()->setHttpResponseCode(503);
 						$this->view->info  = $errors->exception;
                         $this->view->code = 503;
-						$this->view->message = 'There has been an error with our SQL (that is the code that powers database queries). Our fault entirely.
-						This has been logged and sent to admin.' ;
+						$this->view->message = 'There has been an error with our SQL (that is the code that 
+						powers database queries). Our fault entirely. This has been logged and sent to admin.' ;
 						$this->view->compiled = $compiledTrace;
 						$this->sendEmail();
 						$this->view->headTitle('SQL error returned');	
@@ -258,6 +265,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 						$this->sendEmail();
 						$this->view->headTitle('PDO data error.');
 					break;
+					
 					case 'Pas_Solr_Exception':
 						$this->getResponse()->setHttpResponseCode(500);
 						$this->view->code = 500;
@@ -265,6 +273,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 						$this->sendEmail();
 						$this->view->headTitle('The search engine has an error.');
 					break;
+					
 					case 'Solarium_Client_HttpException':
 						$this->getResponse()->setHttpResponseCode(500);
 						$this->view->code = 500;
@@ -272,24 +281,34 @@ class ErrorController extends Pas_Controller_Action_Admin {
 						$this->sendEmail();
 						$this->view->headTitle('Problem with search engine');
 					break;
+					
 					case 'Zend_Loader_PluginLoader_Exception':
+						$this->getResponse()->setHttpResponseCode(500);
+						$this->view->code = 500;
+						$this->view->message = 'Plugin not found';
+						$this->sendEmail();
+						$this->view->headTitle('Plugin not found');
 						break;
+					
 					case 'Zend_View_Exception' :
 				        $this->getResponse()->setHttpResponseCode(500);
                         $this->view->code =500;
 						$this->view->message = 'Rendering of view error.';
 						$this->view->compiled = $compiledTrace;
+						$this->sendEmail();
 						$this->view->headTitle('View cannot be displayed.');
                     break;
 			}
-		break;
+			break;
 	     	default:
 	        // application error
 	        $this->getResponse()->setHttpResponseCode(500);
 	        $this->view->message = 'Application error';
 	        $this->view->code  = 500;
+	        $this->sendEmail();
 	        $this->view->info  = $errors->exception;
-		      break;      
+	        $this->view->headTitle('A generic application error has been made');
+			break;      
     }
 
         
@@ -306,7 +325,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 
 	public function notauthorisedAction() {
         $this->getResponse()->setHttpResponseCode(401);
-		 $this->_helper->layout()->setLayout('database');
+		$this->_helper->layout()->setLayout('database');
 		$this->view->headTitle('None shall pass');
 		$this->view->message = 'You are not authorised to view this resource';
         $this->view->code  = 401;
@@ -314,7 +333,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	}				
 	
 	public function accountproblemAction(){
-		
+	$this->sendEmail();	
 	}
 	
 	public function databasedownAction(){
@@ -322,7 +341,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	}
 	
 	public function accountconnectionAction(){
-		
+	$this->sendEmail();	
 	}
 	
 }

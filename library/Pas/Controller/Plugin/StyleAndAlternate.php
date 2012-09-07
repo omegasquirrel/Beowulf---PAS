@@ -37,7 +37,7 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 	$view->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=Edge');
 	$view->headMeta()->appendName('viewport','width=device-width, initial-scale=1.0');
-	$view->headLink()->appendAlternate($view->serverUrl().'database/search/results/format/atom',
+	$view->headLink()->appendAlternate($view->serverUrl().'/database/search/results/format/atom',
 		'application/rss+xml', 'Latest recorded finds feed')
 		->appendAlternate($view->serverUrl(). '/news/index/format/atom',
 		'application/rss+xml', 'Latest Scheme news feed')
@@ -55,13 +55,13 @@ class Pas_Controller_Plugin_StyleAndAlternate
 		'Amazing finds recorded on the database');
         $view->headLink(array(
             'rel' => 'search',
-            'href' => $view->baseUrl() . '/OpenSearchDatabase.xml',
+            'href' => $view->serverUrl() . '/OpenSearchDatabase.xml',
             'type' =>  'application/opensearchdescription+xml',
             'title' => 'Portable Antiquities database search',
             'APPEND'));
         $view->headLink(array(
             'rel' => 'search',
-            'href' => $view->baseUrl() . '/OpenSearchContent.xml',
+            'href' => $view->serverUrl() . '/OpenSearchContent.xml',
             'type' =>  'application/opensearchdescription+xml',
             'title' => 'Portable Antiquities content search',
             'APPEND'));

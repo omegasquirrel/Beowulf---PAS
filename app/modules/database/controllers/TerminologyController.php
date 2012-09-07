@@ -60,7 +60,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 		'mints', 'objects', 'manufactures',
 		'workflows', 'notes', 'methods',
 		'preservations');
-	$base = Zend_Registry::get('siteurl') . '/database/terminology/';
+	$base = $this->view->serverUrl() . '/database/terminology/';
 	$vocab3 = sort($vocab);
 	$vocab2 = NULL;
 	foreach($vocab as $v){
@@ -435,8 +435,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	}
 	/** Display object type list
 	*/
-	public function objectsAction()
-	{
+	public function objectsAction() {
 	$objects = new ObjectTerms();
 	$objectTerms = $objects->getAllObjectData($this->_getAllParams());
 	if(in_array($this->_helper->contextSwitch()->getCurrentContext(),$this->_contexts)) {
@@ -464,10 +463,7 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	{
 	$term = $this->_getParam('term');
 	$objects = new ObjectTerms();
-	$objs = $objects->getObjectTermDetail($term);
-	$this->view->objectdata = $objs;
-	$images = new Slides();
-	$this->view->images = $images->getLast10ThumbnailsToObjectType($term, 4);
+	$this->view->objectdata = $objects->getObjectTermDetail($term);
 	}
 	/** Display completeness details
 	*/

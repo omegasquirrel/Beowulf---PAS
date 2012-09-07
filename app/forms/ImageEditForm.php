@@ -60,7 +60,6 @@ class ImageEditForm extends Pas_Form {
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
-	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => NULL,'Choose a county' => $county_options))
 	->addValidator('inArray', false, array(array_keys($county_options)));

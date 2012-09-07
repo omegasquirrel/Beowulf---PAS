@@ -34,7 +34,7 @@ class Pas_View_Helper_DomesdayNear
 		throw new Exception('Defined radius needs to be an integer');
 	}
 	$params = array('lat' => $lat, 'lng' => $lng, 'radius' => $radius);
-	$key = md5($lat . $lon . $radius);
+	$key = md5($lat . $lng . $radius);
 	$response = $this->getPlacesNear($params,$key);
 
 	return $this->buildHtml($response, $radius);

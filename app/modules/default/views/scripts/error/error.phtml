@@ -1,22 +1,28 @@
 <?php $this->headTitle('An error has occurred.');?>
 
-<h1>An error has occurred</h1>
+<h1><?php echo $this->message ?></h1>
 
-<p>We're aware this is frustrating and the system has flagged this via email to us.</p>
-<p>For your reference, quote error code: <strong><?php echo $this->code;?></strong> and the following message if you contact us:</p>
-<div class="well hero-unit"><h2><?php echo $this->code;?>: <?php echo $this->message ?></h2></div>
+<p>We are aware this is frustrating and the system has flagged this via email to us, and it has been logged for investigation.</p>
 
-    <h3>Exception information:</h3>
+<div class="row-fluid">
+<img src="http://farm1.staticflickr.com/43/103721206_21b00a0376_o.jpg" alt="The Viking gods"/>
+<p>The Viking gods are on the case to fix things! - image by <a href="http://www.flickr.com/photos/dunechaser/">Dunechaser</a> CC BY-NC-SA </p>
+</div>
+<!-- <img src="<?php echo $this->serverUrl();?>/assets/indy.jpg">
+<p><a href="http://www.flickr.com/photos/donsolo/2354816855/">Indy helps out with the egg hunt</a>: a photo by Don Solo on Flickr.</p>
+ -->
+<?php 
+$user = new Pas_User_Details();
+$role = $user->getPerson()->role;
+$allowed = array('admin');
+if(in_array($role,$allowed)):
+?>
+<h3>Exception information:</h3>
     <p>
         <b>Message:</b>
 		<?php echo $this->exception->getMessage();
 		$this->actionerrors()?>
     </p>
-<img src="<?php echo $this->serverUrl();?>/assets/indy.jpg">
-<p><a href="http://www.flickr.com/photos/donsolo/2354816855/">Indy helps out with the egg hunt</a>: a photo by Don Solo on Flickr.</p>
-
-
-
 <div class="row-fluid">
 
 		  <ul id="tab" class="nav nav-tabs">
@@ -35,7 +41,7 @@
             <div class="tab-pane fade" id="trace">
 			<h3>Issuing mints</h3>
     		<h3>Request Parameters:</h3>
-    		<p><? var_dump($this->request->getParams()) ?></p>          
+    		<p><?php var_dump($this->request->getParams()) ?></p>          
 			</div>
             
             <div class="tab-pane fade" id="compiled">
@@ -47,3 +53,4 @@
 
 		</div>
           </div>
+<?php endif;?>

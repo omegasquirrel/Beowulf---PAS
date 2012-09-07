@@ -108,7 +108,7 @@ class Pas_View_Helper_GoogleStaticMap extends Zend_View_Helper_Abstract {
 			else return $url;
 
 		}else{
-			throw new Pas_ParamException('Invalid parameters');
+			throw new Pas_Exception_Param('Invalid parameters');
 		};
 	}
 
