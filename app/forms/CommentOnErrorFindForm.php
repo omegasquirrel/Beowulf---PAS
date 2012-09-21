@@ -87,20 +87,22 @@ parent::__construct($options);
 	->addFilters(array('StringTrim','WordChars','HtmlBody','EmptyParagraph'))
 	->addErrorMessage('Please enter something in the comments box!');
 
-
-	$captcha = new Zend_Form_Element_Captcha(
-                		'captcha', array(
-                   		'captcha' => 'ReCaptcha',
-                    	'label' => 'Prove you are not a robot/spammer',
-	            		'captchaOptions' => array(
-                        'captcha' => 'ReCaptcha',
-                        'privKey' => $this->_privateKey,
-                        'pubKey' => $this->_pubKey,
-                        'theme'=> 'clean')
-	                        ));
-
+//	$recaptcha = new Zend_Service_ReCaptcha($this->_pubKey, $this->_privateKey);
+//	
+//	$captcha = new Zend_Form_Element_Captcha(
+//                		'captcha', array(
+//                   		'captcha' => 'ReCaptcha',
+//                    	'label' => 'Prove you are not a robot/spammer',
+//	            		'captchaOptions' => array(
+//                        'captcha' => 'ReCaptcha',
+////						$recaptcha,
+//                        'privKey' => $this->_privateKey,
+//                        'pubKey' => $this->_pubKey,
+//                        'theme'=> 'clean')
+//	                        ));
+////	exit;
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(60);
+	$hash->setValue($this->_salt)->setTimeout(6000);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
@@ -111,11 +113,13 @@ parent::__construct($options);
 	$comment_findID, $comment_author_IP, $comment_agent,
 	$comment_subject, $comment_author, $comment_author_email,
 	$comment_content, $comment_author_url, $comment_type,
-	$captcha, $submit, $hash));
+//	$captcha, 
+	$submit, $hash));
 
 
 	$this->addDisplayGroup(array('comment_author','comment_author_email','comment_author_url',
-	'comment_type','comment_content','captcha',
+	'comment_type','comment_content',
+//	'captcha',
 	'submit'), 'details');
 	} else {
 	$this->addElements(array(

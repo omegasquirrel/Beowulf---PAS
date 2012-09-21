@@ -4,7 +4,7 @@ $this->old_findID,$this->id,$this->broadperiod,
 $this->secuid,$this->returnID,$this->createdBy);?>
 <p>
 <?php if(!is_null($this->cciNumber)):?>
-<strong>Celtic Coin Index Number:</strong> <?php echo $this->escape($this->cciNumber);?><br />
+<strong>Celtic Coin Index Number:</strong> <span property="owl:sameAs" resource="http://http://www.celticcoins.ca/record.php?coin_id=<?php echo str_replace('.','',$this->cciNumber);?>"><?php echo $this->escape($this->cciNumber);?></span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->d)) :?>
@@ -36,11 +36,11 @@ Allen Type: <?php echo $this->escape($this->allen_type);?> <span class="scope">[
 <?php endif;?>
 
 <?php if(!is_null($this->mack)):?>
-Mack Type: <?php echo $this->escape($this->mack);?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'ironagecoins','controller' => 'macktypes','action'=>'type','id' => $this->mack),null,true);?>" title="Read scope note for <?php echo $this->mack;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action'=>'results','mack' => $this->mack),null,true);?>" title="view all records assigned to <?php echo $this->allebn_type;?>">view all attributed records</a></span><br />
+Mack Type: <?php echo $this->escape($this->mack);?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'ironagecoins','controller' => 'macktypes','action'=>'type','id' => $this->mack),null,true);?>" title="Read scope note for <?php echo $this->mack;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action'=>'results','mack' => $this->mack),null,true);?>" title="view all records assigned to <?php echo $this->allebn_type;?>">view all attributed records]</a></span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->va_type)):?>
-Van Arsdell Type (VA): <?php echo $this->va_type;?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'ironagecoins','controller' => 'vanarsdelltypes','action'=>'type','id' => $this->va_type),null,true);?>" title="Read scope note for <?php echo $this->va_type;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','va' => $this->va_type),null,true);?>" title="view all records assigned to <?php echo $this->va_type;?>">view all attributed records</a></span><br />
+Van Arsdell Type (VA): <?php echo $this->va_type;?> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'ironagecoins','controller' => 'vanarsdelltypes','action'=>'type','id' => $this->va_type),null,true);?>" title="Read scope note for <?php echo $this->va_type;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','vaType' => $this->va_type),null,true);?>" title="view all records assigned to <?php echo $this->va_type;?>">view all attributed records]</a></span><br />
 <?php endif;?>
 
 <?php if(!is_null($this->rudd_type)):?>

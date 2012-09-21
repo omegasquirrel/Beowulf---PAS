@@ -47,9 +47,14 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     }
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
+    $user = new Pas_User_Details();
     $insertData  = $form->getValues();
     $insertData['findID'] = (string) $this->_getParam('findID');
     $insertData['secuid'] = (string) $this->secuid();
+    $insertData['institution'] = $user->getPerson()->institution;
+    $mints = new Mints();
+    $pleiadesID = $mints->getPleiadesID($form->getValue('mint_id'));
+    $insertData['pleiadesID'] = $pleiadesID;
     $insert = $this->_coins->add($insertData);
     $this->_helper->solrUpdater->update('beowulf', $this->_getParam('returnID'));
     $this->_helper->flashMessenger->addMessage('Coin data saved.');
@@ -77,6 +82,9 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {
     $updateData = $form->getValues();
+    $mints = new Mints();
+    $pleiadesID = $mints->getPleiadesID($form->getValue('mint_id'));
+    $updateData['pleiadesID'] = $pleiadesID;
     $oldData = $this->_coins->fetchRow('id=' . $this->_getParam('id'))->toArray();
     $where =  $this->_coins->getAdapter()->quoteInto('id = ?', 
             $this->_getParam('id'));

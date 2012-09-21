@@ -65,7 +65,7 @@ set_time_limit(0);
             $dat['OSRef'] = $dat['gridref'];
             $dat['Easting'] = $dat['easting'];
             $dat['Northing'] = $dat['northing'];
-            $dat['Finder'] = 'Restricted access: speak to FLO for details';
+            $dat['Finder'] = $dat['finder'];
             $dat['DateFound1'] = $dat['datefound1'];
             $dat['DateFound2'] = $dat['datefound2'];
             $dat['MethodsOfDiscovery'] = $dat['discoveryMethod'];

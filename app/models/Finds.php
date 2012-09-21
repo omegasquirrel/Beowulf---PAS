@@ -339,7 +339,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getFindMaterials($findID) {
 	$findsmaterial = $this->getAdapter();
 	$select = $findsmaterial->select()
-		->from($this->_name, array('material1', 'manmethod', 'decmethod' ,'decstyle', 'completeness', 'surftreat'))
+		->from($this->_name, array('material1', 'material2', 'manmethod', 'decmethod' ,'decstyle', 'completeness', 'surftreat'))
 		->joinLeft(array('mat' =>'materials'),'finds.material1 = mat.id', array('mat1' =>'term'))
 		->joinLeft(array('mat2' =>'materials'),'finds.material2 = mat2.id', array('mat2' => 'term'))
 		->joinLeft('decmethods','finds.decmethod = decmethods.id', array('decoration' => 'term'))
@@ -1888,7 +1888,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		'moneyer',
 		'axis' => 'die_axis_measurement'
 		))
-		->joinLeft('mints','mints.id = coins.mint_ID', array ('mintName' => 'mint_name'))
+		->joinLeft('mints','mints.id = coins.mint_ID', array ('mintName' => 'mint_name', 'pleiadesID'))
 		->joinLeft('denominations','coins.denomination = denominations.id', array('denominationName' => 'denomination'))
 		->joinLeft('rulers','coins.ruler_id = rulers.id',array('rulerName' => 'issuer'))
 		->joinLeft('users','users.id = finds.createdBy', array('imagedir','creator' => 'CONCAT(users.first_name," ",users.last_name)'))

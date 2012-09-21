@@ -50,6 +50,21 @@ $(document).ready(function() {
 
 	var max = <?php echo $maxzoom;?>;
 	var min = <?php echo $minzoom;?>;
+	
+	var imperium = new google.maps.ImageMapType({
+        getTileUrl: function (coord, zoom) {
+            return "http://finds.org.uk/imperium/" +
+                zoom + "/" + coord.x + "/" + coord.y + ".png";
+
+        },
+        tileSize: new google.maps.Size(256, 256),
+        isPng: true,
+        alt: "Imperium layer",
+        name: "Imperium",
+        maxZoom: 10,
+		minZoom:3
+    });
+	
 	var osmMapType = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             return "http://tile.openstreetmap.org/" +
@@ -82,7 +97,8 @@ $(document).ready(function() {
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
           'OSM',
-          'historic',
+          'Imperium',
+          'Historic',
           'Watercolor',
           'Toner'
           ]
@@ -97,9 +113,10 @@ $(document).ready(function() {
         var map = new google.maps.Map(document.getElementById("map"),
             myOptions);
             map.mapTypes.set('OSM',osmMapType); 
-        	map.mapTypes.set('historic',nlsmap);
-        	map.mapTypes.set("Watercolor", new google.maps.StamenMapType("watercolor"));
-			map.mapTypes.set("Toner", new google.maps.StamenMapType("toner"));
+        	map.mapTypes.set('Historic',nlsmap);
+        	map.mapTypes.set('Imperium',imperium);
+        	map.mapTypes.set('Watercolor', new google.maps.StamenMapType("watercolor"));
+			map.mapTypes.set('Toner', new google.maps.StamenMapType("toner"));
             map.setTilt(45);
         var marker = new google.maps.Marker({
       		position: new google.maps.LatLng(<?php echo $this->declat;?>, <?php echo $this->declong;?>),
@@ -112,7 +129,7 @@ $(document).ready(function() {
   		var myTitle = document.createElement('h1');
 		myTitle.style.color = '#444444';
 		myTitle.style.font = "10px sans-serif";
-		myTitle.innerHTML = 'Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a> | Google tiles &copy; Google';
+myTitle.innerHTML = 'Imperium layer from the <a href="http://pelagios-project.blogspot.co.uk/2012/09/a-digital-map-of-roman-empire.html">Pelagios project<\/a> <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY<\/a> |Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a>';
 
 		var myTextDiv = document.createElement('div');
 		myTextDiv.appendChild(myTitle);
@@ -192,7 +209,7 @@ Latitude: <?php echo $this->declat;?> Longitude: <?php echo $this->declong;?><br
 </div>
 
 <div class="span4">
-<?php echo $this->domesdayNear($this->declat,$this->declong, 2);?>
+<?php //echo $this->domesdayNear($this->declat,$this->declong, 2);?>
 </div>
 
 </div>

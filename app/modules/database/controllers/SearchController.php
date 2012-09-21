@@ -29,7 +29,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addContext('kml',array('suffix' => 'kml'))
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
-		->addActionContext('results', array('json','rss','atom'))
+		->addActionContext('results', array('json','xml','rss','atom'))
 		->setAutoJsonSerialization(false);
 
 	$this->_helper->contextSwitch()->initContext();

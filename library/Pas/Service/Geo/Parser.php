@@ -184,11 +184,13 @@ class Pas_Service_Geo_Parser {
 
 	public function parseGeocoded( $place ){
 	$pl = $place->query->results->ResultSet;
+	if($pl){
 	$placeData = array(); 
 	foreach ($pl->Result as $key => $value) {
 		$placeData[$key] = $value;
 	} 
 	return $placeData;
+	}
 	}
 	
 	public function parseFlickrPlace( $place ) {

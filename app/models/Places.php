@@ -13,7 +13,7 @@
 class Places extends Pas_Db_Table_Abstract {
 	protected $_name = 'places';
 
-	protected $_primary = 'id';
+	protected $_primary = 'ID';
 
 
 	/** Get the district by county

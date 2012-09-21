@@ -215,9 +215,6 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	*/
 	public function addfloAction() {
 	if($this->_getParam('id',false)) {
-	$this->view->jQuery()->addJavascriptFile($this->view->baseUrl() . '/js/JQuery/ui.datepicker.js',
-	$type='text/javascript');
-	$this->view->headLink()->appendStylesheet($this->view->baseUrl() . '/css/ui.datepicker.css');
 	$form = new AddFloRallyForm();
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
@@ -233,11 +230,10 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	'created' => $this->getTimeForForms(),
 	'createdBy' => $this->getIdentityForForms()
 		);
-	$insert = $this->_rallies->insert($insertData);
+	$insert = $rallies->insert($insertData);
 	$this->_redirect(self::URL . 'rally/id/' . $rallyID);
 	$this->_flashMessenger->addMessage('Finds Liaison Officer added to a rally');
-	} else
-	{
+	} else {
 	$form->populate($formData);
 	}
 	}

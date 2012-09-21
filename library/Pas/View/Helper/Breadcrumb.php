@@ -259,9 +259,12 @@ class Pas_View_Helper_Breadcrumb
 			case 'mp':
 			$nicenameaction = 'Member of Parliament';
 			break;
+			case 'recordedbyflos':
+			$nicenameaction = 'Recorded by an FLO';
+			break;
 			case 'accountproblem':
-				$nicenameaction = 'Problem with your account';
-				break;
+			$nicenameaction = 'Problem with your account';
+			break;
 			case 'inaset':
 			$nicenameaction = 'In a set';
 			break;

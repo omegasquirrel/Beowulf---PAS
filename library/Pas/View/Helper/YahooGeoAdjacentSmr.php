@@ -22,9 +22,8 @@ class Pas_View_Helper_YahooGeoAdjacentSmr
 	if(count($places)){
 	$html = '<div id="adjacentsmr">';
 	$html .= '<h4>Adjacent places</h4>';
-	$html .= '<ul id="legend-items">';
+	$html .= '<ul>';
 	foreach($places as $p ) {
-	$c = array_shift($colours);
 	$url = $this->view->url(array(
             'module' => 'database',
             'controller' => 'smr',

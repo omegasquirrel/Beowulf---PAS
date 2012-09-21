@@ -15,11 +15,11 @@ class Pas_Exporter_Csv extends Pas_Exporter_Generate {
     protected $_format = 'csv';
 
     protected $_csvFields = array(
-	'id','old_findID','secuid',
-	'objecttype', 'classification', 'subClassification',
-	'length', 'height', 'width',
-	'thickness', 'diameter', 'quantity',
-	'other_ref', 'smrRef', 'musaccno',
+		'id','old_findID','secuid',
+		'objecttype', 'classification', 'subClassification',
+		'length', 'height', 'width',
+		'thickness', 'diameter', 'weight', 'quantity', 
+		'other_ref', 'smrRef', 'musaccno',
         'TID', 'broadperiod','fromdate',
         'todate', 'periodFromName', 'periodToName',
         'cultureName','description', 'note', 'reasonTerm',
@@ -33,7 +33,7 @@ class Pas_Exporter_Csv extends Pas_Exporter_Generate {
         'datefound2','regionName', 'county',
         'district', 'parish', 'knownas',
         'gridref','fourFigure', 'easting',
-        'northing','latitude', 'longitude',
+        'northing','latitude', 'longitude', 'gridSource',
         'subsequentActionTerm','currentLocation',
         'thumbnail', 'imagedir','filename', 'finder', 'discoveryMethod',
         'creator','institution','created',

@@ -382,6 +382,21 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$this->view->facetName = $this->_getParam('facetType');
 	} 
    
+	public function peoplefacetAction(){
+   	$search = new Pas_Solr_Handler('beopeople');
+	$context = $this->_helper->contextSwitch->getCurrentContext();
+	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$search->setFields($fields->getFields());
+	$search->setFacets(array(
+    'county', 'organisation', 'activity'));
+	$search->setParams($this->_getAllParams());
+	$search->execute();
+    $data = array('facets' => $search->_processFacets());
+	$this->view->data = $data;
+	$this->view->facetName = $this->_getParam('facetType');
+	} 
+	
+	
 	public function imagefacetAction(){
 	$search = new Pas_Solr_Handler('beoimages');
 	$context = $this->_helper->contextSwitch->getCurrentContext();

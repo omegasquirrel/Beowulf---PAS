@@ -196,7 +196,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 					        we can let you know when you can see it. This normally means the record is not on public view.';
 						$this->view->info  = $errors->exception;
 						$this->view->code  = 403;
-						$this->sendEmail();
+//						$this->sendEmail();
 						$this->view->headTitle('Not authorised.');
                     break;
                     

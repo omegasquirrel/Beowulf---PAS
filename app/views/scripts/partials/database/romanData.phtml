@@ -15,20 +15,32 @@ Reece period: <span property="pas:reecePeriod"><?php echo $this->escape($this->p
 'action'=>'results','reeceID' => $this->reeceID),null,true);?>" title="view all records assigned to <?php echo $this->period_name;?>">view all attributed records</a>]</span><br />
 <?php endif;?>
 <?php if(!is_null($this->mint_name)) : ?>
-Mint or issue place: <span property="skos:related" resource="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>"><?php echo $this->escape($this->mint_name);?></span> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'romancoins','controller' => 'mints','action'=>'mint','id' => $this->mint_id),null,true);?>" title="Read scope note for <?php echo $this->mint_name;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','mint' => $this->mint_id),null,true);?>" title="view all records assigned to <?php echo $this->mint_name;?>">view all attributed records</a>]</span><br />
+Mint or issue place: <span property="skos:related" resource="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>"><?php echo $this->escape($this->mint_name);?></span> <span class="scope">[<a href="<?php echo $this->url(array('module'=>'romancoins','controller' => 'mints','action'=>'mint','id' => $this->mint_id),null,true);?>" title="Read scope note for <?php echo $this->mint_name;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','mint' => $this->mint_id),null,true);?>" title="view all records assigned to <?php echo $this->mint_name;?>">view all attributed records</a>]</span>
+<?php if(!is_null($this->pleiadesID)):?>
+<?php
+$this->inlineScript()->appendFile('http://pelagios.github.com/pelagios-widgets/lib/require.js',$type = 'text/javascript'); 
+$this->inlineScript()->appendFile('http://pelagios.github.com/pelagios-widgets/place.js',$type = 'text/javascript'); 
+?>
+<span id="pelagios" data-pleiades_id="<?php echo $this->pleiadesID;?>" class="pelagios pelagios-place"></span>
 <?php endif;?>
+<br />
+<?php endif;?>
+<div rel="obverse">
 <?php if(!is_null($this->obverse_description)) : ?>
-Obverse description: <span property="pas:obverseDescription"><?php echo $this->obverse_description;?></span><br />
+Obverse description: <span property="description"><?php echo $this->obverse_description;?></span><br />
 <?php endif;?>
 <?php if(!is_null($this->obverse_inscription)) : ?>
-Obverse inscription: <span property="pas:obverseInscription"><?php echo $this->obverse_inscription;?></span><br />
+Obverse inscription: <span property="legend"><?php echo $this->obverse_inscription;?></span><br />
 <?php endif;?>
+</div>
+<div rel="reverse">
 <?php if(!is_null($this->reverse_description)) : ?>
-Reverse description: <span property="pas:reverseDescription"><?php echo $this->reverse_description;?></span><br />
+Reverse description: <span property="description"><?php echo $this->reverse_description;?></span><br />
 <?php endif;?>
 <?php if(!is_null($this->reverse_inscription)) : ?>
-Reverse inscription: <span property="pas:reverseInscription"><?php echo $this->reverse_inscription;?></span><br />
+Reverse inscription: <span property="legend"><?php echo $this->reverse_inscription;?></span><br />
 <?php endif;?>
+</div>
 <?php if(!is_null($this->die_axis_name)) : ?>
 Die axis measurement: <span property="nm:axis"><?php echo $this->escape($this->die_axis_name);?></span> <span class="scope">[<a href="<?php echo $this->url(array('module' => 'database','controller'=>'terminology','action'=>'dieaxis','id' => $this->die),null,true);?>" title="Read scope note for <?php echo $this->die_axis_name;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller'=>'search','action'=>'results','axis' => $this->die),null,true);?>" title="view all records assigned to <?php echo $this->die_axis_name;?>">view all attributed records</a>]</span><br />
 <?php endif;?>

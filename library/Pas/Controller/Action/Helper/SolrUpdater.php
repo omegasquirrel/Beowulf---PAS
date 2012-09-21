@@ -134,7 +134,7 @@ class Pas_Controller_Action_Helper_SolrUpdater
     public function cleanData($data){
 	if(array_key_exists('datefound1',$data)){
 		if(!is_null($data['datefound1'])) {
-		$df1 = $this->todatestamp($data['datefound1']);
+		$df1 = $data['datefound1'] . 'T00:00:00Z';
 		$data['datefound1'] = $df1;
 		} else {
 		$data['datefound1'] = NULL;	
@@ -142,7 +142,7 @@ class Pas_Controller_Action_Helper_SolrUpdater
 	}
 	if(array_key_exists('datefound2',$data)){
 		if(!is_null($data['datefound2'])) {
-		$df2 = $this->todatestamp($data['datefound2']);
+		$df2 = $data['datefound2'] . 'T00:00:00Z';
 		$data['datefound2'] = $df2;
 		} else {
 		$data['datefound2'] = NULL;	

@@ -131,18 +131,24 @@ class RomanNumismaticSearchForm extends Pas_Form
             ->addMultiOptions(array(
                 NULL => 'Choose county first',
                 'Available counties' => $county_options))
+			->setAttribs(array('class' => 'span6'))
             ->addValidator('InArray', false, array(array_keys($county_options)));
 
     $district = new Zend_Form_Element_Select('district');
     $district->setLabel('District: ')
             ->addMultiOptions(array(NULL => 'Choose district after county'))
             ->setRegisterInArrayValidator(false)
+            ->addValidator('District')
+            ->setAttribs(array('class' => 'span6'))
             ->disabled = true;
 
     $parish = new Zend_Form_Element_Select('parish');
     $parish->setLabel('Parish: ')
             ->addMultiOptions(array(NULL => 'Choose parish after county'))
-            ->disabled = true;
+            ->setRegisterInArrayValidator(false)
+            ->addValidator('Parish')
+            ->setAttribs(array('class' => 'span6'))
+			->disabled = true;
 
     $regionID = new Zend_Form_Element_Select('regionID');
     $regionID->setLabel('European region: ')
@@ -172,7 +178,8 @@ class RomanNumismaticSearchForm extends Pas_Form
             ->addMultiOptions(array(
                 NULL => 'Choose denomination type',
                 'Available denominations' => $denom_options))
-            ->addValidator('InArray', false, array(array_keys($denom_options)));
+            ->addValidator('InArray', false, array(array_keys($denom_options)))
+            ->setAttribs(array('class' => 'span6'));
 
     //Primary ruler
     $ruler = new Zend_Form_Element_Select('ruler');
@@ -181,7 +188,8 @@ class RomanNumismaticSearchForm extends Pas_Form
             ->addMultiOptions(array(
                 NULL => 'Choose primary ruler',
                 'Available rulers'=> $ruler_options))
-            ->addValidator('InArray', false, array(array_keys($ruler_options)));
+            ->addValidator('InArray', false, array(array_keys($ruler_options)))
+            ->setAttribs(array('class' => 'span6'));
     //Mint
     $mint = new Zend_Form_Element_Select('mint');
     $mint->setLabel('Issuing mint: ')
@@ -189,7 +197,8 @@ class RomanNumismaticSearchForm extends Pas_Form
             ->addMultiOptions(array(
                 NULL => 'Choose issuing mint',
                 'Available mints' => $mint_options))
-            ->addValidator('InArray', false, array(array_keys($mint_options)));
+            ->addValidator('InArray', false, array(array_keys($mint_options)))
+            ->setAttribs(array('class' => 'span6'));
 
     //Reece
     $reece = new Zend_Form_Element_Select('reeceID');
@@ -198,21 +207,24 @@ class RomanNumismaticSearchForm extends Pas_Form
             ->addMultiOptions(array(
                 NULL => 'Choose Reece period',
                 'Available Reece periods' => $reece_options))
-            ->addValidator('InArray', false, array(array_keys($reece_options)));
+            ->addValidator('InArray', false, array(array_keys($reece_options)))
+            ->setAttribs(array('class' => 'span6'));
 
     //Reverse type
     $reverse = new Zend_Form_Element_Select('revtypeID');
     $reverse->setLabel('Fourth Century reverse type: ')
             ->setDescription('This field is only applicable for fourth century AD coins.')
             ->addFilters(array('StripTags', 'StringTrim'))
-            ->addMultiOptions(array(NULL => 'Only available after choosing a 4th century issuer'));
+            ->addMultiOptions(array(NULL => 'Only available after choosing a 4th century issuer'))
+            ->setAttribs(array('class' => 'span6'));
     //Moneyer
     $moneyer = new Zend_Form_Element_Select('moneyer');
     $moneyer->setLabel('Republican moneyers: ')
             ->setDescription('This field is only applicable for Republican coins.')
             ->addFilters(array('StripTags', 'StringTrim'))
             ->addMultiOptions(array(NULL => 'Only available after choosing a Republican issuer'))
-            ->addValidator('InArray', false, array(array_keys($money)));
+            ->addValidator('InArray', false, array(array_keys($money)))
+            ->setAttribs(array('class' => 'span6'));
 
     //Obverse inscription
     $obverseinsc = new Zend_Form_Element_Text('obverseLegend');

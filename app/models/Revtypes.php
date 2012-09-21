@@ -26,7 +26,7 @@ class Revtypes extends Pas_Db_Table_Abstract {
 	public function getTypes($ruler){
 		$types = $this->getAdapter();
 		$select = $types->select()
-			->from($this->_name, array('id','term' => 'CONCAT(type," Reece period: ",reeceID)'))
+			->from($this->_name, array('id','term' => 'CONCAT(type," Reece period: ",reeceID, " ", description)'))
 			->joinLeft('ruler_reversetype','ruler_reversetype.reverseID = revtypes.id',array())
 			->joinLeft('rulers','rulers.id = ruler_reversetype.rulerID',array())
 			->where('rulers.id = ?',(int)$ruler)
@@ -89,7 +89,7 @@ class Revtypes extends Pas_Db_Table_Abstract {
 	public function getRevTypes() {
         $types = $this->getAdapter();
 		$select = $types->select()
-            ->from($this->_name, array('id','term' => 'CONCAT(type," Reece period: ",reeceID)'))
+            ->from($this->_name, array('id','term' => 'CONCAT(type," Reece period: ",reeceID, " ", description)'))
 			->where('type IS NOT NULL')
 			->order('type');
         return $types->fetchPairs($select);

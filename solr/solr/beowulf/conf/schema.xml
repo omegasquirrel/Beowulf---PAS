@@ -553,7 +553,7 @@
 	<field name="cciNumber" type="string" indexed="true" stored="true" />
 	<field name="mintmark" type="string" indexed="true" stored="true" />
 	<field name="allenType" type="string" indexed="true" stored="true" />
-	<field name="mackType" type="string" indexed="true" stored="true" />
+	<field name="mackType" type="double" indexed="true" stored="true" />
 	<field name="abcType" type="string" indexed="true" stored="true" />
 	<field name="vaType" type="double" indexed="true" stored="true" />
 	<field name="category" type="int" indexed="true" stored="true"  />
@@ -568,7 +568,9 @@
 	<field name="reverse" type="int" indexed="true" stored="true" />
 	<field name="reverseType" type="text" indexed="true" stored="true" />
 	<field name="status" type="int" indexed="true" stored="true" />
-
+	<field name="pleiadesID" type="int" indexed="true" stored="true" />
+	<field name="mintNomisma" type="string" indexed="true" stored="true" />
+	
 	<!-- Findspot specific fields -->
 	<field name="regionID" type="int" indexed="true" stored="true" />
 	<field name="regionName" type="string" indexed="true" stored="true" />
@@ -576,9 +578,9 @@
 	<field name="district" type="string" indexed="true" stored="true" />
 	<field name="parish" type="string" indexed="true" stored="true" />
 	<field name="knownas" type="string" indexed="true" stored="true" />
-
+	<field name="gridSource" type="string" indexed="true" stored="true" />
+	
 	<!-- Coordinate specific fields -->
-
 	<field name="fourFigure" type="string" indexed="true" stored="true" />
 	<field name="gridref" type="string" indexed="true" stored="true" />
 	<field name="easting" type="string" indexed="true" stored="true" />
@@ -589,6 +591,7 @@
 	<field name="woeid" type="int" indexed="true" stored="true" />
 	<field name="coordinates" type="location" indexed="true" stored="true" />
 	<field name="geohash" type="string" indexed="true" stored="true" />
+	<field name="geonamesID" type="int" indexed="true" stored="true" />
 
 	<!--  Image specific fields  -->
 	<field name="filename" type="string" indexed="true" stored="true" />
@@ -721,6 +724,7 @@
 	<copyField source="mackType" dest="text" />
 	<copyField source="abcType" dest="text" />
 	<copyField source="vaType" dest="text" />
+	<copyField source="otherRef" dest="text" />
 
    <!-- Above, multiple source fields are copied to the [text] field.
 	  Another way to map multiple source fields to the same

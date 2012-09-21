@@ -138,7 +138,10 @@ finders.fullname AS finder,
 primaries.fullname AS identifier,
 secondaries.fullname AS secondaryIdentifier,
 recorders.fullname AS recorder,
-finds.updated AS updated
+finds.updated AS updated,
+coins.pleiadesID,
+mints.nomismaID AS mintNomisma,
+maporigins.term AS gridSource
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID
@@ -177,6 +180,7 @@ LEFT JOIN people AS finders ON finds.finderID = finders.secuid
 LEFT JOIN people AS primaries ON finds.identifier1ID = primaries.secuid
 LEFT JOIN people AS secondaries ON finds.identifier2ID = secondaries.secuid
 LEFT JOIN people AS recorders ON finds.recorderID = recorders.secuid
+LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
 "
 >
     <field column="findIdentifier" name="findIdentifier" />
@@ -300,6 +304,9 @@ LEFT JOIN people AS recorders ON finds.recorderID = recorders.secuid
     <field column="identifer2ID" name="identifier2ID" />
     <field column="creator" name="creator" />
     <field column="updated" name="updated" />
+  	<field column="pleiadesID" name="pleiadesID" />
+    <field column="mintNomisma" name="mintNomisma" />
+    <field column="gridSource" name="gridSource" />
 </entity>
 
 </document>

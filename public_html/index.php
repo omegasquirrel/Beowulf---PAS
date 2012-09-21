@@ -1,5 +1,5 @@
 <?php
-//echo 'Down for upgrade of server - back at 17:15 GMT';
+//header('Location: http://finds.org.uk/downtime.html');
 //exit;
 // Define path to application directory
 defined('APPLICATION_PATH')

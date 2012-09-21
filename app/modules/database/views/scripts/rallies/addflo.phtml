@@ -1,3 +1,5 @@
-<?php $this->headTitle('Add an attending Finds officer to a rally');?>
+<?php 
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript'); 
+$this->headTitle('Add an attending Finds officer to a rally');?>
 <h2>Add an attending Finds Officer</h2>
 <?php echo $this->form;?>

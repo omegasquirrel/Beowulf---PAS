@@ -108,6 +108,8 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
 	$insertData = $form->getValues();
+	$secuid = $this->_helper->GenerateSecuID();
+	$insertData['secuid'] = $secuid;
 	$publications = new Publications();
 	$insert = $publications->add($insertData);
 	$this->_helper->solrUpdater->update('beopublications', $insert);

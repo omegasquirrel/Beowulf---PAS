@@ -26,7 +26,11 @@ class TokenJettonForm extends Pas_Form {
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose denomination',
 		'Choose denomination' => array(
-		'64' => 'Jetton')
+		'64' => 'Jetton',
+		'65' => 'Farthing token',
+		'66' => 'Token halfpenny',
+		'67' => 'Token penny'
+		)
 		))
 		->setRegisterInArrayValidator(true)
 		->addErrorMessage('You must enter a denomination');

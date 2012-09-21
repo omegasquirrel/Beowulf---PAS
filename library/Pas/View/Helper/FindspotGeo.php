@@ -97,6 +97,7 @@ class Pas_View_Helper_FindspotGeo
     */
     public function buildHtml($data){
     $html = '<h3>Data from Yahoo! GeoPlanet</h3>';
+    if($data){
     $html .= '<p>The spatially enriched data provided here was sourced from the excellent Places/Placemaker service';
     $html .= ' from Yahoo\'s geo team.<br />';
     $html .= 'Settlement type: ' . $data['placeTypeName'] . '<br/>';
@@ -109,7 +110,9 @@ class Pas_View_Helper_FindspotGeo
     }
 //    $html .= 'Astergdem generated elevation: ' . $this->metres($data['elevation']);
     $html .= '</p>';
-  	
+    } else {
+    	$html .= '<p>No data returned</p>';
+    }
   	return $html;
     }
 

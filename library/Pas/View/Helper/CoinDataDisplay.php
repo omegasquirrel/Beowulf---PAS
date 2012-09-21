@@ -12,7 +12,7 @@
  */
 class Pas_View_Helper_CoinDataDisplay extends Zend_View_Helper_Abstract {
 
-    protected $_numismatics = array('COIN');
+    protected $_numismatics = array('COIN', 'MEDALLION');
 
     protected $_objects = array('JETTON', 'TOKEN');
 

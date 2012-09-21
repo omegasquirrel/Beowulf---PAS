@@ -13,10 +13,8 @@ $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselec
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinitPeople.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/ui.datepicker.js',$type='text/javascript');
-
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
-->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript'); 
+$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
 
 ?>
 

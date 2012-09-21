@@ -33,10 +33,6 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	 */
 	protected $_higherLevel = array('admin','fa','treasure');
 
-	/** The authority object
-	 * @var object $_auth
-	 */
-	protected $_auth = NULL;
 
 	/** Message for missing group exception
 	 * @var string $_missingGroup
@@ -51,35 +47,22 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	/** Construct the auth object
 	 */
 	public function __construct() {
-	$auth = Zend_Auth::getInstance();
-	$this->_auth = $auth;
     }
     /** Get the user's role
      */
-	public function getRole() {
-	if($this->_auth->hasIdentity()){
-	$user = $this->_auth->getIdentity();
-	$role = $user->role;
-	return $role;
+	public function getPerson() {
+	$user = new Pas_User_Details();
+	return $user->getPerson();
 	}
-	}
-	/** Get the identity
-	 */
-	public function getUserID() {
-	if($this->_auth->hasIdentity()) {
-	$user = $this->_auth->getIdentity();
-	$id = $user->id;
-	return $id;
-	}
-	}
+	
 	/** Check for access by userID
 	 * @param int $createdBy
 	 */
 	public function checkAccessbyUserID($createdBy) {
-	if(!in_array($this->getRole(),$this->_restricted)) {
+	if(!in_array($this->getPerson()->role,$this->_restricted)) {
 	return true;
-	} else if(in_array($this->getRole(),$this->_restricted)) {
-	if($createdBy == $this->getUserID()) {
+	} else if(in_array($this->getPerson()->role,$this->_restricted)) {
+	if($createdBy == $this->getPerson()->id) {
 	return true;
 	}
 	} else {
@@ -90,29 +73,14 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	 *
 	 * @param string $findspotID
 	 */
-	public function checkAccessbyInstitution($findspotID){
-	$find = explode('-', $findspotID);
-	$id = $find['0'];
-	$inst = $this->getInst();
-	if($id == $inst) {
+	public function checkAccessbyInstitution($institution){
+	if($this->getPerson()->institution == $institution) {
 	return true;
-	} else if((in_array($this->getRole(),$this->_recorders) && ($id == 'PUBLIC'))) {
+	} else if((in_array($this->getPerson()->role,$this->_recorders) && ($institution == 'PUBLIC'))) {
 	return true;
 	}
 	}
 
-	/** Get the user's institution
-	 */
-	public function getInst() {
-	if($this->_auth->hasIdentity()) {
-	$user = $this->_auth->getIdentity();
-	$inst = $user->institution;
-	return $inst;
-	} else {
-	//throw new Exception($this->_missingGroup);
-	return FALSE;
-	}
-	}
 
 	/** Check and display links for edit
 	 *
@@ -120,17 +88,17 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	 * @param int $ID
 	 * @param int $createdBy
 	 */
-	public function FindSpotEditDeleteLink($findspotID, $ID, $createdBy) {
+	public function FindSpotEditDeleteLink($findspotID, $ID, $createdBy, $institution) {
 	$byID = $this->checkAccessbyUserID($createdBy);
 	$instID = $this->checkAccessbyInstitution($findspotID);
 
-	if(in_array($this->getRole(),$this->_restricted)) {
+	if(in_array($this->getPerson()->role,$this->_restricted)) {
 	if(($byID == TRUE && $instID== TRUE) || ($byID == TRUE && $instID == FALSE)) {
 	return $this->buildHtml($ID);
 	}
-	} else if(in_array($this->getRole(),$this->_higherLevel)) {
+	} else if(in_array($this->getPerson()->role,$this->_higherLevel)) {
 	return $this->buildHtml($ID);
-	} else if(in_array($this->getRole(),$this->_recorders)) {
+	} else if(in_array($this->getPerson()->role,$this->_recorders)) {
 	if(($instID == TRUE && $byID == FALSE) || ($byID == true && $instID == true) ||
 	($byID == false && $instID == true)) {
 	return $this->buildHtml($ID);
@@ -144,8 +112,8 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	 * @return string $html
 	 */
 	public function buildHtml($ID) {
-        $editClass = 'btn btn-small btn-warning';
-        $deleteClass = 'btn btn-small btn-danger';
+	$editClass = 'btn btn-small btn-warning';
+	$deleteClass = 'btn btn-small btn-danger';
 	$editurl = $this->view->url(array('module' => 'database','controller' => 'findspots','action' => 'edit',
 	'id' => $ID),null,true);
 	$deleteurl = $this->view->url(array('module' => 'database','controller' => 'findspots','action' => 'delete',

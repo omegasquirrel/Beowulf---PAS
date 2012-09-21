@@ -93,7 +93,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('rdf',array('suffix' => 'rdf'))
             ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
-            ->addActionContext('record', array('qrcode', 'json'))
+            ->addActionContext('record', array('qrcode', 'json', 'xml'))
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');
@@ -172,12 +172,6 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             && (!in_array($this->_cs->getCurrentContext(),array(
                 'xml','json','qrcode')))){
 
-//    $wform = new WorkflowStageForm();
-//
-//    $wform->id->setValue($id);
-//    $wform->submit->setLabel('Change workflow');
-//    $this->view->wform = $wform;
-//    $response->insert('workflow', $this->view->render('structure/workflow.phtml'));
     } else {
     $findspotsdata = new Findspots();
     $this->view->findspots = $findspotsdata->getFindSpotData($id);
@@ -211,23 +205,13 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $record['0']['northing'] = NULL;
     $record['0']['lat'] = NULL;
     $record['0']['lon'] = NULL;
-    $record['0']['finder'] = NULL;
-    $record['0']['address'] = NULL;
-    $record['0']['postcode'] = NULL;
-    $record['0']['findspotdescription'] = NULL;
-    } else {
-    $record['0']['gridref'] = NULL;
-    $record['0']['easting'] = NULL;
-    $record['0']['northing'] = NULL;
-    $record['0']['lat'] = NULL;
-    $record['0']['lon'] = NULL;
-    $record['0']['finder'] = NULL;
+    $record['0']['finder'] = 'Restricted information';
     $record['0']['address'] = NULL;
     $record['0']['postcode'] = NULL;
     $record['0']['findspotdescription'] = NULL;
     if(!is_null($record['0']['knownas'])){
-    $record['0']['parish'] = NULL;
-    $record['0']['fourFigure'] = NULL;
+    $record['0']['parish'] = 'Restricted information';
+    $record['0']['fourFigure'] = 'Restricted information';
     }
     }
     $this->view->record = $record;
@@ -406,13 +390,16 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $finds = $this->_finds->getRelevantAdviserFind($this->_getParam('id',0));
     $this->view->form = $form;
     $this->view->finds = $finds;
-    if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
+    if ($this->getRequest()->isPost()===true) {
+    if($form->isValid($_POST)===true) {
     $data = $form->getValues();
     if ($this->_helper->akismet($data)) {
     $data['comment_approved'] = 'spam';
     }  else  {
     $data['comment_approved'] =  '1';
+    }
+    if(array_key_exists('captcha', $data)){
+    	unset($data['captcha']);
     }
 	$errors = new ErrorReports();
     $errors->add($data);
@@ -421,7 +408,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->notify($finds['0']['objecttype'],$finds['0']['broadperiod'],$finds['0']['institution'],$finds['0']['createdBy'],$data);
     
     $this->_flashMessenger->addMessage('Your error report has been submitted. Thank you!');
-    $this->_redirect(self::REDIRECT.'record/id/' . $this->_getParam('id'));
+    $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     } else {
     $form->populate($form->getValues());
     }

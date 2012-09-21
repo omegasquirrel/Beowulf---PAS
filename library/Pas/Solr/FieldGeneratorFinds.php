@@ -9,7 +9,7 @@ class Pas_Solr_FieldGeneratorFinds {
 	}
 
 	public function getFields(){
-	if(!in_array($this->_context,array('json'))){
+	if(!in_array($this->_context,array('json', 'xml'))){
 		$fields = array(
 		'id','identifier','objecttype',
         'title','broadperiod','description',

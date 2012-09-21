@@ -26,7 +26,7 @@ class Pas_Controller_Action_Helper_GenerateSecuID
 		return $this->_secuid();
 	}
 	
-	protected function secuid() {
+	protected function _secuid() {
 	list($usec, $sec) = explode(" ", microtime());
 	$ms = dechex(round($usec * 4080));
 	while(strlen($ms) < 3) {

@@ -7,7 +7,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @see Zend_Validate_Abstract
  */
-class Pas_Validate_District extends Zend_Validate_Abstract {
+class Pas_Validate_Parish extends Zend_Validate_Abstract {
 	
 	const NOT_VALID = 'notValid';
 
@@ -17,21 +17,21 @@ class Pas_Validate_District extends Zend_Validate_Abstract {
 	* @var array
 	*/
 	protected $_messageTemplates = array(
-	self::NOT_VALID => 'That district does not exist.',
+	self::NOT_VALID => 'That parish does not exist.',
 	);
 
-	protected function _getDistrict($value){
-		$districts = new Places();
-		$where[] = $districts->getAdapter()->quoteInto('district = ?',$value);
-		$district = $districts->fetchRow($where);
-		return $district;
+	protected function _getParish($value){
+		$parishes = new Places();
+		$where[] = $parishes->getAdapter()->quoteInto('parish = ?',$value);
+		$parish = $parishes->fetchRow($where);
+		return $parish;
 	} 
 
 
 	public function isValid($value){
 	$value = (string) $value;
-	$district = $this->_getDistrict($value);
-	if(!$district) {
+	$parish = $this->_getParish($value);
+	if(!$parish) {
 	$this->_error(self::NOT_VALID);
 	return false;
 	}
