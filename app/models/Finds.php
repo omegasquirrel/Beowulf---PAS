@@ -1828,6 +1828,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		'musaccno',
 		'currentLocation' => 'curr_loc',
 		'created',
+		'updated',
 		'weight',
 		'height',
 		'secuid',

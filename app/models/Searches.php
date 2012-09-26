@@ -111,7 +111,8 @@ class Searches extends Pas_Db_Table_Abstract {
     $search = $this->getAdapter();
     $select = $search->select()
             ->from('savedSearches')
-            ->order('created DESC');
+            ->order('created DESC')
+            ->joinLeft('users','users.id = savedSearches.createdBy',array('username'));
     if(!is_null($userid)){
     $select->where('savedSearches.createdBy = ?',$userid)
             ->where('public = ?', 1);

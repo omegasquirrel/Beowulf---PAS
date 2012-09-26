@@ -124,7 +124,37 @@ class Contacts extends Pas_Db_Table_Abstract {
 		array('area' => 'DESCRIPTION'))
 		->joinLeft(array('position' => 'staffroles'),'staff.role = position.ID',
 		array( 'role','roleid' => 'id'))
-		->order('alumni DESC');
+		->where('alumni = ?', 1);
+	$paginator = Zend_Paginator::factory($select);
+	if(isset($params['page']) && ($params['page'] != "")) {
+	$paginator->setCurrentPageNumber((int)$params['page']);
+	}
+	$paginator->setItemCountPerPage(20)
+		->setPageRange(10);
+	return $paginator;
+	}
+	
+	/** Get a list of old staff to display on the map of contacts
+	* @param integer $params['page']
+	* @return array
+	* @todo add caching
+	*/
+	public function getAlumni($params) {
+	$persons = $this->getAdapter();
+	$select = $persons->select()
+		->from($this->_name,array(#
+		'id', 'firstname', 'lastname',
+		'email_one', 'email_two', 'address_1',
+		'address_2', 'identifier', 'town',
+		'county', 'postcode', 'country',
+		'profile', 'telephone', 'fax',
+		'dbaseID', 'longitude', 'latitude',
+		'image','alumni'))
+		->joinLeft(array('locality' => 'staffregions'),'locality.ID = staff.region',
+		array('area' => 'DESCRIPTION'))
+		->joinLeft(array('position' => 'staffroles'),'staff.role = position.ID',
+		array( 'role','roleid' => 'id'))
+		->where('alumni = ?', 0);
 	$paginator = Zend_Paginator::factory($select);
 	if(isset($params['page']) && ($params['page'] != "")) {
 	$paginator->setCurrentPageNumber((int)$params['page']);

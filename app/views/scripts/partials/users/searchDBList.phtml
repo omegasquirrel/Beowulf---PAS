@@ -1,26 +1,21 @@
 <?php 
 $string = unserialize($this->searchString);
-
-$query = '';
-
-foreach($string as $k => $v)
-{
-$query .= $k.'/'.$v.'/';
-} 
-$url = 'http://'.$_SERVER['SERVER_NAME'].'/database/search/results/'.$query;
+if(!array_key_exists('module',$string)){
+	$string['module'] = 'database';
+}
+if(!array_key_exists('controller',$string)){
+	$string['controller'] = 'search';
+}
+if(!array_key_exists('action',$string)){
+	$string['action'] = 'results';
+}
+$url = $this->serverUrl() . $this->url($string, null, true);
 ?>
 <li>
-
 Search name: <?php echo strip_tags($this->title);?><br />
-Saved search parameters: <?php echo $this->SearchParamsUsers($string);?>
-<br />
+Created by username: <?php echo $this->username;?><br />
 Search performed: <span class="published timestamp" data="{time:'<?php echo date('W3C',$this->created);?>'}">
 <?php echo $this->timeagoinwords($this->created);?></span> 
 <br />
 <a href="<?php echo $url;?>" title="Permanent link">Permalink to search</a> 
-<a href="<?php echo $url;?>format/rss/" title="RSS feed of these results">RSS</a> 
-<a href="<?php echo $url;?>format/atom/" title="Atom feed of these results">ATOM</a> 
-<a href="<?php echo $url;?>format/csv/" title="CSV spreadsheet of these results">CSV</a> 
-<a href="<?php echo $url;?>format/json/" title="JSON feed of these results">JSON</a> 
-<a href="<?php echo $url;?>format/xml/" title="XML feed of these results">XML</a> <a href="<?php echo $url;?>format/kml/" title="KML feed of these results">KML</a>
 </li>

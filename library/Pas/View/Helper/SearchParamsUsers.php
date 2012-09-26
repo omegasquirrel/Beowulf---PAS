@@ -11,8 +11,7 @@
 class Pas_View_Helper_SearchParamsUsers 
 	extends Zend_View_Helper_Abstract {
 
-	public function SearchParamsUsers($params = NULL)
-	{
+	public function SearchParamsUsers($params = NULL) {
 	unset($params['submit']);
 	unset($params['action']);
 	unset($params['controller']);
@@ -20,16 +19,18 @@ class Pas_View_Helper_SearchParamsUsers
 	if(!is_null($params)) {	
 	echo 'You searched for: '; 
 	
+	$data = array();
+	
 	//Objecttype
 	if(array_key_exists('objecttype',$params)) {
 	if(!is_null($params['objecttype'])) {
-	echo 'Object type: '. $this->view->escape($params['objecttype']) . ' &raquo; ';
+	$data[] = 'Object type: '. $this->view->escape($params['objecttype']) ;
 	}
 	}
 	//Broadperiod
 	if(array_key_exists('broadperiod',$params)) {
 	if(!is_null($params['broadperiod'])) {
-	echo 'Broadperiod: '. $this->view->escape($params['broadperiod']) . ' &raquo; ';
+	$data[] = 'Broadperiod: '. $this->view->escape($params['broadperiod']) ;
 	}
 	}
 
@@ -37,7 +38,7 @@ class Pas_View_Helper_SearchParamsUsers
 	if(array_key_exists('vaType',$params)) {
 	if(!is_null($params['vaType'])) {
 	$va = $params['vaType'];
-	echo 'Van Arsdell Type: '.$va;
+	$data[] = 'Van Arsdell Type: '.$va;
 	}
 	}
 
@@ -45,7 +46,7 @@ class Pas_View_Helper_SearchParamsUsers
 	if(array_key_exists('woeid',$params)) {
 	if(!is_null($params['woeid'])) {
 	$woeid = $params['woeid'];
-	echo 'Where on Earth ID: '.$woeid;
+	$data[] = 'Where on Earth ID: '.$woeid;
 	}
 	}
 
@@ -54,13 +55,13 @@ class Pas_View_Helper_SearchParamsUsers
 	$rid = $params['recorderID'];
 	$peoples = new Peoples();
 	$people = $peoples->fetchRow($peoples->select()->where('secuid = ?', $rid));
-	echo 'Recorded by: ' . $people->fullname;
+	$data[] = 'Recorded by: ' . $people->fullname;
 	}
 	}
 	//County
 	if(array_key_exists('county',$params)) {
 	if(!is_null($params['county'])) {
-	echo 'County: '. $this->view->escape($params['county']) . ' &raquo; ';
+	$data[] = 'County: '. $this->view->escape($params['county']) ;
 	}
 	}
 	//Tribe for IA coins
@@ -69,7 +70,7 @@ class Pas_View_Helper_SearchParamsUsers
 	$tribe = $params['tribe'];
 	$tribes = new Tribes();
 	$tribe = $tribes->fetchRow($tribes->select()->where('id = ?', (int)$tribe));
-	echo 'Iron Age Tribe: ' . $tribe->tribe;
+	$data[] = 'Iron Age Tribe: ' . $tribe->tribe;
 	}
 	}
 	//region
@@ -81,7 +82,7 @@ class Pas_View_Helper_SearchParamsUsers
 	$regions = $regions->getRegion($region);
 	$this->regions = $regions;
 	foreach($this->regions as $region){
-	echo 'Region: '. $this->view->escape($region['region']).' &raquo; ';
+	$data[] =  'Region: '. $this->view->escape($region['region']);
 	}
 	}
 	}
@@ -94,7 +95,7 @@ class Pas_View_Helper_SearchParamsUsers
     $materials = $materials->getMaterialName($mat);
     $this->materials = $materials;
     foreach($this->materials as $material){
-    echo 'Primary material: ' . $this->view->escape($material['term']) . ' &raquo; ';
+    $data[] =  'Primary material: ' . $this->view->escape($material['term']) ;
     }
     }
     }
@@ -102,13 +103,13 @@ class Pas_View_Helper_SearchParamsUsers
 
     if(array_key_exists('parish',$params)) {
     if(!is_null($params['parish'])) {
-    echo 'Parish: '. $this->view->escape($params['parish']) . ' &raquo; ';
+    $data[] =  'Parish: '. $this->view->escape($params['parish']) ;
     }
     }
 
     if(array_key_exists('district',$params)) {
     if(!is_null($params['district'])) {
-    echo 'District: '. $this->view->escape($params['district']) . ' &raquo; ';
+    $data[] =  'District: '. $this->view->escape($params['district']) ;
     }
     }
 
@@ -119,25 +120,25 @@ class Pas_View_Helper_SearchParamsUsers
     $this->denoms = $denoms;
     foreach($this->denoms as $denom)
     {
-    echo 'Denomination type: ' . $this->view->escape($denom['denomination']). ' &raquo; ';
+    $data[] =  'Denomination type: ' . $this->view->escape($denom['denomination']);
     }
     }
 
     if(array_key_exists('description',$params)) {
     if(!is_null($params['description'])) {
-    echo 'Description contained: '. $this->view->escape($params['description']) . ' &raquo; ';
+    $data[] =  'Description contained: '. $this->view->escape($params['description']) ;
     }
     }
 
     if(array_key_exists('fourFigure',$params)) {
     if(!is_null($params['fourFigure'])) {
-    echo 'Four figure grid reference: '. $this->view->escape($params['fourFigure']) . ' &raquo; ';
+    $data[] =  'Four figure grid reference: '. $this->view->escape($params['fourFigure']) ;
     }
     }
 
     if(array_key_exists('old_findID',$params)) {
     if(!is_null($params['old_findID'])) {
-    echo 'Find reference number: '. $this->view->escape($params['old_findID']) . ' &raquo; ';
+    $data[] =  'Find reference number: '. $this->view->escape($params['old_findID']) ;
     }
     }
 
@@ -148,13 +149,13 @@ class Pas_View_Helper_SearchParamsUsers
 
     $sub = $params['fromsubperiod'];
     if($sub == 1)
-    { echo 'Subperiod: Early'. ' &raquo; ';
+    { $data[] =  'Subperiod: Early';
     }
     else if ($sub == 2)
-    {echo 'Subperiod: Middle'. ' &raquo; ';
+    {$data[] =  'Subperiod: Middle';
     }
     else if ($sub == 3)
-    {echo 'Subperiod: Late'. ' &raquo; ';
+    {$data[] =  'Subperiod: Late';
     }
     }
     }
@@ -165,13 +166,13 @@ class Pas_View_Helper_SearchParamsUsers
 
     $sub = $params['tosubperiod'];
     if($sub == 1)
-    { echo 'Subperiod: Early'. ' &raquo; ';
+    { $data[] =  'Subperiod: Early';
     }
     else if ($sub == 2)
-    {echo 'Subperiod: Middle'. ' &raquo; ';
+    {$data[] =  'Subperiod: Middle';
     }
     else if ($sub == 3)
-    {echo 'Subperiod: Late'. ' &raquo; ';
+    {$data[] =  'Subperiod: Late';
     }
     }
     }
@@ -186,7 +187,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->periods = $periods;
     foreach($this->periods as $period)
     {
-    echo 'Period from: ' . $this->view->escape($period['term']). ' &raquo; ';
+    $data[] =  'Period from: ' . $this->view->escape($period['term']);
 
     }
     }
@@ -201,7 +202,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->periods = $periods;
     foreach($this->periods as $period)
     {
-    echo 'Period to: ' . $this->view->escape($period['term']). ' &raquo; ';
+    $data[] =  'Period to: ' . $this->view->escape($period['term']);
 
     }
     }
@@ -216,14 +217,14 @@ class Pas_View_Helper_SearchParamsUsers
     $this->surfaces = $surfaces;
     foreach($this->surfaces as $surface)
     {
-    echo 'Surface treatment: ' . $this->view->escape($surface['term']). ' &raquo; ';
+    $data[] =  'Surface treatment: ' . $this->view->escape($surface['term']);
     }
     }
     }
 
     if(array_key_exists('class',$params)) {
     if(!is_null($params['class'])) {
-    echo 'Classification term like: ' . $this->view->escape($params['class']). ' &raquo; ';
+    $data[] =  'Classification term like: ' . $this->view->escape($params['class']);
 
     }
     }
@@ -240,7 +241,7 @@ class Pas_View_Helper_SearchParamsUsers
                      else if ($from > 0) {
             $date =  $prefix.' '. abs($from);
                      }
-    echo 'Date from greater or equal to: ' . (int)$date. ' &raquo; ';
+    $data[] =  'Date from greater or equal to: ' . (int)$date;
 
     }
     }
@@ -257,7 +258,7 @@ class Pas_View_Helper_SearchParamsUsers
                      else if ($from > 0) {
             $date =  $prefix.' '. abs($from);
                      }
-    echo 'Date from smaller or equal to: ' . $date. ' &raquo; ';
+    $data[] =  'Date from smaller or equal to: ' . $date;
 
     }
     }
@@ -270,7 +271,7 @@ class Pas_View_Helper_SearchParamsUsers
     //Year found
     if(array_key_exists('discovered',$params)) {
     if(!is_null($params['discovered'])) {
-    echo 'Year of discovery where known: ' . $this->view->escape($params['discovered']). ' &raquo; ';
+    $data[] =  'Year of discovery where known: ' . $this->view->escape($params['discovered']);
 
     }
     }
@@ -285,7 +286,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->peoples = $peoples;
     foreach($this->peoples as $people)
     {
-    echo 'Item found by: ' . $this->view->escape($people['term']). ' &raquo; ';
+    $data[] =  'Item found by: ' . $this->view->escape($people['term']);
 
     }
 
@@ -302,7 +303,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->peoples = $peoples;
     foreach($this->peoples as $people)
     {
-    echo 'Identified by: ' . $this->view->escape($people['term']). ' &raquo; ';
+    $data[] =  'Identified by: ' . $this->view->escape($people['term']);
 
     }
 
@@ -317,7 +318,7 @@ class Pas_View_Helper_SearchParamsUsers
     $peoples = $peoples->getName($finder);
     $this->peoples = $peoples;
     foreach($this->peoples as $people) {
-    echo 'Recorded by: ' . $this->view->escape($people['term']) . ' &raquo; ';
+    $data[] =  'Recorded by: ' . $this->view->escape($people['term']) ;
     }
     }
     }
@@ -329,49 +330,49 @@ class Pas_View_Helper_SearchParamsUsers
     $rulers = $rulers->getRulersName($ruler);
     $this->rulers = $rulers;
     foreach($this->rulers as $ruler){
-    echo 'Coin issued by: ' . $this->view->escape($ruler['issuer']) . ' &raquo; ';
+    $data[] =  'Coin issued by: ' . $this->view->escape($ruler['issuer']) ;
     }
     }
     }
 
     if(array_key_exists('note',$params)) {
     if ($params['note'] == (int)1){
-    echo 'Object is a find of note';
+    $data[] =  'Object is a find of note';
     }
     }
 
     if(array_key_exists('treasure',$params)) {
     if ($params['treasure'] == (int)1){
-    echo 'Object is Treasure or potential Treasure';
+    $data[] =  'Object is Treasure or potential Treasure';
     }
     }
 
     if(array_key_exists('TID',$params)) {
     if (!is_null($params['TID'])){
-    echo 'Treasure case number: '.$this->view->escape($params['TID']);
+    $data[] =  'Treasure case number: '.$this->view->escape($params['TID']);
     }
     }
 
     if(array_key_exists('created',$params)) {
     if (!is_null($params['created'])){
-    echo 'Finds entered on: '.$this->view->escape($params['created']);
+    $data[] =  'Finds entered on: '.$this->view->escape($params['created']);
     }
     }
     if(array_key_exists('createdBefore',$params)) {
     if (!is_null($params['createdBefore'])){
-    echo 'Finds entered on or before: '.$this->view->niceshortdate($this->view->escape($params['createdBefore'])).' &raquo; ';
+    $data[] =  'Finds entered on or before: '.$this->view->niceshortdate($this->view->escape($params['createdBefore']));
     }
     }
 
     if(array_key_exists('createdAfter',$params)) {
     if (!is_null($params['createdAfter'])){
-    echo 'Finds entered on or after: '.$this->view->niceshortdate($this->view->escape($params['createdAfter'])).' &raquo; ';
+    $data[] =  'Finds entered on or after: '.$this->view->niceshortdate($this->view->escape($params['createdAfter']));
     }
     }
 
     if(array_key_exists('hoard',$params)) {
     if ((int)$params['hoard'] == (int)1){
-    echo 'Object is part of a hoard.'. ' &raquo; ';
+    $data[] =  'Object is part of a hoard.';
     }
     }
 
@@ -383,13 +384,13 @@ class Pas_View_Helper_SearchParamsUsers
     $this->hids = $hIDsList;
     foreach($this->hids as $hid)
     {
-    echo 'Part of the ' . $this->view->escape($hid['term']). ' hoard.'. ' &raquo; ';
+    $data[] =  'Part of the ' . $this->view->escape($hid['term']). ' hoard.';
     }
     }
     }
     if(array_key_exists('otherref',$params)) {
     if (!is_null($params['otherref'])){
-    echo 'Other reference: '.$this->view->escape($params['otherref']);
+    $data[] =  'Other reference: '.$this->view->escape($params['otherref']);
     }
     }
 
@@ -405,7 +406,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->stages = $stages;
     foreach($this->stages as $stage)
     {
-    echo 'Workflow stage: ' . $this->view->escape($stage['workflowstage']). ' &raquo; ';
+    $data[] =  'Workflow stage: ' . $this->view->escape($stage['workflowstage']);
 
     }
 
@@ -420,7 +421,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->manufactures = $manufactures;
     foreach($this->manufactures as $man)
     {
-    echo 'Manufacture type: ' . $this->view->escape($man['term']). ' &raquo; ';
+    $data[] =  'Manufacture type: ' . $this->view->escape($man['term']);
     }
     }
     }
@@ -432,7 +433,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->decorations = $decorations;
     foreach($this->decorations as $dec)
     {
-    echo 'Decoration type: ' . $this->view->escape($dec['term']). ' &raquo; ';
+    $data[] =  'Decoration type: ' . $this->view->escape($dec['term']);
     }
     }
     }
@@ -448,7 +449,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->mints = $mints;
     foreach($this->mints as $mint)
     {
-    echo 'Mint issuing coins: ' . $this->view->escape($mint['mint_name']).' ('.$mint['term']. ')'. ' &raquo; ';
+    $data[] =  'Mint issuing coins: ' . $this->view->escape($mint['mint_name']).' ('.$mint['term']. ')';
     }
 
     }
@@ -464,7 +465,7 @@ class Pas_View_Helper_SearchParamsUsers
     $this->cats = $cats;
     foreach($this->cats as $cat)
     {
-    echo 'Coin category: ' . $this->view->escape($cat['term']).' &raquo; ';
+    $data[] =  'Coin category: ' . $this->view->escape($cat['term']);
     }
 
     }
@@ -479,7 +480,7 @@ class Pas_View_Helper_SearchParamsUsers
 
     foreach($rs as $r)
     {
-    echo 'Reece Period: ' . $this->view->escape($r['period_name']).' '.$r['date_range'].' &raquo; ';
+    $data[] =  'Reece Period: ' . $this->view->escape($r['period_name']).' '.$r['date_range'];
 
     }
 
@@ -487,25 +488,7 @@ class Pas_View_Helper_SearchParamsUsers
     }
 
 
-    //Workflow
-    if(array_key_exists('createdby',$params)) {
-    if(!is_null($params['createdby'])) {
-
-    $createdby = $params['createdby'];
-
-    $users = new Users();
-    $names = $users->getCreatedBy($createdby);
-
-    $this->names = $names;
-    foreach($this->names as $name)
-    {
-    echo 'Record created by: <a href="'.$this->view->baseUrl() 
-            . '/contacts/staff/profile/id/'.$name['i'].'" title="View profile for '.$name['fullname'].'">' . $name['fullname']. '</a>'. ' &raquo; ';
-
-    }
-
-    }
-    }
+ 	echo implode($data, ' &raquo;');
 
             }
     }

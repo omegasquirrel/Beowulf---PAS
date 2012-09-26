@@ -27,13 +27,18 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$this->_helper->_acl->allow('admin',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_geoPlanet = new Pas_Service_Geo_Geoplanet($this->_config->webservice->ydnkeys->appid);
-	$this->_geocoder = new Pas_Service_Geo_Coder($this->_config->webservice->googlemaps->apikey);
+	$this->_geocoder =  new Pas_Service_Geo_Coder($this->_config->webservice->googlemaps->apikey);
     }
 	/** Display the index page
 	*/
 	public function indexAction(){
 	$contacts = new Contacts();
 	$this->view->contacts = $contacts->getContacts($this->_getParam('page'));
+	}
+	
+	public function alumniAction(){
+	$contacts = new Contacts();
+	$this->view->contacts = $contacts->getAlumni($this->_getParam('page'));	
 	}
 	/** View a contact's details
 	*/

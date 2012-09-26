@@ -1,7 +1,7 @@
-<?php $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/ui.datepicker.js',$type='text/javascript'); ?>
-<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');?>
- <?php $this->jQuery()->javascriptCaptureStart(); ?>
- $(document).ready(function(){
+<?php 
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
+$this->jQuery()->javascriptCaptureStart(); ?>
+$(document).ready(function(){
 $("#datefrom").datepicker();
 $("#dateto").datepicker();
   });
@@ -36,7 +36,7 @@ $this->headMeta('recorded,artefacts,archaeology','dc.keywords');
 
 <div id="fp">
 <h3>Finds recorded for this period</h3>
-<table class="table table-striped" symmary="A tabulated account of finds recorded by period">
+<table class="table table-striped" summary="A tabulated account of finds recorded by period">
 <thead>
 <tr>
 <th>County</th>
@@ -46,7 +46,7 @@ $this->headMeta('recorded,artefacts,archaeology','dc.keywords');
 </thead>
 <tbody>
 <?php echo $this->partialLoop('partials/annual/instStats.phtml',$this->instTotal);?>
-<tbody>
+</tbody>
 </table>
 </div>
 
@@ -121,7 +121,7 @@ $recordsPeriodTotal = array_sum($records_period);
 <table class="table table-striped">
 <tr>
 <th>Institution</th>
-<th>Number of finders</h3>
+<th>Number of finders</th>
 </tr>
 <?php echo $this->partialLoop('partials/annual/finderquants.phtml',$this->finders);?>
 <tr>

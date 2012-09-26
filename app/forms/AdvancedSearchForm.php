@@ -444,7 +444,7 @@ class AdvancedSearchForm extends Pas_Form {
 	->addFilters(array('StripTags','StringTrim'));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(60);
+	$hash->setValue($this->_salt)->setTimeout(4800);
 	
 	if(in_array($this->_role,$this->_restricted)) {
 	$this->addElements(array(

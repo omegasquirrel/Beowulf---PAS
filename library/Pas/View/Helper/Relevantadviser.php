@@ -73,6 +73,9 @@ class Pas_View_Helper_Relevantadviser
 		case (!in_array($objecttype,$this->_coinarray) && in_array($broadperiod,$this->_medieval)):
 			$adviserdetails = $this->_medievalobjects;
 			break;
+		case (!in_array($objecttype,$this->_coinarray) && in_array($broadperiod,$this->_earlyMed)):
+			$adviserdetails = $this->_medievalobjects;
+			break;
 		default:
 			$adviserdetails = $this->_catchall;
 			break;

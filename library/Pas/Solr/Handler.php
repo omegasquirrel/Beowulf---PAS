@@ -260,7 +260,7 @@ class Pas_Solr_Handler {
     	}
     	if(array_key_exists('updatedAfter', $params)){
     		$queryDate = $params['updatedAfter'] . "T00:00:00.001Z";
-    		$params['updated'] = $queryDate . ' TO * ';
+    		$params['updated'] = $queryDate . ' TO NOW ';
     		unset($params['updatedAfter']);
     	}
     	foreach($params as $k => $v){

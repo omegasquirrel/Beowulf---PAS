@@ -15,6 +15,7 @@ if(in_array($user->role,$allowed)) {
 <li <?php if($controller == 'contacts' || $controller == 'coroners' || $controller == 'institutions' || $controller == 'roles') { echo 'class="expandfirst"';};?>><a href="#" title="Administer the contacts on the site">Contacts management <i class="icon-folder-open"></i></a>
 <ul class="nav nav-stacked nav-pills menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'contacts'),null,true);?>" title="Edit current staff">Current staff</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'contacts', 'action' => 'alumni'),null,true);?>" title="Edit alumni">Alumni</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'coroners'),null,true);?>" title="Edit coroners">Coroners</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'institutions'),null,true);?>" title="Edit institutions">Institutions</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'roles'),null,true);?>" title="Edit staff roles">Staff roles</a></li>

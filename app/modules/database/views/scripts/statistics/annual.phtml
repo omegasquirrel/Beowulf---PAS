@@ -1,10 +1,9 @@
-<?php $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/ui.datepicker.js',$type='text/javascript'); ?>
-<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');?>
- <?php $this->jQuery()->javascriptCaptureStart(); ?>
- $(document).ready(function(){
+<?php 
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');$this->jQuery()->javascriptCaptureStart(); ?>
+$(document).ready(function(){
 $("#datefrom").datepicker();
 $("#dateto").datepicker();
-  });
+});
 <?php
 $this->jQuery()->javascriptCaptureEnd();
  ?>
@@ -31,6 +30,7 @@ $this->jQuery()->javascriptCaptureEnd();
 <th>Institution</th>
 <th>Objects</th>
 <th>Records</th>
+</tr>
 <tr>
 <?php 
 $dates = array('datefrom' => $this->datefrom,'dateto' => $this->dateto);
@@ -40,7 +40,6 @@ $data[] = array_merge($dates,$of);
 }
 echo $this->partialLoop('partials/annual/perofficer.phtml',$data);?>
 
-<tr>
 <?php 
 $finds_officers = array();
 $records_officers = array();
@@ -69,7 +68,7 @@ $recordsOffTotal = array_sum($records_officers);
 <th>Institution</th>
 <th>Objects</th>
 <th>Records</th>
-<tr>
+</tr>
 <?php echo $this->partialLoop('partials/annual/perinst.phtml',$this->institution);?>
 <tr>
 <?php 
@@ -125,7 +124,7 @@ $recordsPeriodTotal = array_sum($records_period);
 <table class="table table-striped">
 <tr>
 <th>Institution</th>
-<th>Number of finders</h3>
+<th>Number of finders</th>
 </tr>
 <?php echo $this->partialLoop('partials/annual/finderquants.phtml',$this->finders);?>
 <tr>
