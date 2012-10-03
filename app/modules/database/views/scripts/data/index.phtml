@@ -2,7 +2,9 @@
 $this->headTitle('All available full data dumps');
 ?>
 <h2>Daily data dumps of entire database</h2>
-<p>The below lists all available database dumps in zipped CSV format. This contains grid references and the following fields:</p>
+<p>The below lists all available database dumps in zipped CSV format. Data released under these downloads
+is licensed under the terms of CC-BY. If you use this data for any awesome things, get in touch.</p> 
+<p>This contains grid references and the following fields:</p>
 <blockquote>
 <p>id,objecttype,broadperiod,periodFromName,periodToName,fromdate,todate,description,notes,workflow,materialTerm,
 secondaryMaterialTerm,subsequentActionTerm,discoveryMethod,datefound1,datefound2,TID,rallyName,weight,height,diameter,
@@ -14,7 +16,7 @@ moneyerName,reverseType,regionName,county,district</p>
 <ul><?php echo $this->amazonDataDumpPublic();?></ul>
 
 <h2>Database dump of data with associated four figure NGR</h2>
-<p>The below lists all available database dumps in zipped CSV format. This contains grid references and the following fields:</p>
+<p>The below lists all available database dumps in zipped CSV format. This contains four figure grid references and the following fields:</p>
 <blockquote>
 <p>
 id,objecttype,broadperiod,periodFromName,periodToName,fromdate,todate,description,notes,workflow,materialTerm,
@@ -24,3 +26,5 @@ obverseLegend,reverseDescription,reverseLegend,tribeName,reeceID,cciNumber,mintm
 moneyerName,reverseType,regionName,county,district,parish,fourFigure</p>
 </blockquote>
 <ul><?php echo $this->amazonDataDumpPublicGrids();?></ul>
+<p>This file will be updated in the future to contain a lat/lon conversion field for the 4 figure NGR. If 
+you are a bona-fide researcher, you can obtain dumps of data at a higher level after requesting and obtaining an upgrade.</p>

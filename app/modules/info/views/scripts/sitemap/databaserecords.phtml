@@ -1,22 +1,23 @@
 <?php 
-$site = $this->serverUrl();
-
-
-$dom 	  = new DomDocument("1.0", "UTF-8");
-$sitemap  = $dom->createElement('configdata');
-//1st item
-$nav = $dom->createElement('nav');
-
-
-# News section
-$news = $dom->createElement('database');
-$sitemap->appendChild($nav);
-$news->appendChild($dom->createElement('label', 'Database output'));
-$news->appendChild($dom->createElement('uri', 'default'));
-$news->appendChild($dom->createElement('changefreq', 'daily'));
-$news->appendChild($dom->createElement('priority', '0.9'));
-$nav->appendChild($news);
-$pages = $dom->createElement('pages');
+	$site = $this->serverUrl();
+	
+	
+	$dom 	  = new DomDocument("1.0", "UTF-8");
+	$sitemap  = $dom->createElement('configdata');
+	//1st item
+	$nav = $dom->createElement('nav');
+	
+	
+	# News section
+	$news = $dom->createElement('database');
+	$sitemap->appendChild($nav);
+	$news->appendChild($dom->createElement('label', 'Database output'));
+	$news->appendChild($dom->createElement('uri', 'default'));
+	$news->appendChild($dom->createElement('changefreq', 'daily'));
+	$news->appendChild($dom->createElement('priority', '0.9'));
+	$nav->appendChild($news);
+	$pages = $dom->createElement('pages');
+	
 	$search = new Pas_Solr_Handler('beowulf');
 	$page = Zend_Controller_Front::getInstance()->getRequest()->getParam('page');
 
@@ -37,10 +38,10 @@ $pages = $dom->createElement('pages');
 	}
 	
 			
-$news->appendChild( $pages );
-#end of news section
-
-$dom->appendChild( $sitemap );
-
-$xmlData  = $dom->saveXML();
-echo $xmlData;
+	$news->appendChild( $pages );
+	#end of news section
+	
+	$dom->appendChild( $sitemap );
+	
+	$xmlData  = $dom->saveXML();
+	echo $xmlData;

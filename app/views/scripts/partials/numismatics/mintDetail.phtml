@@ -3,9 +3,9 @@
 $this->headTitle('Details for issuing mint located at ' . $this->name);
 $this->headMeta('Full details for issuing  mint at '. $this->name 
         . ' describing location and recent examples. ','description')
-->headMeta('CC NC-SA-BY','dc.rights')
-->headMeta('The Portable Antiquities Scheme','dc.publisher')
-->headMeta('Daniel Pett','dc.creator');
+		->headMeta('CC NC-SA-BY','dc.rights')
+		->headMeta('The Portable Antiquities Scheme','dc.publisher')
+		->headMeta('Daniel Pett','dc.creator');
 
 ?>
 
@@ -32,6 +32,7 @@ Abbreviation: <?php echo $this->abbrev;?>
 <?php endif;?>
 <?php if(!is_null($this->pleiadesID)):?>
 <p><a property="skos:related" resource="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>" href="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>">View on Pleiades</a></p>
+<?php echo $this->pleiadesFlickrImages($this->pleiadesID);?>
 <?php endif;?>
 
 <?php if(!is_null($this->pasID)):?>

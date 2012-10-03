@@ -26,7 +26,7 @@ class Pas_View_Helper_MetaBase
         ->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
         ->appendHttpEquiv('Content-Language', 'en-GB')
         ->appendHttpEquiv('imagetoolbar', 'no')
-        ->headMeta($this->view->title(),'dc.title')
+        ->headMeta($this->view->title(),'title')
         ->headMeta($this->view->curUrl(),'dc.identifier')
         ->headMeta($this->view->curUrl(),'og:url')
         ->headMeta($keywords,'keywords')
@@ -45,6 +45,14 @@ class Pas_View_Helper_MetaBase
     $this->view->headRdf('The Portable Antiquities Scheme','og:site_name');
     $this->view->headRdf('688811070','fb:admins');
     $this->view->headRdf('166174266729252','fb:app_id');
+    $this->view->headLink(array(
+            'rel' => 'foaf:primaryTopic',
+            'href' => $this->view->curUrl() . '#this',
+            'APPEND'));
+    $this->view->headLink(array(
+            'rel' => 'canonical',
+            'href' => $this->view->curUrl(),
+            'APPEND'));
     }
 
 }

@@ -45,6 +45,10 @@
         <?php if(!is_null($this->description)):?>
         <?php echo $this->ellipsisstring($this->description,600);?><br />
 		<?php endif;?>
+		Created on: <?php echo $this->niceshortdate($this->created);?><br />
+		<?php if(!is_null($this->updated)):?>
+		Last updated: <?php echo $this->niceshortdate($this->updated);?><br />
+		<?php endif;?>
 		<?php 
 		if($this->fourFigure):?>
 		<span class="question">Spatial data recorded. <i class="icon-map-marker"></i></span>

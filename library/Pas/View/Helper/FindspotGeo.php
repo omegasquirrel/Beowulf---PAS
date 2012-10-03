@@ -101,7 +101,7 @@ class Pas_View_Helper_FindspotGeo
     $html .= '<p>The spatially enriched data provided here was sourced from the excellent Places/Placemaker service';
     $html .= ' from Yahoo\'s geo team.<br />';
     $html .= 'Settlement type: ' . $data['placeTypeName'] . '<br/>';
-    $html .= 'WOEID: ' . $data['woeid'] . '<br/>';
+    $html .= 'WOEID: <a href="http://woe.spum.org/id/' . $data['woeid'] . '">' . $data['woeid'] . '</a><br/>';
     if(array_key_exists('postal',$data)){
     $html .= 'Postcode: ' . $data['postal'] . '<br/>';
     }

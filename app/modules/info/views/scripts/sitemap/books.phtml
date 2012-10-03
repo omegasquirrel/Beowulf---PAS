@@ -1,4 +1,25 @@
 <?php 
+$frontendOptions = array(
+   'lifetime' => 7200,
+   'debug_header' => true, // for debugging
+//   'regexps' => array(
+//       '^/info/sitemap/books/$' => array(              // ...but we cache the "view" action of
+//           'cache' => true,                     // this ArticleController
+//           'cache_with_post_variables' => true,    // and we cache even there are some variables in $_POST
+//           'make_id_with_post_variables' => true,   // (but the cache will be dependent of the $_POST array)
+//			'cache_id_prefix' => 'dan'       )
+//   )
+);
+$backendOptions = array(
+    'cache_dir' =>  'app/cache/fullpage'
+);
+
+// getting a Zend_Cache_Frontend_Page object
+$cache = Zend_Cache::factory('Page', 'File', $frontendOptions, $backendOptions);
+Zend_Debug::dump(Zend_Registry::get('page'));
+Zend_Debug::dump($cache);
+exit;
+$cache->start();	
 $site = $this->serverUrl();
 
 

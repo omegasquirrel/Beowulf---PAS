@@ -43,8 +43,13 @@ class Pas_View_Helper_FacebookPage {
 	CURLOPT_SSL_VERIFYHOST => false,
 	CURLOPT_SSL_VERIFYPEER => false,
 	CURLOPT_CONNECTTIMEOUT => 1,
+//	CURLOPT_DNS_USE_GLOBAL_CACHE => false,
+//	CURLOPT_DNS_CACHE_TIMEOUT => 2,
+//	CURLOPT_PROXY => 'http://81.29.72.72',
+//	CURLOPT_PROXYPORT => 80
 	),
 	);
+//	Zend_Debug::dump($config);
 	$request = $url;
 	$client = new Zend_Http_Client($request, $config);
 	$response = $client->request();

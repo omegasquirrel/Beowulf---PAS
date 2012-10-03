@@ -18,19 +18,23 @@ class Users_ProfileController extends Pas_Controller_Action_Admin {
 	/** Set up the ACL and contexts
 	*/
 	public function init() {
-        $this->_helper->_acl->allow('flos',null);
+	$this->_helper->_acl->allow('flos',null);
 	$this->_helper->_acl->allow('fa',null);
  	$this->_helper->_acl->allow('admin',null);
-        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-        $this->_config = Zend_Registry::get('config');
-        $this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-        $this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
-        }
+	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+	$this->_config = Zend_Registry::get('config');
+	$this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
+	$this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
+	}
+	
+	
 	/** No access to the index page
 	*/
 	public function indexAction() {
 	return $this->_redirect('/users/');
 	}
+	
+	
 	/** Edit staff profile
 	*/
 	public function editAction(){

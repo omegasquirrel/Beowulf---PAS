@@ -62,7 +62,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
     	'description', 'county', 'workflow',
-    	'fourFigure', 'knownas')
+    	'fourFigure', 'knownas', 'updated',
+    	'created')
     );
 
     $search->setFacets(array('objectType','county','broadperiod','institution', 'workflow', 'creator'));
@@ -106,12 +107,12 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
     	'description', 'county', 'workflow',
-    	'knownas', 'fourFigure')
+    	'knownas', 'fourFigure','updated',
+    	'created')
     );
 	
     $search->setFacets(array('objectType','county','broadperiod','institution'));
     $search->setParams($params);
-//    $search->debugQuery();
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->finds = $search->_processResults();
@@ -156,7 +157,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
     	'description', 'county', 'workflow',
-    	'fourFigure', 'knownas'
+    	'fourFigure', 'knownas', 'updated',
+    	'created'
         )
     );
     $search->setFacets(array('objectType','county','broadperiod','institution','workflow'));
@@ -203,7 +205,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'title', 'broadperiod', 'imagedir',
     	'filename', 'thumbnail', 'old_findID',
     	'county','licenseAcronym','findID',
-        'objecttype','institution')
+        'objecttype','institution','updated',
+    	'created')
     );
     $search->setFacets(array('broadperiod','county', 'objecttype','institution'));
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
@@ -246,7 +249,8 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
     	'filename','thumbnail','old_findID',
-    	'description', 'county', 'workflow'
+    	'description', 'county', 'workflow',
+    	'updated', 'created'
         )
     );
     $search->setFacets(array('objectType','county','broadperiod', 'discovered', 'institution','workflow'));

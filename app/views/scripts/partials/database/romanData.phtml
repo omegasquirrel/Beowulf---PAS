@@ -1,7 +1,7 @@
 <h4>Coin data (numismatics)</h4>
 <?php echo $this->CoinEditDeleteLink($this->old_findID,$this->id,$this->broadperiod,
 $this->secuid,$this->returnID,$this->createdBy);?>
-
+<div class="awld-scope">
 <p>
 <?php if(!is_null($this->d)) : ?>
 Denomination: <span property="nm:denomination"><?php echo $this->escape($this->d);?></span> <span class="scope">[<a href="<?php echo $this->url(array('module' => 'romancoins','controller'=>'denominations','action'=>'denomination','id' => $this->denom),null,true);?>" title="Read scope note for <?php echo $this->d;?>">scope notes</a> | <a href="<?php echo $this->url(array('module' => 'database','controller' => 'search','action'=>'results','denomination' => $this->denom),null,true);?>" title="view all records assigned to denomination: <?php echo $this->d;?>">view all attributed records</a>]</span><br />
@@ -19,7 +19,7 @@ Mint or issue place: <span property="skos:related" resource="http://pleiades.sto
 <?php if(!is_null($this->pleiadesID)):?>
 <?php
 $this->inlineScript()->appendFile('http://pelagios.github.com/pelagios-widgets/lib/require.js',$type = 'text/javascript'); 
-$this->inlineScript()->appendFile('http://pelagios.github.com/pelagios-widgets/place.js',$type = 'text/javascript'); 
+$this->inlineScript()->appendFile('http://pelagios.github.com/pelagios-widgets/place.js',$type = 'text/javascript');
 ?>
 <span id="pelagios" data-pleiades_id="<?php echo $this->pleiadesID;?>" class="pelagios pelagios-place"></span>
 <?php endif;?>
@@ -62,3 +62,4 @@ Reverse mintmark: <span property="pas:reverseMintMark"><?php echo $this->reverse
 Status: <span property="pas:status"><?php echo $this->status;?></span><br />
 <?php endif;?>
 </p>
+</div>

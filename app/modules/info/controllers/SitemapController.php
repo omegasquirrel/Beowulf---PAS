@@ -8,6 +8,8 @@
 * @license    GNU General Public License
 */
 class Info_SitemapController extends Pas_Controller_Action_Admin {
+	
+	protected $_cache;
 	/** Set up acl, display with no layout
 	*/		
 	public function init() {
@@ -15,11 +17,14 @@ class Info_SitemapController extends Pas_Controller_Action_Admin {
    	$this->_helper->layout->disableLayout();
 	$this->getResponse()->setHeader('Content-type', 'application/xml');
 	ini_set("memory_limit","256M");
+	$this->_cache = Zend_Registry::get('page');
     }
 	/**
 	 * The default action - show the home page
 	 */
 	public function indexAction() {
+		Zend_Debug::dump($this->_cache);
+		exit;
 	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/configuration/','nav');
    	$navigation = new Zend_Navigation($config);
    	$this->view->navigation($navigation);
@@ -76,7 +81,7 @@ class Info_SitemapController extends Pas_Controller_Action_Admin {
 		
 	}
 	public function booksAction(){
-		
+	
 	}
 	
 	public function configurationAction() {

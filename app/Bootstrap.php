@@ -70,6 +70,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	Zend_Registry::set('cache',$this->getResource('cachemanager')->getCache('rulercache'));
 	Zend_Registry::set('formcache',$this->getResource('cachemanager')->getCache('rulercache'));
 	Zend_Registry::set('flickrcache',$this->getResource('cachemanager')->getCache('rulercache'));
+	Zend_Registry::set('page',$this->getResource('cachemanager')->getCache('fullpage'));
 	}
 
 	public function _initSiteur(){

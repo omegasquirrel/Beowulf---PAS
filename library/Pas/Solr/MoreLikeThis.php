@@ -29,7 +29,7 @@ class Pas_Solr_MoreLikeThis {
     $this->_config = Zend_Registry::get('config');
     $this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
     $this->_solr = new Solarium_Client($this->_solrConfig);
-
+	$this->_solr->setAdapter('Solarium_Client_Adapter_ZendHttp');
     }
 
 	public function getRole(){

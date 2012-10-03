@@ -100,6 +100,8 @@ class Pas_Solr_Handler {
     $this->_core = $core;
     $this->_solrConfig = $this->_setSolrConfig($this->_core);
     $this->_solr = new Solarium_Client($this->_solrConfig);
+    $this->_solr->setAdapter('Solarium_Client_Adapter_ZendHttp');
+//	$zendHttp = $client->getAdapter()->getZendHttp();
     $this->_checkFieldList($this->_core, $this->setFields());
     $this->_checkCoreExists();
     $this->_getSchemaFields();

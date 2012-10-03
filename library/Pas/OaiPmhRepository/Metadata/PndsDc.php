@@ -147,16 +147,9 @@ class Pas_OaiPmhRepository_Metadata_PndsDc
     foreach($temporal as $k => $v){
         $this->appendNewElement($pnds, 'dcterms:temporal', $v);
     }
-
-    $files = new OaiFinds();
-    $images = $files->getImages($this->item['id']);
-    if(count($images)){
-    foreach($images as $image){
-    if(!is_null($image['i'])){
-    $thumbnail = $this->_serverUrl . self::THUMB_PATH . $image['i'] . self::IMAGE_EXTENSION;
+    if(!is_null($this->item['thumbnail'])){
+    $thumbnail = $this->_serverUrl . self::THUMB_PATH . $this->item['thumbnail'] . self::IMAGE_EXTENSION;
     $this->appendNewElement($pnds, 'pndsterms:thumbnail', $thumbnail);
-    }
-    }
     }
 
 

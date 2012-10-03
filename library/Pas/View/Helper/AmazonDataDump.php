@@ -16,7 +16,7 @@ class Pas_View_Helper_AmazonDataDump extends Zend_View_Helper_Abstract {
 	protected $_awsKey;
 	protected $_awsSecret;
 	protected $_config;
-	
+	protected $_cache;
 	
 	/** Construct the object
 	 *
@@ -26,9 +26,12 @@ class Pas_View_Helper_AmazonDataDump extends Zend_View_Helper_Abstract {
 		$this->_awsKey = $this->_config->webservice->amazonS3->accesskey;
 		$this->_awsSecret = $this->_config->webservice->amazonS3->secretkey;
 		$this->_S3 = new Zend_Service_Amazon_S3($this->_awsKey, $this->_awsSecret);
+		$this->_cache = Zend_Registry::get('rulercache');
 	}
 
 	public function amazonDataDump() {
+	$key = md5('researchamazon');
+	if (!($this->_cache->test($key))) {
 	$s3  = $this->_S3;
 	$list = $s3->getObjectsByBucket("findsorguk");
 	$data = array();
@@ -36,6 +39,10 @@ class Pas_View_Helper_AmazonDataDump extends Zend_View_Helper_Abstract {
 	$data[] = array(
 	'filename' => $name, 
 	'properties' => $s3->getInfo("findsorguk/$name"));
+	}
+	$this->_cache->save($data);
+	} else {
+	$data = $this->_cache->load($key);
 	}
 	return $this->_buildHtml($data);
 	}

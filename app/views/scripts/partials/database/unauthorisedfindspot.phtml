@@ -172,6 +172,9 @@ District: <?php echo $this->escape(ucwords(strtolower($this->district)));?>
 <span class="fourfigure">4 Figure: <?php echo $this->fourFigure;?></span><br />
 1:25K map: <?php echo $this->map25k;?><br />
 1:10K map: <?php echo $this->map10k;?><br />
+<?php if((!is_null($this->woeid)) && is_null($this->knownas)):?>
+WOEID: <a href="http://woe.spum.org/id/<?php echo $this->woeid;?>"><?php echo $this->woeid;?></a><br />
+<?php endif;?>
 <?php endif;?>
 <?php if($this->source):?>
 Grid reference source: <?php echo $this->escape($this->source);?><br />

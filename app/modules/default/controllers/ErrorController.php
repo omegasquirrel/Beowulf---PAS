@@ -8,13 +8,11 @@ class ErrorController extends Pas_Controller_Action_Admin {
 		$this->_helper->_acl->allow(NULL);
         $this->_helper->layout()->setLayout('database');
 		$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-		$response = $this->getResponse();
-		$response->insert('header', $this->view->render('structure/header.phtml'));
-		$response->insert('breadcrumb', $this->view->render('structure/breadcrumb.phtml'));
-		$response->insert('navigation', $this->view->render('structure/navigation.phtml'));
-		$response->insert('footer', $this->view->render('structure/footer.phtml'));
-		$response->insert('messages', $this->view->render('structure/messages.phtml'));
-		$response->insert('contexts',$this->view->render('structure/contexts.phtml'));
+//		$this->_cs = $this->_helper->contextSwitch();
+//    	$this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+//    	$this->_cs->setAutoDisableLayout(true)
+//            ->addActionContext('error', array('json', 'xml'))
+//            ->initContext();
 		}
 		
 	private static function addPadding ($number) {

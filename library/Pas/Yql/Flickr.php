@@ -326,5 +326,19 @@ class Pas_Yql_Flickr {
 	$response = $client->request();
 	return json_decode($response->getBody());
 	}
+	
+	public function getMachineTagged($tag, $per_page = 10, $page = 1){
+	$args = array(
+	'method' => 'flickr.photos.search',
+	'api_key' => $this->_flickr->apikey,
+	'machine_tags' => $tag,
+	'machine_tag_mode' => 'all',
+	'per_page' => $per_page,
+	'page' => $page,
+	'extras' => $this->_extras,
+	);
+	$yql = 'SELECT * FROM  xml where url="'. self::FLICKRURI . $this->buildQuery($args) . '";';
+	return $this->getData($yql)->query->results->rsp->photos;	
+	}
 
 }

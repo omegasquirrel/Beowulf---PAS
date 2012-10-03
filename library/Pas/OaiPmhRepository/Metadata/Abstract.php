@@ -65,7 +65,7 @@ abstract class Pas_OaiPmhRepository_Metadata_Abstract
     /** The thumbnail path
      *
      */
-    const THUMB_PATH = '/images/thumbnails';
+    const THUMB_PATH = '/images/thumbnails/';
 
     /** The thumbnail extension
      *

@@ -11,12 +11,16 @@ class Database_DataController extends Pas_Controller_Action_Admin {
 	/** Set up the ACL and contexts
 	*/
 	public function init()  {
-	$this->_helper->_acl->allow('member',NULL);
+	$this->_helper->_acl->allow('member','index');
+	$this->_helper->_acl->allow('flos','backups');
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     }
 	
 	public function indexAction() {
 
+	}
+	
+	public function backupsAction(){
 	}
 	
 }

@@ -65,7 +65,7 @@ class Users_IndexController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger->addMessage('Login failed');
 	} else {
 	$data = $authAdapter->getResultRowObject(null, 'password');
-	$auth->getStorage()->write($data);
+	$this->_auth->getStorage()->write($data);
 	$this->_redirect(self::REDIRECT);
 	return;
 	}

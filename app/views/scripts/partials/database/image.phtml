@@ -42,7 +42,7 @@ echo '<img src="'.$this->baseUrl().'/'.$path.'medium/'.$name.$ext.'" alt="A resi
 
 ?>
 <p><a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax','action' => 'download','id' => $this->id),null,true);?>" title="Download image">Download original</a> 
-<a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'zoom','id' => $this->id),null,true);?>" title="Zoom this image">Zoom image</a> <?php echo $this->imagetoolbox($this->id,$this->createdBy);?></span></p>
+<a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'zoom','id' => $this->id),null,true);?>" title="Zoom this image">Zoom image</a> <?php echo $this->imagetoolbox($this->id,$this->createdBy);?></p>
 </div>
 
 
@@ -103,7 +103,7 @@ echo '<img src="'.$this->baseUrl().'/'.$path.'medium/'.$name.$ext.'" alt="A resi
 		}
 		echo '<li>Mime type: '.$img['mime'] .'</li>';
 		if (isset($img["APP13"])) {
-		$iptc = iptcparse($info["APP13"]);
+		$iptc = iptcparse($img["APP13"]);
 		 //   Zend_Debug::dump($iptc);
 		}
 		if($img['mime'] == 'image/jpeg') {
