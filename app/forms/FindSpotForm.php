@@ -121,6 +121,19 @@ public function __construct($options = null) {
 	->addValidator('NotEmpty','Float')
 	->disabled = true;
 
+	$declong4 = new Zend_Form_Element_Text('fourFigureLon');
+	$declong4->setLabel('Four figure longitude: ')
+	->addFilters(array('StripTags', 'StringTrim'))
+	->addValidator('NotEmpty','Float')
+	->disabled = true;
+
+
+	$declat4 = new Zend_Form_Element_Text('fourFigureLat');
+	$declat4->setLabel('Four figure latitude: ')
+	->addFilters(array('StripTags', 'StringTrim'))
+	->addValidator('NotEmpty','Float')
+	->disabled = true;
+	
 	$woeid = new Zend_Form_Element_Text('woeid');
 	$woeid->setLabel('Where on Earth ID: ')
 	->addFilters(array('StripTags', 'StringTrim'))
@@ -129,6 +142,12 @@ public function __construct($options = null) {
 
 	$elevation = new Zend_Form_Element_Text('elevation');
 	$elevation->setLabel('Elevation: ')
+	->addFilters(array('StripTags', 'StringTrim'))
+	->addValidator('NotEmpty','Digits')
+	->disabled = true;
+	
+	$gridLen = new Zend_Form_Element_Text('gridlen');
+	$gridLen->setLabel('Grid reference length: ')
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('NotEmpty','Digits')
 	->disabled = true;
@@ -214,13 +233,14 @@ public function __construct($options = null) {
 
 	
 
-	if($action == 'edit') {
+	if($action === 'edit') {
 	$this->addElements(array(
 	$county, $district, $parish,
 	$knownas, $description, $comments,
 	$regionID, $gridref, $fourFigure,
 	$easting, $northing, $map10k,
 	$map25k, $declong, $declat,
+	$declong4, $declat4, $gridLen,
 	$woeid, $elevation, $address,
 	$gridrefsrc, $gridrefcert, $depthdiscovery,
 	$postcode, $landusevalue, $landusecode,
@@ -252,7 +272,8 @@ public function __construct($options = null) {
 	'gridref', 'gridrefcert', 'gridrefsrc',
 	'fourFigure', 'easting', 'northing',
 	'map25k', 'map10k',	'declat',
-	'declong', 'woeid', 'elevation',
+	'declong', 'fourFigureLat', 'fourFigureLon', 
+	'woeid', 'elevation', 'gridlen',
 	'landusevalue', 'landusecode', 'depthdiscovery',
 	),'spatial');
 	} else {

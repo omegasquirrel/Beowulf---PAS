@@ -72,20 +72,16 @@ class Pas_Controller_Action_Helper_Audit
     foreach ($auditData as $field_id => $new_value) {
     $ix++;
     $fieldarray[$ix]['recordID']     = $recordID;
-    $fieldarray[$ix]['entityID']     = $findID;
+    $fieldarray[$ix]['entityID']     = $entityID;
     $fieldarray[$ix]['editID']     = $this->editID();
     $fieldarray[$ix]['fieldName']     = $field_id;
     $fieldarray[$ix]['afterValue']    = $new_value;
 		
     } 
 	
-    function filteraudit($fieldarray) {
-    if ($fieldarray['afterValue'] != $fieldarray['beforeValue']) {
-    return true;
-        }
-    }
+    
 	
-    $fieldarray = array_filter($fieldarray,'filteraudit');
+    $fieldarray = array_filter($fieldarray,array($this,'filteraudit'));
     foreach($fieldarray as $f){
 	foreach ($f as $key => $value) {
     if (is_null($value) || $value=="") {
@@ -97,5 +93,9 @@ class Pas_Controller_Action_Helper_Audit
     $auditBaby = $audit->add($f);
     }
 }
-
+   protected function filteraudit($fieldarray) {
+    if ($fieldarray['afterValue'] != $fieldarray['beforeValue']) {
+    return true;
+        }
+    }
     }

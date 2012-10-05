@@ -289,7 +289,10 @@ class Findspots extends Pas_Db_Table_Abstract {
 	protected function _processFindspot($data){
 	if(is_array($data)) {
 	$conversion = new Pas_Geo_Gridcalc($data['gridref']);
+	
 	$results = $conversion->convert();
+	$fourFigure = new Pas_Geo_Gridcalc($results['fourFigureGridRef']);
+	$fourFigureData = $fourFigure->convert();
 	$place = new Pas_Service_Geo_Geoplanet($this->_appid);
 	$geoHash = new Pas_Geo_Hash();
 	$hash = $geoHash->encode($results['decimalLatLon']['decimalLatitude'],
@@ -304,12 +307,26 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$data['accuracy'] = $results['accuracy']['precision'];
 	$data['gridlen'] = $results['gridrefLength'];
 	$data['geohash'] = $hash;
+	$data['fourFigureLat'] = $fourFigureData['decimalLatLon']['decimalLatitude'];
+	$data['fourFigureLon'] = $fourFigureData['decimalLatLon']['decimalLongitude'];
 	$yahoo = $place->reverseGeoCode($results['decimalLatLon']['decimalLatitude'],
 		$results['decimalLatLon']['decimalLongitude']);	
         $data['woeid'] = $yahoo['woeid'];
+        
     return $data;
 	} else {
 	return $data;
 	}
+	}
+	
+	public function missingGrids($limit = 1){
+	$findspots = $this->getAdapter();
+	$select = $findspots->select()
+		->from($this->_name)
+			->joinLeft('finds','finds.secuid = findspots.findID',array('recordID' => 'id'))
+		   ->where('gridref IS NOT NULL')
+		   ->where('gridlen IS NULL')
+		->limit($limit);
+	return $findspots->fetchAll($select);
 	}
 }
