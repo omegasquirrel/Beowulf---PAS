@@ -235,6 +235,13 @@ Specific landuse: <?php echo $this->escape($this->landuse);?>
 <?php endif; ?>
 
 </div>
-
-
+<?php if(!is_null($this->gridref) && is_null($this->knownas)):?>
+<div class="row-fluid">
+<div class="span4">
+<?php 
+echo $this->domesdayNear($this->fourFigureLat,$this->fourFigureLon, 2);
+?>
+</div>
+</div>
+<?php endif;?>
 

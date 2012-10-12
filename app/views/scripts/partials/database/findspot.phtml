@@ -208,12 +208,17 @@ Latitude: <?php echo $this->declat;?> Longitude: <?php echo $this->declong;?><br
 Four figure Latitude: <?php echo $this->fourFigureLat; ?> Four figure longitude: <?php echo $this->fourFigureLon; ?><br />
 1:25K map: <?php echo $this->map25k;?><br />
 1:10K map: <?php echo $this->map10k;?>
+<?php if((!is_null($this->woeid)) && is_null($this->knownas)):?>
+WOEID: <a href="http://woe.spum.org/id/<?php echo $this->woeid;?>"><?php echo $this->woeid;?></a><br />
+<?php endif;?>
 </p>
 
 </div>
 
 <div class="span4">
-<?php //echo $this->domesdayNear($this->declat,$this->declong, 2);?>
+<?php 
+echo $this->domesdayNear($this->declat,$this->declong, 2);
+?>
 </div>
 
 </div>

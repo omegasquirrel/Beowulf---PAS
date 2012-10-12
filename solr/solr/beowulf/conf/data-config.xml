@@ -141,7 +141,10 @@ recorders.fullname AS recorder,
 finds.updated AS updated,
 coins.pleiadesID,
 mints.nomismaID AS mintNomisma,
-maporigins.term AS gridSource
+maporigins.term AS gridSource,
+findspots.fourFigureLat,
+findspots.fourFigureLon,
+findspots.geonamesID
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID
@@ -307,6 +310,9 @@ LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
   	<field column="pleiadesID" name="pleiadesID" />
     <field column="mintNomisma" name="mintNomisma" />
     <field column="gridSource" name="gridSource" />
+    <field column="fourFigureLat" name="fourFigureLat" />
+    <field column="fourFigureLon" name="fourFigureLon" />
+    <field column="geonamesID" name="geonamesID" />
 </entity>
 
 </document>
