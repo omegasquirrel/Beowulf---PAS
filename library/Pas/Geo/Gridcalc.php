@@ -178,7 +178,7 @@ class Pas_Geo_Gridcalc  {
 	 * @param integer $round the number of digits for the Lat Lon pair to be trimmed to.
 	 * @return array $geodata An array of geo conversions.
 	 */
-	public function convert($unit = 'm', $round = 5) {
+	public function convert($unit = 'm', $round = 8) {
 	//clean grid reference
 	$cleangrid = $this->_stripgrid($this->_gridref);
 	//gets length of string
@@ -287,11 +287,13 @@ class Pas_Geo_Gridcalc  {
 	$northcoord = (substr($gridcoords, $halfcount, $halfcount));
 	//Confirm numeric for easting coordinates
 	if (!is_numeric($eastcoord)){
-		throw new Pas_Geo_Exception('Easting contains alpha characters');
+		echo 'Easting contains alpha characters';
+//		throw new Pas_Geo_Exception('Easting contains alpha characters');
 	}
 	//Confirm numeric for northing coordinates
 	if (!is_numeric($northcoord)){
-		throw new Pas_Geo_Exception('Northing contains alpha characters');
+		echo 'Northing contains alpha characters';
+//		throw new Pas_Geo_Exception('Northing contains alpha characters');
 	}
 
 	//combine and cast
@@ -367,11 +369,10 @@ class Pas_Geo_Gridcalc  {
 	$Lon = $this->_xyzToLong($x2, $y2);
 	$cleanLat = round($Lat, $round);
 	$cleanLon = round($Lon, $round);
-	
-	
 	$geodata = array(
 	'gridref'    		=> strtoupper($cleangrid),
-	'25kmap'     		=> $twoPointFiveKMap,
+	'25kmap'     		=> $this->fourFigure(4),  
+//	$twoPointFiveKMap,
 	'10kmap'     		=> $tenKMap,
 	'easting'   		=> $gridX,
 	'northing' 	 	=> $gridY,
@@ -843,9 +844,9 @@ class Pas_Geo_Gridcalc  {
 	$A = cos($latRad)*($longRad - $longOriginRad);
 
 	$M = $this->_a*((1 - $this->_e2/4 - 3 * $this->e2 *$this->_e2/64 - 5 * $this->_e2* $this->_e2 * $this->_e2 / 256)
-	* $latRad - (3 * $this->_e2 / 8 + 3 * $this->_e2 * $this->_e2 / 32 + 45 * $this->_e2 * $this->_e2 * $this->_e2 /1024)
-	* sin(2*$latRad) + (15*$this->_e2 * $this->_e2 / 256 + 45 * $this->_e2 * $$this->_e2 * $this->_e2 / 1024) * sin( 4 * $latRad)
-	- (35 * $this->_e2 * $this->_e2 * $this->_e2 / 3072) * sin(6 * $latRad));
+	* $latRad - (3 * $this->_e2 / 8 + 3 * $this->_e2 * $this_e2 / 32 + 45 * $this_e2 * $this_e2 * $this_e2 /1024)
+	* sin(2*$latRad) + (15*$this_e2 * $this_e2 / 256 + 45 * $this_e2 * $this_e2 * $this_e2 / 1024) * sin( 4 * $latRad)
+	- (35 * $this_e2 * $this_e2 * $this_e2 / 3072) * sin(6 * $latRad));
 
 	$utmEasting = ( $k0 * $N * ($A + (1 - $T + $C) * $A * $A * $A /6 + (5 - 18 * $T + $T * $T + 72 * $C - 58 *
 	$eccPrimeSquared) * $A * $A * $A * $A * $A/ 120) + $falseEasting);

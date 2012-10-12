@@ -32,7 +32,7 @@ class Pas_Controller_Plugin_ModuleLayout
 	/** Set up contexts to disable layout for based on modules
 	 * @var array $_disabled
 	 */
-	protected $_disabled = array('ajax','oai','sitemap', 'v1');
+	protected $_disabled = array('ajax','oai','sitemap', 'v1', 'V1');
 
 	/** Create the layout after the request has been dispatched
 	 *  Disable or enable layouts depending on type.
@@ -41,9 +41,11 @@ class Pas_Controller_Plugin_ModuleLayout
 	 * @todo   change this to a database or config.ini method
 	 */
 	public function postDispatch(Zend_Controller_Request_Abstract $request) {
+	
 	$ctrllr = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 	$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
 	$contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch');
+	
 	if(!in_array($ctrllr, $this->_disabled)) {
 	if(!in_array($contextSwitch->getCurrentContext(), $this->_contexts)) {
 	$module = strtolower($request->getModuleName());
@@ -186,7 +188,7 @@ class Pas_Controller_Plugin_ModuleLayout
 		break;
 	case 'api':
 		$layouttype = 'database';
-	    $view->headTitle('Sitewide search')->setSeparator(' - ');
+	    $view->headTitle('API version 1')->setSeparator(' - ');
 		break;
 	default:
 		$layouttype = 'home';

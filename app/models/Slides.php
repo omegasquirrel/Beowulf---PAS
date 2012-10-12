@@ -275,6 +275,7 @@ class Slides extends Pas_Db_Table_Abstract {
 		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('old_findID','broadperiod'))
 		->joinLeft('users','users.id = slides.createdBy', array('imagedir','fullname'))
+		->joinLeft('licenseType','slides.ccLicense = licenseType.id',array('license'))
 		->where('slides.imageID = ?', (int)$id);
 	return  $thumbs->fetchAll($select);
 	}

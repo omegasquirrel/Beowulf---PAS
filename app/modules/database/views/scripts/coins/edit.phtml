@@ -25,3 +25,9 @@ echo  $welcome[array_rand($welcome)];
 <?php 
 $this->form->setLegend('Edit data');
 echo $this->form;?>
+<?php $this->jQuery()->javascriptCaptureStart();?>
+$(document).ready(function() {
+       // focus on the first text input field in the first field on the page
+        $("input[type='select']:first", document.forms[0]).focus();
+    });
+<?php $this->jQuery()->javascriptCaptureEnd();?>

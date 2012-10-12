@@ -103,7 +103,7 @@ $(document).ready(function() {
   		var myTitle = document.createElement('h1');
 		myTitle.style.color = '#444444';
 		myTitle.style.font = "10px sans-serif";
-myTitle.innerHTML = 'Imperium layer from the <a href="http://pelagios-project.blogspot.co.uk/2012/09/a-digital-map-of-roman-empire.html">Pelagios project<\/a> <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY<\/a> |Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a>';
+		myTitle.innerHTML = 'Imperium layer from the <a href="http://pelagios-project.blogspot.co.uk/2012/09/a-digital-map-of-roman-empire.html">Pelagios project<\/a> <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY<\/a> |Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a>';
 
 		var myTextDiv = document.createElement('div');
 		myTextDiv.appendChild(myTitle);
@@ -170,6 +170,7 @@ District: <?php echo $this->escape(ucwords(strtolower($this->district)));?>
 <p>
 <?php if(!is_null($this->gridref) && is_null($this->knownas)):?>
 <span class="fourfigure">4 Figure: <?php echo $this->fourFigure;?></span><br />
+Four figure Latitude: <?php echo $this->fourFigureLat; ?> Four figure longitude: <?php echo $this->fourFigureLon; ?><br />
 1:25K map: <?php echo $this->map25k;?><br />
 1:10K map: <?php echo $this->map10k;?><br />
 <?php if((!is_null($this->woeid)) && is_null($this->knownas)):?>

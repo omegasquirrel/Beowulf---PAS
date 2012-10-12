@@ -49,16 +49,28 @@ echo '<img src="'.$this->baseUrl().'/'.$path.'medium/'.$name.$ext.'" alt="A resi
 <div class="row-fluid">
 	<!--  Navigation for tabs  -->
 	<ul id="tab" class="nav nav-tabs">
-		<li class="active"><a href="#others" data-toggle="tab">Other sizes</a></li>
+        <li><a class="active" href="#meta" data-toggle="tab">Metadata</a></li>
         <li><a href="#exif" data-toggle="tab">Exif data</a></li>
-        <li><a href="#meta" data-toggle="tab">Metadata</a>
+        <li><a href="#others" data-toggle="tab">Other sizes</a></li>
 	</ul>
 	<!--  End of Tabs navigation -->
 	
 	<!-- Start of tabbed content div -->
 	<div id="myTabContent" class="tab-content">
 		
-		<div class="tab-pane fade in active" id="others">
+		<div class="tab-pane fade in active" id="meta">
+		<h3>Image meta data</h3>
+		<ul>
+		<li>Label: <?php echo $this->label;?></li>
+		<li>Broadperiod: <?php echo $this->broadperiod;?></li>
+		<li>County: <?php echo $this->county;?></li>
+		<li>Filesize: <?php echo $this->humanfilesize($this->filesize);?></li>
+		<li>Copyright: <?php echo $this->imagerights;?></li>
+		<li>License: <?php echo $this->license;?></li>
+		</ul>
+		</div>
+		
+		<div class="tab-pane fade " id="others">
 		<h4>Other sizes</h4>
 		<?php 
 		$thumb = './images/thumbnails/'.$this->id.'.jpg';
@@ -140,15 +152,7 @@ echo '<img src="'.$this->baseUrl().'/'.$path.'medium/'.$name.$ext.'" alt="A resi
 		</ul>
 		</div>
 		
-		<div class="tab-pane fade" id="meta">
-		<h3>Image meta data</h3>
-		<ul id="related">
-		<li>Label: <?php echo $this->label;?></li>
-		<li>Broadperiod: <?php echo $this->broadperiod;?></li>
-		<li>County: <?php echo $this->county;?></li>
-		<li>Filesize: <?php echo $this->humanfilesize($this->filesize);?></li>
-		</ul>
-		</div>
+		
 		
 	</div>
 	<!--  End of tabbed content div -->

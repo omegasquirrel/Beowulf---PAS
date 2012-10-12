@@ -15,6 +15,12 @@ $("#datefound2").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
 });
 
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
+<?php $this->jQuery()->javascriptCaptureStart();?>
+$(document).ready(function() {
+       // focus on the first text input field in the first field on the page
+        $("input[type='text']:first", document.forms[0]).focus();
+    });
+<?php $this->jQuery()->javascriptCaptureEnd();?>
 <h2>Add a new object</h2>
 <p><a class="btn btn-success btn-large" href="<?php echo $this->url(array(
 	'module' => 'database',

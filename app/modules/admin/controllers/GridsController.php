@@ -306,8 +306,9 @@ public function generatefindidAction()
 	}
 	public function gridlengthAction(){
 	ini_set('memory_limit', '512M'); 
+	set_time_limit(0);
 	$missing = new Findspots();
-	$rows = $missing->missingGrids(100);
+	$rows = $missing->missingGrids(1000);
 	foreach($rows as $r){
 	$rowid = $r['id'];
 	$oldData = $missing->fetchRow('id=' 
@@ -315,13 +316,35 @@ public function generatefindidAction()
     $where = array();
     $where[] = $missing->getAdapter()->quoteInto('id = ?', 
             $rowid);
-    $insertData = $missing->updateAndProcess(array('gridref' => $r['gridref']));
-
+    $insertData = $missing->updateAndProcessGrids(array('gridref' => $r['gridref']));
     $update = $missing->update($insertData, $where);
     $this->_helper->audit($insertData, $oldData, 'FindSpotsAudit',
      $rowid,$r['recordID']);
     echo 'You did it!';	
-    sleep(1);
 	}
+	}
+	
+	public function fourlatlonAction(){
+	ini_set('memory_limit', '512M'); 
+	set_time_limit(0);
+	$missing = new Findspots();
+	$rows = $missing->missingfour(10000);
+	foreach($rows as $r){
+	$rowid = $r['id'];
+	$oldData = $missing->fetchRow('id=' 
+            . $rowid)->toArray();
+    $where = array();
+    $where[] = $missing->getAdapter()->quoteInto('id = ?', 
+            $rowid);
+    $insertData = $missing->updateAndProcessGrids(array('gridref' => $r['gridref']));
+	$new = array(
+	'geohash' => $insertData['geohash'],
+	'fourFigureLat' => $insertData['fourFigureLat'],
+	'fourFigureLon' => $insertData['fourFigureLon']
+	);
+    $update = $missing->update($new, $where);
+    echo 'updated ' . $rowid . '<br />';	
+	}
+	echo 'You did it!';
 	}
 }

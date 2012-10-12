@@ -198,10 +198,14 @@ Parish: <?php echo $this->escape(ucwords(strtolower($this->parish)));?>
 <p>
 Grid reference: <?php echo $this->StripGrid($this->gridref);?><br />
 <span class="fourfigure">4 Figure: <?php echo $this->fourFigure;?></span><br />
+<?php if(!is_null($this->source)):?>
 Grid reference source: <?php echo $this->escape($this->source);?><br />
+<?php endif;?>
 Grid reference accurate to a <?php echo $this->GetAccuracy($this->gridref);?> metre square.<br />
+Grid reference length: <?php echo $this->gridlen;?><br />
 Easting: <?php echo $this->easting;?>  Northing: <?php echo $this->northing;?><br />
 Latitude: <?php echo $this->declat;?> Longitude: <?php echo $this->declong;?><br />
+Four figure Latitude: <?php echo $this->fourFigureLat; ?> Four figure longitude: <?php echo $this->fourFigureLon; ?><br />
 1:25K map: <?php echo $this->map25k;?><br />
 1:10K map: <?php echo $this->map10k;?>
 </p>
