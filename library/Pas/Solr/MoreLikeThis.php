@@ -27,7 +27,7 @@ class Pas_Solr_MoreLikeThis {
     public function __construct(){
     $this->_cache = Zend_Registry::get('rulercache');
     $this->_config = Zend_Registry::get('config');
-    $this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
+    $this->_solrConfig = array('adapteroptions' => $this->_config->solr->master->toArray());
     $this->_solr = new Solarium_Client($this->_solrConfig);
 	$this->_solr->setAdapter('Solarium_Client_Adapter_ZendHttp');
     }

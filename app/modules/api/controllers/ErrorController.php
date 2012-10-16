@@ -5,6 +5,18 @@
  **/
 class Api_ErrorController extends REST_Controller
 {
+	
+public function init() {
+		$this->_helper->acl->allow('public',null);
+		$this->view->version = "Api Version 1.0";
+		$this->view->host = $this->view->serverUrl();
+		$this->view->author = 'Daniel Pett';
+		$this->view->licence = 'CC BY-SA';
+		$this->view->urlCalled = $this->view->curUrl();
+		$this->view->documentation = $this->view->serverUrl() . '/api/';
+		$this->view->timeStamp = Zend_Date::now()->toString('yyyy-MM-ddTHH:mm:ssZ');
+		$this->_helper->layout->disableLayout();
+	}
     public function errorAction()
     {
         if ($this->_request->hasError()) {

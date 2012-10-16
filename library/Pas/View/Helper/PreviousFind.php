@@ -26,7 +26,7 @@ class Pas_View_Helper_PreviousFind extends Zend_View_Helper_Abstract {
 	public function __construct(){
 		$this->_cache = Zend_Registry::get('cache');
 		$this->_config = Zend_Registry::get('config');
-		$this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
+		$this->_solrConfig = array('adapteroptions' => $this->_config->solr->master->toArray());
 		$this->_solr = new Solarium_Client($this->_solrConfig);
 	}
 	

@@ -1,6 +1,6 @@
 <?php
 
-class Api_V1Controller 
+class Api_ObjectsController 
 	extends REST_Controller {
 
 	public function init() {
@@ -21,7 +21,7 @@ class Api_V1Controller
      */
     public function indexAction()
     {
-        $this->view->message = 'The index action has been called. Nothing to see here.';
+    	$this->view->objects = $this->getData(); 
         $this->_response->ok();
     }
 

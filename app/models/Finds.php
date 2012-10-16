@@ -1923,6 +1923,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('regions','findspots.regionID = regions.id',array('regionName' => 'region'))
 		->joinLeft('hoards','hoards.id = finds.hoardID',array('hoardName' => 'term'))
 		->joinLeft('people', 'finds.finderID = people.secuid', array('finder' => 'fullname'))
+		->joinLeft(array('recorder' => 'people'), 'finds.recorderID =recorder.secuid', array('recorder' => 'fullname'))
 		->where('finds.id = ?', (int)$findID)
 		->group('finds.id')
 		->limit(1);

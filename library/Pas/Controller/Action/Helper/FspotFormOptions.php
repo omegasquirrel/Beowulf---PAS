@@ -10,7 +10,7 @@
  *
  * @author Daniel Pett <dpett@britishmuseum.org>
  */
-class Pas_Form_Findspot
+class Pas_Form_Findspot {
 
   	protected $_view;
 
@@ -63,9 +63,9 @@ class Pas_Form_Findspot
     $this->_view->form->landusecode->addMultiOptions(array(NULL => 'Choose code',
     	'Available landuses' => $landusecode_options));
      }
-    if(!is_null($findspot['landowner'])) {
+    if(!is_null($data['landowner'])) {
     $finders = new Peoples();
-    $finders = $finders->getName($findspot['landowner']);
+    $finders = $finders->getName($data['landowner']);
     foreach($finders as $finder) {
     $form->landownername->setValue($finder['term']);
     }
