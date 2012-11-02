@@ -16,8 +16,7 @@
 * @since	  September 22 2011
 */
 
-class Pas_Controller_Plugin_ModuleLayout
-	extends Zend_Controller_Plugin_Abstract {
+class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract {
 
 	/** Set up the available array of contexts
 	 * @var array $_contexts
@@ -32,7 +31,7 @@ class Pas_Controller_Plugin_ModuleLayout
 	/** Set up contexts to disable layout for based on modules
 	 * @var array $_disabled
 	 */
-	protected $_disabled = array('ajax','oai','sitemap', 'v1', 'V1');
+	protected $_disabled = array('ajax', 'oai', 'sitemap', 'version1', 'objects');
 
 	/** Create the layout after the request has been dispatched
 	 *  Disable or enable layouts depending on type.
@@ -41,16 +40,16 @@ class Pas_Controller_Plugin_ModuleLayout
 	 * @todo   change this to a database or config.ini method
 	 */
 	public function postDispatch(Zend_Controller_Request_Abstract $request) {
-	
 	$ctrllr = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 	$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
 	$contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch');
-	
+	$response = $this->getResponse();
+	$view = Zend_Controller_Action_HelperBroker::getExistingHelper('ViewRenderer')->view;
+	$route = Zend_Controller_Front::getInstance()->getRouter()->getCurrentRoute();
+//	Zend_Debug::dump($route);
 	if(!in_array($ctrllr, $this->_disabled)) {
 	if(!in_array($contextSwitch->getCurrentContext(), $this->_contexts)) {
 	$module = strtolower($request->getModuleName());
-	$response = $this->getResponse();
-	$view = Zend_Controller_Action_HelperBroker::getExistingHelper('ViewRenderer')->view;
 	$view->contexts = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch')
 		->getActionContexts(Zend_Controller_Front::getInstance()->getRequest()->getActionName());
 	$view->messages = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')
@@ -194,7 +193,7 @@ class Pas_Controller_Plugin_ModuleLayout
 		$layouttype = 'home';
 		break;
 		}
-
+	if(!$route instanceOf Zend_Rest_Route){
 	$response->insert('userdata', $view->render('structure/userdata.phtml'));
 	$response->insert('header', $view->render('structure/header.phtml'));
 	$response->insert('breadcrumb', $view->render('structure/breadcrumb.phtml'));
@@ -208,9 +207,10 @@ class Pas_Controller_Plugin_ModuleLayout
 	$response->insert('bronzeage', $view->render('structure/bronzeage.phtml'));
 	$response->insert('staffs', $view->render('structure/staffs.phtml'));
 	$response->insert('searchForm', $view->render('structure/searchForm.phtml'));
+	}
 	$layout = Zend_Layout::getMvcInstance();
 	if ($layout->getMvcEnabled() ) {
-	$layout->setLayoutPath('app/layouts/');
+	$layout->setLayoutPath(APPLICATION_PATH . '/layouts/');
 	if($ctrllr != 'error') {
 	$layout->setLayout($layouttype);
 	} else {
@@ -218,9 +218,14 @@ class Pas_Controller_Plugin_ModuleLayout
 	}
 	}
 	} else {
-	$contextSwitch->setAutoDisableLayout(true)
-		->initContext();
+	$contextSwitch->setAutoDisableLayout(true)->initContext();
 	}
+	}
+	
+	if($route instanceOf Zend_Rest_Route){
+	Zend_Controller_Action_HelperBroker::getStaticHelper('Layout')->disableLayout();
+	} else {
+	
 	}
 	}
 }

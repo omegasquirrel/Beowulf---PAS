@@ -7,7 +7,9 @@ echo $this->partialLoop('partials/numismatics/rulerProfile.phtml', $this->monarc
 ini_set('display_errors', '0');     # don't show any errors...
 error_reporting(E_ALL | E_STRICT);  # ...but do log them
 $config = array('remote_store_endpoint' => 'http://dbpedia.org/sparql');
-$store = ARC2::getRemoteStore($config);
+$arc2 = new ARC2();
+
+$store = $arc2->getRemoteStore($config);
 //build the SPARQL query
 $q = '
 PREFIX owl: <http://www.w3.org/2002/07/owl#>

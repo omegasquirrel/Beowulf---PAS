@@ -9,8 +9,12 @@ foreach($this->results as $result){
 		unset($result['parish']);
 		unset($result['fourFigure']);
 	}
+	if(array_key_exists('description',$result)){
 	$description = trim(preg_replace( '/\s+/', ' ',$result['description']));
 	$result['description'] = $description;
+	} else {
+	$result['description'] = 'No description available';	
+	}
 	$results[] = $result;
 }
 

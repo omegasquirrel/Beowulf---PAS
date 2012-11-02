@@ -193,14 +193,29 @@ class News extends Pas_Db_Table_Abstract {
 	if($coords){
 		$data['latitude'] = $coords['lat'];
 		$data['longitude'] = $coords['lon'];
-		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
+		$place = $this->_geoPlanet->reverseGeoCode($data['latitude'],$data['longitude']);
 		$data['woeid'] = $place['woeid'];
 	} else {
 		$data['latitude'] = NULL;
 		$data['longitude']  = NULL;
 		$data['woeid'] = NULL;
 	}
-	unset($data['csrf']);
+	if(array_key_exists('csrf', $data)){
+            unset($data['csrf']);
+    }
+	if(empty($data['created'])){
+		$data['created'] = $this->timeCreation();
+	}
+	if(empty($data['createdBy'])){
+		$data['createdBy'] = $this->userNumber();
+	}
+        foreach($data as $k => $v) {
+
+            if ( $v == "") {
+            $data[$k] = NULL;
+            }
+        }
+	
 	return parent::insert($data);
 	} else {
 		throw new Exception(('The insert data must be in array format.'));
@@ -212,12 +227,18 @@ class News extends Pas_Db_Table_Abstract {
 	if($coords){
 		$data['latitude'] = $coords['lat'];
 		$data['longitude'] = $coords['lon'];
-		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
+		$place = $this->_geoPlanet->reverseGeoCode($data['latitude'],$data['longitude']);
 		$data['woeid'] = $place['woeid'];
 	} else {
 		$data['latitude'] = NULL;
 		$data['longitude']  = NULL;
 		$data['woeid'] = NULL;
+	}
+	if(empty($data['updated'])){
+		$data['updated'] = $this->timeCreation();
+	}
+	if(empty($data['updatedBy'])){
+		$data['updatedBy'] = $this->userNumber();
 	}
 	$where = array();
 	$where[] =  $this->getAdapter()->quoteInto($this->_primary . ' = ?', $id);
@@ -231,14 +252,15 @@ class News extends Pas_Db_Table_Abstract {
 			'id',
 			'title',
 			'excerpt' => 'summary',
-			'body',
-			'section' => 'news',
+			'body' => 'contents',
 			'created',
 			'updated',
-			'type' => 'news',
 			 ))
 		->where($this->_name .  '.id = ?',(int)$id);
 		
-	return	$contents->fetchAll($select);		
+	$data = $contents->fetchAll($select);
+	$data[0]['type'] = 'news';
+	$data[0]['section'] = 'news';
+	return $data;
 	}
 }

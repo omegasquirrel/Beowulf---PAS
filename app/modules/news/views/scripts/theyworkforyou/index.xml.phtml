@@ -14,10 +14,9 @@ $members  = $dom->createElement('response');
 $meta = $dom->createElement('meta');
 $members->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
-$meta->appendChild( $dom->createElement('totalItems',$this->data['total']));
-$meta->appendChild( $dom->createElement('currentPage',$this->data['pageNumber']));
-$meta->appendChild( $dom->createElement('totalPages',$this->data['totalPages']));
-$meta->appendChild( $dom->createElement('itemsReturned',$this->data['itemsReturned']));
+$meta->appendChild( $dom->createElement('totalItems',$this->paginator->getTotalItemCount()));
+$meta->appendChild( $dom->createElement('currentPage',$this->paginator->getCurrentPageNumber()));
+$meta->appendChild( $dom->createElement('totalPages',ceil($this->paginator->getTotalItemCount()/$this->paginator->getItemCountPerPage())));
 $formats = $dom->createElement('formats');
 $meta->appendChild($formats);	
 foreach ($contexts as $k){
@@ -29,15 +28,47 @@ $formats->appendChild( $dom->createElement('html', $site . $this->url(array('mod
 //1st item
 $membersElem = $dom->createElement('parliamentaryMentions');
 $members->appendChild($membersElem);
-foreach($this->stories['story'] as $v) {
-	$main = array_slice($v,0,8);
-     $memberElem = $dom->createElement('mention');
-   foreach($main as $k => $a){
-      
-       $memberElem->appendChild( $dom->createElement($k, htmlspecialchars($a))); 
-   }
+foreach($this->data as $data) {
+	$memberElem = $dom->createElement('mention');
+   foreach($data as $k => $a){
+      if(!is_object($a)){
+       $memberElem->appendChild( $dom->createElement($k, utf8_encode($a)));
+      }
+      if(is_object($a)){
+      	if($k === 'speaker'){
+      		$speakerElem = $dom->createElement('speaker');
+      		foreach($a as $k => $v){
+      			if(!is_array($v)){
+      			$speakerElem->appendChild( $dom->createElement($k, utf8_encode($v)));
+      			}
+      			if(is_array($v) && $k == 'office'){
+      				$officeElem = $dom->createElement('offices');
+      					foreach($v as $a => $b){
+      						$offices = $dom->createElement('office');
+      						foreach($b as $c => $d){
+      						$offices->appendChild( $dom->createElement($c, htmlentities($d)));
+      						$officeElem->appendChild($offices);
+      						}
+      					}
+      					$speakerElem->appendChild($officeElem);
+      				}
+      			
+      		}
+      		$memberElem->appendChild($speakerElem);
+      	}
+      if($k == 'parent'){
+      				$parentElem = $dom->createElement('parent');
+      					foreach($a as $e => $f){
+      						$parentElem->appendChild( $dom->createElement($e, htmlentities($f)));
+      					}
+      					$memberElem->appendChild($parentElem);
+      				}
+      				
+      			}
+      	
+      }
    $membersElem->appendChild($memberElem);
-}
+   }
 $dom->appendChild( $members );
 
 $xmlData  = $dom->saveXML();

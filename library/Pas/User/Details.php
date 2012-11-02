@@ -14,7 +14,7 @@ class Pas_User_Details {
 	} else {
 	$id = '3';
 	}
-		return $id;
+	return $id;
 	}
 
 	public function getPerson(){

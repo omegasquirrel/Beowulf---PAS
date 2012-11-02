@@ -2,7 +2,7 @@
 $module =  Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
 ?>
 <ul class="nav">
-<li><a <?php if($module == 'default') {echo 'class="active"  ';}?>href="<?php echo $this->url(array('controller' => 'index'),'default',true);?>" title="The Scheme's homepage" accesskey="1">Home <i class="icon-home icon-white"></i></a></li>
+<li><a <?php if($module == 'default') {echo 'class="active"  ';}?>href="<?php echo $this->url(array('controller' => 'index'),NULL,true);?>" title="The Scheme's homepage" accesskey="1">Home <i class="icon-home icon-white"></i></a></li>
 <li><a <?php if($module == 'contacts') {echo 'class="active" ';}?>href="<?php echo $this->url(array('module' => 'contacts'),'default',true);?>" title="Who to contact at the Scheme">Contacts</a></li>
 <li><a <?php if($module == 'getinvolved') {echo ' class="active" ';}?>href="<?php echo $this->url(array('module' => 'getinvolved'),'default',true);?>" title="How to get involved with the largest public archaeology project">Get involved</a></li>
 <li><a <?php if($module == 'conservation') {echo 'class="active" ';}?>href="<?php echo $this->url(array('module' => 'conservation'),'default',true);?>" title="Conservation advice notes">Conservation</a></li>

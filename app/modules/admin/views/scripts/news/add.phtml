@@ -1,7 +1,6 @@
 <h2>Add a news story</h2>
 <?php 
 $this->headTitle('Add a news story to the website');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/ui.datepicker.js',$type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
 echo $this->form;
 ?>

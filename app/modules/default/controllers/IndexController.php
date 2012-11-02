@@ -4,7 +4,7 @@ class IndexController extends Pas_Controller_Action_Admin
 	public function init() {
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_helper->acl->allow(null);
-        }
+	}
 
 
 

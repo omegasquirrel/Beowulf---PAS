@@ -81,9 +81,10 @@ class Pas_View_Helper_FacebookPage {
 	 * @param array $data
 	 */
 	public function buildHtml($data){
+		//Zend_Debug::dump($data);
 	$html = '';
 	$html .= '<li class="purple"><p>Join our ';
-	$html .= $data->fan_count;
+	$html .= $data->likes;
 	$html .= ' friends on ';
 	$html .= '<a href="' . $data->link . '">facebook</a></p></li>';
 	return $html;

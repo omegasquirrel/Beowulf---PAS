@@ -35,7 +35,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$this->_helper->contextSwitch()->initContext();
 
 	if(!in_array($this->_helper->contextSwitch()->getCurrentContext(),$this->_contexts )) {
-	$this->view->googleapikey = $this->_config->webservicegooglemaps->apikey;
+	$this->view->googleapikey = $this->_helper->config()->webservice->googlemaps->apikey;
 	}
 	}
 
@@ -378,7 +378,6 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$this->view->paginator = $search->_createPagination();
 	$this->view->stats = $search->_processStats();
 	$this->view->results = $search->_processResults();
-		
     $queries = new Searches();
     $queries->insertResults(serialize($params));
 	}

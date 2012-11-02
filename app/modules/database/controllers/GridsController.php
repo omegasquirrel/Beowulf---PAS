@@ -1,6 +1,6 @@
 <?php
 
-class Admin_GridsController extends Pas_Controller_ActionAdmin
+class Admin_GridsController extends Pas_Controller_Action_Admin
 
 {
  	protected $_appid;
@@ -11,7 +11,7 @@ class Admin_GridsController extends Pas_Controller_ActionAdmin
 	 $config = Zend_Registry::get('config');
         $appid = $config->ydnkeys->placemakerkey;
         $this->_appid = $appid; 
-        $this->_geoplanet = new Pas_Service_Geoplanet2($this->_appid);
+        $this->_geoplanet = new Pas_Service_Geo_Geoplanet($this->_appid);
 	}
 
 public function gridlen($gridref)
@@ -233,7 +233,7 @@ $findspots = new Findspots();
    ->where('declong IS NOT NULL')
    ->where('declat IS NOT NULL');
 $rows = $findspots->fetchAll($select);	
-$place = new Pas_Service_Geoplanet2($this->_appid);
+$place = new Pas_Service_Geo_Geoplanet($this->_appid);
 	
 foreach($rows as $row) {
 

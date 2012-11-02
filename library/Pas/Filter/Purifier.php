@@ -20,7 +20,7 @@ class Pas_Filter_Purifier implements Zend_Filter_Interface {
     public function __construct($options = null){
 	$config = HTMLPurifier_Config::createDefault();
 	$this->_htmlPurifier = new HTMLPurifier($config);
-	$config->set('Cache.SerializerPath',  'app/cache/htmlpurifier');
+	$config->set('Cache.SerializerPath',  CACHE_PATH . '/htmlpurifier');
 	//$config->set('HTML.Doctype', 'HTML 4.01 Strict');
 	$config->set('HTML.Allowed', '');
 	$config->set('AutoFormat.RemoveEmpty.RemoveNbsp',TRUE);

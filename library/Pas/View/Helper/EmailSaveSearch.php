@@ -17,8 +17,13 @@ class Pas_View_Helper_EmailSaveSearch extends Zend_View_Helper_Abstract{
     protected $_allowed = array('member', 'flos', 'admin', 'treasure', 'hero', 'fa' );
 
     public function __construct() {
-        $identity = new Pas_User_Details();
-        $this->_identity = $identity->getPerson()->role;
+    $person = new Pas_User_Details();
+	$details = $person->getPerson();
+	if($details){
+	$this->_identity = $details->role;
+	} else {
+		$this->_identity = 'public';
+	}
     }
 
     protected function buildHtml(){

@@ -19,7 +19,7 @@ class Pas_Exporter_Csv extends Pas_Exporter_Generate {
 		'objecttype', 'classification', 'subClassification',
 		'length', 'height', 'width',
 		'thickness', 'diameter', 'weight', 'quantity', 
-		'other_ref', 'smrRef', 'musaccno',
+		'otherRef', 'smrRef', 'musaccno',
         'TID', 'broadperiod','fromdate',
         'todate', 'periodFromName', 'periodToName',
         'cultureName','description', 'note', 'reasonTerm',

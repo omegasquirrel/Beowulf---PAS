@@ -39,8 +39,8 @@ class Pas_Controller_Action_Helper_SolrUpdater
     }
     }
     
-    public function update($core, $id){
-    $data = $this->getUpdateData($core, $id);
+    public function update($core, $id, $type = NULL){
+    $data = $this->getUpdateData($core, $id, $type);
 
     $this->_solr = $this->getSolrConfig($core);
     $update = $this->_solr->createUpdate();
@@ -65,7 +65,7 @@ class Pas_Controller_Action_Helper_SolrUpdater
     protected function _getIdentifier($core){
 	if(in_array($core, $this->_cores)){
 		switch($core) {
-		case 'beowulf':
+			case 'beowulf':
                 $identifier = 'finds-';
                 break;
             case 'beopeople':
@@ -93,7 +93,7 @@ class Pas_Controller_Action_Helper_SolrUpdater
 	}    
     }
     
-    public function getUpdateData($core, $id){
+    public function getUpdateData($core, $id, $type = NULL){
 	if(in_array($core, $this->_cores)){
     	switch($core){
             case 'beowulf':
@@ -103,8 +103,9 @@ class Pas_Controller_Action_Helper_SolrUpdater
             	$model = new Peoples();
                 break;
             case 'beocontent':
-            	$model = new Content();
-                break;
+            	$type = ucfirst($type);
+            	$model = new $type;
+            	break;
             case 'beobiblio':
             	$model = new Bibliography();
                 break;
@@ -113,9 +114,6 @@ class Pas_Controller_Action_Helper_SolrUpdater
             	break;
             case 'beopublications':
             	$model = new Publications();
-            	break;
-            case 'news':
-            	$model = new News();
             	break;
             default:
                 throw new Exception('Your core does not exist',500);

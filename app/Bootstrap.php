@@ -17,7 +17,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	protected function _initConfig(){
 	//Zend_Registry::set('config', new Zend_Config_Ini('app/config/config.ini', 'production'));
 	$config = new Zend_Config($this->getOptions());
-	Zend_Registry::set('config', $config);
+        Zend_Registry::set('config', $config);
 	}
 
 	/** Setup the default timezone
@@ -43,7 +43,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	Zend_Registry::set('db',$db);
 	Zend_Db_Table::setDefaultAdapter($db);
 	} catch (Exception $e) {
-	$this->_redirect('/error/databasedown');
+	echo '<h1>Server borked</h1>';
+	exit;
 	}
 	}
 
@@ -54,16 +55,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	$frontController->setParam('useDefaultControllerAlways', false);
 	$frontController->registerPlugin(new Pas_Controller_Plugin_ModuleLayout());
 	$frontController->registerPlugin(new Pas_Controller_Plugin_StyleAndAlternate());
+	$frontController->registerPlugin(new Pas_Controller_Plugin_Errors);
 	}
-	
-	/**Initialise the routing
-	 * 
-	 */
 	protected function _initRoutes(){
-	$front = Zend_Controller_Front::getInstance();
-	$router = $front->getRouter();
-	$config = new Zend_Config_Ini(APPLICATION_PATH . '/config/routes.ini', 'production');
-	$router->addConfig($config, 'routes');
+	
 	}
 
 	/** Initialise the various caches and save to registry
@@ -74,10 +69,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	Zend_Registry::set('cache',$this->getResource('cachemanager')->getCache('rulercache'));
 	Zend_Registry::set('formcache',$this->getResource('cachemanager')->getCache('rulercache'));
 	Zend_Registry::set('flickrcache',$this->getResource('cachemanager')->getCache('rulercache'));
-	Zend_Registry::set('page',$this->getResource('cachemanager')->getCache('fullpage'));
 	}
 
-	public function _initSiteur(){
+	protected function _initSiteur(){
 	$siteurl = Zend_Registry::get('config')->siteurl;
 	Zend_Registry::set('siteurl',$siteurl);
 	}
@@ -112,7 +106,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	$view->headMeta()->appendHttpEquiv('Content-Type',$options['resources']['view']['contentType']);
 	}
 //	$view->headTitle()->setSeparator(' - ')->prepend('The Portable Antiquities Scheme');
-	$view->setScriptPath('app/views/scripts/');
+	$view->setScriptPath(APPLICATION_PATH . '/views/scripts/');
 	foreach($options['resources']['view']['helperPath'] as $k =>   $v) {
 	$view->addHelperPath($v, $k);
 	}
@@ -159,55 +153,65 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	/** Initialise the ACL objects
 	*/
 	protected function _initHelpers(){
-	$acl = new Pas_Acl();
-	$aclHelper = new Pas_Controller_Action_Helper_Acl(null, array('acl' => $acl));
-	Zend_Registry::set('acl',$acl);
-        
-	Zend_Controller_Action_HelperBroker::addHelper($aclHelper);
 
-	$sendFile = new Pas_Controller_Action_Helper_SendFile();
-	Zend_Controller_Action_HelperBroker::addHelper($sendFile);
+        $acl = new Pas_Acl();
+        $aclHelper = new Pas_Controller_Action_Helper_Acl(null, array('acl' => $acl));
 
-	$configObject = new Pas_Controller_Action_Helper_Config();
-	Zend_Controller_Action_HelperBroker::addHelper($configObject);
+        Zend_Registry::set('acl',$acl);
+        Zend_Controller_Action_HelperBroker::addHelper($aclHelper);
 
-	$geocoder = new Pas_Controller_Action_Helper_GeoCoder();
-	Zend_Controller_Action_HelperBroker::addHelper($geocoder);
+		$sendFile = new Pas_Controller_Action_Helper_SendFile();
+		Zend_Controller_Action_HelperBroker::addHelper($sendFile);
 
-	$identity = new Pas_Controller_Action_Helper_Identity();
-	Zend_Controller_Action_HelperBroker::addHelper($identity);
-	
-	$akismet = new Pas_Controller_Action_Helper_Akismet();
-	Zend_Controller_Action_HelperBroker::addHelper($akismet);
+        $configObject = new Pas_Controller_Action_Helper_Config();
+		Zend_Controller_Action_HelperBroker::addHelper($configObject);
 
-	$audit = new Pas_Controller_Action_Helper_Audit();
-	Zend_Controller_Action_HelperBroker::addHelper($audit);
+        $geocoder = new Pas_Controller_Action_Helper_GeoCoder();
+        Zend_Controller_Action_HelperBroker::addHelper($geocoder);
 
-	$coinForm = new Pas_Controller_Action_Helper_CoinFormLoader();
-	Zend_Controller_Action_HelperBroker::addHelper($coinForm);
+        $identity = new Pas_Controller_Action_Helper_Identity();
+        Zend_Controller_Action_HelperBroker::addHelper($identity);
 
-	$coinFormLoader = new Pas_Controller_Action_Helper_CoinFormLoaderOptions();
-	Zend_Controller_Action_HelperBroker::addHelper($coinFormLoader);
+        $akismet = new Pas_Controller_Action_Helper_Akismet();
+        Zend_Controller_Action_HelperBroker::addHelper($akismet);
 
-	$geoFormLoader = new Pas_Controller_Action_Helper_GeoFormLoaderOptions();
-	Zend_Controller_Action_HelperBroker::addHelper($geoFormLoader);
+        $audit = new Pas_Controller_Action_Helper_Audit();
+        Zend_Controller_Action_HelperBroker::addHelper($audit);
 
-	$solr = new Pas_Controller_Action_Helper_SolrUpdater();
-	Zend_Controller_Action_HelperBroker::addHelper($solr);
+        $coinForm = new Pas_Controller_Action_Helper_CoinFormLoader();
+        Zend_Controller_Action_HelperBroker::addHelper($coinForm);
 
-	$findspot = new Pas_Controller_Action_Helper_FindspotFormOptions();
-	Zend_Controller_Action_HelperBroker::addHelper($findspot);
+        $coinFormLoader = new Pas_Controller_Action_Helper_CoinFormLoaderOptions();
+        Zend_Controller_Action_HelperBroker::addHelper($coinFormLoader);
 
-	$secuid = new Pas_Controller_Action_Helper_GenerateSecuID();
-	Zend_Controller_Action_HelperBroker::addHelper($secuid);
+        $geoFormLoader = new Pas_Controller_Action_Helper_GeoFormLoaderOptions();
+        Zend_Controller_Action_HelperBroker::addHelper($geoFormLoader);
 
-	$findID = new Pas_Controller_Action_Helper_GenerateFindID();
-	Zend_Controller_Action_HelperBroker::addHelper($findID);
+        $solr = new Pas_Controller_Action_Helper_SolrUpdater();
+        Zend_Controller_Action_HelperBroker::addHelper($solr);
 
-    $mailer = new Pas_Controller_Action_Helper_Mailer();
-    Zend_Controller_Action_HelperBroker::addHelper($mailer);
-	}
+        $findspot = new Pas_Controller_Action_Helper_FindspotFormOptions();
+        Zend_Controller_Action_HelperBroker::addHelper($findspot);
 
+        $secuid = new Pas_Controller_Action_Helper_GenerateSecuID();
+        Zend_Controller_Action_HelperBroker::addHelper($secuid);
 
+        $findID = new Pas_Controller_Action_Helper_GenerateFindID();
+        Zend_Controller_Action_HelperBroker::addHelper($findID);
+
+        $mailer = new Pas_Controller_Action_Helper_Mailer();
+        Zend_Controller_Action_HelperBroker::addHelper($mailer);
+        }
+		
+        public function _initRest(){
+		$frontController = Zend_Controller_Front::getInstance();
+	    $restRoute = new Zend_Rest_Route($frontController, array(), array('api' => array('objects')));
+	    $frontController->getRouter()->addRoute('rest', $restRoute);
+		$frontController->setRequest(new REST_Request);
+        $frontController->setResponse(new REST_Response);
+	$router = $frontController->getRouter();
+	$config = new Zend_Config_Ini(APPLICATION_PATH . '/config/routes.ini', 'production');
+	$router->addConfig($config, 'routes');
+        }
 
 }

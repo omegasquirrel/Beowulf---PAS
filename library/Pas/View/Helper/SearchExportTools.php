@@ -24,6 +24,8 @@ class Pas_View_Helper_SearchExportTools extends Zend_View_Helper_Abstract {
 	 */
 	protected $_user;
 
+	protected $_role;
+	
 	/** Roles allowed to see the download links
 	 *
 	 * @var unknown_type
@@ -36,18 +38,23 @@ class Pas_View_Helper_SearchExportTools extends Zend_View_Helper_Abstract {
 	public function __construct(){
 		$user = new Pas_User_Details();
 		$this->_user = $user->getPerson();
+		if($this->_user){
+			$this->_role = $this->_user->role;
+		} else {
+			$this->_role = 'public';
+		}
 	}
 
-        protected function _cleanParams($params){
-        if(is_array($params)){
-        unset($params['controller']);
+	protected function _cleanParams($params){
+	if(is_array($params)){
+	unset($params['controller']);
 	unset($params['action']);
 	unset($params['page']);
-        return $params;
-        } else {
-            throw new Pas_Exception_BadJuJu('Parameters have to be an array');
-        }
-        }
+	return $params;
+	} else {
+		throw new Pas_Exception_BadJuJu('Parameters have to be an array');
+	}
+	}
 	/** Generate authenticated data
 	 * @access protected
 	 * @return string
@@ -63,8 +70,9 @@ class Pas_View_Helper_SearchExportTools extends Zend_View_Helper_Abstract {
 	$nmsRoute = array_merge($params,array('action' => 'nms'));
 	$class = 'btn btn-small';
 	$classDisabled = 'btn btn-small btn-info';
+	$html = '';
 	if($quantity < 2000){
-	$html = ' <a class="'. $class . '" href="';
+	$html .= ' <a class="'. $class . '" href="';
 	$html .= $this->view->url($kmlRoute, null, false);
 	$html .= '">Export all results as KML <i class="icon-download-alt"></i></a> ';
 	} else {
@@ -120,7 +128,7 @@ class Pas_View_Helper_SearchExportTools extends Zend_View_Helper_Abstract {
 	 * @return string
 	 */
 	public function searchExportTools($quantity = 0) {
-		if(in_array($this->_user->role, $this->_allowed)){
+		if(in_array($this->_role, $this->_allowed)){
 			return $this->_generateHtml($quantity);
 		} else {
 			return $this->_generateHtmlMessage();

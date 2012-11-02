@@ -34,8 +34,13 @@ class Pas_Form extends EasyBib_Form {
 	$this->setAttrib('accept-charset', 'UTF-8');
 	$this->clearDecorators();
 	$person = new Pas_User_Details();
-	$this->_role = $person->getPerson()->role;
-	parent::__construct($options);
+	$details = $person->getPerson();
+	if($details){
+	$this->_role = $details->role;
+	} else {
+		$this->_role = 'public';
+	}
+	parent::__construct();
 	}
 
 	

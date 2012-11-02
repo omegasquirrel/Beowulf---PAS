@@ -8,7 +8,7 @@ class REST_Controller_Plugin_RestHandler extends Zend_Controller_Plugin_Abstract
 {
     private $dispatcher;
 
-    private $defaultFormat = 'html';
+    private $defaultFormat = 'xml';
 
     private $acceptableFormats = array(
         'html',
@@ -52,18 +52,21 @@ class REST_Controller_Plugin_RestHandler extends Zend_Controller_Plugin_Abstract
         $this->dispatcher = $frontController->getDispatcher();
     }
 
+    
+    
     public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
     {
-        // send the HTTP Vary header
+    	$route = Zend_Controller_Front::getInstance()->getRouter()->getCurrentRoute();
+//    	Zend_Debug::dump($route);
+    	if ($route instanceOf Zend_Rest_Route){
+    	// send the HTTP Vary header
         $this->_response->setHeader('Vary', 'Accept');
 
-        // Cross-Origin Resource Sharing (CORS)
-        // TODO: probably should be an environment setting?
         $this->_response->setHeader('Access-Control-Max-Age', '86400');
         $this->_response->setHeader('Access-Control-Allow-Origin', '*');
         $this->_response->setHeader('Access-Control-Allow-Credentials', 'true');
         $this->_response->setHeader('Access-Control-Allow-Headers', 'Authorization, X-Authorization, Origin, Accept, Content-Type, X-Requested-With, X-HTTP-Method-Override');
-
+    	
         // set config settings from application.ini
         $this->setConfig();
 
@@ -72,9 +75,10 @@ class REST_Controller_Plugin_RestHandler extends Zend_Controller_Plugin_Abstract
 
         // process requested action
         $this->handleActions($request);
-
+    	
         // process request body
         $this->handleRequestBody($request);
+    	}
     }
 
     private function setConfig()
@@ -111,12 +115,11 @@ class REST_Controller_Plugin_RestHandler extends Zend_Controller_Plugin_Abstract
 
             $format = $this->responseTypes[$bestMimeType];
         }
-
         if ($format == false or !in_array($format, $this->acceptableFormats)) {
             $request->setParam('format', $this->defaultFormat);
-
+			
             if ($request->isOptions() === false) {
-                $request->dispatchError(REST_Response::UNSUPPORTED_TYPE, 'Unsupported Media/Format Type');
+                $request->dispatchError(REST_Response::UNSUPPORTED_TYPE, 'Unsupported Media/Format Type or unspecified');
             }
         } else {
             $request->setParam('format', $format);

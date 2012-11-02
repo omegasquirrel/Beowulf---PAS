@@ -111,7 +111,7 @@ class REST_Serializer_Adapter_Xml extends Zend_Serializer_Adapter_AdapterAbstrac
                                     $key = sprintf('%s', $this->depluralize($parent->tagName));
                                 }
 
-                                $child = $parent->appendChild($dom->createElement($key));
+                                $child = $parent->appendChild($dom->createElement(htmlentities($key)));
                                 
                                 if ($attributes)
                                 {

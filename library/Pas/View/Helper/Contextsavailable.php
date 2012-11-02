@@ -48,6 +48,7 @@ class Pas_View_Helper_Contextsavailable extends Zend_View_Helper_Abstract {
 	$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();	
 	$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();	
 	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();	
+	
 	$string = '<div id="contexts" class="row-fluid"><p>This page is available in: ';
 	foreach($contexts as $key => $value) {
 		
@@ -56,17 +57,12 @@ class Pas_View_Helper_Contextsavailable extends Zend_View_Helper_Abstract {
 	'controller' => $controller, 
 	'action' => $action, 
 	'format' => $value),null,false);
-//	if(in_array($value,array('csv'))){
-//	$string .= '<a href="' . $url . '" title="Obtain data in '. $value 
-//	.' representation" rel="nofollow">' . $value . '</a> ';
-//	} else {
 	$string .= '<a href="' . $url . '" title="Obtain data in ' . $value 
 	. ' representation">' . $value . '</a> ';	
 	if(array_key_exists($value, $this->_response)){
 			$this->view->headLink()->appendAlternate($this->view->serverUrl() . $url, $this->_response[$value], 'Alternate representation as ' . $value);
 		}
 	}
-//	}
 	$string .=' representations.</p></div>';
 	echo $string;
 	}

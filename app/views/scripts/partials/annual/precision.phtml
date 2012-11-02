@@ -3,10 +3,8 @@
 if($this->precision == NULL) 
 {
 echo 'No grid reference recorded';
-}
-else
-{
-echo ($this->precision - 2). ' figure reference';
+} else {
+echo $this->precision . ' figure reference';
 }?></td>
 <td><?php echo $this->finds;?></td>
 <td><?php echo $this->records;?></td>

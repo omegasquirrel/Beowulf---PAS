@@ -101,13 +101,13 @@ class Pas_Solr_Handler {
     $this->_solrConfig = $this->_setSolrConfig($this->_core);
     $this->_solr = new Solarium_Client($this->_solrConfig);
     $this->_solr->setAdapter('Solarium_Client_Adapter_ZendHttp');
-    $loadbalancer = $this->_solr->getPlugin('loadbalancer');
+//    $loadbalancer = $this->_solr->getPlugin('loadbalancer');
     
     $master = $this->_config->solr->master->toArray();
-    $slave  = $this->_config->solr->slave->toArray();
-    $loadbalancer->addServer('master', $master, 100);
-	$loadbalancer->addServer('slave', $slave, 200);
-	$loadbalancer->setFailoverEnabled(true);
+//    $slave  = $this->_config->solr->slave->toArray();
+//    $loadbalancer->addServer('master', $master, 100);
+//	$loadbalancer->addServer('slave', $slave, 200);
+//	$loadbalancer->setFailoverEnabled(true);
     
 //	$zendHttp = $client->getAdapter()->getZendHttp();
     $this->_checkFieldList($this->_core, $this->setFields());
@@ -229,24 +229,24 @@ class Pas_Solr_Handler {
     	if(array_key_exists('created', $params)){
     		$created = $params['created'];
     		$queryDateA = $created . "T00:00:00.001Z";
-    		$queryDateB = $created . "T23:59:59.999Z";	
+    		$queryDateB = $created . "T23:59:59.99Z";	
     		$params['created'] = $queryDateA . ' TO ' . $queryDateB ;
     	}
      	if(array_key_exists('updated', $params)){
     		$updated = $params['updated'];
     		$queryDateA = $updated . "T00:00:00.001Z";
-    		$queryDateB = $updated . "T23:59:59.999Z";	
+    		$queryDateB = $updated . "T23:59:59.99Z";	
     		$params['updated'] = $queryDateA . ' TO ' . $queryDateB ;
     	}
     	if(array_key_exists('createdBefore', $params) && array_key_exists('createdAfter', $params)){
-    		$queryDateA = $params['createdBefore'] . "T00:00:00.001Z";
-    		$queryDateB = $params['createdAfter'] . "T23:59:59.999Z";
-    		$params['created'] = $queryDateB . ' TO ' . $queryDateA;
+    		$queryDateA = $params['createdAfter'] . "T00:00:00.001Z";
+    		$queryDateB = $params['createdBefore'] . "T23:59:59.99Z";
+    		$params['created'] = $queryDateA . ' TO ' . $queryDateB;
     		unset($params['createdBefore']);
     		unset($params['createdAfter']);
     	}
     	if(array_key_exists('createdBefore', $params)){
-    		$queryDate = $params['createdBefore'] . "T23:59:59.999Z";
+    		$queryDate = $params['createdBefore'] . "T23:59:59.99Z";
     		$params['created'] = '* TO ' . $queryDate;
     		unset($params['createdBefore']);
     	}
@@ -257,14 +257,14 @@ class Pas_Solr_Handler {
     	}
     	
     	if(array_key_exists('updatedBefore', $params) && array_key_exists('updatedAfter', $params)){
-    		$queryDateA = $params['updatedBefore'] . "T00:00:00.001Z";
-    		$queryDateB = $params['updatedAfter'] . "T23:59:59.999Z";
-    		$params['updated'] = $queryDateB . ' TO ' . $queryDateA;
+    		$queryDateA = $params['updatedAfter'] . "T00:00:00.001Z";
+    		$queryDateB = $params['updatedBefore'] . "T23:59:59.99Z";
+    		$params['updated'] = $queryDateA . ' TO ' . $queryDateB;
     		unset($params['updatedBefore']);
     		unset($params['updatedAfter']);
     	}
     	if(array_key_exists('updatedBefore', $params)){
-    		$queryDate = $params['updatedBefore'] . "T23:59:59.999Z";
+    		$queryDate = $params['updatedBefore'] . "T23:59:59.99Z";
     		$params['updated'] = '* TO ' . $queryDate;
     		unset($params['updatedBefore']);
     	}
@@ -324,6 +324,7 @@ class Pas_Solr_Handler {
      */
     protected function _createFilters(array $params){
     if(is_array($params)){
+    if(array_key_exists('d', $params) && array_key_exists('lon',$params) && array_key_exists('lat',$params)){	
     if(!is_null($params['d']) && !is_null($params['lon']) && !is_null($params['lat'])){
     $helper = $this->_query->getHelper();
     $this->_query->createFilterQuery('geo')->setQuery(
@@ -334,7 +335,7 @@ class Pas_Solr_Handler {
             $params['d'])
             );
     }
-
+    }
 	
 	if(($this->_map === true) && !in_array($this->_getRole(), $this->_allowed) && ($this->_core === 'beowulf')){
 		$this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
@@ -444,9 +445,11 @@ class Pas_Solr_Handler {
         foreach($this->_facets as $k){
             $facetData[$k] = array();
             $f = $this->_resultset->getFacetSet()->getFacet($k);
+            if($f){
             foreach($f as $value => $count) {
 
             $facetData[$k][ $value ]  = $count;
+            }
             }
         }
         return $facetData;

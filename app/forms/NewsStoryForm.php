@@ -39,7 +39,7 @@ class NewsStoryForm extends Pas_Form {
 		->setAttrib('cols',40)
 		->setAttrib('Height',400)
 		->setAttrib('ToolbarSet','Finds')
-		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
+		->addFilters(array('StringTrim', 'HtmlBody', 'EmptyParagraph', 'WordChars'));
 	
 	$address = new Zend_Form_Element_Text('primaryNewsLocation');
 	$address->setLabel('News address (puts it on map): ')

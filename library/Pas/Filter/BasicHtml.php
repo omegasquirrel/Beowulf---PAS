@@ -22,7 +22,7 @@ class Pas_Filter_BasicHtml implements Zend_Filter_Interface
 	public function __construct($options = null) {
 	$config = HTMLPurifier_Config::createDefault();
 	$this->_htmlPurifier = new HTMLPurifier($config);
-	$config->set('Cache.SerializerPath',  'app/cache/htmlpurifier');
+	$config->set('Cache.SerializerPath',  CACHE_PATH . '/htmlpurifier');
 	$config->set('HTML.Doctype', 'XHTML 1.0 Strict');
 	$config->set('HTML.Allowed', 'p,em,strong,a[href|title],ul,ol,li,code,pre,'
 	. 'blockquote,img[src|alt|height|width],sub,sup,br,table[class|id|summary|width], caption,tbody, td, tfoot, th, thead, tr');
