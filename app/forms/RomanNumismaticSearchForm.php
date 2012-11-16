@@ -320,7 +320,7 @@ class RomanNumismaticSearchForm extends Pas_Form
         'institution'),
     'spatial');
 
-    $this->addDisplayGroup(array('submit'), 'submit');
+    $this->addDisplayGroup(array('submit'), 'buttons');
     $this->numismatics->setLegend('Numismatic details');
     $this->details->setLegend('Artefact details');
     $this->spatial->setLegend('Spatial details');

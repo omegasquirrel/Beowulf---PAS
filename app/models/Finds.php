@@ -1573,26 +1573,11 @@ class Finds extends Pas_Db_Table_Abstract {
 	* @return array
 	*/
 	public function getLastRecord($userid) {
+	$fieldList = new CopyFind();
+	$fields = $fieldList->getConfig();
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array('description', 'finderID', 'other_ref',
-		'datefound1', 'datefound2', 'culture',
-		'discmethod', 'disccircum', 'notes',
-		'objecttype', 'classification', 'subclass',
-		'inscription', 'objdate1period', 'objdate2period',
-		'broadperiod', 'numdate1', 'numdate2',
-		'material1', 'material2', 'manmethod',
-		'decmethod', 'surftreat', 'decstyle',
-		'preservation', 'completeness', 'reuse',
-		'reuse_period', 'length', 'width',
-		'thickness', 'diameter', 'weight',
-		'height', 'quantity', 'curr_loc',
-		'recorderID', 'finder2ID', 'identifier1ID',
-		'identifier2ID', 'findofnotereason', 'findofnote',
-		'numdate1qual', 'numdate2qual','objdate1cert',
-		'objdate2cert',	'treasure', 'treasureID',
-		'subs_action', 'musaccno', 'smrrefno',
-		'objdate1subperiod','objdate2subperiod' ))
+		->from($this->_name,$fields)
 		->joinLeft(array('finderOne' => 'people'),'finderOne.secuid = finds.finderID',
 		array('finder' => 'fullname'))
 		->joinLeft(array('finderTwo' => 'people'),'finderTwo.secuid = finds.finder2ID',

@@ -26,7 +26,7 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
             ->initContext();
 
     $this->_peoples = new Peoples();
-    $this->_gmapskey = $this->_helper->config()->webservice->googlemaps->apikey;
+    $this->_gmapskey = $this->_helper->config()->webservice->google->apikey;
     $this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
 	}
 

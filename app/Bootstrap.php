@@ -205,7 +205,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 		
         public function _initRest(){
 		$frontController = Zend_Controller_Front::getInstance();
-	    $restRoute = new Zend_Rest_Route($frontController, array(), array('api' => array('objects')));
+	    $restRoute = new Zend_Rest_Route($frontController, array(), array('api' => array('objects', 'status')));
 	    $frontController->getRouter()->addRoute('rest', $restRoute);
 		$frontController->setRequest(new REST_Request);
         $frontController->setResponse(new REST_Response);

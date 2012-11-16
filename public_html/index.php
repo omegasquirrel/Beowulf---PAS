@@ -20,7 +20,8 @@ ini_set('memory_limit', '64M');
 set_include_path('.' . PATH_SEPARATOR . '../library/'
 . PATH_SEPARATOR . '../library/Pas/'
 . PATH_SEPARATOR . '../library/Arc2/'
-. PATH_SEPARATOR . '../app/models'
+. PATH_SEPARATOR . '../library/EasyBib/'
+. PATH_SEPARATOR . '../app/models/'
 . PATH_SEPARATOR . '../app/forms/'
 . PATH_SEPARATOR . get_include_path());
 
@@ -35,6 +36,7 @@ create_function('$class',"include str_replace('_', '/', \$class) . '.php';")
 );
 $autoloader->registerNamespace('Pas_');
 $autoloader->registerNamespace('ZendX_');
+$autoloader->registerNamespace('EasyBib_');
 $autoloader->suppressNotFoundWarnings(false);
 $autoloader->setFallbackAutoloader(true);
 $autoloader->pushAutoloader('HTMLPurifier_Bootstrap', 'autoload');

@@ -42,7 +42,7 @@ public function __construct($options = null){
 	$this->addDisplayGroup(array('denomination_id'), 'details');
 
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

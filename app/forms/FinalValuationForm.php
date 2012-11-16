@@ -58,7 +58,7 @@ class FinalValuationForm extends Pas_Form {
 	'dateOfValuation',
 	'comments'), 'details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

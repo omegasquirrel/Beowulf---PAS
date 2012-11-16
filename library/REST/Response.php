@@ -269,4 +269,3 @@ class REST_Response extends Zend_Controller_Response_Http
         $this->setHttpResponseCode(self::BANDWIDTH_EXCEEDED);
     }
 }
-?>

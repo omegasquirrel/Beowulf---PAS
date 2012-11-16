@@ -55,7 +55,7 @@ class ActivateForm extends Pas_Form
 
 
 		$this->addDisplayGroup(array('username','email','activationKey'), 'userdetails');
-$this->addDisplayGroup(array('submit'), 'submit');
+$this->addDisplayGroup(array('submit'), 'buttons');
 
 		$this->setLegend('Enter details: ');
 

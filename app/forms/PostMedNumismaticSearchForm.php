@@ -281,7 +281,7 @@ class PostMedNumismaticSearchForm extends Pas_Form {
 
 	$this->details->setLegend('Object specific details: ');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

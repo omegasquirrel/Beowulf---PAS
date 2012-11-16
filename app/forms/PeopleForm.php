@@ -190,7 +190,7 @@ public function __construct($options = null) {
 	'details');
 	$this->details->setLegend('Person details: ');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

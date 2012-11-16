@@ -151,7 +151,7 @@ public function __construct($options = null)
 	'slug','frontPage'), 'details');
 
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Add new site content');
 

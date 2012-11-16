@@ -118,7 +118,7 @@ class NewsStoryForm extends Pas_Form {
 	
 	$this->details->setLegend('Story details: ');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

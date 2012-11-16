@@ -97,7 +97,7 @@ class ComplaintsForm extends Pas_Form {
 	'comment_content'), 'details');
 	$this->details->setLegend('Enter your comments: ');
 	}
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

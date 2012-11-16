@@ -102,7 +102,7 @@ public function init()
 
            //Submit button
     $submit = new Zend_Form_Element_Submit('submit');
-   $submit->setLabel('Register!');
+   	$submit->setLabel('Register!');
 
     $this->addElement($submit);
 
@@ -110,7 +110,7 @@ public function init()
     $this->details->setLegend('Register with the Scheme: ');
 
 
-    $this->addDisplayGroup(array('submit'), 'submit');
+    $this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 
     }

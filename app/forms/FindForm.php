@@ -628,7 +628,7 @@ public function __construct($options = null) {
 	$this->references->setLegend('Reference numbers');
 
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

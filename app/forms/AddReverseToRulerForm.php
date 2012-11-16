@@ -35,7 +35,7 @@ public function __construct($options = null) {
 
 	$this->details->setLegend('Add an active Mint');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Add an active reverse type');
 

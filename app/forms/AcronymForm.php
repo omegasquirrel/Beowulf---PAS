@@ -49,7 +49,7 @@ public function __construct($options = null) {
 
 	$this->addDisplayGroup(array('abbreviation','expanded','valid'), 'details');
 	$this->details->setLegend('Acronym details: ');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 

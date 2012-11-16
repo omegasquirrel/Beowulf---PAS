@@ -43,7 +43,7 @@ parent::__construct($options);
 
 	$this->addElements(array($avatar,$replace,$submit, $hash));
 	$this->addDisplayGroup(array('logo','replace'), 'details');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 
 	parent::init();

@@ -45,7 +45,7 @@ parent::__construct($options);
 	$this->addElements(array($term, $termdesc, $valid, $submit, $hash));
 
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Decoration method details: ');
         parent::init();

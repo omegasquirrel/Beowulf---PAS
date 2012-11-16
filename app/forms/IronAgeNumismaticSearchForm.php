@@ -369,7 +369,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	$this->spatial->setLegend('Spatial details: ');
 
-        $this->addDisplayGroup(array('submit'), 'submit');
+        $this->addDisplayGroup(array('submit'), 'buttons');
 
 
 

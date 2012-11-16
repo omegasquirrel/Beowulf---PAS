@@ -110,7 +110,7 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array('biography','dynasty','publishState'),'details');
 	$this->details->setLegend('Biographical details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();  
 	}
 }

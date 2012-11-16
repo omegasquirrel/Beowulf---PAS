@@ -149,7 +149,7 @@ public function __construct($options = null) {
             'eventEndDate','eventRegion','organisation',
             'childrenAttend','adultsAttend','eventType'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

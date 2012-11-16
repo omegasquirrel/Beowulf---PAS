@@ -50,11 +50,11 @@ class HoardForm extends Pas_Form
 	);
 
 	$this->addDisplayGroup(array('term','termdesc','period'), 'details');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->setLegend('Hoards: ');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

@@ -205,7 +205,7 @@ class ContactForm extends Pas_Form
 	'postcode', 'county', 'telephone',
 	'fax', 'website', 'alumni'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Contact details');
 

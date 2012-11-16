@@ -33,7 +33,7 @@ parent::__construct($options);
 
 	$this->addDisplayGroup(array('name','contact_name'), 'details');
 	$this->details->setLegend('HER details: ');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 	

@@ -191,14 +191,11 @@ class Findspots extends Pas_Db_Table_Abstract {
 	* @todo add caching
 	*/
 	public function getLastRecord($userid) {
+	$fieldList = new CopyFindSpot();
+	$fields = $fieldList->getConfig();
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array(
-		'county', 'district', 'parish',
-		'knownas', 'regionID', 'knownas',
-		'gridref', 'gridrefsrc', 'gridrefcert',
-		'description', 'comments', 'landusecode',
-		'landusevalue', 'depthdiscovery'))
+		->from($this->_name,$fields)
 		->where('findspots.createdBy = ?', (int)$userid)
 		->order('findspots.id DESC')
 		->limit(1);

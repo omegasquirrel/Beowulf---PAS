@@ -42,7 +42,7 @@ $submit = new Zend_Form_Element_Submit('submit');
 $this->addElements(array($datefrom,$dateto,$submit, $hash));
 
 $this->setLegend('Choose your own dates: ');
-$this->addDisplayGroup(array('submit'), 'submit');
+$this->addDisplayGroup(array('submit'), 'buttons');
 
 parent::init();
 	}

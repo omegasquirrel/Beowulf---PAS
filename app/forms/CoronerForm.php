@@ -114,7 +114,7 @@ public function __construct($options = null)
 	'town', 'postcode', 'county',
 	'country','telephone','fax',), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Submit Coroner\'s details ');
   	parent::init();

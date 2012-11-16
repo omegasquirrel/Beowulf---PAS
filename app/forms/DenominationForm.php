@@ -104,7 +104,7 @@ public function __construct($options = null)
             'description','rarity','thickness',
             'diameter','weight','valid'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Denomination details: ');
 	parent::init();

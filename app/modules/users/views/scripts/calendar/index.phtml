@@ -1,0 +1,20 @@
+<?php
+$this->headTitle('Scheme shared calendar');
+?>
+
+<h2>Upcoming events</h2>
+
+<?php 
+foreach($this->eventFeed as $event) {
+	$eventData = array(
+		'title' => $event->title,
+		'id' => substr($event->id,strrpos($event->id,'/')+1,26),
+		'starts' => $event->when[0]->startTime,
+		'ends'   => $event->when[0]->endTime,
+		'where' => $event->where[0],
+		'updated' => $event->updated,
+		'content' => $event->content,
+	);
+	echo $this->partial('partials/calendar/event.phtml',$eventData);
+}
+?>

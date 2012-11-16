@@ -45,7 +45,7 @@ public function __construct($options = null) {
 	
 	$this->addDisplayGroup(array('accountName','account','public'), 'details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

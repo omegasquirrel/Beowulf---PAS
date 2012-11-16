@@ -50,7 +50,7 @@ parent::__construct($options);
 	
 	$this->details->setLegend('Discovery methods');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

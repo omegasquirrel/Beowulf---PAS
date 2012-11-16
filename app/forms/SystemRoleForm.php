@@ -40,7 +40,7 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array('role','description','valid'), 'details')->removeDecorator('HtmlTag');
 	$this->details->setLegend('Activity details: ');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

@@ -108,7 +108,7 @@ public function __construct($options = null) {
 
 	$this->details->setLegend('Rally details: ');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();  
 	}

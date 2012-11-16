@@ -298,4 +298,8 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_redirect('/users/account/');
 	}
 	}
+	
+	public function configurecopyAction(){
+		
+	}
 }

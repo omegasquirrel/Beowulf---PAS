@@ -52,7 +52,7 @@ class WorkflowForm extends Pas_Form {
 	
 	$this->details->setLegend('HER details: ');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

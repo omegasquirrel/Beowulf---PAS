@@ -121,7 +121,7 @@ public function __construct($options = null) {
 	'edition','in_publication','editors',
 	'publication_type','ISBN', 'biab', 'doi'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Publication details: ');
 	parent::init();

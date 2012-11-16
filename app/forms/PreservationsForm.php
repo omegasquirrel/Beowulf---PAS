@@ -49,7 +49,7 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
 	$this->details->setLegend('Preservation state details: ');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();  
 	}
 }

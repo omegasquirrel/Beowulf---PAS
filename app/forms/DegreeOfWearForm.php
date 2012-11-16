@@ -50,7 +50,7 @@ class DegreeOfWearForm extends Pas_Form {
 	
 	$this->details->setLegend('Surface treatment details: ');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

@@ -70,7 +70,7 @@ class Coroners extends Pas_Db_Table_Abstract {
 	if($coords){
 		$data['latitude'] = $coords['lat'];
 		$data['longitude'] = $coords['lon']; 
-		$place = $this->_geoPlanet->reverseGeoCode($lat, $lon);
+		$place = $this->_geoPlanet->reverseGeoCode($coords['lat'], $coords['lon']);
 		$data['woeid'] = $place['woeid'];
 	} else {
 		$data['latitude'] = NULL;
@@ -93,7 +93,7 @@ class Coroners extends Pas_Db_Table_Abstract {
 	if($coords){
 		$data['latitude'] = $coords['lat'];
 		$data['longitude'] = $coords['lon']; 
-		$place = $this->_geoPlanet->reverseGeoCode($lat,$lon);
+		$place = $this->_geoPlanet->reverseGeoCode($coords['lat'],$coords['lon']);
 		$data['woeid'] = $place['woeid'];
 	} else {
 		$data['latitude'] = NULL;

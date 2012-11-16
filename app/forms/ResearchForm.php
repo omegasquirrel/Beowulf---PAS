@@ -85,7 +85,7 @@ public function __construct($options = null) {
 		'title','investigator','level',
 		'description','startDate','endDate',
 		'valid',), 'details');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

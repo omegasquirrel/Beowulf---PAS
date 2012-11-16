@@ -42,7 +42,7 @@ class ChangeWorkFlowForm extends Pas_Form {
 
 	$this->addDisplayGroup(array('secwfstage','finder', 'content', ), 'details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

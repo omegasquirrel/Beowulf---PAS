@@ -41,7 +41,7 @@ class FindNoteReasonForm extends Pas_Form {
 
 	$this->addDisplayGroup(array('term','termdesc','valid'), 'details');
 	$this->details->setLegend('Find of note reasoning details: ');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

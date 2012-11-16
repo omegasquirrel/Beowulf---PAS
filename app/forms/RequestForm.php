@@ -199,7 +199,7 @@ public function __construct($options = null) {
 	), 'details');
 	$this->details->setLegend('Enter your comments: ');
 	}
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

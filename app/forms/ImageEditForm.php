@@ -126,7 +126,7 @@ class ImageEditForm extends Pas_Form {
 	'imagerights', 'copyrighttext', 'ccLicense','type', 'rotate',
 	'regenerate'), 'details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	$this->details->setLegend('Attach an image');
 
 	parent::init();

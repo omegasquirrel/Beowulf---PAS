@@ -62,7 +62,7 @@ public function __construct($options = null) {
 	'valuerID', 'value', 'dateOfValuation',
 	'comments'), 'details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

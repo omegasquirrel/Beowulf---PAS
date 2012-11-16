@@ -70,7 +70,7 @@ parent::__construct($options);
 	$this->addDisplayGroup(array('researchOutline','reference','referenceEmail','already'), 'details');
 
 	$this->details->setLegend('Details: ');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 

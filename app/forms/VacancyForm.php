@@ -102,7 +102,7 @@ public function __construct($options = null) {
 	
 	$this->setLegend('Vacancy details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

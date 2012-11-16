@@ -40,6 +40,7 @@ class Users extends Pas_Db_Table_Abstract {
 	$select = $this->select()
 	->from($this->_name, array('ID', 'CONCAT(username," - ",fullname)'))
 	->where('institution IS NOT NULL')
+	->where('valid = ?',1)
 	->order('username ASC');
 	$options = $this->getAdapter()->fetchPairs($select);
 	return $options;

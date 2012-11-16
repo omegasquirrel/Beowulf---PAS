@@ -282,7 +282,7 @@ class MedNumismaticSearchForm extends Pas_Form {
 
 	$this->setLegend('Perform an advanced search on our database: ');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

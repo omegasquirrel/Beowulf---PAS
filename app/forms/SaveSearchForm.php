@@ -41,7 +41,7 @@ public function __construct($options = null) {
 
 	$this->addDisplayGroup(array('title','description','public'), 'details');
 	$this->details->setLegend('Save this search');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-class IndexController extends Pas_Controller_Action_Admin
+class IndexController extends Zend_Controller_Action
 {
 	public function init() {
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');

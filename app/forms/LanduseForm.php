@@ -59,7 +59,7 @@ public function __construct($options = null) {
 	'term', 'termdesc', 'oldID',
 	'belongsto', 'valid'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

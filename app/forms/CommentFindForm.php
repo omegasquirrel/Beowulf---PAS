@@ -88,7 +88,7 @@ parent::__construct($options);
 	$this->addDisplayGroup(array('comment_author', 'comment_author_email', 'comment_author_url',
 	'comment_content', 'captcha'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	} else {
 	$user = $auth->getIdentity();
 	$comment_author->setValue($user->fullname);
@@ -107,7 +107,7 @@ parent::__construct($options);
 
 	$this->details->setLegend('Enter your comments: ');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 		parent::init();
 	}

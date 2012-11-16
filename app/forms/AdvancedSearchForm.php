@@ -522,7 +522,7 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$this->Discovery->setLegend('Discovery details: ');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

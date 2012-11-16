@@ -21,4 +21,7 @@ class Treasure_AdviceController extends Pas_Controller_Action_Admin {
 		$content = new Content();
 		$this->view->contents = $content->getContent('treasure',$this->getRequest()->getParam('slug'));	
 	}
+	
+	function minutesAction(){
+	}
 }

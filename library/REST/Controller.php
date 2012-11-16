@@ -5,7 +5,8 @@
  */
 abstract class REST_Controller extends Zend_Controller_Action
 {
-    /**
+	
+	/**
      * The index action handles index/list requests; it should respond with a
      * list of the requested resources.
      */

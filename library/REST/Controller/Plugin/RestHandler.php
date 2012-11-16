@@ -11,15 +11,15 @@ class REST_Controller_Plugin_RestHandler extends Zend_Controller_Plugin_Abstract
     private $defaultFormat = 'xml';
 
     private $acceptableFormats = array(
-        'html',
+//        'html',
         'xml',
         'php',
         'json'
     );
 
     private $responseTypes = array(
-        'text/html'                         => 'html',
-        'application/xhtml+xml'             => 'html',
+//        'text/html'                         => 'html',
+//        'application/xhtml+xml'             => 'html',
         'text/xml'                          => 'xml',
         'application/xml'                   => 'xml',
         'application/xhtml+xml'             => 'xml',
@@ -51,13 +51,11 @@ class REST_Controller_Plugin_RestHandler extends Zend_Controller_Plugin_Abstract
     {
         $this->dispatcher = $frontController->getDispatcher();
     }
-
     
     
     public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
     {
     	$route = Zend_Controller_Front::getInstance()->getRouter()->getCurrentRoute();
-//    	Zend_Debug::dump($route);
     	if ($route instanceOf Zend_Rest_Route){
     	// send the HTTP Vary header
         $this->_response->setHeader('Vary', 'Accept');
@@ -101,7 +99,7 @@ class REST_Controller_Plugin_RestHandler extends Zend_Controller_Plugin_Abstract
     private function setResponseFormat(Zend_Controller_Request_Abstract $request)
     {
         $format = false;
-
+		
         // check query string first
         if (in_array($request->getParam('format', 'none'), $this->responseTypes)) {
             $format = $request->getParam('format');

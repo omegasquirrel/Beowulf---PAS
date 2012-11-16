@@ -1,31 +1,32 @@
 <?php
 
-class Api_Version1Controller extends REST_Controller
+class Api_V1Controller extends REST_Controller
 {
 
-
+	protected $_context = 'xml';
+	
 	public function init() {
 	$this->_helper->_acl->allow(null);
 	$this->_helper->layout()->disableLayout();
 	$this->_helper->viewRenderer->setNoRender(true);
+	$this->_helper->contextSwitch()->removeContext('html');
+	$this->view->baseUrl = Zend_Registry::get('siteurl');
     }
-    
-   
+    	
 	
 	public function indexAction(){
 	$params = $this->_getAllParams();
 	$search = new Pas_Solr_Handler('beowulf');
-	$context = $this->_helper->contextSwitch->getCurrentContext();
-	$fields = new Pas_Solr_FieldGeneratorFinds($context);
+	$fields = new Pas_Solr_FieldGeneratorFinds($this->_helper->contextSwitch->getCurrentContext());
 	$search->setFields($fields->getFields());
 	$search->setParams($params);
 	$search->execute();
-	$this->view->paginator = $this->createPagination($search->_createPagination());
+	$this->view->pagination = $this->createPagination($search->_createPagination());
 	$this->view->stats = $search->_processStats();
 	$this->view->results = $search->_processResults();
+	$this->view->params = $this->_getAllParams();
 	$this->_response->ok();
     }
-    
     
     private function createPagination($paginator){
     	$pagination = array(
@@ -48,9 +49,9 @@ class Api_Version1Controller extends REST_Controller
      */
     public function getAction()
     {
-    	$this->getResponse()
-            ->appendBody("From getAction() returning the requested article");
-            $this->_response->ok();
+    	$id  = $this->_getParam('id');
+    	$this->view->message = $id;
+    	$this->_response->ok();
     }
 
     /**
@@ -59,7 +60,7 @@ class Api_Version1Controller extends REST_Controller
      */
     public function postAction()
     {
-        $this->_response->unavailable();
+        $this->_response->notImplemented();
     }
 
     /**
@@ -69,7 +70,7 @@ class Api_Version1Controller extends REST_Controller
      */
     public function putAction()
     {
-        $this->_response->unavailable();
+        $this->_response->notImplemented();
     }
 
     /**
@@ -79,10 +80,6 @@ class Api_Version1Controller extends REST_Controller
      */
     public function deleteAction()
     {
-        $id = $this->_getParam('id', 0);
-
-        $this->view->id = $id;
-        $this->view->message = sprintf('Resource #%s Deleted', $id);
-        $this->_response->ok();
+        $this->_response->notImplemented();
     }
 }

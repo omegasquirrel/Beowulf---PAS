@@ -79,7 +79,7 @@ public function __construct($options = null) {
 	'pasID', 'latitude', 'longitude'),
 	'details');
 	$this->setLegend('Active Roman Mints');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

@@ -37,7 +37,7 @@ public function __construct($options = null) {
 
 	$this->addDisplayGroup(array('institution','description'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 parent::init();
 	}

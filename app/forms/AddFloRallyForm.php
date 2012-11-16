@@ -60,7 +60,7 @@ class AddFloRallyForm extends Pas_Form{
 
 	$this->details->setLegend('Attending Finds Officers');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

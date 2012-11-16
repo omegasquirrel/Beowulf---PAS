@@ -113,7 +113,7 @@ public function __construct($options = null) {
 		'postcode','contact','contactpersonID'),
 	 'details');
 	$this->details->setLegend('Organisation details: ');
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	parent::init();
 	}
 }

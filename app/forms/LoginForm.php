@@ -30,14 +30,14 @@ public function init() {
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->setTimeout(60);
+	->setTimeout(480);
 	$this->addElement($hash);
 
 	$submit = $this->addElement('submit', 'submit' , array('label' => 'Login...'));
 
-	$this->addDisplayGroup(array('username','password'), 'details');
+	$this->addDisplayGroup(array('username','password','submit'), 'details');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+//	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	$this->details->setLegend('Login: ');
 	

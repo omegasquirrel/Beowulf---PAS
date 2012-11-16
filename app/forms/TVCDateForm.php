@@ -35,7 +35,7 @@ public function __construct($options = null) {
 	
 	$this->addDisplayGroup(array('tvcID'), 'details');
 	
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 	
 	parent::init();
 	}

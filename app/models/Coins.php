@@ -115,24 +115,11 @@ class Coins extends Pas_Db_Table_Abstract {
 	* @return array
 	*/
 	public function getLastRecord($userid) {
+	$fieldList = new CopyCoin();
+	$fields = $fieldList->getConfig();
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name,array(
-		'ruler_id', 'ruler_qualifier', 'denomination',
-		'denomination_qualifier', 'mint_id', 'mint_qualifier', 
-		'status',	'status_qualifier',	'obverse_description',
-		'obverse_inscription', 'reverse_description', 'reverse_inscription',
-		'reverse_mintmark', 'degree_of_wear', 'die_axis_measurement',
-		'die_axis_certainty', 'moneyer', 'reeceID',
-		'revtypeID', 'revTypeID_qualifier', 'ruler2_id',
-		'ruler2_qualifier', 'tribe' , 'tribe_qualifier',
-		'geographyID', 'geography_qualifier', 'bmc_type',
-		'allen_type', 'mack_type', 'rudd_type',
-		'va_type', 'cciNumber', 'phase_date_1',
-		'phase_date_2', 'context', 'depositionDate',
-		'numChiab', 'categoryID', 'typeID',
-		'type', 'initial_mark', 'greekstateID',
-		'revtypeID' ))
+		->from($this->_name,$fields)
 		->where('coins.createdBy = ?',(int)$userid)
 		->order('coins.id DESC')
 		->limit(1);

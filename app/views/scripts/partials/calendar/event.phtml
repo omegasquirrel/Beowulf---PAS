@@ -1,0 +1,9 @@
+<div class="page-header"><h2><?php echo date('d-m-Y', strtotime($this->starts));?>: <?php echo $this->title;?></h2></div>
+<?php if($this->content != ''):?>
+<blockquote><?php echo $this->content;?></blockquote>
+<?php endif;?>
+<p>Location: <?php echo $this->where;?><br />
+Start: <?php echo date('h-i d-m-Y', strtotime($this->starts));?><br />
+End: <?php echo date('h-i d-m-Y', strtotime($this->ends));?><br />
+<a href="<?php echo $this->url(array('module' => 'users', 'controller' => 'calendar', 'action' => 'event', 'id' => urlencode($this->id)), null, true);?>" >Further details &rarr;</a>
+</p>
