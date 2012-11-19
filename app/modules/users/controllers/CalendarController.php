@@ -14,17 +14,16 @@ class Users_CalendarController extends Pas_Controller_Action_Admin {
 	/** Set up the ACL and contexts
 	*/	
 	public function init() {	
-	$this->_helper->_acl->allow('flos',NULL);
-    $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+		$this->_helper->_acl->allow('flos',NULL);
+	    $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     }
-	
 	
 	/** Display index pages for the individual
 	*/	
 	public function indexAction() {	
-    $gcal = new Pas_Calendar_Mapper();
-    $this->view->listFeed = $gcal->getCalendarList();
-    $this->view->eventFeed = $gcal->getEventFeed();
+	    $gcal = new Pas_Calendar_Mapper();
+	    $this->view->listFeed = $gcal->getCalendarList();
+	    $this->view->eventFeed = $gcal->getEventFeed();
 	}
 	
 	public function eventAction()
@@ -34,4 +33,16 @@ class Users_CalendarController extends Pas_Controller_Action_Admin {
 		$this->view->event = $gcal->getEvent($id);
 	}
 	
+	public function addAction()
+	{
+		
+	}	
+	
+	public function editAction()
+	{
+		
+	}
+	
+	public function deleteAction()
+	{
 }
