@@ -7,7 +7,7 @@ class Pas_Calendar_Mapper
 	protected $_config;
 	protected $_service;
 	protected $_calendar;
-	protected $_timezone = '0000:00:00-00:00';
+	protected $_timezone = '00:00:00-00:00';
 	protected $_today;
 	protected $_tonight;
 	
@@ -76,30 +76,33 @@ class Pas_Calendar_Mapper
 	
 	public function getEventFeed()
 	{
-	$query = $this->getCalendar()->newEventQuery();
-	$query->setUser('default');
-	$query->setVisibility('private');
-	$query->setProjection('full');
-	$query->setOrderby('starttime');
-	$query->setFutureevents('true');
-	$query->setSortOrder('a');
-	return $this->getCalendar()->getCalendarEventFeed($query);
+		$query = $this->getCalendar()->newEventQuery();
+		$query->setUser('default');
+		$query->setVisibility('private');
+		$query->setProjection('full');
+		$query->setOrderby('starttime');
+		$query->setFutureevents('true');
+		$query->setSortOrder('a');
+		return $this->getCalendar()->getCalendarEventFeed($query);
 	}
 	
-	private function getExtendedProperty( Zend_Gdata_Calendar_EventEntry $event, $name)
+	public function getExtendedProperty( Zend_Gdata_Calendar_EventEntry $event)
 	{
 		$extendedProperties = $event->extendedProperty();
 		foreach ( $extendedProperties as $extendedProperty){
-			if($name == $extendedProperty->name){
 				return $extendedProperty->value;
 			}
-		}
 	}
 
-	private function addExtendedProperty( Zend_Gdata_Calendar_EventEntry $event, $name, $value)
+	private function addExtendedProperty( Zend_Gdata_Calendar_EventEntry $event, $properties)
 	{
-		$extendedProperty = $this->getCalendar()->newExtendedProperty( $name, $value);
-		$extendedProperties = array_merge($event->extendedProperty, array ($extendedProperty));
+		$extendedProperty = array();
+		foreach($properties as $key => $value){
+		$extendedProperty[] = $this->getCalendar()->newExtendedProperty( $key, $value);
+		}
+		$extendedProperties = array_merge($event->extendedProperty, $extendedProperty);
+		
+		
 		$event->extendedProperty = $extendedProperties;
 		$eventNew = $event->save();
 		return $eventNew;
@@ -114,27 +117,62 @@ class Pas_Calendar_Mapper
 		return $this->getCalendar()->getCalendarEventEntry( $query );
 	}
 	
-	public function getEvents( $startTime, $endTime, $maximum = 25)
+		
+	public function addEvent($data)
 	{
-		$query = $this->getCalendar()->newEventQuery()->setUser('default')
-									 ->setVisibility('private')
-									 ->setStartMin( $startTime )
-									 ->setStartMax( $endTime )
-									 ->setMaxResults( $maximum );
-		$eventFeed = $this->getCalendar()->getCalendarEventFeed( $query );
-		$events = array();
-		foreach( $eventFeed as $event ){
-			$event = new Pas_Calendar_Model_Event( array( 
-				'id'          => substr($event->id,strrpos($event->id,'/')+1,26), //(the id is 26 charachters long, sometimes followed by a time variable)
-            	'name'        => $event->title,
-            	'description' => $event->content,
-            	'when'        => $event->when(),
-			));
+		if(is_array($data)){
+		$event= $this->getCalendar()->newEventEntry();
+		$event->title = $this->getCalendar()->newTitle($data['title']);
+		$event->where = array($this->getCalendar()->newWhere($data['location']));
+		$event->content = $this->getCalendar()->newContent($data['content']);
+		 
+		// Set the date using RFC 3339 format.
+		$startDate 	= $data['startDate'];
+		$startTime 	= $data['startTime'];
+		$endDate 	= $data['endDate'];
+		$endTime 	= $data['endTime'];
+		$tzOffset = "-00";
+		 
+		$when = $this->getCalendar()->newWhen();
+		$when->startTime = "{$startDate}T{$startTime}:00.000{$tzOffset}:00";
+		$when->endTime = "{$endDate}T{$endTime}:00.000{$tzOffset}:00";
+		$event->when = array($when);
+		// Upload the event to the calendar server
+		// A copy of the event as it is recorded on the server is returned
+		$newEvent = $this->getCalendar()->insertEvent($event);
+		//Create extended properties
+		$properties = array('type' => $data['eventType'], 'creator' => $data['creator']);
+		$this->addExtendedProperty($newEvent, $properties);
+		
+		} else {
+			throw new Pas_Calendar_Exception('The data supplied is not an array', 500);
 		}
 	}
 	
-	public function getInstance()
+	public function editEvent($data)
 	{
+	if(is_array($data)){
+		$event= $this->getEvent($data['id']);
+		$event->title = $this->getCalendar()->newTitle($data['title']);
+		$event->where = array($this->getCalendar()->newWhere($data['location']));
+		$event->content = $this->getCalendar()->newContent($data['content']);
 		
+		// Set the date using RFC 3339 format.
+		$startDate 	= $data['startDate'];
+		$startTime 	= $data['startTime'];
+		$endDate 	= $data['endDate'];
+		$endTime 	= $data['endTime'];
+		$tzOffset = "-00";
+		 
+		$when = $this->getCalendar()->newWhen();
+		$when->startTime = "{$startDate}T{$startTime}:00.000{$tzOffset}:00";
+		$when->endTime = "{$endDate}T{$endTime}:00.000{$tzOffset}:00";
+		$event->when = array($when);
+		$properties = array('type' => $data['eventType'], 'creator' => $data['creator']);
+		$this->addExtendedProperty($event, $properties);
+//		$event->save();
+		} else {
+			throw new Pas_Calendar_Exception('The data supplied is not an array', 500);
+		}
 	}
 }

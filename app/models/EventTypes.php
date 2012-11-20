@@ -47,5 +47,22 @@ class EventTypes extends Pas_Db_Table_Abstract
 	   }
 	   return $data;
 	}
+	
+/**
+     * Retrieves all event types that we list as word pairs
+     * 
+     * @return array
+	*/
+	
+	public function getTypesWords(){
+	if(!$data = $this->_cache->load('eventtypesWords')) {
+		$events = $this->getAdapter();
+		$select = $events->select()
+						 ->from($this->_name, array('type','type'));
+		$data =  $events->fetchPairs($select); 
+		$this->_cache->save($data, 'eventtypesWords');
+	   }
+	   return $data;
+	}
 
 }

@@ -18,7 +18,7 @@ class HTMLPurifier_EntityLookup {
      */
     public function setup($file = false) {
         if (!$file) {
-		$file = 'library/HTMLPurifier/EntityLookup/entities.ser';        }
+		$file = '/home/beowulf2/library/HTMLPurifier/EntityLookup/entities.ser';        }
         $this->table = unserialize(file_get_contents($file));
     }
 
