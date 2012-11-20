@@ -45,4 +45,5 @@ class Users_CalendarController extends Pas_Controller_Action_Admin {
 	
 	public function deleteAction()
 	{
+	}
 }
