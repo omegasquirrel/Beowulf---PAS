@@ -8,6 +8,7 @@ cd $BACK
 zip $FILE.zip $FILE
 rm $BACK$FILE
 #gzip $BACK$FILE.zip
-ruby /home/danp/s3sync/s3sync.rb -r -s -v -p --delete $BACK findsorguk:  > /var/log/s3sync
+find $BACK* -type f -mtime +10 -exec rm '{}' \;
+ruby /home/danp/s3sync/s3sync.rb -r -s -v -p --exclude="publicAllFinds$|publicGrids$" --delete $BACK findsorguk:  > /var/log/s3sync
 #rm $BACK$FILE.gz
 

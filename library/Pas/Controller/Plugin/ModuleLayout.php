@@ -90,7 +90,7 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 		break;
 	case 'users':
 		$layouttype = 'database';
-		$response->insert('sidebar', $view->render('structure/UserSidebar.phtml'));
+		$response->insert('sidebar', $view->render('structure/userSidebar.phtml'));
 		break;
 	case 'contacts':
 		$layouttype = 'database';

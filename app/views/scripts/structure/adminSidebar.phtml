@@ -31,6 +31,7 @@ if(in_array($user->role,$allowed)) {
 </li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'her'),null,true);?>" title="Manage the list of signed up HER officers">Manage HER sign ups</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'content'),null,true);?>" title="Go to content administration centre">Content management</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'help'),null,true);?>" title="Go to help administration centre">Help topic management</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'quotes'),null,true);?>" title="Administer quotes and announcements">Quotes &amp; announcements</a></li>
 <li <?php if($controller == 'vacancies' || $controller == 'volunteers') { echo 'class="expandfirst"';};?>><a href="#">Volunteers and vacancies <i class="icon-folder-open"></i></a>
 <ul class="nav nav-pills nav-stacked menuindent">

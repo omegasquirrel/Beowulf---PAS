@@ -17,7 +17,7 @@ class Pas_Filter_HtmlBody extends Pas_Filter_HTMLPurifier {
 	$config = HTMLPurifier_Config::createDefault();
 	$this->_htmlPurifier = new HTMLPurifier($config);
 	$config->set('Cache.SerializerPath',  CACHE_PATH . '/htmlpurifier');
-	$config->set('HTML.Allowed', 'br,p,em,h1,h2,h3,h4,h5,strong,a[href|title|class|rel],ul,ol,li,code,pre,'
+	$config->set('HTML.Allowed', 'br,p,em,h1,h2,h3,h4,h5,strong,a[name|href|title|class|rel],ul,ol,li,code,pre,'
 	. 'blockquote,img[src|alt|height|width|class],sub,sup,br,span[class|id],div[class|id],table');
 	$config->set('AutoFormat.RemoveEmpty.RemoveNbsp',TRUE);
 	$config->set('AutoFormat.RemoveEmpty', TRUE);

@@ -2,6 +2,14 @@
 $this->headMeta('noodp','robots');
 $this->headMeta('BJ0IxlmtPbri25v9zbMgcOFDOBuZmNacd9-friMs1_E','google-site-verification');
 $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javascript');
+$this->twitterCard('photo')
+	->setTitle('Boo')
+	->setUrl($this->curUrl())
+	->setDescription('boo')
+	->setImage('http://farm9.staticflickr.com/8020/7549068488_0ae9724e24_z.jpg',480,360)
+	->setSiteAccount('portableant',233)
+	->setCreatorAccount('findsorguk',345)
+	->create();
 ?>
 
 
@@ -18,10 +26,10 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
           <div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
             <div class="item active">
-                <img src="http://farm2.staticflickr.com/1301/972857332_792e600300_z.jpg" alt="The Staffordshire Moorlands trulla">
+                <img src="http://farm9.staticflickr.com/8020/7549068488_0ae9724e24_z.jpg" alt="The boar badge">
                 <div class="carousel-caption">
-                  <h4>The Staffordshire Moorlands trulla</h4>
-                  <p>The Staffordshire pan is one of the most iconic objects reported to the Scheme.</p>
+                  <h4>A medieval boar badge</h4>
+                  <p>Boar Badge of Richard III from Chiddingly, Sussex. Featured at number 5 on Britain's Secret Treasures.</p>
                 </div>
               </div>
               <div class="item">

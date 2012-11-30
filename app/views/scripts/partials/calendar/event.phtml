@@ -1,10 +1,10 @@
 <div class="page-header"><h2><?php echo date('d-m-Y', strtotime($this->starts));?>: <?php echo $this->title;?></h2></div>
 <?php if($this->content != ''):?>
-<blockquote><?php echo $this->content;?></blockquote>
+<blockquote><?php echo $this->paragraphRemove($this->purify($this->content));?></blockquote>
 <?php endif;?>
 <p>Location: <?php echo $this->where;?><br />
-Start: <?php echo date('h:i d-m-Y', strtotime($this->starts));?><br />
-End: <?php echo date('h:i d-m-Y', strtotime($this->ends));?><br />
+Start: <?php echo date('g:ia', strtotime($this->starts));?> <?php echo $this->niceshortdate(date('d-m-Y', strtotime($this->ends)));?><br />
+End: <?php echo date('g:ia', strtotime($this->ends));?> <?php echo $this->niceshortdate(date('d-m-Y', strtotime($this->ends)));?><br />
 <?php 
 $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
 if($action != 'event'):

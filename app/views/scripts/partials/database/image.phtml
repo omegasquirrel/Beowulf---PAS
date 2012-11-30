@@ -38,7 +38,8 @@ $phMagick->resize(500,500);
 $phMagick->convert();
 echo '<img src="'.$this->baseUrl().'/'.$path.'medium/'.$name.$ext.'" alt="A resized image of '.$this->label.'">';
 }
-
+$this->metaBaseImage($this->label, $subject = 'archaeology', implode(',',array(
+$this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$path.'medium/'.rawurlencode($name).$ext, $w, $h);
 
 ?>
 <p><a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax','action' => 'download','id' => $this->id),null,true);?>" title="Download image">Download original</a> 

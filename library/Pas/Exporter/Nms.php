@@ -50,8 +50,9 @@ class Pas_Exporter_Nms extends Pas_Exporter_Generate {
     }
 
     protected function _clean($data){
+    	$finalData = array();
         foreach($data as $dat){
-
+		$record = array();
         foreach($dat as $k => $v){
             $record[$k] = trim(strip_tags(str_replace('<br />',array( ""),
                     utf8_decode( $v ))));

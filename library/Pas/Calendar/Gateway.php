@@ -133,6 +133,7 @@ class Pas_Calendar_Gateway
 	 */
 	public function getExtendedProperty( Zend_Gdata_Calendar_EventEntry $event)
 	{
+		//Get the extend properties
 		$extendedProperties = $event->extendedProperty();
 		foreach ( $extendedProperties as $extendedProperty){
 				return $extendedProperty->value;
@@ -147,12 +148,15 @@ class Pas_Calendar_Gateway
 	 */
 	private function addExtendedProperty( Zend_Gdata_Calendar_EventEntry $event, $properties)
 	{
+		//Check if properties in an array
 		if(is_array($properties)){
+		//Set up the array of extended properties
 		$extendedProperty = array();
 		//For each array component add the extended property
 		foreach($properties as $key => $value){
 		$extendedProperty[] = $this->getCalendar()->newExtendedProperty( $key, $value);
 		}
+		//Merge the extended properties
 		$extendedProperties = array_merge($event->extendedProperty, $extendedProperty);
 		$event->extendedProperty = $extendedProperties;
 		//Save the event and rewrite it on the calendar
