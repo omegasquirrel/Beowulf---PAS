@@ -27,17 +27,21 @@ class Pas_View_Helper_Slideshare extends Zend_View_Helper_Abstract  {
 	 */
 	public function buildHtml($ss_user){
 	if($ss_user) {
-	$html = '<div id="slideshows"><h3>Most recent presentations</h3>';
+	$html = '<div class="row"><h3>Most recent presentations</h3>';
+	$html .= '<ul class="thumbnails">';
 	foreach($ss_user as $slideshow){
+	$html .= '<li class="span2">';
 	$html .= '<div class="thumbnail">';
 	$html .= 'Title: ' . $slideshow->getTitle() . '<br />';
 	$html .= '<a href="' . $slideshow->getPermaLink() . '" title="View this presentation at slideshare" >';
-	$html .= '<img src="' . $slideshow->getThumbnailUrl() . '" alt="Thumbnail of presentation entitled'
+	$html .= '<img class="img-rounded" src="' . $slideshow->getThumbnailUrl() . '" alt="Thumbnail of presentation entitled'
 	. $slideshow->getTitle().'" />';
 	$html .= '</a><br />';
 	$html .= 'Views: '. $slideshow->getNumViews();
 	$html .= '</div>';
+	$html .= '</li>';
 	}
+	$html .= '</ul>';
 	$html .= '</div>';
 	return $html;
 	}

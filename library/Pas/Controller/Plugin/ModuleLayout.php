@@ -22,11 +22,11 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 	 * @var array $_contexts
 	 */
 	protected $_contexts = array(
-	'xml','rss','json',
-	'atom','kml','georss',
-	'ics','rdf','xcs',
-	'vcf','csv','foaf',
-	'pdf','qrcode');
+	'xml', 'rss', 'json',
+	'atom', 'kml', 'georss',
+	'ics', 'rdf', 'xcs',
+	'vcf', 'csv', 'foaf',
+	'pdf', 'qrcode', 'geojson');
 
 	/** Set up contexts to disable layout for based on modules
 	 * @var array $_disabled
@@ -46,7 +46,6 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 	$response = $this->getResponse();
 	$view = Zend_Controller_Action_HelperBroker::getExistingHelper('ViewRenderer')->view;
 	$route = Zend_Controller_Front::getInstance()->getRouter()->getCurrentRoute();
-//	Zend_Debug::dump($route);
 	if(!in_array($ctrllr, $this->_disabled)) {
 	if(!in_array($contextSwitch->getCurrentContext(), $this->_contexts)) {
 	$module = strtolower($request->getModuleName());
@@ -193,7 +192,7 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 		$layouttype = 'home';
 		break;
 		}
-	if(!$route instanceOf Zend_Rest_Route){
+//	if(!$route instanceOf Zend_Rest_Route){
 	$response->insert('userdata', $view->render('structure/userdata.phtml'));
 	$response->insert('header', $view->render('structure/header.phtml'));
 	$response->insert('breadcrumb', $view->render('structure/breadcrumb.phtml'));
@@ -207,7 +206,7 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 	$response->insert('bronzeage', $view->render('structure/bronzeage.phtml'));
 	$response->insert('staffs', $view->render('structure/staffs.phtml'));
 	$response->insert('searchForm', $view->render('structure/searchForm.phtml'));
-	}
+//	}
 	$layout = Zend_Layout::getMvcInstance();
 	if ($layout->getMvcEnabled() ) {
 	$layout->setLayoutPath(APPLICATION_PATH . '/layouts/');
@@ -222,11 +221,11 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 	}
 	}
 	
-	if($route instanceOf Zend_Rest_Route){
-	Zend_Controller_Action_HelperBroker::getStaticHelper('Layout')->disableLayout();
-	} else {
-	
-	}
+//	if($route instanceOf Zend_Rest_Route){
+//	Zend_Controller_Action_HelperBroker::getStaticHelper('Layout')->disableLayout();
+//	} else {
+//	
+//	}
 	}
 }
 

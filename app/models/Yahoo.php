@@ -40,7 +40,7 @@ class Yahoo extends Pas_Db_Table_Abstract {
 	 * 
 	 * @var string
 	 */
-	const SITEYAHOOCALLBACK = 'http://beta.finds.org.uk/admin/oauth/yahooaccess/';
+	const SITEYAHOOCALLBACK = 'http://finds.org.uk/admin/oauth/yahooaccess/';
 	
 	protected $_consumerKey;
 	
@@ -70,6 +70,7 @@ class Yahoo extends Pas_Db_Table_Abstract {
     'consumerKey' => $this->_consumerKey,
  	'consumerSecret' => $this->_consumerSecret,
     );
+
     $tokens = new OauthTokens();
 	$tokenexists = $tokens->fetchRow($tokens->select()->where('service = ?', 'yahooAccess'));
 	if(is_null($tokenexists)){
@@ -92,7 +93,7 @@ class Yahoo extends Pas_Db_Table_Abstract {
 	public function access(){
 	$config = array(
 	'siteUrl' => self::YAHOOTOKENGET,
-	'callbackUrl' => 'http://beta.finds.org.uk/admin/oauth/',
+	'callbackUrl' => 'http://finds.org.uk/admin/oauth/',
 	'consumerKey' => $this->_consumerKey,
  	'consumerSecret' => $this->_consumerSecret,
 	);

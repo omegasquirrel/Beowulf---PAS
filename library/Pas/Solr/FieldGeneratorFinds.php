@@ -9,7 +9,7 @@ class Pas_Solr_FieldGeneratorFinds {
 	}
 
 	public function getFields(){
-	if(!in_array($this->_context,array('json', 'xml'))){
+	if(!in_array($this->_context,array('json', 'xml', 'kml', 'geojson'))){
 		$fields = array(
 		'id','identifier','objecttype',
         'title','broadperiod','description',
@@ -35,8 +35,8 @@ class Pas_Solr_FieldGeneratorFinds {
 		'TID', 'musaccno', 'created',
 		'updated', 'weight', 'height', 
 		'width', 'diameter', 'thickness',
-		'quantity', 'length','created', 'updated'
-		
+		'quantity', 'length','created',
+		'fourFigureLat', 'fourFigureLon'
 		);
 	}
 	return $fields;

@@ -16,7 +16,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	'xml', 'rss', 'json',
 	'atom', 'kml', 'georss',
 	'ics', 'rdf', 'xcs',
-	'csv','n3', 'midas');
+	'csv','n3', 'midas',
+	'geojson');
 
 	/** Setup the contexts by action and the ACL.
 	*/
@@ -29,7 +30,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addContext('kml',array('suffix' => 'kml'))
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
-		->addActionContext('results', array('json','xml','rss','atom'))
+		->addContext('geojson',array('suffix' => 'geojson', 'headers'   => array('Content-Type' => 'application/json')))
+		->addActionContext('results', array('json','xml','rss','atom', 'kml', 'geojson'))
 		->setAutoJsonSerialization(false);
 
 	$this->_helper->contextSwitch()->initContext();
@@ -364,14 +366,12 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$search = new Pas_Solr_Handler('beowulf');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
-	
+	$params['format'] = $context;
 	$search->setFields($fields->getFields());
-    
 	$search->setFacets(array(
     'objectType','county', 'broadperiod',
     'institution', 'rulerName', 'denominationName', 
     'mintName', 'materialTerm', 'workflow'));
-
 	$search->setParams($params);
 	$search->execute();
     $this->view->facets = $search->_processFacets();

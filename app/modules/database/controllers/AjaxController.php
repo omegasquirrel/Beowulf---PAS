@@ -250,7 +250,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     if(!isset($params['show'])){
 	$params['show'] = 2000;
     }
-	$params['format'] = 'json';
+	$params['format'] = 'kml';
 	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',

@@ -22,7 +22,12 @@ class Pas_Controller_Action_Helper_Audit
     }
     
     public function direct( $auditData, $oldData, $model, $recordID, $entityID ){
-
+	Zend_Debug::dump($oldData);
+	Zend_Debug::dump($auditData);
+	$model = new $model();
+	Zend_Debug::dump($model);
+	
+	
     if (!empty($auditData)) {
         unset($auditData['csrf']);
        
@@ -88,9 +93,12 @@ class Pas_Controller_Action_Helper_Audit
        $f[$key] = NULL;
       }
     }
+    Zend_Debug::dump($f);
 	
     $audit = new $model();
     $auditBaby = $audit->add($f);
+    Zend_Debug::dump($auditBaby);
+    exit;
     }
 }
    protected function filteraudit($fieldarray) {

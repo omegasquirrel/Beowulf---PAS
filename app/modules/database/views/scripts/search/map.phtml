@@ -195,7 +195,8 @@ $(document).ready(function() {
         markerInfoWindow(marker, markerXML.attr("content"));
         markers.push(marker);
     });
-    var markerCluster = new MarkerClusterer(map, markers);
+
+    var markerCluster = new MarkerClusterer(map, markers,{gridSize: 20, maxZoom:12});
 	});
 
 	function markerInfoWindow(marker, information){

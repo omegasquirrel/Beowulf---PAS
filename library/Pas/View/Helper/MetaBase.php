@@ -44,7 +44,7 @@ class Pas_View_Helper_MetaBase
     $this->view->headMeta('CC BY-SA','dc.rights');
     $this->view->headRdf($this->view->curUrl(),'og:url');
     $this->view->headRdf($this->view->ellipsisstring(strip_tags($description),200),'og:description');
-    $this->view->headRdf('https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c59.0.712.712/s160x160/540083_10151131686659762_1658645946_n.jpg','og:image');
+//    $this->view->headRdf('https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c59.0.712.712/s160x160/540083_10151131686659762_1658645946_n.jpg','og:image');
     $this->view->headRdf('non_profit','og:type');
     $this->view->headRdf($this->view->title(),'og:title');
     $this->view->headRdf('The Portable Antiquities Scheme','og:site_name');

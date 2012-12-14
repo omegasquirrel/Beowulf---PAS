@@ -26,7 +26,7 @@ class Pas_Exporter_Generate {
         'id', 'old_findID', 'description',
         'gridref', 'fourFigure', 'longitude',
         'latitude', 'county', 'woeid',
-	'district', 'parish','knownas',
+		'district', 'parish','knownas',
         'thumbnail');
 
     protected $_gisFields = array();

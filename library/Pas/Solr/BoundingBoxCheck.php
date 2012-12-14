@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * BoundingBoxCheck takes parameters from a bounding box query string and
  * checks for validity, then returns the correct solr formatted query string.

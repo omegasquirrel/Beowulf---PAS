@@ -27,8 +27,8 @@
  * @since 2008-03-04
  */
 
-require_once('/home/beowulf2/public_html/library/tcpdf/config/lang/eng.php');
-require_once('/home/beowulf2/public_html/library/tcpdf/tcpdf.php');
+require_once('/home/beowulf2/library/tcpdf/config/lang/eng.php');
+require_once('/home/beowulf2/library/tcpdf/tcpdf.php');
 
 // extend TCPF with custom functions
 class MYPDF extends TCPDF {
@@ -59,6 +59,8 @@ class MYPDF extends TCPDF {
 
     // Load table data from file
     public function LoadData($dataLoad) {
+    	Zend_Debug::dump($dataLoad);
+    	exit;
         $data = array();
         foreach($dataLoad as $k => $v) {
             $data[] = $v;

@@ -13,6 +13,7 @@ $meta = $dom->createElement('meta');
 $artefact->appendChild($meta);
 $meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
 $formats = $dom->createElement('formats');
+
 $meta->appendChild($formats);	
 foreach ($contexts as $k ){
 $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module' => $module,
@@ -20,6 +21,14 @@ $formats->appendChild( $dom->createElement($k, $site . $this->url(array('module'
 }
 $formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
 'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
+
+$statistics = $dom->createElement('statistics');
+$statistics->appendChild( $dom->createElement('totalResults', $this->paginator->getTotalItemCount()));
+$statistics->appendChild( $dom->createElement('currentPage', $this->paginator->getCurrentPageNumber()));
+$statistics->appendChild( $dom->createElement('resultsPerPage', $this->paginator->getItemCountPerPage()));
+$meta->appendChild($statistics);
+
+
 $artefactsElem = $dom->createElement('results');
 foreach($this->results as $r){
 	if(array_key_exists('knownas', $r)){

@@ -62,17 +62,11 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $updateData = $form->getValues();
     $where = array();
     $where[] = $this->_content->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-    $this->_content->update($updateData, $where);
-    $this->_helper->solrUpdater->update('beocontent', $this->_getParam('id'));  
     $oldData = $this->_content->fetchRow($this->_content->select()->where('id= ?' , (int)$this->_getParam('id')))->toArray();
-
     $this->_helper->audit($updateData, $oldData, 'ContentAudit', 
             $this->_getParam('id'), $this->_getParam('id'));
-    $cache = Zend_Registry::get('rulercache');
-    $tag = 'content' . md5($updateData['slug']);
-    $tag2 = 'frontcontent' . $form->getValue('section');
-    $cache->remove($tag2);
-    $cache->remove($tag);
+	$this->_content->update($updateData, $where);
+    $this->_helper->solrUpdater->update('beocontent', $this->_getParam('id'), 'content');  
     $this->_flashMessenger->addMessage('You updated: <em>' . $form->getValue('title') 
     . '</em> successfully. It is now available for use.');
     $this->_redirect('admin/content/');

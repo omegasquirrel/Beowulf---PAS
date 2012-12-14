@@ -58,7 +58,11 @@ class Pas_View_Helper_Contextsavailable extends Zend_View_Helper_Abstract {
 	'action' => $action, 
 	'format' => $value),null,false);
 	$string .= '<a href="' . $url . '" title="Obtain data in ' . $value 
-	. ' representation">' . $value . '</a> ';	
+	. ' representation" ';
+	if($value === 'kml'){
+		$string .= ' rel="nofollow" ';
+	}
+	$string .=  '>' . $value . '</a> ';	
 	if(array_key_exists($value, $this->_response)){
 			$this->view->headLink()->appendAlternate($this->view->serverUrl() . $url, $this->_response[$value], 'Alternate representation as ' . $value);
 		}

@@ -2,14 +2,15 @@
 $this->headMeta('noodp','robots');
 $this->headMeta('BJ0IxlmtPbri25v9zbMgcOFDOBuZmNacd9-friMs1_E','google-site-verification');
 $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javascript');
-$this->twitterCard('photo')
-	->setTitle('Boo')
-	->setUrl($this->curUrl())
-	->setDescription('boo')
-	->setImage('http://farm9.staticflickr.com/8020/7549068488_0ae9724e24_z.jpg',480,360)
-	->setSiteAccount('portableant',233)
-	->setCreatorAccount('findsorguk',345)
-	->create();
+$this->twitterCard('player')
+     ->setTitle('A video of the new display case in room 2 at the British Museum')
+     ->setUrl('https://www.youtube.com/watch?v=IX-7Hpu58Lc')
+     ->setDescription('This is a short film introducing the opening of a new display case in the British Museum. The case will be used as a platform to highlight new discoveries made by members of the public')
+     ->setImage('http://finds.org.uk/images/logos/pasrgbsize3.jpg',480,270)
+     ->setVideo('https://www.youtube.com/embed/IX-7Hpu58Lc',480,270)
+     ->setSiteAccount('youtube', 10228272)
+     ->setCreatorAccount('findsorguk', 15156713)
+     ->create();
 ?>
 
 

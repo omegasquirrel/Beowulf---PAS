@@ -69,30 +69,13 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	if($this->_getParam('id',false)) {
 	$form = new EditAccountForm();
 	$form->submit->setLabel('Edit account details');
+	$form->removeElement('password');
 	$this->view->form = $form;
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
 	$id = (int)$this->_getParam('id');
-	$passwordfield = $form->getValue('password');
 	$users = new Users();
-	if(!is_null($passwordfield)) {
-	$config = Zend_Registry::get('config');
-	$salt = $config->auth->salt;
-	$password = SHA1($salt . $form->getValue('password'));
-	$updateData = array(
-	'username' => $form->getValue('username'),
-	'first_name' => $form->getValue('first_name'),
-	'last_name' => $form->getValue('last_name'),
-	'fullname' => $form->getValue('fullname'),
-	'email' => $form->getValue('email'),
-	'institution' => $form->getValue('institution'),
-	'role' => $form->getValue('role'),
-	'password' => $password,
-	'peopleID' => $form->getValue('peopleID'),
-	'updated' => $this->getTimeForForms(),
-	'updatedBy' => $this->getIdentityForForms());
-	} else {
 	$updateData = array(
 	'username' => $form->getValue('username'),
 	'first_name' => $form->getValue('first_name'),
@@ -105,8 +88,8 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	'updated' => $this->getTimeForForms(),
 	'updatedBy' => $this->getIdentityForForms(),
 	'preferred_name' => $form->getValue('preferred_name'),
-	'canRecord' => $form->getValue('canRecord'));
-	}
+	'canRecord' => $form->getValue('canRecord')
+	);
 	foreach ($updateData as $key => $value) {
       if (is_null($value) || $value=="") {
         unset($updateData[$key]);
@@ -114,7 +97,12 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
     }
 	$where = array();
 	$where[] = $users->getAdapter()->quoteInto('id = ?', $id);
+	$oldData = $users->fetchRow('id=' . $this->_getParam('id'))->toArray();
 	$users->update($updateData,$where);
+	  //Update the audit log
+	
+    $this->_helper->audit($updateData, $oldData, 'UsersAudit',
+            $this->_getParam('id'), $this->_getParam('id'));
 	$this->_flashMessenger->addMessage('You updated: <em>' . $form->getValue('fullname')
 	. '</em> successfully.');
 	$this->_redirect('/admin/users/account/username/' . $form->getValue('username'));
@@ -155,7 +143,7 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	$form->submit->setLabel('Create account details');
 	$form->username->addValidator('Db_NoRecordExists', false, array('table' => 'users',
                                                                'field' => 'username'));
-	$form->password->setLabel('Your password: ');
+	$form->password->setLabel('Their password: ');
 	$form->institution->setRequired(true);
 	$form->password->setRequired(true);
 	$form->role->setRequired(true);
@@ -166,15 +154,14 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
 	$users = new Users();
-	$config = Zend_Registry::get('config');
-	$salt = $config->auth->salt;
-	$password = SHA1($salt.$form->getValue('password'));
+	$salt = $this->_helper->config()->auth->salt;
+	$password = SHA1($salt . $form->getValue('password'));
 	$insertData = array(
 	'username' => $form->getValue('username'),
 	'first_name' => $form->getValue('first_name'),
 	'last_name' => $form->getValue('last_name'),
 	'fullname' => $form->getValue('fullname'),
-        'imagedir' => 'images/' . $form->getValue('username'),
+	'imagedir' => 'images/' . $form->getValue('username'),
 	'email' => $form->getValue('email'),
 	'institution' => $form->getValue('institution'),
 	'role' => $form->getValue('role'),
@@ -185,17 +172,17 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 
 	$username = $form->getValue('username');
 	$users->add($insertData);
-        $directories = array(
+	$directories = array(
 	self::IMAGEPATH . $username,
 	self::IMAGEPATH . $username . '/small/',
 	self::IMAGEPATH . $username . '/medium/',
 	self::IMAGEPATH . $username . '/display/',
-        self::IMAGEPATH . $username . '/zoom/');
-        foreach ($directories as $dir){
-            mkdir($dir, 0777);
-        }
-	
-
+	self::IMAGEPATH . $username . '/zoom/'
+	);
+    
+	foreach ($directories as $dir){
+    	mkdir($dir, 0777);
+    }
 	$this->_flashMessenger->addMessage('You successfully added a new account');
 	$this->_redirect('/admin/users/account/username/' . $form->getValue('username'));
 	} else {

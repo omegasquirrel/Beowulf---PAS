@@ -42,10 +42,11 @@ class Pas_Exporter_Nms extends Pas_Exporter_Generate {
      * @return array
      */
     public function create(){
-    $params = array_merge($this->_params, array('show' => 500));
+    $params = array_merge($this->_params, array('show' => 500, 'format' => 'pdf'));
     $this->_search->setFields($this->_nmsFields);
     $this->_search->setParams($params);
     $this->_search->execute();
+    $this->_search->debugQuery();
     return  $this->_clean($this->_search->_processResults());
     }
 

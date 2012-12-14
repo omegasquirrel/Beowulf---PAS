@@ -232,7 +232,7 @@ $findspots = new Findspots();
    ->where('declong IS NOT NULL')
    ->where('declat IS NOT NULL');
 $rows = $findspots->fetchAll($select);	
-$place = new Pas_Service_Geoplanet2($this->_appid);
+$place = new Pas_Service_Geo_Geoplanet($this->_appid);
 	
 foreach($rows as $row) {
 

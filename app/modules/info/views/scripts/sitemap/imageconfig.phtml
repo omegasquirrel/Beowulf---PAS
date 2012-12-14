@@ -19,6 +19,7 @@ $pages = $dom->createElement('pages');
 	$search = new Pas_Solr_Handler('beoimages');
 	$params['start'] = 0;
 	$params['show'] = 1000;
+	$params['format'] = 'sitemap';
     $search->setParams($params);
 	$search->execute();
 	$paginate = $search->_createPagination();

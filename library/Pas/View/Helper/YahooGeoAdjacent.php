@@ -17,9 +17,10 @@ class Pas_View_Helper_YahooGeoAdjacent
 	 * @param int $woeid The WOEID to query
 	 */
 	public function YahooGeoAdjacent($woeid) {
+		
 	$adjacent = new GeoPlaces();
 	$places = $adjacent->getAdjacent($woeid);
-	if(count($places) && !is_null($places[0]['name'])){
+	if(count($places) && !is_null($places[0]['Name'])){
 	$html = '<h3>Adjacent places</h3>';
 	$html .= '<ul>';
 	foreach($places as $p ) {

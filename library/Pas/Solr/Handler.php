@@ -43,7 +43,8 @@ class Pas_Solr_Handler {
     protected $_formats = array(
         'json', 'csv', 'xml',
         'midas', 'rdf', 'n3',
-        'rss', 'atom');
+        'rss', 'atom', 'kml',
+    	'pdf', 'geojson', 'sitemap');
 
     protected $_format;
 
@@ -411,25 +412,32 @@ class Pas_Solr_Handler {
             }
     	$data[] = $fields;
     }
+    if($this->_format != 'kml'){
     $processor = new Pas_Solr_SensitiveFields();
     $clean = $processor->cleanData($data, $this->_getRole(), $this->_core);
+    } else {
+    	$clean = $data;
+    }
     return $clean;
     }
 
+    /** 
+     * Process statistics for the query
+     */
 	public function _processStats(){
     $stats = $this->_resultset->getStats();
     foreach($stats as $stat){
     $data = array(
-    'stdDeviation' => $stat->getStddev(),
-    'mean' => $stat->getMean(),
-    'sum' => $stat->getSum(),
-    'query' => $stat->getName(),
-    'minima' => $stat->getMin(),
-    'maxima' => $stat->getMax(),
-	'count' =>  $stat->getCount(),
-    'missing' => $stat->getMissing(),
-    'sumOfSquares' => $stat->getSumOfSquares(),
-    'mean' => $stat->getMean()
+	    'stdDeviation' => $stat->getStddev(),
+	    'mean' => $stat->getMean(),
+	    'sum' => $stat->getSum(),
+	    'query' => $stat->getName(),
+	    'minima' => $stat->getMin(),
+	    'maxima' => $stat->getMax(),
+		'count' =>  $stat->getCount(),
+	    'missing' => $stat->getMissing(),
+	    'sumOfSquares' => $stat->getSumOfSquares(),
+	    'mean' => $stat->getMean()
     );
     }
     return $data;
@@ -515,12 +523,21 @@ class Pas_Solr_Handler {
      * @return int
      */
     public function _getRows($params){
-    if(isset($params['show'])){
-        $rows = $params['show'];
-
-        if($rows > 50 && !is_null($this->_format)){
-            $rows = 50;
+    if(isset($params['show']) && in_array($this->_format, array('json', 'xml', 'geojson'))){
+		$rows = $params['show'];
+        if($rows > 100){
+            $rows = 100;
         } 
+    } elseif($this->_format === 'kml'){
+    	if(!isset($params['show'])){
+    	$rows = 1200;
+    	} else {
+    	$rows = $params['show'];	
+    	}
+    } elseif($this->_format === 'pdf'){
+    	$rows = 500;
+    } elseif($this->_format === 'sitemap'){ 
+    	$rows = 1000;
     } else {
         $rows = 20;
     }
@@ -583,30 +600,34 @@ class Pas_Solr_Handler {
     
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
+    
     if(array_key_exists('created', $this->_params)){
     $this->_query->createFilterQuery('created')->setQuery('created:[' . $this->_params['created'] .']');
     unset($this->_params['created']);	
     }
+    
     if(array_key_exists('updated', $this->_params)){
     $this->_query->createFilterQuery('updated')->setQuery('updated:[' . $this->_params['updated'] . ']');
     unset($this->_params['updated']);	
     }
-      if(array_key_exists('todate', $this->_params) && array_key_exists('fromdate', $this->_params)){
+    
+    if(array_key_exists('todate', $this->_params) && array_key_exists('fromdate', $this->_params)){
     $this->_query->createFilterQuery('range')->setQuery('todate:[' . $this->_params['fromdate'] .  ' TO ' . $this->_params['todate'] . ']');
     $this->_query->createFilterQuery('rangedate')->setQuery('fromdate:[' . $this->_params['fromdate'] .  ' TO ' . $this->_params['todate'] . ']');
-    
     unset($this->_params['todate']);
 	unset($this->_params['fromdate']);	
     }
+
     if(array_key_exists('fromdate', $this->_params)){
     $this->_query->createFilterQuery('datefrom')->setQuery('fromdate:[' . $this->_params['fromdate'] . ' TO * ]');
     unset($this->_params['fromdate']);
     }
+    
     if(array_key_exists('todate', $this->_params)){
     $this->_query->createFilterQuery('todate')->setQuery('todate:[* TO ' . $this->_params['todate'] . ']');
     unset($this->_params['todate']);
     }
-  
+  	//Statistics are only enabled in this instance for the finds index
  	if($this->_core === 'beowulf'){
 		$stats = $this->_query->getStats();
 		foreach($this->getStatsFields() as $field){
@@ -620,6 +641,12 @@ class Pas_Solr_Handler {
     if((array_key_exists('parish', $this->_params) || array_key_exists('fourFigure', $this->_params)) && ($this->_core === 'beowulf')){
     $this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
 	}
+	
+	if($this->_format === 'kml' && ($this->_core === 'beowulf')){
+    $this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
+    $this->_query->createFilterQuery('geopresent')->setQuery('gridref:[* TO *]');
+	}
+	
     }
 
     if(!is_null($this->_facets)){
@@ -642,26 +669,40 @@ class Pas_Solr_Handler {
 
     
     
-    
+    /** 
+     * Create a facet query based on the key value pairs of an array
+     * @param string $k
+     * @param string $v
+     */
     protected function _buildFacetQueries($k, $v){
         return $this->_query->createFilterQuery($k)->setQuery(substr($k, 2) . ':"' . $v . '"');
     }
 
+    /** 
+     * Debug a query
+     * 
+     */
     public function debugQuery(){
     Zend_Debug::dump($this->_params,'The params sent');
-    Zend_Debug::dump($this->_query, 'The Query!');
+    Zend_Debug::dump($this->_query, 'The Query');
     Zend_Debug::dump($this->_fields, 'The field list');
     Zend_Debug::dump($this->_schemaFields, 'The schema fields');
+    Zend_Debug::dump($this->_formats, 'The format called');
     }
 
+    /** 
+     * Debug processing of a query
+     */
     public function debugProcessing(){
     Zend_Debug::dump($this->_createPagination($this->_resultset), 'The pagination');
     Zend_Debug::dump($this->_processResults($this->_resultset), 'The processed results');
     Zend_Debug::dump($this->_processFacets($this->_resultset, $this->_facets),'The facet set');
+    Zend_Debug::dump($this->_processStats(), 'The statistics associated');
     }
 
   
-    /** Create the facets
+    /** 
+     * Create the facets
      *
      */
     protected function _createFacets(){
@@ -675,6 +716,9 @@ class Pas_Solr_Handler {
         }
     }
 
+    /**
+     * Return the list of fields you can query
+     */
 	public function getFields(){
 		return $this->_fields;
 	}
@@ -685,7 +729,7 @@ class Pas_Solr_Handler {
      */
     protected function _processFormats(){
         $format = $this->_params['format'];
-        if(in_array($format, $this->_allowed)){
+        if(in_array($format, $this->_formats)){
             return $this->_format = $format;
         } else {
             return false;

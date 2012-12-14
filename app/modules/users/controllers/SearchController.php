@@ -33,7 +33,11 @@ class Users_SearchController extends Pas_Controller_Action_Admin {
 	*/		
 	public function savedAction() {
 	$search = new Searches();
-	$this->view->searches = $search->getAllSavedSearches( (int)$this->getIdentityForForms(),
-	(int)$this->_getParam('page'));
+	$this->view->searches = $search->getAllSavedSearches( 
+	$this->getIdentityForForms(),
+	$this->_getParam('page'), 
+	null
+	);
+	Zend_Debug::dump($this->view->searches);
 	}
 }

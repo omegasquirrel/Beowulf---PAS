@@ -53,6 +53,7 @@ parent::__construct($options);
 	->setRequired(false)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addErrorMessage('Please enter a valid address!')
+	->setAttrib('placeholder', 'for example http://finds.org.uk')
 	->setDescription('* Not compulsory');
 
 
@@ -62,6 +63,8 @@ parent::__construct($options);
 	->addFilters(array('StringTrim','BasicHtml','EmptyParagraph'))
 	->setAttrib('rows',10)
 	->setAttrib('cols',80)
+	->setAttrib('class', 'span8')
+	->setAttrib('placeholder', 'If you are not entering an error report, please do comment here. If not use the error report link above left.')
 	->addErrorMessage('Please enter something in the comments box.')
 	->setDescription('The following HTML tags can be used - a,p,ul,li,em,strong,br,img,a - and
 	paragraphs will be automatically created');
