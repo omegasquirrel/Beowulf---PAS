@@ -22,6 +22,7 @@ class PostMedievalCoins_RulersController extends Pas_Controller_Action_Admin {
 		->addActionContext('index', array('xml','json'))
 		->addActionContext('ruler', array('xml','json'))
 		->addActionContext('foreign', array('xml','json'))
+		->addActionContext('data', array('json'))
 		->initContext();
         $this->_rulers = new Rulers();
     }
@@ -62,4 +63,12 @@ class PostMedievalCoins_RulersController extends Pas_Controller_Action_Admin {
 	$this->view->shortlongs = $this->_rulers->getForeign($this->_period, 6);
 	$this->view->france = $this->_rulers->getForeign($this->_period, 7);
 	}
+	
+	public function timelineAction() {
+		$this->_helper->layout->disableLayout();
+    }
+    
+    public function dataAction(){
+		$this->view->rulers = $this->_rulers->getMedievalRulersListedMain($period = $this->_period);
+    }
 }

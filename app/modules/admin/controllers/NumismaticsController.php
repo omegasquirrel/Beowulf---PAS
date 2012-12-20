@@ -1009,7 +1009,8 @@ class Admin_NumismaticsController extends Pas_Controller_Action_Admin {
 	//create medium size
 	$phMagick = new phMagick($original, $convertlarge);
 	$phMagick->resize(300,0);
-	$phMagick->convert();
+//	Zend_Debug::dump($phMagick->convert());
+//exit;
 	//create thumbnail size
 	$phMagick = new phMagick($original, $convertsmall);
 	$phMagick->resize(100,0);

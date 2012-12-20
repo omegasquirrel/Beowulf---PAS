@@ -1,7 +1,7 @@
 <?php 
 $results = array();
 
-foreach($this->results as $result){
+foreach($this->record as $result){
 	
 	if(array_key_exists('description',$result)){
 	$description = trim(preg_replace( '/\s+/', ' ',$result['description']));
@@ -47,15 +47,9 @@ foreach($this->results as $result){
 	$results[] = array('type' => 'Feature','geometry' => $geoJson, 'properties' => $result, 'id' => $result['id']);
 	
 }
-$meta = array( 
-	'currentPage' => $this->paginator->getCurrentPageNumber(), 
-	'totalResults' => $this->paginator->getTotalItemCount(), 
-	'resultsPerPage' => $this->paginator->getItemCountPerPage(),
-);
 echo Zend_Json::prettyPrint(Zend_Json::encode(( 
 	array(
-	'meta' => $meta, 
 	'type' => 'FeatureCollection',
-	'features' =>  $results
+	'features' =>  $results,
 	)))
 	);

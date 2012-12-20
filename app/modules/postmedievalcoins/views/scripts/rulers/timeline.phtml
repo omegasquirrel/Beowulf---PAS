@@ -1,9 +1,9 @@
 <?php
+$this->metaBase('A timeline of Post Medieval issuers',null,'post medieval,issuers,timeline,king');
 $this->headTitle('A timeline of Roman issuers');
-$this->metaBase('A timeline of Roman issuers',null,'roman,issuers,timeline,emperor');
 $this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/compiled/js/storyjs-embed.js',$type = 'text/javascript');
 ?>
-<h2>A timeline of Roman issuers</h2>
+<h2>A timeline of Post Medieval issuers</h2>
 <div id="timeline"></div>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 
@@ -12,7 +12,7 @@ $this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/compiled/js/storyjs-e
 					type:			'timeline',
 					width:			'100%',
 					height:			'600',
-					source:			'http://finds.org.uk/romancoins/emperors/data/format/json',
+					source:			'http://finds.org.uk/postmedievalcoins/rulers/data/format/json',
 					embed_id:		'timeline',
 					hash_bookmark:  true,                           
 				});

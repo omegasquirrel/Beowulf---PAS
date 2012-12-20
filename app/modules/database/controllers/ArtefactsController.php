@@ -93,7 +93,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('rdf',array('suffix' => 'rdf'))
             ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
-            ->addActionContext('record', array('qrcode', 'json', 'xml'))
+            ->addContext('geojson',array('suffix' => 'geojson', 'headers' => array('Content-Type' => 'application/json')))
+            ->addActionContext('record', array('qrcode', 'json', 'xml', 'geojson'))
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');
@@ -136,7 +137,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     'xml','rss','json',
     'atom','kml','georss',
     'ics','rdf','xcs',
-    'vcf','csv','pdf');
+    'vcf','csv','pdf',
+    'geojson');
 
     if(!in_array($this->_cs->getCurrentContext(), $contexts)) {
 

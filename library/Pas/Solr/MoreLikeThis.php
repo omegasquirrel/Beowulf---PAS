@@ -34,7 +34,11 @@ class Pas_Solr_MoreLikeThis {
 
 	public function getRole(){
 	$user = new Pas_User_Details();
-	return $user->getPerson()->role;
+	$role =  $user->getPerson()->role;
+	if(is_null($role)){
+		$role = 'member';
+	} 
+	return $role;
 	}
 
 	protected $_allowed =  array('fa','flos','admin','treasure');
@@ -64,7 +68,7 @@ class Pas_Solr_MoreLikeThis {
             ->setMinimumDocumentFrequency($minDocFreq)
             ->setMinimumTermFrequency($minTermFreq)
             ->setCount($count);
-    if(!in_array($this->getRole(),$this->_allowed)) {
+    if(!in_array($this->getRole(),$this->_allowed) || is_null($this->getRole())) {
     $query->createFilterQuery('workflow')->setQuery('workflow:[3 TO 4]');
     }
     $resultset = $client->select($query);

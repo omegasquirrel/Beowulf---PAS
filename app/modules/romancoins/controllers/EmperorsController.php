@@ -27,6 +27,7 @@ class RomanCoins_EmperorsController extends Pas_Controller_Action_Admin {
               )))
 		->addActionContext('index', $this->_contexts)
 		->addActionContext('emperor', $this->_contexts)
+		->addActionContext('data', array('json'))
 		->initContext();
 	$this->_emperors = new Emperors();
     }

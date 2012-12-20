@@ -51,12 +51,26 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
     $this->_solr = new Pas_Solr_MoreLikeThis();
     }
 
+    /**
+     * Get the role of the user
+     */
+    public function getRole(){
+	$user = new Pas_User_Details();
+	$role =  $user->getPerson()->role;
+	if(is_null($role)){
+		$role = 'PUBLIC';
+	} 
+	return $role;
+	}
+
+    
+    
     /** Query the solr instance
      *
      * @param string $query
      */
     public function moreLikeThis($query){
-    $key = md5('mlt' . $query);
+    $key = md5('mlt' . $query . $this->getRole());
 	if (!($this->_cache->test($key))) {
 	$mlt = $this->_solr;
 	$mlt->setFields(array('objecttype','broadperiod','description','notes'));

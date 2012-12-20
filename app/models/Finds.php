@@ -267,7 +267,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		'easting', 'northing', 'gridref',
 		'fourFigure', 'map25k', 'map10k',
 		'address', 'postcode', 'findspotdescription' => 'description',
-		'lat' => 'declat', 'lon' => 'declong', 'knownas'))
+		'lat' => 'declat', 'lon' => 'declong', 'knownas', 'fourFigureLat', 'fourFigureLon'))
 		->joinLeft('gridrefsources','gridrefsources.ID = findspots.gridrefsrc',array('source' => 'term'))
 		->joinLeft('coins','finds.secuid = coins.findID',array('obverse_description', 'obverse_inscription',
 		'reverse_description', 'reverse_inscription', 'denomination',
