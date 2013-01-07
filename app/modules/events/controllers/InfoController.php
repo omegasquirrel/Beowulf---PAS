@@ -19,8 +19,6 @@ class Events_InfoController extends Pas_Controller_Action_Admin {
        	$contexts = array('xml','json','ics');
 	  	$contextSwitch = $this->_helper->contextSwitch();
 		$contextSwitch->addContext('ics',array('suffix' => 'ics'))
-  			 ->addContext('rdf',array('suffix' => 'rdf'))
-   			 ->addContext('xcs',array('suffix' => 'xcs'))
 	  	     ->addActionContext('index', $contexts)
              ->initContext();
 		$this->_helper->acl->allow('public',null);

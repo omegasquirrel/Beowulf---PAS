@@ -8,16 +8,21 @@
 
 <?php
 $len = strlen($this->description);
-if($len > 0):?>
+if($len > 0):
+?>
+
 <p><?php echo $this->description;?></p>
+
 <?php endif;?>
-<p><?php if($this->lat != 0):?>WOEID: <a href="<?php echo $this->url(array('module'=>'flickr',
-'controller' => 'photos','action' => 'whereonearth','id' => $this->woeid),null,true);?>">
+
+<p>
+<?php if($this->lat != 0):?>
+WOEID: <a href="<?php echo $this->url(array('module'=>'flickr', 'controller' => 'photos','action' => 'whereonearth','id' => $this->woeid),null,true);?>">
 <?php echo $this->woeid;?></a> &raquo; Latitude: <?php echo $this->lat;?> Longitude: <?php echo $this->lon;?><br />
 <?php // echo $this->FlickrGeo($this->woeid,NULL,NULL);?>
 <?php endif;?>
 <?php if($this->tags):?>
-<p>Tags: <?php
+Tags: <?php
 $tags = $this->tags;
 $pieces = explode(" ", $tags);
 	foreach($pieces as $t)

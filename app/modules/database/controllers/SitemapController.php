@@ -25,7 +25,7 @@ class Database_SitemapController extends Pas_Controller_Action_Admin {
 	public function indexAction() {
 	$page = $this->_getParam('page');
 	$config = new Zend_Config_Xml('http://finds.org.uk/info/sitemap/databaserecords/page/' 
-	. $page,'nav');#
+	. $page,'nav');
    	$navigation = new Zend_Navigation($config);
    	$this->view->navigation($navigation);
 	$this->view->navigation()

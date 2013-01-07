@@ -19,10 +19,9 @@ for publication accordingly, and you can find those available by following the l
     if($fileInfo->isDot()) continue;
   ?>
   <li>
-  <?php list($root, $ext) = explode('.',$fileInfo->getFilename());
-    if ( !$root ) {
-    $root = $filename;
-    }?>
+  <?php 
+  list($root, $ext) = explode('.', $fileInfo->getFilename());
+	?>
   <a href="<?php echo $this->serverUrl();?>/documents/treasureMinutes/<?php
     echo $fileInfo->getFilename();
     ?>"><?php echo $root;?></a></li>

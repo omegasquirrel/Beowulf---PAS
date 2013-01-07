@@ -1,44 +1,38 @@
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>';?>
-<response>
-	<?php
-	 $data = $this->rallies;
-	$object = (object)$data['0'];
-	?>
-	<rally>
-	<url><?php echo $this->serverUrl();?>/database/rallies/rally/id/<?php echo $object->id;?></url>
-	<name><?php echo $object->rally_name;?></name>
-	<geo>
-	<county><?php echo $object->county;?></county>
-	<district><?php echo $object->district;?></district>
-	<parish><?php echo $object->parish;?></parish>
-	<ngr><?php echo $object->gridref;?></ngr>
-	<fourFigure><?php echo $object->fourFigure;?></fourFigure>
-	<easting><?php echo $object->easting;?></easting>
-	<northing><?php echo $object->northing;?></northing>
-	<one25k><?php echo $object->map25k;?></one25k>
-	<one10k><?php echo $object->map10k;?></one10k>
-	<lat><?php echo $object->latitude;?></lat>
-	<lon><?php echo $object->longitude;?></lon>
-	</geo>
-	<dates>
-	<datefrom><?php echo $object->df;?></datefrom>
-	<dateto><?php echo $object->dt;?></dateto>
-	</dates>
-	<attending>
-	<flos>
-	<?php foreach($this->atts as $a):?>
-	<flo>
-	<fullname><?php echo $a['fullname'];?></fullname>
-	<id><?php echo $a['id'];?></id>
-	</flo>
-	<?php endforeach;?>
-	</flos>
-	</attending>
-	<metadata>
-	<created><?php echo $object->created;?></created>
-	<createdby><?php echo $object->fullname;?></createdby>
-	<updated><?php echo $object->updated;?></updated>
-	<updatedby><?php echo $object->fn;?></updatedby>
-	</metadata>
-	</rally>
-</response>
+<?php 
+$site = $this->serverUrl();
+$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();	
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();	
+$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+$contextSwitch = Zend_Controller_Action_HelperBroker::getStaticHelper('ContextSwitch');	
+$param = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+$contexts = $contextSwitch->getContexts();
+
+$dom 	  = new DomDocument("1.0", "UTF-8");
+$persons  = $dom->createElement('response');
+$meta = $dom->createElement('meta');
+$persons->appendChild($meta);
+$meta->appendChild( $dom->createElement('generated', date(DATE_W3C,time())));
+$formats = $dom->createElement('formats');
+$meta->appendChild($formats);	
+foreach ($contexts as $k => $v){
+$formats->appendChild( $dom->createElement($k, $site . $this->url(array('module' => $module,
+'controller' => $controller,'action' => $action,'id' => $param,'format' => $k),NULL,true)  ));
+}
+$formats->appendChild( $dom->createElement('html', $site . $this->url(array('module' => $module,
+'controller' => $controller,'action' => $action,'id' => $param),NULL,true)  ));
+//1st item
+$personsElem = $dom->createElement('rallies');
+$persons->appendChild($personsElem);
+
+foreach($this->rallies  as $r){
+$personElem = $dom->createElement('rally');
+foreach($r as $k => $v){
+$personElem->appendChild( $dom->createElement($k, htmlspecialchars($v))); 
+}
+$personsElem->appendChild( $personElem );
+}
+
+$dom->appendChild( $persons );
+
+$xmlData  = $dom->saveXML();
+echo $xmlData;

@@ -58,16 +58,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     }
     }
 
-    /** Display other discoveries
-    */
-    public function otherdiscoveriesAction() {
-    $id = $this->_getParam('id');
-    $finds = new Finds;
-    $this->view->finds = $finds->getOtherFinds($id);
-    $quants = new Finds;
-    $this->view->quants = $quants->getOtherFindsTotals($id);
-    }
-
+    
     /** Retrieve the nearest finds to a lat lon point
      *
      */

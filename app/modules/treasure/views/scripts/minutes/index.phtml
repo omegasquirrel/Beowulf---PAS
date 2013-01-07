@@ -20,9 +20,7 @@ for publication accordingly, and you can find those available by following the l
   ?>
   <li>
   <?php list($root, $ext) = explode('.',$fileInfo->getFilename());
-    if ( !$root ) {
-    $root = $filename;
-    }?>
+   ?>
   <a href="<?php echo $this->serverUrl();?>/documents/treasureMinutes/<?php
     echo $fileInfo->getFilename();
     ?>"><?php echo $root;?></a></li>

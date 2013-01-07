@@ -232,6 +232,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 
 	public function earlymedmintrulerAction() {
 	$mints = new Mints();
+	$ruler = $this->_getParam('term');
 	$mint_options = $mints->getEarlyMedMintRuler($this->_getParam('term'));
 	if ($mint_options) {
 	echo  Zend_Json::encode($mint_options);

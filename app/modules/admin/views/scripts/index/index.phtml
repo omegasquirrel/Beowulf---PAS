@@ -1,22 +1,11 @@
 <h2>Website administration centre</h2>
 <?php
 $this->headTitle('Portable Antiquities Scheme: The British Museum');
-$auth = Zend_Auth::getInstance();
-if($auth->hasIdentity()) {
 $welcome = array('Welcome','Welkom','Namaste','Ayubowan','Marhaban','F&agrave;ilte','Witam','Haere mai','Khosh aamadid');
 $randomWelcome = $welcome[array_rand($welcome)];
-$user = $auth->getIdentity(); 
-$fullname = $this->escape(ucfirst($user->fullname));
-$id = $this->escape(ucfirst($user->id));
-$string = '<p><span class="welcome">' . $randomWelcome . '!</span></p>';
-
-} else {
-$string = '<p><a href="' . $loginUrl . '">Log in to Beowulf</a></p>';
-}
-echo $string;
-
 ?>
 
+<div class="well lead text-success"><h1><?php echo $randomWelcome;?>!</h1></div>
 <?php 
 echo $this->WhatYouWantToDoAdmin();
 ?>

@@ -10,7 +10,7 @@ $activitiesElem = $dom->createElement('stories');
 $news->appendChild($activitiesElem);
 // set it's attribute
 foreach($this->news as $r){
-$activityElem = $dom->createElement('activity');
+$activityElem = $dom->createElement('story');
 foreach($r as $k => $v){
 $v = strip_tags($v);
 $activityElem->appendChild( $dom->createElement($k, $v));
