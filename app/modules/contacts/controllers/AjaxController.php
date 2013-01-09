@@ -25,5 +25,10 @@ class Contacts_AjaxController extends Pas_Controller_Action_Ajax {
 		$details = $data->setItemCountPerPage(150);
 		$this->view->coroners = $details;
 	}
+	
+	public function museumsAction(){
+		$museums = new AccreditedMuseums();
+		$this->view->museums  = $museums->mapMuseums();
+	}
 }
 

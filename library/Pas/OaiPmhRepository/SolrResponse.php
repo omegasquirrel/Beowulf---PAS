@@ -44,7 +44,8 @@ class Pas_OaiPmhRepository_SolrResponse {
         'institution','updated','objecttype',
         'fourFigure', 'fromdate','todate',
         'county', 'district','materialTerm',
-        'knownas', 'secondaryMaterialTerm'
+        'knownas', 'secondaryMaterialTerm',
+    	'fourFigureLat', 'fourFigureLon'
 
     );
     $select = array(
@@ -81,7 +82,7 @@ class Pas_OaiPmhRepository_SolrResponse {
         'institution','updated','objecttype',
         'fourFigure', 'fromdate','todate',
         'county', 'district', 'materialTerm',
-        'knownas', 'secondaryMaterialTerm'
+        'knownas', 'secondaryMaterialTerm', 'fourFigureLat', 'fourFigureLon'
 
     );
     $select = array(

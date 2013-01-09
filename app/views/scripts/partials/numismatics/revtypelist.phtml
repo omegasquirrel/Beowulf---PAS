@@ -3,5 +3,5 @@
 <td><?php echo $this->description;?></td>
 <td>AD <?php echo $this->gendate;?></td>
 <td><a href="<?php echo $this->url(array('module' => 'romancoins','controller' => 'reeceperiods','action' => 'period','id' => $this->i),null,true);?>">Reece <?php echo $this->period_name;?></a></td>
-<td><a class="btn btn-small btn-warning" href="" >Edit</a> <a class="btn btn-small btn-danger" href="">Delete</a></l</td>
+<td><a class="btn btn-small btn-warning" href="<?php echo $this->url(array('module' => 'admin','controller' => 'numismatics','action' => 'editreversetype','id' => $this->id),null,true);?>" >Edit</a></td>
 </tr>

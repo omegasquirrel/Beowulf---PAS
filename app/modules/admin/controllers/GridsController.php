@@ -347,4 +347,47 @@ public function generatefindidAction()
 	}
 	echo 'You did it!';
 	}
+	
+	public function geomuseumsAction(){
+	ini_set('memory_limit', '512M'); 
+	set_time_limit(0);
+	$missing = new AccreditedMuseums();
+	$geoCoder = new Pas_Service_Geo_Coder('AIzaSyAuDyFnm7-ea4Ls_OmCThLmL0Su42oiGNk');
+	
+	for($i = 0; $i < 1767; $i++) {
+		sleep(1);
+		$data = $missing->fetchRow('id = ' . $i);
+		$where = array();
+	    $where[] = $missing->getAdapter()->quoteInto('id = ?', $i);
+	    $coords = $geoCoder->getCoordinates($data->museumName . ' United Kingdom');
+		$updateData = array(
+		'lat' => $coords['lat'],
+		'lon' => $coords['lon'],
+		'updatedBy' => 56
+		);
+		$update = $missing->update($updateData, $where);
+	}
+	
+	}
+	
+	public function eastingsAction(){
+	ini_set('memory_limit', '512M'); 
+	set_time_limit(0);
+	$missing = new Findspots();
+	$rows = $missing->missingEastings(1000);
+	foreach($rows as $r){
+	$rowid = $r['id'];
+	$oldData = $missing->fetchRow('id=' 
+            . $rowid)->toArray();
+    $where = array();
+    $where[] = $missing->getAdapter()->quoteInto('id = ?', 
+            $rowid);
+    $insertData = $missing->updateAndProcessGrids(array('gridref' => $r['gridref']));
+    $update = $missing->update($insertData, $where);
+    $this->_helper->audit($insertData, $oldData, 'FindSpotsAudit',
+     $rowid,$r['recordID']);
+    echo 'You did it!';	
+	}
+	}
+	
 }

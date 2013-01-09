@@ -77,12 +77,16 @@ Database records prefix: <strong><?php echo $this->escape($this->identifier);?><
 <span class="summary"><?php echo $this->profile;?></span>
 
 <div class="tel">
+<dl>
 <dt>Phone (<span class="type">work</span>)</dt>
 <dd><span class="value"><?php echo $this->escape($this->telephone);?></span></dd>
+</dl>
 </div>
 <div class="tel">
+<dl>
 <dt>Phone (<span class="type">fax</span>)</dt>
 <dd><span class="value"><?php echo $this->escape($this->fax);?></span></dd>
+</dl>
 </div>
 
 <p>Email address: <a href="mailto:<?php echo $this->escape($this->email_one);?>" class="email"><?php echo $this->escape($this->email_one);?></a></p>

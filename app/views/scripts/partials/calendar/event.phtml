@@ -17,11 +17,14 @@ endif;
 <?php
 if($action == 'event'): 
 $geocoder = new Pas_Service_Geo_Coder(Zend_registry::get('config')->webservice->google->apikey);
-$coords = $geocoder->getCoordinates((string)$this->where);
-if($coords['lat'] && $coords['lon']):
 ?>
 <?php 
+$coords = $geocoder->getCoordinates((string)$this->where);
+if($coords['lat'] && $coords['lon']):
 $this->inlineScript()->appendFile('http://maps.google.com/maps/api/js?sensor=false',$type='text/javascript');
+?>
+<?php 
+
 $this->inlineScript()->captureStart();?>
 
 $(document).ready(function() {
@@ -42,12 +45,17 @@ $(document).ready(function() {
 });
 
 <?php $this->inlineScript()->captureEnd();?>
-<div id="eventmap" style="width:640px;height:300px;margin:auto;">
-<noscript><img src="http://maps.google.com/maps/api/staticmap?center=<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&zoom=14&size=640x300&maptype=terrain&markers=color:green|label:X|<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&sensor=false" /></noscript>
+
+<div id="eventmap">
+<noscript>
+<img src="http://maps.google.com/maps/api/staticmap?center=<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&zoom=14&size=640x300&maptype=terrain&markers=color:green|label:X|<?php echo $this->latitude;?>,<?php echo $this->longitude;?>&sensor=false" />
+</noscript>
 </div>
 
 <?php 
 endif;
+?>
+<?php 
 endif;
 ?>
 <span class="label label-important"><?php echo str_replace('=',': ',$this->type);?></span><br />

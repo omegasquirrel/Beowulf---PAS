@@ -402,4 +402,15 @@ class Findspots extends Pas_Db_Table_Abstract {
 		->limit($limit);
 	return $findspots->fetchAll($select);
 	}
+	
+	public function missingEastings($limit = 1){
+	$findspots = $this->getAdapter();
+	$select = $findspots->select()
+		->from($this->_name)
+			->joinLeft('finds','finds.secuid = findspots.findID',array('recordID' => 'id'))
+		   ->where('gridref IS NOT NULL')
+		   ->where('easting IS NULL')
+		->limit($limit);
+	return $findspots->fetchAll($select);
+	}
 }

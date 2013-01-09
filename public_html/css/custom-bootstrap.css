@@ -293,3 +293,8 @@ ul.facetExpand li {
 .privatedata {
 	border:solid 2px red;
 }
+#eventmap {
+	width:640px;
+	height:300px;
+	margin:auto;
+}

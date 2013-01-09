@@ -40,7 +40,6 @@ class Pas_Twfy_Geometry extends Pas_Twfy {
         } else {
             throw new Pas_Twfy_Exception('No constituency provided');
         }
-        return parent::get($url);
         }
 
 }

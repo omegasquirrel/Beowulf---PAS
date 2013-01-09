@@ -1,8 +1,11 @@
-<div id="paging"><p><?php if ($this->pageCount): ?>
-
+<div id="paging">
+<?php if ($this->pageCount): ?>
+<p>
 <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?>
-of <?php echo $this->totalItemCount; ?> records.</p>
-<?php $this->title .= ' page' . $this->firstItemNumber . ' - ' . $this->lastItemNumber;?>
+of <?php echo $this->totalItemCount; ?> records.
+</p>
+
+<?php $this->headTitle(' page' . $this->firstItemNumber . ' - ' . $this->lastItemNumber);?>
 
 <?php
 $queryString = ($_SERVER['QUERY_STRING'] != '') ? '?' . $_SERVER['QUERY_STRING'] : '';
@@ -10,33 +13,41 @@ $queryString = ($_SERVER['QUERY_STRING'] != '') ? '?' . $_SERVER['QUERY_STRING']
 
 <ul id="pagination">
 <!-- Previous page link -->
-<li><?php if (isset($this->previous)): ?> <a href="<?php echo $this->url(array('page' => $this->first)); ?>">
-    First page
-  </a> <a href="<?php echo $this->url(array('page' => $this->previous)); ?>">&laquo; Previous</a> <?php else: ?><span class="previous-off">< Previous</span><?php endif; ?></li>
+<li>
+<?php if (isset($this->previous)): ?>
+<a href="<?php echo $this->url(array('page' => $this->first)); ?>">First page</a> 
+<a href="<?php echo $this->url(array('page' => $this->previous)); ?>">&laquo; Previous</a> 
+<?php else: ?>
+<span class="previous-off">&laquo; Previous</span>
+<?php endif; ?>
+</li>
 
 <!-- Numbered page links -->
-<?php foreach ($this->pagesInRange as $page): ?><li>
-  <?php if ($page != $this->current): ?><a href="<?php echo $this->url(array('page' => $page)). $queryString;  ?>" ><?php echo $page; ?></a></li>
-  <?php else: ?>
+<?php foreach ($this->pagesInRange as $page): ?>
+<?php if ($page != $this->current): ?>
+<li>
+<a href="<?php echo $this->url(array('page' => $page)). $queryString;  ?>" ><?php echo $page; ?></a>
+</li>
+<?php else: ?>
+<li>
 <a href="#" class="active"><?php echo $page; ?></a>
-  <?php endif; ?></li>
+</li>
+<?php endif; ?>
 <?php endforeach; ?>
+
 <li class="next">
 <!-- Next page link -->
 <?php if (isset($this->next)): ?>
-  <a href="<?php echo $this->url(array('page' => $this->next)). $queryString;  ?>">Next ></a>
+<a href="<?php echo $this->url(array('page' => $this->next)). $queryString;  ?>">Next &raquo;</a>
 <?php else: ?>
-  <span class="next-off">Next &raquo;</span>
+<span class="next-off">Next &raquo;</span>
 <?php endif; ?>
 <?php if (isset($this->next)): ?>
-  <a href="<?php echo $this->url(array('page' => $this->last)); ?>">
-    Last page
-  </a>
+<a href="<?php echo $this->url(array('page' => $this->last)); ?>">Last page</a>
 <?php else: ?>
-  <span class="disabled">Last</span>
+<span class="disabled">Last</span>
 <?php endif; ?>
 </li>
 </ul>
 <?php endif; ?>
-<p>&nbsp;</p>
 </div>

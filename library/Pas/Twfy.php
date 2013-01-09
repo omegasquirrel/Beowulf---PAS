@@ -20,27 +20,27 @@
 class Pas_Twfy {
 
 
-        /** The base url for api calls to twfy
-         *
-         */
-        const TWFYURL = 'http://www.theyworkforyou.com/api/';
+	/** The base url for api calls to twfy
+	*
+	*/
+	const TWFYURL = 'http://www.theyworkforyou.com/api/';
 
-        /** Set the type of response to retrieve
+	/** Set the type of response to retrieve
 	*
 	* @var string $format
 	*/
 	protected $_format = 'js';
 
-        /** Set up the cache
-         *
-         * @var type
-         */
+	/** Set up the cache
+	*
+	* @var type
+	*/
 	protected $_cache;
-
-        /** The api key
-         *
-         * @var type
-         */
+	
+	/** The api key
+    *
+    * @var type
+    */
 	protected $_apikey;
 
 	/** Construct the object, sets the cache and need the api key for twfy
@@ -53,8 +53,8 @@ class Pas_Twfy {
             'lifetime' => 31556926,
             'automatic_serialization' => true
             );
-        $backendOptions = array('cache_dir' => 'app/cache/twfy');
-        $this->_cache = Zend_Cache::factory(
+	$backendOptions = array('cache_dir' => 'app/cache/twfy');
+	$this->_cache = Zend_Cache::factory(
                 'Output',
                 'File',
                 $frontendOptions,
@@ -64,14 +64,14 @@ class Pas_Twfy {
 
 	/** Perform a curl request based on url provided
 	* @access public
-        * @uses Zend_Cache
-        * @uses Zend_Json_Decoder
+	* @uses Zend_Cache
+	* @uses Zend_Json_Decoder
 	* @param string $method
-        * @param array $params
+	* @param array $params
 	*/
 	public function get($method, array $params) {
-        $url = $this->createUrl($method,$params);
-        if (!($this->_cache->test(md5($url)))) {
+	$url = $this->createUrl($method,$params);
+	if (!($this->_cache->test(md5($url)))) {
 	$config = array(
         'adapter'   => 'Zend_Http_Client_Adapter_Curl',
         'curloptions' => array(
@@ -94,16 +94,15 @@ class Pas_Twfy {
 	return Zend_Json_Decoder::decode($data, Zend_Json::TYPE_OBJECT);
 	}
 
-        /** Build a url string
-         * @param string $method The method to use
-         * @param array $params
-         */
-        public function createUrl($method, array $params){
-            if(is_array($params)){
-            return self::TWFYURL . $method . '?' . http_build_query($params);
-            } else {
-                throw new Pas_Twfy_Exception('Parameters have to be an array',500);
-            }
-        }
+	/** Build a url string
+	* @param string $method The method to use
+	* @param array $params
+	*/
+	public function createUrl($method, array $params){
+	if(is_array($params)){
+	return self::TWFYURL . $method . '?' . http_build_query($params);
+	} else {
+	throw new Pas_Twfy_Exception('Parameters have to be an array',500);
+	}
+	}
 }
-

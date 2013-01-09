@@ -40,7 +40,6 @@ public function __construct($options = null) {
 	$gendate->setLabel('General date for reverse type: ')
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('Digits')
 		->addErrorMessage('You must enter a general date for this reverse type.')
 		->setAttrib('size',30);
 

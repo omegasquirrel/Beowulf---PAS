@@ -15,7 +15,8 @@ class Pas_Solr_FieldGeneratorFinds {
         'title','broadperiod','description',
         'old_findID','thumbnail', 'county',
         'imagedir','filename', 'workflow', 
-        'fourFigure', 'knownas', 'created', 'updated');
+        'fourFigure', 'knownas', 'created', 
+        'updated', 'creator');
 	} else {
 		$fields = array(
 		'id','identifier', 'objecttype',

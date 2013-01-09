@@ -16,7 +16,7 @@
  *
  * @author Daniel Pett
  */
-define('SCHEMA_PATH', '/home/beowulf2/solr/solr/');
+define('SCHEMA_PATH', '/home/beowulf2/solr/');
 
 define('SCHEMA_FILE', '/conf/schema.xml' );
 

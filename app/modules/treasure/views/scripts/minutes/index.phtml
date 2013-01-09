@@ -15,16 +15,23 @@ for publication accordingly, and you can find those available by following the l
  
  <ul>
 <?php
+	$minutes = array();
     foreach (new DirectoryIterator('/home/beowulf2/public_html/documents/treasureMinutes/') as $fileInfo) {
     if($fileInfo->isDot()) continue;
+    list($root, $ext) = explode('.',$fileInfo->getFilename());
+    $minutes[$fileInfo->getFilename()] = $root
   ?>
+  <?php
+	}
+	$minutes = array_flip($minutes);
+	ksort($minutes, SORT_NUMERIC);
+	?>
+	<?php foreach($minutes as $k => $v):?>
   <li>
-  <?php list($root, $ext) = explode('.',$fileInfo->getFilename());
+  <?php 
    ?>
   <a href="<?php echo $this->serverUrl();?>/documents/treasureMinutes/<?php
-    echo $fileInfo->getFilename();
-    ?>"><?php echo $root;?></a></li>
-    <?php
-	}
-	?>
+    echo $v;
+    ?>"><?php echo $this->niceshortdate($k);?></a></li>
+    <?php endforeach;?>
 </ul>

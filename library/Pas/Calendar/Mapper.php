@@ -8,7 +8,7 @@
  * @package Pas_Calendar
  * @subpackage Mapper
  */
-class Pas_Calendar_Gateway 
+class Pas_Calendar_Mapper 
 {
 
 	protected $_username;

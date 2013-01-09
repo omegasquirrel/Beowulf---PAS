@@ -80,10 +80,12 @@ class Pas_OaiPmhRepository_Metadata_Europeana
     );
     //Check for availability of NGR and therefore latlon conversions
     if(is_null($this->item['knownas']) && !is_null($this->item['fourFigure'])){
-    $geo = new Pas_Geo_Gridcalc($this->item['fourFigure']);
-    $coords = $geo->convert();
-    $lat = $coords['decimalLatLon']['decimalLatitude'];
-    $lon = $coords['decimalLatLon']['decimalLongitude'];
+//    $geo = new Pas_Geo_Gridcalc($this->item['fourFigure']);
+//    $coords = $geo->convert();
+    $lat = $this->item['fourFigureLat']; 
+    //$coords['decimalLatLon']['decimalLatitude'];
+    $lon = $this->item['fourFigureLon'];
+    //$coords['decimalLatLon']['decimalLongitude'];
     $spatial['coords'] = $lat . ',' . $lon;
     }
 
@@ -110,7 +112,7 @@ class Pas_OaiPmhRepository_Metadata_Europeana
     }
 
 
-    $ese['isShownAt'] = self::RECORD_URI . $this->item['id'];
+    $ese['isShownAt'] = $this->_serverUrl . self::RECORD_URI . $this->item['id'];
     foreach($dc as $k => $v) {
     $this->appendNewElement($europeana, 'dc:' . $k, $v);
     }

@@ -51,7 +51,6 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     public function myfindsAction() {
     $form = new SolrForm();
 	$form->q->setLabel('Search the database: ');
-    Zend_Debug::dump($this->_getDetails()->id);
     $this->view->form = $form;
 
     $params = $this->_getAllParams();

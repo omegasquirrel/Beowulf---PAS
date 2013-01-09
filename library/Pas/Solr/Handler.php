@@ -16,7 +16,7 @@
  *
  * @author Daniel Pett
  */
-define('SCHEMA_PATH', '/home/beowulf2/solr/solr/');
+define('SCHEMA_PATH', '/home/beowulf2/solr/');
 
 define('SCHEMA_FILE', '/conf/schema.xml' );
 
@@ -523,7 +523,7 @@ class Pas_Solr_Handler {
      * @return int
      */
     public function _getRows($params){
-    if(isset($params['show']) && in_array($this->_format, array('json', 'xml', 'geojson'))){
+    if(isset($params['show']) && in_array($this->_format, array('json', 'xml', 'geojson', null))){
 		$rows = $params['show'];
         if($rows > 100){
             $rows = 100;
