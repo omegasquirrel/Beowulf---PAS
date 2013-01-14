@@ -12,17 +12,21 @@ class Github_Api_PullRequest extends Github_Api
     /**
      * Get a listing of a project's pull requests by the username, repo, and optionnally state.
      *
-     * @link      http://develop.github.com/p/pulls.html
+     * @link    http://developer.github.com/v3/pulls/
      * @param   string $username          the username
      * @param   string $repo              the repo
      * @param   string $state             the state of the fetched pull requests.
      *                                    The API seems to automatically default to 'open'
      * @return  array                     array of pull requests for the project
      */
-    public function listPullRequests($username, $repo, $state = '')
+    public function listPullRequests($username, $repo, $state = 'open')
     {
-        $response = $this->get('pulls/'.urlencode($username).'/'.urlencode($repo).'/'.urlencode($state));
-        return $response['pulls'];
+        $params = array();
+        if(!empty($state)) {
+            $params['state'] = $state;
+        }
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/pulls', $params);
+        return $response;
     }
 
     /**
@@ -36,8 +40,8 @@ class Github_Api_PullRequest extends Github_Api
      */
     public function show($username, $repo, $pullRequestId)
     {
-        $response = $this->get('pulls/'.urlencode($username).'/'.urlencode($repo).'/'.urlencode($pullRequestId));
-        return $response['pulls'];
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/pulls/'.urlencode($pullRequestId));
+        return $response;
     }
 
     /**
@@ -79,12 +83,79 @@ class Github_Api_PullRequest extends Github_Api
             return null;
         }
 
-        $response = $this->post('pulls/'.urlencode($username).'/'.urlencode($repo),
+        $response = $this->post('repos/'.urlencode($username).'/'.urlencode($repo) . '/pulls',
                                 $postParameters
                                );
 
         // @FIXME : Exception to be thrown when $response['error'] exists.
         //          Content of error can be : "{"error":["A pull request already exists for <username>:<branch>."]}"
-        return $response['pull'];
+        return $response;
+    }
+
+    /**
+     * Is the Merge Committed?
+     *
+     * @param   string $username          the username
+     * @param   string $repo              the repo
+     * @param   string $pullRequestId     the ID of the pull request for which details are retrieved
+     * @return  boolean                   true is yes and false if not
+     */
+    public function isMerged($username, $repo, $pullRequestId)
+    {
+        try {
+            $this->get('repos/'.urlencode($username).'/'.urlencode($repo) . '/pulls/' . urlencode($pullRequestId) . '/merge');
+        } catch (Github_HttpClient_Exception $ghce) {
+            // if this is thrown then it's a 404
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Do the merge on github
+     *
+     * @param   string $username          the username
+     * @param   string $repo              the repo
+     * @param   string $pullRequestId     the ID of the pull request for which details are retrieved
+     * @param   string $message           the commit message
+     * @return  array                     array of pull requests for the project
+     */
+    public function merge($username, $repo, $pullRequestId, $message)
+    {
+        $params = array('commit_message' => $message);
+        $response = $this->put('repos/'.urlencode($username).'/'.urlencode($repo) . '/pulls/' . urlencode($pullRequestId) . '/merge', $params);
+
+        return $response;
+    }
+
+    /**
+     * List all the files in the pull request
+     *
+     * @param   string $username          the username
+     * @param   string $repo              the repo
+     * @param   string $pullRequestId     the ID of the pull request for which details are retrieved
+     * @return  array                     array of pull requests for the project
+     */
+    public function listFiles($username, $repo, $pullRequestId)
+    {
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo) . '/pulls/' . urlencode($pullRequestId) . '/files');
+
+        return $response;
+    }
+
+    /**
+     * List all the commits in the pull request
+     *
+     * @param   string $username          the username
+     * @param   string $repo              the repo
+     * @param   string $pullRequestId     the ID of the pull request for which details are retrieved
+     * @return  array                     array of pull requests for the project
+     */
+    public function listCommits($username, $repo, $pullRequestId)
+    {
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo) . '/pulls/' . urlencode($pullRequestId) . '/commits');
+
+        return $response;
     }
 }

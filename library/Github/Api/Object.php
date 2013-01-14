@@ -32,7 +32,6 @@ class Github_Api_Object extends Github_Api
      * @param   string $username          the username
      * @param   string $repo              the repo
      * @param   string $treeSHA           the tree sha
-     * @param   string $path              the path
      * @return  array                     data blobs of tree
      */
     public function listBlobs($username, $repo, $treeSHA)

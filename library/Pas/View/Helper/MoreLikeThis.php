@@ -99,7 +99,7 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
 
    			$html .= '<div class="span3 well">';
    			 if(($document->thumbnail)){
-			$html .= '<img class="flow" src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
+			$html .= '<img class="flow img-polaroid" src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
    			 }
 			$html .= '<div class="caption"><p>Find number: ';
 			$html .= '<a href="' . $this->view->serverUrl() . '/database/artefacts/record/id/'

@@ -1,10 +1,10 @@
 <li >
-<div class="thumbnail" >
+
 <a href="<?php echo $this->url(array('module' => 'users','controller' => 'named','action' => 'person','as' => urlencode($this->username)),null,true);?>" title="View <?php echo $this->escape($this->username);?>'s profile on our site">
 <?php
 echo $this->gravatar($this->email, array(
-	'imgSize' => 90, 'defaultImg' => 'monsterid', 'secure' => true),
-	array('class' => 'avatar', 
+	'imgSize' => 64, 'defaultImg' => 'monsterid', 'secure' => true),
+	array('class' => 'avatar img-circle pull-left stelae', 
     'title' => $this->fullname . '\'s gravatar representation',
     'rating' => 'G'));
 
@@ -14,5 +14,4 @@ echo $this->gravatar($this->email, array(
 Last visit: <?php echo $this->lastLogin;?><br />
 Institution: <?php echo $this->institution;?>
 </p>
-</div>
 </li>

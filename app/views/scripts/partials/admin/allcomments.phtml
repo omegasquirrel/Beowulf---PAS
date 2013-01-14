@@ -45,7 +45,7 @@ echo $this->gravatar($this->comment_author_email,array(
 	'imgSize' => 30,
         'defaultImg' => 'monsterid',
         'secure' => true),
-        array('class' => 'avatar',
+        array('class' => 'avatar stelae pull-left img-circle',
               'title' => $this->comment_author . '\'s gravatar representation',
               'rating' => 'G')
         );
@@ -55,9 +55,8 @@ echo $this->gravatar($this->comment_author_email,array(
 <?php if(isset($this->comment_author_url)) :?><a href="<?php echo $this->comment_author_url;?>" title="<?php echo $this->comment_author_url;?>"><?php echo $this->comment_author_url;?></a><br/><?php endif;?>
 <a href="mailto:<?php echo $this->comment_author_email;?>"><?php echo $this->comment_author_email;?></a><br/>
 Submitted from: <?php echo $this->user_ip;?> using <?php echo $this->user_agent;?></td>
-<td class="comment column-comment"><div id="submitted-on">Submitted:<br />
-<?php echo $this->df;?></div><?php echo
-$this->ellipsisstring(strip_tags($this->comment_content),200);?></td>
+<td><div id="submitted-on">Submitted:<?php echo $this->df;?></div>
+<?php echo $this->ellipsisstring(strip_tags($this->comment_content),200);?></td>
 <td class="response column-response">
 <a href="<?php echo $this->url(array(
     'module' => 'database',
@@ -66,7 +65,7 @@ $this->ellipsisstring(strip_tags($this->comment_content),200);?></td>
     'id' => $this->id),null,true);?>"><?php echo $this->commentType($this->contentID, $this->comment_type);?></a>
 </td>
 <td><?php echo $t;?></td>
-<td><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'publish','id' => $this->commentID),'default',true);?>" title="Publish comment on record: <?php echo $this->old_findID;?>">Moderate</a> <br /> <a href="#" title="Delete this comment" class="delete">Delete</a><br />
+<td><a class="btn btn-small" href="<?php echo $this->url(array('module' => 'admin','controller' => 'comments','action' => 'publish','id' => $this->commentID),'default',true);?>" title="Publish comment on record: <?php echo $this->old_findID;?>">Moderate</a> <br /> <a class="btn btn-small" href="#" title="Delete this comment" class="delete">Delete</a><br />
 Status: <?php echo $status;?>
 </td>
 </tr>

@@ -12,102 +12,137 @@ class Github_Api_User extends Github_Api
 {
     /**
      * Search users by username
-     * http://develop.github.com/p/users.html#searching_for_users
+     * http://developer.github.com/v3/search/#search-users
      *
      * @param   string  $username         the username to search
      * @return  array                     list of users found
      */
     public function search($username)
     {
-        $response = $this->get('user/search/'.urlencode($username));
+        $response = $this->get('legacy/user/search/'.urlencode($username));
 
         return $response['users'];
+    }
+
+    /**
+     * Search users by email
+     * http://developer.github.com/v3/search/#email-search
+     *
+     * @param   string  $email            the email to search
+     * @return  array                     list of users found
+     */
+    public function searchEmail($email)
+    {
+        $response = $this->get('legacy/user/email/'.urlencode($email));
+
+        return $response['user'];
     }
 
     /**
      * Get extended information about a user by its username
-     * http://develop.github.com/p/users.html#getting_user_information
+     * http://developer.github.com/v3/users/#get-a-single-user
+     * http://developer.github.com/v3/users/#get-the-authenticated-user
      *
-     * @param   string  $username         the username to show
+     * @param   string  $username         the username to show, empty for the authenticated user
      * @return  array                     informations about the user
      */
-    public function show($username)
+    public function show($username = '')
     {
-        $response = $this->get('user/show/'.urlencode($username));
+        if ($username) {
+            $response = $this->get('users/'.urlencode($username));
+        } else {
+            $response = $this->get('user');
+        }
 
-        return $response['user'];
+        return $response;
     }
 
     /**
      * Update user informations. Requires authentication.
-     * http://develop.github.com/p/users.html#authenticated_user_management
+     * http://developer.github.com/v3/users/#update-the-authenticated-user
      *
-     * @param   string  $username         the username to update
      * @param   array   $data             key=>value user attributes to update.
-     *                                    key can be name, email, blog, company or location
+     *                                    key can be name, email, blog, company, location, hireable or bio
      * @return  array                     informations about the user
      */
-    public function update($username, array $data)
+    public function update(array $data)
     {
-        $response = $this->post('user/show/'.urlencode($username), array('values' => $data));
+        $response = $this->patch('user', $data);
 
-        return $response['user'];
+        return $response;
     }
 
     /**
      * Request the users that a specific user is following
-     * http://develop.github.com/p/users.html#following_network
+     * http://developer.github.com/v3/users/followers/#list-users-following-another-user
      *
-     * @param   string  $username         the username
+     * @param   string  $username         the username, empty for the authenticated user
      * @return  array                     list of followed users
      */
-    public function getFollowing($username)
+    public function getFollowing($username = '')
     {
-        $response = $this->get('user/show/'.urlencode($username).'/following');
+        if ($username) {
+            $response = $this->get('users/'.urlencode($username).'/following');
+        } else {
+            $response = $this->get('user/following');
+        }
 
-        return $response['users'];
+        return $response;
     }
 
     /**
      * Request the users following a specific user
-     * http://develop.github.com/p/users.html#following_network
+     * http://developer.github.com/v3/users/followers/#list-followers-of-a-user
      *
-     * @param   string  $username         the username
+     * @param   string  $username         the username, empty for the authenticated user
      * @return  array                     list of following users
      */
-    public function getFollowers($username)
+    public function getFollowers($username = '')
     {
-        $response = $this->get('user/show/'.urlencode($username).'/followers');
+        if ($username) {
+            $response = $this->get('users/'.urlencode($username).'/followers');
+        } else {
+            $response = $this->get('user/followers');
+        }
 
-        return $response['users'];
+        return $response;
+    }
+
+    /**
+     * Check if the authenticated user is following a user
+     * http://developer.github.com/v3/users/followers/#check-if-you-are-following-a-user
+     *
+     * @param   string  $username         the username
+     * @return  void                      if you are following this user, nothing will return
+     *                                    if you are not following this user, it throw an exception with code 404
+     */
+    public function isFollowing($username)
+    {
+        return $this->get('user/following/'.urlencode($username));
     }
 
     /**
      * Make the authenticated user follow the specified user. Requires authentication.
-     * http://develop.github.com/p/users.html#following_network
+     * http://developer.github.com/v3/users/followers/#follow-a-user
      *
      * @param   string  $username         the username to follow
-     * @return  array                     list of followed users
+     * @return  void                      if successfully followed a user
      */
     public function follow($username)
     {
-        $response = $this->post('user/follow/'.urlencode($username));
-
-        return $response['users'];
+        $response = $this->put('user/following/'.urlencode($username));
     }
 
     /**
      * Make the authenticated user unfollow the specified user. Requires authentication.
-     * http://develop.github.com/p/users.html#following_network
+     * http://developer.github.com/v3/users/followers/#unfollow-a-user
      *
      * @param   string  $username         the username to unfollow
-     * @return  array                     list of followed users
+     * @return  void                      if successfully unfollowed a user
      */
     public function unFollow($username)
     {
-        $response = $this->post('user/unfollow/'.urlencode($username));
-
-        return $response['users'];
+        $response = $this->delete('user/following/'.urlencode($username));
     }
 
     /**
@@ -119,13 +154,14 @@ class Github_Api_User extends Github_Api
      */
     public function getWatchedRepos($username)
     {
-        $response = $this->get('repos/watched/'.urlencode($username));
+        $response = $this->get('users/'.urlencode($username).'/watched');
 
-        return $response['repositories'];
+        return $response;
     }
 
     /**
      * Get the authenticated user public keys. Requires authentication
+     * http://developer.github.com/v3/users/keys/#list-public-keys-for-a-user
      *
      * @return  array                     list of public keys of the user
      */
@@ -133,35 +169,69 @@ class Github_Api_User extends Github_Api
     {
         $response = $this->get('user/keys');
 
-        return $response['public_keys'];
+        return $response;
+    }
+
+    /**
+     * Get the authenticated user a single public key. Requires authentication
+     * http://developer.github.com/v3/users/keys/#get-a-single-public-key
+     *
+     * @param   integer  $id              the id of a key
+     * @return  array                     list the items of the key
+     */
+    public function getKey($id)
+    {
+        $response = $this->get('user/keys/'.urlencode($id));
+
+        return $response;
     }
 
     /**
      * Add a public key to the authenticated user. Requires authentication.
+     * http://developer.github.com/v3/users/keys/#create-a-public-key
      *
+     * @param string $title
+     * @param string $key
      * @return  array                    list of public keys of the user
      */
     public function addKey($title, $key)
     {
-        $response = $this->post('user/key/add', array('title' => $title, 'key' => $key));
+        $response = $this->post('user/keys', array('title' => $title, 'key' => $key));
 
-        return $response['public_keys'];
+        return $response;
+    }
+
+    /**
+     * Update a public key. Requires authentication
+     * http://developer.github.com/v3/users/keys/#update-a-public-key
+     *
+     * @param   integer  $id              the id of a key
+     * @return  array                     list the items of the key
+     */
+    public function updateKey($id, $title, $key)
+    {
+        $response = $this->patch('user/keys/'.urlencode($id), array('title' => $title, 'key' => $key));
+
+        return $response;
     }
 
     /**
      * Remove a public key from the authenticated user. Requires authentication.
+     * http://developer.github.com/v3/users/keys/#delete-a-public-key
      *
-     * @return  array                    list of public keys of the user
+     * @param   string  $id             the id of a key
+     * @return  void                    if successfully remove the key
      */
     public function removeKey($id)
     {
-        $response = $this->post('user/key/remove', array('id' => $id));
+        $response = $this->delete('user/keys/'.urlencode($id));
 
-        return $response['public_keys'];
+        return $response;
     }
 
     /**
      * Get the authenticated user emails. Requires authentication.
+     * http://developer.github.com/v3/users/emails/#list-email-addresses-for-a-user
      *
      * @return  array                     list of authenticated user emails
      */
@@ -169,30 +239,32 @@ class Github_Api_User extends Github_Api
     {
         $response = $this->get('user/emails');
 
-        return $response['emails'];
+        return $response;
     }
 
     /**
      * Add an email to the authenticated user. Requires authentication.
+     * http://developer.github.com/v3/users/emails/#add-email-addresses
      *
+     * @param   string|array $emails      a single email or an email list
      * @return  array                     list of authenticated user emails
      */
-    public function addEmail($email)
+    public function addEmail($emails)
     {
-        $response = $this->post('user/email/add', array('email' => $email));
+        $response = $this->post('user/emails', $emails);
 
-        return $response['emails'];
+        return $response;
     }
 
     /**
      * Remove an email from the authenticated user. Requires authentication.
+     * http://developer.github.com/v3/users/emails/#delete-email-addresses
      *
-     * @return  array                     list of authenticated user emails
+     * @param   string|array $emails      a single email or an email list
+     * @return  array                     if successfully removed
      */
-    public function removeEmail($email)
+    public function removeEmail($emails)
     {
-        $response = $this->post('user/email/remove', array('email' => $email));
-
-        return $response['emails'];
+        $response = $this->delete('user/emails', $emails);
     }
 }

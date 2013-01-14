@@ -5,17 +5,17 @@ $this->headTitle('User account details for ' . $this->fullname . ' - '
 
 <h2>User account details for: <?php echo $this->fullname;?></h2>
 
-<div id="gravatar" class="flow"><?php 
+
+
+<p>
+<?php 
 echo $this->gravatar($this->email,array(
 'imgSize' => 80, 'defaultImg' => 'monsterid', 'secure' => true),
-array('class' => 'avatar', 'title' => $this->fullname 
+array('class' => 'avatar img-circle pull-left stelae', 'title' => $this->fullname 
       . '\'s gravatar representation',
       'rating' => 'G'));
 ?>
-<p>You probably don't like your alien representation, if you follow <a href="http://finds.org.uk/help/database/topic/id/4">instructions here</a>, you can change it!</p>
-</div>
 
-<p>
 <?php 
 if(!is_null($this->institution)) {
 echo 'Your recording institution is ' . $this->acronyms($this->institution) 

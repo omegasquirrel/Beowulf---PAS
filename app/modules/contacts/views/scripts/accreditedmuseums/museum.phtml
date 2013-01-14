@@ -5,7 +5,7 @@ $this->headTitle('Details for ' . $this->museum->museumName);
 <ul><li>Accreditation Number: <?php echo $this->museum->accreditedNumber;?></li></ul>
 <?php
 if(!is_null($this->museum->lat) && !is_null($this->museum->lon)):
-$this->googleDynamicMap(null,null,true);
+$this->googleDynamicMap();
 ?>
 <?php $this->inlineScript()->captureStart() ?>
  $(document).ready(function() {
