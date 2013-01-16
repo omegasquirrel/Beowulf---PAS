@@ -4,7 +4,6 @@
 <?php 
 foreach($this->commits as $commit):
 ?>
-
     <div class="well">
     <img class="pull-left stelae img-polaroid" height="48" src="<?php echo $commit['author']['avatar_url'];?>" width="48">
     <p class="lead"><?php echo $commit['commit']['message'];?></p>

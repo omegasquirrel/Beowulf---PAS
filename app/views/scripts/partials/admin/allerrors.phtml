@@ -2,14 +2,16 @@
 <td class="author column-author" >
 <?php 
 	echo $this->gravatar($this->comment_author_email,array(
-		'imgSize' => 30, 
-		'defaultImg' => 'monsterid', 
-		'secure' => true
+	'defaultImg' => 'http://finds.org.uk/assets/gravatar.png', 	
+	'imgSize' => 30, 
+	'secure' => true
 	),
 	array(
 		'class' => 'avatar stelae img-circle pull-left', 
     	'title' => $this->comment_author . '\'s gravatar representation',
-    	'rating' => 'G')
+    	'rating' => 'G',
+		'width' => 30,
+		'height' => 30)
 	);
 ?>
 

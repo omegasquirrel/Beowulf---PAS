@@ -3,13 +3,15 @@ $this->jQuery()->addJavascriptFile('http://jquery-ui.googlecode.com/svn/tags/lat
 echo $this->partialLoop('partials/numismatics/rulerProfile.phtml', $this->monarchs);
 ?>
 
+
 <?php
+$cache = Zend_Registry::get('cache');
+$key = md5('monarchs' . $this->monarchs[0]['dbpedia']);
+	if (!($cache->test($key))) {
 ini_set('display_errors', '0');     # don't show any errors...
 error_reporting(E_ALL | E_STRICT);  # ...but do log them
 $config = array('remote_store_endpoint' => 'http://dbpedia.org/sparql');
-$arc2 = new ARC2();
-
-$store = $arc2->getRemoteStore($config);
+$store = ARC2::getRemoteStore($config);
 //build the SPARQL query
 $q = '
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -27,19 +29,20 @@ PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
 SELECT *
 WHERE {
 {
-?king foaf:isPrimaryTopicOf <http://en.wikipedia.org/wiki/' . $this->monarchs[0]['dbpedia'] .'> .
-?king<http://dbpedia.org/ontology/abstract> ?abstract .
-?king dbpedia2:name ?name .
+?issuer foaf:isPrimaryTopicOf <http://en.wikipedia.org/wiki/' . $this->monarchs[0]['dbpedia'] .'> .
+?issuer  <http://dbpedia.org/ontology/abstract> ?abstract .
+?issuer  dbpedia2:name ?name .
 
-OPTIONAL {?king foaf:depiction ?depiction}.
-OPTIONAL {?king dbpedia-owl:thumbnail ?thumb} .
-OPTIONAL {?king dbpedia2:imgw ?imgw} .
-OPTIONAL {?king dbpedia2:successor ?successor} .
-OPTIONAL {?king dbpedia-owl:spouse ?spouse} .
-OPTIONAL {?king dbpedia2:father ?father} .
-OPTIONAL {?king dbpedia2:mother ?mother} .
-OPTIONAL {?king dbpedia2:birthDate ?birthdate}.
-OPTIONAL {?king dbpedia2:deathDate ?deathDate}.
+OPTIONAL {?issuer  foaf:depiction ?depiction}.
+OPTIONAL {?issuer  dbpedia-owl:thumbnail ?thumb} .
+OPTIONAL {?issuer  dbpedia2:imgw ?imgw} .
+OPTIONAL {?issuer  dbpedia2:successor ?successor} .
+OPTIONAL {?issuer  dbpedia-owl:spouse ?spouse} .
+OPTIONAL {?issuer  dbpedia2:father ?father} .
+OPTIONAL {?issuer  dbpedia2:mother ?mother} .
+OPTIONAL {?issuer  dbpedia2:birthDate ?birthdate}.
+OPTIONAL {?issuer  dbpedia2:deathDate ?deathDate}.
+
 FILTER langMatches( lang(?abstract), \'en\')
 FILTER langMatches( lang(?name), \'en\')}
 }
@@ -48,10 +51,14 @@ LIMIT 1
 ';
 //process the results
 $results = array();
-
-if ($rows = $store->query($q, 'rows')) {
+$rows = $store->query($q, 'rows');
+$cache->save($rows);
+	} else {
+		$rows = $cache->load($key);
+	}
+if ($rows) {
 foreach ($rows as $row) {
-	$abstract = utf8_decode($row['abstract']);
+	$abstract = $row['abstract'];
 $chunks = split('\. ',str_replace('c.','circa',$abstract));
   foreach($chunks as $key=>$c){
     $chunks[$key] = ($key%3==0) ? ($c . '.</p><p>') : ($c.'. ');
@@ -65,48 +72,47 @@ echo '<a href="'.$row['depiction'].'" rel="lightbox" title="' .str_replace('"','
 echo '<div property="skos:definition" >' . $abs . '</div>';
 echo '<p>';
 if(isset($row['title'])) {
-echo 'Title: '. $row['title'] . '<br />';
+echo '<strong>Title:</strong> '. $row['title'] . '<br />';
 }
 //echo 'Patronage: '.$row['patronage'].'<br />';
 if(isset($row['reign'])) {
-echo 'Exact reign: '.strip_tags(rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['reign']))).'<br />';
+echo '<strong>Exact reign:</strong> '.strip_tags(rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['reign']))).'<br />';
 }
 if(isset($row['years'])){
-echo 'Years ruled: '.rawurldecode($row['years']).'<br />';
+echo '<strong>Years ruled:</strong> '.rawurldecode($row['years']).'<br />';
 }
 if(isset($row['spouse'])){
-echo 'Spouse: '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),strip_tags($row['spouse']))).'<br />';
+echo '<strong>Spouse:</strong> '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),strip_tags($row['spouse']))).'<br />';
 }
 if(isset($row['birthPlace'])) {
-echo 'Birth place: '.str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),rawurldecode($row['birthPlace'])).'<br />';
+echo '<strong>Birth place:</strong> '.str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),rawurldecode($row['birthPlace'])).'<br />';
 }
 if(isset($row['mother'])){
-echo 'Mother: '.str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),rawurldecode($row['mother'])).'<br />';
+echo '<strong>Mother:</strong> '.str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),rawurldecode($row['mother'])).'<br />';
 }
 if(isset($row['father'])){
-echo 'Father: '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['father'])).'<br />';
+echo '<strong>Father:</strong> '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['father'])).'<br />';
 }
 if(isset($row['successor'])) {
-echo 'Succeeded by: ' .str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['successor']).'<br />';
+echo '<strong>Succeeded by:</strong> ' . rawurldecode( str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['successor'])).'<br />';
 }
 if(isset($row['burial'])){
-echo 'Burial place: '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['burial'])).'<br />';
+echo '<strong>Burial place:</strong> '. rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['burial'])).'<br />';
 }
 if(isset($row['birthdate'])) {
-echo 'Date of birth: ' . $row['birthdate'].'<br />';
+echo '<strong>Date of birth:</strong> '.$row['birthdate'].'<br />';
 }
 if(isset($row['deathDate'])) {
-echo 'Date of death: '.$row['deathDate'].'<br />';
+echo '<strong>Date of death:</strong> '.$row['deathDate'].'<br />';
 }
 if(isset($row['dp'])) {
-echo 'Died at: '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['dp'])).'<br />';
+echo '<strong>Died at:</strong> '.rawurldecode(str_replace(array('http://dbpedia.org/resource/','_'),array('',' '),$row['dp'])).'<br />';
 }
 
 if(isset($row['alt'])) {
 echo 'Alternative names: '.$row['alt'].'<br />';
 }
 
-echo 'This data is sourced from dbpedia, and as such should be treated with caution';
 echo '</p>';
 }
 }

@@ -12,58 +12,37 @@
  */
 class Analytics_IndexController extends Pas_Controller_Action_Admin {
     
-    protected $_googleID;
+    protected $_ID;
     
-    protected $_googlePassword;
+    protected $_pword;
     
+    protected $_service;
 
     
     public function init() {
  	$this->_helper->_acl->allow(null); 
-        $this->_googleID = $this->_helper->config()->webservice->google->username;
-        $this->_googlePassword = $this->_helper->config()->webservice->google->password;
-        
+	$this->_ID = $this->_helper->config()->webservice->google->username;
+	$this->_pword = $this->_helper->config()->webservice->google->password;
+	$this->_service = Zend_Gdata_Analytics::AUTH_SERVICE_NAME;
     }
     
     public function indexAction() {
-        
-        $client = Zend_Gdata_ClientLogin::getHttpClient($this->_googleID, 
-                $this->_googlePassword, Zend_Gdata_Analytics::AUTH_SERVICE_NAME);
-        $service = new Zend_Gdata_Analytics($client);
-        $dimensions = array(
-          Zend_Gdata_Analytics_DataQuery::DIMENSION_MEDIUM,
-          Zend_Gdata_Analytics_DataQuery::DIMENSION_SOURCE,
-          Zend_Gdata_Analytics_DataQuery::DIMENSION_BROWSER_VERSION,
-          Zend_Gdata_Analytics_DataQuery::DIMENSION_MONTH,
-        );
-
-        $query = $service->newDataQuery()->setProfileId('456871')
-          ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_BOUNCES) 
-          ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITS) 
-        //  ->addFilter("ga:browser==Firefox")
-          ->setStartDate('2011-12-01') 
-          ->setEndDate('2011-12-31') 
-          ->addSort(Zend_Gdata_Analytics_DataQuery::METRIC_VISITS, true)
-          ->addSort(Zend_Gdata_Analytics_DataQuery::METRIC_BOUNCES, false)
-          ->setMaxResults(50);
-
-        foreach($dimensions as $dim){
-          $query->addDimension($dim);
-        }
-
-        $result = $service->getDataFeed($query); 
-        $results = array();
-        foreach($result as $row){
-        $data = array(
-        'source' => $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_SOURCE),
-        'medium' => $row->getDimension('ga:medium'),
-        'visits' => $row->getMetric('ga:visits'),
-        'bounce' => $row->getValue('ga:bounces')          
-        );
-        $results[] = $data;
-        } 
-     
-        $this->view->result = $results;
+	$client = Zend_Gdata_ClientLogin::getHttpClient($this->_ID, $this->_pword, $this->_service);
+	$analytics = new Zend_Gdata_Analytics($client); 
+	$query = $analytics->newDataQuery()->setProfileId(25726058) 
+		  ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_PAGEVIEWS)
+		  ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITS)
+		  ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)
+		  ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_TIME_ON_SITE)
+		  ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_NEW_VISITS)
+		  ->addMetric(Zend_Gdata_Analytics_DataQuery::METRIC_UNIQUE_PAGEVIEWS)
+//		  ->addDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_MEDIUM) 
+//		  ->addDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_SOURCE) 
+		  ->setStartDate('2012-01-01')   
+		  ->setEndDate('2012-12-31')   
+		  ->addSort(Zend_Gdata_Analytics_DataQuery::METRIC_VISITS, true) 
+		  ->setMaxResults(50);
+	$this->view->result = $analytics->getDataFeed($query);
     }
 }
 

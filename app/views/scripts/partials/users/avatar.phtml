@@ -10,8 +10,16 @@ echo 'Add an avatar';
 ?>
 <div>
 	<?php 
-	echo $this->gravatar($this->email,array( 'imgSize' => 80, 'defaultImg' => 'monsterid', 'secure' => true),
-	array('class' => 'avatar','title' => $this->fullname . '\'s gravatar representation', 'rating' => 'G'));
+	echo $this->gravatar($this->email,array( 
+	'imgSize' => 80, 
+	'defaultImg' => 'http://finds.org.uk/assets/gravatar.png', 
+	'secure' => true),
+	array(
+	'class' => 'avatar img-circle stelae',
+	'title' => $this->fullname . '\'s gravatar representation', 
+	'rating' => 'G',
+	'width' => 80,
+	'height' => 80));
 	 ?>
     <p >This is supplied by <a href="http://en.gravatar.com" title="Change your gravatar settings">gravatar</a>. <br />
 You can change this with them, but we only accept G rated images.</p>

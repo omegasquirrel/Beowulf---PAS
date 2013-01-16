@@ -2,10 +2,19 @@
 <h2>Account details for <?php echo $this->fullname;?></h2>
 <?php
 echo $this->Href(array(
-    'module' => 'admin','controller'=>'users', 'action'=>'edit',
-'checkAcl'=>true,'acl'=>'Zend_Acl', 'params' => array('id' => $this->id),
-'content'=>'Edit account','attribs' => array('title' => 'Edit account','class' => 'btn  btn-warning'),
-        'wrapper' => array('tag' => 'div','id' => 'action',)));
+    'module' => 'admin','controller'=>'users', 
+    'action'=>'edit',
+	'checkAcl'=>true,'acl'=>'Zend_Acl', 
+	'params' => array(
+		'id' => $this->id),
+		'content'=>'Edit account',
+		'attribs' => array(
+			'title' => 'Edit account',
+			'class' => 'btn btn-warning'),
+        	'wrapper' => array(
+        		'tag' => 'div',
+        			'id' => 'action')
+));
 ?>
 
 <h3>Personal data</h3>
@@ -14,15 +23,18 @@ echo $this->Href(array(
 
 <?php
 echo $this->gravatar($this->email,array(
-'imgSize' => 90,
-'defaultImg' => 'monsterid',
-'secure' => true),
+		'imgSize' => 80,
+		'defaultImg' => 'http://finds.org.uk/assets/gravatar.png',
+		'secure' => true),
     array(
-        'class' => 'avatar',
+        'class' => 'avatar pull-left stelae img-circle',
         'title' => $this->fullname . '\'s gravatar representation',
-        'rating' => 'G'));
-?>
-<p>You probably don't like your alien representation, if you follow <a href="http://finds.org.uk/help/database/topic/id/4">instructions here</a>, you can change it!</p>
+        'rating' => 'G',
+    	'width' => 80,
+    	'height' => 80)
+    );
+?> 
+
 </div>
 
 </div>

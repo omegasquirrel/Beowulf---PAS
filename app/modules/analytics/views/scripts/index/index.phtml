@@ -1,10 +1,19 @@
 <?php
 $this->headTitle('Analytics data provided via Google Analytics');
 ?>
-<h2>Analytics data</h2>
+<h2><?php echo $this->title();?></h2>
+<img src="<?php echo $this->serverUrl();?>/assets/google-analytics-logo.png" />
 <ul>
-<?php foreach($this->result as $k):?>    
-    <li>Source: <?php echo $k['source'];?> Medium: <?php echo $k['medium'];?> 
-        Visits: <?php echo $k['visits'];?> Bounce: <?php echo $k['bounce'];?></li>    
-<?php endforeach;?>    
+<?php foreach($this->result as $row): 
+echo 'Page views: ' .  number_format($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_PAGEVIEWS)->value);
+echo '<br/>'; 
+echo 'Unique pageviews: ' .  $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_UNIQUE_PAGEVIEWS)->value;
+echo '<br/>'; 
+echo 'Visits: ' .  number_format($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITS)->value); 
+echo '<br/>'; 
+echo 'Visitors: ' .  number_format($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value); 
+echo '<br/>'; 
+echo 'Time on site: ' .  $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_TIME_ON_SITE)->value; 
+endforeach;
+?>    
 </ul>

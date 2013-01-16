@@ -3,12 +3,15 @@
 <div id="gravatar-badge">
 <?php
 echo $this->gravatar($this->email,array(
-	'imgSize' => 30, 'defaultImg' => 'monsterid',
+		'imgSize' => 30, 
+		'defaultImg' => 'http://finds.org.uk/assets/gravatar.png',
         'secure' => true),
 	array(
-        'class' => 'avatar',
+        'class' => 'avatar img-circle stelae ',
         'title' => $this->fullname . '\'s gravatar representation',
-        'rating' => 'G'));
+        'rating' => 'G',
+		'height' => 30,
+		'width' => 30));
 ?>
 </div>
 <div id="userDetails">

@@ -552,7 +552,7 @@ public function __construct($options = null) {
 	$subs_action = new Zend_Form_Element_Select('subs_action');
 	$subs_action->setLabel('Subsequent action: ')
 	->addFilters(array('StripTags','StringTrim'))
-
+	->setAttrib('class','span6')
 	->addMultiOptions(array(NULL => 'Choose a subsequent action',
 	'Available options' => $actionsDD))
 	->setValue(1)

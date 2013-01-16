@@ -38,7 +38,7 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $insertData = $form->getValues();
     $content = new Content();
     $insert = $content->add($insertData);
-
+	
     $this->_helper->solrUpdater->update('beocontent', $insert);
     $this->_flashMessenger->addMessage('Static content added');
     $this->_redirect('/admin/content');
@@ -69,6 +69,8 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $this->_helper->solrUpdater->update('beocontent', $this->_getParam('id'), 'content');  
     $this->_flashMessenger->addMessage('You updated: <em>' . $form->getValue('title') 
     . '</em> successfully. It is now available for use.');
+ 	$cache = Zend_Registry::get('cache');
+ 	$cache->clean(Zend_Cache::CLEANING_MODE_ALL);
     $this->_redirect('admin/content/');
     } else {
     $form->populate($form->getValues());

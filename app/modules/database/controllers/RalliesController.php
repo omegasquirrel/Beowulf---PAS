@@ -102,7 +102,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	'createdBy' => $this->getIdentityForForms()
 	);
 	$insert = $this->_rallies->insert($insertData);
-	$this->_cache->remove('rallydd');
+	$this->_cache->remove('rallydds');
 	$this->_redirect(self::URL . 'rally/id/' . $insert);
 	$this->_flashMessenger->addMessage('Details for ' . $form->getValue('rally_name')
 	. ' have been created!');
@@ -147,7 +147,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$where = array();
 	$where[] = $this->_rallies->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$update = $this->_rallies->update($updateData,$where);
-	$this->_cache->remove('rallydd');
+	$this->_cache->remove('rallydds');
 	$this->_flashMessenger->addMessage('Rally information updated!');
 	$this->_redirect(self::URL . 'rally/id/' . $this->_getParam('id'));
 	} else {

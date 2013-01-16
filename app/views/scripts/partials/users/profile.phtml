@@ -10,10 +10,16 @@ $this->headTitle('User account details for ' . $this->fullname . ' - '
 <p>
 <?php 
 echo $this->gravatar($this->email,array(
-'imgSize' => 80, 'defaultImg' => 'monsterid', 'secure' => true),
-array('class' => 'avatar img-circle pull-left stelae', 'title' => $this->fullname 
-      . '\'s gravatar representation',
-      'rating' => 'G'));
+	'imgSize' => 80, 
+	'defaultImg' => 'http://finds.org.uk/assets/gravatar.png', 
+	'secure' => true),
+	array(
+	'class' => 'avatar img-circle pull-left stelae', 
+	'title' => $this->fullname . '\'s gravatar representation',
+	'rating' => 'G',
+	'width' => 80,
+	'height' => 80)
+	);
 ?>
 
 <?php 
