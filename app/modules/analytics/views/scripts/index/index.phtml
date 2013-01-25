@@ -1,19 +1,93 @@
 <?php
-$this->headTitle('Analytics data provided via Google Analytics');
+$this->headTitle('Headline analytics data provided via Google Analytics');
 ?>
 <h2><?php echo $this->title();?></h2>
 <img src="<?php echo $this->serverUrl();?>/assets/google-analytics-logo.png" />
-<ul>
-<?php foreach($this->result as $row): 
-echo 'Page views: ' .  number_format($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_PAGEVIEWS)->value);
-echo '<br/>'; 
-echo 'Unique pageviews: ' .  $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_UNIQUE_PAGEVIEWS)->value;
-echo '<br/>'; 
-echo 'Visits: ' .  number_format($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITS)->value); 
-echo '<br/>'; 
-echo 'Visitors: ' .  number_format($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value); 
-echo '<br/>'; 
-echo 'Time on site: ' .  $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_TIME_ON_SITE)->value; 
-endforeach;
-?>    
-</ul>
+<h3 class="lead">Headline statistics</h3>
+<div class="row fluid">
+
+<div class="span3 well" >
+<h3>This week</h3>
+<?php 
+$date = new Zend_Date();
+$date->setYear($date->get(Zend_Date::YEAR))
+     ->setWeek($date->get(Zend_Date::WEEK))
+     ->setWeekDay(1);
+$weekDates = array();
+
+for ($day = 1; $day <= 7; $day++) {
+    if ($day == 1) {
+    	// we're already at day 1
+    }
+    else {
+    	// get the next day in the week
+    	$date->addDay(1);
+    }
+
+    $weekDates[] = date('Y-m-d', $date->getTimestamp());
+}
+
+echo $this->gaHeadlineStats('danielpett@gmail.com', 'beerdemon')->setProfile(25726058)->setStart($weekDates[0])->setEnd($weekDates[6]);?>
+</div>
+
+<div class="span3 well" >
+<h3>This month</h3>
+<?php 
+$date = new Zend_Date();
+echo $this->gaHeadlineStats('danielpett@gmail.com', 'beerdemon')->setProfile(25726058)->setStart($date->get(Zend_Date::YEAR . '-' .Zend_Date::MONTH . '-01'))->setEnd($date->get(Zend_Date::YEAR . '-' .Zend_Date::MONTH . '-' . Zend_Date::MONTH_DAYS));?>
+</div>
+
+<div class="span3 well" >
+<h3>This year</h3>
+<?php echo $this->gaHeadlineStats('danielpett@gmail.com', 'beerdemon')->setProfile(25726058)->setStart($date->get(Zend_Date::YEAR) . '-01-01')->setEnd($date->get(Zend_Date::YEAR . '-' .Zend_Date::MONTH . '-' . Zend_Date::MONTH_DAYS));?>
+</div>
+
+</div>
+
+<div class="row fluid">
+
+<div class="span3 well" >
+<h3>Last week</h3>
+<?php 
+$date = new Zend_Date();
+$date->setYear($date->get(Zend_Date::YEAR))
+     ->setWeek($date->get(Zend_Date::WEEK) - 1)
+     ->setWeekDay(1);
+$weekDates = array();
+
+for ($day = 1; $day <= 7; $day++) {
+    if ($day == 1) {
+    	// we're already at day 1
+    }
+    else {
+    	// get the next day in the week
+    	$date->addDay(1);
+    }
+
+    $weekDates[] = date('Y-m-d', $date->getTimestamp());
+}
+
+echo $this->gaHeadlineStats('danielpett@gmail.com', 'beerdemon')->setProfile(25726058)->setStart($weekDates[0])->setEnd($weekDates[6]);?>
+
+</div>
+
+<div class="span3 well" >
+<h3>Last month</h3>
+<?php 
+$date = new Zend_Date();
+$date->setYear($date->get(Zend_Date::YEAR))
+     ->setMonth($date->get(Zend_Date::MONTH) - 1);
+$monthYear = $date->toString('yyyy-MM');
+$end = $date->get(Zend_Date::MONTH_DAYS);
+echo $this->gaHeadlineStats('danielpett@gmail.com', 'beerdemon')->setProfile(25726058)->setStart($monthYear . '-01')->setEnd($monthYear . '-' . $end);?>
+</div>
+
+<div class="span3 well" >
+<h3>Last year</h3>
+<?php 
+echo $this->gaHeadlineStats('danielpett@gmail.com', 'beerdemon')->setProfile(25726058)->setStart('2012-01-01')->setEnd('2012-12-31');?> 
+</div>
+
+</div>
+
+

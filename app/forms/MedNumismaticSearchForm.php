@@ -191,26 +191,26 @@ class MedNumismaticSearchForm extends Pas_Form {
 		->addValidator('InArray', false, array(array_keys($mint_options)));
 
 	//Obverse inscription
-	$obverseinsc = new Zend_Form_Element_Text('obinsc');
+	$obverseinsc = new Zend_Form_Element_Text('obverseLegend');
 	$obverseinsc->setLabel('Obverse inscription contains: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 
 	//Obverse description
-	$obversedesc = new Zend_Form_Element_Text('obdesc');
+	$obversedesc = new Zend_Form_Element_Text('obverseDescription');
 	$obversedesc->setLabel('Obverse description contains: ')
 		->setRequired(false)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 
 	//reverse inscription
-	$reverseinsc = new Zend_Form_Element_Text('revinsc');
+	$reverseinsc = new Zend_Form_Element_Text('reverseLegend');
 	$reverseinsc->setLabel('Reverse inscription contains: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term');
 
 	//reverse description
-	$reversedesc = new Zend_Form_Element_Text('revdesc');
+	$reversedesc = new Zend_Form_Element_Text('reverseDescription');
 	$reversedesc->setLabel('Reverse description contains: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addErrorMessage('Please enter a valid term');
@@ -266,8 +266,8 @@ class MedNumismaticSearchForm extends Pas_Form {
 	$this->addDisplayGroup(array(
 	'category', 'ruler','type',
 	'denomination', 'mint','moneyer',
-	'axis',  'obinsc','obdesc',
-	'revinsc','revdesc'), 'numismatics')
+	'axis',  'obverseLegend','obverseDescription',
+	'reverseLegend','reverseDescription'), 'numismatics')
 	->removeDecorator('HtmlTag');
 
 	$this->numismatics->setLegend('Numismatic details: ');

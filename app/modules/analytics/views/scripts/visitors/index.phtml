@@ -1,7 +1,39 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+$this->headTitle('Visitors analytical data provided via Google Analytics');
 ?>
+<h2><?php echo $this->title();?></h2>
+<p>
+<?php 
+$timespans = array(
+'this week' => 'thisweek',
+'last week' => 'lastweek',
+'this month' => 'thismonth',
+'last month' => 'lastmonth',
+'this year' => 'thisyear',
+'last year' => 'lastyear'
+);
+foreach($timespans as $k => $v):
+?>
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'index', 'timespan' => $v),'default',false);?>"><?php echo ucfirst($k);?></a>
+<?php endforeach;?> 
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'index', 'segment' => 'mobile' ),'default',false);?>">Mobile use</a>
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'index', 'segment' => 'tablet' ),'default',false);?>">Tablet use</a>
+
+</p>
+<table class="table table-striped">
+	<caption>Visitors over the timespan of: </caption>
+		<thead>
+		<tr>
+			<th>Date</th>
+			<th>Visitors</th>
+		</tr>
+		</thead>
+		<tbody>
+			<?php foreach($this->results as $row):?>
+			<tr>
+				<td><?php echo $this->niceshortdate(strtotime($row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_DATE)->value));?></td>
+				<td><?php echo $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value;?></td>
+			</tr>
+			<?php endforeach;?>
+		</tbody>
+</table>

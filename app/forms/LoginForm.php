@@ -30,7 +30,7 @@ public function init() {
 	
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)
-	->setTimeout(480);
+	->setTimeout(4800);
 	$this->addElement($hash);
 
 	$submit = $this->addElement('submit', 'submit' , array('label' => 'Login...'));

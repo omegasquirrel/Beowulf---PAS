@@ -1,0 +1,78 @@
+<?php
+$this->headTitle('Country analytical data provided via Google Analytics');
+?>
+<h2><?php echo $this->title();?></h2>
+<p>
+<?php 
+$timespans = array(
+'this week' => 'thisweek',
+'last week' => 'lastweek',
+'this month' => 'thismonth',
+'last month' => 'lastmonth',
+'this year' => 'thisyear',
+'last year' => 'lastyear'
+);
+foreach($timespans as $k => $v):
+?>
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'country', 'timespan' => $v),'default',false);?>"><?php echo ucfirst($k);?></a>
+<?php endforeach;?> 
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'country', 'segment' => 'mobile' ),'default',false);?>">Mobile use</a>
+<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'country', 'segment' => 'tablet' ),'default',false);?>">Tablet use</a>
+
+</p>
+<table class="table table-striped">
+	<caption>Visitors over the timespan of: </caption>
+		<thead>
+		<tr>
+			<th>Date</th>
+			<th>Visitors</th>
+		</tr>
+		</thead>
+		<tbody>
+			<?php foreach($this->results as $row):?>
+			<tr>
+				<td><?php echo $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_COUNTRY)->value;?></td>
+				<td><?php echo $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value;?></td>
+			</tr>
+			<?php endforeach;?>
+		</tbody>
+</table>
+
+<?php 
+$this->inlineScript()->appendFile('https://www.google.com/jsapi',$type = 'text/javascript');
+$this->inlineScript()->captureStart();?>
+google.load('visualization', '1', {'packages': ['geochart']});
+     google.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Continent', 'Visitors'],
+      <?php 
+      $data = array();
+      foreach($this->results as $row){
+      	$data[] =array($row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_COUNTRY)->value => $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value);
+      }
+      
+      ?>
+          <?php foreach($data as $data):
+          if(array_key_exists('(not set)', $data)) {
+      	unset($data['(not set)']);
+      }
+          ?>
+          <?php foreach($data as $k => $v):?>  
+		  ['<?php echo $k;?>' , <?php echo $v;?>],
+		  <?php endforeach;?>
+		  <?php endforeach;?>
+        ]);
+
+        var options = {
+        region : 'world',
+        displayMode : 'regions',
+        enableRegionInteractivity : true,
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('chart'));
+        chart.draw(data, options);
+    };
+<?php $this->inlineScript()->captureEnd();?>   
+<div id="chart"></div>

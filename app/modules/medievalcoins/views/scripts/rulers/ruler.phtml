@@ -67,7 +67,7 @@ $chunks = split('\. ',str_replace('c.','circa',$abstract));
  $abs = str_replace('..','.',$abs);
 echo '<h4>Wikipedia derived information</h4>';
 if(isset($row['thumb'])) {
-echo '<a href="'.$row['depiction'].'" rel="lightbox" title="' .str_replace('"','',$row['caption']) .'"><img rel="foaf:depiction" src="'.$row['thumb'].'" class="flow" alt="' .str_replace('"','',$row['caption']) .'" width="'.$row['imgw'].'"/></a>';
+echo '<a href="'.$row['depiction'].'" rel="lightbox" title="' .str_replace('"','',$row['caption']) .'"><img rel="foaf:depiction" src="'.$row['thumb'].'" class="pull-right stelae img-polaroid" alt="' .str_replace('"','',$row['caption']) .'" width="'.$row['imgw'].'"/></a>';
 }
 echo '<div property="skos:definition" >' . $abs . '</div>';
 echo '<p>';

@@ -31,7 +31,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$rulers = new Rulers();
 	$ruler_options = $rulers->getEarlyMedRulers();
-	Zend_Debug::dump($ruler_options);
+	
 	$denominations = new Denominations();
 	$denomination_options = $denominations->getOptionsEarlyMedieval();
 

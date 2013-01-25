@@ -12,7 +12,11 @@
  */
 class Analytics_ContentController 
     extends Pas_Controller_Action_Admin {
-    //put your code here
+    
+    	public function indexAction()
+    	{
+    		
+    	} 
+    	
 }
 
-?>

@@ -1,0 +1,24 @@
+<div class="well sidebar-nav" >
+<ul id="menu1" class="menu collapsible nav nav-pills nav-stacked">
+<li><a href="<?php echo $this->url(array('module' => 'analytics'),'default', true);?>">Headline stats</a></li>
+<li><a href="#">Visitors</a>
+	<ul>
+		<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'visitors'),'default', true);?>">By timespans</a></li>
+		<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'visitors','action' => 'map'),'default', true);?>">On a gMap</a></li>
+				<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'visitors','action' => 'country'),'default', true);?>">Country</a></li>
+						<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'visitors','action' => 'continent'),'default', true);?>">Continent</a></li>
+	</ul>
+</li>
+<li><a href="#">Social media</a>
+	<ul>
+		<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'social', 'action' => 'interactions'),'default', true);?>">Interactions</a></li>
+		<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'social','action' => 'activities'),'default', true);?>">Activities</a></li>
+	</ul>
+</li>
+<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'sitespeed', 'action' => 'metrics'),'default', true);?>">Site speed metrics</a>
+</li>
+<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'browsers'),'default', true);?>">Browsers</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'content'),'default', true);?>">Content</a></li>
+<li><a href="<?php echo $this->url(array('module' => 'analytics', 'controller' => 'traffic'),'default', true);?>">Referrals and traffic</a></li>
+</ul>
+</div>

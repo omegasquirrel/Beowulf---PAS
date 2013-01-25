@@ -10,7 +10,7 @@
  *
  * @author Daniel Pett <dpett@britishmuseum.org>
  */
-class Analytics_VisitorsController 
+class Analytics_SitespeedController 
     extends Pas_Controller_Action_Admin {
    
     public function init(){
@@ -19,7 +19,7 @@ class Analytics_VisitorsController
 		$this->_pword = $this->_helper->config()->webservice->google->password;
     }
     
-    public function indexAction(){
+    public function metricsAction(){
     	$analytics = new Pas_Analytics_Gateway($this->_ID, $this->_pword);
     	$analytics->setProfile(25726058);
     	$timeframe = new Pas_Analytics_Timespan($this->_getParam('timespan'));
@@ -27,15 +27,15 @@ class Analytics_VisitorsController
     	$analytics->setStart($dates['start']);
     	$analytics->setEnd($dates['end']);
     	$analytics->setMetrics(array(
-    		Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS
+    		Zend_Gdata_Analytics_DataQuery::METRIC_SPEED_AVG_PAGE_LOAD_TIME
     		)
     		);
     	$analytics->setDimensions(array(
-    		Zend_Gdata_Analytics_DataQuery::DIMENSION_DATE    			
+    		Zend_Gdata_Analytics_DataQuery::DIMENSION_HOSTNAME  			
     		)
     		);
-    	$analytics->setMax(500);
-    	$analytics->setSort(Zend_Gdata_Analytics_DataQuery::DIMENSION_DATE);
+    	$analytics->setMax(10);
+    	$analytics->setSort(Zend_Gdata_Analytics_DataQuery::METRIC_SPEED_AVG_PAGE_LOAD_TIME);
     	switch($this->_getParam('segment')){
     		case 'mobile':
     			$analytics->setSegment(Pas_Analytics_Gateway::SEGMENT_MOBILE_TRAFFIC);
@@ -47,6 +47,33 @@ class Analytics_VisitorsController
     			break;
     	}
     	$this->view->results = $analytics->getData();
+    	$analytics = new Pas_Analytics_Gateway($this->_ID, $this->_pword);
+    	$analytics->setProfile(25726058);
+    	$timeframe = new Pas_Analytics_Timespan($this->_getParam('timespan'));
+    	$dates = $timeframe->getDates();
+    	$analytics->setStart($dates['start']);
+    	$analytics->setEnd($dates['end']);
+    	$analytics->setMetrics(array(
+    		Zend_Gdata_Analytics_DataQuery::METRIC_AVG_DOMAIN_LOOKUP_TIME
+    		)
+    		);
+    	$analytics->setDimensions(array(
+    		Zend_Gdata_Analytics_DataQuery::DIMENSION_HOSTNAME  			
+    		)
+    		);
+    	$analytics->setMax(10);
+    	$analytics->setSort(Zend_Gdata_Analytics_DataQuery::METRIC_AVG_DOMAIN_LOOKUP_TIME);
+    	switch($this->_getParam('segment')){
+    		case 'mobile':
+    			$analytics->setSegment(Pas_Analytics_Gateway::SEGMENT_MOBILE_TRAFFIC);
+    			break;
+    		case 'tablet':
+    			$analytics->setSegment(Pas_Analytics_Gateway::SEGMENT_TABLET_TRAFFIC);
+    			break;
+    		default:
+    			break;
+    	}
+    	$this->view->lookup = $analytics->getData();
     }
     
     public function mapAction(){
