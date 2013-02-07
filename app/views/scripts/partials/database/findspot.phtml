@@ -215,7 +215,7 @@ WOEID: <a href="http://woe.spum.org/id/<?php echo $this->woeid;?>"><?php echo $t
 
 </div>
 
-<div class="span4">
+<div class="span4 noprint">
 <?php 
 echo $this->domesdayNear($this->declat,$this->declong, 2);
 ?>
@@ -229,13 +229,13 @@ echo $this->domesdayNear($this->declat,$this->declong, 2);
 
 <div class="row-fluid">
 
-<div class="span4">
+<div class="span4 noprint">
 <?php
 echo $this->findspotGeo($this->woeid,$this->declat,$this->declong);
 ?>
 </div>
 
-<div class="span4">
+<div class="span4 noprint">
 <?php echo $this->yahooGeoAdjacent($this->woeid);?>
 </div>
 

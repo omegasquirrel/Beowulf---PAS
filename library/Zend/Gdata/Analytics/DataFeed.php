@@ -61,4 +61,5 @@ class Zend_Gdata_Analytics_DataFeed extends Zend_Gdata_Feed
         $this->registerAllNamespaces(Zend_Gdata_Analytics::$namespaces);
         parent::__construct($element);
     }
+    
 }

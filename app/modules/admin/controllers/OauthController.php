@@ -75,5 +75,16 @@ class Admin_OauthController extends Pas_Controller_Action_Admin {
 	$this->_redirect('/admin/oauth/');
 	}
 	
+	public function googleAction() {
+	$google = new Pas_Oauth_Google();
+	$google->generate();	
+	}
 	
+	
+	public function googleaccessAction(){
+	$google = new Pas_Oauth_Google();
+	$access = $google->access();
+	$this->_flashMessenger->addMessage('Token created');
+	$this->_redirect('/admin/oauth/');	
+	}
 }

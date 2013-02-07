@@ -28,7 +28,7 @@ class Pas_Analytics_Dates {
 		//Create the start date for the current month
 		$start = $date->setYear($date->get(Zend_Date::YEAR))
 		->setMonth($date->get(Zend_Date::MONTH))
-		->setDayOfYear(01)
+		->setDay(1)
 		->toString($this->_dateFormat);
 		
 		//Create the end date for the current month
@@ -36,7 +36,6 @@ class Pas_Analytics_Dates {
 		->setMonth($date->get(Zend_Date::MONTH))
 		->setDay($date->get(Zend_Date::MONTH_DAYS))
 		->toString($this->_dateFormat);
-		
 		//Return the array of dates
 		return array('start' => $start, 'end' => $end);
 	}
@@ -51,12 +50,14 @@ class Pas_Analytics_Dates {
 		//Instantiate the date class
 		$date = new Zend_Date();
 		
+		//Take one year off the current year
+		$year = $date->get(Zend_Date::YEAR) - 1;
+		$month = $date->get(Zend_Date::MONTH) -1;
 		//Set the date for the first day of the previous month
-		$date->setYear($date->get(Zend_Date::YEAR))
+		$date->setYear($year);
 		//take one month off the current month
-		->setMonth($date->get(Zend_Date::MONTH))
+		$date->setMonth($month)
 		->setDayOfYear(01);
-		$date->subMonth(1);
 		$start = $date->toString($this->_dateFormat);
 		//Create the end date for the last day of the previous month
 		$end = $date->setYear($date->get(Zend_Date::YEAR))

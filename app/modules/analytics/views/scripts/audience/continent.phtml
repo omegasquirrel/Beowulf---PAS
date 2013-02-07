@@ -1,42 +1,11 @@
 <?php
-$this->headTitle('Continent analytical data provided via Google Analytics');
+$this->headTitle('Continent analytical data provided via Google Analytics ' . $this->timeSpanParameter());
 ?>
 <h2><?php echo $this->title();?></h2>
-<p>
-<?php 
-$timespans = array(
-'this week' => 'thisweek',
-'last week' => 'lastweek',
-'this month' => 'thismonth',
-'last month' => 'lastmonth',
-'this year' => 'thisyear',
-'last year' => 'lastyear'
-);
-foreach($timespans as $k => $v):
-?>
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'continent', 'timespan' => $v),'default',false);?>"><?php echo ucfirst($k);?></a>
-<?php endforeach;?> 
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'continent', 'segment' => 'mobile' ),'default',false);?>">Mobile use</a>
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'continent', 'segment' => 'tablet' ),'default',false);?>">Tablet use</a>
+<?php echo $this->timeSpansGa();?>
+<?php echo $this->form;?>
 
-</p>
-<table class="table table-striped">
-	<caption>Visitors over the timespan of: </caption>
-		<thead>
-		<tr>
-			<th>Continent</th>
-			<th>Visitors</th>
-		</tr>
-		</thead>
-		<tbody>
-			<?php foreach($this->results as $row):?>
-			<tr>
-				<td><?php echo $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_CONTINENT)->value;?></td>
-				<td><?php echo $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value;?></td>
-			</tr>
-			<?php endforeach;?>
-		</tbody>
-</table>
+
 <?php 
 $this->inlineScript()->appendFile('https://www.google.com/jsapi',$type = 'text/javascript');
 $this->inlineScript()->captureStart();?>
@@ -86,11 +55,40 @@ google.load('visualization', '1', {'packages': ['geochart']});
         displayMode : 'regions',
         enableRegionInteractivity : true,
         resolution : 'continents',
-        legend : 'none'
+        legend : 'none',
+        width: '600', 
+        height: 400,
+        keepAspectRatio: true
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('chart'));
         chart.draw(data, options);
     };
 <?php $this->inlineScript()->captureEnd();?>   
+<h3>Distribution chart of visitors by continent</h3>
 <div id="chart"></div>
+
+
+<table class="table table-striped">
+	<caption><?php echo $this->title();?></caption>
+		<thead>
+		<tr>
+			<th>Continent</th>
+			<th>Visitors</th>
+			<th>Visits</th>
+			<th>Bounces</th>
+			<th>Average time on site</th>
+		</tr>
+		</thead>
+		<tbody>
+			<?php foreach($this->results as $row):?>
+			<tr>
+				<td><?php echo $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_CONTINENT)->value;?></td>
+				<td><?php echo $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value;?></td>
+				<td><?php echo $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITS)->value;?></td>
+				<td><?php echo $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_BOUNCES)->value;?></td>
+				<td><?php echo $this->secondsToMinutes()->setSeconds($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_AVG_TIME_ON_SITE)->value);?></td>
+			</tr>
+			<?php endforeach;?>
+		</tbody>
+</table>

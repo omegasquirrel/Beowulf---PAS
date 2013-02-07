@@ -1,6 +1,5 @@
 <?php 
-$this->headScript()->appendFile($this->baseUrl().'/js/JQuery/ui.datepicker.js',$type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
 $this->headTitle('Add a new volunteer role');
 ?>
 <?php $this->headScript()->captureStart() ?>
@@ -9,7 +8,7 @@ $("#live").datepicker({ maxDate: '+1y'});
 $("#expire").datepicker({ maxDate: '+1y' });
 });
 <?php $this->headScript()->captureEnd() ?>
-<h2>Add a volunteer role</h2>
+<h2><?php echo $this->title();?></h2>
 <?php 
 echo $this->form;
 ?>

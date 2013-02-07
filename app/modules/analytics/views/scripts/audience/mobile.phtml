@@ -1,25 +1,11 @@
 <?php
-$this->headTitle('Country analytical data provided via Google Analytics');
+$this->headTitle('Country analytical data provided via Google Analytics' . $this->timeSpanParameter());
 ?>
 <h2><?php echo $this->title();?></h2>
-<p>
-<?php 
-$timespans = array(
-'this week' => 'thisweek',
-'last week' => 'lastweek',
-'this month' => 'thismonth',
-'last month' => 'lastmonth',
-'this year' => 'thisyear',
-'last year' => 'lastyear'
-);
-foreach($timespans as $k => $v):
-?>
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'mobile', 'timespan' => $v),'default',false);?>"><?php echo ucfirst($k);?></a>
-<?php endforeach;?> 
-
-</p>
+<?php echo $this->timeSpansGa();?>
+<?php echo $this->form;?>
 <table class="table table-striped">
-	<caption>Visitors over the timespan of: </caption>
+	<caption><?php echo $this->title();?></caption>
 		<thead>
 		<tr>
 			
@@ -27,6 +13,7 @@ foreach($timespans as $k => $v):
 			<th>Model</th>
 			<th>Info</th>
 			<th>Visitors</th>
+			<th>Average time on site</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -35,7 +22,9 @@ foreach($timespans as $k => $v):
 				<td><?php echo $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_MOBILE_DEVICE_BRANDING)->value;?></td>
 				<td><?php echo $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_MOBILE_DEVICE_MODEL)->value;?></td>
 				<td><?php echo $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_MOBILE_DEVICE_INFO)->value;?></td>
+				<td><?php echo $row->getDimension(Zend_Gdata_Analytics_DataQuery::DIMENSION_MOBILE_INPUT_SELECTOR)->value;?></td>
 				<td><?php echo $row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_VISITORS)->value;?></td>
+				<td><?php echo $this->secondsToMinutes()->setSeconds($row->getMetric(Zend_Gdata_Analytics_DataQuery::METRIC_AVG_TIME_ON_SITE)->value);?></td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>

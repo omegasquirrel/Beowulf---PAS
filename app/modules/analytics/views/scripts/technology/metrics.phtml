@@ -2,23 +2,7 @@
 $this->headTitle('Site speed metrics');
 ?>
 <h2><?php echo $this->title();?></h2>
-
-<p>
-<?php 
-$timespans = array(
-'this week' => 'thisweek',
-'last week' => 'lastweek',
-'this month' => 'thismonth',
-'last month' => 'lastmonth',
-'this year' => 'thisyear',
-'last year' => 'lastyear'
-);
-foreach($timespans as $k => $v):
-?>
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'sitespeed','action' => 'metrics', 'timespan' => $v),'default',false);?>"><?php echo ucfirst($k);?></a>
-<?php endforeach;?> 
-
-</p>
+<?php echo $this->timeSpansGa();?>
 <h3 class="lead">Average page load speed by hostname</h3>
 <ol>
 <?php foreach($this->results as $row):?>

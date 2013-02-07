@@ -1,5 +1,6 @@
-<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
-->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');
+<?php 
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
+$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
 	$this->headTitle('Edit a Vacancy\'s details');
 ?>
 

@@ -18,7 +18,8 @@ public function __construct($options = null) {
 	$reverseID = new Zend_Form_Element_Select('reverseID');
 	$reverseID->setLabel('Reverse type: ')
 	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim','StringToLower'));
+	->addFilters(array('StripTags','StringTrim','StringToLower'))
+	->setAttrib('class', 'span8');
 
 	$rulerID = new Zend_Form_Element_Hidden('rulerID');
 	$rulerID->addValidator('Int');

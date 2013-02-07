@@ -193,10 +193,16 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
     const METRIC_NEW_VISITS = 'ga:newVisits';
     const METRIC_PAGEVIEWS = 'ga:pageviews';
     const METRIC_TIME_ON_PAGE = 'ga:timeOnPage';
+    const METRIC_AVG_TIME_ON_PAGE = 'ga:avgTimeOnPage';
+    const METRIC_AVG_TIME_ON_SITE = 'ga:avgTimeOnSite';
     const METRIC_TIME_ON_SITE = 'ga:timeOnSite';
     const METRIC_VISITORS = 'ga:visitors';
     const METRIC_VISITS = 'ga:visits';
     const METRIC_ORGANIC_SEARCHES = 'ga:organicSearches';
+    const METRIC_ENTRANCE_BOUNCE_RATE = 'entranceBounceRate';
+    const METRIC_VISIT_BOUNCE_RATE = 'ga:visitBounceRate';
+    const METRIC_PERCENT_NEW_VISITS = 'ga:percentNewVisits';
+    const METRIC_EXIT_RATE = 'ga:exitRate';
 
     // M2. Campaign
     const METRIC_AD_CLICKS = 'ga:adClicks';
@@ -362,6 +368,8 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
     const REGULAR ="=~";
     const REGULAR_NOT ="!~";
     
+    // Results values
+    const TOTAL_RESULTS = 'openSearch:totalResults';
     /**
      * @var string
      */
@@ -474,6 +482,7 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
         return $this;
     }
     
+    
     /**
      * @param string $filter
      * @return Zend_Gdata_Analytics_DataQuery
@@ -568,4 +577,5 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
+    
 }

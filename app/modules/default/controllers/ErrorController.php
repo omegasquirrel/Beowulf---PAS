@@ -275,7 +275,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 					case 'Solarium_Client_HttpException':
 						$this->getResponse()->setHttpResponseCode(500);
 						$this->view->code = 500;
-						$this->view->message = 'Search engine error';
+						$this->view->message = 'Search engine error: The server is not responding, but will be back shortly';
 						$this->sendEmail();
 						$this->view->headTitle('Problem with search engine');
 					break;

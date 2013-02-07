@@ -1,28 +1,11 @@
-<?php
-$this->headTitle('Social network analytical data provided via Google Analytics');
-?>
+<?php $this->headTitle('Social network activity data for ' . $this->timeSpanParameter());?>
 <h2><?php echo $this->title();?></h2>
+<?php echo $this->timeSpansGa();?>
 
-<p>
-<?php 
-$timespans = array(
-'this week' => 'thisweek',
-'last week' => 'lastweek',
-'this month' => 'thismonth',
-'last month' => 'lastmonth',
-'this year' => 'thisyear',
-'last year' => 'lastyear'
-);
-foreach($timespans as $k => $v):
-?>
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'social','action' => 'activities', 'timespan' => $v),'default',false);?>"><?php echo ucfirst($k);?></a>
-<?php endforeach;?> 
-
-</p>
 <?php 
 if((int)$this->results->totalResults->text > 0 ):?>
 <table class="table table-striped">
-	<caption>Visitors over the timespan of: </caption>
+	<caption><?php echo $this->title();?></caption>
 		<thead>
 		<tr>
 			<th>URL</th>
@@ -48,6 +31,7 @@ if((int)$this->results->totalResults->text > 0 ):?>
 			<?php endforeach;?>
 		</tbody>
 </table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 <?php else:?>
 <p>No data can be retrieved that meets these criteria.</p>
 <?php endif;?>

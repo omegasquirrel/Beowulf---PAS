@@ -188,6 +188,11 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 		$layouttype = 'database';
 	    $view->headTitle('API version 1')->setSeparator(' - ');
 		break;
+	case 'analytics':
+   		$layouttype = 'database';
+        $view->headTitle('Analytics from Google')->setSeparator(' - ');
+        $response->insert('sidebar', $view->render('structure/analyticsSidebar.phtml'));
+        break;
 	default:
 		$layouttype = 'home';
 		break;

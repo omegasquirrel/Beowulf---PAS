@@ -3,7 +3,7 @@
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/autocompleteinitPeople.js',$type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
 	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css');
-$this->headTitle('Edit find details');?>
+	$this->headTitle('Edit find details');?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 $(document).ready(function() {
 $("#datefound1").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});

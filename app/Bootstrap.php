@@ -201,6 +201,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $mailer = new Pas_Controller_Action_Helper_Mailer();
         Zend_Controller_Action_HelperBroker::addHelper($mailer);
+        
+        $segmenter = new Pas_Controller_Action_Helper_SegmentGa();
+        Zend_Controller_Action_HelperBroker::addHelper($segmenter);
         }
 		
         public function _initRest(){

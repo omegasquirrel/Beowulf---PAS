@@ -1,25 +1,6 @@
-<?php $this->headTitle('Top 500 online visitor locations mapped');?>
+<?php $this->headTitle('Top 500 visitor locations mapped for ' . $this->timeSpanParameter());?>
 <h2><?php echo $this->title();?></h2>
-<p>
-<?php 
-$timespans = array(
-'today' => 'today',
-'yesterday' => 'yesterday', 
-'this week' => 'thisweek',
-'last week' => 'lastweek',
-'this month' => 'thismonth',
-'last month' => 'lastmonth',
-'this year' => 'thisyear',
-'last year' => 'lastyear'
-);
-foreach($timespans as $k => $v):
-?>
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'map', 'timespan' => $v),'default',false);?>"><?php echo ucfirst($k);?></a>
-<?php endforeach;?> 
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'map', 'segment' => 'mobile' ),'default',false);?>">Mobile use</a>
-<a class="btn btn-small" href="<?php echo $this->url(array('module' => 'analytics','controller' => 'visitors','action' => 'map', 'segment' => 'tablet' ),'default',false);?>">Tablet use</a>
-
-</p>
+<?php echo $this->timeSpansGa();?>
 <p>This map contains sampled data and is based off IP address collected by the analytics software.</p>
 <div id="map"></div>
 <?php
@@ -69,10 +50,10 @@ $(document).ready(function() {
 
     var map = new google.maps.Map(document.getElementById("map"),myOptions);
         map.mapTypes.set('OSM',osmMapType);
-	var myTitle = document.createElement('h1');
+	var myTitle = document.createElement('div');
 		myTitle.style.color = '#444444';
-		myTitle.style.font = "10px sans-serif";
-		myTitle.innerHTML = 'OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a>';
+		myTitle.style.font = "12px sans-serif";
+		myTitle.innerHTML = '<p>OSM Layer &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a><\/p>';
 
 		var myTextDiv = document.createElement('div');
 		myTextDiv.appendChild(myTitle);
@@ -100,7 +81,7 @@ $(document).ready(function() {
             parseFloat(markerXML.attr("latitude")),
             parseFloat(markerXML.attr("longitude"))
         );
-        var title = markerXML.attr("visitors");
+        var title = 'Visitors came from here!';
         
         var color = 'FF0000';
         var size = '10';
@@ -109,14 +90,12 @@ $(document).ready(function() {
         var marker = new google.maps.Marker({
         	position: latlng,
         	map: map,
-        	icon: "http://chart.apis.google.com/chart?cht=it&chs=" + size + "x" + size + 
-        "&chco=" + color + ",00000001,ffffff01" +
-        "&chf=bg,s,00000000|a,s,000000&ext=.png"
+        	icon: 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_orange.png'
 });
 
         // now that the marker is placed, assign event listener on the marker
         // and create/assign infowindow to the event trigger.
-        markerInfoWindow(marker, markerXML.attr("visitors"));
+        markerInfoWindow(marker, markerXML.attr("visitors") + ' ' + title);
         markers.push(marker);
     });
 
