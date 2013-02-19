@@ -378,6 +378,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$this->view->paginator = $search->_createPagination();
 	$this->view->stats = $search->_processStats();
 	$this->view->results = $search->_processResults();
+	$this->view->server = $search->getLoadBalancerKey();
     $queries = new Searches();
     $queries->insertResults(serialize($params));
 	}
@@ -390,10 +391,9 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
         $form = new FindFilterForm();
         $this->view->form = $form;
         if($this->getRequest()->isPost() && $form->isValid($_POST)){
-	if ($form->isValid($form->getValues())) {
+		if ($form->isValid($form->getValues())) {
         $params = array(
-          'bbox' => $form->getValue('bottomLeft') . ',' . $form->getValue('topRight'),
-          'county' => $form->getValue('county'),
+          'bbox' => $form->getValue('bbox'),
           'objectType' => $form->getValue('objecttype'),
           'broadperiod' => $form->getValue('broadperiod')
         );

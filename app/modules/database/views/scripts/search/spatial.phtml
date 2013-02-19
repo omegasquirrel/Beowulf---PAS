@@ -1,94 +1,71 @@
 <?php
-echo $this->googleDynamicMap();
+$this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry&libraries=drawing');
 ?>
 
 <?php $this->inlineScript()->captureStart();?>
-$(function(){
+var G = google.maps;
 var map;
-var dragging = false;
 var rect;
-var pos1, pos2;
-var latlng1, latlng2;
+var drawingManager;
 
-$(document).ready(function() {
-    initMap();
-});
+$(document).ready(initialize);
 
-function initMap() {
-    var latlng = new google.maps.LatLng( 53.2,-3.1 );
-    var settings = {
+function initialize() {
+    var center = new G.LatLng(53.2,-3.1);
+    var myOptions = {
         zoom: 7,
+        center: center,
+        mapTypeId: G.MapTypeId.ROADMAP,
+        scrollwheel: false,
+    };
+    map = new G.Map($('#map')[0], myOptions);
 
-          scrollwheel: false,
-        center: latlng,
-        mapTypeControl: true,
-        mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+    drawingManager = new G.drawing.DrawingManager({
+        drawingMode: G.drawing.OverlayType.RECTANGLE,
+        drawingControl: true,
+        drawingControlOptions: {
+            position: G.ControlPosition.TOP_CENTER,
+            drawingModes: [G.drawing.OverlayType.RECTANGLE]
         },
-        navigationControl: true,
-        navigationControlOptions: {
-            style: google.maps.NavigationControlStyle.SMALL
-        },
-        mapTypeId: google.maps.MapTypeId.SATELLITE
-    }
-    var mapElem = $("#map");
-    map = new google.maps.Map(mapElem[0], settings);
-    rect = new google.maps.Rectangle({
-                map: map
-            });
-
-    google.maps.event.addListener(map, 'mousedown', function(mEvent) {
-        map.draggable = false;
-        latlng1 = mEvent.latLng;
-        dragging = true;
-        pos1 = mEvent.pixel;
-    });
-
-    google.maps.event.addListener(map, 'mousemove', function(mEvent) {
-        latlng2 = mEvent.latLng;
-        showRect();
-    });
-
-    google.maps.event.addListener(map, 'mouseup', function(mEvent) {
-        map.draggable = true;
-        dragging = false;
-    });
-
-    google.maps.event.addListener(rect, 'mouseup', function(data){
-        map.draggable = true;
-        dragging = false;
-
-        var lat1 = latlng1.lat();
-        var lat2 = latlng2.lat();
-        var minLat = lat1 < lat2 ? lat1:lat2;
-        var maxLat = lat1 < lat2 ? lat2:lat1;
-        var lng1 = latlng1.lng();
-        var lng2 = latlng2.lng();
-        var minLng = lng1 < lng2 ? lng1:lng2;
-        var maxLng = lng1 < lng2 ? lng2:lng1;
-        $('#bottomLeft').val(minLat + ',' + minLng);
-        $('#topRight').val(maxLat + ',' + maxLng);
-    });
-
-
-}
-
-function showRect() {
-    if(dragging){
-        if (rect === undefined) {
-            rect = new google.maps.Rectangle({
-                map: map
-            });
+        rectangleOptions: {
+            editable: true,
+            fillColor: "black",
+            fillOpacity: 0.1,
+            map: map,
+            strokeColor: "red",
+            strokeWeight: 1
         }
-        var latLngBounds = new google.maps.LatLngBounds(latlng1, latlng2);
-        rect.setBounds(latLngBounds);
-    }
+    });
+    drawingManager.setMap(map);
+
+   
+    G.event.addListener(drawingManager, 'rectanglecomplete', function(subject) {
+        if (rect) {
+            G.event.clearInstanceListeners(rect);
+            rect.setMap(null);
+        }
+        rect = subject;
+        
+        G.event.addListener(rect, 'bounds_changed', 'shapeChanged');
+        var box = rect.getBounds();
+        
+        $('#bbox').val(box.toUrlValue());
+    });
+
 }
-});
+
+
+function trunc(x) {
+    return Math.round(x * 1000) / 1000;
+}
+
+
+
 <?php $this->inlineScript()->captureEnd();?>
-
-<h2>Search our database via a map interface</h2>
-
+<?php $this->headTitle('Search our database via a map interface');?>
+<h2 class="lead"><?php echo $this->title();?></h2>
+<?php $this->metaBase('An interface to search the PAS database via a map', 'archaeology', 'mapping, gis,archaeology,lat/lon')?>
+<p>To use this search, you need to draw a box on the map. This will produce a red outline.</p>
 <div id="map"></div>
 
 <?php echo $this->form;?>
