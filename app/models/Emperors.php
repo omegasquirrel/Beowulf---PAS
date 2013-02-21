@@ -170,7 +170,10 @@ class Emperors extends Pas_Db_Table_Abstract {
     public function getEmperorsTimeline(){
     if (!$data = $this->_cache->load('empsTimeline')) {
 	$emperors = $this->getAdapter();
-	$select = $emperors->select()->from('emperors')->order('date_from')->joinLeft('rulerImages',$this->_name . '.pasID = rulerImages.rulerID', array( 'filename'));
+	$select = $emperors->select()->from('emperors')
+	->order('date_from')
+	->joinLeft('rulerImages',$this->_name . '.pasID = rulerImages.rulerID', array( 'filename'))
+	->where('emperors.image IS NOT NULL');
 	$data = $emperors->fetchAll($select);
     $this->_cache->save($data, 'empsTimeline');
 	}

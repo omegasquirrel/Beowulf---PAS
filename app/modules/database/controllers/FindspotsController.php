@@ -65,6 +65,7 @@ class Database_FindspotsController
     if ($form->isValid($form->getValues())) {
     $updateData = $form->getValues();
     $updateData['findID'] = $this->_getParam('secuid');
+    $updateData['institution'] = $this->_helper->identity->getPerson()->institution;
     $this->_findspots->addAndProcess($updateData);
     $this->_helper->solrUpdater->update('beowulf', $returnID);
     $this->_redirect(self::REDIRECT . 'record/id/' . $returnID);

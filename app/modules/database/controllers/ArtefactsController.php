@@ -227,29 +227,25 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
      * @todo slim down action, move logic for adding to finds.php model
     */
     public function addAction() {
-    $user = $this->getAccount();
-    $findID = $this->FindUid();
-    $secuid = $this->secuid();
-    $fullname = $user->fullname;
-    $secure = $user->peopleID;
-    $canRecord = $user->canRecord;
-    if((is_null($secure) && is_null($canRecord)) || (!is_null($secure) && is_null($canRecord)) ){
+    $user = $this->_helper->identity->getPerson();
+    if((is_null($user->peopleID) && is_null($user->canRecord)) 
+    || (!is_null($user->peopleID) && is_null($user->canRecord)) ){
     $this->_redirect('/error/accountproblem');
     }
     $last = $this->_getParam('copy');
-    $this->view->secuid = $secuid;
+    $this->view->secuid = $this->secuid();
     $form = new FindForm();
     $form->submit->setLabel('Save record');
-    $form->old_findID->setValue($findID);
-    $form->secuid->setValue($secuid);
-    if(isset($secure)){
-    $form->recorderID->setValue($secure);
-    $form->recordername->setValue($fullname);
-    $form->identifier1ID->setValue($secure);
-    $form->idBy->setValue($fullname);
+    $form->old_findID->setValue($this->FindUid());
+    $form->secuid->setValue($this->secuid());
+    if(isset($user->peopleID)){
+    $form->recorderID->setValue($user->peopleID);
+    $form->recordername->setValue($user->fullname);
+    $form->identifier1ID->setValue($user->peopleID);
+    $form->idBy->setValue($user->fullname);
     }
-    if(in_array($this->getRole(),$this->_restricted)) {
-    $form->finderID->setValue($secure);
+    if(in_array($user->role,$this->_restricted)) {
+    $form->finderID->setValue($user->peopleID);
     $form->removeDisplayGroup('discoverers');
     $form->removeElement('finder');
     $form->removeElement('secondfinder');
@@ -262,17 +258,17 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $finddata = $this->_finds->getLastRecord($this->getIdentityForForms());
     foreach($finddata as $finddataflat){
     $form->populate($finddataflat);
-    if(isset($secure)){
-    $form->recorderID->setValue($secure);
-    $form->recordername->setValue($fullname);
+    if(isset($user->peopleID)){
+    $form->recorderID->setValue($user->peopleID);
+    $form->recordername->setValue($user->fullname);
     }
     }
     }
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {
     $insertData = $form->getValues();
-    $insertData['secuid'] = $secuid;
-    $insertData['old_findID'] = $findID;
+    $insertData['secuid'] = $this->secuid();
+    $insertData['old_findID'] = $this->FindUid();
     $insertData['secwfstage'] = (int)2;
     $insertData['institution'] = $this->getInstitution();
     unset($insertData['recordername']);
@@ -449,7 +445,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }
     }
 
-public function workflowAction(){
+	public function workflowAction(){
    	if($this->_getParam('findID',false)){
    	$people = new Peoples();
    	$exist = $people->checkEmailOwner($this->_getParam('findID'));

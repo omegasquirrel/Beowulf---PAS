@@ -8,7 +8,7 @@
 <span class="family-name">
 <?php echo $this->escape($this->lastname);?>
 </span></a>
-</span><br>
+</span><br />
 
 <strong><span class="title"><?php 
 if(!is_null($this->staffroles)) {
@@ -43,7 +43,7 @@ echo $this->region_name;
 <a href="<?php echo $this->url(array('module' => 'contacts' , 'controller' => 'coroners',
 'action' => 'profile','id' => $this->id,'format' => 'vcf'),null,true);?>" title="Get a vcard for outlook">vcard</a> | 
 <a href="<?php echo $this->url(array('module' => 'contacts' , 'controller' => 'coroners',
-'action' => 'profile','id' => $this->id,'format' => 'foaf'),null,true);?>" title="View foaf rdf representation">foaf</a><br>
+'action' => 'profile','id' => $this->id,'format' => 'foaf'),null,true);?>" title="View foaf rdf representation">foaf</a><br />
 
 
 </div>

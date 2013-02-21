@@ -211,6 +211,9 @@ Four figure Latitude: <?php echo $this->fourFigureLat; ?> Four figure longitude:
 <?php if((!is_null($this->woeid)) && is_null($this->knownas)):?>
 WOEID: <a href="http://woe.spum.org/id/<?php echo $this->woeid;?>"><?php echo $this->woeid;?></a><br />
 <?php endif;?>
+<?php if(!is_null($this->elevation)):?>
+Elevation: <?php echo $this->elevation;?> metres<br />
+<?php endif;?>
 </p>
 
 </div>

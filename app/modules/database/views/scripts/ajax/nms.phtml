@@ -73,7 +73,7 @@ class MYPDF extends TCPDF {
 	return $string;
 	} else  {
 	$leave = $max - strlen ($rep);
-	return strip_tags(substr_replace($string, $rep, $leave),'<br><a><em>');
+	return strip_tags(substr_replace($string, $rep, $leave),'<br /><a><em>');
 	}
 	}
 

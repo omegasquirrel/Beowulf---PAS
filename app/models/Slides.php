@@ -270,7 +270,7 @@ class Slides extends Pas_Db_Table_Abstract {
 	$thumbs = $this->getAdapter();
 	$select = $thumbs->select()
 		->from($this->_name,array('id' => 'imageID','filename','label',
-		'filesize','county','period','imagerights',
+		'filesize','county','period','imagerights', 'institution',
 		'secuid','created','createdBy'))
 		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
 		->joinLeft('finds','finds.secuid = finds_images.find_id', array('old_findID','broadperiod'))

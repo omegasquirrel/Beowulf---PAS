@@ -1,117 +1,186 @@
 <?php
-class Pas_View_Helper_AddJettonLink extends Zend_View_Helper_Abstract
-{
-	protected $noaccess = array('public');
-	protected $restricted = array('member','research','hero');
-	protected $recorders = array('flos');
-	protected $higherLevel = array('admin','fa','treasure');
-	protected $_auth = NULL;
+/** A view helper for determining whether coin link should be printed 
+ * @category Pas
+ * @package Pas_View_Helper
+ * @todo streamline code
+ * @todo extend the view helper for auth and config objects
+ * @copyright DEJ Pett
+ * @license GNU
+ * @version 1
+ * @since 29 September 2011
+ * @author dpett
+ */
+class Pas_View_Helper_AddJettonLink 
+	extends Zend_View_Helper_Abstract {
 	
+	protected $_noaccess = array('public', NULL);
+	
+	protected $_restricted = array('member','research','hero');
+	
+	protected $_recorders = array('flos');
+	
+	protected $_higherLevel = array('admin','fa','treasure');
+	
+	protected $_findID;
+	
+	protected $_institution;
+	
+	protected $_secuid;
+	
+	protected $_broadperiod;
+	
+	protected $_createdBy;
+	
+	protected $_canCreate;
 	
 	protected $_missingGroup = 'User is not assigned to a group';
+	
 	protected $_message = 'You are not allowed edit rights to this record';
 	
-	public function __construct()
-    { 
-    	$auth = Zend_Auth::getInstance();
-        $this->_auth = $auth; 
-    }
-	public function getRole()
+	protected function _getUser()
 	{
-	if($this->_auth->hasIdentity())
-	{
-	$user = $this->_auth->getIdentity();
-	$role = $user->role;
-	} else {
-	$role = 'public';
-	}	
-	return $role;
+		$person = new Pas_User_Details();
+		return $person->getPerson();
+	}    
+    	
+	protected function _checkInstitution(){
+		if($this->_institution === $this->_getUser()->institution){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	public function getIdentityForForms()
+	
+	protected function _checkCreator( )
 	{
-	if($this->_auth->hasIdentity())
-	{
-	$user = $this->_auth->getIdentity();
-	$id = $user->id;
-	return $id;
-	} else {
-	$id = '3';
-	return $id;
-	}
-	}
-	public function getInst()
-	{
-	if($this->_auth->hasIdentity())	{
-	$user = $this->_auth->getIdentity();
-	$inst = $user->institution;
-	if(is_null($inst)){
-	throw new Exception($this->_missingGroup);	
-	}
-	return $inst;
-	} else {
-	return FALSE;
-	}	
-	}
-	public function checkAccessbyInstitution($oldfindID)
-	{
-	$find = explode('-', $oldfindID);
-	$id = $find['0'];
-	$inst = $this->getInst();
-	if((in_array($this->getRole(),$this->recorders) && ($id == 'PUBLIC'))) {
-	return TRUE;
-	} else if($id == $inst) {
-	return TRUE;
-	}
-	}
-
-	public function checkAccessbyUserID($userID,$createdBy)
-	{
-	if($userID == $createdBy) {
-	return TRUE;
-	}
-	}
-
-	public function getUserGroups()
-	{
-	if($this->_auth->hasIdentity())
-	{
-	$user = $this->_auth->getIdentity();
-	$inst = $user->institution;
-	} else {
-	throw new Exception($this->_missingGroup);
-	}	
-	return $inst;
+		if($this->_createdBy === $this->_getUser()->id){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	public function AddJettonLink($oldfindID,$findID,$secuid,$createdBy,$broadperiod)
+	public function setFindID( $findID )
 	{
-	$byID = $this->checkAccessbyUserID($this->getIdentityForForms(),$createdBy);
-	$instID = $this->checkAccessbyInstitution($oldfindID);
+		if(is_int($findID)){
+		$this->_findID = $findID;
+		} else {
+			throw new Zend_Exception('The find ID must be an integer', 500);
+		}
+		return $this;
+	}
 	
-	if(in_array($this->getRole(),$this->restricted)) {
-	if(($byID == TRUE && $instID == false) || ($byID == TRUE && $instID == TRUE)) {
-	return $this->buildHtml($findID,$secuid,$broadperiod);
+	public function setSecUid( $secuid )
+	{
+		if(is_string($secuid)){
+		$this->_secuid = $secuid;
+		} else {
+			throw new Zend_Exception('The secure id set must be a string', 500);
+		}
+		return $this;
+	}
+	
+	public function setBroadperiod( $broadperiod )
+	{
+		if(is_string($broadperiod)){
+		$this->_broadperiod = $broadperiod;
+		} else {
+			throw new Zend_Exception('The broadperiod set must be a string', 500);
+		}
+		return $this;
+	}
+	
+	public function setInstitution( $institution )
+	{
+		if(is_string($institution)){
+		$this->_institution = $institution;
+		} else {
+			throw new Zend_Exception('The institution must be a string', 500);
+		}
+		return $this;
+	}
+	
+	public function setCreatedBy( $createdBy ){
+		if(is_int($createdBy)){
+		$this->_createdBy = $createdBy;
+		} else {
+			throw new Zend_Exception('The creator must be an integer', 500);
+		}
+		return $this;
+	}
+	
+	private function _checkParameters()
+	{
+		$parameters = array(
+			$this->_broadperiod,
+			$this->_createdBy,
+			$this->_findID,
+			$this->_secuid
+		);
+		foreach($parameters as $parameter){
+			if(is_null($parameter)){
+				throw new Zend_Exception('A parameter is missing');
+			}
+		}
+		return true;
+	}
+	
+	
+	private function _performChecks(){
+	if(in_array($this->_getUser()->role, $this->_restricted)) {
+	if(($this->_checkCreator() && !$this->_checkInstitution()) 
+		|| ($this->_checkCreator() && $this->_checkInstitution())) {
+		$this->_canCreate = true;
 	} 
-	} else if(in_array($this->getRole(),$this->higherLevel)) {
-	return $this->buildHtml($findID,$secuid,$broadperiod);
-	} else if(in_array($this->getRole(),$this->recorders)){
-	if(($byID == TRUE && $instID == false) || ($byID == TRUE && $instID == TRUE) ||
-	($byID == FALSE && $instID == TRUE)) {
-	return $this->buildHtml($findID,$secuid,$broadperiod);
+	} else if(in_array($this->_getUser()->role,$this->_higherLevel)) {
+		$this->_canCreate = true;
+	} else if(in_array($this->_getUser()->role,$this->_recorders)){
+	if(($this->_checkCreator() && !$this->_checkInstitution()) 
+		|| (($this->_checkCreator() && $this->_checkInstitution())) ||
+	((!$this->_checkCreator() && $this->_checkInstitution()))) {
+		$this->_canCreate = true;
 	} 	
 	} else {
-	return false;
+		$this->_canCreate = false;
 	}
 	}
 	
-	public function buildHtml($findID,$secuid,$broadperiod)
-	{
-	$url = $this->view->url(array('module' => 'database','controller' => 'jettons','action' => 'add', 
-	'broadperiod' => $broadperiod,'findID' => $secuid, 'returnID' => $findID),NULL,TRUE);
+	/** Add the coin link to the page if access says yes
+	 * 
+	 */
+	public function addJettonLink() {
+		return $this;
+	}
+	
+	/** Build the html
+	 * 
+	 * @return string $html
+	 */
+	private function _buildHtml() {
+		$this->_checkParameters();
+		$this->_performChecks();
+		if($this->_canCreate){
+	$params = array(
+		'module' => 'database',
+		'controller' => 'jettons',
+		'action' => 'add', 
+		'broadperiod' => $this->_broadperiod,
+		'findID' => $this->_secuid, 
+		'returnID' => $this->_findID
+	);
+	$url = $this->view->url($params,NULL,TRUE);
 	$string = '<a class="btn btn-primary" href="' . $url . '" title="Add ' 
-	. $broadperiod . ' coin data" accesskey="m">Add jetton data</a>';
+	. $this->_broadperiod . ' coin data" accesskey="m">Add ' . $this->_broadperiod 
+	.' jetton/token data</a>';
 	return $string;
+		} else {
+			return '';
+		}
+	}
+	
+	public function __toString(){
+		return $this->_buildHtml();
 	}
 
 }

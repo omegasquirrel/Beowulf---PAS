@@ -7,68 +7,95 @@
 class Pas_View_Helper_ImageToolbox 
 		extends Zend_View_Helper_Abstract {
 	
-	protected $noaccess = array('public');
-	protected $restricted = array('member','research','hero');
-	protected $recorders = array('flos');
-	protected $higherLevel = array('admin','fa','treasure');
-	protected $_missingGroup = 'User is not assigned to a group';
-	protected $_auth = NULL;
+	protected $_noaccess = array('public', NULL);
 	
-	/** Construct the auth object
-	* 
-	*/
-	public function __construct() { 
-	$auth = Zend_Auth::getInstance();
-	$this->_auth = $auth; 
+	protected $_restricted = array('member','research','hero');
+	
+	protected $_recorders = array('flos');
+	
+	protected $_higherLevel = array('admin','fa','treasure');
+	
+	protected $_overRide = 'PUBLIC';
+
+	protected $_id;
+	
+	protected $_institution;
+	
+	protected $_createdBy;
+	
+	protected $_canCreate;
+	
+	protected function _getUser()
+	{
+		$person = new Pas_User_Details();
+		return $person->getPerson();
+	}    
+    	
+	protected function _checkInstitution(){
+		if($this->_institution === $this->_getUser()->institution){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-    /** Get the user's role
-     * 
-     */
-	public function getRole() {
-	if($this->_auth->hasIdentity()) {
-	$user = $this->_auth->getIdentity();
-	$role = $user->role;
-	} else {
-	$role = 'public';
+	
+	protected function _checkCreator( )
+	{
+		if($this->_createdBy === $this->_getUser()->id){
+			return true;
+		} else {
+			return false;
+		}
 	}	
-	return $role;
+	
+	public function setID( $id ){
+		$this->_id = $id;
+		return $this;
 	}
 	
-	/** Get the user ID
-	* 
-	*/
-	public function getUserID() {
-	if($this->_auth->hasIdentity()){
-	$user = $this->_auth->getIdentity();
-	$id = $user->id;
-	return $id;
+	public function setInstitution( $institution )
+	{
+		$this->_institution = $institution;
+		return $this;
 	}
+	
+	public function setCreatedBy( $createdBy )
+	{
+		$this->_createdBy = $createdBy;
+		return $this;
 	}
 
-	/** Check access by user ID
-	 * 
-	 * @param int $userID
-	 * @param int $createdBy
-	 */
-	public function checkAccessbyUserID($userID, $createdBy) {
-	if($userID === $createdBy) {
-	return true;
-	}
-	}
-	
 	/** Build the html based on the id number of image
 	 * @return string $string
 	 * @param int $id
 	 */
-	public function buildHtml($id) {
-	$editurl = $this->view->url(array('module' => 'database','controller' => 'images',
-	'action' => 'edit','id' => $id),null,TRUE);
-	$deleteurl = $this->view->url(array('module' => 'database','controller' => 'images',
-	'action' => 'delete','id' => $id),null,TRUE);
-	$string = 	' <a class="btn" href="'.$editurl.'" title="Edit image">Edit</a> <a  class="btn" href="' . $deleteurl 
-	. '" title="Delete this image">Delete</a>';
-	return $string;
+	public function _buildHtml() {
+		$this->_checkParameters();
+		$this->_performChecks();
+		if($this->_canCreate){
+			$paramsEdit = array(
+				'module' => 'database',
+				'controller' => 'images',
+				'action' => 'edit',
+				'id' => $this->_id
+			);
+			$paramsDelete = array(
+				'module' => 'database',
+				'controller' => 'images',
+				'action' => 'delete',
+				'id' => $this->_id
+			);
+			$editurl = $this->view->url($paramsEdit, 'default' ,TRUE);
+			$deleteurl = $this->view->url($paramsDelete, 'default', TRUE);
+			$html = ' <a class="btn" href="' . $editurl; 
+			$html .= '" title="Edit image">Edit</a> <a class="btn" href="'; 
+			$html .= $deleteurl . '" title="Delete this image">Delete</a>';
+			return $html;
+			
+		} else {
+			return '';
+		}
 	}
 	
 	/** Create the image toolbox
@@ -76,23 +103,62 @@ class Pas_View_Helper_ImageToolbox
 	 * @param int $id
 	 * @param int $createdBy
 	 */
-	public function ImageToolbox($id, $createdBy) {
-	$byID = $this->checkAccessbyUserID($this->getUserID(),$createdBy);
-	if(in_array($this->getRole(),$this->noaccess)) {
-	return FALSE;
-	} else if(in_array($this->getRole(),$this->higherLevel))	{
-	return $this->buildHtml($id);
-	} else if(in_array($this->getRole(),$this->recorders)){
-	if(($byID == TRUE)){
-	return $this->buildHtml($id);	
+	public function imageToolbox() {
+	return $this;
+	}
+
+	private function _performChecks(){
+	//If user's role is in the no access array, return false for creation
+	if(in_array($this->_getUser()->role, $this->_noaccess)) {
+		$this->_canCreate = false;
+	} 
+	//If user's role is in the higher level array, return true for creation
+	else if(in_array($this->_getUser()->role,$this->_higherLevel)){
+		$this->_canCreate = true;
+	} 
+	//If user's role is in recorders group check for 
+	// a) user ID = creator of image
+	// b) institution is a public record 
+	// c) institution is theirs
+	else if(in_array($this->_getUser()->role,$this->_recorders)){
+	if(
+	$this->_checkCreator() || 
+	$this->_institution === $this->_overRide ||
+	$this->_checkInstitution()
+	){
+		$this->_canCreate = true;	
 	}	
-	} else if(in_array($this->getRole(),$this->restricted)){
-	if(($byID == TRUE)){
-	return $this->buildHtml($id);	
+	} 
+	//If user's role is in restricted groups
+	// a) check if the user's institution is theirs and they are the creator
+	else if(in_array($this->_getUser()->role,$this->_restricted)){
+	if(($this->_checkCreator() && $this->_checkInstitution())){
+		$this->_canCreate = true;	
 	}	
-	} else {
-	return FALSE;	
+	} 
+	//Otherwise do nothing!
+	else {
+		$this->_canCreate = false;
 	}
 	}
-		
+
+	private function _checkParameters()
+	{
+		$parameters = array(
+			$this->_createdBy,
+			$this->_institution,
+			$this->_id
+		);
+		foreach($parameters as $parameter){
+			if(is_null($parameter)){
+				throw new Zend_Exception('A parameter is missing');
+			}
+		}
+		return true;
+	}
+	
+	public function __toString()
+	{
+		return $this->_buildHtml();
+	}
 }

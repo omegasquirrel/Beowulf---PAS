@@ -222,7 +222,7 @@ class Database_StatisticsController extends Pas_Controller_Action_Admin {
 	$this->view->year = $finds->getYearFoundInst($datefrom,$dateto,$institution);
 	$this->view->discovery = $finds->getDiscoveryMethodInst($datefrom,$dateto,$institution);
 	$this->view->landuse = $finds->getLandUseInst($datefrom,$dateto,$institution);
-	$this->view->precision = $finds->getPrecisionInst($datefrom,$dateto,$institution);
+	Zend_Debug::dump($this->view->precision = $finds->getPrecisionInst($datefrom,$dateto,$institution));
 	}
 	$this->view->datefrom = $datefrom;
 	$this->view->dateto = $dateto;

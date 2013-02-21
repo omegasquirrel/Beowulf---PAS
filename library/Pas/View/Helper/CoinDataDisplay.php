@@ -45,20 +45,21 @@ class Pas_View_Helper_CoinDataDisplay extends Zend_View_Helper_Abstract {
             $html .= '<p>No numismatic data has been recorded for this coin yet.</p>';
             $html .= '<div class="noprint">';
             if(in_array(strtoupper($objectType), $this->_numismatics)){
-            $html .= $this->view->addCoinLink(
-                    $finds[0]['old_findID'],
-                    $finds[0]['id'],
-                    $finds[0]['secuid'],
-                    $finds[0]['createdBy'],
-                    $finds[0]['broadperiod']);
+            $html .= $this->view->addCoinLink()
+            				->setFindID((int)$finds[0]['id'])
+            				->setSecUid($finds[0]['secuid'])
+            				->setCreatedBy((int)$finds[0]['createdBy'])
+            				->setBroadperiod($finds[0]['broadperiod'])
+            				->setInstitution($finds[0]['institution']);
+                 
             $html .= '</div></div>';
             } elseif(in_array(strtoupper($objectType), $this->_objects)){
-            $html .= $this->view->addJettonLink(
-                    $finds[0]['old_findID'],
-                    $finds[0]['id'],
-                    $finds[0]['secuid'],
-                    $finds[0]['createdBy'],
-                    $finds[0]['broadperiod']);
+            $html .= $this->view->addJettonLink()
+                   			->setFindID((int)$finds[0]['id'])
+            				->setSecUid($finds[0]['secuid'])
+            				->setCreatedBy((int)$finds[0]['createdBy'])
+            				->setBroadperiod($finds[0]['broadperiod'])
+            				->setInstitution($finds[0]['institution']);
             $html .= '</div></div>';	
             }
 

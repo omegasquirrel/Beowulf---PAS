@@ -30,7 +30,7 @@
         <?php echo $this->resultsQuantityChooser($this->paginator);?>
         <?php echo $this->thumbnailToggler();?>
         <?php echo $this->resultsSorter($this->paginator);?>
-        <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?></p>
+        <p>Total results available: <?php echo number_format($this->paginator->getTotalItemCount());?><br />Server farm key: <?php echo $this->server;?></p>
         <?php echo $this->paginationControl($this->paginator,'elastic','structure/paginationSolr.phtml'); ?>
 		<?php echo $this->statGenerator($this->stats);?>
         <?php echo $this->facetCreator($this->facets); ?>

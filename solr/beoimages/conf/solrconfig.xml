@@ -1014,19 +1014,21 @@
        this is just a slave and remove  the <lst name="slave"> section
        if this is just a master.
     -->
-  <!--
-     <requestHandler name="/replication" class="solr.ReplicationHandler" >
-       <lst name="master">
-         <str name="replicateAfter">commit</str>
+	<requestHandler name="/replication" class="solr.ReplicationHandler" >
+	          <!--   <lst name="master">
+<str name="replicateAfter">commit</str>
          <str name="replicateAfter">startup</str>
          <str name="confFiles">schema.xml,stopwords.txt</str>
-       </lst>
-       <lst name="slave">
-         <str name="masterUrl">http://localhost:8983/solr/replication</str>
-         <str name="pollInterval">00:00:60</str>
+       </lst> -->
+ <lst name="slave">
+         <str name="masterUrl">http://81.29.72.73:8983/solr/${solr.core.name}/replication</str>
+        <str name="pollInterval">00:00:20</str>
+        <str name="compression">internal</str>
+        <str name="httpConnTimeout">5000</str>
+        <str name="httpReadTimeout">10000</str>
+        <str name="confFiles">schema.xml,stopwords.txt</str>
        </lst>
      </requestHandler>
-    -->
 
   <!-- Search Components
 

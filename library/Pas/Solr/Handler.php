@@ -16,7 +16,7 @@
  *
  * @author Daniel Pett
  */
-define('SCHEMA_PATH', '/home/beowulf2/solr/');
+define('SCHEMA_PATH', '/home/beowulf2/solr/solr/');
 
 define('SCHEMA_FILE', '/conf/schema.xml' );
 
@@ -62,6 +62,8 @@ class Pas_Solr_Handler {
     
     protected $_statsFields = array('quantity');
     
+    protected $_loadbalancer;
+    
     public function setStats($value){
     	return $this->_stats = $value;
     }
@@ -102,15 +104,15 @@ class Pas_Solr_Handler {
     $this->_solrConfig = $this->_setSolrConfig($this->_core);
     $this->_solr = new Solarium_Client($this->_solrConfig);
     $this->_solr->setAdapter('Solarium_Client_Adapter_ZendHttp');
-//    $loadbalancer = $this->_solr->getPlugin('loadbalancer');
+    $loadbalancer = $this->_solr->getPlugin('loadbalancer');
     
     $master = $this->_config->solr->master->toArray();
-//    $slave  = $this->_config->solr->slave->toArray();
-//    $loadbalancer->addServer('master', $master, 100);
-//	$loadbalancer->addServer('slave', $slave, 200);
-//	$loadbalancer->setFailoverEnabled(true);
-    
-//	$zendHttp = $client->getAdapter()->getZendHttp();
+    $slave  = $this->_config->solr->slave->toArray();
+    $loadbalancer->addServer('master', $master, 100);
+	$loadbalancer->addServer('slave', $slave, 200);
+	$loadbalancer->setFailoverEnabled(true);
+    $this->_loadbalancer = $loadbalancer;
+	$zendHttp = $this->_solr->getAdapter()->getZendHttp();
     $this->_checkFieldList($this->_core, $this->setFields());
     $this->_checkCoreExists();
     $this->_getSchemaFields();
@@ -714,6 +716,15 @@ class Pas_Solr_Handler {
         foreach($this->_facets as $key){
             $facetSet->createFacetField($key)->setField($key);
         }
+    }
+    /**
+     * Return the loadbalancer key
+     * @return string
+     * @access public
+     */
+    public function getLoadBalancerKey()
+    {
+    	return $this->_loadbalancer->getLastServerKey();
     }
 
     /**

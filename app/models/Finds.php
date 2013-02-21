@@ -1853,7 +1853,8 @@ class Finds extends Pas_Db_Table_Abstract {
 		'woeid',
 		'easting',
 		'northing',
-		'coordinates' => 'CONCAT(declat,",",declong)'
+		'coordinates' => 'CONCAT(declat,",",declong)',
+		'precision' => 'gridlen'
 		))
 		->joinLeft('coins', 'finds.secuid = coins.findID',array(
 		'geographyID',
@@ -1879,7 +1880,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		))
 		->joinLeft('mints','mints.id = coins.mint_ID', array ('mintName' => 'mint_name', 'pleiadesID'))
 		->joinLeft('denominations','coins.denomination = denominations.id', array('denominationName' => 'denomination'))
-		->joinLeft('rulers','coins.ruler_id = rulers.id',array('rulerName' => 'issuer'))
+		->joinLeft('rulers','coins.ruler_id = rulers.id',array('rulerName' => 'issuer', 'rulerNomisma' => 'nomismaID', 'rulerDbpedia' => 'dbpedia'))
 		->joinLeft('users','users.id = finds.createdBy', array('imagedir','creator' => 'CONCAT(users.first_name," ",users.last_name)'))
 		->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy',
 		array('updatedBy' => 'fullname'))
@@ -1892,6 +1893,8 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('completeness','finds.completeness = completeness.id', array('completenessTerm' => 'term'))
 		->joinLeft('preservations','finds.preservation = preservations.id', array('preservationTerm' => 'term'))
 		->joinLeft('periods','finds.objdate1period = periods.id', array('periodFromName' => 'term'))
+		->joinLeft(array('sub1' => 'subperiods'),'finds.objdate1subperiod = sub1.id', array('subperiodFrom' => 'term'))
+		->joinLeft(array('sub2' => 'subperiods'),'finds.objdate2subperiod = sub2.id', array('subperiodTo' => 'term'))
 		->joinLeft(array('p' => 'periods'),'finds.objdate2period = p.id', array('periodToName' => 'term'))
 		->joinLeft('cultures','finds.culture = cultures.id', array('cultureName' => 'term'))
 		->joinLeft('discmethods','discmethods.id = finds.discmethod', array('discoveryMethod' => 'method'))

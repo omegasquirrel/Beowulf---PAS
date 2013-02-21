@@ -54,14 +54,13 @@ $('a[class^=delete]').confirm({
  <p><a href="<?php echo $this->url(array('module' => 'admin','controller' => 'contacts','action' => 'addpicture','id' => $this->number ),'default',true);?>" title="Add a new image">Add a photo for <?php echo $this->escape($this->firstname);?> <?php echo $this->escape($this->lastname);?></a></p>
  <?php }?>
  </div>               
-<p>Role: <span class="title"><?php echo $this->escape($this->staffroles);?></span> <br>
+<p>Role: <span class="title"><?php echo $this->escape($this->staffroles);?></span> <br />
 Database records prefix: <strong><?php echo $this->escape($this->identifier);?></strong></p>
 <?php if(isset($this->host)) {?>
 <img src="<?php echo $this->baseUrl(); ?>/images/logos/<?php echo $this->escape($this->host);?>" alt="<?php echo $this->escape($this->description);?>'s logo" />
 <?php }?>
 
-<p class="adr work">Address: <?php echo $this->escape($this->address_1);?> 
-<br>
+<p class="adr work">Address: <?php echo $this->escape($this->address_1);?><br />
 <span class="org organization-name"><?php echo $this->escape($this->description);?></span>
 <span class="street-address"><?php echo $this->escape($this->address_2);?></span> 
 <span class="locality"><?php echo $this->escape($this->town);?></span> 

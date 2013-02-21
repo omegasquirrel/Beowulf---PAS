@@ -19,8 +19,10 @@ finds.description,
 p1.term AS periodFromName,
 finds.objdate1period AS periodFrom,
 finds.objdate1subperiod AS fromsubperiod,
-finds.objdate1subperiod AS tosubperiod,
+finds.objdate2subperiod AS tosubperiod,
 p2.term AS periodToName,
+sub1.term AS subperiodFrom,
+sub2.term AS subperiodTo,
 finds.objdate2period AS periodTo,
 finds.notes AS notes,
 findspots.county AS county,
@@ -67,6 +69,8 @@ inscription,
 coins.ruler_id AS ruler,
 coins.ruler2_id AS ruler2,
 rulers.issuer AS rulerName,
+rulers.nomismaID AS rulerNomisma,
+rulers.dbpedia AS rulerDbpedia,
 r2.issuer AS secondaryRulerName,
 slides.imageID AS thumbnail,
 secwfstage AS workflow,
@@ -144,7 +148,9 @@ mints.nomismaID AS mintNomisma,
 maporigins.term AS gridSource,
 findspots.fourFigureLat,
 findspots.fourFigureLon,
-findspots.geonamesID
+findspots.geonamesID,
+findspots.gridlen AS 'precision',
+finds.dbpediaSlug
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID
@@ -160,6 +166,8 @@ LEFT JOIN completeness ON finds.completeness = completeness.id
 LEFT JOIN preservations ON finds.preservation = preservations.id
 LEFT JOIN periods AS p1 ON finds.objdate1period = p1.id
 LEFT JOIN periods AS p2 ON finds.objdate2period = p2.id
+LEFT JOIN subperiods AS sub1 ON finds.objdate1subperiod = sub1.id
+LEFT JOIN subperiods AS sub2 ON finds.objdate2subperiod = sub2.id
 LEFT JOIN cultures ON finds.culture = cultures.id
 LEFT JOIN discmethods ON discmethods.id = finds.discmethod
 LEFT JOIN denominations ON denominations.id = coins.denomination
@@ -307,12 +315,18 @@ LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
     <field column="identifer2ID" name="identifier2ID" />
     <field column="creator" name="creator" />
     <field column="updated" name="updated" />
-  	<field column="pleiadesID" name="pleiadesID" />
+    <field column="dbpediaSlug" name="dbpediaSlug" />
+    <field column="pleiadesID" name="pleiadesID" />
     <field column="mintNomisma" name="mintNomisma" />
+    <field column="rulerNomisma" name="rulerNomisma" />
+    <field column="rulerDbpedia" name="rulerDbpedia" />
     <field column="gridSource" name="gridSource" />
     <field column="fourFigureLat" name="fourFigureLat" />
     <field column="fourFigureLon" name="fourFigureLon" />
     <field column="geonamesID" name="geonamesID" />
+    <field column="precision" name="precision" />
+    <field column="subperiodTo" name="subperiodTo" />
+    <field column="subperiodFrom" name="subperiodFrom" />
 </entity>
 
 </document>

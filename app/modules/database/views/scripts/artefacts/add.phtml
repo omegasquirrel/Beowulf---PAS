@@ -5,6 +5,11 @@
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
 	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css');
 	$this->headTitle('Add a new object');
+	$front = Zend_Controller_Front::getInstance()->getRequest();
+	$copy = $front->getParam('copy');
+	if(!is_null($copy)){
+		$this->headTitle(' copied from last record');
+	}
 ?>
 
 <?php $this->jQuery()->javascriptCaptureStart() ?>

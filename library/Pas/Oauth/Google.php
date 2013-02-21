@@ -1,7 +1,7 @@
 <?php
-class Pas_Oauth_Flickr {
+class Pas_Oauth_Google{
 	
-	const CALLBACKURL = 'http://beta.finds.org.uk/admin/oauth/flickraccess';
+	protected $_callback;
 	
 	protected $_consumerKey;
 	
@@ -11,8 +11,9 @@ class Pas_Oauth_Flickr {
 	
 	public function __construct(){
 	$this->_config = Zend_Registry::get('config');
-	$this->_consumerKey = $this->_config->webservice->flickr->apikey;
-	$this->_consumerSecret = $this->_config->webservice->flickr->secret;
+	$this->_consumerKey = $this->_config->webservice->google->oauthconsumerkey;
+	$this->_consumerSecret = $this->_config->webservice->google->oauthsecret;
+	$this->_callback = Zend_Registry::get('siteurl') . '/admin/oauth/googleaccess';
 	}
 
 	/** Request a token from twitter and authorise the app
@@ -20,23 +21,23 @@ class Pas_Oauth_Flickr {
 	public function generate(){
 
 	$config = array(
-	'requestTokenUrl' => 'http://www.flickr.com/services/oauth/request_token',
-	'accessTokenUrl' => 'http://www.flickr.com/services/oauth/access_token',
-	'userAuthorisationUrl' => 'http://www.flickr.com/services/oauth/authorize',
-	'localUrl' => 'http://beta.finds.org.uk/admin/oauth',
-	'callbackUrl' => self::CALLBACKURL,
+	'requestTokenUrl' => 'https://www.google.com/accounts/OAuthGetRequestToken',
+	'accessTokenUrl' => 'https://www.google.com/accounts/OAuthGetAccessToken',
+	'userAuthorisationUrl' => 'https://www.google.com/accounts/OAuthAuthorizeToken',
+	'localUrl' => Zend_Registry::get('siteurl') . '/admin/oauth',
+	'callbackUrl' => $this->_callback,
 	'consumerKey' => $this->_consumerKey,
 	'consumerSecret' => $this->_consumerSecret,
 	'version' => '1.0', 
 	'signatureMethod' => 'HMAC-SHA1',
 	);
 	$consumer	= new Zend_Oauth_Consumer($config);
-	$consumer->setAuthorizeUrl('http://www.flickr.com/services/oauth/authorize');
+	$consumer->setAuthorizeUrl('https://www.google.com/accounts/OAuthAuthorizeToken');
 	$token	= $consumer->getRequestToken();
-	$session = new Zend_Session_Namespace('flickr_oauth');
+	$session = new Zend_Session_Namespace('google_oauth');
 	$session->token  = $token->getToken();
 	$session->secret = $token->getTokenSecret();
-	$consumer->redirect($customServiceParameters = array('perms' => 'delete'));
+	$consumer->redirect();
 	}
 
 	/** Create the access token and save to database
@@ -44,11 +45,11 @@ class Pas_Oauth_Flickr {
 	 */
 	public function access(){
 	$config = array(
-	'requestTokenUrl' => 'http://www.flickr.com/services/oauth/request_token',
-	'accessTokenUrl' => 'http://www.flickr.com/services/oauth/access_token',
-	'userAuthorisationUrl' => 'http://www.flickr.com/services/oauth/authorize',
-	'localUrl' => 'http://beta.finds.org.uk/admin/oauth',
-	'callbackUrl' => self::CALLBACKURL,
+	'requestTokenUrl' => 'https://www.google.com/accounts/OAuthGetRequestToken',
+	'accessTokenUrl' => 'https://www.google.com/accounts/OAuthGetAccessToken',
+	'userAuthorisationUrl' => 'https://www.google.com/accounts/OAuthAuthorizeToken',
+	'localUrl' => Zend_Registry::get('siteurl') . '/admin/oauth',
+	'callbackUrl' => $this->_callback,
 	'consumerKey' => $this->_consumerKey,
 	'consumerSecret' => $this->_consumerSecret,
 	'version' => '1.0', 
@@ -67,7 +68,7 @@ class Pas_Oauth_Flickr {
 
 	$tokens = new OauthTokens();
 	$tokenRow = $tokens->createRow();	
-	$tokenRow->service 		= 'flickrAccess';
+	$tokenRow->service 		= 'googleAccess';
 	$tokenRow->accessToken 		= serialize($token);
 	$tokenRow->created 		= $now;
 	$tokenRow->save();

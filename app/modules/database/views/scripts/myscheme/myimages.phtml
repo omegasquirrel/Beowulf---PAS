@@ -4,22 +4,27 @@
 
 <?php if ($this->results): ?>
 <div class="row-fluid ">
-    <div class="span10">
+    <div class="span9">
     <ul class="thumbnails">
 <?php echo $this->partialLoop('partials/database/myimagesList.phtml',
         $this->results);?>
     </ul>
     </div>
-<?php
-echo $this->facetCreatorMyImages($this->facets);
-?>
+    <div class="span3">        
+    	<?php echo $this->resultsQuantityChooser($this->paginator);?>
+        <?php echo $this->thumbnailToggler();?>
+        <?php echo $this->resultsSorter($this->paginator);?>
+		<?php echo $this->facetCreatorMyImages($this->facets); ?>
+	</div>
 </div>
+
 <?php echo $this->paginationControl($this->paginator, 'Elastic',
         'structure/pagination.phtml'); ?>
 
 <?php else:?>
 <p>You have added no images to our database.</p>
 <?php endif; ?>
+
 <?php 
 $this->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
 $this->inlineScript()->captureStart();

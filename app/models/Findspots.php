@@ -28,8 +28,11 @@ class Findspots extends Pas_Db_Table_Abstract {
      */
     protected $_appid;
     
+    protected $_gmaps;
+    
     public function init(){
     	$this->_appid = $this->_config->webservice->ydnkeys->placemakerkey;
+    	$this->_gmaps = $this->_config->webservice->google->apikey;
     }
 	
 	/** Determine role of the user
@@ -310,7 +313,8 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$yahoo = $place->reverseGeoCode($results['decimalLatLon']['decimalLatitude'],
 		$results['decimalLatLon']['decimalLongitude']);	
         $data['woeid'] = $yahoo['woeid'];
-        
+    $elevate = new Pas_Service_Geo_Elevation($this->_gmaps);
+    $data['elevation'] = $elevate->getElevation($data['declong'], $data['declat']);    
     return $data;
 	} else {
 	return $data;

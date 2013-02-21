@@ -2,7 +2,17 @@
 $this->headTitle('Profile for Emperor:  '.$this->name);
 $this->headMeta('Biographical and related data for '.$this->name,'Description');
 $this->headMeta('roman,numismatics,biography,emperor,'.$this->name.',portable antiquities','Keywords');
-
+if (!is_null($this->filename)) {
+list($w, $h) = getimagesize('./images/rulers/resized/'.$this->escape($this->filename));
+}
+$this->twitterCard('summary')
+     ->setTitle($this->title())
+     ->setUrl($this->curUrl())
+     ->setDescription('Biographical and related data for '.$this->name)
+     ->setImage($this->serverUrl() . './images/rulers/resized/'.$this->escape($this->filename),$w,$h)
+     ->setSiteAccount('findsorguk', 15156713)
+     ->setCreatorAccount('portableant', 12640312)
+     ->create();
 $this->headLink()->appendAlternate($this->url(array('module' => 'database','controller' => 'search','action' => 'results','ruler' => $this->pasID,'format' => 'rss'),null,true), 'application/rss+xml', 'Latest finds for '. $this->name .'- RSS Feed'); ?>
 <div about="nm:<?php echo $this->name;?>" typeof="nm:roman_emperor" property="dcterms:partof" resource="roman_numismatics">
 <h2 property="skos:prefLabel"><?php echo $this->escape($this->name);?></h2>

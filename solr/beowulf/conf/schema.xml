@@ -459,9 +459,11 @@
 	<field name="periodFrom" type="int" indexed="true" stored="true" />
 	<field name="periodFromName" type="string" indexed="true" stored="true" />
 	<field name="fromsubperiod" type="int" indexed="true" stored="true" />
+	<field name="subperiodFrom" type="string" indexed="true" stored="true" />
 	<field name="periodTo" type="int" indexed="true" stored="true" />
 	<field name="periodToName" type="string" indexed="true" stored="true" />
 	<field name="tosubperiod" type="int" indexed="true" stored="true" />
+	<field name="subperiodTo" type="string" indexed="true" stored="true" />
 	<field name="objecttype" type="text" indexed="true" stored="true" />
 	<field name="description" type="text" indexed="true" stored="true"  />
 	<field name="notes" type="text" indexed="true" stored="true" />
@@ -519,7 +521,8 @@
 	<field name="thickness" type="double" indexed="true" stored="true" />
 	<field name="length" type="double" indexed="true" stored="true" />
 	<field name="quantity" type="int" indexed="true" stored="true" />
-
+    <field name="dbpediaSlug" type="string" indexed="true" stored="true" /> 
+        
 	<!--  Person specific details -->
 	<field name="finder" type="string" indexed="true" stored="true" />
 	<field name="finderID" type="string" indexed="true" stored="true" />
@@ -553,9 +556,9 @@
 	<field name="cciNumber" type="string" indexed="true" stored="true" />
 	<field name="mintmark" type="string" indexed="true" stored="true" />
 	<field name="allenType" type="string" indexed="true" stored="true" />
-	<field name="mackType" type="double" indexed="true" stored="true" />
+	<field name="mackType" type="string" indexed="true" stored="true" />
 	<field name="abcType" type="string" indexed="true" stored="true" />
-	<field name="vaType" type="double" indexed="true" stored="true" />
+	<field name="vaType" type="string" indexed="true" stored="true" />
 	<field name="category" type="int" indexed="true" stored="true"  />
 	<field name="categoryTerm" type="string" indexed="true" stored="true" />
 	<field name="type" type="int" indexed="true" stored="true" />
@@ -570,6 +573,8 @@
 	<field name="status" type="int" indexed="true" stored="true" />
 	<field name="pleiadesID" type="int" indexed="true" stored="true" />
 	<field name="mintNomisma" type="string" indexed="true" stored="true" />
+	<field name="rulerNomisma" type="string" indexed="true" stored="true" />
+	<field name="rulerDbpedia" type="string" indexed="true" stored="true" />
 	
 	<!-- Findspot specific fields -->
 	<field name="regionID" type="int" indexed="true" stored="true" />
@@ -594,6 +599,7 @@
 	<field name="geonamesID" type="int" indexed="true" stored="true" />
 	<field name="fourFigureLat" type="double" indexed="true" stored="true" />
 	<field name="fourFigureLon" type="double" indexed="true" stored="true" />
+	<field name="precision" type="int" indexed="true" stored="true" />
 	
 	<!--  Image specific fields  -->
 	<field name="filename" type="string" indexed="true" stored="true" />

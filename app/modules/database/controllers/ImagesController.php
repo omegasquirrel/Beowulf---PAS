@@ -154,6 +154,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$insertData['filesize'] = $filesize;
 	$insertData['imagerights'] = $form->getValue('copyrighttext');
 	$insertData['secuid'] = $secuid;
+	$insertData['institution'] = $this->getInstitution();
 	//$insertData['mimetype'] = $mimetype;
 	foreach ($insertData as $key => $value) {
         if (is_null($value) || $value=="") {

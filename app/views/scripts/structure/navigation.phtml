@@ -19,7 +19,7 @@ if($auth->hasIdentity()){
 $user = $auth->getIdentity();
 $allowed = array('flos','heros','fa','admin','treasure');
 if(in_array($user->role,$allowed)) {
-echo '<li><a href="/forum/" title="Go to our staff forum and hassle your colleagues">Forum</a>';
+echo '<li><a href="/forum/" title="Go to our staff forum and hassle your colleagues">Forum</a></li>';
 }
 }
 ?>

@@ -22,7 +22,7 @@
   persistent: Save changes made via the API to this file
   sharedLib: path to a lib directory that will be shared across all cores
 -->
-<solr persistent="true">
+<solr persistent="true" sharedLib="/home/beowulf2/solr/lib">
 
   <!--
   adminPath: RequestHandler path to manage cores.  
@@ -40,4 +40,5 @@
     <core name="beoblogs" instanceDir="beoblogs"></core>
     <core name="beogeodata" instanceDir="beogeodata"></core>
   </cores>
+  
 </solr>

@@ -626,6 +626,7 @@ class Rulers extends Pas_Db_Table_Abstract {
 			->joinLeft('periods','periods.id = rulers.period', array('term','i' => 'id'))
 			->joinLeft('users','users.id = ' . $this->_name . '.createdBy', array('fullname'))
             ->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname'))
+            ->joinLeft('emperors', 'emperors.pasID = rulers.id', array('pasID' => 'emperors.id'))
 			->where($this->_name . '.valid = ?', (int)1)
 			->group('issuer');
 		if(isset($params['period']) && ($params['period'] != "")) {

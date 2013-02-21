@@ -381,7 +381,6 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 	$rulers = NULL;
 
 	foreach($rulerList as $k){
-
 	$action = $k['term'];
 	switch ($action) {
 		case $action == strtoupper('Roman'):
@@ -417,15 +416,24 @@ class Database_TerminologyController extends Pas_Controller_Action_Admin {
 			$module = 'medievalcoins';
 
 	}
+	
+	
+	if($k['term'] == 'ROMAN'){
+		$id = $k['pasID'];
+	} else {
+		$id = $k['id'];
+	}
 	$rulers[] = array(
-	'id' => $k['id'],
+	'id' => $id,
 	'name' => $k['issuer'],
 	'period' => $k['term'],
 	'dateFrom' => $k['date1'],
 	'dateTo' => $k['date2'],
+	'pasID' => $k['pasID'],
 	'url' => $this->view->serverUrl() . $this->view->url(array('module' => $module,
-	'controller' => $actionset . 's' ,'action' => $actionset,'id' => $k['id']),null,true)
+	'controller' => $actionset . 's' ,'action' => $actionset,'id' => $id),null,true)
 	);
+	
 	}
 
 	$this->view->rulers = $rulers;

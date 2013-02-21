@@ -38,4 +38,9 @@ class Pas_Controller_Action_Helper_Identity extends Zend_Controller_Action_Helpe
 	return false;
 	}	
 	}
+	
+	public function direct()
+	{
+		return $this->getPerson();
+	}
 }

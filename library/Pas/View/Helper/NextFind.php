@@ -27,6 +27,12 @@ class Pas_View_Helper_NextFind extends Zend_View_Helper_Abstract {
 		$this->_config = Zend_Registry::get('config');
 		$this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
 		$this->_solr = new Solarium_Client($this->_solrConfig);
+		$loadbalancer = $this->_solr->getPlugin('loadbalancer');
+	    $master = $this->_config->solr->master->toArray();
+	    $slave  = $this->_config->solr->slave->toArray();
+	    $loadbalancer->addServer('master', $master, 100);
+		$loadbalancer->addServer('slave', $slave, 200);
+		$loadbalancer->setFailoverEnabled(true);
 	}
 	
 	protected function _getRole(){
