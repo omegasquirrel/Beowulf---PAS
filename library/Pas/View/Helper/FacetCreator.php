@@ -56,11 +56,11 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         $html .= '<h4>' . $this->_prettyName($facetName) . '</h4>';
         $html .= '<ul class="navpills nav-stacked nav">';
 
-        if($facetName !== 'workflow'){
+        if(!in_array($facetName,array('reeceID','workflow'))){
             $facets = array_slice($facet,0,10);
         } else {
         	$facets = $facet;
-        }
+        } 
         foreach($facets as $key => $value){
         $request = Zend_Controller_Front::getInstance()->getRequest()->getParams();
 		if(isset($request['page'])){
@@ -91,7 +91,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
         if(isset($request['page'])){
             unset($request['page']);
         }
-		if(count($facet) > 10){
+		if(count($facet) > 10 && $facetName != 'reeceID'){
 			$request['controller'] = 'ajax';
 			$request['action'] = 'facet';
 			$request['facetType'] = $facetName;

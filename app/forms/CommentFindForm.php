@@ -68,17 +68,15 @@ parent::__construct($options);
 	->addErrorMessage('Please enter something in the comments box.')
 	->setDescription('The following HTML tags can be used - a,p,ul,li,em,strong,br,img,a - and
 	paragraphs will be automatically created');
-
+	$recaptcha = new Zend_Service_ReCaptcha($this->_pubKey, $this->_privateKey);
 	$captcha = new Zend_Form_Element_Captcha('captcha', array(
-                        	'captcha' => 'ReCaptcha',
-				'label' => 'Prove you are not a robot/spammer',
+                        		'captcha' => 'ReCaptcha',
+								'label' => 'Prove you are not a robot/spammer',
                                 'captchaOptions' => array(
                                 'captcha' => 'ReCaptcha',
-                                'privKey' => $this->_privateKey,
-                                'pubKey' => $this->_pubKey,
-				'theme'=> 'clean')
+                                'service' => $recaptcha,
+								'theme'=> 'clean')
                         ));
-
 
 	$submit = new Zend_Form_Element_Submit('submit');
 

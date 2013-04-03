@@ -331,8 +331,10 @@ class Pas_Service_Geo_Geoplanet {
     if(!is_null($lat) && !is_null($lon)){ 
     $key = 'geocode' . md5($lat . $lon);	
     if (!$place = $this->_cache->load($key)) {
-    $yql = 'SELECT * FROM xml WHERE url="http://where.yahooapis.com/geocode?location=' . $lat . '+' .  $lon 
-    . '&gflags=R&appid=' . $this->_appID . '"';
+    $yql = 'SELECT * FROM geo.placefinder where text="' . $lat . ',' . $lon . '" and gflags="R"';
+//    $yql = 'SELECT * FROM xml WHERE url="http://where.yahooapis.com/geocode?location=' . $lat . '+' .  $lon 
+//    . '&gflags=R&appid=' . $this->_appID . '"';
+
     $place = $this->_oauth->execute($yql,$this->_accessToken, 
     $this->_accessSecret,$this->_accessExpiry,$this->_handle);
     $this->_cache->save($place);

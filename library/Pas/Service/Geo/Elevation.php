@@ -1,5 +1,5 @@
 <?php
-/** A class for geocoding against the google api
+/** A class for getting elevation of a latlon point against the google api
  * @version 1
  * @author Daniel Pett
  * @license GNU
@@ -9,17 +9,13 @@
  */
 class Pas_Service_Geo_Elevation{
 
-	/** The google map key
-	 * 
-	 * @var string $api_key
-	 */
-    protected $_key;
-
     const ELEVATIONURI = 'http://maps.googleapis.com/maps/api/elevation/json';
     
 
     /** Get the coordinates from an address string
-     * @param string $address
+     * @param float $lat
+     * @param float $lon
+     * @access public
      */
     public function _getElevationApiCall($lat, $lon) {
         $client = new Zend_Http_Client();
@@ -33,8 +29,9 @@ class Pas_Service_Geo_Elevation{
     }
 	
     /** Get the coordinates of an address
-     * 
-     * @param string $address
+ 	 * @param float $lat
+     * @param float $lon
+     * @access public
      */
     public function getElevation($lat, $lon)  {
         $response = $this->_getElevationApiCall($lat, $lon);

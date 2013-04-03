@@ -183,7 +183,7 @@ class Pas_Service_Geo_Parser {
 	}
 
 	public function parseGeocoded( $place ){
-	$pl = $place->query->results->ResultSet;
+	$pl = $place->query->results;
 	if($pl){
 	$placeData = array(); 
 	foreach ($pl->Result as $key => $value) {

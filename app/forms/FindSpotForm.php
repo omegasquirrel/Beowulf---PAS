@@ -235,9 +235,12 @@ public function __construct($options = null) {
 
 	if($action === 'edit') {
 	$this->addElements(array(
-	$county, $district, $parish,
+	$county, 
+	//$district, 
+	$parish,
 	$knownas, $description, $comments,
-	$regionID, $gridref, $fourFigure,
+	//$regionID, 
+	$gridref, $fourFigure,
 	$easting, $northing, $map10k,
 	$map25k, $declong, $declat,
 	$declong4, $declat4, $gridLen,
@@ -248,9 +251,13 @@ public function __construct($options = null) {
 	));
 	} else {
 	$this->addElements(array(
-	$county, $district, $parish,
+	$county, 
+	//$district, 
+	$parish,
 	$knownas, $depthdiscovery, $description,
-	$comments, $regionID, $gridref,
+	$comments, 
+	//$regionID, 
+	$gridref,
 	$gridrefsrc, $gridrefcert,
 	$address, $postcode, $landusevalue,
 	$landusecode, $landownername, $landowner,
@@ -259,7 +266,8 @@ public function __construct($options = null) {
 
 
 	$this->addDisplayGroup(array(
-	'county', 'regionID', 'district',
+	'county', 
+	//'regionID', 'district',
 	'parish', 'knownas',
 	'address', 'postcode', 'landownername',
 	'landowner'),

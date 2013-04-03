@@ -234,6 +234,12 @@ class Findspots extends Pas_Db_Table_Abstract {
 	if(!is_null($data['gridref'])) {
 	$data = $this->_processFindspot($data);
 	}
+	if(!is_null($data['county'])){
+		$data['regionID'] = $this->_getRegion($data['county']);
+	}
+	if(!is_null($data['county']) && !is_null($data['parish'])){
+		$data['district'] = $this->_getDistrict($data['county'], $data['parish']);
+	}
 	$findid = new Pas_Generator_FindID();
 	$data['old_findspotid'] = $findid->generate();
 	$secuid = new Pas_Generator_SecuID();
@@ -272,6 +278,12 @@ class Findspots extends Pas_Db_Table_Abstract {
 	if(!is_null($data['gridref'])) {
 	$data = $this->_processFindspot($data);
 	}   
+	}
+	if(!is_null($data['county'])){
+		$data['regionID'] = $this->_getRegion($data['county']);
+	}
+	if(!is_null($data['county']) && !is_null($data['parish'])){
+		$data['district'] = $this->_getDistrict($data['county'], $data['parish']);
 	}
 	if(array_key_exists('csrf', $data)){
 	unset($data['csrf']);
@@ -322,7 +334,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 	}
 	
 	
-/** Function for updating findspots with processing of geodata
+	/** Function for updating findspots with processing of geodata
 	 * @access public
 	 * @param array $data
 	 * @param array $where
@@ -416,5 +428,17 @@ class Findspots extends Pas_Db_Table_Abstract {
 		   ->where('easting IS NULL')
 		->limit($limit);
 	return $findspots->fetchAll($select);
+	}
+	
+	protected function _getRegion( $county ){
+		$regions  = new Counties();
+		$regionID = $regions->getRegions($county);
+		return $regionID[0]['term'];
+	}
+	
+	protected function _getDistrict( $county, $parish ){
+		$districts = new Places();
+		$district = $districts->getDistrictUpdate( $county, $parish);
+		return $district[0]['district'];
 	}
 }

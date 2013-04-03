@@ -63,6 +63,7 @@ class Users extends Pas_Db_Table_Abstract {
 
     public function register($data){
     unset($data['csrf']);
+    unset($data['captcha']);
 	$data['password'] = SHA1($this->_config->auth->salt. $data['password']);		
 	$data['activationKey'] = md5($data['username'] . $data['first_name']);
 	$data['fullname'] = $data['first_name'] . ' ' . $data['last_name'];
