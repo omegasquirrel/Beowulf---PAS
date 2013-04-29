@@ -3,11 +3,11 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Jan 16, 2012 at 02:03 PM
+-- Generation Time: Apr 29, 2013 at 10:03 AM
 -- Server version: 5.0.51
--- PHP Version: 5.2.4-2ubuntu5.12
+-- PHP Version: 5.2.4-2ubuntu5.25
 -- 
--- Database: `antiquities`
+-- Database: `antiquitiesTwo`
 -- 
 
 -- --------------------------------------------------------
@@ -31,43 +31,73 @@ CREATE TABLE `abbreviations` (
 -- --------------------------------------------------------
 
 -- 
+-- Table structure for table `abcNumbers`
+-- 
+
+CREATE TABLE `abcNumbers` (
+  `id` int(6) NOT NULL auto_increment,
+  `term` int(5) NOT NULL,
+  `created` datetime NOT NULL,
+  `createdBy` int(6) NOT NULL,
+  `updated` datetime NOT NULL,
+  `updatedBy` int(6) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `term` (`term`)
+) ENGINE=MyISAM AUTO_INCREMENT=65538 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='ABC Chris Rudd Numbers';
+
+-- --------------------------------------------------------
+
+-- 
 -- Table structure for table `accreditedMuseums`
 -- 
 
 CREATE TABLE `accreditedMuseums` (
   `id` int(11) NOT NULL auto_increment,
-  `museumName` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `addressOne` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `addressTwo` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `town` varchar(55) collate utf8_unicode_ci NOT NULL,
-  `county` varchar(55) collate utf8_unicode_ci NOT NULL,
-  `postcode` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `lat` float NOT NULL,
-  `lon` float NOT NULL,
-  `woeid` int(11) NOT NULL,
-  `comments` text collate utf8_unicode_ci NOT NULL,
-  `created` datetime NOT NULL,
-  `createdBy` int(11) NOT NULL,
-  `updated` datetime NOT NULL,
-  `updatedBy` int(11) NOT NULL,
+  `museumName` varchar(255) collate utf8_unicode_ci default NULL,
+  `accreditedNumber` int(11) default NULL,
+  `area` int(11) default NULL,
+  `status` int(11) default NULL,
+  `woeid` int(11) default NULL,
+  `lat` float default NULL,
+  `lon` float default NULL,
+  `geohash` varchar(11) collate utf8_unicode_ci default NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) default NULL,
+  `updated` datetime default NULL,
+  `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
-  KEY `woeid` (`woeid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='A list of accredited museums that can bid for Treasure';
+  KEY `accreditedNumber` (`accreditedNumber`),
+  KEY `woeid` (`woeid`),
+  KEY `geohash` (`geohash`)
+) ENGINE=MyISAM AUTO_INCREMENT=1763 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='A list of accredited museums that can bid for Treasure';
 
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `aclperms`
+-- Table structure for table `accreditedRegions`
 -- 
 
-CREATE TABLE `aclperms` (
+CREATE TABLE `accreditedRegions` (
   `id` int(11) NOT NULL auto_increment,
-  `resourceID` int(11) NOT NULL,
-  `groupID` int(11) NOT NULL,
-  `permission` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `resourceID` (`resourceID`,`groupID`,`permission`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Permissions for resources';
+  `regionName` varchar(255) collate utf8_unicode_ci default NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) default '56',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0 COMMENT='Accredited Museum regions';
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `accreditedStatus`
+-- 
+
+CREATE TABLE `accreditedStatus` (
+  `id` int(11) NOT NULL auto_increment,
+  `status` varchar(255) collate utf8_unicode_ci default NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) default '56',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Accredited Museum Status';
 
 -- --------------------------------------------------------
 
@@ -109,28 +139,6 @@ CREATE TABLE `allentypes` (
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `annotations`
--- 
-
-CREATE TABLE `annotations` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `createdBy` int(11) unsigned NOT NULL,
-  `file_id` varchar(255) collate utf8_unicode_ci default NULL,
-  `top` mediumint(8) unsigned NOT NULL,
-  `left` mediumint(8) unsigned NOT NULL,
-  `width` mediumint(8) unsigned NOT NULL,
-  `height` mediumint(8) unsigned NOT NULL,
-  `text` text collate utf8_unicode_ci NOT NULL,
-  `created` datetime default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` int(11) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `createdBy` (`createdBy`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
 -- Table structure for table `approveReject`
 -- 
 
@@ -144,7 +152,7 @@ CREATE TABLE `approveReject` (
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=181 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Approved and rejected accounts';
+) ENGINE=MyISAM AUTO_INCREMENT=244 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Approved and rejected accounts';
 
 -- --------------------------------------------------------
 
@@ -169,29 +177,7 @@ CREATE TABLE `bibliography` (
   KEY `pubID` (`pubID`),
   KEY `findID` (`findID`),
   KEY `secuid` (`secuid`)
-) ENGINE=MyISAM AUTO_INCREMENT=78001 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `bibliographyOld`
--- 
-
-CREATE TABLE `bibliographyOld` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `findID` varchar(50) default NULL,
-  `pages_plates` varchar(50) default NULL,
-  `vol_no` varchar(30) default NULL,
-  `reference` varchar(100) default NULL,
-  `created` datetime default NULL,
-  `createdBy` int(11) default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` int(11) default NULL,
-  `pubID` varchar(50) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `findID` (`findID`),
-  KEY `pubID` (`pubID`)
-) ENGINE=MyISAM AUTO_INCREMENT=53040 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=89347 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -231,7 +217,21 @@ CREATE TABLE `categoriescoins` (
   KEY `valid` (`valid`),
   KEY `createdBy` (`createdBy`),
   KEY `updatedBy` (`updatedBy`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Categories for medieval coins';
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Categories for medieval coins';
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `cciVa`
+-- 
+
+CREATE TABLE `cciVa` (
+  `id` int(11) NOT NULL auto_increment,
+  `cciNumber` varchar(24) collate utf8_unicode_ci default NULL,
+  `va_type` varchar(25) collate utf8_unicode_ci default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `cciNumber` (`cciNumber`)
+) ENGINE=MyISAM AUTO_INCREMENT=32409 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -322,12 +322,13 @@ CREATE TABLE `coins` (
   `degree_of_wear` varchar(50) collate utf8_unicode_ci default NULL,
   `die_axis_measurement` tinyint(2) unsigned default NULL,
   `die_axis_certainty` tinyint(4) unsigned default NULL,
-  `cciNumber` varchar(8) collate utf8_unicode_ci default NULL,
+  `cciNumber` varchar(25) collate utf8_unicode_ci default NULL,
+  `pleiadesID` int(11) default NULL,
   `allen_type` varchar(10) collate utf8_unicode_ci default NULL,
   `mack_type` float default NULL,
-  `bmc_type` float default NULL,
+  `bmc_type` varchar(100) collate utf8_unicode_ci default NULL,
   `rudd_type` float default NULL,
-  `va_type` varchar(5) collate utf8_unicode_ci default NULL,
+  `va_type` varchar(10) collate utf8_unicode_ci default NULL,
   `phase_date_1` varchar(200) collate utf8_unicode_ci default NULL,
   `phase_date_2` varchar(200) collate utf8_unicode_ci default NULL,
   `context` text collate utf8_unicode_ci,
@@ -340,6 +341,7 @@ CREATE TABLE `coins` (
   `createdBy` int(10) unsigned default NULL,
   `updated` datetime default NULL,
   `updatedBy` int(10) unsigned default NULL,
+  `institution` varchar(10) collate utf8_unicode_ci default NULL,
   `secuid` varchar(50) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `tribe` (`tribe`),
@@ -364,11 +366,13 @@ CREATE TABLE `coins` (
   KEY `moneyer` (`moneyer`),
   KEY `status` (`status`),
   KEY `cciNumber` (`cciNumber`),
+  KEY `institution` (`institution`),
+  KEY `pleiadesID` (`pleiadesID`),
   FULLTEXT KEY `reverse_description` (`reverse_description`),
   FULLTEXT KEY `obverse_inscription` (`obverse_inscription`),
   FULLTEXT KEY `obverse_description` (`obverse_description`),
   FULLTEXT KEY `reverse_inscription` (`reverse_inscription`)
-) ENGINE=MyISAM AUTO_INCREMENT=268188 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
+) ENGINE=MyISAM AUTO_INCREMENT=303138 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
 
 -- --------------------------------------------------------
 
@@ -379,7 +383,7 @@ CREATE TABLE `coins` (
 CREATE TABLE `coinsAudit` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `recordID` int(11) default NULL,
-  `entityID` int(11) default '0',
+  `entityID` int(11) default NULL,
   `editID` varchar(25) collate utf8_unicode_ci default NULL,
   `fieldName` varchar(255) collate utf8_unicode_ci default NULL,
   `beforeValue` mediumtext collate utf8_unicode_ci,
@@ -391,7 +395,7 @@ CREATE TABLE `coinsAudit` (
   KEY `editID` (`editID`),
   KEY `coinID` (`recordID`),
   KEY `findID` (`entityID`)
-) ENGINE=MyISAM AUTO_INCREMENT=76072 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=119236 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -409,138 +413,6 @@ CREATE TABLE `coins_denomxruler` (
   KEY `rulerID` (`rulerID`),
   KEY `periodID` (`periodID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1731 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Realtions between the Rulers and Denominations for coins';
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `coins_old`
--- 
-
-CREATE TABLE `coins_old` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `findID` varchar(50) default NULL,
-  `geographyID` int(10) unsigned default NULL,
-  `greekstateID` int(10) unsigned default NULL,
-  `ruler_id` int(11) unsigned default NULL,
-  `ruler2_id` int(10) unsigned default NULL,
-  `Ruler_qualifier` tinyint(10) unsigned default NULL,
-  `Candidate_ruler` varchar(50) default NULL,
-  `denomination` varchar(100) default NULL,
-  `candidate_denomination` varchar(50) default NULL,
-  `denomination_qualifier` varchar(10) default NULL,
-  `mint_ID` int(11) unsigned default NULL,
-  `mint_qualifier` tinyint(10) unsigned default NULL,
-  `candidate_mint` varchar(50) default NULL,
-  `categoryID` int(10) unsigned default NULL,
-  `typeID` int(10) unsigned default NULL,
-  `type` text,
-  `status` varchar(50) default NULL,
-  `status_qualifier` tinyint(10) unsigned default NULL,
-  `moneyer` varchar(50) default NULL,
-  `reeceID` int(10) unsigned default NULL,
-  `obverse_description` text,
-  `obverse_inscription` varchar(255) default NULL,
-  `Initial_mark` varchar(50) default NULL,
-  `reverse_description` text,
-  `reverse_inscription` varchar(255) default NULL,
-  `reverse_mintmark` varchar(50) default NULL,
-  `degree_of_wear` varchar(50) default NULL,
-  `die_axis_measurement` double unsigned default NULL,
-  `die_axis_certainty` tinyint(4) unsigned default NULL,
-  `created` datetime NOT NULL default '0000-00-00 00:00:00',
-  `created_by` int(10) unsigned default NULL,
-  `modified` datetime default NULL,
-  `last_updated_by` int(10) unsigned default NULL,
-  `sectag` int(10) unsigned NOT NULL default '1',
-  `secuid` varchar(50) default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `secuid` (`secuid`),
-  UNIQUE KEY `findID` (`findID`)
-) ENGINE=MyISAM AUTO_INCREMENT=99537 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `coins_old2`
--- 
-
-CREATE TABLE `coins_old2` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `findID` varchar(50) default NULL,
-  `geographyID` int(10) unsigned default NULL,
-  `geography_qualifier` tinyint(1) default NULL,
-  `greekstateID` int(10) unsigned default NULL,
-  `ruler_id` int(11) unsigned default NULL,
-  `ruler2_id` int(10) unsigned default NULL,
-  `ruler2_qualifier` tinyint(1) default NULL,
-  `tribe` int(2) default NULL,
-  `tribe_qualifier` tinyint(1) default NULL,
-  `ruler_qualifier` tinyint(1) unsigned default NULL,
-  `denomination` varchar(100) default NULL,
-  `denomination_qualifier` tinyint(1) default NULL,
-  `mint_id` int(11) unsigned default NULL,
-  `mint_qualifier` tinyint(10) unsigned default NULL,
-  `categoryID` int(10) unsigned default NULL,
-  `typeID` int(10) unsigned default NULL,
-  `type` text,
-  `status` varchar(50) default NULL,
-  `status_qualifier` tinyint(10) unsigned default NULL,
-  `moneyer` varchar(50) default NULL,
-  `moneyerQualifier` tinyint(1) default NULL,
-  `reeceID` int(10) unsigned default NULL,
-  `obverse_description` text character set utf8,
-  `obverse_inscription` varchar(255) character set utf8 default NULL,
-  `initial_mark` varchar(50) character set utf8 default NULL,
-  `reverse_description` text character set utf8,
-  `reverse_inscription` text character set utf8,
-  `reverse_mintmark` varchar(50) character set utf8 default NULL,
-  `revtypeID` int(4) unsigned default NULL,
-  `revTypeID_qualifier` tinyint(10) default NULL,
-  `degree_of_wear` varchar(50) default NULL,
-  `die_axis_measurement` double unsigned default NULL,
-  `die_axis_certainty` tinyint(4) unsigned default NULL,
-  `allen_type` varchar(20) default NULL,
-  `mack_type` int(4) default NULL,
-  `bmc_type` float default NULL,
-  `rudd_type` int(4) default NULL,
-  `va_type` int(4) default NULL,
-  `phase_date_1` varchar(50) character set utf8 default NULL,
-  `phase_date_2` varchar(50) character set utf8 default NULL,
-  `context` text character set utf8,
-  `depositionDate` text character set utf8,
-  `numChiab` varchar(100) character set utf8 default NULL,
-  `classification` tinyint(2) default NULL,
-  `volume` int(3) default NULL,
-  `reference` varchar(10) character set utf8 default NULL,
-  `created` datetime default NULL,
-  `createdBy` int(10) unsigned default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` int(10) unsigned default NULL,
-  `secuid` varchar(50) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `denomination` (`denomination`),
-  KEY `ruler_id` (`ruler_id`),
-  KEY `ruler2_id` (`ruler2_id`),
-  KEY `die_axis_measurement` (`die_axis_measurement`),
-  KEY `allen_type` (`allen_type`),
-  KEY `mack_type` (`mack_type`),
-  KEY `rudd_type` (`rudd_type`),
-  KEY `va_type` (`va_type`),
-  KEY `reeceID` (`reeceID`),
-  KEY `tribe` (`tribe`),
-  KEY `geographyID` (`geographyID`),
-  KEY `revtypeID` (`revtypeID`),
-  KEY `greekstateID` (`greekstateID`),
-  KEY `categoryID` (`categoryID`),
-  KEY `typeID` (`typeID`),
-  KEY `degree_of_wear` (`degree_of_wear`),
-  KEY `mint_id` (`mint_id`),
-  KEY `findID` (`findID`),
-  KEY `obverse_inscription_2` (`obverse_inscription`),
-  FULLTEXT KEY `reverse_inscription` (`reverse_inscription`),
-  FULLTEXT KEY `obverse_description` (`obverse_description`),
-  FULLTEXT KEY `obverse_inscription` (`obverse_inscription`)
-) ENGINE=MyISAM AUTO_INCREMENT=145379 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -591,7 +463,7 @@ CREATE TABLE `coinxclass` (
   PRIMARY KEY  (`id`),
   KEY `findID` (`findID`),
   KEY `classID` (`classID`)
-) ENGINE=MyISAM AUTO_INCREMENT=11571 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11574 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -600,26 +472,30 @@ CREATE TABLE `coinxclass` (
 -- 
 
 CREATE TABLE `comments` (
-  `comment_ID` bigint(20) unsigned NOT NULL auto_increment,
-  `comment_findID` int(11) default '0',
-  `comment_author` tinytext collate utf8_unicode_ci,
+  `id` bigint(20) unsigned NOT NULL auto_increment,
+  `contentID` int(11) default NULL,
+  `comment_author` varchar(255) collate utf8_unicode_ci default NULL,
   `comment_author_email` varchar(100) collate utf8_unicode_ci default NULL,
   `comment_author_url` varchar(200) collate utf8_unicode_ci default NULL,
   `user_ip` varchar(100) character set latin1 default NULL,
   `created` datetime default NULL,
+  `createdBy` int(11) NOT NULL,
   `comment_date_gmt` datetime default '0000-00-00 00:00:00',
   `comment_content` text collate utf8_unicode_ci,
-  `comment_approved` enum('moderation','approved','spam') collate utf8_unicode_ci default 'moderation',
+  `comment_approved` varchar(25) collate utf8_unicode_ci default 'moderation',
+  `commentStatus` varchar(100) collate utf8_unicode_ci NOT NULL,
   `user_agent` varchar(255) collate utf8_unicode_ci default NULL,
   `comment_type` varchar(20) collate utf8_unicode_ci default NULL,
   `comment_parent` bigint(20) default '0',
-  `createdBy` bigint(20) default NULL,
+  `user_id` bigint(20) default '0',
   `updated` datetime default NULL,
   `updatedBy` int(11) default NULL,
-  PRIMARY KEY  (`comment_ID`),
+  PRIMARY KEY  (`id`),
   KEY `comment_approved` (`comment_approved`),
-  KEY `comment_post_ID` (`comment_findID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1217 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `commentStatus` (`commentStatus`),
+  KEY `createdBy` (`createdBy`),
+  KEY `contentID` (`contentID`)
+) ENGINE=MyISAM AUTO_INCREMENT=24106 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -667,7 +543,7 @@ CREATE TABLE `content` (
   KEY `section` (`section`),
   KEY `createdBy` (`createdBy`),
   KEY `updatedBy` (`updatedBy`)
-) ENGINE=MyISAM AUTO_INCREMENT=216 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Site content';
+) ENGINE=MyISAM AUTO_INCREMENT=236 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Site content';
 
 -- --------------------------------------------------------
 
@@ -678,7 +554,7 @@ CREATE TABLE `content` (
 CREATE TABLE `contentAudit` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `recordID` int(11) default NULL,
-  `entityID` int(11) default '0',
+  `entityID` int(11) default NULL,
   `editID` varchar(25) collate utf8_unicode_ci default NULL,
   `fieldName` varchar(255) collate utf8_unicode_ci default NULL,
   `beforeValue` mediumtext collate utf8_unicode_ci,
@@ -687,10 +563,57 @@ CREATE TABLE `contentAudit` (
   `createdBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `createdBy` (`createdBy`),
-  KEY `editID` (`editID`),
-  KEY `coinID` (`recordID`),
-  KEY `findID` (`entityID`)
-) ENGINE=MyISAM AUTO_INCREMENT=76072 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `editID` (`editID`)
+) ENGINE=MyISAM AUTO_INCREMENT=76098 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `copyCoin`
+-- 
+
+CREATE TABLE `copyCoin` (
+  `id` int(11) NOT NULL auto_increment,
+  `fields` text collate utf8_unicode_ci,
+  `userID` int(11) NOT NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `userID` (`userID`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Copy last find ';
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `copyFind`
+-- 
+
+CREATE TABLE `copyFind` (
+  `id` int(11) NOT NULL auto_increment,
+  `fields` text collate utf8_unicode_ci,
+  `userID` int(11) NOT NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `userID` (`userID`),
+  KEY `createdBy` (`createdBy`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Copy last find ';
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `copyFindSpot`
+-- 
+
+CREATE TABLE `copyFindSpot` (
+  `id` int(11) NOT NULL auto_increment,
+  `fields` text collate utf8_unicode_ci,
+  `userID` int(11) NOT NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `userID` (`userID`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Copy last find ';
 
 -- --------------------------------------------------------
 
@@ -705,7 +628,7 @@ CREATE TABLE `copyrights` (
   `created` datetime default NULL,
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Image copyrights';
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Image copyrights';
 
 -- --------------------------------------------------------
 
@@ -888,11 +811,12 @@ CREATE TABLE `denominations` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `period` int(10) unsigned default NULL,
   `denomination` varchar(255) collate utf8_unicode_ci default NULL,
+  `nomismaID` varchar(100) collate utf8_unicode_ci default NULL,
   `rarity` text collate utf8_unicode_ci,
   `description` text collate utf8_unicode_ci,
-  `weight` varchar(100) collate utf8_unicode_ci default NULL,
-  `diameter` varchar(100) collate utf8_unicode_ci default NULL,
-  `thickness` varchar(100) collate utf8_unicode_ci default NULL,
+  `weight` int(5) default NULL,
+  `diameter` int(5) default NULL,
+  `thickness` int(5) default NULL,
   `design` text collate utf8_unicode_ci,
   `obverse` text collate utf8_unicode_ci,
   `notes` text collate utf8_unicode_ci,
@@ -907,7 +831,7 @@ CREATE TABLE `denominations` (
   KEY `denomination` (`denomination`),
   KEY `period` (`period`),
   KEY `valid` (`valid`)
-) ENGINE=MyISAM AUTO_INCREMENT=557 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=736 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -928,7 +852,7 @@ CREATE TABLE `denominations_rulers` (
   KEY `ruler_id` (`ruler_id`),
   KEY `denomination_id` (`denomination_id`),
   KEY `createdBy` (`createdBy`)
-) ENGINE=MyISAM AUTO_INCREMENT=3375 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Realtions between the Rulers and Denominations for coins';
+) ENGINE=MyISAM AUTO_INCREMENT=3860 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Realtions between the Rulers and Denominations for coins';
 
 -- --------------------------------------------------------
 
@@ -954,7 +878,7 @@ CREATE TABLE `dieaxes` (
 -- 
 
 CREATE TABLE `discmethods` (
-  `id` int(50) unsigned NOT NULL default '0',
+  `id` int(50) unsigned NOT NULL auto_increment,
   `method` varchar(255) collate utf8_unicode_ci default NULL,
   `termdesc` text collate utf8_unicode_ci,
   `valid` smallint(1) default '1',
@@ -965,7 +889,7 @@ CREATE TABLE `discmethods` (
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `method` (`method`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1034,23 +958,28 @@ CREATE TABLE `emperors` (
   `name` varchar(255) collate utf8_unicode_ci default NULL,
   `reeceID` int(3) default NULL,
   `pasID` int(11) default NULL,
-  `date_from` varchar(5) character set latin1 default NULL,
+  `dbpedia` varchar(100) collate utf8_unicode_ci default NULL,
+  `viaf` int(11) default NULL,
+  `nomismaID` varchar(100) collate utf8_unicode_ci default NULL,
+  `date_from` varchar(5) collate utf8_unicode_ci default NULL,
   `date_to` varchar(5) collate utf8_unicode_ci default NULL,
   `biography` text collate utf8_unicode_ci,
   `image` varchar(100) collate utf8_unicode_ci default NULL,
   `zoomfolder` varchar(55) collate utf8_unicode_ci default NULL,
   `dynasty` int(2) default NULL,
-  `murdoch` text collate utf8_unicode_ci,
+  `murdoch` varchar(25) collate utf8_unicode_ci default NULL,
   `updated` datetime default NULL,
   `updatedBy` int(11) default NULL,
-  `created` datetime NOT NULL,
-  `createdBy` int(11) NOT NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `pasID` (`pasID`),
   KEY `date_from` (`date_from`),
   KEY `reeceID` (`reeceID`),
-  KEY `dynasty` (`dynasty`)
-) ENGINE=MyISAM AUTO_INCREMENT=160 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `dynasty` (`dynasty`),
+  KEY `viaf` (`viaf`),
+  KEY `nomismaID` (`nomismaID`)
+) ENGINE=MyISAM AUTO_INCREMENT=242 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1066,7 +995,7 @@ CREATE TABLE `errorreports` (
   `comment_author_email` varchar(100) collate utf8_unicode_ci default NULL,
   `comment_author_url` varchar(200) collate utf8_unicode_ci default NULL,
   `user_ip` varchar(100) collate utf8_unicode_ci default NULL,
-  `created` datetime default NULL,
+  `comment_date` datetime default NULL,
   `comment_date_gmt` datetime default NULL,
   `comment_content` text collate utf8_unicode_ci,
   `comment_karma` int(11) default NULL,
@@ -1074,11 +1003,13 @@ CREATE TABLE `errorreports` (
   `user_agent` varchar(255) collate utf8_unicode_ci default NULL,
   `comment_type` varchar(20) collate utf8_unicode_ci default NULL,
   `comment_parent` bigint(20) default NULL,
-  `createdBy` bigint(20) default NULL,
+  `user_id` bigint(20) default NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `comment_approved` (`comment_approved`),
-  KEY `comment_post_ID` (`comment_findID`)
-) ENGINE=MyISAM AUTO_INCREMENT=645 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `comment_findID` (`comment_findID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1612 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1115,7 +1046,7 @@ CREATE TABLE `events` (
   KEY `eventEndDate` (`eventEndDate`),
   KEY `createdBy_2` (`createdBy`),
   KEY `eventType` (`eventType`)
-) ENGINE=MyISAM AUTO_INCREMENT=711 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=874 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1255,6 +1186,7 @@ CREATE TABLE `finds` (
   `hoard` tinyint(1) default NULL,
   `hoardID` int(11) default NULL,
   `institution` varchar(10) collate utf8_unicode_ci default NULL,
+  `dbpediaSlug` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `objecttype` (`objecttype`),
   KEY `objdate1period` (`objdate1period`),
@@ -1287,24 +1219,12 @@ CREATE TABLE `finds` (
   KEY `completeness` (`completeness`),
   KEY `discmethod` (`discmethod`),
   KEY `institution` (`institution`),
+  KEY `dbpediaSlug` (`dbpediaSlug`),
+  KEY `objdate1subperiod` (`objdate1subperiod`),
+  KEY `objdate2subperiod` (`objdate2subperiod`),
   FULLTEXT KEY `description` (`description`),
   FULLTEXT KEY `classification` (`classification`)
-) ENGINE=MyISAM AUTO_INCREMENT=478236 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `finds2myresearch`
--- 
-
-CREATE TABLE `finds2myresearch` (
-  `id` int(11) NOT NULL auto_increment,
-  `findID` varchar(50) collate utf8_unicode_ci default NULL,
-  `researchID` varchar(50) collate utf8_unicode_ci default NULL,
-  `createdBy` int(11) NOT NULL,
-  `created` datetime NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Link finds to research catalogues';
+) ENGINE=MyISAM AUTO_INCREMENT=557783 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
 
 -- --------------------------------------------------------
 
@@ -1314,7 +1234,7 @@ CREATE TABLE `finds2myresearch` (
 
 CREATE TABLE `findsAudit` (
   `id` int(11) unsigned NOT NULL auto_increment,
-  `recordID` int(11) default NULL,
+  `recordID` int(11) default '0',
   `entityID` int(11) default NULL,
   `editID` varchar(25) collate utf8_unicode_ci default NULL,
   `fieldName` varchar(255) collate utf8_unicode_ci default NULL,
@@ -1325,8 +1245,9 @@ CREATE TABLE `findsAudit` (
   PRIMARY KEY  (`id`),
   KEY `createdBy` (`createdBy`),
   KEY `editID` (`editID`),
-  KEY `findID` (`recordID`)
-) ENGINE=MyISAM AUTO_INCREMENT=467395 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `findID` (`recordID`),
+  KEY `entityID` (`entityID`)
+) ENGINE=MyISAM AUTO_INCREMENT=826553 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1339,153 +1260,12 @@ CREATE TABLE `finds_images` (
   `image_id` varchar(50) collate utf8_unicode_ci NOT NULL,
   `find_id` varchar(50) collate utf8_unicode_ci NOT NULL,
   `created` datetime default NULL,
-  `createdBy` int(10) unsigned default '0',
+  `createdBy` int(10) unsigned default NULL,
   `secuid` varchar(50) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `image_id` (`image_id`),
   KEY `find_id` (`find_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=352331 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `finds_images2`
--- 
-
-CREATE TABLE `finds_images2` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `image_id` varchar(50) NOT NULL default '0',
-  `find_id` varchar(50) NOT NULL default '0',
-  `created` datetime default NULL,
-  `createdBy` int(10) unsigned NOT NULL default '0',
-  `secuid` varchar(50) NOT NULL default '',
-  `secreplica` varchar(50) NOT NULL default '',
-  PRIMARY KEY  (`id`),
-  KEY `image_id` (`image_id`),
-  KEY `find_id` (`find_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=183835 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `finds_old`
--- 
-
-CREATE TABLE `finds_old` (
-  `id` int(11) NOT NULL auto_increment,
-  `secuid` varchar(50) default NULL,
-  `old_findID` varchar(250) default NULL,
-  `finderID` varchar(50) default NULL,
-  `finder2ID` varchar(50) NOT NULL,
-  `smr_ref` varchar(250) default NULL,
-  `other_ref` varchar(250) default NULL,
-  `datefound1qual` int(11) default NULL,
-  `datefound1` date default NULL,
-  `datefound1flag` char(3) default NULL,
-  `datefound2` date default NULL,
-  `datefound2flag` char(3) default NULL,
-  `datefound2qual` int(11) default NULL,
-  `culture` varchar(250) default NULL,
-  `discmethod` int(11) default NULL,
-  `disccircum` varchar(250) default NULL,
-  `description` text character set utf8,
-  `objecttype` varchar(250) default NULL,
-  `objecttypecert` int(11) default NULL,
-  `old_candidate` varchar(250) default NULL,
-  `classification` varchar(250) default NULL,
-  `subclass` varchar(250) default NULL,
-  `inscription` varchar(255) default NULL,
-  `objdate1cert` int(11) default NULL,
-  `objdate1subperiod_old` varchar(250) default NULL,
-  `objdate1period` int(10) unsigned default NULL,
-  `objdate2cert` int(11) default NULL,
-  `objdate2subperiod_old` varchar(250) default NULL,
-  `objdate2period` int(10) unsigned default NULL,
-  `objdate1subperiod` int(10) unsigned default NULL,
-  `objdate2subperiod` int(10) unsigned default NULL,
-  `broadperiod` varchar(255) default NULL,
-  `numdate1qual` int(11) default NULL,
-  `numdate1` int(11) default NULL,
-  `numdate2qual` int(11) default NULL,
-  `numdate2` int(11) default NULL,
-  `material1` int(10) default NULL,
-  `material2` int(10) default NULL,
-  `manmethod` int(11) default NULL,
-  `decmethod` int(11) default NULL,
-  `surftreat` int(11) default NULL,
-  `decstyle` int(11) default NULL,
-  `wear` int(11) default NULL,
-  `preservation` int(11) default NULL,
-  `completeness` int(11) default NULL,
-  `reuse` varchar(255) default NULL,
-  `reuse_period` int(3) default NULL,
-  `length` double default NULL,
-  `width` double default NULL,
-  `thickness` double default NULL,
-  `diameter` double default NULL,
-  `height` double default NULL,
-  `weight` double default NULL,
-  `quantity` smallint(6) default NULL,
-  `curr_loc` varchar(250) default NULL,
-  `recorderID` varchar(50) default NULL,
-  `identifier1ID` varchar(50) default NULL,
-  `identifier2ID` varchar(50) default NULL,
-  `musaccno` varchar(250) default NULL,
-  `subs_action` varchar(250) default NULL,
-  `notes` text,
-  `created` datetime default NULL,
-  `createdBy` int(10) unsigned default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` varchar(20) default NULL,
-  `sectag` int(11) unsigned default NULL,
-  `secowner` int(11) unsigned default NULL,
-  `secwfstage` int(2) unsigned default NULL,
-  `findofnote` tinyint(3) default NULL,
-  `findofnotereason` int(2) unsigned default NULL,
-  `treasure` enum('1','2') default NULL,
-  `treasureID` varchar(25) default NULL,
-  `rally` enum('1','2') default NULL,
-  `rallyID` int(11) default NULL,
-  `hoard` int(1) default NULL,
-  `hoardID` int(11) default NULL,
-  `institution` varchar(12) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `period1` (`objdate1period`),
-  KEY `period2` (`objdate2period`),
-  KEY `sectag` (`sectag`),
-  KEY `finderID` (`finderID`),
-  KEY `old_findID` (`old_findID`),
-  KEY `last_updated` (`updated`),
-  KEY `secuid` (`secuid`),
-  KEY `rallyID` (`rallyID`),
-  KEY `quantity` (`quantity`),
-  KEY `culture` (`culture`),
-  KEY `numdate2` (`numdate2`),
-  KEY `decmethod` (`decmethod`),
-  KEY `treasure` (`treasure`),
-  KEY `manmethod` (`manmethod`),
-  KEY `treasureID` (`treasureID`),
-  KEY `hoardID` (`hoardID`),
-  KEY `findofnotereason` (`findofnotereason`),
-  KEY `other_ref` (`other_ref`),
-  KEY `objdate1subperiod` (`objdate1subperiod`),
-  KEY `datefound1` (`datefound1`),
-  KEY `recorderID` (`recorderID`),
-  KEY `discmethod` (`discmethod`),
-  KEY `preservation` (`preservation`),
-  KEY `decstyle` (`decstyle`),
-  KEY `objecttype` (`objecttype`),
-  KEY `identifier1ID` (`identifier1ID`),
-  KEY `identifier2ID` (`identifier2ID`),
-  KEY `material1` (`material1`),
-  KEY `createdBy` (`createdBy`),
-  KEY `institution` (`institution`),
-  KEY `surftreat` (`surftreat`),
-  KEY `created` (`created`),
-  KEY `broadperiod` (`broadperiod`),
-  FULLTEXT KEY `classification` (`classification`),
-  FULLTEXT KEY `description` (`description`)
-) ENGINE=MyISAM AUTO_INCREMENT=279205 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=416002 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1536,7 +1316,11 @@ CREATE TABLE `findspots` (
   `northing` int(11) default NULL,
   `declong` double default NULL,
   `declat` double default NULL,
+  `fourFigureLat` double default NULL,
+  `fourFigureLon` double default NULL,
   `woeid` int(11) default NULL,
+  `geonamesID` int(11) default NULL,
+  `osmNode` int(11) default NULL,
   `geohash` varchar(11) collate utf8_unicode_ci default NULL,
   `elevation` double default NULL,
   `knownas` varchar(255) collate utf8_unicode_ci default NULL,
@@ -1582,70 +1366,7 @@ CREATE TABLE `findspots` (
   KEY `landusevalue` (`landusevalue`),
   KEY `landusecode` (`landusecode`),
   KEY `createdBy` (`createdBy`)
-) ENGINE=MyISAM AUTO_INCREMENT=460804 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `findspots2`
--- 
-
-CREATE TABLE `findspots2` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `findID` varchar(50) default NULL,
-  `old_findspotid` varchar(255) default NULL,
-  `description` text,
-  `address` text,
-  `postcode` varchar(20) default NULL,
-  `old_ngraccuracy` smallint(6) unsigned default NULL,
-  `gridref` varchar(15) default NULL,
-  `fourFigure` varchar(6) NOT NULL,
-  `gridrefsrc` tinyint(10) unsigned NOT NULL default '0',
-  `gridrefcert` tinyint(3) unsigned NOT NULL default '0',
-  `easting` int(11) default NULL,
-  `northing` int(11) default NULL,
-  `declong` double default NULL,
-  `declat` double default NULL,
-  `knownas` varchar(255) default NULL,
-  `disccircum` text,
-  `comments` text,
-  `landusevalue` smallint(6) unsigned default NULL,
-  `landusecode` smallint(6) unsigned default NULL,
-  `depthdiscovery` int(2) default NULL,
-  `soiltype` int(2) default NULL,
-  `highsensitivity` tinyint(1) default NULL,
-  `old_occupierid` varchar(50) default NULL,
-  `occupier` varchar(50) default NULL,
-  `smrref` varchar(20) default NULL,
-  `otherref` varchar(50) default NULL,
-  `date` datetime default NULL,
-  `createdBy` int(11) default NULL,
-  `created` datetime default NULL,
-  `updatedBy` int(11) default NULL,
-  `updated` datetime default NULL,
-  `old_landownerid` varchar(50) default NULL,
-  `landowner` varchar(50) default NULL,
-  `map25k` varchar(255) default NULL,
-  `map10k` varchar(255) default NULL,
-  `parish` varchar(255) default NULL,
-  `country` varchar(155) NOT NULL,
-  `regionID` int(10) unsigned NOT NULL default '0',
-  `county` varchar(255) default NULL,
-  `district` varchar(255) default NULL,
-  `institution` varchar(10) default NULL,
-  `secuid` varchar(50) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `parish` (`parish`),
-  KEY `declong` (`declong`),
-  KEY `findID` (`findID`),
-  KEY `declat` (`declat`),
-  KEY `gridref` (`gridref`),
-  KEY `county` (`county`),
-  KEY `landusevalue` (`landusevalue`),
-  KEY `landusecode` (`landusecode`),
-  KEY `knownas` (`knownas`),
-  KEY `regionID` (`regionID`)
-) ENGINE=MyISAM AUTO_INCREMENT=292826 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=537886 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
 
 -- --------------------------------------------------------
 
@@ -1668,7 +1389,7 @@ CREATE TABLE `findspotsAudit` (
   KEY `editID` (`editID`),
   KEY `findspotID` (`entityID`),
   KEY `findID` (`recordID`)
-) ENGINE=MyISAM AUTO_INCREMENT=230284 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=890001 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1694,29 +1415,6 @@ CREATE TABLE `findxfind` (
   KEY `find1ID` (`find1ID`),
   KEY `find2ID` (`find2ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15288 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `findxfind_old`
--- 
-
-CREATE TABLE `findxfind_old` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `find1ID` varchar(50) default NULL,
-  `find2ID` varchar(50) default NULL,
-  `relationship` varchar(100) default NULL,
-  `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  `sectag` int(10) unsigned NOT NULL default '0',
-  `secowner` int(10) unsigned NOT NULL default '0',
-  `updatedBy` int(10) unsigned default '0',
-  `createdBy` int(10) unsigned default '0',
-  `updated` timestamp NOT NULL default '0000-00-00 00:00:00',
-  `created` date default '0000-00-00',
-  `secuid` varchar(50) NOT NULL default '',
-  `secreplica` varchar(50) NOT NULL default '',
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12148 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1833,7 +1531,7 @@ CREATE TABLE `help` (
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `frontPage` (`frontPage`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1892,7 +1590,7 @@ CREATE TABLE `hers` (
   `updatedBy` int(11) default NULL,
   `updated` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1919,17 +1617,17 @@ CREATE TABLE `hitlog` (
 CREATE TABLE `hoards` (
   `id` int(11) NOT NULL auto_increment,
   `term` varchar(255) collate utf8_unicode_ci default NULL,
-  `period` int(11) NOT NULL,
+  `period` int(11) default NULL,
   `termdesc` text collate utf8_unicode_ci,
-  `created_by` int(11) NOT NULL,
-  `created` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  `updated_by` int(11) NOT NULL,
-  `updated` datetime NOT NULL,
+  `created_by` int(11) default NULL,
+  `created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `updated_by` int(11) default NULL,
+  `updated` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `period` (`period`),
   KEY `updated_by` (`updated_by`),
   KEY `created_by` (`created_by`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1963,7 +1661,7 @@ CREATE TABLE `instLogos` (
   `updatedBy` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `instID` (`instID`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Institutional logos for partners';
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Institutional logos for partners';
 
 -- --------------------------------------------------------
 
@@ -2010,6 +1708,7 @@ CREATE TABLE `ironageregionstribes` (
   `id` int(3) NOT NULL,
   `regionID` int(3) NOT NULL,
   `tribeID` int(3) NOT NULL,
+  `valid` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Region to tribe lookup table';
 
@@ -2047,6 +1746,22 @@ CREATE TABLE `ironagetribes` (
 -- --------------------------------------------------------
 
 -- 
+-- Table structure for table `issueStatuses`
+-- 
+
+CREATE TABLE `issueStatuses` (
+  `id` int(11) NOT NULL auto_increment,
+  `status` varchar(255) collate utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `createdBy` int(11) NOT NULL,
+  `updated` datetime NOT NULL,
+  `updatedBy` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Issue status';
+
+-- --------------------------------------------------------
+
+-- 
 -- Table structure for table `issuers`
 -- 
 
@@ -2067,6 +1782,26 @@ CREATE TABLE `issuers` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=860 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `issues`
+-- 
+
+CREATE TABLE `issues` (
+  `id` int(11) NOT NULL auto_increment,
+  `issueTitle` varchar(255) collate utf8_unicode_ci default NULL,
+  `issueDescription` text collate utf8_unicode_ci,
+  `resolutionApplied` text collate utf8_unicode_ci,
+  `status` tinyint(2) default NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) default NULL,
+  `updated` datetime default NULL,
+  `updatedBy` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Issues raised with the database';
 
 -- --------------------------------------------------------
 
@@ -2109,7 +1844,8 @@ CREATE TABLE `licenseType` (
   `created` datetime default NULL,
   `updatedBy` int(6) default NULL,
   `updated` datetime default NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  KEY `flickrID` (`flickrID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='License types for images';
 
 -- --------------------------------------------------------
@@ -2146,7 +1882,7 @@ CREATE TABLE `logins` (
   PRIMARY KEY  (`id`),
   KEY `loginDate` (`loginDate`),
   KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=89171 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Login user history';
+) ENGINE=MyISAM AUTO_INCREMENT=191107 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Login user history';
 
 -- --------------------------------------------------------
 
@@ -2312,20 +2048,20 @@ CREATE TABLE `medievalcategories` (
 
 CREATE TABLE `medievaltypes` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `rulerID` int(10) unsigned NOT NULL default '0',
-  `periodID` int(10) unsigned NOT NULL default '0',
-  `datefrom` int(11) NOT NULL default '0',
-  `dateto` int(11) NOT NULL default '0',
-  `categoryID` int(10) unsigned NOT NULL default '0',
+  `rulerID` int(10) unsigned default NULL,
+  `periodID` int(10) unsigned default NULL,
+  `datefrom` int(11) default NULL,
+  `dateto` int(11) default NULL,
+  `categoryID` int(10) unsigned default NULL,
   `type` varchar(255) collate utf8_unicode_ci default NULL,
-  `created` datetime NOT NULL,
-  `createdBy` int(11) NOT NULL,
-  `updated` datetime NOT NULL,
-  `updatedBy` int(11) NOT NULL,
+  `created` datetime default NULL,
+  `createdBy` int(11) default NULL,
+  `updated` datetime default NULL,
+  `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `rulerID` (`rulerID`),
   KEY `categoryID` (`categoryID`)
-) ENGINE=MyISAM AUTO_INCREMENT=3474 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Coin types';
+) ENGINE=MyISAM AUTO_INCREMENT=4069 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0 COMMENT='Coin types';
 
 -- --------------------------------------------------------
 
@@ -2338,21 +2074,21 @@ CREATE TABLE `messages` (
   `comment_author` varchar(255) collate utf8_unicode_ci default NULL,
   `comment_type` varchar(100) collate utf8_unicode_ci default NULL,
   `comment_content` text collate utf8_unicode_ci,
-  `messagetext` text collate utf8_unicode_ci,
   `comment_author_email` varchar(255) collate utf8_unicode_ci default NULL,
-  `comment_author_url` varchar(255) collate utf8_unicode_ci default NULL,
+  `comment_author_url` varchar(200) collate utf8_unicode_ci NOT NULL,
   `comment_date` datetime default NULL,
+  `created` datetime NOT NULL,
+  `createdBy` int(11) NOT NULL,
   `comment_approved` varchar(50) collate utf8_unicode_ci default NULL,
   `user_id` int(11) default NULL,
   `user_ip` varchar(50) collate utf8_unicode_ci default NULL,
   `user_agent` varchar(255) collate utf8_unicode_ci default NULL,
-  `replied` tinyint(4) default NULL,
-  `created` datetime default NULL,
-  `createdBy` int(11) default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` int(11) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=390 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Log of messages from contact us form';
+  `replied` tinyint(4) NOT NULL,
+  `updated` datetime NOT NULL,
+  `updatedBy` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `createdBy` (`createdBy`)
+) ENGINE=MyISAM AUTO_INCREMENT=728 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Log of messages from contact us form';
 
 -- --------------------------------------------------------
 
@@ -2380,6 +2116,10 @@ CREATE TABLE `mints` (
   `period` int(10) unsigned NOT NULL default '0',
   `old_period` varchar(255) collate utf8_unicode_ci default NULL,
   `mint_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `nomismaID` varchar(100) collate utf8_unicode_ci default NULL,
+  `pleiadesID` int(11) default NULL,
+  `geonamesID` int(11) default NULL,
+  `woeid` int(11) default NULL,
   `valid` tinyint(4) unsigned NOT NULL default '1',
   `created` datetime default '0000-00-00 00:00:00',
   `createdBy` int(11) default NULL,
@@ -2388,28 +2128,12 @@ CREATE TABLE `mints` (
   PRIMARY KEY  (`id`),
   KEY `mint_name` (`mint_name`),
   KEY `valid` (`valid`),
-  KEY `period` (`period`)
-) ENGINE=MyISAM AUTO_INCREMENT=1521 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `mints_old`
--- 
-
-CREATE TABLE `mints_old` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `period` int(10) unsigned NOT NULL default '0',
-  `old_period` varchar(255) NOT NULL default '',
-  `mint_name` varchar(255) NOT NULL,
-  `valid` tinyint(4) unsigned NOT NULL default '1',
-  `created` datetime default '0000-00-00 00:00:00',
-  `created_by` varchar(255) default NULL,
-  `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  `updated_by` varchar(255) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `mint_name` (`mint_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=438 DEFAULT CHARSET=latin1;
+  KEY `period` (`period`),
+  KEY `pleiadesID` (`pleiadesID`),
+  KEY `woeid` (`woeid`),
+  KEY `geonamesID` (`geonamesID`),
+  KEY `nomismaID` (`nomismaID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1530 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2428,25 +2152,7 @@ CREATE TABLE `mints_rulers` (
   PRIMARY KEY  (`id`),
   KEY `mint_id` (`mint_id`),
   KEY `ruler_id` (`ruler_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3248 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `mints_rulers_old`
--- 
-
-CREATE TABLE `mints_rulers_old` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `ruler_id` int(10) unsigned NOT NULL default '0',
-  `mint_id` int(10) unsigned NOT NULL default '0',
-  `created` datetime NOT NULL,
-  `created_by` int(2) NOT NULL,
-  `modified` datetime NOT NULL,
-  `modified_by` int(2) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `ruler_id` (`ruler_id`,`mint_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2708 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3259 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2545,22 +2251,23 @@ CREATE TABLE `news` (
   `keywords` varchar(255) collate utf8_unicode_ci default NULL,
   `regionID` varchar(255) collate utf8_unicode_ci default NULL,
   `typeID` varchar(255) character set latin1 default NULL,
-  `publish_state` tinyint(1) default '0',
-  `golive` datetime default '0000-00-00 00:00:00',
+  `publish_state` tinyint(1) NOT NULL,
+  `golive` datetime NOT NULL,
   `primaryNewsLocation` varchar(255) collate utf8_unicode_ci default NULL,
   `latitude` float default NULL,
   `longitude` float default NULL,
-  `woeid` int(11) NOT NULL,
-  `created` datetime default '0000-00-00 00:00:00',
-  `createdBy` int(3) default '0',
-  `updatedBy` int(3) default '0',
-  `updated` datetime default '0000-00-00 00:00:00',
+  `woeid` int(11) default NULL,
+  `created` datetime NOT NULL,
+  `createdBy` int(3) NOT NULL,
+  `updatedBy` int(3) NOT NULL,
+  `updated` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `woeid` (`woeid`),
   KEY `createdBy` (`createdBy`),
   KEY `updatedBy` (`updatedBy`),
-  KEY `created` (`created`)
-) ENGINE=MyISAM AUTO_INCREMENT=227 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
+  KEY `created` (`created`),
+  KEY `golive` (`golive`)
+) ENGINE=MyISAM AUTO_INCREMENT=249 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
 
 -- --------------------------------------------------------
 
@@ -2581,7 +2288,7 @@ CREATE TABLE `oai_pmh_repository_tokens` (
   `useragent` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `expiration` (`expiration`)
-) ENGINE=MyISAM AUTO_INCREMENT=22937 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
+) ENGINE=MyISAM AUTO_INCREMENT=86383 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
 
 -- --------------------------------------------------------
 
@@ -2601,7 +2308,7 @@ CREATE TABLE `oauthTokens` (
   PRIMARY KEY  (`id`),
   KEY `expires` (`expires`),
   KEY `service` (`service`)
-) ENGINE=MyISAM AUTO_INCREMENT=13662 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0 COMMENT='Oauth tokens';
+) ENGINE=MyISAM AUTO_INCREMENT=20717 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0 COMMENT='Oauth tokens';
 
 -- --------------------------------------------------------
 
@@ -2620,7 +2327,39 @@ CREATE TABLE `objectterms` (
   PRIMARY KEY  (`id`),
   KEY `term` (`term`),
   KEY `indexTerm` (`indexTerm`)
-) ENGINE=MyISAM AUTO_INCREMENT=2126 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2128 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `oldrulers`
+-- 
+
+CREATE TABLE `oldrulers` (
+  `id` int(11) NOT NULL auto_increment,
+  `period` int(11) default NULL,
+  `issuer` char(255) default NULL,
+  `viaf` int(11) default NULL,
+  `dbpedia` varchar(100) default NULL,
+  `nomismaID` varchar(100) default NULL,
+  `country` int(11) default NULL,
+  `region` char(255) default NULL,
+  `date1` smallint(6) default NULL,
+  `date2` smallint(6) default NULL,
+  `valid` smallint(6) default NULL,
+  `display` tinyint(1) NOT NULL default '1',
+  `created` datetime default NULL,
+  `createdBy` char(255) default NULL,
+  `updated` datetime default NULL,
+  `updatedBy` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `issuer` (`issuer`),
+  KEY `country` (`country`),
+  KEY `display` (`display`),
+  KEY `date1` (`date1`),
+  KEY `date2` (`date2`),
+  KEY `valid` (`valid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1375 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2677,7 +2416,7 @@ CREATE TABLE `organisations` (
   PRIMARY KEY  (`id`),
   KEY `woeid` (`woeid`),
   KEY `secuid` (`secuid`)
-) ENGINE=MyISAM AUTO_INCREMENT=392 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
+) ENGINE=MyISAM AUTO_INCREMENT=422 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
 
 -- --------------------------------------------------------
 
@@ -2687,7 +2426,7 @@ CREATE TABLE `organisations` (
 
 CREATE TABLE `organisationsAudit` (
   `id` int(11) unsigned NOT NULL auto_increment,
-  `recordID` int(11) NOT NULL,
+  `orgID` int(11) default NULL,
   `editID` varchar(25) collate utf8_unicode_ci default NULL,
   `fieldName` varchar(255) collate utf8_unicode_ci default NULL,
   `beforeValue` mediumtext collate utf8_unicode_ci,
@@ -2697,39 +2436,7 @@ CREATE TABLE `organisationsAudit` (
   PRIMARY KEY  (`id`),
   KEY `createdBy` (`createdBy`),
   KEY `editID` (`editID`)
-) ENGINE=MyISAM AUTO_INCREMENT=281 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `organisationsOld`
--- 
-
-CREATE TABLE `organisationsOld` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(100) default NULL,
-  `website` varchar(255) default NULL,
-  `address1` varchar(100) default NULL,
-  `address2` varchar(100) default NULL,
-  `address3` varchar(100) default NULL,
-  `address` text,
-  `town_city` varchar(50) default NULL,
-  `county` varchar(50) default NULL,
-  `country` varchar(50) default NULL,
-  `postcode` varchar(50) default NULL,
-  `woeid` int(11) default NULL,
-  `lat` float default NULL,
-  `lon` float default NULL,
-  `contactpersonID` varchar(50) default NULL,
-  `created` datetime default NULL,
-  `createdBy` int(20) unsigned default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` int(20) unsigned default NULL,
-  `secuid` varchar(50) default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `secuid` (`secuid`),
-  KEY `woeid` (`woeid`)
-) ENGINE=MyISAM AUTO_INCREMENT=339 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=361 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2799,18 +2506,20 @@ CREATE TABLE `people` (
   `secuid` varchar(50) collate utf8_unicode_ci default NULL,
   `secreplica` varchar(50) collate utf8_unicode_ci default NULL,
   `primary_activity` int(11) default NULL,
-  `lat` double default NULL,
-  `lon` double default NULL,
+  `lat` float default NULL,
+  `lon` float default NULL,
   `woeid` int(11) default NULL,
   `dbaseID` int(11) default NULL,
+  `canRecord` tinyint(4) default NULL,
   PRIMARY KEY  (`id`),
   KEY `primary_activity` (`primary_activity`),
   KEY `woeid` (`woeid`),
   KEY `secuid` (`secuid`),
   KEY `dbaseID` (`dbaseID`),
   KEY `organisationID` (`organisationID`),
-  KEY `fullname` (`fullname`)
-) ENGINE=MyISAM AUTO_INCREMENT=23529 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `fullname` (`fullname`),
+  KEY `canRecord` (`canRecord`)
+) ENGINE=MyISAM AUTO_INCREMENT=25945 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2831,48 +2540,7 @@ CREATE TABLE `peopleAudit` (
   PRIMARY KEY  (`id`),
   KEY `createdBy` (`createdBy`),
   KEY `editID` (`editID`)
-) ENGINE=MyISAM AUTO_INCREMENT=21480 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `peopleold`
--- 
-
-CREATE TABLE `peopleold` (
-  `id` int(11) NOT NULL auto_increment,
-  `organisationID` varchar(50) default NULL,
-  `surname` varchar(90) default NULL,
-  `forename` varchar(50) default NULL,
-  `fullname` varchar(250) default NULL,
-  `title` varchar(20) default NULL,
-  `address` text,
-  `town_city` varchar(50) default NULL,
-  `county` varchar(50) default NULL,
-  `country` varchar(50) default NULL,
-  `postcode` varchar(50) default NULL,
-  `hometel` varchar(50) default NULL,
-  `worktel` varchar(50) default NULL,
-  `email` varchar(50) default NULL,
-  `fax` varchar(50) default NULL,
-  `comments` varchar(255) default NULL,
-  `lat` float default NULL,
-  `lon` float default NULL,
-  `woeid` int(11) default NULL,
-  `created` datetime default NULL,
-  `createdBy` int(11) default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` int(11) default NULL,
-  `secuid` varchar(50) default NULL,
-  `primary_activity` int(11) default NULL,
-  `dbaseID` int(11) default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `secuid` (`secuid`),
-  KEY `primary_activity` (`primary_activity`),
-  KEY `Forename` (`forename`),
-  KEY `fullname` (`fullname`),
-  KEY `woeid` (`woeid`)
-) ENGINE=MyISAM AUTO_INCREMENT=18966 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28149 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2938,7 +2606,7 @@ CREATE TABLE `places` (
   KEY `parish` (`parish`),
   KEY `county` (`county`),
   KEY `district` (`district`)
-) ENGINE=MyISAM AUTO_INCREMENT=12303 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12305 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3014,7 +2682,7 @@ CREATE TABLE `projecttypes` (
   `updated` datetime default NULL,
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Types of research project';
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Types of research project';
 
 -- --------------------------------------------------------
 
@@ -3024,12 +2692,12 @@ CREATE TABLE `projecttypes` (
 
 CREATE TABLE `publications` (
   `id` int(11) NOT NULL auto_increment,
-  `title` text collate utf8_unicode_ci,
-  `in_publication` text collate utf8_unicode_ci,
+  `title` varchar(255) collate utf8_unicode_ci default NULL,
   `publication_type` varchar(20) collate utf8_unicode_ci default NULL,
   `authors` varchar(255) collate utf8_unicode_ci default NULL,
   `editors` varchar(255) collate utf8_unicode_ci default NULL,
   `reprint_year` smallint(6) default NULL,
+  `in_publication` varchar(255) collate utf8_unicode_ci default NULL,
   `article_pages` varchar(20) collate utf8_unicode_ci default NULL,
   `edition` varchar(50) collate utf8_unicode_ci default NULL,
   `publisher` varchar(150) collate utf8_unicode_ci default NULL,
@@ -3038,6 +2706,8 @@ CREATE TABLE `publications` (
   `vol_no` varchar(30) collate utf8_unicode_ci default NULL,
   `ISBN` varchar(20) collate utf8_unicode_ci default NULL,
   `url` varchar(255) collate utf8_unicode_ci default NULL,
+  `biab` int(11) default NULL,
+  `doi` varchar(255) collate utf8_unicode_ci default NULL,
   `accessedDate` date default NULL,
   `medium` varchar(255) collate utf8_unicode_ci default NULL,
   `created` datetime default NULL,
@@ -3046,45 +2716,14 @@ CREATE TABLE `publications` (
   `updatedBy` int(11) unsigned default NULL,
   `secuid` varchar(50) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
+  KEY `in_publication` (`in_publication`),
   KEY `publication_type` (`publication_type`),
   KEY `secuid` (`secuid`),
+  KEY `biab` (`biab`),
+  KEY `doi` (`doi`),
   FULLTEXT KEY `title` (`title`),
   FULLTEXT KEY `authors` (`authors`)
-) ENGINE=MyISAM AUTO_INCREMENT=2659 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `publications_old`
--- 
-
-CREATE TABLE `publications_old` (
-  `id` int(11) NOT NULL auto_increment,
-  `title` varchar(255) default NULL,
-  `publication_type` int(11) default NULL,
-  `authors` varchar(100) default NULL,
-  `reprint_year` smallint(6) default NULL,
-  `in_publication` int(11) default NULL,
-  `editors` varchar(255) default NULL,
-  `article_pages` varchar(20) default NULL,
-  `edition` varchar(50) default NULL,
-  `publisher` varchar(150) default NULL,
-  `publication_place` varchar(20) default NULL,
-  `publication_year` smallint(4) default NULL,
-  `vol_no` varchar(30) default NULL,
-  `ISBN` varchar(200) character set latin1 default NULL,
-  `url` varchar(255) default NULL,
-  `accessedDate` date default NULL,
-  `medium` varchar(100) default NULL,
-  `created` datetime default NULL,
-  `createdBy` int(20) unsigned default NULL,
-  `updated` datetime default NULL,
-  `updatedBy` int(20) unsigned default NULL,
-  `secuid` varchar(50) character set latin1 default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `publication_type` (`publication_type`),
-  KEY `in_publication` (`in_publication`)
-) ENGINE=MyISAM AUTO_INCREMENT=2131 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2812 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3139,8 +2778,8 @@ CREATE TABLE `rallies` (
   `district` varchar(255) collate utf8_unicode_ci default NULL,
   `county` varchar(255) collate utf8_unicode_ci default NULL,
   `gridref` varchar(15) collate utf8_unicode_ci default NULL,
-  `latitude` double NOT NULL,
-  `longitude` double NOT NULL,
+  `latitude` double default NULL,
+  `longitude` double default NULL,
   `easting` int(11) default NULL,
   `northing` int(11) default NULL,
   `map25k` varchar(11) collate utf8_unicode_ci default NULL,
@@ -3149,17 +2788,17 @@ CREATE TABLE `rallies` (
   `comments` text collate utf8_unicode_ci,
   `record_method` text collate utf8_unicode_ci,
   `organiser` varchar(30) collate utf8_unicode_ci default NULL,
-  `date_from` date NOT NULL,
+  `date_from` date default NULL,
   `date_to` date default NULL,
   `createdBy` int(11) default NULL,
-  `created` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `updated` datetime default NULL,
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `createdBy` (`createdBy`),
   KEY `updatedBy` (`updatedBy`),
   KEY `date_from` (`date_from`)
-) ENGINE=MyISAM AUTO_INCREMENT=197 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Rally locations';
+) ENGINE=MyISAM AUTO_INCREMENT=305 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0 COMMENT='Rally locations';
 
 -- --------------------------------------------------------
 
@@ -3180,7 +2819,7 @@ CREATE TABLE `rallyXflo` (
   PRIMARY KEY  (`id`),
   KEY `rallyID` (`rallyID`),
   KEY `staffID` (`staffID`)
-) ENGINE=MyISAM AUTO_INCREMENT=155 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Flos attending a rally';
+) ENGINE=MyISAM AUTO_INCREMENT=191 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Flos attending a rally';
 
 -- --------------------------------------------------------
 
@@ -3215,12 +2854,17 @@ CREATE TABLE `reeceperiods` (
 
 CREATE TABLE `reeceperiods_rulers` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `ruler_id` int(10) unsigned NOT NULL default '0',
-  `reeceperiod_id` int(10) unsigned NOT NULL default '0',
-  `periodID` int(10) unsigned NOT NULL default '0',
+  `ruler_id` int(10) NOT NULL,
+  `reeceperiod_id` int(10) NOT NULL,
+  `periodID` int(10) NOT NULL,
+  `created` datetime NOT NULL,
+  `createdBy` int(11) NOT NULL default '56',
+  `updated` datetime NOT NULL,
+  `updatedBy` int(11) NOT NULL default '56',
   PRIMARY KEY  (`id`),
-  KEY `idx_rulerperiod` (`ruler_id`,`periodID`)
-) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `ruler_id` (`ruler_id`),
+  KEY `reeceperiod_id` (`reeceperiod_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3268,7 +2912,7 @@ CREATE TABLE `replies` (
   `createdBy` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `messageID` (`messageID`)
-) ENGINE=MyISAM AUTO_INCREMENT=146 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Replies to submitted messages';
+) ENGINE=MyISAM AUTO_INCREMENT=285 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Replies to submitted messages';
 
 -- --------------------------------------------------------
 
@@ -3294,7 +2938,7 @@ CREATE TABLE `researchprojects` (
   KEY `valid` (`valid`),
   KEY `createdBy` (`createdBy`),
   KEY `updatedBy` (`updatedBy`)
-) ENGINE=MyISAM AUTO_INCREMENT=300 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='List of research projects';
+) ENGINE=MyISAM AUTO_INCREMENT=379 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='List of research projects';
 
 -- --------------------------------------------------------
 
@@ -3401,15 +3045,17 @@ CREATE TABLE `romandenoms` (
 CREATE TABLE `romanmints` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) collate utf8_unicode_ci default NULL,
-  `pasID` int(3) NOT NULL default '0',
+  `pasID` int(3) default NULL,
   `latitude` double default NULL,
   `longitude` double default NULL,
+  `pleiadesID` int(11) default NULL,
+  `geonamesID` int(11) default NULL,
   `abbrev` varchar(255) collate utf8_unicode_ci default NULL,
   `description` text collate utf8_unicode_ci,
-  `created_on` datetime NOT NULL default '0000-00-00 00:00:00',
-  `created_by` int(3) NOT NULL default '0',
-  `updated_by` int(3) NOT NULL default '0',
-  `updated_on` datetime NOT NULL default '0000-00-00 00:00:00',
+  `created_on` datetime default NULL,
+  `created_by` int(3) default NULL,
+  `updated_by` int(3) default NULL,
+  `updated_on` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `pasID` (`pasID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -3432,7 +3078,7 @@ CREATE TABLE `rulerImages` (
   `createdBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `rulerID` (`rulerID`)
-) ENGINE=MyISAM AUTO_INCREMENT=156 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0 COMMENT='Ruler images';
+) ENGINE=MyISAM AUTO_INCREMENT=171 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0 COMMENT='Ruler images';
 
 -- --------------------------------------------------------
 
@@ -3461,6 +3107,9 @@ CREATE TABLE `rulers` (
   `id` int(11) NOT NULL auto_increment,
   `period` int(11) default NULL,
   `issuer` char(255) default NULL,
+  `viaf` int(11) default NULL,
+  `nomismaID` varchar(100) default NULL,
+  `dbpedia` varchar(100) default NULL,
   `country` int(11) default NULL,
   `region` char(255) default NULL,
   `date1` smallint(6) default NULL,
@@ -3478,7 +3127,7 @@ CREATE TABLE `rulers` (
   KEY `date1` (`date1`),
   KEY `date2` (`date2`),
   KEY `valid` (`valid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2244 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2274 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -3502,7 +3151,7 @@ CREATE TABLE `savedSearches` (
   KEY `createdBy` (`createdBy`),
   KEY `updatedBy` (`updatedBy`),
   KEY `public` (`public`)
-) ENGINE=MyISAM AUTO_INCREMENT=691 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Saved searchs referenced to users';
+) ENGINE=MyISAM AUTO_INCREMENT=1085 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Saved searchs referenced to users';
 
 -- --------------------------------------------------------
 
@@ -3552,8 +3201,9 @@ CREATE TABLE `searches` (
   `userid` int(11) NOT NULL,
   `ipaddress` varchar(16) collate utf8_unicode_ci default NULL,
   `useragent` varchar(255) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6653137 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY  (`id`),
+  KEY `userid` (`userid`)
+) ENGINE=MyISAM AUTO_INCREMENT=3521511 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3584,10 +3234,11 @@ CREATE TABLE `slides` (
   `imagecreator` varchar(100) collate utf8_unicode_ci default NULL,
   `imagesource` varchar(100) collate utf8_unicode_ci default NULL,
   `secuid` varchar(50) collate utf8_unicode_ci default NULL,
-  `updated` datetime default '0000-00-00 00:00:00',
-  `updatedBy` int(10) unsigned default '0',
-  `createdBy` int(10) unsigned default '0',
-  `created` datetime default '0000-00-00 00:00:00',
+  `updated` datetime default NULL,
+  `updatedBy` int(10) unsigned default NULL,
+  `createdBy` int(10) unsigned default NULL,
+  `created` datetime default NULL,
+  `institution` varchar(12) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`imageID`),
   KEY `imagecreator` (`imagecreator`),
   KEY `county` (`county`),
@@ -3596,66 +3247,9 @@ CREATE TABLE `slides` (
   KEY `createdBy` (`createdBy`),
   KEY `period` (`period`),
   KEY `ccLicense` (`ccLicense`),
+  KEY `institution` (`institution`),
   FULLTEXT KEY `label` (`label`)
-) ENGINE=MyISAM AUTO_INCREMENT=361078 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `slides2`
--- 
-
-CREATE TABLE `slides2` (
-  `imageID` int(11) unsigned NOT NULL auto_increment,
-  `type` varchar(30) default NULL,
-  `filename` varchar(100) NOT NULL,
-  `filesize` int(10) unsigned default NULL,
-  `filedate` datetime default NULL,
-  `label` text,
-  `period` varchar(30) default NULL,
-  `country` varchar(20) default NULL,
-  `keywords` varchar(50) default NULL,
-  `filecreated` datetime default NULL,
-  `imagecreated` smallint(4) unsigned default NULL,
-  `imagerights` varchar(100) default NULL,
-  `imagesite` varchar(100) default NULL,
-  `fileowner` int(10) unsigned NOT NULL default '0',
-  `attrmodified` datetime default NULL,
-  `filecopyright` varchar(100) default NULL,
-  `imagetitle` varchar(100) default NULL,
-  `county` varchar(100) default NULL,
-  `imagecreator` varchar(100) default NULL,
-  `imagesource` varchar(100) default NULL,
-  `secuid` varchar(50) NOT NULL,
-  `updated` datetime NOT NULL default '0000-00-00 00:00:00',
-  `updatedBy` int(10) unsigned NOT NULL default '0',
-  `createdBy` int(10) unsigned NOT NULL default '0',
-  `created` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`imageID`),
-  KEY `imagecreator` (`imagecreator`),
-  KEY `county` (`county`),
-  KEY `createdBy` (`createdBy`),
-  KEY `secuid` (`secuid`),
-  KEY `filename` (`filename`)
-) ENGINE=MyISAM AUTO_INCREMENT=215925 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `socialcount`
--- 
-
-CREATE TABLE `socialcount` (
-  `id` mediumint(9) NOT NULL auto_increment,
-  `type` varchar(15) collate utf8_unicode_ci default NULL,
-  `time` bigint(11) NOT NULL default '0',
-  `url` varchar(150) collate utf8_unicode_ci default NULL,
-  `alturl` varchar(150) collate utf8_unicode_ci default NULL,
-  `count` mediumint(9) NOT NULL,
-  `altcount` mediumint(9) NOT NULL,
-  `optcount` mediumint(9) NOT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=424828 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3668,7 +3262,7 @@ CREATE TABLE `staff` (
   `firstname` varchar(255) collate utf8_unicode_ci default NULL,
   `lastname` varchar(255) collate utf8_unicode_ci default NULL,
   `role` varchar(255) collate utf8_unicode_ci default NULL,
-  `dbaseID` int(11) default '0',
+  `dbaseID` int(11) default NULL,
   `email_one` varchar(255) collate utf8_unicode_ci default NULL,
   `email_two` varchar(255) collate utf8_unicode_ci default NULL,
   `address_1` varchar(255) collate utf8_unicode_ci default NULL,
@@ -3677,25 +3271,25 @@ CREATE TABLE `staff` (
   `county` varchar(255) collate utf8_unicode_ci default NULL,
   `postcode` varchar(15) collate utf8_unicode_ci default NULL,
   `country` varchar(15) collate utf8_unicode_ci default NULL,
-  `longitude` double default '0',
-  `latitude` double default '0',
+  `longitude` double default NULL,
+  `latitude` double default NULL,
   `woeid` int(11) default NULL,
   `identifier` varchar(10) collate utf8_unicode_ci default NULL,
-  `region` int(2) default '0',
+  `region` int(2) default NULL,
   `telephone` varchar(255) collate utf8_unicode_ci default NULL,
   `fax` varchar(255) collate utf8_unicode_ci default NULL,
   `website` varchar(255) collate utf8_unicode_ci default NULL,
   `profile` text collate utf8_unicode_ci,
   `image` varchar(100) collate utf8_unicode_ci default NULL,
-  `updatedBy` int(3) default '0',
-  `updated` datetime default '0000-00-00 00:00:00',
-  `createdBy` int(11) default '0',
-  `created` datetime default '0000-00-00 00:00:00',
+  `updatedBy` int(3) default NULL,
+  `updated` datetime default NULL,
+  `createdBy` int(11) default NULL,
+  `created` datetime default NULL,
   `alumni` enum('1') collate utf8_unicode_ci default NULL,
   `blog_path` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `dbaseID` (`dbaseID`)
-) ENGINE=MyISAM AUTO_INCREMENT=151 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3704,20 +3298,20 @@ CREATE TABLE `staff` (
 -- 
 
 CREATE TABLE `staffregions` (
-  `ID` int(4) NOT NULL auto_increment,
-  `regionID` int(11) NOT NULL default '0',
+  `id` int(4) NOT NULL auto_increment,
+  `regionID` int(11) default NULL,
   `prefix` varchar(6) collate utf8_unicode_ci default NULL,
   `description` varchar(255) collate utf8_unicode_ci default NULL,
   `notes` varchar(255) collate utf8_unicode_ci default NULL,
   `county_map` varchar(100) collate utf8_unicode_ci default NULL,
   `kml_file` varchar(100) collate utf8_unicode_ci default NULL,
   `host` varchar(100) collate utf8_unicode_ci default NULL,
-  `created_by` int(11) NOT NULL default '0',
-  `created_on` datetime NOT NULL default '0000-00-00 00:00:00',
-  `updated_by` int(11) NOT NULL default '0',
-  `updated_on` datetime NOT NULL default '0000-00-00 00:00:00',
+  `created_by` int(11) default NULL,
+  `created_on` datetime default NULL,
+  `updated_by` int(11) default NULL,
+  `updated_on` datetime default NULL,
   `rssfeed` text collate utf8_unicode_ci,
-  PRIMARY KEY  (`ID`),
+  PRIMARY KEY  (`id`),
   KEY `prefix` (`prefix`),
   KEY `regionID` (`regionID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -3738,7 +3332,7 @@ CREATE TABLE `staffroles` (
   `updatedBy` int(11) default NULL,
   `updated` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -4061,7 +3655,7 @@ CREATE TABLE `userOnlineAccounts` (
   KEY `public` (`public`),
   KEY `userID` (`userID`),
   KEY `accountName` (`accountName`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='online accounts for users for foaf';
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='online accounts for users for foaf';
 
 -- --------------------------------------------------------
 
@@ -4082,6 +3676,7 @@ CREATE TABLE `users` (
   `fax` varchar(60) collate utf8_unicode_ci default NULL,
   `lastvisit` varchar(60) collate utf8_unicode_ci default NULL,
   `fullname` varchar(60) collate utf8_unicode_ci default NULL,
+  `preferred_name` varchar(255) collate utf8_unicode_ci default NULL,
   `first_name` varchar(255) collate utf8_unicode_ci default NULL,
   `last_name` varchar(255) collate utf8_unicode_ci default NULL,
   `activationKey` varchar(34) collate utf8_unicode_ci default NULL,
@@ -4099,6 +3694,7 @@ CREATE TABLE `users` (
   `peopleID` varchar(50) collate utf8_unicode_ci default NULL,
   `lastLogin` datetime default NULL,
   `avatar` varchar(255) collate utf8_unicode_ci default NULL,
+  `canRecord` tinyint(1) default NULL,
   `created` datetime default NULL,
   `createdBy` varchar(50) collate utf8_unicode_ci default NULL,
   `updated` datetime default NULL,
@@ -4110,8 +3706,10 @@ CREATE TABLE `users` (
   KEY `lastLogin` (`lastLogin`),
   KEY `visits` (`visits`),
   KEY `email` (`email`),
-  KEY `higherLevel` (`higherLevel`)
-) ENGINE=MyISAM AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `higherLevel` (`higherLevel`),
+  KEY `canRecord` (`canRecord`),
+  KEY `peopleID` (`peopleID`)
+) ENGINE=MyISAM AUTO_INCREMENT=14627 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -4121,7 +3719,8 @@ CREATE TABLE `users` (
 
 CREATE TABLE `usersAudit` (
   `id` int(11) unsigned NOT NULL auto_increment,
-  `findID` int(11) default '0',
+  `recordID` int(11) default NULL,
+  `entityID` int(11) default NULL,
   `editID` varchar(25) collate utf8_unicode_ci default NULL,
   `fieldName` varchar(255) collate utf8_unicode_ci default NULL,
   `beforeValue` mediumtext collate utf8_unicode_ci,
@@ -4131,7 +3730,7 @@ CREATE TABLE `usersAudit` (
   PRIMARY KEY  (`id`),
   KEY `createdBy` (`createdBy`),
   KEY `editID` (`editID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=737 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -4177,63 +3776,22 @@ CREATE TABLE `usersInterests` (
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `usersold`
--- 
-
-CREATE TABLE `usersold` (
-  `username` varchar(255) NOT NULL default '',
-  `activationKey` varchar(34) default NULL,
-  `seclevel` smallint(6) unsigned NOT NULL default '0',
-  `password` varchar(250) NOT NULL default '',
-  `institution` varchar(100) default 'PUBLIC',
-  `email` varchar(60) default NULL,
-  `fullname` varchar(60) default NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `higherLevel` tinyint(1) default '0',
-  `researchOutline` text,
-  `already` tinyint(1) default NULL,
-  `reference` varchar(255) default NULL,
-  `referenceEmail` varchar(255) default NULL,
-  `visits` int(11) unsigned NOT NULL default '0',
-  `imagedir` varchar(60) default 'images/',
-  `path` varchar(60) default NULL,
-  `updated` datetime default NULL,
-  `valid` enum('0','1') default '0',
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `lastLogin` datetime default NULL,
-  `role` varchar(25) default 'public',
-  `peopleID` varchar(50) default NULL,
-  `avatar` varchar(255) default NULL,
-  `created` datetime default NULL,
-  `createdBy` varchar(50) default NULL,
-  `updatedBy` varchar(50) default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `username` (`username`),
-  KEY `valid` (`valid`),
-  KEY `lastLogin` (`lastLogin`),
-  KEY `institution` (`institution`)
-) ENGINE=MyISAM AUTO_INCREMENT=1112 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
--- 
 -- Table structure for table `vacancies`
 -- 
 
 CREATE TABLE `vacancies` (
   `id` int(2) NOT NULL auto_increment,
   `title` varchar(255) collate utf8_unicode_ci default NULL,
-  `regionID` int(2) NOT NULL default '0',
+  `regionID` int(2) default NULL,
   `specification` text collate utf8_unicode_ci,
   `salary` varchar(20) collate utf8_unicode_ci default NULL,
-  `created` datetime NOT NULL default '0000-00-00 00:00:00',
+  `created` datetime default NULL,
   `status` enum('1','2') collate utf8_unicode_ci default '1',
-  `live` date NOT NULL default '0000-00-00',
-  `expire` date NOT NULL default '0000-00-00',
-  `createdBy` int(3) NOT NULL default '0',
-  `updatedBy` int(3) NOT NULL default '0',
-  `updated` datetime NOT NULL default '0000-00-00 00:00:00',
+  `live` date default NULL,
+  `expire` date default NULL,
+  `createdBy` int(3) default NULL,
+  `updatedBy` int(3) default NULL,
+  `updated` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `live` (`live`),
   KEY `expire` (`expire`),
@@ -4241,7 +3799,7 @@ CREATE TABLE `vacancies` (
   KEY `updatedBy` (`updatedBy`),
   KEY `status` (`status`),
   KEY `regionID` (`regionID`)
-) ENGINE=MyISAM AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=118 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -4251,14 +3809,16 @@ CREATE TABLE `vacancies` (
 
 CREATE TABLE `vanarsdelltypes` (
   `id` int(11) NOT NULL auto_increment,
-  `type` float default NULL,
+  `type` varchar(12) collate utf8_unicode_ci default NULL,
   `created` datetime default NULL,
-  `createBy` int(11) default NULL,
+  `createdBy` int(11) default NULL,
   `updated` datetime default NULL,
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
-  KEY `type` (`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=844 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Van Arsdell types';
+  KEY `type` (`type`),
+  KEY `createdBy` (`createdBy`),
+  KEY `updatedBy` (`updatedBy`)
+) ENGINE=MyISAM AUTO_INCREMENT=843 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci PACK_KEYS=0;
 
 -- --------------------------------------------------------
 
@@ -4281,7 +3841,7 @@ CREATE TABLE `volunteers` (
   `updated` datetime default NULL,
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Volunteer opportunities with the scheme';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Volunteer opportunities with the scheme';
 
 -- --------------------------------------------------------
 
@@ -4321,7 +3881,7 @@ CREATE TABLE `webServices` (
   `updatedBy` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `service` (`service`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Web services for social networking';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Web services for social networking';
 
 -- --------------------------------------------------------
 

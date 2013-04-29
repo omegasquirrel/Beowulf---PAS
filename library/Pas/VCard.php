@@ -66,6 +66,7 @@ class Pas_VCard {
   missing values, generates the vcard data string.
   */  
   function build() {
+  	
     $this->log .= "vcard build() called<br />";
     /*
     For many of the values, if they are not passed in, we set defaults or

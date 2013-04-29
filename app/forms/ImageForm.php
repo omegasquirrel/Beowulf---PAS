@@ -54,7 +54,7 @@ class ImageForm extends Pas_Form
 	$image = new Zend_Form_Element_File('image');
 	$image->setLabel('Upload an image: ')
 	->setRequired(true)
-	->setAttrib('size',20)
+	->setAttribs(array('size' => 20, 'class' => 'required'))
 	->addValidator('Extension', false, 'jpeg,tif,jpg,png,gif,tiff,JPG,JPEG,GIF,PNG,TIFF,TIF')
 	->setDescription('Filename should not include spaces,commas,( or )')
 	->addErrorMessage('You must upload a file with the correct file extension in this array - jpeg,tif,jpg,png,gif');
@@ -62,8 +62,7 @@ class ImageForm extends Pas_Form
 	$imagelabel = new Zend_Form_Element_Text('label');
 	$imagelabel->setLabel('Image label: ')
 	->setRequired(true)
-	->setAttrib('size',60)
-	->setAttrib('class','span6')
+	->setAttribs(array('size' => 60, 'class' => 'span6 required'))
 	->addErrorMessage('You must enter a label')
 	->setDescription('This must be descriptive text about the image - NOT THE FILE or FIND NUMBER/NAME - and follow the 
 	conventions outlined below this form')
@@ -72,6 +71,7 @@ class ImageForm extends Pas_Form
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
 	->setRequired(true)
+	->setAttrib('class','required')
 	->addErrorMessage('You must enter a period for the image')
 	->addMultiOptions(array(NULL => 'Select a period', 'Valid periods' => $period_options))
 	->addValidator('inArray', false, array(array_keys($period_options)));
@@ -79,6 +79,7 @@ class ImageForm extends Pas_Form
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 	->setRequired(true)
+	->setAttrib('class','required')
 	->addErrorMessage('You must enter a county of origin')
 	->addMultiOptions(array(NULL => 'Select a county of origin','Valid counties' => $county_options))
 	->addValidator('inArray', false, array(array_keys($county_options)));

@@ -71,24 +71,19 @@ class News_StoriesController extends Pas_Controller_Action_Admin {
 	$this->view->news = $news->getStory($this->_getParam('id'));
 	$comments = new Comments();
 	$this->view->comments = $comments->getCommentsNews($this->_getParam('id'));
-
 	$form = new CommentFindForm();
 	$form->submit->setLabel('Add a new comment');
 	$this->view->form = $form;
-        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
-        if ($form->isValid($form->getValues())) {
+	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) {
 	$data = $this->_helper->akismet($form->getValues());
-        $data['contentID'] = $this->_getParam('id');
-        $data['comment_type'] = 'newsComment';
-        $data['comment_approved'] = 'moderation';
-	$comments = new Comments();
+	$data['contentID'] = $this->_getParam('id');
+	$data['comment_type'] = 'newsComment';
+	$data['comment_approved'] = 'moderation';
 	$comments->add($data);
 	$this->_flashMessenger->addMessage('Your comment has been entered and will appear shortly!');
 	$this->_redirect('/news/stories/article/id/' . $this->_getParam('id'));
-	} else {
 	$this->_flashMessenger->addMessage('There are problems with your comment submission');
 	$form->populate($form->getValues());
-	}
 	}
 	} else {
 	throw new Exception('No parameter on the url string');

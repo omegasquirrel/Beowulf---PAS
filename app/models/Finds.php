@@ -53,15 +53,6 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $this->getAdapter()->fetchAll($select);
 	}
 
-	/** Get a count of all the finds and records on the database
-	* @return array
-	*/
-	public function getCountAllFinds() {
-	$finds = $this->getAdapter();
-	$select = $finds->select()
-		->from($this->_name, array('q' => 'SUM(quantity)','c' => 'COUNT(*)'));
-	return $finds->fetchAll($select);
-	}
 
 	/** Get a count of all the objects and records on the database
 	* @return array
@@ -1351,34 +1342,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	/** Get a person's finds
-	* @param array $params
-	* @return array
-	*/
-	public function getFindsToPerson($params) {
-	$finds = $this->getAdapter();
-	$select = $finds->select()
-		->from($this->_name,array('uniqueID' => 'secuid', 'objecttype', 'broadperiod',
-		'id', 'old_findID', 'description', 'secwfstage'))
-		->joinLeft('people','finds.finderID = people.secuid', array())
-		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename'))
-		->joinLeft('users','users.id = finds.createdBy', array('username'))
-		->joinLeft('findspots','findspots.findID = finds.secuid', array('county'))
-		->where('people.id = ?', (int)$params['id'])
-		->group('finds.id');
-	if(in_array($this->user->role,$this->_restricted)) {
-	$select->where('finds.secwfstage > ?', (int)2);
-	}
-	$paginator = Zend_Paginator::factory($select);
-	$paginator->setItemCountPerPage(10)
-		->setPageRange(10)
-                ->setCache($this->_cache);
-	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']);
-	}
-	return $paginator;
-	}
+	
 
 	/** Check if a findspot exists
 	* @param integer $findspotID The findspot ID
@@ -1394,23 +1358,6 @@ class Finds extends Pas_Db_Table_Abstract {
 	}
 
 
-	/** get attached publications for a findspot
-	* @param integer $findID The find ID
-	* @return array
-	*/
-	public function getFindtoPublication($findID) {
-	$finds = $this->getAdapter();
-	$select = $finds->select()
-		->from($this->_name,array('f' => 'old_findID', 'objecttype','broadperiod','id'))
-		->joinLeft('bibliography','finds.secuid = bibliography.findID', array())
-		->joinLeft('publications','publications.secuid = bibliography.pubID', array())
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
-		->where('publications.id = ?',(int)$findID);
-	if(in_array($this->user()->role,$this->_restricted)) {
-	$select->where('finds.secwfstage > ?', (int)2);
-	}
-	return $finds->fetchAll($select);
-	}
 
 	/** get data for embedding a find
 	* @param integer $findID The find ID

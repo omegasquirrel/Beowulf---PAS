@@ -55,10 +55,10 @@ $vc->data['fax_tel'] = $person['fax'];
 
 $vc->data['email1'] = $person['email_one'];
 #$vc->data['email2'] = $person['email_two'];
-$vc->data['url'] = "<?php echo $this->serverUrl();?>";
-if(isset($person['image']))
+$vc->data['url'] =  $this->serverUrl();
+if(!is_null($person['image']))
 {
-$vc->data['photo'] = "<?php echo $this->serverUrl();?>/images/staffphotos/thumbnails/".rawurlencode($person['image']);
+$vc->data['photo'] = $this->serverUrl() . '/images/staffphotos/thumbnails/' . rawurlencode($person['image']);
 }
 #$vc->data['birthday'] = "";
 $vc->data['timezone'] = "00:00";

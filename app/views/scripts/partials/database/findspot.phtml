@@ -136,12 +136,21 @@ myTitle.innerHTML = 'Imperium layer from the <a href="http://pelagios-project.bl
 
 		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
   		
-  		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(' ','',$this->parish));?>.kml',
+  		var region = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/regions/<?php echo strtoupper(str_replace(' ','',$this->region));?>.kmz',
+                                                 {preserveViewport: true, suppressInfoWindows: false });
+		region.setMap(map);
+  		
+  		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(array(' ', ')','(','\'\''),'',$this->parish));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		parish.setMap(map);
-		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/<?php echo strtoupper(str_replace(' ','',$this->county));?>.kml',
+		
+		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/counties/<?php echo strtoupper(str_replace(' ','',$this->county));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		county.setMap(map);
+		
+		var district = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/districts/<?php echo strtoupper(str_replace(' ','',$this->district));?>.kmz',
+                                                 {preserveViewport: true, suppressInfoWindows: false });
+		district.setMap(map);
 
 <?php 
 	$bbox = new Pas_Geo_BoundBox();
@@ -220,7 +229,7 @@ Elevation: <?php echo $this->elevation;?> metres<br />
 
 <div class="span4 noprint">
 <?php 
-echo $this->domesdayNear($this->declat,$this->declong, 2);
+//echo $this->domesdayNear($this->declat,$this->declong, 2);
 ?>
 </div>
 

@@ -5,7 +5,7 @@ $auth = Zend_Registry::get('auth');
 if($auth->hasIdentity()){
 $user = $auth->getIdentity();
 {
-$allowed = array('fa','admin','flos','hero');
+$allowed = array('fa','admin','flos','hero', 'treasure');
 if(in_array($user->role,$allowed)){ 
 ?>
 Found by: <span property="pas:finder foaf:name" instanceof="foaf:person"><?php echo $this->escape($this->tit1);?> <?php echo $this->escape($this->fore);?> 

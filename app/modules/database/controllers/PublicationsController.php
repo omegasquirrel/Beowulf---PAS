@@ -93,8 +93,6 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	if($this->_getParam('id',false)) {
 	$publications = new Publications();
 	$this->view->publications = $publications->getPublicationDetails($this->_getParam('id'));
-	$finds = new Finds();
-	$this->view->finds = $finds->getFindtoPublication($this->_getParam('id'));
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}

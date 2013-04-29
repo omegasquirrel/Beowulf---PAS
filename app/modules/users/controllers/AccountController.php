@@ -169,10 +169,10 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	} else {
 	$salt = $config->auth->salt;
 	$form = new RegisterForm();
-	$form->removeElement('captcha');
+//	$form->removeElement('captcha');
 	$this->view->form = $form;
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
+//    if ($form->isValid($form->getValues())) {
     $to = array(array(
     	'email' => $form->getValue('email'),
     	'name' => $form->getValue('first_name') . ' ' . $form->getValue('last_name'))
@@ -186,11 +186,11 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_helper->mailer($emailData, 'activateAccount', $to);
 	$this->_flashMessenger->addMessage('Your account has been created. Please check your email.');
 	$this->_redirect('/users/account/activate/');
-	} else {
+//	} else {
 	$form->populate($form->getValues());
 	$this->_flashMessenger->addMessage('There are a few problems with your registration<br/>
 	Please review and correct them.');
-	}
+//	}
 	}
 	}
 	}

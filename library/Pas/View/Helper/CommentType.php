@@ -27,8 +27,10 @@ class Pas_View_Helper_CommentType extends Zend_View_Helper_Abstract{
      * @throws Pas_Exception_BadJuJu
      */
     public function getData( $id,  $type){
+    	
+    	
         switch($type){
-            case 'recordcomment':
+            case 'findComment':
                 $finds = new Finds();
                 $data = $finds->fetchRow($finds->select()->where('id = ?', $id));
                 break;
@@ -39,7 +41,6 @@ class Pas_View_Helper_CommentType extends Zend_View_Helper_Abstract{
             default:
                 throw New Pas_Exception_BadJuJu();
             }
-
         return $data;
     }
 
@@ -53,7 +54,7 @@ class Pas_View_Helper_CommentType extends Zend_View_Helper_Abstract{
      */
     public function buildHtml(Zend_Db_Table_Row $data,  $type,  $id){
         switch($type){
-            case 'recordcomment':
+            case 'findComment':
                 $url = $this->view->url(array('module' => 'database',
                     'controller' => 'artefacts',
                     'action' => 'record',
@@ -89,5 +90,3 @@ class Pas_View_Helper_CommentType extends Zend_View_Helper_Abstract{
     return $this->buildHtml($data, $type, $id);
     }
 }
-
-?>

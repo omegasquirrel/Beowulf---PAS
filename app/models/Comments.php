@@ -50,7 +50,7 @@ class Comments extends Pas_Db_Table_Abstract {
                 'comment_author_email'))
             ->joinLeft('finds','finds.id = comments.contentID', array())
             ->where('finds.id = ?',$id)
-            ->where('comments.comment_type  = ?','newscomments')
+            ->where('comments.comment_type  = ?','newsComment')
             ->where('comments.comment_approved = ?','approved')
             ->order('comments.created ASC');
 	$data = $comments->fetchAll($select);

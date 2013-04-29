@@ -41,7 +41,7 @@ if($auth->hasIdentity())
 {
 $user = $auth->getIdentity();
 {
-$allowed = array('fa','admin','flos');
+$allowed = array('fa','admin','flos', 'treasure');
 if(in_array($user->role,$allowed))
 {
 echo '<li><a href="'.$this->url(array('controller' => 'database','action' => 'people'),NULL,true).
