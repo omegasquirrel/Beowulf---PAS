@@ -16,7 +16,6 @@
  	protected $_keywords = NULL;
 	/** Display meta data
 	 *
-	 * @param string $keywords
 	 * @uses Pas_View_Helper_CurUrl
 	 * @uses Zend_View_Helper_PartialLoop
 	 * @uses Zend_View_Helper_HeadMeta
@@ -34,7 +33,7 @@
 	$this->view->peoples),'dc.creator');
 	$this->view->headMeta($this->view->CurUrl(),'dc.identifier');
 	$this->view->headMeta($this->view->title(),'title');
-	$this->view->headMeta($keywords,'keywords');
+	$this->view->headMeta($this->_keywords,'keywords');
 	$this->view->headMeta('The Portable Antiquities Scheme and the British Museum','dc.publisher');
 	$this->view->headMeta($this->view->ellipsisstring(strip_tags($this->view->partialLoop('partials/database/description.phtml',
 	$this->view->finds)),170),'description');

@@ -2,16 +2,35 @@
 //header('Location: http://finds.org.uk/downtime.html');
 //exit;
 // Define path to application directory
+
+defined('ROOT_PATH')
+    || define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
+    
+// Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../app/'));
+
+//Define the cache path
 defined('CACHE_PATH')
     || define('CACHE_PATH', realpath(dirname(__FILE__) . '/../cache/'));
+
 // Define application environment
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ?
     getenv('APPLICATION_ENV') : 'production'));
+
+// Define path to Solr
 defined('SOLR_PATH')
-	|| define('SOLR_PATH', realpath(dirname(__FILE__) . '/../solr/solr/'));
+    || define('SOLR_PATH', realpath(dirname(__FILE__) . '/../../solr/'));
+
+//Define the logs path
+defined('LOGS_PATH')
+    || define('LOGS_PATH', realpath(dirname(__FILE__) . '/../logs/'));  
+
+defined('IMAGE_PATH')
+    || define('IMAGE_PATH', realpath(dirname(__FILE__) . '/images/'));
+
+
 	
 ini_set('memory_limit', '64M');
 	

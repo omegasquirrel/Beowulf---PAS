@@ -45,7 +45,7 @@
     that avoids logging every request
 -->
 
-<schema name="slides" version="1.3">
+<schema name="slides" version="1.5">
   <!-- attribute "name" is the name of this schema and is only used for display purposes.
        Applications should change this to reflect the nature of the search collection.
        version="1.2" is Solr's version number for the schema syntax and semantics.  It should
@@ -452,7 +452,7 @@
      default: a value that should be used if no value is specified
        when adding a document.
    -->
-
+    <field name="_version_" type="long" indexed="true" stored="true" multiValued="false"/>
 	<field name="identifier" type="string" indexed="true" stored="true" required="true" />
     <field name="id" type="int" indexed="true" stored="true" required="true" />
 	<field name="title" type="string" indexed="true" stored="true" />
@@ -474,8 +474,8 @@
 	<field name="broadperiod" type="string" indexed="true" stored="true" />
 	<field name="createdBy" type="int" indexed="true" stored="true" />
 	<field name="workflow" type="int" indexed="true" stored="true" />
-        <field name="objecttype" type="string" indexed="true" stored="true" />
-        <field name="institution" type="string" indexed="true" stored="true" />
+	<field name="objecttype" type="string" indexed="true" stored="true" />
+	<field name="institution" type="string" indexed="true" stored="true" />
    <!--
    The following store examples are used to demonstrate the various ways one might _CHOOSE_ to
     implement spatial.  It is highly unlikely that you would ever have ALL of these fields defined.

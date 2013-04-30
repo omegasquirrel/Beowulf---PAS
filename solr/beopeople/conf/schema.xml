@@ -45,7 +45,7 @@
     that avoids logging every request
 -->
 
-<schema name="people" version="1.3">
+<schema name="people" version="1.5">
   <!-- attribute "name" is the name of this schema and is only used for display purposes.
        Applications should change this to reflect the nature of the search collection.
        version="1.2" is Solr's version number for the schema syntax and semantics.  It should
@@ -452,6 +452,7 @@
      default: a value that should be used if no value is specified
        when adding a document.
    -->
+    <field name="_version_" type="long" indexed="true" stored="true" multiValued="false"/>
 	<field name="identifier" type="string" indexed="true" stored="true" required="true" />
    	<field name="id" type="int" indexed="true" stored="true" required="true" />
 	<field name="surname" type="string" indexed="true" stored="true" />
@@ -469,7 +470,7 @@
 	<field name="updated" type="date" indexed="true" stored="true" />
 	<field name="woeid" type="string" indexed="true" stored="true" />
 	<field name="geohash" type="string" indexed="true" stored="true" />
-        <field name="organisation" type="string" indexed="true" stored="true" />
+	<field name="organisation" type="string" indexed="true" stored="true" />
 
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
@@ -549,8 +550,10 @@
 	<copyField source="fullname" dest="text" />
 	<copyField source="county" dest="text" />
 	<copyField source="activity" dest="text" />
-        <copyField source="organisation" dest="text" />
-        <copyField source="postcode" dest="text" />
+	<copyField source="organisation" dest="text" />
+	<copyField source="postcode" dest="text" />
+	<copyField source="forename" dest="text" />
+	<copyField source="surname" dest="text" />
    <!-- Above, multiple source fields are copied to the [text] field.
 	  Another way to map multiple source fields to the same
 	  destination field is to use the dynamic field syntax.
