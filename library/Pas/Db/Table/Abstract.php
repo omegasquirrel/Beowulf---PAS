@@ -27,14 +27,14 @@ class Pas_Db_Table_Abstract
 	parent::__construct();
 	}
 
-        /** Get the user
-         *
-         */
-        public function user(){
-        $user =  new Pas_User_Details();
-        return $user->getPerson();
-
-        }
+	/** Get the user
+	*
+	*/
+	public function user(){
+	$user =  new Pas_User_Details();
+	return $user->getPerson();
+	}
+	
 	/** Get the user number for updating
 	 * @access 	public
 	 * @uses 	Pas_UserDetails

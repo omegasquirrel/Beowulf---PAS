@@ -40,12 +40,13 @@ class Pas_Solr_MoreLikeThis {
 
 	public function getRole(){
 	$user = new Pas_User_Details();
-	$role =  $user->getPerson()->role;
-	if(is_null($role)){
-		$role = 'member';
-	} 
-	return $role;
-	}
+    $person = $user->getPerson();
+    if($person){
+    	return $person->role;
+    } else {
+    	return false;
+    }
+    }
 
 	protected $_allowed =  array('fa','flos','admin','treasure');
 

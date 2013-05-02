@@ -12,8 +12,13 @@
 class Pas_Generator_FindID {
 
 	protected function _getAccount(){
-		$user = new Pas_User_Details();
-		return $user->getPerson()->institution;
+	$user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    	return $person->institution;
+    } else {
+    	throw new Pas_Exception_BadJuJu('User credentials missing', 500);
+    }
 	}
 	/**
 	 * Strategy pattern: call helper as broker method

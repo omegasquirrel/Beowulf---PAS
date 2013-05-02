@@ -30,7 +30,7 @@ class Pas_View_Helper_ChangesFind
 	$html .= '<li><a class="overlay" href="';
 	$html .= $this->view->url(array('module' => 'database', 'controller' => 'ajax', 'action' => 'audit',
 	'id' => $a['editID']),NULL,true);
-	$html .= '" rel="facebox" title="View all changes on this date">';
+	$html .= '" title="View all changes on this date">';
 	$html .= $this->view->timeagoinwords($a['created']);
 	$html .= '</a> ';
 	$html .= $a['fullname'];

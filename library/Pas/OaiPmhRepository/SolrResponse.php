@@ -32,9 +32,15 @@ class Pas_OaiPmhRepository_SolrResponse {
     }
 
     protected function getRole(){
-    $user = new Pas_User_Details();
-    return $user->getPerson()->role;
+	$user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    	return $person->role;
+    } else {
+    	throw new Pas_Exception_BadJuJu('No user credentials found', 500);
     }
+    }	
+    
 
     public function getRecord($id){
     $fields = array(

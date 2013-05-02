@@ -196,8 +196,13 @@ class Pas_Solr_Handler {
      * @return string
      */
     protected function _getRole(){
-    $user = new Pas_User_Details();
-    return $user->getPerson()->role;
+	$user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    	return $person->role;
+    } else {
+    	return false;
+    }
     }
 
 

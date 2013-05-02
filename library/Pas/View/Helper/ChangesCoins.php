@@ -35,7 +35,7 @@ class Pas_View_Helper_ChangesCoins
 		'id' => $a['editID']),
 		NULL,
 		true);
-	$html .= '" rel="facebox" title="View all changes on this date">';
+	$html .= '" title="View all changes on this date">';
 	$html .= $this->view->timeagoinwords($a['created']);
 	$html .= '</a> ';
 	$html .= $a['fullname'];

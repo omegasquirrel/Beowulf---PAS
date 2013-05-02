@@ -38,8 +38,13 @@ class Pas_View_Helper_PreviousFind extends Zend_View_Helper_Abstract {
 	
 	protected function _getRole(){
 	$user = new Pas_User_Details();
-	return $user->getPerson()->role;
-	}
+    $person = $user->getPerson();
+    if($person){
+    	return $person->role;
+    } else {
+    	return false;
+    }
+    }
 	
 	protected $_allowed =  array('fa','flos','admin','treasure');
 	

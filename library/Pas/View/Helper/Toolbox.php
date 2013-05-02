@@ -19,9 +19,14 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
 	protected $_role;
 	
 	public function __construct(){
-	$person = new Pas_User_Details();
-	$this->_role = $person->getPerson()->role;	
-	}
+	$user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    $this->_role = $person->role;
+    } else {
+    	return false;
+    }
+    }
 	/** Display the toolbox, crappy code
 	 *
 	 * @param integer $id
@@ -47,17 +52,16 @@ class Pas_View_helper_Toolbox extends Zend_View_Helper_Abstract {
             $(\'<div class="modal fade" >\' + data + \'</div>\').modal();
         });
     }
-});
-
+	});
 	});';
 	$this->view->inlineScript()->captureEnd();
-        $class = 'btn btn-small btn-primary overlay';
+	$class = 'btn btn-small btn-primary overlay';
 	echo '<div id="toolBox"><p>';
 	echo '<a class="' . $class . '"  href="'
 	. $this->view->serverUrl() . $this->view->url(array('module' => 'database','controller' => 'ajax','action' => 'webcite','id' => $id),null,true)
-	. '" rel="facebox" title="Get citation information">Cite record</a> <a class="' . $class . '" href="'
+	. '" title="Get citation information">Cite record</a> <a class="' . $class . '" href="'
 	. $this->view->url(array('module' => 'database','controller' => 'ajax', 'action' => 'embed', 'id' =>  $id),null,true)
-	. '" rel="facebox" title="Get code to embed this record in your webpage">Embed record</a> ';
+	. '" title="Get code to embed this record in your webpage">Embed record</a> ';
 	echo $this->view->RecordEditDeleteLinks($id,$oldfindID,$createdBy);
 	echo ' <a class="' . $class . '" href="#print" id="print">Print <i class="icon-print icon-white"></i></a> ';
 	echo $this->view->Href(array(

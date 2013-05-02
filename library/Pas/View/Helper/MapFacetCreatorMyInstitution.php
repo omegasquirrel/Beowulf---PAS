@@ -25,7 +25,11 @@ class Pas_View_Helper_MapFacetCreatorMyInstitution extends Zend_View_Helper_Abst
 	
 	public function __construct(){
 		$person = new Pas_User_Details();
+		if($person){
 		$this->_inst = $person->getPerson()->institution;
+		} else {
+			throw new Pas_Exception_BadJuJu('No user credentials found');
+		}
 	}
 	
     /** Create the facets boxes for rendering

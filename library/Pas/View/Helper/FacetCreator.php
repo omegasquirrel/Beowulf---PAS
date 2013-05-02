@@ -95,7 +95,7 @@ class Pas_View_Helper_FacetCreator extends Zend_View_Helper_Abstract {
 			$request['controller'] = 'ajax';
 			$request['action'] = 'facet';
 			$request['facetType'] = $facetName;
-			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',true) . '" rel="facebox">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
+			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',true) . '" >All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
 		if(array_key_exists($facetName,$request)){
         $facet = $request[$facetName];

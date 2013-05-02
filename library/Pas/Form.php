@@ -40,7 +40,6 @@ class Pas_Form extends EasyBib_Form {
 	} else {
 		$this->_role = 'public';
 	}
-//	EasyBib_Form_Decorator::setFormDecorator($this, EasyBib_Form_Decorator::BOOTSTRAP, 'submit', 'cancel');
 	
 	parent::__construct();
 	}

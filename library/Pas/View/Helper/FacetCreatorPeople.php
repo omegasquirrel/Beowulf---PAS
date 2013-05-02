@@ -95,7 +95,7 @@ class Pas_View_Helper_FacetCreatorPeople extends Zend_View_Helper_Abstract {
 			$request['controller'] = 'ajax';
 			$request['action'] = 'peoplefacet';
 			$request['facetType'] = $facetName;
-			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',true) . '" rel="facebox">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
+			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',true) . '">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
         $facet = $request[$facetName];
         if(isset($facet)){

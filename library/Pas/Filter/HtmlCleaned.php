@@ -24,7 +24,7 @@ class Pas_Filter_HtmlCleaned extends Pas_Filter_HTMLPurifier {
 	$config->set('AutoFormat.Linkify', true);
 	$config->set('AutoFormat.AutoParagraph', true);
 	$config->set('HTML.TidyLevel', 'medium'); 
-	$config->set('Attr.AllowedRel', 'facebox,nofollow,print,lightbox');
+	$config->set('Attr.AllowedRel', 'nofollow,print,lightbox');
 	parent::__construct($options);
     }
 

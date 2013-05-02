@@ -27,7 +27,7 @@ class Pas_Filter_HTMLPurifier implements Zend_Filter_Interface {
 	$config->set('AutoFormat.RemoveEmpty.RemoveNbsp',TRUE);
 	$config->set('AutoFormat.RemoveEmpty', TRUE);
 	$config->set('AutoFormat.Linkify', true);
-	$config->set('Attr.AllowedRel', 'facebox,nofollow,print,lightbox');
+	$config->set('Attr.AllowedRel', 'nofollow,print,lightbox');
 	$config->set('AutoFormat.AutoParagraph', true);
 	$config->set('HTML.TidyLevel', 'medium');
 	//Zend_Debug::dump($config);

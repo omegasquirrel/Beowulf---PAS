@@ -13,9 +13,15 @@ class Pas_Controller_Action_Helper_GenerateFindID
 	extends Zend_Controller_Action_Helper_Abstract {
 
 	protected function _getAccount(){
-		$user = new Pas_User_Details();
-		return $user->getPerson()->institution;
-	}
+	$user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    	return $person->institution;
+    } else {
+    	throw new Pas_Exception_BadJuJu('No user credentials found', 500);
+    }
+    }
+    
 	/**
 	 * Strategy pattern: call helper as broker method
 	 */

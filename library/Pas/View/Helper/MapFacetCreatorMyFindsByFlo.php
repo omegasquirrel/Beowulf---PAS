@@ -25,7 +25,11 @@ class Pas_View_Helper_MapFacetCreatorMyFindsByFlo extends Zend_View_Helper_Abstr
 
 	public function __construct(){
 		$person = new Pas_User_Details();
+		if($person){
 		$this->_id = $person->getPerson()->peopleID;
+		} else {
+			throw new Pas_Exception_BadJuJu('No user credentials found');
+		}
 	}
 
     /** Create the facets boxes for rendering

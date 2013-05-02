@@ -56,11 +56,11 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
      */
     public function getRole(){
 	$user = new Pas_User_Details();
-	$role =  $user->getPerson()->role;
-	if(is_null($role)){
-		$role = 'PUBLIC';
-	} 
-	return $role;
+	if($user){
+		return $user->getPerson()->role;
+	} else {
+		return 'PUBLIC';
+	}
 	}
 
     
@@ -99,7 +99,8 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
 
    			$html .= '<div class="span3 well">';
    			 if(($document->thumbnail)){
-			$html .= '<img class="flow img-polaroid" src="/images/thumbnails/'. $document->thumbnail .'.jpg"/>';
+			$html .= '<img class="flow img-polaroid" src="/images/thumbnails/';
+			$html .= $document->thumbnail .'.jpg"/>';
    			 }
 			$html .= '<div class="caption"><p>Find number: ';
 			$html .= '<a href="' . $this->view->serverUrl() . '/database/artefacts/record/id/'

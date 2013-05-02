@@ -98,7 +98,7 @@ class Pas_View_Helper_FacetCreatorAjaxMyFinds extends Zend_View_Helper_Abstract 
 			$request['controller'] = 'ajax';
 			$request['action'] = 'facet';
 			unset($request['facetType']);
-			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',false) . '" rel="facebox">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
+			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',false) . '">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
         $facet = $request[$facetName];
         if(isset($facet)){

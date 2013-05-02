@@ -11,8 +11,7 @@ if(in_array($user->role,$allowed)){
 Found by: <span property="pas:finder foaf:name" instanceof="foaf:person"><?php echo $this->escape($this->tit1);?> <?php echo $this->escape($this->fore);?> 
 <?php echo $this->escape($this->sur);?></span> - <span class="scope">[<a href="
 <?php echo $this->url(array('module' => 'database','controller' => 'search',
-'action' => 'results', 'finderID' => $this->secuid),null,true);?>" title="View other discoveries" 
-rel="facebox">view other discoveries by this finder</a>]</span><br />
+'action' => 'results', 'finderID' => $this->secuid),null,true);?>" title="View other discoveries" >view other discoveries by this finder</a>]</span><br />
 <?php
 }
 }

@@ -31,8 +31,13 @@ class Pas_Controller_Action_Helper_FindspotFormOptions
 
 
     protected function _getIdentity(){
-    	$user = new Pas_User_Details();
-    	return $user->getPerson()->id;
+    $user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    	return $person->id;
+    } else {
+    	throw new Pas_Exception_BadJuJu('No user credentials found', 500);
+    }
     }
 
 

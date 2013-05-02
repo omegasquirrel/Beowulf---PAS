@@ -17,10 +17,17 @@ class Pas_View_Helper_AuditLogs extends Zend_View_Helper_Abstract{
 	protected $_role;
 	
 	public function __construct(){
-	$user = new Pas_User_Details();
-	$this->_role = $user->getPerson()->role;	
-	}
-	public function auditLogs($id) {
+	 $user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    $this->_role = $person->role;
+    } else {
+    	return false;
+    }
+    }
+
+    
+    public function auditLogs($id) {
 	if(!is_null($this->_role)){
 		return $this->buildHtml($id);
 	}

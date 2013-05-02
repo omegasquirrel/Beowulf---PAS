@@ -22,7 +22,11 @@ class Pas_View_Helper_NotifyFloPublic
 	 */
 	public function __construct() {
     $user = new Pas_User_Details();
-    $this->_user = $user->getPerson();
+    if($user){
+    $this->_user = $user->getPerson();	
+    } else {
+    	throw new Pas_Exception_BadJuJu('No user credentials found');
+    }
 	}
 
 	/** Check if able to render
