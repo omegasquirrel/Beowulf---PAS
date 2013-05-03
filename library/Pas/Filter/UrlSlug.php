@@ -18,10 +18,10 @@ class Pas_Filter_UrlSlug implements Zend_Filter_Interface {
     */
     public function filter($slug) {
     $result = strtolower($slug);
-    $result = preg_replace("/[^a-z0-9\s-]/", "", $result);
-    $result = trim(preg_replace("/\s+/", " ", $result));
+    $result = preg_replace('/[^a-z0-9\s-]/', '', $result);
+    $result = trim(preg_replace('/\s+/', ' ', $result));
     $result = trim(substr($result, 0, 45));
-    $result = preg_replace("/\s/", "-", $result);
+    $result = preg_replace('/\s/', '-', $result);
     return $result;
     }
 }

@@ -22,6 +22,8 @@ class Pas_View_Helper_NextFind extends Zend_View_Helper_Abstract {
 	
 	protected $_query;
 	
+	protected $_core = 'beowulf';
+	
 	public function __construct(){
 		$this->_cache = Zend_Registry::get('cache');
 		$this->_config = Zend_Registry::get('config');

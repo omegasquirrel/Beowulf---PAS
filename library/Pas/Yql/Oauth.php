@@ -389,6 +389,7 @@ class Pas_Yql_Oauth {
 	 * @param array $data
 	 */
 	private function createToken($data) {
+	if($data){
 	$data = (object)$data;
 	$tokens = new OauthTokens();
 	$tokenRow = $tokens->createRow();	
@@ -402,6 +403,9 @@ class Pas_Yql_Oauth {
 	$tokenRow->save();
 	$tokenData = array('accessToken' => $data->oauth_token,'secret' => $data->oauth_token_secret);
 	return $tokenData;
+	} else {
+		return false;
+	}
 	}
 
 	/** Delete all the expired tokens

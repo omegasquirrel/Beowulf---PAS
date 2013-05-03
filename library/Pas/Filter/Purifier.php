@@ -28,10 +28,6 @@ class Pas_Filter_Purifier implements Zend_Filter_Interface {
 	$config->set('AutoFormat.Linkify', false);
 	$config->set('AutoFormat.AutoParagraph', false);
 	$config->set('HTML.TidyLevel', 'heavy');
-	//Zend_Debug::dump($config);
-    while (($cleaner = preg_replace('!<(em|strong)>(\s*)</\1>!', '$2', $input)) != $input) {
-    $input = $cleaner;
-	}
 	}
 
 	/** Filter the input
