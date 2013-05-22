@@ -90,11 +90,11 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('kml',array('suffix' => 'kml'))
             ->addContext('rss',array('suffix' => 'rss'))
             ->addContext('atom',array('suffix' => 'atom'))
-            ->addContext('rdf',array('suffix' => 'rdf'))
+            ->addContext('rdf',array('suffix' => 'rdf','headers' => array('Content-Type' => 'application/xml')))
             ->addContext('pdf',array('suffix' => 'pdf'))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
             ->addContext('geojson',array('suffix' => 'geojson', 'headers' => array('Content-Type' => 'application/json')))
-            ->addActionContext('record', array('qrcode', 'json', 'xml', 'geojson'))
+            ->addActionContext('record', array('qrcode', 'json', 'xml', 'geojson', 'rdf'))
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');
@@ -201,19 +201,27 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     } else {
     $this->_helper->layout->disableLayout();    //disable layout
     $record = $this->_finds->getAllData($id);
-    if(in_array($this->_user->role,$this->_restricted)) {
-    $record['0']['gridref'] = NULL;
-    $record['0']['easting'] = NULL;
-    $record['0']['northing'] = NULL;
-    $record['0']['lat'] = NULL;
-    $record['0']['lon'] = NULL;
+    $user = $this->_user;
+    if($user){
+    	$role = $user->role;
+    } else {
+    	$role = NULL;
+    }
+    if(in_array($role,$this->_restricted)) {
+    $record['0']['gridref'] = 'Restricted information';
+    $record['0']['easting'] = 'Restricted information';
+    $record['0']['northing'] = 'Restricted information';
+    $record['0']['lat'] = 'Restricted information';
+    $record['0']['lon'] = 'Restricted information';
     $record['0']['finder'] = 'Restricted information';
-    $record['0']['address'] = NULL;
-    $record['0']['postcode'] = NULL;
-    $record['0']['findspotdescription'] = NULL;
+    $record['0']['address'] = 'Restricted information';
+    $record['0']['postcode'] = 'Restricted information';
+    $record['0']['findspotdescription'] = 'Restricted information';
     if(!is_null($record['0']['knownas'])){
     $record['0']['parish'] = 'Restricted information';
     $record['0']['fourFigure'] = 'Restricted information';
+    $record['0']['fourFigureLat'] = 'Restricted information';
+    $record['0']['fourFigureLon'] = 'Restricted information';
     }
     }
     $this->view->record = $record;

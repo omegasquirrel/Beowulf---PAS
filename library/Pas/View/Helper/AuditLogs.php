@@ -17,7 +17,7 @@ class Pas_View_Helper_AuditLogs extends Zend_View_Helper_Abstract{
 	protected $_role;
 	
 	public function __construct(){
-	 $user = new Pas_User_Details();
+	$user = new Pas_User_Details();
     $person = $user->getPerson();
     if($person){
     $this->_role = $person->role;

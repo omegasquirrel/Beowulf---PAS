@@ -55,15 +55,14 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
      * Get the role of the user
      */
     public function getRole(){
-	$user = new Pas_User_Details();
-	if($user){
-		return $user->getPerson()->role;
-	} else {
-		return 'PUBLIC';
-	}
-	}
-
-    
+    $user = new Pas_User_Details();
+    $person = $user->getPerson();
+    if($person){
+    $this->_role = $person->role;
+    } else {
+    	return false;
+    }
+    }
     
     /** Query the solr instance
      *

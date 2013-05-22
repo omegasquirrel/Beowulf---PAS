@@ -177,8 +177,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 		$log = $this->getLog();
         if ($log) {
             $log->log($this->view->message . ' ' . $errors->exception, $priority, $errors->exception);
-            $log->log('Request Parameters' . ' ' . $errors->request->getParams(), $priority, 
-            $errors->request->getParams());
+            $log->log('Request Parameters' . ' ' . $errors->request->getParams(), $priority, $errors->request->getParams());
         }        
 		$this->view->compiled = $compiledTrace;
 

@@ -17,7 +17,7 @@ $slug = $action['slug'];
 $array = array('gettingstarted','howtorecord','accesslevelsexplained');
 if(in_array($slug,$array)){ echo ' class="expandfirst"';}
 ?>><a href="#">Using the database</a>
-<ul>
+<ul class="nav nav-pills nav-stacked  menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'gettingstarted'),'frg',true);?>"
 title="Getting started on the database">Getting started</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'accesslevelsexplained'),'frg',true);?>"
@@ -48,7 +48,7 @@ $array = array('buckles','pins','buttons','metalvessels','coins','brooches',
 'bells','weights','pottery','fingerrings','mounts','horseharnesspendants','sealmatrices');
 if(in_array($slug,$array)){ echo ' class="expandfirst"';}
 ?>><a href="#">Object types</a>
-<ul>
+<ul class="nav nav-pills nav-stacked  menuindent">
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'bells'),'frg',true);?>"
 title="How to record bells">Bells</a></li>
 <li><a href="<?php echo $this->url(array('module' => 'guide','controller' => $controller,'action' => 'torecording','slug' => 'buckles'),'frg',true);?>"

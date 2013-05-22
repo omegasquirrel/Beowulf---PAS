@@ -59,11 +59,11 @@ class Pas_Controller_Action_Admin extends Zend_Controller_Action {
 	}
 	
 	public function getRole() {
-	$role = $this->_helper->identity->getPerson()->role;
-	if(is_null($role)){
+	$person = $this->_helper->identity->getPerson();
+	if(!$person){
 	return 'public';
 	} else {
-	return $role;
+	return $person->role;
 	}
 	}
 	

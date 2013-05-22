@@ -315,7 +315,7 @@ class Pas_Solr_HandlerPersonal {
      */
     protected function _createFilters(array $params){
     if(is_array($params)){
-    if(!is_null($params['d']) && !is_null($params['lon']) && !is_null($params['lat'])){
+    if(array_key_exists('d', $params) && array_key_exists('lon', $params) && array_key_exists('lat', $params)){
     $helper = $this->_query->getHelper();
     $this->_query->createFilterQuery('geo')->setQuery(
         $helper->geofilt(

@@ -10,7 +10,7 @@ $dom->appendChild($documentNode);
 foreach($this->results as $result){
 	
 	
-    if(!is_null($result['longitude'])){
+    if(array_key_exists('longitude', $result)){
 		$description = '';
         if(isset($result['thumbnail'])){
         $url = '/images/thumbnails/';

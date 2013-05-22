@@ -22,16 +22,16 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 	 * @var array $_contexts
 	 */
 	protected $_contexts = array(
-	'xml', 'rss', 'json',
-	'atom', 'kml', 'georss',
-	'ics', 'rdf', 'xcs',
-	'vcf', 'csv', 'foaf',
-	'pdf', 'qrcode', 'geojson');
+	'xml','rss','json',
+	'atom','kml','georss',
+	'ics','rdf','xcs',
+	'vcf','csv','foaf',
+	'pdf','qrcode', 'geojson');
 
 	/** Set up contexts to disable layout for based on modules
 	 * @var array $_disabled
 	 */
-	protected $_disabled = array('ajax', 'oai', 'sitemap', 'version1', 'objects');
+	protected $_disabled = array('ajax', 'oai', 'sitemap', 'version1');
 
 	/** Create the layout after the request has been dispatched
 	 *  Disable or enable layouts depending on type.
@@ -55,12 +55,18 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 		->getMessages();
 	switch($module) {
 	case 'experiments':
-		$layouttype = 'flickr';
+		$layouttype = 'database';
+		$view->headTitle('Experiments in code')->setSeparator(' - ');
 		break;
 	case 'getinvolved':
 		$layouttype = 'database';
 		$response->insert('sidebar', $view->render('structure/involvedSidebar.phtml'));
 		$view->headTitle('Get involved section ')->setSeparator(' - ');
+		break;
+	case 'analytics':
+		$layouttype = 'database';
+		$view->headTitle('Analytics from Google')->setSeparator(' - ');
+		$response->insert('sidebar', $view->render('structure/analyticsSidebar.phtml'));
 		break;
 	case 'research':
 		$layouttype = 'database';
@@ -188,11 +194,6 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 		$layouttype = 'database';
 	    $view->headTitle('API version 1')->setSeparator(' - ');
 		break;
-	case 'analytics':
-   		$layouttype = 'database';
-        $view->headTitle('Analytics from Google')->setSeparator(' - ');
-        $response->insert('sidebar', $view->render('structure/analyticsSidebar.phtml'));
-        break;
 	default:
 		$layouttype = 'home';
 		break;

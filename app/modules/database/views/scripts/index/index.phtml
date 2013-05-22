@@ -15,9 +15,14 @@ $(document).ready(function() {
 
 <?php
 	$user = new Pas_User_Details();
-	$person = $user->getPerson()->role;
-	$allowed = array('admin', 'fa', 'flos', 'research', 'treasure');
-	if(in_array($person, $allowed)) {
+	$person = $user->getPerson();
+	if($person) {
+		$role = $person->role;
+	} else {
+		$role = NULL;
+	}
+	$allowed = array('admin', 'fa', 'flos', 'research', 'treasure', 'hero');
+	if(in_array($role, $allowed)) {
 		$maxzoom = 18;
 		$minzoom = 1;
 	} else {

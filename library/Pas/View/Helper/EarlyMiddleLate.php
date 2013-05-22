@@ -24,8 +24,6 @@ class Pas_View_Helper_EarlyMiddleLate extends Zend_View_Helper_Abstract {
      * @return string|boolean
      */
     public function earlyMiddleLate($qualifier) {
-
-
         if(is_numeric($qualifier)){
             switch ($qualifier){
                 case 1:
@@ -42,7 +40,6 @@ class Pas_View_Helper_EarlyMiddleLate extends Zend_View_Helper_Abstract {
         } else {
             return false;
         }
-
-    }//put your code here
+    }
 }
 

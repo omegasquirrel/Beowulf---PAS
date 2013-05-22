@@ -4,9 +4,12 @@
     <?php if(isset($this->thumbnail)):?>
     
      <?php
-        $path = '/images/thumbnails/';
+        $path = '/home/beowulf/public_html/images/thumbnails/';
         $ext = '.jpg';
-        list($w,$h) = getimagesize($this->serverUrl() . $path . $this->thumbnail . $ext );
+        $file = $path . $this->thumbnail . $ext;
+        if(file_exists($file)){
+        list($w,$h) = getimagesize( $file );
+        
         ?>
     <ul class="thumbnailSmall">
         <li >
@@ -17,8 +20,19 @@
             </div>
         </li>
     </ul>
-
-	<?php endif;?>
+	<?php 
+        } else {
+        	?>
+        <ul class="thumbnailSmall">
+        <li >
+        <div class="pull-right">
+            <p>No image available at present.</p>
+            </div>
+        </li>
+    </ul>	
+        	<?php 
+        }
+	endif;?>
     <p>
     <?php $url = $this->url(array(
     	'module' => 'database',

@@ -98,8 +98,8 @@ class Pas_View_Helper_ImagesFacetCreator extends Zend_View_Helper_Abstract {
 			$request['facetType'] = $facetName;
 			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',true) . '">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
-        $facet = $request[$facetName];
-        if(isset($facet)){
+		//Check for removal html to be displayed.
+		if(array_key_exists($facetName, $request)){
             unset($request[$facetName]);
             $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
                     . '" title="Clear the facet">Clear this facet</a></p>';

@@ -128,14 +128,20 @@ class Pas_View_Helper_AddCoinLink
 	
 	
 	private function _performChecks(){
-	if(in_array($this->_getUser()->role, $this->_restricted)) {
+		$user = $this->_getUser();
+		if($user) {
+			$role = $user->role;
+		} else {
+			$role = null;
+		}
+	if(in_array($role, $this->_restricted)) {
 	if(($this->_checkCreator() && !$this->_checkInstitution()) 
 		|| ($this->_checkCreator() && $this->_checkInstitution())) {
 		$this->_canCreate = true;
 	} 
-	} else if(in_array($this->_getUser()->role,$this->_higherLevel)) {
+	} else if(in_array($role,$this->_higherLevel)) {
 		$this->_canCreate = true;
-	} else if(in_array($this->_getUser()->role,$this->_recorders)){
+	} else if(in_array($role,$this->_recorders)){
 	if(($this->_checkCreator() && !$this->_checkInstitution()) 
 		|| (($this->_checkCreator() && $this->_checkInstitution())) ||
 	((!$this->_checkCreator() && $this->_checkInstitution()))) {

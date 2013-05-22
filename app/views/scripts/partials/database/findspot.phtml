@@ -6,11 +6,12 @@ $this->inlineScript()->appendFile('http://maps.stamen.com/js/tile.stamen.js',$ty
 <?php echo $this->FindSpotEditDeleteLink($this->old_findspotid,$this->id,$this->createdBy);?>
 
 <?php if(isset($this->declong) && isset($this->declat)) : ?>
+
 <div id="map">
-<noscript><img src="http://maps.google.com/maps/api/staticmap?center=<?php echo $this->declat;?>,
-<?php echo $this->declong;?>&zoom=14&size=640x300&maptype=terrain&markers=color:green|label:G|
-<?php echo $this->declat;?>,<?php echo $this->declong;?>&sensor=false" />
-</noscript>
+	<noscript><img src="http://maps.google.com/maps/api/staticmap?center=<?php echo $this->declat;?>,
+	<?php echo $this->declong;?>&zoom=14&size=640x300&maptype=terrain&markers=color:green|label:G|
+	<?php echo $this->declat;?>,<?php echo $this->declong;?>&sensor=false" />
+	</noscript>
 </div>
 <?php
 $allowed = array('hero','flos','admin','treasure','research','fa');
@@ -20,26 +21,24 @@ $role = $identity->role;
 if(in_array($role,$allowed)):
 ?>
 <div id="radius">
-	<p>
-	<a class="btn btn-small btn-success" href="<?php echo $this->url(array(
-	'module' => 'database',
-	'controller' => 'search',
-	'action' => 'results', 
-	'lat' => $this->declat, 
-	'lon' => $this->declong,
-	'd' => '2'),null,true);?>"  
-	title="Use the Haversine formula to find adjacent objects">Find objects within 2km 
-	radius of this artefact</a>
-	</p>
+	<?php $url = $this->url(array('module' => 'database','controller' => 'search','action' => 'results', 
+	'lat' => $this->declat, 'lon' => $this->declong,'d' => '2'),null,true);?>
+	<p><a class="btn btn-small btn-success" href="<?php echo $url;?>" title="Use the Haversine formula to find adjacent objects">Find objects within 2km 
+	radius of this artefact</a></p>
 </div>
 <?php endif;?>
 <?php $this->inlineScript()->captureStart();?>
 $(document).ready(function() {
 <?php
 	$user = new Pas_User_Details();
-	$person = $user->getPerson()->role;
-	$allowed = array('admin', 'fa', 'flos', 'research', 'treasure');
-	if(in_array($person, $allowed)) {
+	$person = $user->getPerson();
+	if($person){
+		$role = $person->role;
+	} else {
+		$role = NULL;
+	}
+	$allowed = array('admin', 'fa', 'flos', 'research', 'treasure', 'hero');
+	if(in_array($role, $allowed)) {
 		$maxzoom = 18;
 		$minzoom = 1;
 	} else {
@@ -129,7 +128,7 @@ $(document).ready(function() {
   		var myTitle = document.createElement('h1');
 		myTitle.style.color = '#444444';
 		myTitle.style.font = "10px sans-serif";
-myTitle.innerHTML = 'Imperium layer from the <a href="http://pelagios-project.blogspot.co.uk/2012/09/a-digital-map-of-roman-empire.html">Pelagios project<\/a> <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY<\/a> | Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a>';
+		myTitle.innerHTML = 'Imperium layer from the <a href="http://pelagios-project.blogspot.co.uk/2012/09/a-digital-map-of-roman-empire.html">Pelagios project<\/a> <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY<\/a> | Historical maps from <a href="http://geo.nls.uk/maps/api/">NLS Maps API<\/a> | OSM &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap<\/a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA<\/a>';
 
 		var myTextDiv = document.createElement('div');
 		myTextDiv.appendChild(myTitle);

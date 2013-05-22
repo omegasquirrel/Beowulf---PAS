@@ -54,33 +54,6 @@ class Finds extends Pas_Db_Table_Abstract {
 	}
 
 
-	/** Get a count of all the objects and records on the database
-	* @return array
-	*/
-	public function getObjectTotals() {
-	$finds = $this->getAdapter();
-	$select = $finds->select()
-		->from($this->_name, array('q' => 'SUM(quantity)','b' => 'broadperiod'))
-		->where('broadperiod IS NOT NULL')
-		->where('broadperiod != ?', '')
-		->order('quantity')
-		->group('broadperiod');
-        return $finds->fetchAll($select);
-	}
-	/** Get a count of all the finds and records on the database by year
-	* @return array
-	*/
-	public function getFindsByYear() {
-	$finds = $this->getAdapter();
-	$select = $finds->select()
-		->from($this->_name, array('q' => 'SUM(quantity)' , 'y' => 'EXTRACT(YEAR FROM created)'))
-		->where('created IS NOT NULL')
-		->where('created != ?', '0000-00-00')
-		->order('y')
-		->group('y');
-	return $finds->fetchAll($select);
-	}
-
 	/** Get a count of all the finds on the database
 	* @return array
 	*/
@@ -93,60 +66,9 @@ class Finds extends Pas_Db_Table_Abstract {
 		->where('coins.ruler_id = ?', (int)$id);
         return $counts->fetchAll($select);
     }
-	/** Get a count of all the coins by emperor on the database
-	* @param integer $empID the emperor ID
-	* @return array
-	*/
-	public function getCountEmperor($empID){
-	$counts = $this->getAdapter();
-	$select = $counts->select()
-		->from($this->_name, array('c' => 'SUM(quantity)'))
-		->joinLeft('coins','coins.findID = finds.secuid', array())
-		->joinLeft('emperors','coins.ruler_id = emperors.pasID', array())
-		->where('emperors.id = ?', (int)$empID);
-	return $counts->fetchAll($select);
-    }
-	/** Get a count of all the coins by mint on the database for roman period
-	* @param integer $mintID the mint's ID
-	* @return array
-	*/
-	public function getCountMint($mintID) {
-	$counts = $this->getAdapter();
-	$select = $counts->select()
-		->from($this->_name, array('c' => 'SUM(quantity)'))
-		->joinLeft('coins','coins.findID = finds.secuid', array())
-		->joinLeft('romanmints','coins.mint_id = romanmints.pasID', array())
-		->where('romanmints.id = ?', (int)$mintID);
-	return $counts->fetchAll($select);
-    }
-
-    /** Get a count of all the coins by medieval category on the database
-	* @param integer $categoryID the category ID number
-	* @return array
-	*/
-	public function getCategoryTotals($categoryID) {
-	$counts = $this->getAdapter();
-	$select = $counts->select()
-		->from($this->_name, array('c' => 'SUM(quantity)'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->where('coins.categoryID = ?',(int)$categoryID);
-	return $counts->fetchAll($select);
-    }
-
- 	/** Get a count of all the coins by denomination on the database
-	* @param integer $denominationID the denomination ID number
-	* @return array
-	*/
-	public function getDenominationTotals($denominationID) {
-	$counts = $this->getAdapter();
-	$select = $counts->select()
-		->from($this->_name, array('c' => 'SUM(quantity)'))
-		->joinLeft('coins','coins.findID = finds.secuid', array())
-		->where('coins.denomination = ?', (int)$denominationID);
-	return $counts->fetchAll($select);
-	}
-
-	/** Get a count of all the finds by specific workflow stage
+	
+	/** 
+	* Get a count of all the finds by specific workflow stage
 	* @param integer $wfStageID the workflow stage number
 	* @return array
 	* @param maybe needs deprecation?
@@ -175,39 +97,6 @@ class Finds extends Pas_Db_Table_Abstract {
 	return $relatedfinds->fetchAll($select);
 	}
 
-	/** Get next ten objects
-	* @param integer $findID the find number
-	* @return array
-	*/
-	public function getNextObject($findID) {
-	$records = $this->getAdapter();
-	$select = $records->select()
-		->from($this->_name, array('id', 'old_findID', 'objecttype', 'broadperiod'))
-		->where('finds.id > ?', (int)$findID)
-		->order($this->_primary)
-		->limit(10) ;
-	if(in_array($this->user()->role, $this->_restricted)) {
-	$select->where('finds.secwfstage > ?', (int)2);
-	}
-	return $records->fetchAll($select);
-	}
-	/** Get previous ten objects
-	* @param integer $findID the find number
-	* @return array
-	*/
-	public function getPreviousObject($findID) {
-	$recordsprior = $this->getAdapter();
-	$select = $recordsprior->select()
-		->from($this->_name, array('id', 'old_findID', 'objecttype', 'broadperiod'))
-		->where('finds.id < ?', (int)$findID)
-		->order('finds.id DESC')
-		->limit(10);
-	if(in_array($this->user()->role, $this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return $recordsprior->fetchAll($select);
-	}
-
 	/** Get massive data for a single record, loads of joins
 	* @param integer $findID the find number
 	* @return array
@@ -218,7 +107,7 @@ class Finds extends Pas_Db_Table_Abstract {
 	$select = $findsdata->select()
 		->from($this->_name, array('id', 'old_findID', 'uniqueID' => 'secuid',
 		'objecttype', 'classification', 'subclass',
-		'length', 'height', 'width',
+		'length', 'height', 'width', 'weight',
 		'thickness', 'diameter', 'quantity',
 		'other_ref', 'treasureID', 'broadperiod',
 		'numdate1', 'numdate2', 'description',
@@ -229,7 +118,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		'disccircum', 'museumAccession' => 'musaccno', 'subsequentAction' => 'subs_action',
 		'objectCertainty' => 'objecttypecert', 'dateFromCertainty' => 'numdate1qual', 'dateToCertainty' => 'numdate2qual',
 		'dateFoundFromCertainty' => 'datefound1qual', 'dateFoundToCertainty' => 'datefound2qual',
-		'subPeriodFrom' => 'objdate1subperiod', 'subPeriodTo' => 'objdate2subperiod'))
+		'subPeriodFrom' => 'objdate1subperiod', 'subPeriodTo' => 'objdate2subperiod', 'secuid'))
 		->joinLeft('findofnotereasons','finds.findofnotereason = findofnotereasons.id', array('reason' => 'term'))
 		->joinLeft('users','users.id = finds.createdBy', array('username','fullname','institution'))
 		->joinLeft(array('users2' => 'users'),'users2.id = finds.updatedBy',
@@ -254,28 +143,32 @@ class Finds extends Pas_Db_Table_Abstract {
 		array('secondaryIdentifier' => 'CONCAT(ident2.title," ",ident2.forename," ",ident2.surname)'))
 		->joinLeft(array('record' => 'people'),'finds.recorderID = record.secuid',
 		array('recorder' => 'CONCAT(record.title," ",record.forename," ",record.surname)'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county', 'parish', 'district',
+		->joinLeft('findspots','finds.secuid = findspots.findID', array(
+		'county', 'parish', 'district',
 		'easting', 'northing', 'gridref',
 		'fourFigure', 'map25k', 'map10k',
 		'address', 'postcode', 'findspotdescription' => 'description',
-		'lat' => 'declat', 'lon' => 'declong', 'knownas', 'fourFigureLat', 'fourFigureLon'))
+		'lat' => 'declat', 'lon' => 'declong', 'knownas', 'fourFigureLat', 
+		'fourFigureLon', 'geohash', 'woeid'))
 		->joinLeft('gridrefsources','gridrefsources.ID = findspots.gridrefsrc',array('source' => 'term'))
-		->joinLeft('coins','finds.secuid = coins.findID',array('obverse_description', 'obverse_inscription',
-		'reverse_description', 'reverse_inscription', 'denomination',
+		->joinLeft('coins','finds.secuid = coins.findID',array(
+		'obverse_description', 'obverse_inscription',
+		'reverse_description', 'reverse_inscription', 'denominationID' => 'denomination',
 		'degree_of_wear', 'allen_type', 'va_type',
 		'mack' => 'mack_type', 'reeceID', 'die' => 'die_axis_measurement',
 		'wearID'=> 'degree_of_wear', 'moneyer', 'revtypeID',
 		'categoryID', 'typeID', 'tribeID' => 'tribe',
 		'status', 'rulerQualifier' => 'ruler_qualifier','denominationQualifier' => 'denomination_qualifier',
 		'mintQualifier' => 'mint_qualifier', 'dieAxisCertainty' => 'die_axis_certainty', 'initialMark' => 'initial_mark',
-		'reverseMintMark' => 'reverse_mintmark', 'statusQualifier' => 'status_qualifier'))
+		'reverseMintMark' => 'reverse_mintmark', 'statusQualifier' => 'status_qualifier', 'ruler_id', 'mint_id'
+		))
 		->joinLeft('ironagetribes','coins.tribe = ironagetribes.id', array('tribe'))
 		->joinLeft('geographyironage','geographyironage.id = coins.geographyID', array('region','area'))
-		->joinLeft('denominations','denominations.id = coins.denomination', array('denomination'))
-		->joinLeft('rulers','rulers.id = coins.ruler_id', array('ruler1' => 'issuer'))
+		->joinLeft('denominations','denominations.id = coins.denomination', array('denomination', 'nomismaDenomination', 'dbpediaDenomination', 'bmDenomination'))
+		->joinLeft('rulers','rulers.id = coins.ruler_id', array('ruler1' => 'issuer', 'viaf', 'rulerDbpedia' => 'dbpedia', 'nomismaRulerID' => 'nomismaID'))
 		->joinLeft(array('rulers_2' => 'rulers'),'rulers_2.id = coins.ruler2_id', array('ruler2' => 'issuer'))
 		->joinLeft('reeceperiods','coins.reeceID = reeceperiods.id', array('period_name','date_range'))
-		->joinLeft('mints','mints.id = coins.mint_ID', array('mint_name'))
+		->joinLeft('mints','mints.id = coins.mint_ID', array('mint_name', 'nomismaMintID' => 'nomismaID', 'pleiadesID', 'mintGeonamesID' => 'geonamesID', 'mintWoeid' => 'woeid'))
 		->joinLeft('weartypes','coins.degree_of_wear = weartypes.id', array('wear' => 'term'))
 		->joinLeft('dieaxes','coins.die_axis_measurement = dieaxes.id', array('die_axis_name'))
 		->joinLeft('medievalcategories','medievalcategories.id = coins.categoryID', array('category'))
@@ -286,11 +179,13 @@ class Finds extends Pas_Db_Table_Abstract {
 		->joinLeft('revtypes','coins.revtypeID = revtypes.id', array('reverseType' => 'type'))
 		->joinLeft('statuses','coins.status = statuses.id', array('status' => 'term'))
 		->joinLeft('finds_images','finds.secuid = finds_images.find_id', array())
-		->joinLeft('slides','slides.secuid = finds_images.image_id', array('i' => 'imageID','f' => 'filename'))
+		->joinLeft('slides','slides.secuid = finds_images.image_id', array('thumbnail' => 'imageID', 'filename'))
 		->joinLeft(array('u' => 'users'),'slides.createdBy = u.id', array('imagedir'))
+		->joinLeft('regions', 'findspots.regionID = regions.id', array('region'))
 		->where('finds.id = ?', (int)$findID)
 		->group('finds.id')
 		->limit(1);
+		
 	return $findsdata->fetchAll($select);
 	}
 
@@ -422,33 +317,7 @@ class Finds extends Pas_Db_Table_Abstract {
 			->where('finds.finderid = ?', (string)$id);
        return $finds->fetchAll($select);
 	}
-	/** Get finds nearby to this specific point
-	* @param double $declong decimal degrees longintude
-	* @param double $declat decimal degrees latitude
-	* @return array
-	*/
-
-	public function getFindsNearby($declong,$declat) {
-	$nearbys = $this->getAdapter();
-	$select = $nearbys->select()
-		->from($this->_name,array('oldfindID','objecttype','broadperiod'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('distance' => 'acos(SIN( PI()* 40.7383040 /180 )*SIN( PI()*'
-		. $declat . '/180))+(cos(PI()* 40.7383040 /180)*COS( PI()*' . $declat . '/180) *COS(PI()*' . $declong
-		. '/180-PI()* -73.99319 /180))* 3963.191'))
-		->where('1=1')
-		->where('3963.191 * ACOS( (SIN(PI()* 40.7383040 /180)*SIN(PI() * ' . $declat
-		. '/180)) +(COS(PI()* 40.7383040 /180)*cos(PI()*' . $declat . '/180)*COS(PI() *'
-		. $declong . '/180-PI()* -73.99319 /180))) <= 2')
-		->order('distance')
-		->order('3963.191 * ACOS((SIN(PI()* 40.7383040 /180)*SIN(PI()*' . $declat
-		. '/180)) +(COS(PI()* 40.7383040 /180)*cos(PI()*' . $declat . '/180)*COS(PI() *'
-		. $declong . '/180-PI()* -73.99319 /180))');
-	return $nearbys->fetchAll($select);
-	}
-
-
-
-
+	
 	/** Get finds entered by user per quarter as a count and sum
 	* @param integer $staffID The user's ID
 	* @return array
@@ -1489,7 +1358,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		->where('finds.id= ?',(int)$findID);
 	if(in_array($role,$this->_restricted)) {
 	$select->where(new Zend_Db_Expr('finds.secwfstage IN ( 3, 4) OR finds.createdBy = '
-	. (int)$this->user()->id));
+	. (int)$this->userNumber()));
 	}
 	return  $finds->fetchAll($select);
 	}
@@ -1801,7 +1670,8 @@ class Finds extends Pas_Db_Table_Abstract {
 		'easting',
 		'northing',
 		'coordinates' => 'CONCAT(declat,",",declong)',
-		'precision' => 'gridlen'
+		'precision' => 'gridlen',
+		'geohash'
 		))
 		->joinLeft('coins', 'finds.secuid = coins.findID',array(
 		'geographyID',

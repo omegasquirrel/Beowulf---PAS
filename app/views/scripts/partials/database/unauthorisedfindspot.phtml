@@ -11,9 +11,14 @@ $this->inlineScript()->appendFile('http://maps.stamen.com/js/tile.stamen.js',$ty
 $(document).ready(function() {
 <?php
 	$user = new Pas_User_Details();
-	$person = $user->getPerson()->role;
+	$person = $user->getPerson();
+	if($person) {
+		$role = $person->role;
+	} else {
+		$role = NULL;
+	}
 	$allowed = array('admin', 'fa', 'flos', 'research', 'treasure');
-	if(in_array($person, $allowed)) {
+	if(in_array($role, $allowed)) {
 		$maxzoom = 18;
 		$minzoom = 1;
 	} else {
@@ -61,13 +66,9 @@ $(document).ready(function() {
 	   name: 'Historic',
 	   alt: "NLS Historic Map"
 	});
-	<?php $geo = new Pas_Geo_Gridcalc($this->fourFigure);
-	$results = $geo->convert();
-	$lat = $results['decimalLatLon']['decimalLatitude'];
-	$lon = $results['decimalLatLon']['decimalLongitude'];
-	?>
+
 	var myOptions = {
-          center: new google.maps.LatLng(<?php echo $lat;?>, <?php echo $lon;?>),
+          center: new google.maps.LatLng(<?php echo $this->fourFigureLat;?>, <?php echo $this->fourFigureLon;?>),
           zoom: 12,
 		  mapTypeControlOptions: {
           mapTypeIds: [

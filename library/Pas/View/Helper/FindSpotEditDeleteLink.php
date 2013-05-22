@@ -88,7 +88,7 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	 * @param int $ID
 	 * @param int $createdBy
 	 */
-	public function FindSpotEditDeleteLink($findspotID, $ID, $createdBy, $institution) {
+	public function FindSpotEditDeleteLink($findspotID, $ID, $createdBy, $institution = 'PUBLIC') {
 	$byID = $this->checkAccessbyUserID($createdBy);
 	$instID = $this->checkAccessbyInstitution($findspotID);
 

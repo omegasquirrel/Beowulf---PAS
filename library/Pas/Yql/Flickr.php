@@ -340,5 +340,12 @@ class Pas_Yql_Flickr {
 	$yql = 'SELECT * FROM  xml where url="'. self::FLICKRURI . $this->buildQuery($args) . '";';
 	return $this->getData($yql)->query->results->rsp->photos;	
 	}
+	
+	public function searchPhotos( $term , $per_page = 10, $page = 1 ){
+	$yql = 'select * from flickr.photos.search where text="' . $term . '" AND api_key="'
+	. $this->_flickr->apikey .'" and extras="' . $this->_extras	. '" and sort="date-posted-desc"
+	AND license="2,3,4,5,6" LIMIT 6';
+	return $this->getData($yql)->query->results;		
+	}
 
 }
