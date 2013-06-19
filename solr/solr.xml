@@ -2,12 +2,12 @@
 <solr persistent="true" sharedLib="lib">
   <cores defaultCoreName="beowulf" shareSchema="false" adminPath="/admin/cores" zkClientTimeout="${zkClientTimeout:15000}" hostPort="8080" hostContext="solr">
     <core loadOnStartup="true" instanceDir="beowulf/" transient="false" name="beowulf"/>
-    <core schema="schema.xml" loadOnStartup="true" instanceDir="beowulf/" transient="false" name="beowulf" config="solrconfig.xml" dataDir="data"/>
-    <core schema="schema.xml" loadOnStartup="true" instanceDir="beopeople/" transient="false" name="beopeople" config="solrconfig.xml" dataDir="data" />
-    <core schema="schema.xml" loadOnStartup="true" instanceDir="beoimages/" transient="false" name="beoimages" config="solrconfig.xml" dataDir="data" />
-    <core schema="schema.xml" loadOnStartup="true" instanceDir="beogeodata/" transient="false" name="beogeodata" config="solrconfig.xml" dataDir="data" />
-    <core schema="schema.xml" loadOnStartup="true" instanceDir="beobiblio/" transient="false" name="beobiblio" config="solrconfig.xml" dataDir="data" />
-    <core schema="schema.xml" loadOnStartup="true" instanceDir="beopublications/" transient="false" name="beopublications" config="solrconfig.xml" dataDir="data" />
-    <core schema="schema.xml" loadOnStartup="true" instanceDir="beocontent/" transient="false" name="beocontent" config="solrconfig.xml" dataDir="data" />
+    <core schema="schema.xml" loadOnStartup="true" instanceDir="objects" transient="false" name="objects" config="solrconfig.xml" dataDir="data"/>
+    <core schema="schema.xml" loadOnStartup="true" instanceDir="people/" transient="false" name="people" config="solrconfig.xml" dataDir="data" />
+    <core schema="schema.xml" loadOnStartup="true" instanceDir="images/" transient="false" name="images" config="solrconfig.xml" dataDir="data" />
+    <core schema="schema.xml" loadOnStartup="true" instanceDir="geodata/" transient="false" name="geodata" config="solrconfig.xml" dataDir="data" />
+    <core schema="schema.xml" loadOnStartup="true" instanceDir="bibliography/" transient="false" name="bibliography" config="solrconfig.xml" dataDir="data" />
+    <core schema="schema.xml" loadOnStartup="true" instanceDir="publications/" transient="false" name="publications" config="solrconfig.xml" dataDir="data" />
+    <core schema="schema.xml" loadOnStartup="true" instanceDir="content/" transient="false" name="content" config="solrconfig.xml" dataDir="data" />
   </cores>
 </solr>
