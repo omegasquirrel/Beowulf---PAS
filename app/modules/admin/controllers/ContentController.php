@@ -39,7 +39,7 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $content = new Content();
     $insert = $content->add($insertData);
 	
-    $this->_helper->solrUpdater->update('beocontent', $insert);
+    $this->_helper->solrUpdater->update('content', $insert, 'content');
     $this->_flashMessenger->addMessage('Static content added');
     $this->_redirect('/admin/content');
     } else {
@@ -66,7 +66,7 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $this->_helper->audit($updateData, $oldData, 'ContentAudit', 
             $this->_getParam('id'), $this->_getParam('id'));
 	$this->_content->update($updateData, $where);
-    $this->_helper->solrUpdater->update('beocontent', $this->_getParam('id'), 'content');  
+    $this->_helper->solrUpdater->update('content', $this->_getParam('id'), 'content');  
     $this->_flashMessenger->addMessage('You updated: <em>' . $form->getValue('title') 
     . '</em> successfully. It is now available for use.');
  	$cache = Zend_Registry::get('cache');
@@ -103,7 +103,7 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $where = 'id = ' . $id;
     $contents->delete($where);
     $this->_flashMessenger->addMessage('Record deleted!');
-    $this->_helper->solrUpdater->deleteById('beocontent', $id);
+    $this->_helper->solrUpdater->deleteById('content', $id);
     }
     $this->_redirect('/admin/content/');
     }  else  {

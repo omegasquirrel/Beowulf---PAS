@@ -16,7 +16,7 @@ class Api_V1Controller extends REST_Controller
 	
 	public function indexAction(){
 	$params = $this->_getAllParams();
-	$search = new Pas_Solr_Handler('beowulf');
+	$search = new Pas_Solr_Handler('objects');
 	$fields = new Pas_Solr_FieldGeneratorFinds($this->_helper->contextSwitch->getCurrentContext());
 	$search->setFields($fields->getFields());
 	$search->setParams($params);

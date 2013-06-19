@@ -34,7 +34,7 @@ class Admin_NewsController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
 	$insert = $this->_news->addNews($form->getValues());
-	$this->_helper->solrUpdater->update('beocontent', $insert, 'news');  
+	$this->_helper->solrUpdater->update('content', $insert, 'news');  
 	$this->_flashMessenger->addMessage('News story created!');
 	$this->_redirect(self::REDIRECT);
 	} else {
@@ -51,7 +51,7 @@ class Admin_NewsController extends Pas_Controller_Action_Admin {
 	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
     if ($form->isValid($form->getValues())) {
 	$this->_news->updateNews($form->getValues(), $this->_getParam('id'));
-    $this->_helper->solrUpdater->update('beocontent', $this->_getParam('id'), 'news');  
+    $this->_helper->solrUpdater->update('content', $this->_getParam('id'), 'news');  
 	$this->_flashMessenger->addMessage('News story information updated!');
 	$this->_redirect(self::REDIRECT);
 	} else {

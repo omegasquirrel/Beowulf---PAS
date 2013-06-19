@@ -16,7 +16,7 @@ $news->appendChild($dom->createElement('label', 'Database output'));
 $news->appendChild($dom->createElement('uri', 'http://www.finds.org.uk/database/sitemap/'));
 $nav->appendChild($news);
 $pages = $dom->createElement('pages');
-	$search = new Pas_Solr_Handler('beowulf');
+	$search = new Pas_Solr_Handler('objects');
 	$params['start'] = 0;
 	$params['show'] = 1000;
 	$params['format'] = 'sitemap';

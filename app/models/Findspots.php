@@ -117,47 +117,7 @@ class Findspots extends Pas_Db_Table_Abstract {
        return $findspotdata->fetchAll($select);
 	}
 
-	/** Retrieval of findspots for mapping on a user basis for staff profile map
-	* @param integer $id 
-	* @param integer $limit
-	* @return array $data
-	* @todo add caching
-	*/
-	public function getFindSpotDataMapping($id, $limit)  {
-		$findspotdata = $this->getAdapter();
-		$select = $findspotdata->select()
-			->from($this->_name, array('declat','declong','county','id'))
-			->joinLeft('finds','finds.secuid = findspots.findID', 
-			array('old_findID', 'objecttype', 'broadperiod'))
-			->joinLeft('staff','staff.dbaseID = finds.created_by', array())
-			->where('staff.id = ?' , (int)$id)
-			->where('declong IS NOT NULL')
-			->where('declat IS NOT NULL') 
-			->limit($limit);
-       return $findspotdata->fetchAll($select);
-	}
-
-	/** Retrieval of findspots for mapping on a user basis for staff profile map
-	* @param string $broadperiod
-	* @param string $objecttype 
-	* @param integer $limit
-	* @return array $data
-	* @todo add caching
-	*/
-	public function getFindSpotDataMappingObjects($broadperiod,$objecttype, $limit) {
-		$findspotdata = $this->getAdapter();
-		$select = $findspotdata->select()
-			->from($this->_name, array('declat', 'declong', 'county', 'id'))
-			->joinLeft('finds','finds.secuid = findspots.findID', array(
-			'old_findID', 'objecttype', 'broadperiod'))
-			->where('finds.broadperiod = ?' , (string)$broadperiod)
-			->where('finds.objecttype = ?',(string)$objecttype)
-			->where('declong IS NOT NULL')
-			->where('declat IS NOT NULL') 
-			->limit((int)$limit);
-       return $findspotdata->fetchAll($select);
-	}
-	
+			
 	/** Retrieval of findspots data for finds and findspots
 	* @param string $secuid
 	* @param integer $id 

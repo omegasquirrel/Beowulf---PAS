@@ -12,10 +12,10 @@
                 xmlns:dc="http://purl.org/dc/elements/1.1/"
                 xmlns:oac="http://www.openannotation.org/ns/"
                 xmlns:dcterms="http://purl.org/dc/terms/"
-				xmlns:skos="http://www.w3.org/2004/02/skos/core#" 
-     			xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" 
-     			xmlns:google="http://rdf.data-vocabulary.org/#"
-				xmlns:con="http://www.w3.org/2000/10/swap/pim/contact#"
+		xmlns:skos="http://www.w3.org/2004/02/skos/core#" 
+     		xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" 
+     		xmlns:google="http://rdf.data-vocabulary.org/#"
+		xmlns:con="http://www.w3.org/2000/10/swap/pim/contact#"
 				xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 				xmlns:c="http://s.opencalais.com/1/pred/"
 				xmlns:bibo="http://purl.org/ontology/bibo/"
@@ -98,47 +98,66 @@
 			</foaf:Person>
 		</dcterms:contributor>
 		
-		<dcterms:description><xsl:value-of select="description"/></dcterms:description>
-		<dcterms:modified><xsl:value-of select="updated"/></dcterms:modified>
-		<dcterms:created><xsl:value-of select="created"/></dcterms:created>
-		<dcterms:coverage>England and Wales</dcterms:coverage>
-		<dcterms:publisher>Portable Antiquities Scheme</dcterms:publisher>
-		<cc:attributionName>http://finds.org.uk</cc:attributionName>
-		<cc:attributionURL>http://finds.org.uk</cc:attributionURL>
-		<cc:license>http://creativecommons.org/licenses/by-sa/3.0/</cc:license>		
+		<dcterms:description>
+                    <xsl:attribute name="xsd:string"><xsl:value-of select="description"/></xsl:attribute>
+                </dcterms:description>
+		<dcterms:modified>
+                    <xsl:attribute name="xsd:date"><xsl:value-of select="updated"/></xsl:attribute>
+                </dcterms:modified>
+		<dcterms:created>
+                    <xsl:attribute name="xsd:date"><xsl:value-of select="created"/></xsl:attribute>
+                </dcterms:created>
+		<dcterms:coverage>
+                    <xsl:attribute name="xsd:string">England and Wales</xsl:attribute>
+                </dcterms:coverage>
+		<dcterms:publisher>
+                    <xsl:attribute name="xsd:string">Portable Antiquities Scheme</xsl:attribute>
+                </dcterms:publisher>
+		<cc:attributionName>
+                    <xsl:attribute name="xsd:string">http://finds.org.uk</xsl:attribute>
+                </cc:attributionName>
+		<cc:attributionURL>
+                    <xsl:attribute name="xsd:string">http://finds.org.uk</xsl:attribute>
+                </cc:attributionURL>
+		<cc:license>
+                    <xsl:attribute name="xsd:date">http://creativecommons.org/licenses/by-sa/3.0/</xsl:attribute>
+                </cc:license>		
 		
 	<foaf:primaryTopic>
 
 		<crm:E22_Man-Made_Object>
 			
 			<!--  label -->
-			<rdfs:label><xsl:value-of select="old_findID"/></rdfs:label>
-			
-			<crm:P57F.has_number_of_parts rdf:value="1" />
+			<rdfs:label>
+                            <xsl:attribute name="xsd:string"><xsl:value-of select="old_findID"/></xsl:attribute>
+                        </rdfs:label>
 			
 			<!--  The object's title -->
 			<crm:P102_has_title>
 			    <crm:E35_Title>
-			      <rdf:value>Object record for: <xsl:value-of select="old_findID"/></rdf:value>
+			      <xsl:attribute name="xsd:string">Object record for: <xsl:value-of select="old_findID"/></xsl:attribute>
 			    </crm:E35_Title>
 			</crm:P102_has_title>
 			
 			<!-- The preferred identifier: Must exist only once--> 
 			<crm:P48_has_preferred_identifier>
-				<crm:E42_Identifier>
-					<rdf:value>
-						<xsl:value-of select="old_findID"/>
-					</rdf:value>
-				</crm:E42_Identifier>
+				<crm:E42_Identifier> 
+                                    <xsl:attribute name="xsd:string"><xsl:value-of select="old_findID"/></xsl:attribute>
+                                </crm:E42_Identifier>
 			</crm:P48_has_preferred_identifier>
 			
 			<!--  object type appellation -->
 
 			<crm:P2_has_type>
 				<crm:E55_Type>
-					<rdf:value><xsl:value-of select="objecttype"/></rdf:value>
-					<rdfs:label>Object type:</rdfs:label>
+					<xsl:attribute name="xsd:string"><xsl:value-of select="objecttype"/></xsl:attribute>
+					<rdfs:label>
+                                            <xsl:attribute name="xsd:string">Object type:</xsl:attribute>
+                                        </rdfs:label>
 					<skos:inScheme><xsl:value-of select="$bmThes"/>id/thesauri/object</skos:inScheme>
+                                        <owl:sameAs>
+                                           <xsl:attribute name="rdf:resource">http://finds.org.uk/database/terminology/object/term/<xsl:value-of select="objecttype"/></xsl:attribute> 
+                                        </owl:sameAs>
 				</crm:E55_Type>
 			</crm:P2_has_type>
 			
@@ -152,14 +171,16 @@
 							<crm:E47.Spatial_Coordinates>
 								<claros:has_geoObject>
 				        			<geo:Point>
-							          <geo:lat><xsl:value-of select="fourFigureLat"/></geo:lat>
-							          <geo:long><xsl:value-of select="fourFigureLon"/></geo:long>
+							          <geo:lat rdf:datatype="xsd:decimal"><xsl:value-of select="fourFigureLat"/></geo:lat>
+							          <geo:long rdf:datatype="xsd:decimal"><xsl:value-of select="fourFigureLon"/></geo:long>
 							        </geo:Point>
 				      			</claros:has_geoObject>
 							</crm:E47.Spatial_Coordinates>
 							</xsl:if>
 						</crm:P7_took_place_at>
-						<skos:prefLabel>Excavated or found at: </skos:prefLabel>
+						<skos:prefLabel>
+                                                    <xsl:attribute name="xsd:string">Excavated or found at:</xsl:attribute>
+                                                </skos:prefLabel>
 					</ns2:EX_discovery>
 				
 			</crm:P12i_was_present_at>
@@ -167,26 +188,26 @@
 			<!--  Identifiers  -->
 			<crm:P1_is_identified_by>
 				<crm:E42_Identifier>
-					<rdf:value><xsl:value-of select="secuid"/></rdf:value>
+					<xsl:attribute name="xsd:string"><xsl:value-of select="secuid"/></xsl:attribute>
 					<rdfs:label>Secure ID: <xsl:value-of select="secuid"/></rdfs:label>
 				</crm:E42_Identifier>
 			</crm:P1_is_identified_by>
 			
 			<crm:P1_is_identified_by>
 				<crm:E42_Identifier>
+                                    <xsl:attribute name="xsd:string"><xsl:value-of select="other_ref" /></xsl:attribute>
 					<crm:P2_has_type>
 					<xsl:attribute name="rdf:resource"><xsl:value-of select="$bmThes"/>thesauri/identifier/otherid</xsl:attribute>
 					</crm:P2_has_type>
 					<rdfs:label>Other reference numbers:</rdfs:label>
-					<rdf:value><xsl:value-of select="other_ref" /></rdf:value>
 				</crm:E42_Identifier>
 			</crm:P1_is_identified_by>
 			
 			<crm:P4_has_time_span>
 					<crm:E52_Time-Span>
-						<crm:P82a_begin_of_the_begin rdf:datatype="xs:gYear"><xsl:value-of select="numdate1" /></crm:P82a_begin_of_the_begin>
-						<crm:P82b_end_of_the_end rdf:datatype="xs:gYear"><xsl:value-of select="numdate2" /></crm:P82b_end_of_the_end>
-						<crm:P3_has_note rdf:datatype="xs:string"><xsl:value-of select="numdate1" /> - <xsl:value-of select="numdate2" /></crm:P3_has_note>
+						<crm:P82a_begin_of_the_begin rdf:datatype="xsd:gYear"><xsl:value-of select="numdate1" /></crm:P82a_begin_of_the_begin>
+						<crm:P82b_end_of_the_end rdf:datatype="xsd:gYear"><xsl:value-of select="numdate2" /></crm:P82b_end_of_the_end>
+						<crm:P3_has_note rdf:datatype="xsd:string"><xsl:value-of select="numdate1" /> - <xsl:value-of select="numdate2" /></crm:P3_has_note>
 						<rdfs:label>Date range for object:</rdfs:label>
 					</crm:E52_Time-Span>
 				</crm:P4_has_time_span>
@@ -203,7 +224,7 @@
 							<crm:P91_has_unit>
 							<xsl:attribute name="rdf:resource"><xsl:value-of select="$denomUrl"/><xsl:value-of select="denominationID"/></xsl:attribute>
 							</crm:P91_has_unit> 
-							<rdf:value rdf:datatype="xs:string"><xsl:value-of select="denomination"/></rdf:value>
+							<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="denomination"/></rdfs:label>
 							<owl:sameAs>
 								<xsl:attribute name="rdf:resource">http://nomisma.org/id/<xsl:value-of select="nomismaDenomination"/></xsl:attribute>
 							</owl:sameAs>
@@ -236,14 +257,16 @@
 			
 			<crm:P56_bears_feature>
 				<crm:E25_Man-Made_Feature>
-				<crm:P2_has_type>
-				<xsl:attribute name="rdf:type"><xsl:value-of select="$bmThes"/>inscription</xsl:attribute>
-				</crm:P2_has_type>
-				<rdfs:label>Obverse legend</rdfs:label>
-				<ns2:PX.physical_description><xsl:value-of select="obverse_inscription"/></ns2:PX.physical_description>
-				<owl:sameAs>
-					<xsl:attribute name="rdf:resource">http://nomisma.org/id/obverse</xsl:attribute>
-				</owl:sameAs>
+                                    <crm:P2_has_type>
+                                        <xsl:attribute name="rdf:type"><xsl:value-of select="$bmThes"/>association/namedInscription</xsl:attribute>
+                                    </crm:P2_has_type>
+                                    <rdfs:label>Obverse legend</rdfs:label>
+                                   
+                                    <ns2:PX.physical_description><xsl:value-of select="obverse_inscription"/></ns2:PX.physical_description>
+                                    <owl:sameAs>
+                                            <xsl:attribute name="rdf:resource">http://nomisma.org/id/obverse</xsl:attribute>
+                                    </owl:sameAs>
+                                    
 				</crm:E25_Man-Made_Feature>      
 			</crm:P56_bears_feature>
 			
@@ -344,44 +367,45 @@
 		
 		<xsl:if test="currentLocation != ''">
 		<crm:P55F.has_current_location>
-			 <crm:P87_is_identified_by>
-                    <crm:E53.Place>
-                    	<rdf:value rdf:datatype="xs:string"><xsl:value-of select="currentLocation"/></rdf:value>
-                    </crm:E53.Place>
-             </crm:P87_is_identified_by>
+                    <crm:P87_is_identified_by>
+                        <crm:E53.Place>
+                            <xsl:attribute name="xsd:string"><xsl:value-of select="currentLocation"/></xsl:attribute>
+                        </crm:E53.Place>
+                    </crm:P87_is_identified_by>
 		</crm:P55F.has_current_location>
 		</xsl:if>
 		
-		
-		<crm:P108i_was_produced_by>
-			<crm:E12_Production>
-				<crm:P32_used_general_technique>
-				<xsl:attribute name="rdfs:type"></xsl:attribute> 
-				</crm:P32_used_general_technique>
-				<rdfs:label>Method of manufacture:</rdfs:label>
-				<rdf:value rdf:datatype="xs:string"><xsl:value-of select="manufacture"></xsl:value-of></rdf:value>
-			</crm:E12_Production>
-		</crm:P108i_was_produced_by>
+                
+                <crm:P45_consists_of>
+                    <crm:E57_Material>
+                        <xsl:attribute name="rdf:about">http://finds.org.uk/database/terminology/material/id/<xsl:value-of select="primaryMaterial"/></xsl:attribute>
+                        <skos:prefLabel><xsl:value-of select="primaryMaterial"/></skos:prefLabel>
+                            <owl:sameAs>
+                               <xsl:attribute name="rdf:resource">http://collection.britishmuseum.org/id/thesauri/x??????</xsl:attribute>  
+                            </owl:sameAs>
+                    </crm:E57_Material>
+                </crm:P45_consists_of>
+                
 		
 		<!--  Width -->
 		<xsl:if test="width != ''">
-					<crm:P43F.has_dimension>
+			<crm:P43F.has_dimension>
                         <crm:E54.Dimension>
                         <xsl:attribute name="rdf:type"><xsl:value-of select="$bmThes"/>dimension/width</xsl:attribute> 
                             <crm:P91F.has_unit rdf:resource="http://qudt.org/vocab/unit#Millimeter" />
-							<crm:P90F.has_value>
-                               <xsl:attribute name="xsd:double"><xsl:value-of select="width"/></xsl:attribute> 
-                            </crm:P90F.has_value>
+                                <crm:P90F.has_value>
+                                    <xsl:attribute name="xsd:double"><xsl:value-of select="width"/></xsl:attribute> 
+                                </crm:P90F.has_value>
                             <rdfs:label>Width</rdfs:label>
-							<crm:P3_has_note><xsl:value-of select="width"/></crm:P3_has_note>
+                            <crm:P3_has_note><xsl:value-of select="width"/></crm:P3_has_note>
                         </crm:E54.Dimension>
                     </crm:P43F.has_dimension>
          </xsl:if>
                     
 		<!--  Diameter  -->
 		<xsl:if test="diameter != ''">
-					<crm:P43F.has_dimension>
-                        <crm:E54.Dimension>
+			<crm:P43F.has_dimension>
+                            <crm:E54.Dimension>
                         	<crm:P2_has_type>
                             <xsl:attribute name="rdf:type"><xsl:value-of select="$bmThes"/>dimension/diameter</xsl:attribute>
                             </crm:P2_has_type> 
@@ -389,7 +413,7 @@
                             <crm:P90F.has_value>
                                 <xsl:attribute name="xsd:double"><xsl:value-of select="diameter"/></xsl:attribute> 
                             </crm:P90F.has_value>
-							<crm:P3_has_note><xsl:value-of select="diameter"/></crm:P3_has_note>
+                            <crm:P3_has_note><xsl:value-of select="diameter"/></crm:P3_has_note>
                             <rdfs:label>Diameter</rdfs:label>
                         </crm:E54.Dimension>
                     </crm:P43F.has_dimension>
@@ -406,7 +430,7 @@
                             <crm:P90F.has_value>
                                 <xsl:attribute name="xsd:double"><xsl:value-of select="height"/></xsl:attribute> 
                             </crm:P90F.has_value>
-							<crm:P3_has_note><xsl:value-of select="height"/></crm:P3_has_note>
+                            <crm:P3_has_note><xsl:value-of select="height"/></crm:P3_has_note>
                             <rdfs:label>Height</rdfs:label>
                         </crm:E54.Dimension>
                     </crm:P43F.has_dimension>
@@ -431,7 +455,7 @@
                          
          <!--  Weight  -->
 		<xsl:if test="weight != ''">
-					<crm:P43F.has_dimension>
+		<crm:P43F.has_dimension>
                         <crm:E54.Dimension>
                         	<crm:P2_has_type> 
                         	<xsl:attribute name="rdf:type"><xsl:value-of select="$bmThes"/>dimension/weight</xsl:attribute>
@@ -492,81 +516,80 @@
 			<nm:coin>
 				
 				<xsl:attribute name="rdf:about"><xsl:value-of select="$url"/><xsl:value-of select="id"/></xsl:attribute> 
-				<dcterms:title xml:lang="de"><xsl:value-of select="old_findID" /></dcterms:title>
+				<dcterms:title><xsl:value-of select="old_findID" /></dcterms:title>
 				<dcterms:identifier><xsl:value-of select="id" /></dcterms:identifier>
 
+                                <xsl:if test="broadperiod = 'ROMAN'">
 				<dcterms:partOf rdf:resource="http://nomisma.org/id/roman_numismatics"/>
+                                </xsl:if>
 				<nm:numismatic_term rdf:resource="http://nomisma.org/id/coin"/>
 				
-				<nm:collection>Portable Antiquities Scheme</nm:collection>
+				<nm:collection>
+                                    <xsl:attribute name="xsd:string">Portable Antiquities Scheme</xsl:attribute>
+                                </nm:collection>
 				
 				<xsl:if test="die != ''" >
-				<nm:axis>
-					<rdf:Description>
-						<rdf:value rdf:datatype="xs:integer"><xsl:value-of select="die" /></rdf:value>
-						<rdfs:label><xsl:value-of select="die_axis_name" /></rdfs:label>
-					</rdf:Description>
-				</nm:axis>
+				<nm:axis rdf:datatype="xsd:integer"><xsl:value-of select="die" /></nm:axis>
 				</xsl:if>
 				<xsl:if test="diameter !=''">				
-				<nm:diameter rdf:datatype="xs:decimal"><xsl:value-of select="diameter"/></nm:diameter>
+				<nm:diameter rdf:datatype="xsd:decimal"><xsl:value-of select="diameter"/></nm:diameter>
 				</xsl:if>
 				<xsl:if test="weight != ''">
-				<nm:weight rdf:datatype="xs:decimal"><xsl:value-of select="weight"/></nm:weight>
+				<nm:weight rdf:datatype="xsd:decimal"><xsl:value-of select="weight"/></nm:weight>
 				</xsl:if>
 				<xsl:if test="thickness != ''">
-				<nm:thickness rdf:datatype="xs:decimal"><xsl:value-of select="thickness"/></nm:thickness>
+				<nm:thickness rdf:datatype="xsd:decimal"><xsl:value-of select="thickness"/></nm:thickness>
 				</xsl:if>
 				<xsl:if test="numdate1 != ''">
-				<nm:start_date rdf:datatype="xs:gYear"><xsl:value-of select="numdate1"/></nm:start_date>
+				<nm:start_date rdf:datatype="xsd:gYear"><xsl:value-of select="numdate1"/></nm:start_date>
 				</xsl:if>
 				<xsl:if test="numdate2 != ''">
-				<nm:end_date rdf:datatype="xs:gYear"><xsl:value-of select="numdate2"/></nm:end_date>
+				<nm:end_date rdf:datatype="xsd:gYear"><xsl:value-of select="numdate2"/></nm:end_date>
 				</xsl:if>
 				
 				<nm:denomination>
 					<rdf:Description>
-						<rdf:value rdf:datatype="xs:string"><xsl:value-of select="denomination"/></rdf:value>
+						<xsl:attribute name="xsd:string"><xsl:value-of select="denomination"/></xsl:attribute>
 						<owl:sameAs>http://dbpedia.org/page/<xsl:value-of select="denomination"/></owl:sameAs>				
 					</rdf:Description>
 				</nm:denomination>
 			
 				<nm:reverse>
 					<nm:description>
-						<rdf:value rdf:datatype="xs:string">
+						<xsl:attribute name="xsd:string">
 							<xsl:value-of select="reverse_description"/>
-						</rdf:value>
+						</xsl:attribute>
 					</nm:description>
 				</nm:reverse>
 				
 				<nm:reverse>
 					<nm:legend>
-						<rdf:value rdf:datatype="xs:string">
+						<xsl:attribute name="xsd:string">
 							<xsl:value-of select="reverse_inscription"/>
-						</rdf:value>
+						</xsl:attribute>
 					</nm:legend>	
 				</nm:reverse>
 				
 				<nm:obverse>
 					<nm:description>
-						<rdf:value rdf:datatype="xs:string">
+						<xsl:attribute name="xsd:string">
 							<xsl:value-of select="obverse_description"/>
-						</rdf:value>
+						</xsl:attribute>
 					</nm:description>
 				</nm:obverse>
 				
 				<nm:obverse>
 					<nm:legend>
-						<rdf:value rdf:datatype="xs:string">
+						<xsl:attribute name="xsd:string">
 							<xsl:value-of select="obverse_inscription"/>
-						</rdf:value>
+						</xsl:attribute>
 					</nm:legend>	
 				</nm:obverse>
 				
 				<nm:authority>
 				<rdf:Description>
 					<xsl:attribute name="rdf:about">http://finds.org.uk/database/terminology/rulers/ruler/id/<xsl:value-of select="ruler_id"/></xsl:attribute> 
-						<rdf:value rdf:datatype="xs:string"><xsl:value-of select="ruler1"/></rdf:value>
+						<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="ruler1"/></rdfs:label>
 									<owl:sameAs >
 										<xsl:attribute name="rdf:resource">http://dbpedia.org/page/<xsl:value-of select="rulerDbpedia"/></xsl:attribute>
 									</owl:sameAs>
@@ -584,7 +607,8 @@
 						<nm:findspot>
 						      <rdf:Description>
 						      	<gn:parentCountry rdf:resource="http://www.geonames.org/2635167"/>
-						        <geo:lat_long ><xsl:value-of select="fourFigureLat"/>,<xsl:value-of select="fourFigureLon"/></geo:lat_long>
+						        <geo:lat><xsl:value-of select="fourFigureLat"/></geo:lat>
+                                                        <geo:long><xsl:value-of select="fourFigureLon"/></geo:long>
 								<owl:sameAs>
 				        			<xsl:attribute name="rdf:resource">http://where.yahooapis.com/v1/place/<xsl:value-of select="woeid"/></xsl:attribute>
 				       			</owl:sameAs>
@@ -606,7 +630,7 @@
 					<nm:mint>
 					<rdf:Description>
 					<xsl:attribute name="rdf:about">http://finds.org.uk/database/terminology/mints/mint/id/<xsl:value-of select="mint_id"/></xsl:attribute>
-						<rdf:value rdf:datatype="xs:string"><xsl:value-of select="mint_name"/></rdf:value> 
+						<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="mint_name"/></rdfs:label> 
 						<owl:sameAs>
 							<xsl:attribute name="rdf:resource">http://nomisma.org/id/<xsl:value-of select="nomismaMintID"/></xsl:attribute>
 						</owl:sameAs>
@@ -619,7 +643,6 @@
 						<owl:sameAs >
 							<xsl:attribute name="rdf:resource">http://pleiades.stoa.org/places/<xsl:value-of select="pleiadesID"/>#this</xsl:attribute>
 						</owl:sameAs>
-						<rdfs:label>Issuing mint: </rdfs:label>
 					</rdf:Description>
 					</nm:mint>
 				</xsl:if>	
@@ -628,11 +651,10 @@
 				<nm:moneyer>
 					<rdf:Description>
 					<xsl:attribute name="rdf:about">http://finds.org.uk/database/terminology/moneyers/moneyer/id/<xsl:value-of select="mint_id"/></xsl:attribute>
-					<rdf:value rdf:datatype="xs:string"><xsl:value-of select="moneyer"/></rdf:value>
+					<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="moneyer"/></rdfs:label>
 						<owl:sameAs >
 							<xsl:attribute name="rdf:resource">http://dbpedia.org/page/<xsl:value-of select="rulerDbpedia"/></xsl:attribute>
 						</owl:sameAs>
-						<rdfs:label>Moneyer: </rdfs:label>
 					</rdf:Description>
 				</nm:moneyer>
 				</xsl:if>
@@ -641,11 +663,11 @@
 				<nm:reecePeriod>
 					<rdf:Description>
 					<xsl:attribute name="rdf:about">http://finds.org.uk/romancoins/reeceperiods/period/id/<xsl:value-of select="reeceID"/></xsl:attribute>
-					<rdf:value rdf:datatype="xs:integer"><xsl:value-of select="reeceID"/></rdf:value>
-					<rdfs:label rdf:datatype="xs:string"><xsl:value-of select="period_name" /> - <xsl:value-of select="date_range" /></rdfs:label>
+					<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="period_name" /> - <xsl:value-of select="date_range" /></rdfs:label>
 					<owl:sameAs>
-							<xsl:attribute name="rdf:resource">http://nomisma.org/id/reece<xsl:value-of select="reeceID"/></xsl:attribute>
+                                            <xsl:attribute name="rdf:resource">http://nomisma.org/id/reeceperiod<xsl:value-of select="reeceID"/></xsl:attribute>
 					</owl:sameAs>
+                                        <rdfs:comment>Note this identifier does not yet exist!</rdfs:comment>
 					</rdf:Description>
 				</nm:reecePeriod>
 				</xsl:if>
@@ -654,8 +676,7 @@
 				<nm:reverseType>
 					<rdf:Description>
 					<xsl:attribute name="rdf:about">http://finds.org.uk/romancoins/reversetypes/type/id/<xsl:value-of select="reverseType"/></xsl:attribute>
-					
-						<rdf:value rdf:datatype="xs:string"><xsl:value-of select="reverseType" /></rdf:value>
+                                            <rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="reverseType" /></rdfs:label>
 					</rdf:Description>
 				</nm:reverseType>
 				</xsl:if>					

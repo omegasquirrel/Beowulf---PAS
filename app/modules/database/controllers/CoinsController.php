@@ -56,7 +56,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $pleiadesID = $mints->getPleiadesID($form->getValue('mint_id'));
     $insertData['pleiadesID'] = $pleiadesID;
     $insert = $this->_coins->add($insertData);
-    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('returnID'));
+    $this->_helper->solrUpdater->update('objects', $this->_getParam('returnID'));
     $this->_helper->flashMessenger->addMessage('Coin data saved.');
     $this->_redirect(self::REDIRECT . 'record/id/' 
             . $this->_getParam('returnID'));
@@ -94,7 +94,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $this->_helper->audit($updateData, $oldData, 'CoinsAudit', 
             $this->_getParam('id'), $this->_getParam('returnID'));
     //Update solr index
-    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('returnID'));
+    $this->_helper->solrUpdater->update('objects', $this->_getParam('returnID'));
     $this->_helper->flashMessenger->addMessage('Numismatic details updated.');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('returnID'));
     } else {
@@ -222,7 +222,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     if ($del == 'Yes' && $id > 0) {
     $coins = new CoinXClass();
     $where = $coins->getAdapter()->quoteInto('id = ?', $id);
-    $this->_helper->solrUpdater->update('beowulf', $returnID);
+    $this->_helper->solrUpdater->update('objects', $returnID);
     $this->_helper->flashMessenger->addMessage('Record deleted!');
     $coins->delete($where);	
     $this->_redirect(self::REDIRECT . 'record/id/' . $returnID);

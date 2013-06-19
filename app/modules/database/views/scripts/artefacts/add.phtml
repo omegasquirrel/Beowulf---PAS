@@ -1,11 +1,17 @@
 <?php
-	$this->jQuery()->addJavascriptFile($this->baseUrl() .
-	'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/autocompleteinitPeople.js',$type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
-	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-typeahead.js', $type='text/javascript');
 	$this->headTitle('Add a new object');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/objectType.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/finder.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/secondaryfinder.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/primaryID.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/secondaryID.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/recorder.js', $type='text/javascript');
+	
+	
 	$front = Zend_Controller_Front::getInstance()->getRequest();
+	
 	$copy = $front->getParam('copy');
 	if(!is_null($copy)){
 		$this->headTitle(' copied from last record');
@@ -34,32 +40,7 @@ $(document).ready(function() {
 	'copy' => 'last'),
 	null,true);?>"
 title="Autofill form fields from last record you created" id="populate" accesskey="c">Copy last record</a> </p>
-<div class="well"><h3>Annoying reminder: <?php 
-$welcome = array(
-	'Data in = data out', 
-	'Do it right, do it once', 
-	'Remember the AD/BC style guide',
-	'Does this record follow the PAS recording guide?',
-	'If you are not sure, ask a finds adviser',
-	'Everything you write is audited and can be requested under Freedom of Information, be sensible',
-	'Is this a Treasure case, have you got a T number and entered it in the correct box?',
-	'The classification and sub classification boxes are for typologies, not numismatic information',
-	'Two fields are mandatory, object type and method of discovery, you might need to change the default setting of metal detecting',
-	'Remember to put your references in the text, as well as attaching them to the record.',
-	'Don\'t worry, be happy',
-	'Don\'t worry about a thing,\'Cause every little thing gonna be all right!',
-	'Fortune and glory kid, fortune and glory',
-	'There\'s a starman waiting in the sky, he\'d like to come and meet us but he thinks he\'d blow our minds',
-	'Archaeology is the search for fact... not truth. If it\'s truth you\'re looking for, Dr. Tyree\'s philosophy class is right down the hall.',
-	'I suddenly remembered my Charlemagne. Let my armies be the rocks and the trees and the birds in the sky...',
-	'And let me guide you to the purple rain.',
-	'Is it Pimm\'s o\'clock yet?',
-	'One day in October neither drunken nor sober oe\'r Broadbury Down I was wending my way'
-);
-echo  $welcome[array_rand($welcome)];
 
-?></h3>
-</div>
 <?php
 echo $this->form;
 ?>

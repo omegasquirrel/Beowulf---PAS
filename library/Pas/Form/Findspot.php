@@ -32,34 +32,42 @@ class Pas_Form_Findspot {
 
 
     public function populate($data){
+    	
 	$this->_view->form->populate($data);
 
-    if(!is_null($data['county'])) {
+	
+    if(array_key_exists('county', $data)) {
+    
     $districts = new Places();
     $district = $districts->getDistrictList($data['county']);
     if($district) {
     $this->_view->form->district->addMultiOptions(array(NULL => 'Choose district',
     	'Available districts' => $district));
     }
-    if(!is_null($data['district'])) {
-    $parishes = $districts->getParishList($data['district']);
+    
+    if(array_key_exists('district', $data)) {
+    $parishModel = new OsParishes();
+    $parishes = $parishModel->getParishesToDistrict($data['district']);
     $this->_view->form->parish->addMultiOptions(array(NULL => 'Choose parish',
     	'Available parishes' => $parishes));
     }
-     if(!is_null($data['county'])) {
+    
+    if(array_key_exists('county', $data)) {
     $cnts = new Counties();
     $region_list = $cnts->getRegionsList($data['county']);
     $this->_view->form->regionID->addMultiOptions(array(NULL => 'Choose region',
     	'Available regions' => $region_list));
     }
     }
-     if(!is_null($data['landusevalue'])) {
+    
+    if(array_key_exists('landusevalue', $data)) {
     $landcodes = new Landuses();
     $landusecode_options = $landcodes->getLandusesChildList($data['landusevalue']);
     $this->_view->form->landusecode->addMultiOptions(array(NULL => 'Choose code',
     	'Available landuses' => $landusecode_options));
      }
-    if(!is_null($data['landowner'])) {
+     
+    if(array_key_exists('landowner', $data)) {
     $finders = new Peoples();
     $finders = $finders->getName($data['landowner']);
     foreach($finders as $finder) {

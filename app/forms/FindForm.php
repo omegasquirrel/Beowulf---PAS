@@ -69,10 +69,7 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-
-
 	$this->setName('finds');
-
 
 	$secuid = new Zend_Form_Element_Hidden('secuid');
 	$secuid->addFilters(array('StripTags','StringTrim'))
@@ -128,7 +125,6 @@ public function __construct($options = null) {
 	->setCheckedValue('1')
 	->setUncheckedValue(NULL)
 	->addFilters(array('StripTags','StringTrim'))
-
 	->addValidator('NotEmpty','Int');
 
 	//Reason for find of note
@@ -138,6 +134,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose a reasoning','Available reasons' => $reason_options))
 	->addValidator('InArray', false, array(array_keys($reason_options)))
+	->setAttrib('class', 'span6')
 	->addValidator('Int');
 
 	//Find classification
@@ -545,7 +542,7 @@ public function __construct($options = null) {
 	//Current location of object
 	$curr_loc = new Zend_Form_Element_Text('curr_loc');
 	$curr_loc->setLabel('Current location: ')
-	->setAttrib('size',60)
+	->setAttrib('class','span6')
 	->addFilters(array('StripTags','StringTrim'));
 
 	//Current location of object

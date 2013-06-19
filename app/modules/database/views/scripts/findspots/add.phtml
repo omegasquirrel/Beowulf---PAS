@@ -1,18 +1,14 @@
 <?php
 $this->headTitle('Add a findspot');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/iacoinslinkedinit.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
-	->appendStylesheet($this->baseUrl().'/css/ui.datepicker.css');
-		$front = Zend_Controller_Front::getInstance()->getRequest();
-	$copy = $front->getParam('copy');
-	if(!is_null($copy)){
-		$this->headTitle(' copied from last record');
-	}
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.chained.remote.min.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-typeahead.js', $type='text/javascript');
+
+$front = Zend_Controller_Front::getInstance()->getRequest();
+
+$copy = $front->getParam('copy');
+if(!is_null($copy)){
+$this->headTitle(' copied from last record');
+}
 ?>
 <h2><?php echo $this->title();?></h2>
 <?php $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');?>
@@ -26,27 +22,80 @@ $this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css')
 	'module' => 'database',
 	'controller' => 'artefacts',
 	'action' => 'record', 'id' => $id),null,true);?>" title="return to the record">Return to record</a></p>
-	<div class="well"><h3>Annoying reminder: <?php 
-$welcome = array(
-	'Data in = data out', 
-	'Do it right, do it once', 
-	'Does this record follow the PAS recording guide?',
-	'If you are not sure, ask a finds adviser',
-	'Everything you write is audited and can be requested under Freedom of Information, be sensible',
-	'Is the record finished? If so can it be made public?',
-	'Have you got the grid reference? If not the record is not useful for research',
-	'Have you filled in all the details for the place of discovery? Region, County, District, Parish',
-	'Hide the find spot by using known as, but do you really need to?'
-);
-echo  $welcome[array_rand($welcome)];
 
-?></h3></div>
 <?php
 echo $this->form;
 ?>
+
 <?php $this->jQuery()->javascriptCaptureStart();?>
 $(document).ready(function() {
+       
+       $('#landownername').typeahead({
+    	source: function(query, process) {
+        var $url = '/ajax/people/?term=' + query ;
+        var $items = new Array;
+        $items = [""];
+        $.ajax({
+            url: $url,
+            dataType: "json",
+            type: "POST",
+            success: function(data) {
+                console.log(data);
+                $.map(data, function(data){
+                    var group;
+                    group = {
+                        id: data.id,
+                        name: data.term,                            
+                        toString: function () {
+                            return JSON.stringify(this);
+                            //return this.app;
+                        },
+                        toLowerCase: function () {
+                            return this.name.toLowerCase();
+                        },
+                        indexOf: function (string) {
+                            return String.prototype.indexOf.apply(this.name, arguments);
+                        },
+                        replace: function (string) {
+                            var value = '';
+                            value +=  this.name;
+                            if(typeof(this.level) != 'undefined') {
+                                value += ' <span class="pull-right muted">';
+                                value += this.level;
+                                value += '</span>';
+                            }
+                            return String.prototype.replace.apply('<div style="padding: 10px; font-size: 1.5em;">' + value + '</div>', arguments);
+                        }
+                    };
+                    $items.push(group);
+                });
+
+                process($items);
+            }
+        });
+    },
+    property: 'term',
+    items: 10,
+    minLength: 3,
+    updater: function (item) {
+        var item = JSON.parse(item);
+        console.log(item.term); 
+        $('#landowner').val(item.id);       
+        return item.name;
+    }
+});
+       
+       
        // focus on the first text input field in the first field on the page
-        $("input[type='select']:first", document.forms[0]).focus();
+       $("input[type='select']:first", document.forms[0]).focus();
+       
+       //Chain the region to county
+       $("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
+       
+       //Chain district to county	
+       $("#district").remoteChained("#county", "/ajax/osdistrictsbycounty/");
+       
+       //Chain parish to district
+       $("#parish").remoteChained("#district", "/ajax/osparishesbydistrict/");
     });
 <?php $this->jQuery()->javascriptCaptureEnd();?>

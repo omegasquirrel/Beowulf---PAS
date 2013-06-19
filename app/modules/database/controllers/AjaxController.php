@@ -226,7 +226,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
         $params = $this->_getAllParams();
 	$params['show'] = 2000;
 	$params['format'] = 'json';
-	$search = new Pas_Solr_Handler('beowulf');
+	$search = new Pas_Solr_Handler('objects');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',
 		'longitude', 'latitude', 'county', 'woeid',
@@ -242,7 +242,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$params['show'] = 2000;
     }
 	$params['format'] = 'kml';
-	$search = new Pas_Solr_Handler('beowulf');
+	$search = new Pas_Solr_Handler('objects');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',
 		'longitude', 'latitude', 'county', 'woeid',
@@ -259,7 +259,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $params = $this->_getAllParams();
 	$params['show'] = 15000;
 	$params['format'] = 'json';
-	$search = new Pas_Solr_Handler('beowulf');
+	$search = new Pas_Solr_Handler('objects');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',
 		'longitude', 'latitude', 'county', 'woeid',
@@ -325,7 +325,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	} else {
 		$params['q'] = 'type:R || type:A && ' . $q;
 	}
-	$search = new Pas_Solr_Handler('beogeodata');
+	$search = new Pas_Solr_Handler('geodata');
 	$search->setParams($params);
 	$search->setFields(array('*'));
 	$search->execute();
@@ -338,7 +338,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$params['format'] = 'json';
 	$params['sort'] = 'id';
 	$params['source'] = 'smrdata';
-	$search = new Pas_Solr_Handler('beogeodata');
+	$search = new Pas_Solr_Handler('geodata');
 	$search->setParams($params);
 	$search->setFields(array('*'));
 	$search->execute();
@@ -350,7 +350,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$params['show'] = 5000;
 	$params['format'] = 'json';
 	$params['sort'] = 'id';
-	$search = new Pas_Solr_Handler('beopeople');
+	$search = new Pas_Solr_Handler('people');
 	$search->setParams($params);
 	$search->setFields(array('*'));
 	$search->execute();
@@ -358,7 +358,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	}
    
    	public function facetAction(){
-   	$search = new Pas_Solr_Handler('beowulf');
+   	$search = new Pas_Solr_Handler('objects');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
@@ -374,7 +374,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	} 
    
 	public function peoplefacetAction(){
-   	$search = new Pas_Solr_Handler('beopeople');
+   	$search = new Pas_Solr_Handler('people');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
@@ -389,7 +389,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	
 	
 	public function imagefacetAction(){
-	$search = new Pas_Solr_Handler('beoimages');
+	$search = new Pas_Solr_Handler('images');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
@@ -405,7 +405,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	}
 	
 	public function myfindsfacetAction(){
-	$search = new Pas_Solr_Handler('beowulf');
+	$search = new Pas_Solr_Handler('objects');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
@@ -422,7 +422,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	} 
    
 	public function myinstitutionfacetAction(){
-	$search = new Pas_Solr_Handler('beowulf');
+	$search = new Pas_Solr_Handler('objects');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
@@ -447,7 +447,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     }
    
 	public function myimagesfacetAction(){
-   	$search = new Pas_Solr_Handler('beoimages');
+   	$search = new Pas_Solr_Handler('images');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
@@ -464,7 +464,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	} 
    
    public function forceindexupdateAction(){
-	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));	
+	$this->_helper->solrUpdater->update('objects', $this->_getParam('findID'));	
    }
    
   

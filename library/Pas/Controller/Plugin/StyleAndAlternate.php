@@ -24,15 +24,12 @@ class Pas_Controller_Plugin_StyleAndAlternate
 	$view->jQuery()->addJavascriptFile($view->baseUrl().'/js/JQuery/jquery.lightbox.js',$type='text/javascript');
 	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/bootstrap.min.js', $type='text/javascript');
 	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/JQuery/lightboxInit.js', $type='text/javascript');
-	$view->jQuery()->addJavascriptFile('http://assets.cookieconsent.silktide.com/current/plugin.min.js', $type='text/javascript');
-	$view->jQuery()->addJavascriptFile($view->baseUrl() . '/js/cookieConsent.js', $type='text/javascript');
 	
 	
-	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap.css', $type='screen');
+	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap.min.css', $type='screen');
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/custom-bootstrap.css', $type='screen');
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/lightbox.css', $type='screen');
-	$view->headLink()->appendStylesheet('http://assets.cookieconsent.silktide.com/current/style.min.css');
-	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.css', $type='screen');
+	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/bootstrap-responsive.min.css', $type='screen');
 	$view->headLink()->appendStylesheet($view->baseUrl() . '/css/print.css', $type='print');
 	$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
 	$view->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=Edge');

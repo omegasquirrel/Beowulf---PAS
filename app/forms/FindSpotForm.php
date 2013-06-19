@@ -11,9 +11,12 @@ class FindSpotForm extends Pas_Form {
 
 public function __construct($options = null) {
 	// Construct the select menu data
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+	$counties = new OsCounties();
+	$county_options = $counties->getCountiesID();
 
+	$regionModel = new OsRegions();
+	$regions = $regionModel->getRegionsID();
+	
 	$origins = new MapOrigins();
 	$origin_options = $origins->getValidOrigins();
 
@@ -30,29 +33,33 @@ public function __construct($options = null) {
 
 	// Object specifics
 	$county = new Zend_Form_Element_Select('county');
-	$county->setLabel('County: ')
+	$county->setLabel('County/Unitary Authority or Metropolitan District: ')
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose county','Valid counties' => $county_options))
-	->addValidator('InArray', false, array(array_keys($county_options)));
+	->addValidator('InArray', false, array(array_keys($county_options)))
+	->setAttribs(array('class' => 'span6'));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose district after county'));
+	->addMultiOptions(array(NULL => 'Choose district after county'))
+	->setAttribs(array('class' => 'span6'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose parish after district'));
+	->addMultiOptions(array(NULL => 'Choose parish after district'))
+	->setAttribs(array('class' => 'span6'));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
 	->setRegisterInArrayValidator(false)
 	->addValidator('Digits')
-	->addMultiOptions(array(NULL => 'Choose region after county'));
+	->addMultiOptions(array(NULL => 'Choose region','Valid counties' => $regions))
+	->setAttribs(array('class' => 'span6'));
 
 	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
 
@@ -209,8 +216,10 @@ public function __construct($options = null) {
 	$landownername = new Zend_Form_Element_Text('landownername');
 	$landownername->setLabel('Landowner: ')
 	->addValidators(array('NotEmpty'))
-	->setAttrib('class','privatedata')
-	->setAttribs(array('placeholder' => 'This data is not shown to the public'))
+	->setAttribs(array(
+		'placeholder' => 'This data is not shown to the public', 
+		'data-provide' => 'typeahead',
+		'class' => 'privatedata span6'))
 	->addFilters(array('StripTags', 'StringTrim'));
 
 	$landowner = new Zend_Form_Element_Hidden('landowner');
@@ -235,12 +244,9 @@ public function __construct($options = null) {
 
 	if($action === 'edit') {
 	$this->addElements(array(
-	$county, 
-	//$district, 
-	$parish,
+	$county, $district, $parish,
 	$knownas, $description, $comments,
-	//$regionID, 
-	$gridref, $fourFigure,
+	$regionID, $gridref, $fourFigure,
 	$easting, $northing, $map10k,
 	$map25k, $declong, $declat,
 	$declong4, $declat4, $gridLen,
@@ -251,13 +257,9 @@ public function __construct($options = null) {
 	));
 	} else {
 	$this->addElements(array(
-	$county, 
-	//$district, 
-	$parish,
+	$county, $district, $parish,
 	$knownas, $depthdiscovery, $description,
-	$comments, 
-	//$regionID, 
-	$gridref,
+	$comments, $regionID, $gridref,
 	$gridrefsrc, $gridrefcert,
 	$address, $postcode, $landusevalue,
 	$landusecode, $landownername, $landowner,
@@ -266,8 +268,7 @@ public function __construct($options = null) {
 
 
 	$this->addDisplayGroup(array(
-	'county', 
-	//'regionID', 'district',
+	'county', 'regionID', 'district',
 	'parish', 'knownas',
 	'address', 'postcode', 'landownername',
 	'landowner'),
@@ -297,7 +298,7 @@ public function __construct($options = null) {
 	
 	$this->commentary->setLegend('Findspot comments');
 
-	$this->addDisplayGroup(array('submit'), 'buttons');
+	$this->addDisplayGroup(array('submit'), 'submit');
 
     parent::init();
 	}

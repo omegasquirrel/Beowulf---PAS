@@ -32,7 +32,7 @@ class Users_RecordsController extends Pas_Controller_Action_Admin {
     $params['finderID'] = $this->_getDetails()->peopleID;
 
     $params['-createdBy'] = $this->_getDetails()->id;
-    $search = new Pas_Solr_Handler('beowulf');
+    $search = new Pas_Solr_Handler('objects');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',

@@ -56,7 +56,7 @@ class Contacts_StaffController extends Pas_Controller_Action_Admin
         $postcode = new Pas_Service_Geo_PostCodeToGeo();
         $geo = $postcode->getData('WC1B 3DG');
         $config = $this->_helper->config()->solr->toArray();
-        $config['core'] = 'beowulf';
+        $config['core'] = 'objects';
 
         $client = new Solarium_Client(array('adapteroptions' => $config ));
 

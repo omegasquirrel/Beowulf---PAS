@@ -67,7 +67,7 @@ class Database_FindspotsController
     $updateData['findID'] = $this->_getParam('secuid');
     $updateData['institution'] = $this->_helper->identity->getPerson()->institution;
     $this->_findspots->addAndProcess($updateData);
-    $this->_helper->solrUpdater->update('beowulf', $returnID);
+    $this->_helper->solrUpdater->update('objects', $returnID);
     $this->_redirect(self::REDIRECT . 'record/id/' . $returnID);
     $this->_flashMessenger->addMessage('A new findspot has been created.');
     } else {
@@ -101,7 +101,7 @@ class Database_FindspotsController
     $returnID = (int)$this->_findspots->getFindNumber($this->_getParam('id'));
     $this->_helper->audit($insertData, $oldData, 'FindSpotsAudit',
     $this->_getParam('id'), $returnID);
-    $this->_helper->solrUpdater->update('beowulf', $returnID);
+    $this->_helper->solrUpdater->update('objects', $returnID);
     $this->_flashMessenger->addMessage('Findspot updated!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $returnID);
     } else {
@@ -146,7 +146,7 @@ class Database_FindspotsController
     if ($del == 'Yes' && $id > 0) {
     $where = 'id = ' . $id;
     $this->_findspots->delete($where);
-	$this->_helper->solrUpdater->update('beowulf', $findID);
+	$this->_helper->solrUpdater->update('objects', $findID);
     $this->_flashMessenger->addMessage('Findspot deleted.');
     }
     $this->_redirect(self::REDIRECT . 'record/id/' . $findID);

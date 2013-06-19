@@ -28,14 +28,14 @@ parent::__construct($options);
 	$fromdate->setLabel('Date period starts: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Digits')
+		->addValidator('Int')
 		->addErrorMessage('You must enter a start date');
 
 	$todate = new Zend_Form_Element_Text('todate');
 	$todate->setLabel('Date period ends: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->addValidator('Digits')
+		->addValidator('Int')
 		->addErrorMessage('You must enter an end date');
 
 	$notes = new Pas_Form_Element_RTE('notes');

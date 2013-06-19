@@ -37,7 +37,7 @@ class Database_OsdataController extends Pas_Controller_Action_Admin {
 
     $params = $this->_getAllParams();
 
-    $search = new Pas_Solr_Handler('beogeodata');
+    $search = new Pas_Solr_Handler('geodata');
     $search->setFields(array('*')
     );
 	$search->setFacets(array('county'));

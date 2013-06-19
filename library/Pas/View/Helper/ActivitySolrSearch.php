@@ -26,7 +26,7 @@ class Pas_View_Helper_ActivitySolrSearch extends Zend_View_Helper_Abstract{
 		$this->_config = Zend_Registry::get('config');
 		$config = $this->_config->solr->toArray();
 		$config['path'] = '/solr/';
-		$config['core'] = 'beopeople';
+		$config['core'] = 'people';
 		$this->_solrConfig = array('adapteroptions' => $config );
    		$this->_solr = new Solarium_Client($this->_solrConfig);
 	}

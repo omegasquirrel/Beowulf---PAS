@@ -124,8 +124,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	$this->bootstrap('view');
 	$view = $this->getResource('view');
 	$view->jQuery()->enable()
-       ->setVersion('1.7.1')
-       ->setUiVersion('1.8')
+       ->setVersion('1.10.1')
+       ->setUiVersion('1.10.0')
        ->uiEnable();
 	}
 

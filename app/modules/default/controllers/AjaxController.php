@@ -155,7 +155,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function peopleAction()
 	{
 	$peoples = new Peoples();
-	$people_options = $peoples->getNames($this->_getParam('q'));
+	$people_options = $peoples->getNames($this->_getParam('term'));
 	echo  Zend_Json::encode($people_options);
 	}
 
@@ -468,253 +468,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	echo Zend_Json::encode($usersjson);
 	}
 
-	public function mappingdataAction(){
-	$id = $this->_getParam('id');
-	$limit = $this->_getParam('limit');
-	$mapdata = new Findspots();
-	$mapdatas = $mapdata->getFindspotDataMapping($id,$limit);
-	$date = Zend_Date::now()->toString('yyyy-MM-dd');
-	$time  = Zend_Date::now()->toString('HH:mm');
-	$dom = new DOMDocument("1.0");
-	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node);
-	foreach($mapdatas as $mapdata){
-	  $node = $dom->createElement("marker");
-	  $newnode = $parnode->appendChild($node);
-	  $newnode->setAttribute("name", $mapdata['old_findID']);
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
-	  $newnode->setAttribute("lat", $mapdata['declat']);
-	  $newnode->setAttribute("lng", $mapdata['declong']);
-	  $newnode->setAttribute("type", $mapdata['objecttype']);
-	  $newnode->setAttribute("workflow",
-	  str_replace(array('1','2','3','4'),
-	  array('quarantine','review','published','validation'),
-	  $mapdata['secwfstage']))
-	  ;
-	}
-	echo $dom->saveXML();
-	}
-
-
-
-
-
-	public function usermapAction() {
-	$dom = new DOMDocument("1.0");
-	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node);
-	if($this->getAccount() == true) {
-	$mapdata = new Finds();
-	$mapdatas = $mapdata->getUserMap($this->getAccount()->peopleID,2000);
-	if(count($mapdatas)) {
-	foreach($mapdatas as $mapdata){
-	$lat = $mapdata['declat'];
-	$long = $mapdata['declong'];
-	$html = '';
-	  if(isset($mapdata['i'])) {
-	  $html .=  '<div id="tmb">'
-	  .'<img src="http://'
-	  . $_SERVER['SERVER_NAME']
-	  . '/images/thumbnails/'
-	  . $mapdata['i']
-	  .'.jpg"/></div>';
-	  }
-
-	  $html .= '<div id="detailsmap"><p>'
-	  . ucwords(strtolower($mapdata['county']))
-	  . ' - <a href="http://'
-	  . $_SERVER['SERVER_NAME']
-	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
-	  . '" title="View record\'s details">'
-	  . $mapdata['old_findID']
-	  . '</a><br />'
-	  . $mapdata['objecttype']
-	  .'<br />'
-	  .$mapdata['broadperiod']
-	  .'</p></div>';
-
-	  $node = $dom->createElement("marker");
-	  $newnode = $parnode->appendChild($node);
-	  $newnode->setAttribute("name", $html);
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
-	  $newnode->setAttribute("lat", $lat);
-	  $newnode->setAttribute("lng", $long);
-	  $newnode->setAttribute("type", $mapdata['objecttype']);
-	  $newnode->setAttribute("workflow",
-	  str_replace(array('1','2','3','4'),
-	  array('quarantine','review','published','validation'),
-	  $mapdata['secwfstage']))
-	  ;
-	}
-	}
-	}
-	header('Content-Type: text/xml');
-	echo $dom->saveXML();
-	}
-
-	public function mapdataAction()	{
-	$this->_helper->Redirector->gotoSimple('mapdata','ajax','database',$this->_getAllParams());
-//	$params = $this->_getAllParams();
-//	$mapdata = new Finds();
-//	$mapdatas = $mapdata->getMapSearchResultsExport($params,2000);
-//	$dom = new DOMDocument("1.0");
-//	$node = $dom->createElement("markers");
-//	$parnode = $dom->appendChild($node);
-//	foreach($mapdatas as $mapdata){
-//	$restricted = array('public','member');
-//	if(!is_null($mapdata['fourFigure'])) {
-//
-//
-//	if(!in_array($this->_user->role,$restricted)){
-//	$lat = $mapdata['declat'];
-//	$long = $mapdata['declong'];
-//	} else {
-//	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
-//	$lat = $results['Latitude'];
-//	$long = $results['Longitude'];
-//	}
-//	} else {
-//	$results = $this->view->Gridcalculator($mapdata['fourFigure']);
-//
-//	$lat = $results['Latitude'];
-//	$long = $results['Longitude'];
-//	}
-//        $html = '';
-//        if(isset($mapdata['i'])) {
-//	$html .=  '<div id="tmb"><img src="';
-//        $html .= 'http://' . $_SERVER['SERVER_NAME'] . '/images/thumbnails/';
-//	$html .=  $mapdata['i'] .'.jpg"/></div>';
-//	}
-//	}
-//	  $html .= '<div id="detailsmap"><p>'
-//	  . ucwords(strtolower($mapdata['county']))
-//	  . ' - <a href="http://'
-//	  . $_SERVER['SERVER_NAME']
-//	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
-//	  . '" title="View record\'s details">'
-//	  . $mapdata['old_findID']
-//	  . '</a><br />'
-//	  . $mapdata['objecttype']
-//	  .'<br />'
-//	  .$mapdata['broadperiod']
-//	  .'</p></div>';
-//
-//	  $node = $dom->createElement("marker");
-//	  $newnode = $parnode->appendChild($node);
-//	  $newnode->setAttribute("name", $html);
-//	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
-//	  $newnode->setAttribute("lat", $lat);
-//	  $newnode->setAttribute("lng", $long);
-//	  $newnode->setAttribute("type", $mapdata['objecttype']);
-//	  $newnode->setAttribute("workflow",
-//	  str_replace(array('1','2','3','4'),
-//	  array('quarantine','review','published','validation'),
-//	  $mapdata['secwfstage']))
-//	  ;
-//
-//	header('Content-Type: text/xml');
-//	echo $dom->saveXML();
-	}
-
-
-
-	public function findofnotemapdataAction() {
-	$params = $this->_getAllParams();
-	$this->_helper->layout->disableLayout();
-	$mapdata = new Findspots();
-	$mapdatas = $mapdata->getFindsofNoteMap();
-
-	$dom = new DOMDocument("1.0");
-	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node);
-
-	foreach($mapdatas as $mapdata){
-	$allowed = array('fa','admin','hero','research','flos','treasure');
-	if(in_array($this->_user->role,$allowed)) {
-	$lat = $mapdata['declat'];
-	$long = $mapdata['declong'];
-        } else	 {
-	$lat = Substr($mapdata['declat'],0,4);
-	$long = SUBSTR($mapdata['declong'],0,4);
- 	}
-	 $html = '';
-	  if(isset($mapdata['i'])) {
-	  $html .=  '<div id="tmb">'
-	  .'<img src="http://'
-	  . $_SERVER['SERVER_NAME']
-	  .'/images/'
-	  .'thumbnails/'
-	  . $mapdata['i']
-	  .'.jpg"/></div>';
-	  }
-
-	  $html .= '<div id="detailsmap"><p>'
-	  . ucwords(strtolower($mapdata['county']))
-	  . ' <br /> <a href="http://'
-	  . $_SERVER['SERVER_NAME']
-	  . $this->view->url(array('module'=> 'database','controller' => 'artefacts','action' => 'record','id'=> $mapdata['id']),null,true)
-	  . '" title="View record\'s details">'
-	  . $mapdata['old_findID']
-	  . '</a><br />'
-	  . $mapdata['objecttype']
-	  .'<br />'
-	  .$mapdata['broadperiod']
-	  .'</p></div>';
-
-	  $node = $dom->createElement("marker");
-	  $newnode = $parnode->appendChild($node);
-	  $newnode->setAttribute("name",$html);
-
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
-	  $newnode->setAttribute("lat", $lat);
-	  $newnode->setAttribute("lng", $long);
-	  $newnode->setAttribute("type", $mapdata['objecttype']);
-	$newnode->setAttribute("workflow",
-	  str_replace(array('1','2','3','4'),
-	  array('quarantine','review','published','validation'),
-	  $mapdata['secwfstage']))
-	  ;
-	}
-	header('Content-Type: text/xml');
-	echo $dom->saveXML();
-	}
-
-
-
-	public function objectmapAction()
-	{
-	$period = $this->_getParam('period');
-	$objecttype = $this->_getParam('objecttype');
-	$limit = $this->_getParam('limit');
-	$mapdata = new Findspots();
-	$mapdatas = $mapdata->getFindspotDataMappingObjects($period,$objecttype,$limit);
-	$dom = new DOMDocument("1.0");
-	$node = $dom->createElement("markers");
-	$parnode = $dom->appendChild($node);
-	foreach($mapdatas as $mapdata) {
-	  $node = $dom->createElement("marker");
-	  $newnode = $parnode->appendChild($node);
-	  $newnode->setAttribute("name", $mapdata['old_findID']);
-	  $newnode->setAttribute("broadperiod", $mapdata['broadperiod']);
-	  $newnode->setAttribute("lat", $mapdata['declat']);
-	  $newnode->setAttribute("lng", $mapdata['declong']);
-	    $newnode->setAttribute("type", $mapdata['objecttype']);
-
-	}
-	echo $dom->saveXML();
-	}
-
-	public function workflowchangeAction(){
-	$finds = new Finds();
-	$updatedata = array('secwfstage' => $this->_getParam('wfstage'));
-	$where = array();
-	$where[] = $finds->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-	$finds->updateWorkflow($updatedata, $where);
-
-	}
-
-
-
+		
 	public function deleteimagelinkAction() {
 	if($this->_getParam('id',false)) {
 	$links = new FindsImages();
@@ -832,5 +586,46 @@ class AjaxController extends Pas_Controller_Action_Ajax
     $replies = new Replies();
     $this->view->replies = $replies->fetchRow('messageID=' . $this->_getParam('id'));
     $this->_helper->viewRenderer->setNoRender(false);
-        }
+    }
+    
+	public function osparishesbycountyAction() {
+	if($this->_getParam('county',false)){
+	$parishes = new OsParishes();
+	$json = $parishes->getParishesToCounty($this->_getParam('county'));
+	} else {
+	$json = array('id' => NULL,'term' => 'No county specified');
+	}
+	echo Zend_Json::encode($json);
+	}
+	
+	public function osdistrictsbycountyAction() {
+	if($this->_getParam('county',false)){
+	$districts = new OsDistricts();
+	$json = $districts->getDistrictsToCounty($this->_getParam('county'));
+	} else {
+	$json = array('id' => NULL,'term' => 'No county specified');
+	}
+	echo Zend_Json::encode($json);
+	}
+	
+	public function osregionsbycountyAction() {
+	if($this->_getParam('county',false)){
+	$parishes = new OsCounties();
+	$json = $parishes->getCountyToRegion($this->_getParam('county'));
+	} else {
+	$json = array('id' => NULL,'term' => 'No county specified');
+	}
+	echo Zend_Json::encode($json);
+	}
+	
+	public function osparishesbydistrictAction() {
+	if($this->_getParam('district',false)){
+	$parishes = new OsParishes();
+	$json = $parishes->getParishesToDistrict($this->_getParam('district'));
+	} else {
+	$json = array('id' => NULL,'term' => 'No county specified');
+	}
+	echo Zend_Json::encode($json);
+	}
+	
 }

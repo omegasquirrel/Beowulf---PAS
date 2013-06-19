@@ -285,7 +285,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     unset($insertData['id2by']);
     unset($insertData['secondfinder']);
     $insert = $this->_finds->add($insertData);
-    $this->_helper->solrUpdater->update('beowulf', $insert);
+    $this->_helper->solrUpdater->update('objects', $insert);
     $this->_redirect(self::REDIRECT . 'record/id/' . $insert);
     $this->_flashMessenger->addMessage('Record created!');
     } else  {
@@ -334,7 +334,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->_finds->update($updateData, $where);
     $this->_helper->audit($updateData, $oldData, 'FindsAudit',  $this->_getParam('id'),
     	$this->_getParam('id'));
-    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('id'));
+    $this->_helper->solrUpdater->update('objects', $this->_getParam('id'));
     $this->_flashMessenger->addMessage('Artefact information updated and audited!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     } else {
@@ -374,7 +374,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $findID);
     $this->_flashMessenger->addMessage('Record deleted!');
     $findspots->delete($whereFindspots);
-    $this->_helper->solrUpdater->deleteById('beowulf', $id);
+    $this->_helper->solrUpdater->deleteById('objects', $id);
     $this->_redirect(self::REDIRECT);
     }
     $this->_flashMessenger->addMessage('No changes made!');
@@ -490,7 +490,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 	$this->_finds->update($updateData, $where);
     $this->_helper->audit($updateData, $findStatus->toArray(), 'FindsAudit',  $this->_getParam('findID'),
     	$this->_getParam('findID'));
-    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));	
+    $this->_helper->solrUpdater->update('objects', $this->_getParam('findID'));	
     $this->_flashMessenger->addMessage('Workflow status changed');
 	$this->_redirect('database/artefacts/record/id/' . $this->_getParam('findID'));
     $this->_request->setMethod('GET');
