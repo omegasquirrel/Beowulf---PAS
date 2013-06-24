@@ -39,7 +39,8 @@ public function __construct($options = null)
 	$denomination->setLabel('Denomination: ')
 	->addValidators(array('NotEmpty','Int'))
 	->addMultiOptions(array(NULL => 'Choose denomination', 'Available options' => $denomination_options))
-	->addValidator('InArray', false, array(array_keys($denomination_options)));
+	->addValidator('InArray', false, array(array_keys($denomination_options)))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$denomination_qualifier = new Zend_Form_Element_Radio('denomination_qualifier');
 	$denomination_qualifier->setLabel('Denomination qualifier: ')
@@ -53,7 +54,8 @@ public function __construct($options = null)
 	$ruler->setLabel('Ruler: ')
 	->addValidators(array('NotEmpty','Int'))
 	->addMultiOptions(array(NULL => 'Choose ruler',  'Available options' => $ruler_options))
-	->setRegisterInArrayValidator(false);
+	->setRegisterInArrayValidator(false)
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$ruler_qualifier = new Zend_Form_Element_Radio('ruler_qualifier');
 	$ruler_qualifier->setLabel('Issuer qualifier: ')
@@ -64,6 +66,7 @@ public function __construct($options = null)
 	$mint_ID= new Zend_Form_Element_Select('mint_id');
 	$mint_ID->setLabel('Issuing mint: ')
 	->addValidators(array('NotEmpty','Int'))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 	->addMultiOptions(array(NULL => 'Choose mint', 'Available options' => $mint_options))
 	->addValidator('InArray', false, array(array_keys($mint_options)));
 
@@ -79,6 +82,7 @@ public function __construct($options = null)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidators(array('NotEmpty', 'Int'))
 	->setValue(1)
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'))
 	->addMultiOptions(array(NULL => NULL,'Choose coin status' => $status_options));
 
 	$status_qualifier = new Zend_Form_Element_Radio('status_qualifier');
@@ -94,6 +98,7 @@ public function __construct($options = null)
 	->addValidator('InArray', false, array(array_keys($wear_options)))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidators(array('NotEmpty', 'Int'))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 	->addMultiOptions(array(NULL => 'Choose degree of wear', 'Available options' => $wear_options));
 
 	$obverse_inscription = new Zend_Form_Element_Text('obverse_inscription');
@@ -127,6 +132,7 @@ public function __construct($options = null)
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidators(array('NotEmpty','Int'))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 	->addMultiOptions(array(NULL => 'Choose die axis', 'Available options' => $die_options));
 
 	$die_axis_certainty = new Zend_Form_Element_Radio('die_axis_certainty');

@@ -1,11 +1,10 @@
 <?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/iacoinslinkedinit.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinit.js',$type='text/javascript'); 
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-select.min.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.chained.remote.min.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/objectType.js', $type='text/javascript');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/bootstrap-select.min.css', $type='screen');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/treasureID.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/otherRef.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript'); 
 $this->headTitle('Advanced search the database');
 ?>
@@ -13,10 +12,31 @@ $this->headTitle('Advanced search the database');
 
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 $(document).ready(function() {
+//Reformat the selects
 $("#createdBefore").datepicker({ maxDate: '+1y'});
 $("#createdAfter").datepicker({ maxDate: '+1y' });
 $("#updatedBefore").datepicker({ maxDate: '+1y'});
 $("#updatedAfter").datepicker({ maxDate: '+1y' });
+$("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
+       //Reformat the selects
+		$('.selectpicker').selectpicker();
+       
+		//Chain the region to county
+		$("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
+       
+		//Chain district to county	
+		$("#district").remoteChained("#county", "/ajax/osdistrictsbycounty/");
+       
+		//Chain parish to district
+		$("#parish").remoteChained("#district", "/ajax/osparishesbydistrict/");
+      
+      	//Chain landuse to specific landuse
+		$("#landusecode").remoteChained("#landusevalue", "/ajax/landusecodes/");
+      	
+      	//Refresh the options of the select
+		$(".selectpicker").change(function(){
+        $('.selectpicker').selectpicker('refresh');
+      	});
 });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
 <h2><?php echo $this->title();?></h2>

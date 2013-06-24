@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <solr persistent="true" sharedLib="lib">
   <cores defaultCoreName="beowulf" shareSchema="false" adminPath="/admin/cores" zkClientTimeout="${zkClientTimeout:15000}" hostPort="8080" hostContext="solr">
-    <core loadOnStartup="true" instanceDir="beowulf/" transient="false" name="beowulf"/>
+    <core loadOnStartup="true" instanceDir="objects/" transient="false" name="objects"/>
     <core schema="schema.xml" loadOnStartup="true" instanceDir="objects" transient="false" name="objects" config="solrconfig.xml" dataDir="data"/>
     <core schema="schema.xml" loadOnStartup="true" instanceDir="people/" transient="false" name="people" config="solrconfig.xml" dataDir="data" />
     <core schema="schema.xml" loadOnStartup="true" instanceDir="images/" transient="false" name="images" config="solrconfig.xml" dataDir="data" />

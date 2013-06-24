@@ -99,7 +99,7 @@ class Landuses extends Pas_Db_Table_Abstract {
 		$select = $landuses->select()
             ->from($this->_name,array('id','term'))
 			->where('belongsto = ?',(int)$id);
-        return $landuses->fetchAll($select);
+        return $landuses->fetchPairs($select);
 	}
 
 	/** get list of landuses as key value pairs for menus 

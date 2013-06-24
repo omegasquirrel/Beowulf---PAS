@@ -19,7 +19,7 @@ public function __construct($options = null) {
 	->setRequired(true)
 	->addValidator('Int')
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->setAttribs(array('class'=> 'textInput'));
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$ruler_id = new Zend_Form_Element_Hidden('ruler_id');
 	$ruler_id ->removeDecorator('label')
@@ -27,12 +27,10 @@ public function __construct($options = null) {
 	->addFilter('StringTrim');
 
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(60);
 
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$this->addElements(array($mint,$ruler_id,$submit, $hash));
+	$this->addElements(array($mint, $ruler_id, $submit));
 
 	$this->addDisplayGroup(array('mint_id'), 'details');
 

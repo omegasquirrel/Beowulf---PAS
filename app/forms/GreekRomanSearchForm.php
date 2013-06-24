@@ -64,7 +64,8 @@ class GreekRomanSearchForm extends Pas_Form {
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
 	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'));
+	->addFilters(array('StripTags', 'StringTrim'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow');
 
 	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose a workflow stage',
@@ -81,11 +82,13 @@ class GreekRomanSearchForm extends Pas_Form {
 	$rally->setLabel('Rally find: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
+
 	->setUncheckedValue(NULL);
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
 	->setRequired(false)
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int')
 	->addValidator('InArray', false, array(array_keys($rally_options)));
@@ -101,29 +104,34 @@ class GreekRomanSearchForm extends Pas_Form {
 	$hoardID->setLabel('Part of this hoard: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose hoard name', 'Available hoards' => $hoard_options))
 	->addValidator('InArray', false, array(array_keys($hoard_options)));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 	->addFilters(array('StringTrim','StripTags'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose county', 'Available counties' => $county_options))
 	->addValidator('InArray', false, array(array_keys($county_options)));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 	->addFilters(array('StringTrim','StripTags'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose district after county'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 	->addFilters(array('StringTrim','StripTags'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose parish after county'));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
 	->addMultiOptions(array(NULL => 'Choose a region for a wide result',
 	'Choose region' => $region_options))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addValidator('Digits')
 	->addFilters(array('StringTrim','StripTags'));
 
@@ -145,6 +153,7 @@ class GreekRomanSearchForm extends Pas_Form {
 	$denomination->setLabel('Denomination: ')
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose denomination type', 'Available denominations' => $denomination_options))
 	->addValidator('InArray', false, array(array_keys($denomination_options)));
 
@@ -152,6 +161,7 @@ class GreekRomanSearchForm extends Pas_Form {
 	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
 	->setRequired(false)
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => 'Choose primary ruler', 'Available rulers' => $ruler_options))
 	->addValidator('InArray', false, array(array_keys($ruler_options)));
@@ -162,6 +172,7 @@ class GreekRomanSearchForm extends Pas_Form {
 	->setRegisterInArrayValidator(false)
 	->setRequired(false)
 	->addFilters(array('StringTrim','StripTags'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose issuing mint', 'Available mints' => $mint_options))
 	->addValidator('InArray', false, array(array_keys($mint_options)));
 
@@ -201,6 +212,7 @@ class GreekRomanSearchForm extends Pas_Form {
 	$axis = new Zend_Form_Element_Select('axis');
 	$axis->setLabel('Die axis measurement: ')
 	->setRequired(false)
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => 'Choose measurement', 'Available axes' => $axis_options))
 	->addValidator('InArray', false, array(array_keys($axis_options)));

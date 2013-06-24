@@ -29,7 +29,8 @@ class AddFloRallyForm extends Pas_Form{
 	->setRequired(true)
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int')
-	->addMultiOptions(array(NULL => 'Choose attending officer', 'Our staff members' => $flos));
+	->addMultiOptions(array(NULL => 'Choose attending officer', 'Our staff members' => $flos))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$dateFrom = new ZendX_JQuery_Form_Element_DatePicker('dateFrom');
 	$dateFrom->setLabel('Attended from: ')
@@ -49,12 +50,9 @@ class AddFloRallyForm extends Pas_Form{
 	->addFilters(array('StripTags', 'StringTrim'))
 	->setAttrib('size', 20);
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
-	
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$this->addElements(array($flo, $dateFrom, $dateTo, $submit, $hash));
+	$this->addElements(array($flo, $dateFrom, $dateTo, $submit));
 
 	$this->addDisplayGroup(array('staffID', 'dateFrom', 'dateTo'), 'details');
 

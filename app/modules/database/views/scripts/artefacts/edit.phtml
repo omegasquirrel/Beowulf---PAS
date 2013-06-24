@@ -21,21 +21,7 @@ $(document).ready(function() {
 <?php $this->DataEditDeleteCheck($this->find->old_findID,$this->find->createdBy);
 ?>
 <?php echo $this->partial('partials/database/editFindH2.phtml',$this->find);?>
-<div class="well"><h3>Annoying reminder: <?php 
-$welcome = array(
-	'Data in = data out', 
-	'Do it right, do it once', 
-	'Remember the AD/BC style guide',
-	'Does this record follow the PAS recording guide?',
-	'If you are not sure, ask a finds adviser',
-	'Everything you write is audited and can be requested under Freedom of Information, be sensible',
-	'Is it a Treasure case, have you got a number and filled it in?',
-	'The classification and sub classification boxes are for typologies, not numismatic information',
-	'Is the record finished? If so, can it be made public?'
-);
-echo  $welcome[array_rand($welcome)];
 
-?></h3></div>
 <?php
 echo $this->form;
 ?>

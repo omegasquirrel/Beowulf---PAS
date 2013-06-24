@@ -1,7 +1,7 @@
 $(document).ready(function() {
- 		$('#objecttype').typeahead({
+ 		$('#landownername').typeahead({
     	source: function(query, process) {
-        var $url = '/ajax/objectterm/?q=' + query ;
+        var $url = '/ajax/people/?term=' + query ;
         var $items = new Array;
         $items = [""];
         $.ajax({
@@ -48,6 +48,8 @@ $(document).ready(function() {
     minLength: 3,
     updater: function (item) {
         var item = JSON.parse(item);
+        console.log(item.term); 
+        $('#landowner').val(item.id);       
         return item.name;
     }
 });

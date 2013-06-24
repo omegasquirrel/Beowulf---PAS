@@ -47,28 +47,29 @@ parent::__construct($options);
 
 	$comment_author_email = new Zend_Form_Element_Text('comment_author_email');
 	$comment_author_email->setLabel('Enter your email address: ')
-	->setRequired(true)
-	->setAttrib('size',40)
-	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->addValidator('EmailAddress')
-	->addErrorMessage('Please enter a valid email address!')
-	->setDescription('* This will not be displayed to the public');
+		->setRequired(true)
+		->setAttrib('size',40)
+		->addFilters(array('StripTags','StringTrim','StringToLower'))
+		->addValidator('EmailAddress')
+		->addErrorMessage('Please enter a valid email address!')
+		->setDescription('* This will not be displayed to the public');
 
 	$comment_type = new Zend_Form_Element_Select('comment_type');
 	$comment_type->setLabel('Error type: ')
-	->setRequired(true)
-	->addMultiOptions(array(NULL => NULL,'Choose error type' => array(
-	'Incorrect ID' => 'Incorrect identification',
-	'More info' => 'I have further information',
-	'Incorrect image' => 'Incorrect image',
-	'Incorrect parish' => 'Incorrect parish',
-	'Grid reference issues' => 'Grid reference wrong',
-	'Date found wrong' => 'Date of discovery wrong',
-	'Spelling errors' => 'Spelling errors',
-	'Duplicated record' => 'Duplicated record',
-	'Data problems apparent' => 'Data problems',
-	'Other' => 'Other reason')))
-	->addErrorMessage('You must enter an error report type');
+		->setRequired(true)
+		->addMultiOptions(array(NULL => NULL,'Choose error type' => array(
+		'Incorrect ID' => 'Incorrect identification',
+		'More info' => 'I have further information',
+		'Incorrect image' => 'Incorrect image',
+		'Incorrect parish' => 'Incorrect parish',
+		'Grid reference issues' => 'Grid reference wrong',
+		'Date found wrong' => 'Date of discovery wrong',
+		'Spelling errors' => 'Spelling errors',
+		'Duplicated record' => 'Duplicated record',
+		'Data problems apparent' => 'Data problems',
+		'Other' => 'Other reason')))
+		->addErrorMessage('You must enter an error report type')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow');
 
 	$comment_author_url = new Zend_Form_Element_Text('comment_author_url');
 	$comment_author_url->setLabel('Enter your web address: ')

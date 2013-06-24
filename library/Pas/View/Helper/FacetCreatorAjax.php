@@ -101,12 +101,13 @@ class Pas_View_Helper_FacetCreatorAjax extends Zend_View_Helper_Abstract {
 			$request['action'] = 'facet';
 			unset($request['facetType']);
 		}
+		if(array_key_exists($facetName,$request)){
         $facet = $request[$facetName];
         if(isset($facet)){
             unset($request[$facetName]);
             unset($request['facetType']);
         }
-
+		}
         $html .= '</div>';
         return $html;
         	}

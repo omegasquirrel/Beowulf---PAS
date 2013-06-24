@@ -31,7 +31,7 @@ class AddMedievalTypeForm extends Pas_Form {
 	$broadperiod->setLabel('Broadperiod for type: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->setAttribs(array('class'=> 'textInput'))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 	->addMultioptions(array(NULL => 'Choose broadperiod', 'Available options' => array(
 		'47' => 'Early Medieval','29' => 'Medieval','36' => 'Post Medieval')
 	));
@@ -40,13 +40,13 @@ class AddMedievalTypeForm extends Pas_Form {
 	$category->setLabel('Coin category: ')
 	->setAttribs(array('class'=> 'textInput'))
 	->addFilter('StringTrim')
-	->setAttrib('class', 'span6')
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 	->addMultioptions( array(NULL => 'Choose a category', 'Available options' => $cat_options))
 	->addValidator('InArray', false, array(array_keys($cat_options)));
 
 	$ruler = new Zend_Form_Element_Select('rulerID');
 	$ruler->setLabel('Ruler assigned to: ')
-	->setAttribs(array('class'=> 'textInput'))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 	->addFilter('StringTrim')
 	->addMultioptions(array(NULL => 'Choose a ruler', 'Available options' => $ruler_options))
 	->addValidator('inArray', false, array(array_keys($ruler_options)));
@@ -54,14 +54,12 @@ class AddMedievalTypeForm extends Pas_Form {
 	$datefrom = new Zend_Form_Element_Text('datefrom');
 	$datefrom->setLabel('Date type in use from: ')
 	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->setAttribs(array('class'=> 'textInput'));
+	->addFilters(array('StripTags','StringTrim','StringToLower'));
 
 	$dateto = new Zend_Form_Element_Text('dateto');
 	$dateto->setLabel('Date type in use until: ')
 	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->setAttribs(array('class'=> 'textInput'));
+	->addFilters(array('StripTags','StringTrim','StringToLower'));
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');

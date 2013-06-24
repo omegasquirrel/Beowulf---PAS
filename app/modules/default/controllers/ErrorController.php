@@ -135,6 +135,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 			$compiledTrace = '';
 		foreach($data['traceStack'] as $trace) {
 			$compiledTrace .= '<li class="codeBlock">'."\n";
+			if(!array_key_exists('line', $trace)){
 			if ($extended) {
 				$compiledTrace .= '<div class="filePath"><a class="openLink" href="javascript://">open</a>'.$trace['file'].'</div>'."\n";
 			} else {
@@ -143,6 +144,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 			$compiledTrace .= '<div class="functionCall">'.$trace['class'].'->'.$trace['function'].'('.self::formatArgValues($trace['args']).')</div>'."\n";
 			if ($extended) {
 				$compiledTrace .= $trace['codeBlock']."\n";
+			}
 			}
 			$compiledTrace .= '</li>'."\n";
 		}

@@ -214,16 +214,16 @@ class Pas_View_Helper_SearchParams
 			$params[$key] = $this->getData('Hoards','term', $value);
 			break;
 		case 'treasure' :
-			$params[$key] = yes;
+			$params[$key] = 'yes';
 			break;
 		case 'rally' :
-			$params[$key] = yes;
+			$params[$key] = 'yes';
 			break;
 		case 'note':
-			$params[$key] = yes;
+			$params[$key] = 'yes';
 			break;
 		case 'hoard':
-			$params[$key] = yes;
+			$params[$key] = 'yes';
 			break;
 		case 'thumbnail':
 			$params[$key] = 'Only records with images please';

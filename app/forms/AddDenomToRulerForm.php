@@ -21,7 +21,8 @@ public function __construct($options = null){
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
 	->addValidator('Int')
-	->setAttribs(array('class'=> 'textInput'));
+	->setAttribs(array('class'=> 'textInput'))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
 	$ruler_id = new Zend_Form_Element_Hidden('ruler_id');
 	$ruler_id->addValidator('Int');
@@ -29,15 +30,12 @@ public function __construct($options = null){
 	$period_id = new Zend_Form_Element_Hidden('period_id');
 
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
-
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Add denomination');
 
-	$this->addElements(array($denomination_id,$ruler_id,$period_id,$submit, $hash))
+	$this->addElements(array($denomination_id,$ruler_id,$period_id,$submit))
 	->setLegend('Add an active denomination');
 	$this->addDisplayGroup(array('denomination_id'), 'details');
 

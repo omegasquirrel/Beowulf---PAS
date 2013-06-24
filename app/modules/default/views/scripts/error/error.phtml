@@ -13,7 +13,12 @@
  -->
 <?php 
 $user = new Pas_User_Details();
-$role = $user->getPerson()->role;
+$person = $user->getPerson();
+if($person){
+	$role = $person->role;
+} else {
+	$role = NULL;
+}
 $allowed = array('admin');
 if(in_array($role,$allowed)):
 ?>

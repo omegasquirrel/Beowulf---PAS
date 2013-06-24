@@ -29,24 +29,22 @@ public function __construct($options = null)
 
 	$valid = new Zend_Form_Element_Checkbox('valid');
 	$valid->SetLabel('Is this volume currently valid: ')
-	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim'));
+		->setRequired(true)
+		->addFilters(array('StripTags','StringTrim'));
 
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
-	->setRequired(true)
-	->addFilters(array('StripTags','StringTrim'))
-	->addValidator('inArray', false, array(array_keys($period_actives)))
-	->addMultiOptions(array(NULL=> NULL,'Choose period:' => $period_actives))
-	->addErrorMessage('You must enter a period for this mint');
+		->setRequired(true)
+		->addFilters(array('StripTags','StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addValidator('inArray', false, array(array_keys($period_actives)))
+		->addMultiOptions(array(NULL=> NULL,'Choose period:' => $period_actives))
+		->addErrorMessage('You must enter a period for this mint');
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(60);
-
-	$this->addElements(array($referenceName, $valid, $period,$submit, $hash));
+	$this->addElements(array($referenceName, $valid, $period, $submit));
 
 	$this->addDisplayGroup(array('referenceName','period','valid'), 'details');
 

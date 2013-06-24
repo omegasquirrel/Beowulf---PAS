@@ -40,19 +40,21 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	$denomination->setLabel('Denomination: ')
 	->addValidators(array('NotEmpty'))
 	->addMultiOptions(array(NULL => 'Choose denomination', 'Available denominations' => $denomination_options))
-	->addValidator('InArray', false, array(array_keys($denomination_options)));
+	->addValidator('InArray', false, array(array_keys($denomination_options)))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow');
 
 	$denomination_qualifier = new Zend_Form_Element_Radio('denomination_qualifier');
 	$denomination_qualifier->setLabel('Denomination qualifier: ')
 	->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 	->addFilters(array('StripTags','StringTrim'))
+
 	->setOptions(array('separator' => ''))
 	->addValidator('Int');
 
 	$categoryID = new Zend_Form_Element_Select('categoryID');
 	$categoryID->setLabel('Category of coin: ')
 	->addValidators(array('NotEmpty'))
-	->setAttribs(array('class' => 'span6'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose category', 'Available categories' => $cat_options))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int');
@@ -62,7 +64,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	->addValidator('InArray', false, array(array_keys($ro)))
 	->addMultiOptions(array(NULL => 'Choose a ruler','Available rulers' => $ro))
 	->addValidator('Int')
-	->setAttribs(array('class' => 'span6'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addFilters(array('StripTags','StringTrim'));
 
 	$ruler_qualifier = new Zend_Form_Element_Radio('ruler_qualifier');
@@ -77,6 +79,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	->addValidator('InArray', false, array(array_keys($mo)))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Please choose a mint','Available mints' => $mo));
 
 
@@ -84,6 +87,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	$status->setLabel('Status: ')
 	->setRegisterInArrayValidator(false)
 	->setValue(1)
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
 	->addMultiOptions(array(NULL => 'Choose coin status','Available status' => $status_options));
@@ -100,6 +104,7 @@ class EarlyMedievalCoinForm extends Pas_Form {
 	$degree_of_wear = new Zend_Form_Element_Select('degree_of_wear');
 	$degree_of_wear->setLabel('Degree of wear: ')
 	->setRegisterInArrayValidator(false)
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => 'Choose a degree of wear','Available options' => $wear_options))
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int');

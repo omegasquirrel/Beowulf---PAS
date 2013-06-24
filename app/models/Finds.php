@@ -1184,12 +1184,18 @@ class Finds extends Pas_Db_Table_Abstract {
 	public function getTreasureID($q) {
 	$finds = $this->getAdapter();
 	$select = $finds->select()
-		->from($this->_name, array('id' => 'treasureID','term' => 'treasureID'))
+		->from($this->_name, array('id', 'term' =>  'treasureID'))
 		->where('treasureID LIKE ?', (string)'%' . $q . '%')
 		->order('treasureID ASC')
 		->group('treasureID')
 		->limit(10);
-	if(in_array($this->user()->role,$this->_restricted)){
+	$person = $this->user();
+	if($person) {
+		$role = $person->role;
+	} else {
+		$role = NULL;
+	}
+	if(in_array($role,$this->_restricted)){
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
 	return $finds->fetchAll($select);
@@ -1205,7 +1211,13 @@ class Finds extends Pas_Db_Table_Abstract {
 		->from($this->_name, array('id' => 'other_ref','term' => 'other_ref'))
 		->where('other_ref LIKE ?', (string)$q . '%')
 		->limit(10);
-	if(in_array($this->user()->role,$this->_restricted)){
+	$person = $this->user();
+	if($person) {
+		$role = $person->role;
+	} else {
+		$role = NULL;
+	}
+	if(in_array($role,$this->_restricted)){
 	$select->where('finds.secwfstage > ?', (int)2);
 	}
 	return $finds->fetchAll($select);

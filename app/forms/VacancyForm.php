@@ -72,6 +72,7 @@ public function __construct($options = null) {
 	$status = new Zend_Form_Element_Select('status');
 	$status->SetLabel('Publish status: ')
 		->setRequired(true)
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Choose a status','2' => 'Publish','1' => 'Draft'))
 		->setValue(2)
 		->addFilters(array('StringTrim', 'StripTags'))

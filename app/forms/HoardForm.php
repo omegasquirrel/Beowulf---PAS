@@ -28,9 +28,7 @@ class HoardForm extends Pas_Form
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
 	$termdesc->setLabel('Description of hoard: ')
 	->setRequired(true)
-	->setAttrib('rows',10)
-	->setAttrib('cols',40)
-	->setAttrib('Height',400)
+	->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400))
 	->setAttrib('ToolbarSet','Finds')
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars')) 
 	->addErrorMessage('You must enter a description for this hoard');
@@ -39,6 +37,7 @@ class HoardForm extends Pas_Form
 	$period->setLabel('Broad period attributed to: ')
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL,'Choose reason' => $period_options))
 	->addValidator('inArray', false, array(array_keys($period_options)))
 	->addErrorMessage('You must choose a period');

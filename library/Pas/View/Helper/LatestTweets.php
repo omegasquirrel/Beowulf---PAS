@@ -18,6 +18,8 @@ class Pas_View_Helper_LatestTweets
 	protected $_cache;
 
 	protected $_config;
+	
+	protected $_key = 'twitterfindsorguk';
 
 	/** Constructor
 	 *
@@ -32,38 +34,40 @@ class Pas_View_Helper_LatestTweets
 	/** Call Twitter after getting token for oauth
 	 *
 	 */
-	public function callTwitter() {
-        if (!($this->_cache->test('findsorguk'))) {
+	private function _callTwitter() {
+	if (!($this->_cache->test(md5($this->_key)))) {
 	$tokens = new OauthTokens();
 	$token = $tokens->fetchRow($tokens->select()->where('service = ?', 'twitterAccess'));
 
-	$twitter = new Zend_Service_Twitter(array('username' => 'findsorguk','accessToken' => unserialize($token->accessToken)));
-	$tweets = $twitter->status->userTimeline(array('id' => 'findsorguk', 'count' => 3));
-        $twits = array();
-        foreach($tweets as $xml){
-            $twits[] = $xml->asXml();
-        }
-        $this->_cache->save($twits);
+	$twitter = new Zend_Service_Twitter(
+	array('username' => 'findsorguk',
+	'accessToken' => unserialize($token->accessToken),
+	'oauthOptions' => array(
+                'consumerKey' => $this->_config->webservice->twitter->consumerKey ,
+                'consumerSecret' => $this->_config->webservice->twitter->consumerSecret,
+            )
+	));
+	$tweets = $twitter->statusesUserTimeline(array('count' => 3))->toValue();
+       
+	$this->_cache->save($tweets);
 	} else {
-	$twits = $this->_cache->load('findsorguk');
+	$tweets = $this->_cache->load(md5($this->_key));
 	}
 
-	return $this->buildHtml($twits);
+	return $this->buildHtml($tweets);
 	}
 
 	/** Build the html
 	 *
 	 * @param array $response
 	 */
-	public function buildHtml($twits){
+	public function buildHtml($tweets){
 	$html = '';
 	$html .= '<ul>';
-	foreach($twits as $post){
-            $xml = new SimpleXMLElement($post);
-	$html .= '<li>On <strong>'. date('m.d.y @ H:m:s',strtotime($xml->created_at))
-	. '</strong>, <strong><a href="http://www.twitter.com/'. $xml->user->screen_name
-	. '">' . $xml->user->screen_name . '</a></strong> said: '. $this->view->autoLink($xml->text)
-	. '</li>';
+	foreach($tweets as $post){
+	$html .= '<li><strong>'. $this->view->timeagoinwords($post->created_at) . '</strong>';
+	$html .= '<strong><a href="http://www.twitter.com/'. $post->user->screen_name	. '">';
+	$html .=  $post->user->screen_name . '</a></strong> said: '. $this->view->autoLink($post->text)	. '</li>';
 	}
 	$html .= '</ul>';
 	return $html;
@@ -73,9 +77,12 @@ class Pas_View_Helper_LatestTweets
 	 *
 	 */
 	public function latestTweets() {
-	return $this->callTwitter();
+	return $this;
 	}
 
+	public function __toString(){
+		return $this->_callTwitter();
+	}
 
 }
 

@@ -76,8 +76,8 @@ class AdvancedSearchForm extends Pas_Form {
 	$hoard_options = $hoards->getHoards();
 
 	//Get county dropdown
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+	$counties = new OsCounties();
+	$county_options = $counties->getCountiesID();
 
 	//Get regions list
 	$regions = new Regions();
@@ -121,7 +121,8 @@ class AdvancedSearchForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose reason',
-            'Available reasons'  => $reason_options));
+            'Available reasons'  => $reason_options))
+    ->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	//Institution
 	$institution = new Zend_Form_Element_Select('institution');
@@ -129,10 +130,12 @@ class AdvancedSearchForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose institution',
-            'Available institutions' => $inst_options));
+            'Available institutions' => $inst_options))
+    ->setAttribs(array('class' => 'span3 selectpicker show-menu-arrow'));
 
 	$notes = new Zend_Form_Element_Text('notes');
-	$notes->setLabel('Notes: ')->addFilters(array('StringTrim','StripTags'));
+	$notes->setLabel('Notes: ')
+			->addFilters(array('StringTrim','StripTags'));
 
 
 	$broadperiod = new Zend_Form_Element_Select('broadperiod');
@@ -140,8 +143,8 @@ class AdvancedSearchForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose period from',
-            'Available periods' => $periodword_options));
-
+            'Available periods' => $periodword_options))
+     ->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
 	$objdate1subperiod = new Zend_Form_Element_Select('fromsubperiod');
 	$objdate1subperiod->setLabel('Sub period from: ')
@@ -150,17 +153,17 @@ class AdvancedSearchForm extends Pas_Form {
             'Available sub period from' => array('1' => 'Early',
 	'2' => 'Middle','3' => 'Late')))
 	->addFilters(array('StringTrim','StripTags'))
-	->setOptions(array('separator' => ''));
-
-
+	->setOptions(array('separator' => ''))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+	
 	//Period from: Assigned via dropdown
 	$objdate1period = new Zend_Form_Element_Select('periodFrom');
 	$objdate1period->setLabel('Period from: ')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose period from' ,
-            'Available periods' => $period_options));
-
+            'Available periods' => $period_options))
+     ->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
 	$objdate2subperiod = new Zend_Form_Element_Select('tosubperiod');
 	$objdate2subperiod->setLabel('Sub period to: ')
@@ -172,7 +175,9 @@ class AdvancedSearchForm extends Pas_Form {
                 '3' => 'Late')))
 	->setDisableTranslator(true)
 	->addFilters(array('StringTrim','StripTags'))
-	->setOptions(array('separator' => ''));
+	->setOptions(array('separator' => ''))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+	
 
 
 	//Period to: Assigned via dropdown
@@ -181,15 +186,16 @@ class AdvancedSearchForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose period to',
-            'Available periods' => $period_options));
+            'Available periods' => $period_options))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
-	$culture = new Zend_Form_Element_Select('culture');
+     $culture = new Zend_Form_Element_Select('culture');
 	$culture->setLabel('Ascribed culture: ')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose ascribed culture',
-            'Available cultures' => $culture_options));
-
+            'Available cultures' => $culture_options))
+     ->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
 	$from = new Zend_Form_Element_Text('fromdate');
 	$from->setLabel('Start date: ')
@@ -211,7 +217,9 @@ class AdvancedSearchForm extends Pas_Form {
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
 	->addFilters(array('StringTrim','StripTags'))
-	->addValidator('Int');
+	->addValidator('Int')
+	->setAttribs(array('class' => 'span3 selectpicker show-menu-arrow'));
+	
 
 	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Available Workflow stages',
@@ -248,26 +256,25 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
-
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose a rally',
-            'Available rallies' => $rally_options));
+            'Available rallies' => $rally_options))
+    ->setAttribs(array('class' => 'input-xlarge selectpicker show-menu-arrow'));
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
 	$hoard->setLabel('Hoard find: ')
-
 	->addFilters(array('StringTrim','StripTags'))
 	->setUncheckedValue(NULL);
+	
 
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
-
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
              NULL => 'Available hoards',
-            'Choose a hoard' => $hoard_options));
-
+            'Choose a hoard' => $hoard_options))
+    ->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
 	$other_ref = new Zend_Form_Element_Text('otherRef');
 	$other_ref->setLabel('Other reference: ')
@@ -280,53 +287,55 @@ class AdvancedSearchForm extends Pas_Form {
 	//Manufacture method
 	$manmethod = new Zend_Form_Element_Select('manufacture');
 	$manmethod->setLabel('Manufacture method: ')
-
 	->addFilters(array('StringTrim','StripTags'))
 	->addValidator('Int')
 	->addMultiOptions(array(
             NULL => 'Choose method of manufacture',
-            'Available methods' => $man_options));
+            'Available methods' => $man_options))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+            
 
 	//Decoration method
 	$decmethod = new Zend_Form_Element_Select('decoration');
 	$decmethod->setLabel('Decoration method: ')
-
 	->addValidator('Int')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose decoration method',
-            'Available decorative methods' => $decmeth_options));
-
+            'Available decorative methods' => $decmeth_options))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
 	//Surface treatment
 	$surftreat = new Zend_Form_Element_Select('surface');
 	$surftreat->setLabel('Surface Treatment: ')
-
 	->addValidator('Int')
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose surface treatment',
-            'Available surface treatments' => $surface_options));
+            'Available surface treatments' => $surface_options))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
 
 	//decoration style
 	$decstyle = new Zend_Form_Element_Select('decstyle');
 	$decstyle->setLabel('Decorative style: ')
-
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose decorative style',
             'Available decorative options' => $decoration_options))
-	->addValidator('Int');
+	->addValidator('Int')
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+	
 
 	//Preservation of object
 	$preservation = new Zend_Form_Element_Select('preservation');
 	$preservation->setLabel('Preservation: ')
-
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Int')
 	->addMultiOptions(array(
             NULL => 'Choose level of preservation',
-            'Available options' => $preserve_options));
+            'Available options' => $preserve_options))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+            
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
@@ -334,28 +343,34 @@ class AdvancedSearchForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(
             NULL => 'Choose county',
-            'Available counties' => $county_options));
+            'Available counties' => $county_options))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
+            
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 	->addMultiOptions(array(NULL => 'Choose district after county'))
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StringTrim','StripTags'))
-	->setDisableTranslator(true);
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
+	
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StringTrim','StripTags'))
 	->addMultiOptions(array(NULL => 'Choose parish after county'))
-	->setDisableTranslator(true);
+    ->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
+	
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
 	->setRegisterInArrayValidator(false)
 	->addValidator('Int')
 	->addMultiOptions(array(NULL => 'Choose a region for a wide result',
-            'Choose region' => $region_options));
+            'Choose region' => $region_options))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+	
 
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')
@@ -419,7 +434,8 @@ class AdvancedSearchForm extends Pas_Form {
             NULL => 'Choose a year of discovery',
             'Date range' => $years_list))
 	->addValidator('Int')
-	->addFilters(array('StringTrim','StripTags'));
+	->addFilters(array('StringTrim','StripTags'))
+	->setAttribs(array('class' => 'input-xlarge selectpicker show-menu-arrow'));
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -427,11 +443,12 @@ class AdvancedSearchForm extends Pas_Form {
 
 	$material1 = new Zend_Form_Element_Select('material');
 	$material1->setLabel('Primary material: ')
-
 	->addFilters(array('StripTags','StringTrim'))
 	->addMultiOptions(array(
             NULL => 'Choose primary material',
-            'Available options' => $primary_options));
+            'Available options' => $primary_options))
+	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+            
 
 	$woeid = new Zend_Form_Element_Text('woeid');
 	$woeid->setLabel('Where on earth ID: ')

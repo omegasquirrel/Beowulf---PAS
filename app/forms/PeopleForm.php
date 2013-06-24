@@ -37,7 +37,7 @@ public function __construct($options = null) {
 		->addMultiOptions(array(
 		'Mr' => 'Mr', 'Mrs' => 'Mrs', 'Miss' => 'Miss', 
 		'Ms' => 'Ms', 'Dr' => 'Dr.', 'Prof' => 'Prof.',
-		'Sir' => 'Sir', 'Lady' => 'Lady', 'Other' => 'Other',
+		'Sir' => 'Sir', 'Lord' => 'Lord', 'Lady' => 'Lady', 'Other' => 'Other',
 		'Captain' => 'Captain', 'Master' => 'Master', 'Dame' => 'Dame',
 		'Duke' => 'Duke', 'Admiral' => 'Admiral', 'Baron' => 'Baron',
 		'Baroness' => 'Baroness', 'Brigadier' => 'Brigadier', 'Captain' => 'Captain',
@@ -88,6 +88,7 @@ public function __construct($options = null) {
 	$dbaseID = new Zend_Form_Element_Select('dbaseID');
 	$dbaseID->setLabel('User account: ')
 		->addFilters(array('StripTags','StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addValidator('Int')
 		->addValidator('InArray', false, array(array_keys($users_options),null))
 		->addMultiOptions(array(NULL => 'Choose a user account',
@@ -109,6 +110,7 @@ public function __construct($options = null) {
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags','StringTrim', 'Purifier'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Please choose a county',
 		'Valid counties' => $counties_options));
 
@@ -122,6 +124,7 @@ public function __construct($options = null) {
 	$country = new Zend_Form_Element_Select('country');
 	$country->SetLabel('Country: ')
 		->addFilters(array('StripTags','StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addValidator('StringLength', false, array(1,4))
 		->addValidator('InArray', false, array(array_keys($countries_options)))
 		->addMultiOptions(array(NULL => 'Please choose a country of residence',
@@ -155,6 +158,7 @@ public function __construct($options = null) {
 	$organisationID = new Zend_Form_Element_Select('organisationID');
 	$organisationID->SetLabel('Organisation attached to: ')
 		->addFilters(array('StripTags','StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Please choose an organisation',
 		'Valid organisations' => $organisations_options))
 		->addValidator('InArray', false, array(array_keys($organisations_options)));
@@ -163,6 +167,7 @@ public function __construct($options = null) {
 	$primary_activity->SetLabel('Person\'s primary activity: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addValidator('Int')
 		->addValidator('InArray', false, array(array_keys($activities_options)))
 		->addMultiOptions(array(NULL => 'Choose a primary activity',

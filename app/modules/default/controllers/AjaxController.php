@@ -38,9 +38,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function placesAction() {
 	if($this->_getParam('term',false)){
 	$districts = $this->_places->getDistrict($this->_getParam('term'));
-	} else {
-	$districts = array('id' => NULL,'term' => 'No county specified');
-	}
+	} 
 	echo Zend_Json::encode($districts);
 	}
 
@@ -50,9 +48,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function parishesAction() {
 	if($this->_getParam('term',false)) {
 	$parishes = $this->_places->getParish($this->_getParam('term'));
-	} else {
-	$parishes = array('id' => NULL,'term' => 'No district specified');
-	}
+	} else 
 	echo Zend_Json::encode($parishes);
 	}
 
@@ -62,9 +58,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function parishesbycountyAction() {
 	if($this->_getParam('term',false)){
 	$parishes = $this->_places->getParishByCounty($this->_getParam('term'));
-	} else {
-	$parishes = array('id' => NULL,'term' => 'No county specified');
-	}
+	} 
 	echo Zend_Json::encode($parishes);
 	}
 
@@ -74,9 +68,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function districtbyparishAction() {
 	if($this->_getParam('term',false)){
 	$parishes = $this->_places->getDistrictByParish($this->_getParam('term'));
-	} else {
-	$parishes = array('id' => NULL,'term' => 'No parish specified');
-	}
+	} 
 	echo Zend_Json::encode($parishes);
 	}
 
@@ -87,20 +79,18 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	if($this->_getParam('term',false)){
 	$regions = new Counties;
 	$response = $regions->getRegions($this->_getParam('term'));
-	} else {
-	$response = array('id' => NULL,'term' => 'No county specified');
-	}
+	} 
 	echo  Zend_Json::encode($response);
 	}
 
 	public function landusecodesAction(){
-	if($this->_getParam('term',false)){
+	if($this->_getParam('landusevalue',false)){
 	$landcodes = new Landuses();
-	$response = $landcodes->getLandusesChildAjax2($this->_getParam('term'));
-	}  else {
-	$response = array('id' => NULL,'term' => 'No Landuse specified');
-	}
-	echo  Zend_Json::encode($response);
+	$json = $landcodes->getLandusesChildAjax2($this->_getParam('landusevalue'));
+	} else {
+		$json = array(null => 'You must choose a landuse first');
+	} 
+	echo  Zend_Json::encode($json);
 	}
 
 	public function objecttermAction(){
@@ -593,7 +583,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$parishes = new OsParishes();
 	$json = $parishes->getParishesToCounty($this->_getParam('county'));
 	} else {
-	$json = array('id' => NULL,'term' => 'No county specified');
+		$json = array(null => 'You must choose a county first');
 	}
 	echo Zend_Json::encode($json);
 	}
@@ -602,8 +592,9 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	if($this->_getParam('county',false)){
 	$districts = new OsDistricts();
 	$json = $districts->getDistrictsToCounty($this->_getParam('county'));
+	$json = array('' => ' Available districts: Choose to reset list') + $json;
 	} else {
-	$json = array('id' => NULL,'term' => 'No county specified');
+		$json = array(null => 'You must choose a county first');
 	}
 	echo Zend_Json::encode($json);
 	}
@@ -613,7 +604,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	$parishes = new OsCounties();
 	$json = $parishes->getCountyToRegion($this->_getParam('county'));
 	} else {
-	$json = array('id' => NULL,'term' => 'No county specified');
+		$json = array(null => 'You must choose a county first');
 	}
 	echo Zend_Json::encode($json);
 	}
@@ -622,10 +613,11 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	if($this->_getParam('district',false)){
 	$parishes = new OsParishes();
 	$json = $parishes->getParishesToDistrict($this->_getParam('district'));
+	$json = array('' => ' Available parishes: Choose to reset list') + $json;
 	} else {
-	$json = array('id' => NULL,'term' => 'No county specified');
+		$json = array(null => 'You must choose a district first');
 	}
-	echo Zend_Json::encode($json);
+	echo Zend_Json::encode($json);	
 	}
 	
 }

@@ -36,30 +36,30 @@ public function __construct($options = null) {
 	$county->setLabel('County/Unitary Authority or Metropolitan District: ')
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose county','Valid counties' => $county_options))
+	->addMultiOptions(array(NULL => 'Choose county','Available counties' => $county_options))
 	->addValidator('InArray', false, array(array_keys($county_options)))
-	->setAttribs(array('class' => 'span6'));
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose district after county'))
-	->setAttribs(array('class' => 'span6'));
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose parish after district'))
-	->setAttribs(array('class' => 'span6'));
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
 	->setRegisterInArrayValidator(false)
 	->addValidator('Digits')
-	->addMultiOptions(array(NULL => 'Choose region','Valid counties' => $regions))
-	->setAttribs(array('class' => 'span6'));
+	->addMultiOptions(array(NULL => 'Choose region','Available regions' => $regions))
+	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
 
@@ -74,7 +74,8 @@ public function __construct($options = null) {
 	->addMultioptions(array(NULL => NULL,'Choose source' => $origin_options))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('InArray', false, array(array_keys($origin_options)))
-	->addValidator('Int');
+	->addValidator('Int')
+	->setAttrib('class', 'selectpicker show-menu-arrow');
 
 	$gridrefcert = new Zend_Form_Element_Radio('gridrefcert');
 	$gridrefcert->setLabel('Grid reference certainty: ')
@@ -168,7 +169,8 @@ public function __construct($options = null) {
 	->addMultiOptions(array(NULL => 'Depth levels','Approximate depth' => array(
 	'10' => '0 - 10cm', '20' => '10 - 20cm', '30' => '20 - 30cm',
 	'40' => '30 - 40cm', '50' => '40 - 50cm',
-	'60' => 'Over 60 cm')));
+	'60' => 'Over 60 cm')))
+	->setAttrib('class', 'selectpicker show-menu-arrow');
 
 	$soiltype = new Zend_Form_Element_Select('soiltype');
 	$soiltype->setLabel('Type of soil around findspot: ')
@@ -184,14 +186,16 @@ public function __construct($options = null) {
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose landuse',
-            'Valid landuses' => $landuse_options));
+            'Valid landuses' => $landuse_options))
+	->setAttrib('class', 'selectpicker show-menu-arrow');
 
 	$landusecode = new Zend_Form_Element_Select('landusecode');
 	$landusecode->setLabel('Specific landuse: ')
 	->setRegisterInArrayValidator(false)
 	->addValidators(array('NotEmpty'))
 	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Specific landuse will be enabled after type'));
+	->addMultiOptions(array(NULL => 'Specific landuse will be enabled after type'))
+	->setAttrib('class', 'selectpicker show-menu-arrow');
 
 
 	$address = new Zend_Form_Element_Textarea('address');

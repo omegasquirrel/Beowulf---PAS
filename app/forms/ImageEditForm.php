@@ -55,19 +55,21 @@ class ImageEditForm extends Pas_Form {
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
 	->setRequired(true)
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => NULL,'Choose a period' => $period_options))
 	->addValidator('inArray', false, array(array_keys($period_options)));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 	->addFilters(array('StringTrim','StripTags'))
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addMultiOptions(array(NULL => NULL,'Choose a county' => $county_options))
 	->addValidator('inArray', false, array(array_keys($county_options)));
 
 	$copyright = new Zend_Form_Element_Select('copyrighttext');
 	$copyright->setLabel('Image copyright: ')
 	->setRequired(true)
-	->setAttrib('class','span6')
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addErrorMessage('You must enter a licence holder')
 	->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copyList))
 	->setDescription('You can set the copyright of your image here to your institution. If you are a public recorder, it 
@@ -78,7 +80,7 @@ class ImageEditForm extends Pas_Form {
 	$licenseField->setDescription('Our philosophy is to make our content available openly, by default we set the license as
 	use by attribution to gain the best public benefit. You can choose a different license if you wish.');
 	$licenseField->setRequired(true)
-	->setAttrib('class','span6')
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->setLabel('Creative Commons license:')
 	->addMultiOptions(array(NULL => 'Select a license', 'Available licenses' => $license))
 	->setValue(5)
@@ -90,6 +92,7 @@ class ImageEditForm extends Pas_Form {
 	->addMultiOptions(array('Please choose publish state' => array(
 	'digital' => 'Digital image', 'illustration' => 'Scanned illustration')))
 	->setValue('digital')
+	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 	->addFilters(array('StringTrim','StripTags'));;
 
 	$rotate = new Zend_Form_Element_Radio('rotate');

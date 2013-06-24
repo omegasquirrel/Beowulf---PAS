@@ -30,9 +30,7 @@ class VolunteerForm extends Pas_Form {
 	$description = new Pas_Form_Element_RTE('description');
 	$description->setLabel('Short description of project: ')
 		->setRequired(true)
-		->setAttrib('rows',10)
-		->setAttrib('cols',40)
-		->setAttrib('Height',400)
+		->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400))
 		->setAttrib('ToolbarSet','Basic')
 		->addFilters(array('BasicHtml', 'EmptyParagraph', 'StringTrim'));
 		
@@ -49,7 +47,7 @@ class VolunteerForm extends Pas_Form {
 	$managedBy->setLabel('Managed by: ')
 		->addMultiOptions(array('Choose an author' => $authorOptions))
 		->setRequired(true)
-		->addFilters(array('StripTags','StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidator('InArray', false, array(array_keys($authorOptions)))
 		->addErrorMessage('You must enter a manager for this project.');
@@ -59,6 +57,7 @@ class VolunteerForm extends Pas_Form {
 	$suitableFor->setLabel('Suitable for: ')
 		->addMultiOptions(array(NULL => NULL,'Choose type of research' => $projectype_list))
 		->setRequired(true)
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addValidator('InArray', false, array(array_keys($projectype_list)))
 		->addFilters(array('StripTags','StringTrim'))
 		->addErrorMessage('You must enter suitability for this task.');

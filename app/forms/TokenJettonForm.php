@@ -32,6 +32,7 @@ class TokenJettonForm extends Pas_Form {
 		'67' => 'Token penny'
 		)
 		))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->setRegisterInArrayValidator(true)
 		->addErrorMessage('You must enter a denomination');
 
@@ -47,6 +48,7 @@ class TokenJettonForm extends Pas_Form {
 	$ruler= new Zend_Form_Element_Select('ruler_id');
 	$ruler->setLabel('Ruler: ')
 		->setRegisterInArrayValidator(false)
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Choose an issuer','Available rulers' => $ro))
 		->addValidator('InArray', false, array(array_keys($ro)));
 	
@@ -58,6 +60,7 @@ class TokenJettonForm extends Pas_Form {
 	
 	$mint_id= new Zend_Form_Element_Select('mint_id');
 	$mint_id->setLabel('Issuing mint: ')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->setRegisterInArrayValidator(true)
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose a mint', 'Available mints' => array('286' => 'Nuremberg')));
@@ -70,6 +73,7 @@ class TokenJettonForm extends Pas_Form {
 	
 	$degree_of_wear = new Zend_Form_Element_Select('degree_of_wear');
 	$degree_of_wear->setLabel('Degree of wear: ')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Choose degree of wear', 'Available options' => $wear_options))
 		->addValidator('InArray', false, array(array_keys($wear_options)));
 	
@@ -102,6 +106,7 @@ class TokenJettonForm extends Pas_Form {
 	
 	$die_axis_measurement = new Zend_Form_Element_Select('die_axis_measurement');
 	$die_axis_measurement->setLabel('Die axis measurement: ')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Choose die axis', 'Available dies' => $die_options))
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('InArray', false, array(array_keys($die_options)));

@@ -8,6 +8,8 @@
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/primaryID.js', $type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/secondaryID.js', $type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/recorder.js', $type='text/javascript');
+	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/bootstrap-select.min.css', $type='screen');
+	$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-select.min.js', $type='text/javascript');
 	
 	
 	$front = Zend_Controller_Front::getInstance()->getRequest();
@@ -44,3 +46,16 @@ title="Autofill form fields from last record you created" id="populate" accesske
 <?php
 echo $this->form;
 ?>
+
+<?php $this->jQuery()->javascriptCaptureStart();?>
+$(document).ready(function() {
+ 		
+		// focus on the first text input field in the first field on the page
+		$("input[type='select']:first", document.forms[0]).focus();
+		
+		//Reformat the selects
+		$('.selectpicker').selectpicker();
+       
+      	
+    });
+<?php $this->jQuery()->javascriptCaptureEnd();?>

@@ -1,7 +1,7 @@
 $(document).ready(function() {
- 		$('#objecttype').typeahead({
+ 		$('#TID').typeahead({
     	source: function(query, process) {
-        var $url = '/ajax/objectterm/?q=' + query ;
+        var $url = '/ajax/treasureids/?q=' + query ;
         var $items = new Array;
         $items = [""];
         $.ajax({
@@ -43,7 +43,7 @@ $(document).ready(function() {
             }
         });
     },
-    property: 'term',
+    property: 'name',
     items: 10,
     minLength: 3,
     updater: function (item) {

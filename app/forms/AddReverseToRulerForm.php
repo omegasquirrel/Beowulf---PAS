@@ -19,19 +19,17 @@ public function __construct($options = null) {
 	$reverseID->setLabel('Reverse type: ')
 	->setRequired(true)
 	->addFilters(array('StripTags','StringTrim','StringToLower'))
-	->setAttrib('class', 'span8');
+	->setAttribs(array('class' => 'span8 selectpicker show-menu-arrow'));
 
 	$rulerID = new Zend_Form_Element_Hidden('rulerID');
 	$rulerID->addValidator('Int');
 
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(60);
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Add a reverse type for this ruler');
 
-	$this->addElements(array($reverseID, $rulerID, $submit, $hash));
+	$this->addElements(array($reverseID, $rulerID, $submit));
 	$this->addDisplayGroup(array('reverseID'), 'details');
 
 	$this->details->setLegend('Add an active Mint');

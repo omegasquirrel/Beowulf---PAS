@@ -25,7 +25,7 @@ public function __construct($options = null) {
 	$name = new Zend_Form_Element_Text('organisation');
 	$name->setLabel('Filter by name')
 		->addFilters(array('StripTags','StringTrim', 'Purifier'))
-		->addErrorMessage('Come on it\'s not that hard, enter a title!')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->setAttrib('size', 40);
 	
 	$contact = new Zend_Form_Element_Text('contact');

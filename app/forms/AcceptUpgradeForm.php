@@ -14,14 +14,14 @@ public function __construct($options = null) {
 
 	parent::__construct($options);
 
-        $roles = new Roles();
+	$roles = new Roles();
 	$role_options = $roles->getRoles();
 
-        $inst = new Institutions();
+	$inst = new Institutions();
 	$inst_options = $inst->getInsts();
 
-        $projecttypes = new ProjectTypes();
-        $projectype_list = $projecttypes->getTypes();
+	$projecttypes = new ProjectTypes();
+	$projectype_list = $projecttypes->getTypes();
 
 	$this->setName('acceptupgrades');
 
@@ -33,9 +33,9 @@ public function __construct($options = null) {
 		->addMultiOptions(array(
                     NULL => 'Choose type of research',
                     'Available types' => $projectype_list))
-		->addFilter('StripTags')
-		->addFilter('StringTrim')
-		->addErrorMessage('You must set the level of research');
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addErrorMessage('You must set the level of research')
+		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$title = new Zend_Form_Element_Text('title');
 	$title->setLabel('Project title: ')

@@ -20,23 +20,25 @@ class NotifyFloForm extends Pas_Form {
 	
 	$flo = new Zend_Form_Element_Select('flo');
 	$flo->setLabel('Which flo is yours?: ')
-	->setRequired(true)
-	->addMultiOptions(array(null => 'Choose your FLO','Available FLOs' => $flos));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(true)
+		->addMultiOptions(array(null => 'Choose your FLO','Available FLOs' => $flos));
 	
 	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Message type: ')
-	->setRequired(true)
-	->addMultiOptions(array(
-	NULL => 'Choose reason',
-	'Choose error type' => array(
-	'Can you publish this please?' => 'Can you publish this please?',
-	'More info' => 'I have further information',
-	'Image problem' => 'Image problem',
-	'Grid reference issues' => 'Grid reference issues',
-	'Duplicated record' => 'Duplicated record',
-	'Data problems apparent' => 'Data problems - what do I do?',
-	'Other' => 'Other reason')))
-	->addErrorMessage('You must enter an error report type');
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(true)
+		->addMultiOptions(array(
+		NULL => 'Choose reason',
+		'Choose error type' => array(
+		'Can you publish this please?' => 'Can you publish this please?',
+		'More info' => 'I have further information',
+		'Image problem' => 'Image problem',
+		'Grid reference issues' => 'Grid reference issues',
+		'Duplicated record' => 'Duplicated record',
+		'Data problems apparent' => 'Data problems - what do I do?',
+		'Other' => 'Other reason')))
+		->addErrorMessage('You must enter an error report type');
 
 
 

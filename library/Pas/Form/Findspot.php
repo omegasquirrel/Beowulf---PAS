@@ -41,22 +41,19 @@ class Pas_Form_Findspot {
     $districts = new Places();
     $district = $districts->getDistrictList($data['county']);
     if($district) {
-    $this->_view->form->district->addMultiOptions(array(NULL => 'Choose district',
-    	'Available districts' => $district));
+    $this->_view->form->district->addMultiOptions(array('Available districts' => $district));
     }
     
     if(array_key_exists('district', $data)) {
     $parishModel = new OsParishes();
     $parishes = $parishModel->getParishesToDistrict($data['district']);
-    $this->_view->form->parish->addMultiOptions(array(NULL => 'Choose parish',
-    	'Available parishes' => $parishes));
+    $this->_view->form->parish->addMultiOptions(array('Available parishes' => $parishes));
     }
     
     if(array_key_exists('county', $data)) {
-    $cnts = new Counties();
-    $region_list = $cnts->getRegionsList($data['county']);
-    $this->_view->form->regionID->addMultiOptions(array(NULL => 'Choose region',
-    	'Available regions' => $region_list));
+    $countyModel = new OsCounties();
+    $regions = $countyModel->getCountyToRegion($data['county']);
+    $this->_view->form->regionID->addMultiOptions(array('Available regions' => $regions));
     }
     }
     
