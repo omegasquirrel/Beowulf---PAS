@@ -8,16 +8,11 @@
 $(document).ready(function() {
 $("#datefound1").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
 $("#datefound2").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
-
+$("input[type='text']:first", document.forms[0]).focus();
 });
 
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php $this->jQuery()->javascriptCaptureStart();?>
-$(document).ready(function() {
-       // focus on the first text input field in the first field on the page
-        $("input[type='text']:first", document.forms[0]).focus();
-    });
-<?php $this->jQuery()->javascriptCaptureEnd();?>
+
 <?php $this->DataEditDeleteCheck($this->find->old_findID,$this->find->createdBy);
 ?>
 <?php echo $this->partial('partials/database/editFindH2.phtml',$this->find);?>

@@ -1,8 +1,6 @@
 <?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-select.min.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.chained.remote.min.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/objectType.js', $type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl() . '/css/bootstrap-select.min.css', $type='screen');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/treasureID.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/otherRef.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript'); 
@@ -18,8 +16,6 @@ $("#createdAfter").datepicker({ maxDate: '+1y' });
 $("#updatedBefore").datepicker({ maxDate: '+1y'});
 $("#updatedAfter").datepicker({ maxDate: '+1y' });
 $("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
-       //Reformat the selects
-		$('.selectpicker').selectpicker();
        
 		//Chain the region to county
 		$("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
@@ -33,10 +29,6 @@ $("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
       	//Chain landuse to specific landuse
 		$("#landusecode").remoteChained("#landusevalue", "/ajax/landusecodes/");
       	
-      	//Refresh the options of the select
-		$(".selectpicker").change(function(){
-        $('.selectpicker').selectpicker('refresh');
-      	});
 });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
 <h2><?php echo $this->title();?></h2>

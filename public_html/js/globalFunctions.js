@@ -74,5 +74,6 @@ function initMenus() {
 }
 $(document).ready(function() {
     initMenus();
+    $('a[rel*=lightbox]').lightBox();
 
 });

@@ -59,6 +59,8 @@ class Pas_View_Helper_CoinStatsSolr extends Zend_View_Helper_Abstract {
 	'minima' => $result->getMin()
 	);
 	} 
+	Zend_Debug::dump($statistics);
+	exit;
 	$this->_cache->save($statistics);
 	} else {
 	$statistics = $this->_cache->load('coinstats' . $denomination);

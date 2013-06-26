@@ -35,6 +35,7 @@ public function __construct($options = null) {
 	$periodID->setLabel('Medieval period: ')
 		->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addErrorMessage('You must enter a period for this type')
 		->addMultioptions(array(NULL => NULL,'Choose a period' => $period_options))
 		->addValidator('InArray', false, array(array_keys($period_options)))
@@ -43,6 +44,7 @@ public function __construct($options = null) {
 	$rulerID = new Zend_Form_Element_Select('rulerID');
 	$rulerID->setLabel('Ruler assigned: ')
 		->setRequired(true)
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultioptions(array(NULL => NULL,'Choose a ruler' => $ruler_options))
 		->addValidator('InArray', false, array(array_keys($ruler_options)))
@@ -63,6 +65,7 @@ public function __construct($options = null) {
 	$categoryID = new Zend_Form_Element_Select('categoryID');
 	$categoryID->setLabel('Coin category: ')
 		->setRequired(true)
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => NULL, 'Choose a category' => $cat_options))
 		->addValidator('InArray', false, array(array_keys($cat_options)))
@@ -80,7 +83,7 @@ public function __construct($options = null) {
 		'periodID', 'type', 'categoryID',
 		'rulerID', 'datefrom', 'dateto',
 		'submit'), 'details');
-	$this->details->setLegend('Mint details: ');
+	$this->details->setLegend('Medieval type details: ');
 
 	parent::init();
 	}

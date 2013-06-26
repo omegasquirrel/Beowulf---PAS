@@ -71,11 +71,11 @@ public function __construct($options = null) {
 
 	$gridrefsrc = new Zend_Form_Element_Select('gridrefsrc');
 	$gridrefsrc->setLabel('Grid reference source: ')
-	->addMultioptions(array(NULL => NULL,'Choose source' => $origin_options))
+	->addMultioptions(array(NULL => 'Choose a grid reference source','Choose source' => $origin_options))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addValidator('InArray', false, array(array_keys($origin_options)))
 	->addValidator('Int')
-	->setAttrib('class', 'selectpicker show-menu-arrow');
+	->setAttrib('class', 'span4 selectpicker show-menu-arrow');
 
 	$gridrefcert = new Zend_Form_Element_Radio('gridrefcert');
 	$gridrefcert->setLabel('Grid reference certainty: ')
@@ -170,7 +170,7 @@ public function __construct($options = null) {
 	'10' => '0 - 10cm', '20' => '10 - 20cm', '30' => '20 - 30cm',
 	'40' => '30 - 40cm', '50' => '40 - 50cm',
 	'60' => 'Over 60 cm')))
-	->setAttrib('class', 'selectpicker show-menu-arrow');
+	->setAttrib('class', 'span4 selectpicker show-menu-arrow');
 
 	$soiltype = new Zend_Form_Element_Select('soiltype');
 	$soiltype->setLabel('Type of soil around findspot: ')
@@ -187,7 +187,7 @@ public function __construct($options = null) {
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose landuse',
             'Valid landuses' => $landuse_options))
-	->setAttrib('class', 'selectpicker show-menu-arrow');
+	->setAttrib('class', 'span4 selectpicker show-menu-arrow');
 
 	$landusecode = new Zend_Form_Element_Select('landusecode');
 	$landusecode->setLabel('Specific landuse: ')
@@ -195,7 +195,7 @@ public function __construct($options = null) {
 	->addValidators(array('NotEmpty'))
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Specific landuse will be enabled after type'))
-	->setAttrib('class', 'selectpicker show-menu-arrow');
+	->setAttrib('class', 'span4 selectpicker show-menu-arrow');
 
 
 	$address = new Zend_Form_Element_Textarea('address');

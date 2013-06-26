@@ -12,4 +12,10 @@ $('#ruler').linkedSelect('/ajax/moneyers/','#moneyer',{firstOption: 'Please sele
 
 $('#ruler').linkedSelect('/ajax/revtypes/','#revtypeID',{firstOption: 'Please select reverse type', loadingText: 'Loading Please Wait...'});
 
+$('#county').linkedSelect('/ajax/parishesbycounty/county',
+		'#parish',{firstOption: 'Please select a parish',loadingText: 'Loading Please Wait...'});
+
+$('#landusevalue').linkedSelect('/ajax/landusecodes/term/',
+		'#landusecode',{firstOption: 'Please select a landuse', loadingText: 'Loading Please Wait...'});
+
 });

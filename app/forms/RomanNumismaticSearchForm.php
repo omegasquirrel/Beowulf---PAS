@@ -23,8 +23,8 @@ class RomanNumismaticSearchForm extends Pas_Form
     $hoards = new Hoards();
     $hoard_options = $hoards->getHoards();
 
-    $counties = new Counties();
-    $county_options = $counties->getCountyName2();
+    $counties = new OsCounties();
+    $county_options = $counties->getCountiesID();
 
     $denominations = new Denominations();
     $denom_options = $denominations->getOptionsRoman();

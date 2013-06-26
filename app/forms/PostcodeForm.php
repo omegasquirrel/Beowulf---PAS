@@ -28,7 +28,7 @@ public function __construct($options = null){
         $distance->setLabel('Distance from postcode')
    		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setAttrib('class', 'span2 selectpicker show-menu-arrow')
 		->addErrorMessage('Please enter a search term')
                 ->addMultiOptions(array(
                     1 => '1 km', 2 => '2km',3 => '3km',

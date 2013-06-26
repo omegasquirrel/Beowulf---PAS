@@ -11,8 +11,8 @@ class SAMFilterForm extends Pas_Form
 public function __construct($options = null) {
 
 	
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+	$counties = new OsCounties();
+	$county_options = $counties->getCountiesID();
 	
 	parent::__construct($options);
 	$this->setName('filtersams');

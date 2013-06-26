@@ -22,8 +22,8 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$hoards = new Hoards();
 	$hoard_options = $hoards->getHoards();
 
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+	$counties = new OsCounties();
+	$county_options = $counties->getCountiesID();
 
 	$rulers = new Rulers();
 	$ruler_options = $rulers->getRulersByzantine();
@@ -105,14 +105,14 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
 		->addFilters(array('StripTags','StringTrim'))
-		->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'))
+		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 		->addMultiOptions(array(NULL => 'Choose hoard name', 'Available hoards' => $hoard_options));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidators(array('NotEmpty'))
-		->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'))
+		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 		->addMultiOptions(array(NULL => 'Choose county', 
 			'Available counties' => $county_options));
 
@@ -120,7 +120,7 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	$district->setLabel('District: ')
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->setRegisterInArrayValidator(false)
-		->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'))
+		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 		->disabled = true;
 
 	$parish = new Zend_Form_Element_Select('parish');
@@ -128,7 +128,7 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose parish after county'))
-		->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'))
+		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 		->disabled = true;
 
 	$regionID = new Zend_Form_Element_Select('regionID');
@@ -137,7 +137,7 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 		->addFilters(array('StripTags','StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose a region for a wide result',
 		'Choose region' => $region_options))
-		->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
+		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')

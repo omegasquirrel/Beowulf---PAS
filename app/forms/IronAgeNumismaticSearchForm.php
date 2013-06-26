@@ -23,8 +23,8 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$hoards = new Hoards();
 	$hoard_options = $hoards->getHoards();
 
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+	$counties = new OsCounties();
+	$county_options = $counties->getCountiesID();
 
 	$denominations = new Denominations();
 	$denom_options = $denominations->getOptionsIronAge();
@@ -57,25 +57,26 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	$old_findID = new Zend_Form_Element_Text('old_findID');
 	$old_findID->setLabel('Find number: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('Please enter a valid number!');
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addErrorMessage('Please enter a valid number!');
 
-        $cci = new Zend_Form_Element_Text('cciNumber');
-        $cci->setLabel('CCI number:')
+	$cci = new Zend_Form_Element_Text('cciNumber');
+    $cci->setLabel('CCI number:')
         ->setDescription('This is a unique number')
         ->setFilters(array('StringTrim','StripTags'));
 
 	$description = new Zend_Form_Element_Text('description');
 	$description->setLabel('Object description contains: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('Please enter a valid term');
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addErrorMessage('Please enter a valid term');
 
 	$workflow = new Zend_Form_Element_Select('workflow');
 	$workflow->setLabel('Workflow stage: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'));
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow');
 
 	if(in_array($this->_role,$this->_higherlevel)) {
 	$workflow->addMultiOptions(array(NULL => 'Choose a workflow stage',
@@ -90,77 +91,84 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
 	$rally->setLabel('Rally find: ')
-	->setRequired(false)
-	->addFilters(array('StripTags','StringTrim'))
-	->setUncheckedValue(NULL);
+		->setRequired(false)
+		->addFilters(array('StripTags','StringTrim'))
+		->setUncheckedValue(NULL);
 
 	$geographyID = new Zend_Form_Element_Select('geographyID');
 	$geographyID->setLabel('Geographic area: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose a geography',
-	'Available geographies' => $geog_options))
-	->addValidator('inArray', false, array(array_keys($geog_options)))
-	->addValidator('Int');
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose a geography',
+		'Available geographies' => $geog_options))
+		->addValidator('inArray', false, array(array_keys($geog_options)))
+		->addValidator('Int');
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose a rally',
-	'Available rallies' => $rally_options))
-	->addValidator('inArray', false, array(array_keys($rally_options)))
-	->addValidator('Int');
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose a rally',
+		'Available rallies' => $rally_options))
+		->addValidator('inArray', false, array(array_keys($rally_options)))
+		->addValidator('Int');
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
 	$hoard->setLabel('Hoard find: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->setUncheckedValue(NULL);
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->setUncheckedValue(NULL);
 
 	$hoardID =  new Zend_Form_Element_Select('hID');
 	$hoardID->setLabel('Part of this hoard: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose a hoard',
-	'Available hoards' => $hoard_options))
-	->addValidator('inArray', false, array(array_keys($hoard_options)))
-	->addValidator('Int');
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose a hoard',
+		'Available hoards' => $hoard_options))
+		->addValidator('inArray', false, array(array_keys($hoard_options)))
+		->addValidator('Int');
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose a county',
-	'Available counties' => $county_options))
-	->addValidator('inArray', false, array(array_keys($county_options)));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose a county',
+		'Available counties' => $county_options))
+		->addValidator('inArray', false, array(array_keys($county_options)));
 
 	$district = new Zend_Form_Element_Select('district');
 	$district->setLabel('District: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose district after county'));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose district after county'));
 
 	$parish = new Zend_Form_Element_Select('parish');
 	$parish->setLabel('Parish: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose parish after county', 'Available districts' => null));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose parish after county', 'Available districts' => null));
 
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('European region: ')
-	->addMultiOptions(array(NULL => 'Choose a region for a wide result',
-	'Available regions' => $region_options))
-	->addValidator('Int');
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addMultiOptions(array(NULL => 'Choose a region for a wide result',
+		'Available regions' => $region_options))
+		->addValidator('Int');
 
 
 	$gridref = new Zend_Form_Element_Text('gridref');
 	$gridref->setLabel('Grid reference: ')
-	->addValidator('ValidGridRef')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum');
+		->addValidator('ValidGridRef')
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum');
 
 	$fourFigure = new Zend_Form_Element_Text('fourFigure');
 	$fourFigure->setLabel('Four figure grid reference: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('ValidGridRef')
-	->addValidator('Alnum');
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('ValidGridRef')
+		->addValidator('Alnum');
 
 	###
 	##Numismatic data
@@ -168,150 +176,156 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	//	Denomination
 	$denomination = new Zend_Form_Element_Select('denomination');
 	$denomination->setLabel('Denomination: ')
-	->setRegisterInArrayValidator(false)
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose denomination type',
-	'Available denominations' => $denom_options))
-	->addValidator('inArray', false, array(array_keys($denom_options)));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRegisterInArrayValidator(false)
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose denomination type',
+		'Available denominations' => $denom_options))
+		->addValidator('inArray', false, array(array_keys($denom_options)));
 
 	//Primary ruler
 	$ruler = new Zend_Form_Element_Select('ruler');
 	$ruler->setLabel('Ruler / issuer: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose primary ruler' ,
-	'Available rulers' => $ruler_options))
-	->addValidator('inArray', false, array(array_keys($ruler_options)));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose primary ruler' ,
+		'Available rulers' => $ruler_options))
+		->addValidator('inArray', false, array(array_keys($ruler_options)));
 
 	//Mint
 	$mint = new Zend_Form_Element_Select('mint');
 	$mint->setLabel('Issuing mint: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose issuing mint',
-	'Available mints' => $mint_options))
-	->addValidator('inArray', false, array(array_keys($mint_options)));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose issuing mint',
+		'Available mints' => $mint_options))
+		->addValidator('inArray', false, array(array_keys($mint_options)));
 
 	//Secondary ruler
 	$ruler2 = new Zend_Form_Element_Select('ruler2');
 	$ruler2->setLabel('Secondary ruler / issuer: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose secondary ruler',
-	'Available rulers' => $ruler_options))
-	->addValidator('inArray', false, array(array_keys($ruler_options)));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose secondary ruler',
+		'Available rulers' => $ruler_options))
+		->addValidator('inArray', false, array(array_keys($ruler_options)));
 
 
 	//Obverse inscription
 	$obverseinsc = new Zend_Form_Element_Text('obverseLegend');
 	$obverseinsc->setLabel('Obverse inscription contains: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('Please enter a valid term');
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addErrorMessage('Please enter a valid term');
 
 	//Obverse description
 	$obversedesc = new Zend_Form_Element_Text('obverseDescription');
 	$obversedesc->setLabel('Obverse description contains: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('Please enter a valid term');
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addErrorMessage('Please enter a valid term');
 
 	//reverse inscription
 	$reverseinsc = new Zend_Form_Element_Text('reverseLegend');
 	$reverseinsc->setLabel('Reverse inscription contains: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('Please enter a valid term');
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addErrorMessage('Please enter a valid term');
 
 	//reverse description
 	$reversedesc = new Zend_Form_Element_Text('reverseDescription');
 	$reversedesc->setLabel('Reverse description contains: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addErrorMessage('Please enter a valid term');
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addErrorMessage('Please enter a valid term');
 
 	//Die axis
 	$axis = new Zend_Form_Element_Select('axis');
 	$axis->setLabel('Die axis measurement: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose measurement',
-	'Available die axes' => $axis_options))
-	->addValidator('inArray', false, array(array_keys($axis_options)))
-	->addErrorMessage('That option is not a valid choice')
-	->addValidator('Int');
+		->setAttrib('class', 'span4 selectpicker show-menu-arrow')
+		->setRequired(false)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose measurement',
+		'Available die axes' => $axis_options))
+		->addValidator('inArray', false, array(array_keys($axis_options)))
+		->addErrorMessage('That option is not a valid choice')
+		->addValidator('Int');
 
 	//Tribe
 	$tribe = new Zend_Form_Element_Select('tribe');
 	$tribe->setLabel('Iron Age tribe: ')
-	->setRequired(false)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addMultiOptions(array(NULL => 'Choose a tribe',
-	'Available tribes' => $tribe_options))
-	->addValidator('inArray', false, array(array_keys($tribe_options)))
-	->addErrorMessage('That option is not a valid choice')
-	->addValidator('Int');
+		->setRequired(false)
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose a tribe',
+		'Available tribes' => $tribe_options))
+		->addValidator('inArray', false, array(array_keys($tribe_options)))
+		->addErrorMessage('That option is not a valid choice')
+		->addValidator('Int');
 
 	$objecttype = new Zend_Form_Element_Hidden('objecttype');
 	$objecttype->setValue('COIN')
-	->addFilters(array('StripTags', 'StringTrim', 'StringToUpper'))
-	->addValidator('Alpha', false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim', 'StringToUpper'))
+		->addValidator('Alpha', false, array('allowWhiteSpace' => true));
 
 	$broadperiod = new Zend_Form_Element_Hidden('broadperiod');
 	$broadperiod->setValue('IRON AGE')
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true))
-	->addFilters(array('StripTags', 'StringTrim'));
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true))
+		->addFilters(array('StripTags', 'StringTrim'));
 
 	$mack_type = new Zend_Form_Element_Text('mackType');
 	$mack_type->setLabel('Mack Type: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$bmc_type = new Zend_Form_Element_Text('bmc');
 	$bmc_type->setLabel('British Museum catalogue number: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$allen_type = new Zend_Form_Element_Text('allenType');
 	$allen_type->setLabel('Allen Type: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$va_type = new Zend_Form_Element_Text('vaType');
 	$va_type->setLabel('Van Arsdell Number (VA): ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$rudd_type = new Zend_Form_Element_Text('ruddType');
 	$rudd_type->setLabel('Ancient British Coins number (ABC): ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$phase_date_1 = new Zend_Form_Element_Text('phase_date_1');
 	$phase_date_1->setLabel('Phase date 1: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$phase_date_2 = new Zend_Form_Element_Text('phase_date_2');
 	$phase_date_2->setLabel('Phase date 2: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$context = new Zend_Form_Element_Text('context');
 	$context->setLabel('Context of coins: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$depositionDate = new Zend_Form_Element_Text('depositionDate');
 	$depositionDate->setLabel('Date of deposition: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	$numChiab = new Zend_Form_Element_Text('numChiab');
 	$numChiab->setLabel('Coin hoards of Iron Age Britain number: ')
-	->addFilters(array('StripTags', 'StringTrim'))
-	->addValidator('Alnum',false, array('allowWhiteSpace' => true));
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addValidator('Alnum',false, array('allowWhiteSpace' => true));
 
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
@@ -319,9 +333,10 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 
 	$institution = new Zend_Form_Element_Select('institution');
 	$institution->setLabel('Recording institution: ')
-	->setRequired(false)
-	->addFilters(array('StringTrim','StripTags'))
-	->addMultiOptions(array(NULL => 'Choose institution', 'Available institutions' => $inst_options));
+		->setAttrib('class', 'span4 selectpicker show-menu-arrow')
+		->setRequired(false)
+		->addFilters(array('StringTrim','StripTags'))
+		->addMultiOptions(array(NULL => 'Choose institution', 'Available institutions' => $inst_options));
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(4800);

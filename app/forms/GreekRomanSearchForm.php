@@ -26,8 +26,8 @@ class GreekRomanSearchForm extends Pas_Form {
 	$hoards = new Hoards();
 	$hoard_options = $hoards->getHoards();
 
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+	$counties = new OsCounties();
+	$county_options = $counties->getCountiesID();
 
 	$rulers = new Rulers();
 	$ruler_options = $rulers->getRulersByzantine();

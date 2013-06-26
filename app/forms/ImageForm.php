@@ -16,8 +16,8 @@ class ImageForm extends Pas_Form
 
     public function __construct($options = null) {
 
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+$counties = new Counties();
+	$county_options = $counties->getCountyname2();
 
 	$periods = new Periods();
 	$period_options = $periods->getPeriodFrom();
@@ -61,55 +61,57 @@ class ImageForm extends Pas_Form
 
 	$imagelabel = new Zend_Form_Element_Text('label');
 	$imagelabel->setLabel('Image label: ')
-	->setRequired(true)
-	->setAttribs(array('size' => 60, 'class' => 'span6 required'))
-	->addErrorMessage('You must enter a label')
-	->setDescription('This must be descriptive text about the image - NOT THE FILE or FIND NUMBER/NAME - and follow the 
-	conventions outlined below this form')
-	->addFilters(array('StripTags','StringTrim'));
+		->setRequired(true)
+		->setAttribs(array('size' => 60, 'class' => 'span6 required'))
+		->addErrorMessage('You must enter a label')
+		->setDescription('This must be descriptive text about the image - NOT THE FILE or FIND NUMBER/NAME - and follow the 
+		conventions outlined below this form')
+		->addFilters(array('StripTags','StringTrim'));
 
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Period: ')
-	->setRequired(true)
-	->setAttrib('class','required')
-	->addErrorMessage('You must enter a period for the image')
-	->addMultiOptions(array(NULL => 'Select a period', 'Valid periods' => $period_options))
-	->addValidator('inArray', false, array(array_keys($period_options)));
+		->setRequired(true)
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow required')
+		->addErrorMessage('You must enter a period for the image')
+		->addMultiOptions(array(NULL => 'Select a period', 'Valid periods' => $period_options))
+		->addValidator('inArray', false, array(array_keys($period_options)));
 
 	$county = new Zend_Form_Element_Select('county');
 	$county->setLabel('County: ')
-	->setRequired(true)
-	->setAttrib('class','required')
-	->addErrorMessage('You must enter a county of origin')
-	->addMultiOptions(array(NULL => 'Select a county of origin','Valid counties' => $county_options))
-	->addValidator('inArray', false, array(array_keys($county_options)));
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow required')
+		->setRequired(true)
+		->addErrorMessage('You must enter a county of origin')
+		->addMultiOptions(array(NULL => 'Select a county of origin',
+			'Valid counties' => $county_options))
+		->addValidator('inArray', false, array(array_keys($county_options)));
 
 	$copyright = new Zend_Form_Element_Select('copyrighttext');
 	$copyright->setLabel('Image copyright: ')
-	->setRequired(true)
-	->setAttrib('class','span6')
-	->addErrorMessage('You must enter a licence holder')
-	->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copyList))
-	->setDescription('You can set the copyright of your image here to your institution. If you are a public recorder, it 
-	should default to your full name. For institutions that do not appear contact head office for getting it added.')
-	->setValue($this->_copyright);
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(true)
+		->addErrorMessage('You must enter a licence holder')
+		->addMultiOptions(array(NULL => 'Select a licence holder','Valid copyrights' => $copyList))
+		->setDescription('You can set the copyright of your image here to your institution. If you are a public recorder, it 
+		should default to your full name. For institutions that do not appear contact head office for getting it added.')
+		->setValue($this->_copyright);
 	
 	$licenseField = new Zend_Form_Element_Select('ccLicense');
 	$licenseField->setDescription('Our philosophy is to make our content available openly, by default we set the license as
 	use by attribution to gain the best public benefit. You can choose a different license if you wish.');
 	$licenseField->setRequired(true)
-	->setAttrib('class','span6')
-	->setLabel('Creative Commons license:')
-	->addMultiOptions(array(NULL => 'Select a license', 'Available licenses' => $license))
-	->setValue(5)
-	->addValidator('Int');
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setLabel('Creative Commons license:')
+		->addMultiOptions(array(NULL => 'Select a license', 'Available licenses' => $license))
+		->setValue(5)
+		->addValidator('Int');
 
 	$type = new Zend_Form_Element_Select('type');
 	$type->setLabel('Image type: ')
-	->setRequired(true)
-	->addMultiOptions(array(NULL => 'Select the type of image',
-	'Image types' => array('digital' => 'Digital image','illustration' => 'Scanned illustration')))
-	->setValue('digital');
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->setRequired(true)
+		->addMultiOptions(array(NULL => 'Select the type of image',
+		'Image types' => array('digital' => 'Digital image','illustration' => 'Scanned illustration')))
+		->setValue('digital');
 
 	$submit = new Zend_Form_Element_Submit('submit');
 

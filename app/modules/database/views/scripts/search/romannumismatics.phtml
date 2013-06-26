@@ -2,8 +2,10 @@
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/romanCoinSearch.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
-	$this->headTitle('Perform an advanced numismatic search on the database');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/select2.min.js', $type='text/javascript');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/select2.css', $type='screen');
+
+$this->headTitle('Perform an advanced numismatic search on the database');
 ?>
 <h2>Advanced Roman numismatic search</h2>
 <p>This form allows you to perform some more advanced database searches. More specific numismatic searching can be affected from period specific forms.</p>
@@ -13,4 +15,8 @@ $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$
 echo $this->formRoman;
 ?>
 </div>
-
+<?php $this->jQuery()->javascriptCaptureStart() ?>
+$(document).ready(function() {
+ 	$(".selectpicker").select2();
+});
+<?php $this->jQuery()->javascriptCaptureEnd() ?>

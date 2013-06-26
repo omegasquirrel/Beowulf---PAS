@@ -175,11 +175,11 @@ class Pas_View_Helper_SearchParams
 	 * @param string $value The value to lookup
 	 * @return string
 	 */
-	public function getData($name, $field, $value){
-	$key = md5($name.$field.$value);
+	public function getData($name, $field, $value, $idField = 'id'){
+	$key = md5($name . $field . $value . $idField);
 	if (!($this->_cache->test($key))) {
 	$model = new $name();
-	$data = $model->fetchRow($model->select()->where('id = ?', $value))->$field;
+	$data = $model->fetchRow($model->select()->where($idField . ' = ?', $value))->$field;
 	$this->_cache->save($data);
 	} else {
 	$data = $this->_cache->load($key);
@@ -284,6 +284,12 @@ class Pas_View_Helper_SearchParams
 			break;
 		case 'reeceID':
 			$params[$key] = 'Period ' . $value . ': ' . $this->getData('Reeces','description', $value);
+			break;
+		case 'county': 
+			$params[$key] = $this->getData('OsCounties','label', $value, 'osID');
+			break;
+		case 'regionID':
+			$params[$key] = $this->getData('OsRegions','label', $value, 'osID');
 			break;
 		default:
 			$params[$key] = $value;

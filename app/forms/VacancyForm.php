@@ -43,6 +43,7 @@ public function __construct($options = null) {
 	
 	$regionID = new Zend_Form_Element_Select('regionID');
 	$regionID->setLabel('Location of role: ')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->setRequired(true)
 		->addFilters(array('StringTrim', 'StripTags'))
 		->addValidator('InArray', false, array(array_keys($staffregions_options)))

@@ -21,26 +21,26 @@ class HoardForm extends Pas_Form
 
 	$term = new Zend_Form_Element_Text('term');
 	$term->setLabel('Hoard title: ')
-	->setRequired(true)
-	->addFilters(array('StringTrim','StripTags'))
-	->addErrorMessage('You must enter a title for this hoard');
+		->setRequired(true)
+		->addFilters(array('StringTrim','StripTags'))
+		->addErrorMessage('You must enter a title for this hoard');
 
 	$termdesc = new Pas_Form_Element_RTE('termdesc');
 	$termdesc->setLabel('Description of hoard: ')
-	->setRequired(true)
-	->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400))
-	->setAttrib('ToolbarSet','Finds')
-	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars')) 
-	->addErrorMessage('You must enter a description for this hoard');
+		->setRequired(true)
+		->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400))
+		->setAttrib('ToolbarSet','Finds')
+		->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars')) 
+		->addErrorMessage('You must enter a description for this hoard');
 	
 	$period = new Zend_Form_Element_Select('period');
 	$period->setLabel('Broad period attributed to: ')
-	->setRequired(true)
-	->addFilters(array('StripTags', 'StringTrim'))
-	->setAttrib('class', 'span6 selectpicker show-menu-arrow')
-	->addMultiOptions(array(NULL,'Choose reason' => $period_options))
-	->addValidator('inArray', false, array(array_keys($period_options)))
-	->addErrorMessage('You must choose a period');
+		->setRequired(true)
+		->addFilters(array('StripTags', 'StringTrim'))
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addMultiOptions(array(NULL,'Choose reason' => $period_options))
+		->addValidator('inArray', false, array(array_keys($period_options)))
+		->addErrorMessage('You must choose a period');
 
 	$submit = new Zend_Form_Element_Submit('submit');
 

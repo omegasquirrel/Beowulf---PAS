@@ -15,8 +15,8 @@ public function __construct($options = null) {
     $countries = new Countries();
     $countries_options = $countries->getOptions();
 	
-    $counties = new Counties();
-    $counties_options = $counties->getCountyname2();
+    $counties = new OsCounties();
+    $counties_options = $counties->getCountiesID();
 	
     $activities = new PrimaryActivities();
     $activities_options = $activities->getTerms();
@@ -34,6 +34,7 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags','StringTrim'))
 		->setValue('Mr')
 		->addErrorMessage('Choose title of person')
+		->setAttrib('class', 'span2 selectpicker show-menu-arrow')
 		->addMultiOptions(array(
 		'Mr' => 'Mr', 'Mrs' => 'Mrs', 'Miss' => 'Miss', 
 		'Ms' => 'Ms', 'Dr' => 'Dr.', 'Prof' => 'Prof.',

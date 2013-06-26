@@ -581,8 +581,11 @@
 	<field name="regionID" type="int" indexed="true" stored="true" />
 	<field name="regionName" type="string" indexed="true" stored="true" />
 	<field name="county" type="string" indexed="true" stored="true" />
+	<field name="countyID" type="int" indexed="true" stored="true" />
 	<field name="district" type="string" indexed="true" stored="true" />
+	<field name="districtID" type="int" indexed="true" stored="true" />
 	<field name="parish" type="string" indexed="true" stored="true" />
+	<field name="parishID" type="int" indexed="true" stored="true" />
 	<field name="knownas" type="string" indexed="true" stored="true" />
 	<field name="gridSource" type="string" indexed="true" stored="true" />
 	

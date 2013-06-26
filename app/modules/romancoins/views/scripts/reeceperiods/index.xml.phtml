@@ -28,10 +28,8 @@ $reeces->appendChild($reecesElem);
 foreach($this->reeces as $r){
 $r = (object)$r;
 $periodElem = $dom->createElement('period');
-$periodElem->appendChild( $dom->createElement('number', $r->id));
 $periodElem->appendChild( $dom->createElement('name', $r->period_name));
-$periodElem->appendChild( $dom->createElement('description', $r->description));
-$periodElem->appendChild( $dom->createElement('quantity', $r->quantity));
+$periodElem->appendChild( $dom->createElement('quantity', $r->description));
 
 $reecesElem->appendChild( $periodElem );
 }

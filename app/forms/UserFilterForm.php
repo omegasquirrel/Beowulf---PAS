@@ -31,32 +31,21 @@ public function __construct($options = null) {
 	$role = new Zend_Form_Element_Select('role');
 	$role->setLabel('Filter by role')
 		->addFilters(array('StringTrim', 'StripTags'))
+		->setAttrib('class', 'span3 selectpicker show-menu-arrow')
 		->addValidator('StringLength', false, array(1,200))
 		->addMultiOptions(array(NULL => NULL,'Choose role' => array(
 		'admin' => 'Admin', 'hero' => 'HER officer', 'flos' => 'Finds Liaison',
 		'member' => 'Member', 'fa' => 'Finds Adviser', 'research' => 'Researcher')));
 
-	$login = new ZendX_JQuery_Form_Element_DatePicker('lastLogin');
-	$login->setLabel('Filter last login: ')
-		->addFilters(array('StringTrim', 'StripTags'))
-		->setAttrib('size', 20);
-
-	$visits = new Zend_Form_Element_Text('visits');
-	$visits->setLabel('Filter by visit count: ')
-		->addFilters(array('StringTrim', 'StripTags'))
-		->setAttribs(array('size' => 5, 'maxlength' => '6'))
-		->addValidator('Int');
 	
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Filter');
 	
-	$hash = new Zend_Form_Element_Hash('csrf');
-	$hash->setValue($this->_salt)->setTimeout(4800);
+	
 		
 	$this->addElements(array(
 	$username, $name, $role,
-	$login, $visits, $submit,
-	$hash)
+	 $submit)
 	);
 	 
 	parent::init(); 

@@ -26,8 +26,8 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	$hoards = new Hoards();
 	$hoard_options = $hoards->getHoards();
 
-	$counties = new Counties();
-	$county_options = $counties->getCountyName2();
+	$counties = new OsCounties();
+	$county_options = $counties->getCountiesID();
 
 	$rulers = new Rulers();
 	$ruler_options = $rulers->getEarlyMedRulers();
@@ -93,19 +93,17 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	//Rally details
 	$rally = new Zend_Form_Element_Checkbox('rally');
 	$rally->setLabel('Rally find: ')
-	->setRequired(false)
-	->addValidator('Int')
-	->addFilters(array('StringTrim','StripTags'))
-	->setUncheckedValue(NULL);
+		->setRequired(false)
+		->addValidator('Int')
+		->addFilters(array('StringTrim','StripTags'))
+		->setUncheckedValue(NULL);
 
 	$rallyID =  new Zend_Form_Element_Select('rallyID');
 	$rallyID->setLabel('Found at this rally: ')
 		->setRequired(false)
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addFilters(array('StringTrim','StripTags'))
-		->addMultiOptions(array(
-	            NULL => 'Choose a rally',
-	            'Available rallies' => $rally_options));
+		->addMultiOptions(array(NULL => 'Choose a rally','Available rallies' => $rally_options));
 
 	$hoard = new Zend_Form_Element_Checkbox('hoard');
 	$hoard->setLabel('Hoard find: ')

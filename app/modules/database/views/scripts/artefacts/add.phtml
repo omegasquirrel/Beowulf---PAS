@@ -8,8 +8,6 @@
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/primaryID.js', $type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/secondaryID.js', $type='text/javascript');
 	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/recorder.js', $type='text/javascript');
-	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/bootstrap-select.min.css', $type='screen');
-	$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-select.min.js', $type='text/javascript');
 	
 	
 	$front = Zend_Controller_Front::getInstance()->getRequest();
@@ -24,16 +22,9 @@
 $(document).ready(function() {
 $("#datefound1").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
 $("#datefound2").datepicker({ yearRange:'1900:<?php echo date('Y');?>'});
-
+$("input[type='select']:first", document.forms[0]).focus();
 });
-
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
-<?php $this->jQuery()->javascriptCaptureStart();?>
-$(document).ready(function() {
-       // focus on the first text input field in the first field on the page
-        $("input[type='text']:first", document.forms[0]).focus();
-    });
-<?php $this->jQuery()->javascriptCaptureEnd();?>
 <h2><?php echo $this->title();?></h2>
 <p><a class="btn btn-success btn-large" href="<?php echo $this->url(array(
 	'module' => 'database',
@@ -47,15 +38,3 @@ title="Autofill form fields from last record you created" id="populate" accesske
 echo $this->form;
 ?>
 
-<?php $this->jQuery()->javascriptCaptureStart();?>
-$(document).ready(function() {
- 		
-		// focus on the first text input field in the first field on the page
-		$("input[type='select']:first", document.forms[0]).focus();
-		
-		//Reformat the selects
-		$('.selectpicker').selectpicker();
-       
-      	
-    });
-<?php $this->jQuery()->javascriptCaptureEnd();?>

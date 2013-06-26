@@ -26,8 +26,6 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	$this->view->form = $form;
 	$form->username->setValue($this->_getParam('username'));
 	$form->fullname->setValue($this->_getParam('fullname'));
-	$form->visits->setValue($this->_getParam('visits'));
-	$form->lastLogin->setValue($this->_getParam('lastLogin'));
 	$form->role->setValue($this->_getParam('role'));
 	if ($this->_request->isPost() && !is_null($this->_getParam('submit'))) {
 	$formData = $this->_request->getPost();

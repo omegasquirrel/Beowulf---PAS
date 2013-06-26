@@ -1,10 +1,11 @@
 <?php
 $this->headTitle('Edit a findspot');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.chained.remote.min.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/iacoinslinkedinit.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-typeahead.js', $type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-select.min.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/landowner.js', $type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl() . '/css/bootstrap-select.min.css', $type='screen');
 ?>
 
 
@@ -27,25 +28,5 @@ $(document).ready(function() {
 		// focus on the first text input field in the first field on the page
 		$("input[type='select']:first", document.forms[0]).focus();
 		
-		//Reformat the selects
-		$('.selectpicker').selectpicker();
-       
-		//Chain the region to county
-		$("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
-       
-		//Chain district to county	
-		$("#district").remoteChained("#county", "/ajax/osdistrictsbycounty/");
-       
-		//Chain parish to district
-		$("#parish").remoteChained("#district", "/ajax/osparishesbydistrict/");
-      
-      	//Chain landuse to specific landuse
-		$("#landusecode").remoteChained("#landusevalue", "/ajax/landusecodes/");
-      	
-      	//Refresh the options of the select
-		$(".selectpicker").change(function(){
-        $('.selectpicker').selectpicker('refresh');
-      	});
-      	
     });
 <?php $this->jQuery()->javascriptCaptureEnd();?>

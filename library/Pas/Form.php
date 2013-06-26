@@ -17,6 +17,8 @@ class Pas_Form extends EasyBib_Form {
 
     public $_role;
     
+    protected $_view;
+    
 	public function init()  {
 	$this->_privateKey = Zend_Registry::get('config')->webservice->recaptcha->privatekey;
 	$this->_pubKey = Zend_Registry::get('config')->webservice->recaptcha->pubkey;
@@ -33,6 +35,10 @@ class Pas_Form extends EasyBib_Form {
 	$this->setAttrib('class', 'form-horizontal');
 	$this->setAttrib('accept-charset', 'UTF-8');
 	$this->clearDecorators();
+	$this->_view = Zend_Layout::getMvcInstance()->getView();
+	$this->_view->jQuery()->addJavascriptFile('/js/select2.min.js', $type='text/javascript');
+	$this->_view->jQuery()->addJavascriptFile('/js/selectPrettify.js', $type='text/javascript');
+	$this->_view->headLink()->appendStylesheet('/css/select2.css', $type='screen');
 	$person = new Pas_User_Details();
 	$details = $person->getPerson();
 	if($details){

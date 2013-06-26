@@ -1,7 +1,4 @@
 <?php
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinitpeople1.js',$type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
 $this->headTitle('User administration section');
 ?>
 
@@ -11,7 +8,7 @@ echo $this->Href(array('module' => 'admin','controller'=>'users', 'action'=>'add
 'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'p'),
 'content'=>'Add an account','attribs' => array('title' => 'Add a new user','class' => 'btn btn-large btn-danger')));
 ?>
-
+<?php echo $this->form;?>
 <div id="findsList">
 <?php if ($this->paginator): ?>
 

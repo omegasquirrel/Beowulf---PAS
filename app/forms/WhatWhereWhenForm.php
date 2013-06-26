@@ -14,8 +14,8 @@ class WhatWhereWhenForm extends Pas_Form {
 	$periods = new Periods();
 	$period_options = $periods->getPeriodFromWords();
 	
-	$counties = new Counties();
-	$counties_options = $counties->getCountyname2();
+	$counties = new OsCounties();
+	$counties_options = $counties->getCountiesID();
 
 	parent::__construct($options);
 
