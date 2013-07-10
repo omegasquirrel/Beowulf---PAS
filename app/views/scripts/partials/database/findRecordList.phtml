@@ -9,30 +9,40 @@
         $file = $path . $this->thumbnail . $ext;
         if(file_exists($file)){
         list($w,$h) = getimagesize( $file );
-        
         ?>
-    <ul class="thumbnailSmall">
-        <li >
+    <ul class="thumbnails pull-right">
+        <li>
             <div >
             <a href="<?php echo $this->serverUrl() . '/' . $this->imagedir?>medium/<?php echo urlencode(strtolower($this->filename));?>" rel="lightbox" title="View larger image of <?php echo $this->old_findID;?>"><img src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
                     alt="Thumbnail image of <?php echo $this->old_findID;?>"
-                    width="<?php echo $w;?>" height="<?php echo $h;?>" class="img-polaroid" /></a>
+                     class="img-polaroid" height="<?php echo $h;?>"/></a>
             </div>
         </li>
     </ul>
 	<?php 
         } else {
         	?>
-        <ul class="thumbnailSmall">
-        <li >
-        <div class="pull-right">
-            <p>No image available at present.</p>
+        <ul class="thumbnails pull-right">
+        <li>
+        <div>
+            <img src="/assets/gravatar.png" width="80" height="80" class="img-circle" />
+            <p>Image unavailable<br />Error: 404</p>
             </div>
         </li>
     </ul>	
         	<?php 
         }
 	endif;?>
+	<?php if(!isset($this->thumbnail)):?>
+	 <ul class="thumbnails pull-right">
+        <li>
+        <div>
+            <img src="/assets/gravatar.png" width="80" height="80" class="img-circle" />
+            <p>Image not taken</p>
+            </div>
+        </li>
+    </ul>	
+	<?php endif;?>
     <p>
     <?php $url = $this->url(array(
     	'module' => 'database',

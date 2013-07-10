@@ -2,7 +2,7 @@
 class Pas_View_Helper_Publish extends Zend_View_Helper_Abstract
 {
    
-function publish($state) {
+	public function publish($state) {
        switch ($state) {
 		case 1:
 			$status = 'Draft';

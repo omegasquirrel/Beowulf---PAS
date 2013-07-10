@@ -1,7 +1,15 @@
 <?php
 $this->headTitle('Administer content');
-if (count($this->contents)): ?>
-<h2>Administer site content</h2>
+?>
+<h2><?php echo $this->title();?></h2>
+
+<?php 
+echo $this->form;
+
+if ($this->contents): 
+?>
+
+
 <p><a class="btn btn-large btn-success" href="<?php echo $this->url(array('module' => 'admin','controller' => 'content','action' => 'add'),null,true);?>" title="">Add new content</a></p>
 <table class="table table-striped" summary="All content entered on the system">
 <caption>All content entered</caption>
@@ -33,5 +41,8 @@ if (count($this->contents)): ?>
 </tr>
 </tfoot>
 </table>
+<?echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php else:?>
+<p>No content found that matches your query</p>
 <?php endif;?>
-<?echo $this->paginationControl($this->contents, 'Sliding', 'structure/pagination.phtml'); ?>
+

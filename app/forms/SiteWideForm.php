@@ -13,14 +13,15 @@ class SiteWideForm extends Pas_Form
 	parent::__construct($options);
 
 	$this->setName('siteWideSearch');
-
+	
+	$this->setAction('/search');
+	
 	$q = new Zend_Form_Element_Text('q');
 	$q->setLabel('Search: ')
 		->setRequired(true)
 		->addFilters(array('StripTags','StringTrim'))
 		->setAttrib('size', 20)
-		->addErrorMessage('Please enter a search term')
-	;
+		->addErrorMessage('Please enter a search term');
 		
     $section = new Zend_Form_Element_Select('section');
     $section->setLabel('Section')

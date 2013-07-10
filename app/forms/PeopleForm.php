@@ -15,11 +15,12 @@ public function __construct($options = null) {
     $countries = new Countries();
     $countries_options = $countries->getOptions();
 	
-    $counties = new OsCounties();
-    $counties_options = $counties->getCountiesID();
-	
+    $counties = new Counties();
+    $counties_options = $counties->getCountyname2();
+    	
     $activities = new PrimaryActivities();
     $activities_options = $activities->getTerms();
+
     $organisations = new Organisations;
     $organisations_options = $organisations->getOrgs();
 

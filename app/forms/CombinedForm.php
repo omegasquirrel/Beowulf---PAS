@@ -13,6 +13,7 @@ class CombinedForm extends Pas_FormLite {
 
 	public function init(){
 	$this->setName('combined');
+	$this->setAction('/search/');
 
 	$q = new Zend_Form_Element_Text('q');
 	$q->setLabel('Search content: ')

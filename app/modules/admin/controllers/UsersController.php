@@ -141,9 +141,9 @@ class Admin_UsersController extends Pas_Controller_Action_Admin {
 	$form->submit->setLabel('Create account details');
 	$form->username->addValidator('Db_NoRecordExists', false, array('table' => 'users',
                                                                'field' => 'username'));
-	$form->password->setLabel('Their password: ');
+//	$form->password->setLabel('Their password: ');
 	$form->institution->setRequired(true);
-	$form->password->setRequired(true);
+//	$form->password->setRequired(true);
 	$form->role->setRequired(true);
 	$form->institution->setRequired(true);
 	$form->email->setRequired(true);

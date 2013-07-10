@@ -1,8 +1,12 @@
 <?php
 $this->headTitle('User administration section');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-typeahead.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/userName.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/userFullnames.js', $type='text/javascript');
+	
 ?>
 
-<h2>User administration</h2>
+<h2><?php echo $this->title();?></h2>
 <?php
 echo $this->Href(array('module' => 'admin','controller'=>'users', 'action'=>'add', 'checkAcl'=>true,
 'acl'=>'Zend_Acl', 'wrapper' => array('tag' => 'p'),

@@ -97,13 +97,14 @@ class Pas_View_Helper_FacetCreatorPeople extends Zend_View_Helper_Abstract {
 			$request['facetType'] = $facetName;
 			$html .= '<a class="btn btn-small overlay" href="' . $this->view->url(($request),'default',true) . '">All ' . $this->_prettyName($facetName) . ' options <i class="icon-plus"></i></a>';
 		}
+		if(array_key_exists($facetName,$request)){
         $facet = $request[$facetName];
         if(isset($facet)){
             unset($request[$facetName]);
             $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url(($request),'default',true)
                     . '" title="Clear the facet">Clear this filter</a></p>';
         }
-
+		}
         $html .= '</div>';
         return $html;
         	}

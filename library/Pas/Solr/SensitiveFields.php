@@ -54,16 +54,11 @@ class Pas_Solr_SensitiveFields {
 				// Unset the fourfigure lat/lon
                     unset($record['fourFigureLat']);
                     unset($record['fourFigureLon']);
-                } else if(array_key_exists('gridref', $record) && is_null($record['knownas'])) {
+                } else if(array_key_exists('gridref', $record) && !array_key_exists('knownas', $record)) {
                 //Convert the fourfigure grid to required data
-                    $geo = new Pas_Geo_Gridcalc($record['fourFigure']);
-                    $coords = $geo->convert();
-                    $record['gridref'] = $coords['fourFigureGridRef'];
-                    $record['fourFigure'] = $coords['fourFigureGridRef'];
-                    $record['latitude'] = $coords['decimalLatLon']['decimalLatitude'];
-                    $record['longitude'] = $coords['decimalLatLon']['decimalLongitude'];
-                    $record['easting'] = $coords['easting'];
-                    $record['northing'] = $coords['northing'];
+                    
+                    $record['gridref'] =  $record['fourFigure'];
+                    $record['fourFigure'] = $record['fourFigure'];
                 }
                 //Remove the finder key
                 if(array_key_exists('finder', $record) && !in_array($role, $this->_personal)){

@@ -61,6 +61,7 @@ class News extends Pas_Db_Table_Abstract {
 	$select = $news->select()
 		->from($this->_name)
 		->where('golive <= NOW()')
+		->where('publish_state > ?', 0)
 		->order('golive DESC')
 		->limit((int)25);
 	return $news->fetchAll($select);
@@ -76,6 +77,7 @@ class News extends Pas_Db_Table_Abstract {
 	$select = $news->select()
 		->from($this->_name)
 		->where('golive <= NOW()')
+		->where('publish_state > ?', 0)
 		->order('id DESC')
 		->limit((int)5);
 	$data = $news->fetchAll($select);
@@ -100,9 +102,9 @@ class News extends Pas_Db_Table_Abstract {
                     'contactEmail'))
 		->joinLeft('users','users.id = ' . $this->_name . '.createdBy', array('fullname', 'username'))
 		->joinLeft('users','users_2.id = ' . $this->_name . '.updatedBy', array('fn' => 'fullname', 'un' => 'username'))
-
-                ->joinLeft('staff', 'staff.dbaseID = users.id',array('personID' => 'id'))
+		->joinLeft('staff', 'staff.dbaseID = users.id',array('personID' => 'id'))
 		->where('golive <= NOW()')
+		->where('publish_state > ?', 0)		
 		->order('created DESC');
 	$data = $news->fetchAll($select);
 	$paginator = Zend_Paginator::factory($data);

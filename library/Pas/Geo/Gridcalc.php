@@ -815,7 +815,7 @@ class Pas_Geo_Gridcalc  {
 
 	if (!$longOrigin) { // Do a standard UTM conversion - so findout what zone the point is in
 	$ZoneNumber = (integer)(($longTemp + 180)/6) + 1;
-	if( $this->lat >= 56.0 && $lat < 64.0 && $longTemp >= 3.0 && $longTemp < 12.0 ) $ZoneNumber = 32;
+	if( $lat >= 56.0 && $lat < 64.0 && $longTemp >= 3.0 && $longTemp < 12.0 ) $ZoneNumber = 32;
 	if( $lat >= 72.0 && $lat < 84.0 )  {
 	if($longTemp >= 0.0  && $longTemp <  9.0) {
 	$ZoneNumber = 31;
@@ -844,9 +844,9 @@ class Pas_Geo_Gridcalc  {
 	$A = cos($latRad)*($longRad - $longOriginRad);
 
 	$M = $this->_a*((1 - $this->_e2/4 - 3 * $this->e2 *$this->_e2/64 - 5 * $this->_e2* $this->_e2 * $this->_e2 / 256)
-	* $latRad - (3 * $this->_e2 / 8 + 3 * $this->_e2 * $this_e2 / 32 + 45 * $this_e2 * $this_e2 * $this_e2 /1024)
-	* sin(2*$latRad) + (15*$this_e2 * $this_e2 / 256 + 45 * $this_e2 * $this_e2 * $this_e2 / 1024) * sin( 4 * $latRad)
-	- (35 * $this_e2 * $this_e2 * $this_e2 / 3072) * sin(6 * $latRad));
+	* $latRad - (3 * $this->_e2 / 8 + 3 * $this->_e2 * $this->_e2 / 32 + 45 * $this->_e2 * $this->_e2 * $this->_e2 /1024)
+	* sin(2*$latRad) + (15*$this->_e2 * $this->_e2 / 256 + 45 * $this->_e2 * $this->_e2 * $this->_e2 / 1024) * sin( 4 * $latRad)
+	- (35 * $this->_e2 * $this->_e2 * $this->_e2 / 3072) * sin(6 * $latRad));
 
 	$utmEasting = ( $k0 * $N * ($A + (1 - $T + $C) * $A * $A * $A /6 + (5 - 18 * $T + $T * $T + 72 * $C - 58 *
 	$eccPrimeSquared) * $A * $A * $A * $A * $A/ 120) + $falseEasting);

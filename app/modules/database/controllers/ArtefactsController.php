@@ -92,9 +92,10 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('atom',array('suffix' => 'atom'))
             ->addContext('rdf',array('suffix' => 'rdf','headers' => array('Content-Type' => 'application/xml')))
             ->addContext('pdf',array('suffix' => 'pdf'))
+            ->addContext('midas', array('suffix' => 'midas', 'headers' => array('Content-Type' => 'application/xml')))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
             ->addContext('geojson',array('suffix' => 'geojson', 'headers' => array('Content-Type' => 'application/json')))
-            ->addActionContext('record', array('qrcode', 'json', 'xml', 'geojson', 'rdf'))
+            ->addActionContext('record', array('qrcode', 'json', 'xml', 'geojson', 'rdf', 'midas'))
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');
@@ -180,7 +181,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     }
     $form = new CommentFindForm();
     $form->submit->setLabel('Add a new comment');
-    $form->removeElement('captcha');
+//    $form->removeElement('captcha');
     $this->view->form = $form;
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {
@@ -396,8 +397,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $finds = $this->_finds->getRelevantAdviserFind($this->_getParam('id',0));
     $this->view->form = $form;
     $this->view->finds = $finds;
-    if ($this->getRequest()->isPost()===true) {
-    if($form->isValid($_POST)===true) {
+    if ($this->getRequest()->isPost() === true) {
+    if($form->isValid($_POST) === true) {
     $data = $form->getValues();
     if ($this->_helper->akismet($data)) {
     $data['comment_approved'] = 'spam';

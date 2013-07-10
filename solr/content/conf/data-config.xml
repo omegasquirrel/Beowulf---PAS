@@ -2,15 +2,15 @@
 	<dataSource type="JdbcDataSource"
    driver="com.mysql.jdbc.Driver"
    url="jdbc:mysql://localhost/antiquitiesTwo"
-   user="" 
-   password=""
+   user="webuser2" 
+   password="45jql11w"
    tinyInt1isBit="false"/>
 	<document name="content">
         <entity name="content" transformer="HTMLStripTransformer" 
 query="
 SELECT
-CONCAT('content-',id) AS identifier,
-id,
+CONCAT('content-',content.id) AS identifier,
+content.id,
 title,
 slug,
 excerpt,
@@ -18,8 +18,14 @@ body,
 section,
 metaKeywords AS keywords,
 publishState,
-'sitecontent' AS type
+'sitecontent' AS type,
+users1.fullname AS createdBy,
+users2.fullname AS updatedBy,
+content.created,
+content.updated
 FROM content
+LEFT JOIN users AS users1 ON users1.id = content.createdBy
+LEFT JOIN users AS users2 ON users2.id = content.updatedBy
 " 
 >        
 		<field column="identifier" name="identifier" />
@@ -30,6 +36,8 @@ FROM content
 	    <field column="section" name="section" />
 	    <field column="keywords" name="keywords" />
 	    <field column="created" name="created" />
+	    <field column="createdBy" name="createdBy" />
+	    <field column="updatedBy" name="updatedBy" />
 	    <field column="updated" name="updated" />
 	    <field column="slug" name="slug" /> 
 	    <field column="woeid" name="woeid" />
@@ -40,13 +48,14 @@ FROM content
 <entity name="news" transformer="HTMLStripTransformer" 
 query="
 SELECT 
-CONCAT('news-',id) AS identifier,
-id,
+CONCAT('news-',news.id) AS identifier,
+news.id,
 title,
 title AS slug,
 contents AS body,
 summary AS excerpt,
 datePublished AS created,
+news.updated,
 keywords,
 primaryNewsLocation AS place,
 CONCAT(latitude,',',longitude) AS coordinates,
@@ -55,8 +64,12 @@ longitude,
 'news' AS section,
 woeid,
 publish_state AS publishState,
-'news' AS type
+'news' AS type,
+users1.fullname AS createdBy,
+users2.fullname AS updatedBy
 FROM news
+LEFT JOIN users AS users1 ON users1.id = news.createdBy
+LEFT JOIN users AS users2 ON users2.id = news.updatedBy
 " 
 >        
 		<field column="identifier" name="identifier" />
@@ -72,7 +85,9 @@ FROM news
 	    <field column="created" name="created" />
 	    <field column="updated" name="updated" />
 	    <field column="slug" name="slug" /> 
-	    <field column="woeid" name="woeid" />
+	    <field column="woeid" name="woeid" />	    
+	    <field column="updatedBy" name="updatedBy" />
+		<field column="updatedBy" name="createdBy" />
 	    <field column="publishState" name="publishState" />
 	    <field column="type" name="type" />
 		</entity>

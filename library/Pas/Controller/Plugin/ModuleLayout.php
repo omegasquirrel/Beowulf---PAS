@@ -26,7 +26,8 @@ class Pas_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_Abstract
 	'atom','kml','georss',
 	'ics','rdf','xcs',
 	'vcf','csv','foaf',
-	'pdf','qrcode', 'geojson');
+	'pdf','qrcode', 'geojson',
+	'midas');
 
 	/** Set up contexts to disable layout for based on modules
 	 * @var array $_disabled

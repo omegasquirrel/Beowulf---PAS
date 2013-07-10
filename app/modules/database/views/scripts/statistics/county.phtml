@@ -27,7 +27,7 @@ $this->jQuery()->javascriptCaptureEnd();
 <th>Objects</th>
 <th>Records</th>
 </tr>
-<?php echo $this->partialLoop('partials/annual/countiesStats.phtml',$this->counties);?>
+<?php echo $this->statisticsCounty();?>
 </table>
 <?php else : ?>
 <h3>Finds recorded for this period</h3>
@@ -37,7 +37,7 @@ $this->jQuery()->javascriptCaptureEnd();
 <th>Objects</th>
 <th>Records</th>
 </tr>
-<?php echo $this->partialLoop('partials/annual/countiesStats.phtml',$this->countyTotal);?>
+<?php echo $this->statisticsCounty();?>
 </table>
 
 <h3>Finds recorded by these <?php echo count($this->creators);?> users</h3>
@@ -80,7 +80,7 @@ $recordsUsersTotal = array_sum($records_users);
 <th>Objects</th>
 <th>Records</th>
 </tr>
-<?php echo $this->partialLoop('partials/annual/objectperiods.phtml',$this->periods);?>
+<?php echo $this->statisticsCountyBroadPeriod();?>
 <tr>
 <?php 
 $finds_period = array();
@@ -164,7 +164,7 @@ $recordsMonthTotal = array_sum($records_month);
 <th>Objects</th>
 <th>Records</th>
 </tr>
-<?php echo $this->partialLoop('partials/annual/year.phtml',$this->year);?>
+<?php echo $this->statisticsCountyYearDiscovery();?>
 <tr>
 <?php 
 $finds_disco = array();
@@ -251,7 +251,7 @@ $recordsLanduseTotal = array_sum($records_landuse);
 <th>Objects</th>
 <th>Records</th>
 </tr>
-<?php echo $this->partialLoop('partials/annual/precision.phtml',$this->precision);?>
+<?php echo $this->statisticsCountyPrecision();?>
 <tr>
 <?php 
 $finds = array();

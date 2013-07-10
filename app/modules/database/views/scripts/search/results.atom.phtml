@@ -20,10 +20,10 @@ foreach($this->results as $find){
 $entry = $feed->createEntry();
 $entry->setTitle($find['old_findID'] . ' '.$find['objecttype'] . ' ' . $find['broadperiod']);
 $entry->setLink($this->serverUrl() . '/database/artefacts/record/id/' . $find['id']);
-if(is_null($find['identifier'])){
+if(is_null($find['institution'])){
 	$name = 'The Portable Antiquities Scheme';
 }else {
-	$name = $find['identifier'];
+	$name = $find['institution'];
 }
 $entry->addAuthor(array( 'name'  => $name));
 $updated = new Zend_Date($find['updated'], 'YY-mm-dd hh:mm:ss');
@@ -39,12 +39,14 @@ $entry->setDescription(strip_tags($description));
 $entry->setContent(strip_tags($description));
 $finds = new Finds();
 if(isset($find['thumbnail'])){
-	$size = filesize('./images/thumbnails/'
+	if(file_exists('/home/beowulf/public_html/images/thumbnails/'
+                . $find['thumbnail'] . '.jpg')){
+	$size = filesize('/home/beowulf/public_html/images/thumbnails/'
                 . $find['thumbnail'] . '.jpg');
 
 $entry->setEnclosure(array('type' => 'image/jpeg','uri' => $this->serverUrl()
         . '/images/thumbnails/' . $find['thumbnail'] . '.jpg','length' => $size));
-
+	}
 }
 $feed->addEntry($entry);
 }

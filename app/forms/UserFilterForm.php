@@ -35,7 +35,8 @@ public function __construct($options = null) {
 		->addValidator('StringLength', false, array(1,200))
 		->addMultiOptions(array(NULL => NULL,'Choose role' => array(
 		'admin' => 'Admin', 'hero' => 'HER officer', 'flos' => 'Finds Liaison',
-		'member' => 'Member', 'fa' => 'Finds Adviser', 'research' => 'Researcher')));
+		'member' => 'Member', 'fa' => 'Finds Adviser', 'research' => 'Researcher',
+		'treasure' => 'Treasure team')));
 
 	
 	$submit = new Zend_Form_Element_Submit('submit');

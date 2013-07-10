@@ -30,8 +30,11 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 		->addContext('kml',array('suffix' => 'kml'))
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
+		->addContext('qrcode',array('suffix' => 'qrcode'))
 		->addContext('geojson',array('suffix' => 'geojson', 'headers'   => array('Content-Type' => 'application/json')))
-		->addActionContext('results', array('json','xml','rss','atom', 'kml', 'geojson'))
+		->addContext('rdf',array('suffix' => 'rdf', 'headers'   => array('Content-Type' => 'application/xml')))
+		->addContext('midas',array('suffix' => 'midas', 'headers'   => array('Content-Type' => 'text/xml')))
+		->addActionContext('results', array('json','xml','rdf','rss','atom', 'kml', 'geojson', 'qrcode', 'midas'))
 		->setAutoJsonSerialization(false);
 
 	$this->_helper->contextSwitch()->initContext();
@@ -363,7 +366,7 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	*/
 	public function resultsAction(){
 	$params = $this->_getAllParams();
-	$search = new Pas_Solr_Handler('objects');
+	$search = new Pas_Solr_Handler('beowulf');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$params['format'] = $context;
@@ -379,8 +382,10 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
 	$this->view->stats = $search->_processStats();
 	$this->view->results = $search->_processResults();
 	$this->view->server = $search->getLoadBalancerKey();
+	if(array_key_exists('submit', $params)){
     $queries = new Searches();
     $queries->insertResults(serialize($params));
+	}
 	}
 
 	public function mapAction(){

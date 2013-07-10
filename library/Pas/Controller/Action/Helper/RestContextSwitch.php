@@ -35,7 +35,7 @@ class Pas_Controller_Action_Helper_RestContextSwitch extends Zend_Controller_Act
         'xml' => array(
             'suffix'    => 'xml',
             'headers'   => array(
-                'Content-Type' => 'application/xml'
+                'Content-Type' => 'text/xml'
             ),
 
             'options' => array(

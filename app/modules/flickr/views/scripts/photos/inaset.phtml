@@ -1,5 +1,7 @@
+
 <?php echo $this->FlickrSetInfo($this->pictures->photoset->id);?>
 <?php if(count($this->pictures)):?>
+<div class="row-fluid">
 <?php
 $photos = array();
 foreach($this->pictures->photoset->photo as $photo){
@@ -9,6 +11,8 @@ echo $this->partialLoop('partials/flickr/set.phtml',$photos);?>
 <div class="row span16">
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
+</div>
 <?php else:?>
 <p>There are no photos available with that tag.</p>
+</div>
 <?php endif;?>

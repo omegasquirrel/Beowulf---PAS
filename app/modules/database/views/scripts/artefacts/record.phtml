@@ -121,6 +121,10 @@
 		<?php
 		if (count($this->thumbs) > 0){
 		echo $this->partialLoop('partials/database/thumbs.phtml', $this->thumbs);
+		?>
+		<h4>Image use policy</h4>
+<p>You can use our images unless stated otherwise under a CC BY-SA licence.</p>
+		<?php 
 		} else {?>
 		<p>There are currently no images available.<br/>
 		Do you own this object, send us a picture!</p>
@@ -132,11 +136,7 @@
 		?>
 	</div>
 
-        <div class="span3 well" id="qrcode">
-        <h4>QR barcode</h4>
-        <img class="flow" src="http://chart.apis.google.com/chart?chs=150x150&amp;cht=qr&amp;chl=<?php echo $this->CurUrl();?>" alt="QR code for this URL" width="150" height="150" style="float:right;"/>
-        <p>The barcode on the right is a unique identifier for this record. If your phone has scanning software installed, then this can be used for sharing or you can print it off and attach it to the object.</p>
-        </div>
+
 
         </div>
 <!--  End of descriptive data -->

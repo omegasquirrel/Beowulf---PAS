@@ -9,7 +9,7 @@ $dom->appendChild($documentNode);
 
 foreach($this->results as $result){
 	
-	
+//	Zend_Debug::dump($result);
     if(array_key_exists('longitude', $result)){
 		$description = '';
         if(isset($result['thumbnail'])){

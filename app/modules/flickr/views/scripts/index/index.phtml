@@ -11,7 +11,7 @@ $this->jQuery()->addJavascriptFile('/js/bootstrap-carousel.js',$type='text/javas
 <?php 
 $flickr = Zend_Registry::get('config')->webservice->flickr;
 ?>
-
+<div class="row-fluid">
 <?php 
 echo $this->flickrFront($flickr);
 ?>
@@ -29,3 +29,4 @@ echo $this->flickrTotalViews($flickr);
 ?>
 </div>
 
+</div>

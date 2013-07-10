@@ -19,12 +19,55 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $this->_helper->_acl->allow('admin',null);
     $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     $this->_content = new Content();
+//    $this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
+//	$this->_solr = new Solarium_Client($this->_solrConfig);
     }
     /** Display index page
     */ 
     public function indexAction() {
-    $this->view->contents = $this->_content->getContentAdmin($this->_getParam('page'));
-    }
+    	$form = new ContentSearchForm();
+    	$form->submit->setLabel('Search content');
+	    $this->view->form = $form;
+    
+        $params = $this->array_cleanup($this->_getAllParams());
+       
+        $search = new Pas_Solr_Handler('beocontent');
+        $search->setFields(array(
+    	'id', 'title', 'section', 'publishState',
+        'created', 'updated', 'type', 'createdBy', 'updatedBy')
+        );
+
+
+
+        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+        if ($form->isValid($form->getValues())) {
+        $params = $this->array_cleanup($form->getValues());
+
+        $this->_helper->Redirector->gotoSimple('index','content','admin',$params);
+        } else {
+        $form->populate($form->getValues());
+        $params = $form->getValues();
+        }
+        } else {
+
+        $params = $this->_getAllParams();
+        $form->populate($this->_getAllParams());
+
+
+        }
+
+        if(!isset($params['q']) || $params['q'] == ''){
+            $params['q'] = '*';
+        }
+         $params['type'] = 'sitecontent';
+        $search->setParams($params);
+        $search->execute();
+        $this->view->paginator = $search->_createPagination();
+        $this->view->contents = $search->_processResults();
+
+	}
     /** Add contents
     */ 	
     public function addAction() {
@@ -38,9 +81,11 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     $insertData = $form->getValues();
     $content = new Content();
     $insert = $content->add($insertData);
-	
+    //Update the solr instance
     $this->_helper->solrUpdater->update('content', $insert, 'content');
+    //Add a flash message
     $this->_flashMessenger->addMessage('Static content added');
+    //Redirect to index
     $this->_redirect('/admin/content');
     } else {
     $form->populate($form->getValues());
@@ -115,4 +160,17 @@ class Admin_ContentController extends Pas_Controller_Action_Admin {
     }
     }
 	
+    
+private function array_cleanup( $array ) {
+        $todelete = array('submit','action','controller','module','csrf');
+	foreach( $array as $key => $value ) {
+        foreach($todelete as $match){
+    	if($key == $match){
+    		unset($array[$key]);
+    	}
+        }
+        }
+        return $array;
+        }
+    
 }

@@ -22,7 +22,6 @@ class Searches extends Pas_Db_Table_Abstract {
     * @return boolean
     */
     public function insertResults($searchstring) {
-
     $table = $this->_name;
     $searches = $this->getAdapter();
     if(isset($searchstring)) {

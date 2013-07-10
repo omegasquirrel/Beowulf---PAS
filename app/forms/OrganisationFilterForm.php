@@ -15,7 +15,7 @@ public function __construct($options = null) {
 	$activities = new PrimaryActivities();
 	$activities_options = $activities->getTerms();
 	
-	$counties = new OsCountiesID();
+	$counties = new OsCounties();
 	$county_options = $counties->getCountiesID();
 
 	parent::__construct($options);

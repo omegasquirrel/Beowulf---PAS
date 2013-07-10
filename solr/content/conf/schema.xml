@@ -469,6 +469,8 @@
 	<field name="coordinates" type="location" indexed="true" stored="true" />
 	<field name="created" type="date" indexed="true" stored="true" />
 	<field name="updated" type="date" indexed="true" stored="true" />
+	<field name="createdBy" type="string" indexed="true" stored="true" />
+	<field name="updatedBy" type="string" indexed="true" stored="true" />
 	<field name="publishState" type="int" indexed="true" stored="true" />
 	<field name="type" type="string" indexed="true" stored="true" />
 	<field name="geohash" type="string" indexed="true" stored="true" />

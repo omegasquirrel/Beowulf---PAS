@@ -1,7 +1,8 @@
 <?php
 Zend_Controller_Front::getInstance()->getResponse()->setHeader("Content-type",
         'image/png');
-$url = $this->serverUrl() . '/database/artefacts/record/id/' . Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+$url = $this->curUrl();
+$url = str_replace('format/qrcode', '', $url);
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'http://chart.apis.google.com/chart');
 curl_setopt($ch, CURLOPT_POST, true);

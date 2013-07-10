@@ -23,7 +23,41 @@ class Admin_NewsController extends Pas_Controller_Action_Admin {
 	/** Display an index of news stories
 	*/		
 	public function indexAction(){
-	$this->view->news = $this->_news->getAllNewsArticlesAdmin($this->_getAllParams());
+	$form = new ContentSearchForm();
+    	$form->submit->setLabel('Search content');
+	    $this->view->form = $form;
+    	$cleaner = new Pas_ArrayFunctions();
+        $params = $cleaner->array_cleanup($this->_getAllParams());
+       
+        $search = new Pas_Solr_Handler('beocontent');
+        $search->setFields(array(
+    	'updated', 'updatedBy', 'publishState', 
+        'title', 'created', 'createdBy')
+        );
+        if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
+                && !is_null($this->_getParam('submit'))){
+
+        if ($form->isValid($form->getValues())) {
+        $params = $cleaner->array_cleanup($form->getValues());
+
+        $this->_helper->Redirector->gotoSimple('index','news','admin',$params);
+        } else {
+        $form->populate($form->getValues());
+        $params = $form->getValues();
+        }
+        } else {
+
+        $params = $this->_getAllParams();
+        $form->populate($this->_getAllParams());
+        }
+        if(!isset($params['q']) || $params['q'] == ''){
+            $params['q'] = '*';
+        }
+		$params['type'] = 'news';
+        $search->setParams($params);
+        $search->execute();
+        $this->view->paginator = $search->_createPagination();
+        $this->view->news = $search->_processResults();
 	}
 	/** Add and geocode a news story
 	*/		

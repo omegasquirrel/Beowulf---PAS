@@ -405,4 +405,30 @@ class Users extends Pas_Db_Table_Abstract {
 	return $this->_db->update($tableSpec, $data, $where);
 	}
 	
+	/** Retrieve a user based around their email and their username
+	* @param string $q The user's name on system
+	* @return array
+	*/
+	public function userNames($q){	
+	$users = $this->getAdapter();
+	$select = $this->select()
+	->from($this->_name, array('id' => 'username','term' => 'username'))
+	->where('users.username LIKE ?', '%' . $q . '%')
+	->limit(10);
+	return $users->fetchAll($select);
+	}
+	
+/** Retrieve a user based around their email and their username
+	* @param string $q The user's name on system
+	* @return array
+	*/
+	public function userFullNames($q){	
+	$users = $this->getAdapter();
+	$select = $this->select()
+	->from($this->_name, array('id' => 'fullname','term' => 'fullname'))
+	->where('users.fullname LIKE ?', '%' . $q . '%')
+	->limit(10);
+	return $users->fetchAll($select);
+	}
+	
 }

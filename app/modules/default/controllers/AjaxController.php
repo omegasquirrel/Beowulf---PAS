@@ -620,4 +620,19 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	echo Zend_Json::encode($json);	
 	}
 	
+	public function usernamesAction() {
+	if($this->_getParam('q', false)){
+	$users = new Users();
+	$json = $users->usernames($this->_getParam('q'));
+	echo Zend_Json::encode($json);	
+	}
+	}
+	
+	public function usersfullnamesAction() {
+	if($this->_getParam('q', false)){
+	$users = new Users();
+	$json = $users->userFullNames($this->_getParam('q'));
+	echo Zend_Json::encode($json);	
+	}
+	}
 }
