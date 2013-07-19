@@ -15,7 +15,7 @@ class Pas_Exporter_Csv extends Pas_Exporter_Generate {
     protected $_format = 'csv';
 
     protected $_csvFields = array(
-		'id','old_findID','secuid',
+		'id','uri','old_findID','secuid',
 		'objecttype', 'classification', 'subClassification',
 		'length', 'height', 'width',
 		'thickness', 'diameter', 'weight', 'quantity', 

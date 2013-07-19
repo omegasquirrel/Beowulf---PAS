@@ -21,7 +21,9 @@ class Pas_Exporter_ArrayToCsv {
     protected $_maybe = array('hero','research');
 
     protected $_never = array('member',null,'public');
-
+    
+    protected $_uri = 'http://finds.org.uk/database/artefacts/record/id/';
+    
     public function __construct($fields){
         $this->_fields = $fields;
         $user = new Pas_User_Details();
@@ -61,7 +63,7 @@ class Pas_Exporter_ArrayToCsv {
                 $record[$k] = null;
             }
         }
-
+		$record['uri'] = $this->_uri . $record['id'];
         if(in_array($this->_role,$this->_never)){
             $record['gridref'] = NULL;
             $record['easting'] = NULL;
@@ -75,12 +77,15 @@ class Pas_Exporter_ArrayToCsv {
             }
 
         }
+        
 	}
         $cleanSort = $this->sortArrayByArray($record, $this->_fields);
        
 	$finalData[] = $cleanSort;
- }
-
+ 	}
+ 	
+	
+	
     return $finalData;
 	}
 }
