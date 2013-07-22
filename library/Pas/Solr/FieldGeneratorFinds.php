@@ -50,7 +50,12 @@ class Pas_Solr_FieldGeneratorFinds {
 		'rulerDbpedia', 'secuid', 'rulerViaf',
 		'axis', 'denominationDbpedia', 'mint',
 		'fourFigureLat', 'fourFigureLon', 'material',
-		'abcType', 'vaType', 'woeid','osmNode'
+		'abcType', 'vaType', 'woeid',
+		'osmNode', 'accuracy', 'reverse', 
+		'allenType', 'tribe', 'mint',
+		'periodFromName', 'periodFrom', 'periodTo',
+		'periodToName', 'decstyleTerm', 'manufacture',
+		'identifierID'
 		);
 //	}
 	return $fields;
