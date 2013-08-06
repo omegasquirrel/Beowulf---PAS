@@ -11,7 +11,7 @@ class Admin_RolesController extends Pas_Controller_Action_Admin {
 
 	protected $_staffroles;
 
-	protected $_redirectUrl = 'admin/contacts/';
+	protected $_redirectUrl = 'admin/roles/';
 	/** Set up the ACL and contexts
 	*/
 	public function init() {
@@ -41,7 +41,7 @@ class Admin_RolesController extends Pas_Controller_Action_Admin {
 	if ($form->isValid($form->getValues())) {
 	$this->_staffroles->add($form->getValues());
 	$this->_flashMessenger->addMessage('A new staff role has been created.');
-	$this->_redirect($this->_redirectUrl . 'roles/');
+	$this->_redirect($this->_redirectUrl );
 	} else {
 	$form->populate($form->getValues());
 	}
@@ -58,7 +58,7 @@ class Admin_RolesController extends Pas_Controller_Action_Admin {
 	$where[] = $this->_staffroles->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$this->_staffroles->update($form->getValues(),$where);
 	$this->_flashMessenger->addMessage($form->getValue('role') . '\'s details updated.');
-	$this->_redirect($this->_redirectUrl . 'roles/');
+	$this->_redirect($this->_redirectUrl );
 	} else {
 	$form->populate($form->getValues());
 	}

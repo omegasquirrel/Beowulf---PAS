@@ -164,7 +164,7 @@ class Finds extends Pas_Db_Table_Abstract {
 		))
 		->joinLeft('ironagetribes','coins.tribe = ironagetribes.id', array('tribe'))
 		->joinLeft('geographyironage','geographyironage.id = coins.geographyID', array('region','area'))
-		->joinLeft('denominations','denominations.id = coins.denomination', array('denomination', 'nomismaDenomination', 'dbpediaDenomination', 'bmDenomination'))
+		->joinLeft('denominations','denominations.id = coins.denomination', array('denomination', 'nomismaDenomination' => 'nomismaID', 'dbpediaDenomination' => 'dbpediaID', 'bmDenomination' => 'bmID'))
 		->joinLeft('rulers','rulers.id = coins.ruler_id', array('ruler1' => 'issuer', 'viaf', 'rulerDbpedia' => 'dbpedia', 'nomismaRulerID' => 'nomismaID'))
 		->joinLeft(array('rulers_2' => 'rulers'),'rulers_2.id = coins.ruler2_id', array('ruler2' => 'issuer'))
 		->joinLeft('reeceperiods','coins.reeceID = reeceperiods.id', array('period_name','date_range'))

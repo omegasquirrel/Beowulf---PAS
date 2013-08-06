@@ -19,7 +19,7 @@ if($person){
 } else {
 	$role = NULL;
 }
-$allowed = array('admin');
+$allowed = array('admin', null);
 if(in_array($role,$allowed)):
 ?>
 <h3>Exception information:</h3>

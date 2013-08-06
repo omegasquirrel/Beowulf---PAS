@@ -26,7 +26,7 @@ public function __construct($options = null) {
 	$description->setLabel('Role description: ')
 	->setRequired(true)
 	->setAttribs(array('rows' => 10, 'cols' => 80))
-	->addValidators(array('BasicHtml', 'WordChars', 'EmptyParagraph', 'StringTrim'));
+	->addFilters(array('BasicHtml', 'WordChars', 'EmptyParagraph', 'StringTrim'));
 	
 	
 	$valid = new Zend_Form_Element_Checkbox('valid');

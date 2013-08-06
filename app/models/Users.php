@@ -61,6 +61,25 @@ class Users extends Pas_Db_Table_Abstract {
 	return $options;
     }
 
+    public function resetPassword( $data )
+    {
+	unset($data['csrf']);
+	unset($data['captcha']);
+	$where = array();
+	$where[] = $this->getAdapter()->quoteInto('activationKey = ?', $data['activationKey']);
+	$where[] = $this->getAdapter()->quoteInto('email = ?', $data['email']);
+	$person = $this->getUserByUsername($data['email']);
+	
+	$updateData = array(
+	'password' => SHA1($this->_config->auth->salt. $data['password']),
+	'activationKey' => NULL,
+	'updated' => parent::timeCreation(),
+	'updatedBy' => $person['id']
+	);
+	
+	return parent::update($updateData, $where);
+    }
+    
     public function register($data){
     unset($data['csrf']);
     unset($data['captcha']);
@@ -138,7 +157,7 @@ class Users extends Pas_Db_Table_Abstract {
 	public function getUserByUsername($email) {	
 	$users = $this->getAdapter();
 	$select = $this->select()
-	->from($this->_name, array('username', 'fullname'))
+	->from($this->_name, array('username', 'fullname', 'id'))
 	->where('users.email = ?', (string)$email);
 	return $users->fetchAll($select);
 	}
