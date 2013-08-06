@@ -22,11 +22,8 @@ class ForgotUsernameForm extends Pas_Form {
 	->addFilters(array('StringTrim','StripTags'));
 	
 	$submit = $this->addElement('submit', 'submit');
-	$this->addDisplayGroup(array('email'), 'details');
-		
-
+	$this->addDisplayGroup(array('email', 'submit'), 'details');
 	$this->setLegend('Reset my password: ');
-	$this->addDisplayGroup(array('submit'),'submit');
 	parent::init();
 	}
 }

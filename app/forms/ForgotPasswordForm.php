@@ -35,10 +35,9 @@ public function init() {
 	$submit = $this->getElement('submit')
 	->setLabel('Retrieve my password');
 
-	$this->addDisplayGroup(array('username','email'), 'details');
+	$this->addDisplayGroup(array('username','email', 'submit'), 'details');
 
 	$this->setLegend('Reset my password: ');
-	$this->addDisplayGroup(array('submit'),'submit');
 	parent::init();
 	}
 }

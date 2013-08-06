@@ -16,7 +16,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('public',array(
 	'forgotten', 'register', 'activate',
 	'index', 'logout', 'edit',
-	'forgotusername', 'success'));
+	'forgotusername', 'success', 'resetpassword'));
 	$this->_helper->_acl->allow('member',NULL);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_auth = Zend_Registry::get('auth');
@@ -29,7 +29,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	*/
 	public function indexAction() {
 	// If user isn't logged in, show login form
-	if (null === $this->_auth->getIdentity()) {
+	if (is_null($this->_auth->getIdentity())) {
 	$this->_helper->redirector->gotoRouteAndExit(array(
 	'module' => 'users', 'controller' => 'index'));
 	} else {
@@ -50,6 +50,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger->addMessage('You have now logged out');
 	return $this->_redirect('/users/');
     }
+    
 	/** Edit the user details
 	*/
 	public function editAction() {
@@ -80,6 +81,8 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
+	
+	
 	/** Retrieve the username
 	*/
 	public function forgotusernameAction() {
@@ -107,6 +110,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	}
 	}
 	}
+	
 	/** Retrieve a password
 	*/
 	public function forgottenAction() {
@@ -122,7 +126,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$results = $this->_users->findUser($form->getValue('email'), $form->getValue('username'));
 	if($results) {
 	$length = 6;
-	$password = "";
+	$newKey = "";
 	// define possible characters
 	$possible = "0123456789bcdfghjkmnpqrstvwxyz";
 	$i = 0;
@@ -131,25 +135,24 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	// pick a random character from the possible ones
 	$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
 	// we don't want this character if it's already in the password
-	if (!strstr($password, $char)) {
-	$password .= $char;
+	if (!strstr($newKey, $char)) {
+	$newKey .= $char;
 	$i++;
 	}
 	}
 	$updatesdata = array (
-	'password' => SHA1($this->_helper->config()->auth->salt . $password),
+	'activationKey' =>  $newKey,
 	);
 	$to = array(array('email' => $form->getValue('email'), 'name' => $results[0]['fullname']));
-	$assignData = array_merge($results[0],array('password' => $password),$form->getValues());
+	$assignData = array_merge($results[0],array('activationKey' => $newKey),$form->getValues());
 	$this->_helper->mailer($assignData, 'forgottenPassword', $to );
 	$where = array();
 	$where[] = $this->_users->getAdapter()->quoteInto('username = ?', (string)$form->getValue('username'));
 	$where[] = $this->_users->getAdapter()->quoteInto('email = ?', (string)$form->getValue('email'));
 	$this->_users->update($updatesdata, $where);
 	$assignData = array_merge($updatesdata,$form->getValues());
-
-	$this->_flashMessenger->addMessage('A new password has been sent to you');
-	$this->_redirect('/users/');
+	$this->_flashMessenger->addMessage('Please check your email');
+	$this->_redirect('/users/account/resetpassword');
 	} else {
 	$this->_flashMessenger->addMessage('Either your email address/or username is incorrect.');
 	}
@@ -167,7 +170,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$this->_flashMessenger->addMessage('You are already logged in and registered.');
 	$this->_redirect('/users/account');
 	} else {
-	$salt = $config->auth->salt;
+	$salt = $this->_helper->config()->auth->salt;
 	$form = new RegisterForm();
 //	$form->removeElement('captcha');
 	$this->view->form = $form;
@@ -301,5 +304,24 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	
 	public function configurecopyAction(){
 		
+	}
+	
+	public function resetpasswordAction(){
+	if (!is_null($this->_auth->getIdentity())) {
+	$this->_redirect('users/account/');
+	}
+	$form = new ResetPasswordKeyForm();
+	$this->view->form = $form;
+	if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
+//    if ($form->isValid($form->getValues())) {
+	$this->_users->resetPassword($form->getValues());
+	$this->_flashMessenger->addMessage('Your password has been reset.');
+	$this->_redirect('users/account/success/');
+//	} 
+	}
+	else {
+	$form->populate($form->getValues());
+	$this->_flashMessenger->addMessage('Please review and correct problems');
+	}	
 	}
 }

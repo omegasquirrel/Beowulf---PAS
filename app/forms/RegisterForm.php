@@ -27,7 +27,6 @@ public function init()
 
 
 
-
     $username = $this->addElement('Text', 'username', array('label' => 'Username'))->username;
     $username = $this->getElement('username')
             ->addValidator('UsernameUnique', true,
@@ -106,7 +105,7 @@ public function init()
 
     $this->addElement($submit);
 
-    $this->addDisplayGroup(array('username','password','first_name','last_name','preferred_name','email','text1','captcha'), 'details');
+    $this->addDisplayGroup(array('username','password','first_name','last_name','preferred_name','email','captcha'), 'details');
     $this->details->setLegend('Register with the Scheme: ');
 
 
