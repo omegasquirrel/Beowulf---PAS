@@ -9,7 +9,6 @@
 */
 class News_GuardianController extends Pas_Controller_Action_Admin {
 
-	const GUARDIANAPI_KEY = 'd6qsyxnc9vup3azntwhgg4ba';
 	
 	const FORMAT = "json";
 	
@@ -83,7 +82,7 @@ class News_GuardianController extends Pas_Controller_Action_Admin {
 	$guardian = self::GUARDIANAPI_URL 
 	. 'search?q=Portable+antiquities+scheme&page-size=50&order-by=newest&format=' 
 	. self::FORMAT . '&show-fields=all&show-tags=all&show-factboxes=all&show-references=all&api-key=' 
-	. self::GUARDIANAPI_KEY;
+	. $this->_helper->config()->webservice->guardian->apikey;
 	$articles = json_decode($this->get($guardian));
 	
 	$articles = json_decode($this->get($guardian));
