@@ -83,7 +83,7 @@ class Pas_View_Helper_LatestRecords extends Zend_View_Helper_Abstract{
 
 
 	public function buildHtml($data){
-	if($data['images']) {
+	if(array_key_exists('images', $data)) {
 	$html = '<h3>Latest examples recorded with images</h3>';
 	$html .= '<p>We have recorded ' . number_format($data['numberFound'])
                 . ' examples.</p>';

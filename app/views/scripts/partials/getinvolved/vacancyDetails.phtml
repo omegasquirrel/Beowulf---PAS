@@ -9,30 +9,6 @@ if($this->ExpiredJob($this->expire) == -1)  {
      on the ' . $this->niceshortdate($this->expire).'</p>';
 }
 ?>
-<?php
-$edit = $this->Href(array(
-    'module' => 'admin',
-    'controller'=>'vacancies',
-    'action'=>'edit',
-    'checkAcl'=>true,
-    'acl'=>'Zend_Acl',
-    'params' =>array('id'=>$this->id),
-    'content'=>'Edit')
-    );
-$delete = $this->Href(array(
-    'module' => 'admin',
-    'controller'=>'vacancies',
-    'action'=>'delete',
-    'checkAcl'=>true,
-    'acl'=>'Zend_Acl',
-    'params' =>array('id'=>$this->id),
-    'content'=>'Delete')
-    );
-
-echo implode(' | ', array($edit,$delete));
-?>
-
-
 
 <p>Salary: &pound; <?php echo $this->escape($this->salary);?></p>
 <?php echo $this->specification ;?>
