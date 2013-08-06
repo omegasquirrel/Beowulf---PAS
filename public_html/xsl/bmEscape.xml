@@ -1,0 +1,726 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='scope'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>&lt;unauthorised&gt;</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17075</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>anchor</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17076</uri>
+			</binding>
+			<binding name='scope'>
+				<literal>A recoil escapement used in clocks from about 1671. Devised in London and thought to have been invented by either Joseph Knibb or William Clement. It consists of an escape wheel with radially cut teeth operating in conjunction with a pair of pallets in the shape of an anchor - hense the name.</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>arnold pivoted detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17077</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>arnold spring detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17078</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>balance spring verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17079</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>brocot</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x86193</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>chinese duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17080</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>club-tooth lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17081</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>cole resilient lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17082</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>constant-force lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17083</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>cross beat</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17084</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>cylinder</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17085</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>cylinder-lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17086</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>cylinder-virgule</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17087</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>dead beat</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17088</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>dead-beat verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17089</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>debaufre-type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17090</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>detached verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17091</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17092</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>double virgule</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17093</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>double-tooth duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17094</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>double-wheel duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17095</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>double-wheel lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17096</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>double-wheel verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17097</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>dual-control verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17098</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17099</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>earnshaw spring detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17100</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>electrical</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17101</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>emery lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17102</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>fasoldt double-wheel lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17103</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>five-plane cylinder</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17104</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>flat-wheel cylinder</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17105</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>four-legged gravity</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17106</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>four-tooth duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17107</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>gravity</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17108</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>le roy-type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17109</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17110</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>mairet-type lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17111</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>massey lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17112</uri>
+			</binding>
+			<binding name='scope'>
+				<literal>Types into detail: eg. type-1, type-2, etc.</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>motor balance</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17113</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>mudge lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17114</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>mudge-type lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17115</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ormskirk</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17116</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ormskirk double pin-wheel</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17117</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ormskirk off-set verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17118</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ormskirk pin-wheel</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17119</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>patent union detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17120</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>peto cross detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17121</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pin lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17122</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pin-pallet lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17123</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pin-wheel</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17124</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pin-wheel lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17125</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pivoted detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17126</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pivoted double detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17127</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>platform lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17128</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pouzait pirouette lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17129</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pouzait-type lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17130</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pre-balance spring verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17132</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>quartz</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17133</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>rack lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17134</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ratchet-tooth lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17135</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>resilient lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17136</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>resilient ratchet-tooth lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17137</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>robin-type detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17138</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ruby cylinder</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17139</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>sapphire cylinder</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17140</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>savage two-pin lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17141</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>savage-type lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17142</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>schoof lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17143</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>silent crank</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17144</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>single-pin lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17145</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>single-wheel duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17146</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>smith patent lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17147</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>spring detent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17148</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>straight-line duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17149</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>straight-line ratchet-tooth lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17150</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>sully-type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17151</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>tavan lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17152</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>tavan-type pin-wheel lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17153</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>thirty-tooth rack lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17154</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>three-tooth duplex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17155</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>tic-tac</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x115697</uri>
+			</binding>
+			<binding name='scope'>
+				<literal>A type of recoil anchor escapement in which the pallets embrace only one and a half teeth of the escape wheel.</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>tuning-fork</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17156</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>tuning-fork motor balance</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17157</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>two-plane lever</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17158</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>unclassified</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17159</uri>
+			</binding>
+			<binding name='scope'>
+				<literal>The term unclassified should not be used in its own right, it is simply a broad term.</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>verge</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17160</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>virgule</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17161</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

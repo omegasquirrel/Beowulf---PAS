@@ -1,0 +1,2187 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type="text/xsl" href="bmThesaurus.xsl"?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>&lt;unauthorised&gt;</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118383</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Acarnanian League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118202</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Achaean League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118203</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aetolian League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118204</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Africa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118171</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aksumite Kingdom</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118179</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Alwar</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118392</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Americas</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118167</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ancient Greece and Rome</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118194</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arcadian League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118205</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Archbishopric of Salzburg</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118257</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Archduchy of Tirol</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118258</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Asia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118218</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Atrebates/Regni</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118259</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Austrian Netherlands</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118260</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Awadh</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118393</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bahawalpur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118394</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bajranggarh</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118395</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Banswara</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118396</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Baroda</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118397</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Batavian Republic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118261</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bengal Sultanate</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118398</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bharatpur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118399</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bhopal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118400</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bijapur Sultanate</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118386</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bikaner</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118385</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bindraban</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118389</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bishopric of Bamberg</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118262</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bishopric of Konstanz</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118263</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bishopric of Metz</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118264</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bishopric of Münster</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118265</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bishopric of Utrecht</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118251</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bosporan Kingdom</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118250</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bottiaeans</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118206</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bundi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118390</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Byzantine Empire</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118207</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cannanore</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118391</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cantii</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118254</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Carolingian Empire</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118255</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Carthage</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118180</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cattaro</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118256</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chalcidian League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118208</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chamba</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118387</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chhattarpur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118388</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chhota Udaipur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118401</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>China</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118237</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chu state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118239</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cisalpine Republic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118252</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cologne Principality</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118253</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Corieltavi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118266</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>County of Flanders</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118267</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>County of Hainaut</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118268</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>County of Hohnstein</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118269</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>County of Kyburg</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118271</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>County of Königstein</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118270</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>County of Ostfriesland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118272</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>County of Vermandois</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118273</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Crimean Khanate</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118274</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Danish Rule</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118275</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Datia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118402</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Delhi Sultanate</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118403</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>São Tomé and Príncipe gained independence from Portugal in 1975.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118181</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Democratic Republic of São Tomé and Príncipe</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dewas</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118404</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dewas Junior Branch</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118405</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dewas Senior Branch</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118406</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dhar</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118407</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dholpur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118408</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dobunni</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118276</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Duchy of Aquitaine</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118277</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Duchy of Brabant</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118278</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Duchy of Carinthia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118279</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Duchy of Sudermania</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118280</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dungarpur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118409</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Durotriges</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118281</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Electorate of Saxony</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118282</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Empire of Trebizond</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118223</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English Protectorate</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118283</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Europe</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118249</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The country gained its independence from Britain in 1960.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118182</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Federal Republic of Nigeria</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Federal Republic of West Germany</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118284</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>First Republic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118285</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French Colonies</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118286</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French Occupation</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118287</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gaochang Kingdom</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118240</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Genoese Occupation</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118288</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German Empire</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118289</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Grand Duchy of Tuscany</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118290</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gwalior</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118410</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Han state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118241</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Herford</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118291</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Holy Roman Empire</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118292</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hyderabad</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118411</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Iceni</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118293</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Imperial Rule</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118294</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Secessionist state that existed from 1967 to 1970 in South-eastern Nigeria.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118183</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Independent Republic of Biafra</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>India</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118384</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indore</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118412</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Insurrectionary Government of Poland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118295</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Insurrectionary Government of Venice</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118296</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Interregnum</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118297</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ionian League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118209</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Iranian Empire</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118224</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Islamic Republic of Iran</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118225</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Mauritania gained independence from France in 1960.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118184</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Islamic Republic of Mauritania</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italian Republic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118298</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jaipur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118413</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jaisalmir</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118414</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jin state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118242</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jodhpur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118415</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Karauli</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118416</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Armenia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118226</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Austrasia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118196</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Bambara</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118185</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Bohemia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118299</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Burgundy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118300</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Cappadocia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118195</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Castile</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118301</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Commagene</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118199</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Cyprus</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118302</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Denmark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118303</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of East Anglia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118304</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Egypt</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118200</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of England</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118305</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Epirus</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118201</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of France</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118306</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>A client state of the Roman Empire after 64 BC. Unified by Deiotarus, first king of Galatia.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118434</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Kingdom of Galatia</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Hungary</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118307</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Ireland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118308</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Jerusalem</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118227</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Macedonia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118309</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Mercia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118310</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Northumbria</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118311</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Norway</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118312</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Paeonia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118197</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Pergamum</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118228</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Portugal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118313</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Saxony</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118314</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Scotland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118315</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Serbia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118316</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Sophene</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118198</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Spain</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118317</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Sweden</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118318</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Syria</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118229</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Thrace</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118319</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kingdom of Wessex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118320</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kishangarh</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118417</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Koinon of Bithynia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118230</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Koinon of Cyprus</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118210</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Koinon of Syria</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118211</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kotah</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118418</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kutch</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118419</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin Empire of Constantinople</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118321</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lombardic Kingdom of Italy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118322</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lordship of Chios</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118323</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lordship of Ireland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118324</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lordship of Mytilene</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118325</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lunavada</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118420</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lycian League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118212</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mainz Principality</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118326</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mamertini</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118213</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maratha Confederacy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118421</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Marquisate of Namur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118327</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mewar</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118422</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mysore</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118423</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Oceania</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118426</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Orrescii</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118214</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ostrogothic Kingdom of Italy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118328</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Parthia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118219</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>From 1949.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118221</uri>
+			</binding>
+			<binding name='label'>
+				<literal>People's Republic of China</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Bulgaria became People's Republic in 1946 after abolishing monarchy. The Republic followed the Russian pattern, but in 1990 the communist government was forced to resign after demonstrations.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118329</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Peoples' Republic of Bulgaria</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118222</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Principality of Benevento</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118330</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Provisional Government of Lombardy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118331</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Provisional Government of Spain</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118332</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Qi state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118243</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Qin state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118244</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Ancona</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118333</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Andorra</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118334</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Angola became independent from Portugal in 1975.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118186</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Angola</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Arezzo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118335</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Armenia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118336</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Azerbaijan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118220</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Belarus</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118337</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The Republic of Benin was known as Dahomey until 1975. It gained independence  from France in 1960.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118173</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Benin</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Bologna</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118340</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Brescia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118341</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Bulgaria</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118338</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Chad became independent from France in 1960.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118172</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Chad</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Como</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118339</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Also referred as Congo-Brazzaville. People's Republic of Congo (1969-1992).</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118176</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Congo</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Cremona</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118342</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Czechoslovakia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118343</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Ecuador</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118168</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The Republic of Equatorial Guinea became independent from Spain in 1968.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118169</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Equatorial Guinea</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Estonia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118344</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Fermo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118345</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Finland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118346</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Florence</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118347</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The Republic of Gabon was formed in 1960 after it gained independence from France.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118177</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Gabon</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Genoa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118348</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Greece</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118355</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Iceland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118356</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Ionian Islands</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118357</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Italy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118350</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Kraków</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118349</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Latvia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118353</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Liberia gained independence from the United States of America in 1847.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118178</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Liberia</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Lithuania</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118354</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Lucca</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118351</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Milan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118352</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Mozambique became independent from Portugal in 1975.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118174</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Mozambique</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Namibia gained independence from South Africa in 1990.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118175</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Namibia</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Naples</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118358</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Niger gained independence from France in 1960.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118187</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Niger</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Formerly part of the Trust Territory of the Pacific Islands. Republic formed in 1981,  followed by independence in 1994 after the end of United Nations trusteeship.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118427</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Palau</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Pavia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118359</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Perugia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118360</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Poland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118361</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Unrecognised state of the former British colony of Southern Rhodesia (modern  Zimbabwe).</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118188</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Rhodesia</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Romania</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118362</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Rome</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118363</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of San Marino</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118364</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The Republic of Senegal became independent from France in 1960.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118189</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Senegal</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Seven United Provinces</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118365</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Siena</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118366</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Former British Somaliland Protectorate. Not recognised by the Somali Democratic  Republic.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118190</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Somaliland</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Spain</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118367</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Tortona</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118368</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Gained independence from the United Kingdom in 1962.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118191</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Republic of Uganda</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Venice</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118369</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Yemen</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118231</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Republic of Yugoslavia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118370</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman Empire</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118215</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman Republic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118216</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Russian Protectorate</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118371</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>France became a Republic after Louis XVI's monarchy was overthrown by the 1789 French Revolution. France was then controlled by the National Assembly, later to beome the National Constituent Assembly. Defence of the Republic by Revolutionaries was a primary reason behind the Terror of the mid-1790's.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118568</uri>
+			</binding>
+			<binding name='label'>
+				<literal>République Française</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Second Republic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118372</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shan states</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118232</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sirohi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118424</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Socialist Republic of Yugoslavia</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118373</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish Colonies</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118233</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish Netherlands</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118374</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Katanga proclaimed independence from the  itself newly independent Democratic Republic of the Congo on 11 July 1960. It was re-adsorbed on January 21 1963.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118192</uri>
+			</binding>
+			<binding name='label'>
+				<literal>State of Katanga</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sultanate of Pahang</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118234</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sultanate of Palembang</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118235</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thessalian League</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118217</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Third Republic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118375</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Travancore</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118425</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Trier Principality</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118376</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Trinovantes/Catuvellauni</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118377</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>United Belgian States</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118378</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>United Provinces of the Netherlands</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118379</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Vandal Kingdom of Africa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118193</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Vatican City</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118380</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Venetian Levant</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118236</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Viceroyalty of Peru</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118170</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Vichy State</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118381</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Visigothic Kingdom</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118382</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Wei state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118245</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Yan state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118246</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zhao state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118247</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zhongshan state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118238</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zhou state</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118248</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

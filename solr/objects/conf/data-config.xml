@@ -10,158 +10,76 @@
         <entity name="node" transformer="HTMLStripTransformer"
 query="
 SELECT
-DISTINCT(finds.id) as id,
-CONCAT('finds-',finds.id) AS findIdentifier,
-finds.old_findID,
-finds.objecttype AS objecttype,
-finds.broadperiod,
-finds.description,
-p1.term AS periodFromName,
-finds.objdate1period AS periodFrom,
-finds.objdate1subperiod AS fromsubperiod,
-finds.objdate2subperiod AS tosubperiod,
-p2.term AS periodToName,
-sub1.term AS subperiodFrom,
-sub2.term AS subperiodTo,
-finds.objdate2period AS periodTo,
-finds.notes,
-findspots.county,
-findspots.countyID,
-finds.classification,
-finds.subclass As subClassification,
-finds.smr_ref AS smrRef,
-finds.other_ref AS otherRef,
-finds.curr_loc AS currentLocation,
-finds.musaccno,
-finds.treasure,
-finds.treasureID AS TID,
-finds.subs_action as subsequentAction,
-subsequentActions.action as subsequentActionTerm,
-numdate1 AS fromdate,
-numdate2 AS todate,
-coins.obverse_description AS obverseDescription,
-coins.obverse_inscription AS obverseLegend,
-coins.reverse_description AS reverseDescription,
-coins.reverse_inscription AS reverseLegend,
-coins.reeceID AS reeceID,
-finds.createdBy AS createdBy,
-finds.material1 AS material,
-mat.term AS materialTerm,
-finds.manmethod AS manufacture,
-manufactures.term AS manufactureTerm,
-finds.preservation,
-preservations.term AS preservationTerm,
-finds.surftreat AS surface,
-surftreatments.term AS treatment,
-finds.decstyle,
-decstyles.term AS decstyleTerm,
-decmethods.term AS decmethod,
-finds.discmethod as discovery,
-discmethods.method AS discoveryMethod,
-finds.completeness,
-completeness.term AS completenessTerm,
-coins.denomination,
-denominations.denomination AS denominationName,
-coins.mint_id AS mint,
-mints.mint_name AS mintName,
-finds.culture,
-cultures.term AS cultureName,
-inscription,
-coins.ruler_id AS ruler,
-coins.ruler2_id AS ruler2,
-rulers.issuer AS rulerName,
-rulers.nomismaID AS rulerNomisma,
-rulers.dbpedia AS rulerDbpedia,
-r2.issuer AS secondaryRulerName,
-slides.imageID AS thumbnail,
-secwfstage AS workflow,
-slides.filename AS filename,
-users.imagedir AS imagedir,
-finds.institution,
-findspots.knownas,
-findspots.fourFigure,
-findspots.gridref,
-findspots.district,
-findspots.districtID,
-findspots.parish,
-findspots.parishID,
-findspots.woeid,
-declong AS longitude,
-declat AS latitude,
-finds.rally,
-finds.rallyID,
-rallies.rally_name AS rallyName,
-finds.created,
-coins.tribe,
-ironagetribes.tribe AS tribeName,
-cciNumber,
-allen_type AS allenType,
-mack_type AS mackType,
-bmc_type AS bmcType,
-rudd_type AS abcType,
-va_type AS vaType,
-reverse_mintmark AS mintmark,
-coins.categoryID as category,
-medievalcategories.category AS categoryTerm,
-coins.typeID as type,
-medievaltypes.type AS typeTerm,
-EXTRACT(YEAR FROM datefound1) AS discovered,
-die_axis_measurement AS axis,
-CONCAT(declat,',',declong) AS coordinates,
-CONCAT(geographyironage.region,' ',geographyironage.area) AS geography,
-CONCAT(users.first_name, ' ', users.last_name) AS creator,
-coins.geographyID,
-finds.hoard,
-findspots.regionID,
-regions.region AS regionName,
-finds.hoardID as hID,
-hoards.term AS hoardName,
-coins.moneyer,
-moneyers.name AS moneyerName,
-finds.datefound1,
-finds.datefound2,
-finds.findofnote AS note,
-findofnotereasons.term as reasonTerm,
-finds.width,
-finds.height,
-finds.thickness,
-finds.weight,
-finds.diameter,
-finds.length,
-finds.quantity,
-finds.secuid,
-findspots.easting,
-findspots.northing,
-coins.revtypeID as reverse,
-revtypes.type AS reverseType,
-coins.status,
-finds.findofnotereason AS reason,
-finderID,
-recorderID,
-identifier1ID AS identifierID,
-identifier2ID,
-findspots.elevation,
-finders.fullname AS finder,
-primaries.fullname AS identifier,
-secondaries.fullname AS secondaryIdentifier,
-recorders.fullname AS recorder,
-finds.updated AS updated,
-coins.pleiadesID,
-mints.nomismaID AS mintNomisma,
-maporigins.term AS gridSource,
-findspots.fourFigureLat,
-findspots.fourFigureLon,
-findspots.geonamesID,
-findspots.gridlen AS 'precision',
-finds.dbpediaSlug,
-findspots.geohash
+#Identifiers
+DISTINCT(finds.id) as id, CONCAT('finds-',finds.id) AS findIdentifier, finds.old_findID, finds.secuid,
+#geo metadata 
+findspots.county, findspots.district, findspots.parish, findspots.knownas, osRegions.label as regionName,
+findspots.gridref, findspots.fourFigure, findspots.geohash, findspots.declat AS latitude, findspots.declong AS longitude,
+findspots.easting, findspots.northing, findspots.elevation, findspots.fourFigureLat, findspots.fourFigureLon,
+findspots.gridlen AS 'precision', findspots.accuracy, maporigins.term AS gridSource, CONCAT(declat,',',declong) AS coordinates,
+
+#object metadata
+finds.institution, finds.objecttype, finds.notes, finds.description, finds.smr_ref AS smrRef, finds.other_ref AS otherRef,
+finds.culture, cultures.term AS cultureName, cultures.bmCultureID, finds.inscription, finds.classification,
+finds.subclass As subClassification, finds.treasureID AS TID, finds.treasure, finds.secwfstage AS workflow, 
+finds.material1 AS material, mat.term AS materialTerm, mat.bmID AS primaryMaterialBM, finds.material2 AS secondaryMaterial, mat2.term AS secondaryMaterialTerm, mat2.bmID AS secondaryMaterialBM, 
+finds.curr_loc AS currentLocation, finds.musaccno, finds.rally,
+finds.rallyID,rallies.rally_name AS rallyName, finds.decstyle, decstyles.term AS decstyleTerm, finds.manmethod AS manufacture,
+manufactures.term AS manufactureTerm, manufactures.bmID AS bmManufacture, surftreatments.term AS treatment, surftreatments.bmID AS bmTreatment, finds.surftreat AS treatment, 
+finds.preservation, preservations.term AS preservationTerm, preservations.bmID AS bmPreservation, finds.discmethod as discovery,
+discmethods.method AS discoveryMethod, EXTRACT(YEAR FROM datefound1) AS discovered, finds.subs_action as subsequentAction,
+subsequentActions.action as subsequentActionTerm, finds.completeness, completeness.term AS completenessTerm,
+finds.findofnote AS note, findofnotereasons.term as reasonTerm, finds.findofnotereason AS reason, finds.width,
+finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity, finds.hoard, finds.hoardID as hoardID, hoards.term AS hoardName,
+
+#Chronology   
+finds.broadperiod, finds.objdate1period AS periodFrom, p1.term AS periodFromName, finds.objdate2period AS periodTo, p2.term AS periodToName,
+finds.numdate1 AS fromdate, finds.numdate2 AS todate, finds.objdate1subperiod AS fromsubperiod, finds.objdate2subperiod AS tosubperiod,
+finds.datefound1, finds.datefound2, dq1.term as fromDateQualifier, dq2.term as toDateQualifier, sub1.term AS subperiodFrom, sub2.term AS subperiodTo,
+
+
+#Admin metadata
+finds.createdBy AS createdBy,  users.fullname AS creator, finds.created, finds.updated, finds.updatedBy, users2.fullname AS updater, finds.dbpediaSlug,
+
+#Numismatic metadata
+coins.ruler_id AS ruler, coins.ruler2_id AS ruler2, rulers.issuer AS rulerName, r2.issuer AS secondaryRulerName,
+coins.denomination, denominations.denomination AS denominationName, coins.mint_id AS mint, mints.mint_name AS mintName,
+coins.obverse_description AS obverseDescription, coins.obverse_inscription AS obverseLegend, coins.reverse_description AS reverseDescription, coins.reverse_inscription AS reverseLegend,
+reverse_mintmark AS mintmark, coins.cciNumber, coins.allen_type AS allenType, coins.mack_type AS mackType, coins.bmc_type AS bmcType, coins.rudd_type AS abcType, coins.va_type AS vaType,
+coins.reeceID AS reeceID, coins.moneyer, moneyers.name AS moneyerName, coins.tribe, ironagetribes.tribe AS tribeName, ironagetribes.bmTribeID, 
+coins.categoryID as category, medievalcategories.category AS categoryTerm, coins.typeID as type,  medievaltypes.type AS typeTerm,
+coins.die_axis_measurement AS axis, coins.revtypeID as reverse, revtypes.type AS reverseType, coins.status, statuses.term AS statusTerm,
+CONCAT(geographyironage.region,' ',geographyironage.area) AS geography, coins.geographyID, 
+
+#Image metadata
+slides.imageID AS thumbnail, slides.filename, users.imagedir, licenseType.url AS imageCopyright,
+
+#Personal metadata
+finds.finderID, finds.recorderID, finds.identifier1ID AS identifierID, finds.identifier2ID, finders.fullname AS finder,
+primaries.fullname AS identifier, secondaries.fullname AS secondaryIdentifier, recorders.fullname AS recorder,
+
+#Numismatics LOD
+rulers.nomismaID AS rulerNomisma, rulers.dbpedia AS rulerDbpedia, rulers.viaf as rulerViaf, rulers.bmID as rulerBM, 
+moneyers.dbpediaID AS moneyerDbpedia, moneyers.viaf AS moneyerViaf, moneyers.bmID AS moneyerBM, mints.nomismaID AS nomismaMintID,
+mints.woeid as mintWoeid, mints.geonamesID as mintGeonamesID, mints.bmID AS mintBM, mints.pleiadesID, 
+denominations.nomismaID as nomismaDenominationID, denominations.bmID as denominationBM, denominations.dbpediaID AS denominationDbpedia, 
+
+#period LOD
+p1.ehTerm AS periodFromEH, p2.term AS periodToEH,p3.ehTerm as broadperiodEH, p1.bmID AS periodFromBM, p2.bmID AS periodToBM, p3.bmID as broadperiodBM,
+
+#geo lod
+findspots.countyID, findspots.districtID, findspots.parishID, findspots.woeid, findspots.regionID,osCounties.type as countyType,
+osParishes.type as parishType, osDistricts.type as districtType, findspots.geonamesID
+
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID
 LEFT JOIN moneyers ON coins.moneyer = moneyers.id
 LEFT JOIN findofnotereasons ON finds.findofnotereason = findofnotereasons.id
 LEFT JOIN users ON users.id = finds.createdBy
-LEFT JOIN materials AS `mat` ON finds.material1 = mat.id
+LEFT JOIN users AS users2 ON users2.id = finds.updatedBy
+LEFT JOIN materials AS mat ON finds.material1 = mat.id
+LEFT JOIN materials AS mat2 ON finds.material2 = mat2.id
 LEFT JOIN decmethods ON finds.decmethod = decmethods.id
 LEFT JOIN decstyles ON finds.decstyle = decstyles.id
 LEFT JOIN manufactures ON finds.manmethod = manufactures.id
@@ -170,6 +88,7 @@ LEFT JOIN completeness ON finds.completeness = completeness.id
 LEFT JOIN preservations ON finds.preservation = preservations.id
 LEFT JOIN periods AS p1 ON finds.objdate1period = p1.id
 LEFT JOIN periods AS p2 ON finds.objdate2period = p2.id
+LEFT JOIN periods AS p3 ON finds.broadperiod = p3.term
 LEFT JOIN subperiods AS sub1 ON finds.objdate1subperiod = sub1.id
 LEFT JOIN subperiods AS sub2 ON finds.objdate2subperiod = sub2.id
 LEFT JOIN cultures ON finds.culture = cultures.id
@@ -189,65 +108,72 @@ LEFT JOIN medievaltypes ON medievaltypes.id = coins.typeID
 LEFT JOIN geographyironage ON geographyironage.id = coins.geographyID
 LEFT JOIN hoards ON finds.hoardID = hoards.id
 LEFT JOIN subsequentActions ON finds.subs_action = subsequentActions.id
-LEFT JOIN regions ON findspots.regionID = regions.id
 LEFT JOIN revtypes ON coins.revtypeID = revtypes.id
 LEFT JOIN people AS finders ON finds.finderID = finders.secuid
 LEFT JOIN people AS primaries ON finds.identifier1ID = primaries.secuid
 LEFT JOIN people AS secondaries ON finds.identifier2ID = secondaries.secuid
 LEFT JOIN people AS recorders ON finds.recorderID = recorders.secuid
 LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
+LEFT JOIN osParishes ON findspots.parishID = osParishes.osID
+LEFT JOIN osDistricts ON findspots.districtID = osDistricts.osID
+LEFT JOIN osCounties ON findspots.countyID = osCounties.osID
+LEFT JOIN osRegions ON findspots.regionID = osCounties.osID
+LEFT JOIN datequalifiers AS dq1 ON dq1.id = finds.objdate1cert
+LEFT JOIN datequalifiers AS dq2 ON dq2.id = finds.objdate1cert
+LEFT JOIN statuses ON coins.status = statuses.id
+LEFT JOIN licenseType ON slides.ccLicense = licenseType.id
 "
 >
+	<!--  Identifiers -->
     <field column="findIdentifier" name="findIdentifier" />
     <field column="id" name="id" />
-    <field column="description" name="description" stripHTML="true"/>
+    <field column="old_findID" name="old_findID" />
+    <field column="secuid" name="secuid" />
+     
+    <!--  Spatial metadata -->
     <field column="county" name="county" />
     <field column="district" name="district" />
     <field column="parish" name="parish" />
-    <field column="fourFigure" name="fourFigure" />
     <field column="knownas" name="knownas" />
+    <field column="regionName" name="regionName" />
+    
+    <!--  Spatial coordinates  -->
+    <field column="fourFigure" name="fourFigure" />
     <field column="gridref" name="gridref" />
+    <field column="geohash" name="geohash" />
+    <field column="latitude" name="latitude" />
+    <field column="longitude" name="longitude" />
+    <field column="elevation" name="elevation" />
+   	<field column="easting" name="easting" />
+    <field column="northing" name="northing" /> 
+    <field column="gridSource" name="gridSource" />
+    <field column="fourFigureLat" name="fourFigureLat" />
+    <field column="fourFigureLon" name="fourFigureLon" />
+    <field column="precision" name="precision" />
+    <field column="accuracy" name="accuracy" />
+    <field column="coordinates" name="coordinates" />
+    
+    <!--  Object metadata -->
+    <field column="institution" name="institution" />
     <field column="notes" name="notes" stripHTML="true"/>
     <field column="objecttype" name="objecttype" />
-    <field column="broadperiod" name="broadperiod" />
-    <field column="denomination" name="denomination" />
-    <field column="denominationName" name="denominationName" />
-    <field column="mint" name="mint" />
-    <field column="obverseDescription" name="obverseDescription" stripHTML="true"/>
-    <field column="material" name="material" />
-    <field column="materialTerm" name="materialTerm" />
-    <field column="reverseDescription" name="reverseDescription" stripHTML="true"/>
-    <field column="obverseLegend" name="obverseLegend" />
-    <field column="reverseLegend" name="reverseLegend" />
-    <field column="createdBy" name="createdBy" />
-    <field column="smrRef" name="smrRef" />
+   	<field column="smrRef" name="smrRef" />
     <field column="otherRef" name="otherRef" />
     <field column="culture" name="culture" />
     <field column="inscription" name="inscription" />
     <field column="classification" name="classification" />
     <field column="subClassification" name="subClassification" />
     <field column="TID" name="TID" />
-    <field column="ruler" name="ruler" />
-    <field column="ruler2" name="ruler2" />
-    <field column="rulerName" name="rulerName" />
-    <field column="secondaryRulerName" name="secondaryRulerName" />
+    <field column="description" name="description" stripHTML="true"/>
     <field column="workflow" name="workflow" />
-    <field column="thumbnail" name="thumbnail" />
-    <field column="filename" name="filename" />
-    <field column="imagedir" name="imagedir" />
-    <field column="institution" name="institution" />
-    <field column="old_findID" name="old_findID" />
-    <field column="mint" name="mint" />
-    <field column="fromdate" name="fromdate" />
-    <field column="todate" name="todate" />
+    <field column="material" name="material" />
+    <field column="materialTerm" name="materialTerm" />
+    <field column="primaryMaterialBM" name="primaryMaterialBM" />
+    <field column="secondaryMaterial" name="secondaryMaterial" />
+    <field column="secondaryMaterialTerm" name="secondaryMaterialTerm" />
+    <field column="secondaryMaterialBM" name="secondaryMaterialBM" />
     <field column="currentLocation" name="currentLocation" />
-    <field column="mintmark" name="mintmark" />
-    <field column="cciNumber" name="cciNumber" />
-    <field column="mackType" name="mackType" />
-    <field column="allentype" name="allenType" />
-    <field column="abcType" name="abcType" />
-    <field column="vaType" name="vaType" />
-    <field column="musaccno" name="musaccno" />
+   	<field column="musaccno" name="musaccno" />
     <field column="rally" name="rally" />
     <field column="rallyID" name="rallyID" />
     <field column="rallyName" name="rallyName" />
@@ -255,37 +181,89 @@ LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
     <field column="decstyleTerm" name="decstyleTerm" />
     <field column="manufacture" name="manufacture" />
     <field column="manufactureTerm" name="manufactureTerm" />
+    <field column="bmManufacture" name="bmManufacture" />
+	<field column="treatment" name="surface" />
+    <field column="treatment" name="treatment" /> 
+    <field column="treatmentTerm" name="treatmentTerm" />
+    <field column="bmTreatment" name="bmTreatment" />
+    <field column="preservation" name="preservation" />
+    <field column="preservationTerm" name="preservationTerm" />
+    <field column="bmPreservation" name="bmPreservation" />
+    <field column="discovery" name="discovery" />
+    <field column="discoveryMethod" name="discoveryMethod" />
+    <field column="discovered" name="discovered" />
+	<field column="subsequentAction" name="subsequentAction" />
+    <field column="subsequentActionTerm" name="subsequentActionTerm" />
+    <field column="completeness" name="completeness" />
+    <field column="completenessTerm" name="completenessTerm" />
+    <field column="note" name="note" />
+    <field column="reason" name="reason" />
+    <field column="reasonTerm" name="reasonTerm" />
+    <field column="width" name="width" />
+    <field column="height" name="height" />
+    <field column="diameter" name="diameter" />
+    <field column="thickness" name="thickness" />
+    <field column="length" name="length" />
+    <field column="weight" name="weight" />
+    <field column="quantity" name="quantity" />
+    <field column="cultureName" name="cultureName" />
+    <field column="treasure" name="treasure" />
+    <field column="hoardID" name="hoardID" />
+    <field column="hoardName" name="hoardName" />
+    <field column="hoard" name="hoard" />
+    
+    
+    <!-- Chronology metadata -->
+    <field column="broadperiod" name="broadperiod" />
     <field column="periodFrom" name="periodFrom" />
     <field column="periodFromName" name="periodFromName" />
     <field column="periodTo" name="periodTo" />
     <field column="periodToName" name="periodToName" />
-    <field column="treatment" name="treatment" />
-    <field column="preservation" name="preservation" />
-    <field column="preservationTerm" name="preservationTerm" />
-    <field column="discovery" name="discovery" />
-    <field column="discoveryMethod" name="discoveryMethod" />
-    <field column="discovered" name="discovered" />
-    <field column="reeceID" name="reeceID" />
-    <field column="latitude" name="latitude" />
-    <field column="longitude" name="longitude" />
-    <field column="elevation" name="elevation" />
-    <field column="woeid" name="woeid" />
-    <field column="created" name="created" />
-    <field column="geography" name="geography" />
-    <field column="geographyID" name="geographyID" />
-    <field column="surface" name="surface" />
-    <field column="moneyer" name="moneyer" />
-    <field column="moneyerName" name="moneyerName" />
+    <field column="fromdate" name="fromdate" />
+    <field column="todate" name="todate" />
     <field column="fromsubperiod" name="fromsubperiod" />
     <field column="tosubperiod" name="tosubperiod" />
-    <field column="subsequentAction" name="subsequentAction" />
-    <field column="subsequentActionTerm" name="subsequentActionTerm" />
-    <field column="completeness" name="completeness" />
-    <field column="completenessTerm" name="completenessTerm" />
     <field column="datefound1" name="datefound1" />
     <field column="datefound2" name="datefound2" />
-    <field column="note" name="note" />
-    <field column="reason" name="reason" />
+    <field column="fromDateQualifier" name="fromDateQualifier" />
+    <field column="toDateQualifier" name="toDateQualifier" />
+    <field column="subperiodTo" name="subperiodTo" />
+    <field column="subperiodFrom" name="subperiodFrom" />
+    
+    <!--  Admin metadata --> 
+    <field column="createdBy" name="createdBy" />
+    <field column="created" name="created" />
+    <field column="creator" name="creator" />
+    <field column="updated" name="updated" />
+    <field column="updatedBy" name="updatedBy" />
+    <field column="updater" name="updater" />
+    <field column="dbpediaSlug" name="dbpediaSlug" />
+    
+    <!--  Numismatic metadata -->
+    <field column="ruler" name="ruler" />
+    <field column="ruler2" name="ruler2" />
+    <field column="rulerName" name="rulerName" />
+    <field column="secondaryRulerName" name="secondaryRulerName" />
+    <field column="denomination" name="denomination" />
+    <field column="denominationName" name="denominationName" />
+    <field column="mint" name="mint" />
+    <field column="mintName" name="mintName" />
+    <field column="obverseDescription" name="obverseDescription" stripHTML="true"/>
+    <field column="reverseDescription" name="reverseDescription" stripHTML="true"/>
+    <field column="obverseLegend" name="obverseLegend" />
+    <field column="reverseLegend" name="reverseLegend" />
+    <field column="mintmark" name="mintmark" />
+    <field column="cciNumber" name="cciNumber" />
+    <field column="mackType" name="mackType" />
+    <field column="bmcType" name="bmcType" />
+    <field column="allentype" name="allenType" />
+    <field column="abcType" name="abcType" />
+    <field column="vaType" name="vaType" />
+    <field column="reeceID" name="reeceID" />
+  	<field column="geography" name="geography" />
+    <field column="geographyID" name="geographyID" />
+    <field column="moneyer" name="moneyer" />
+    <field column="moneyerName" name="moneyerName" />
     <field column="tribe" name="tribe" />
     <field column="tribeName" name="tribeName" />
     <field column="category" name="category" />
@@ -293,22 +271,17 @@ LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
     <field column="type" name="type" />
     <field column="typeTerm" name="typeterm" />
     <field column="axis" name="axis" />
-    <field column="regionID" name="regionID" />
-    <field column="regionName" name="regionName" />
-    <field column="width" name="width" />
-    <field column="height" name="height" />
-    <field column="diameter" name="diameter" />
-    <field column="thickness" name="thickness" />
-    <field column="length" name="length" />
-    <field column="secuid" name="secuid" />
-    <field column="weight" name="weight" />
-    <field column="easting" name="easting" />
-    <field column="northing" name="northing" />
-    <field column="quantity" name="quantity" />
     <field column="reverse" name="reverse" />
     <field column="reverseType" name="reverseType" />
     <field column="status" name="status" />
-    <field column="reasonTerm" name="reasonTerm" />
+    <field column="statusTerm" name="statusTerm" />
+    
+    <!--  Image data -->
+    <field column="thumbnail" name="thumbnail" />
+    <field column="filename" name="filename" />
+    <field column="imagedir" name="imagedir" />
+    
+    <!--  Personal metadata -->
     <field column="finder" name="finder" />
     <field column="finderID" name="finderID" />
     <field column="recorder" name="recorder" />
@@ -317,21 +290,49 @@ LEFT JOIN maporigins ON maporigins.id = findspots.gridrefsrc
     <field column="identifierID" name="identifierID" />
     <field column="secondaryIdentifier" name="secondaryIdentifier" />
     <field column="identifer2ID" name="identifier2ID" />
-    <field column="creator" name="creator" />
-    <field column="updated" name="updated" />
-    <field column="dbpediaSlug" name="dbpediaSlug" />
-    <field column="pleiadesID" name="pleiadesID" />
-    <field column="mintNomisma" name="mintNomisma" />
+    
+    <!--  Numismatic linked data fields -->
     <field column="rulerNomisma" name="rulerNomisma" />
     <field column="rulerDbpedia" name="rulerDbpedia" />
-    <field column="gridSource" name="gridSource" />
-    <field column="fourFigureLat" name="fourFigureLat" />
-    <field column="fourFigureLon" name="fourFigureLon" />
+    <field column="rulerViaf" name="rulerViaf" />
+    <field column="rulerBM" name="rulerBM" />
+    <field column="moneyerDbpedia" name="moneyerDbpedia" />
+    <field column="moneyerViaf" name="moneyerViaf" />
+    <field column="moneyerBM" name="moneyerBM" />
+    <field column="bmCultureID" name="bmCultureID" />
+    <field column="bmTribeID" name="bmTribeID" />
+    
+    <!--  Mint linked data fields -->
+    <field column="nomismaMintID" name="nomismaMintID" />
+    <field column="mintWoeid" name="mintWoeid" />
+    <field column="mintGeonamesID" name="mintGeonamesID" />
+    <field column="mintBM" name="mintBM" />
+	<field column="pleiadesID" name="pleiadesID" />
+	
+	<!--  Denomination linked data -->
+	<field column="nomismaDenominationID" name="nomismaDenomination" />
+	<field column="denominationBM" name="denominationBM" />
+	<field column="denominationDbpedia" name="denominationDbpedia"/>
+    
+    <!--  Linked data identifiers for Geodata -->
+    <field column="regionID" name="regionID" />
+    <field column="countyID" name="countyID" />
+    <field column="districtID" name="districtID" />
+    <field column="parishID" name="parishID" />
+    <field column="woeid" name="woeid" />
+    <field column="countyType" name="countyType" />
+    <field column="districtType" name="districtType" />
+    <field column="parishType" name="parishType" />
     <field column="geonamesID" name="geonamesID" />
-    <field column="precision" name="precision" />
-    <field column="subperiodTo" name="subperiodTo" />
-    <field column="subperiodFrom" name="subperiodFrom" />
-    <field column="geohash" name="geohash" />
+    
+    <!-- Period linked data identifiers -->
+    <field column="periodFromEH" name="periodFromEH" />
+    <field column="periodFromBM" name="periodFromBM" />
+    <field column="periodToEH" name="periodToEH" />
+    <field column="periodFromBM" name="periodFromBM" />
+    <field column="broadperiodEH" name="broadperiodEH" />
+    <field column="broadperiodBM" name="broadperiodBM" />
+    
 </entity>
 
 </document>

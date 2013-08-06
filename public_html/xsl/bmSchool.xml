@@ -1,0 +1,4172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>&lt;unauthorised&gt;</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17164</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Abomey</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72294</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Style of Iznik pottery named after Abraham of Kutahya whose name is on a ewer in the BM reg no. G.1983.1. Objects were made in this style between circa 1490-1520.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22968</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Abraham of Kütahya style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Abruzzo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17165</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Abuja Pottery Training Centre</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109875</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aesthetic Movement</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56900</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>African</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17166</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>A style of ivory carving, combining European and African features.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109626</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Afro-Portuguese Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aleppo Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22973</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Alhambra-style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56901</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Altenburg group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117081</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>USA only.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17167</uri>
+			</binding>
+			<binding name='label'>
+				<literal>American</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Andean Venezuela Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72898</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Anglo-Saxon style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95677</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Chian pottery styles after Lemos 1991.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116590</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Animal Chalice style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arab School/Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109515</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Archaistic Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25002</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Archaistic Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25548</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arezzo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17168</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Argentinian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17169</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Armenian Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22981</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Art Deco Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x102898</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Art Nouveau</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56902</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Art Nouveau style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56903</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arts &amp; Crafts</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56904</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Assyrian style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95678</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Australian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17170</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working at any time in the area of the modern state of Austria.  See also under GERMAN.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17171</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Austrian</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ava School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x32501</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Avant-Garde</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x110446</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ayutthaya Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22986</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Azzimina Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22987</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings created at the small court of Bahu in the Punjab Hills between the 17th and 19th centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x115799</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bahu Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ban Chiang Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22988</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bangkok Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22989</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Banshan Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25549</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bantei-Srei Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25007</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Baphuon Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22991</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings associated with the court of Basohli, an offshoot of the Kulu royal house. The artists at Basohli developed a striking early painting style where the compositions were painted in bright colours and accentuated with luminous beetle wings cut out and pasted to the painted surface. These works are characterised by bold colour schemes, monochromatic backgrounds and exaggerated facial features through, for example, the shape of the eye. This vigorous bright style was retained until the early 18th century; later works include a more naturalistic landscape, and a softer colour palette.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25008</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Basohli Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bayon Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25009</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working after 1800.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17172</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Belgian</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Belur classical type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22994</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Term used for ceramics produced in Southern China for the Thai market, in the 18th and 19th centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22996</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bencharong Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to the work of late 19thC and 20thC Calcutta artists.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22997</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bengal School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bijapur Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x22998</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings from the court of Bikaner, the earliest of which date to the late sixteenth century. Bikaner rulers may have invited Mughal artists into their courtly retinue as early as the 17th century and instead of the traditional bold colour patterns and flat compositions, Bikaner artists started to experiment with a softer colour palette dominated by earth tones. Their figures were rendered more naturalistically through the use of shading and perspective. As a vassal of the Mughal empire, Bikaner rulers were also charged with running campaigns into the Deccan. Early Deccani influence in the luscious colouring and compositional format are also apparent.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25010</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bikaner Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings created at the small court of Bilaspur in the Punjab Hills between the 17th and 19th centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x115800</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bilaspur Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Chian pottery style after Lemos 1991.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116593</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Black-figure Grand style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working up to 1919.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17173</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bohemian</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bolognese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17174</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Borno</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72314</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Borre style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95679</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bow</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41158</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Brazilian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17175</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>British</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17177</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>British Museum B117 group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117076</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bronze Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25550</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Buddhist School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18614</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This school flourished under the Shaybanid Dynasty.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23006</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bukhara School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bulgarian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17178</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to painting from the court of Bundi from the late sixteenth century to the early nineteenth century. Bundi was one of the earliest courts to accept Mughal rule when in 1569 the fort of Ranthambhor fell to the Mughal force. The earliest paintings from Bundi date to this period – namely the Chunar Ragamala, now dispersed.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25018</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Bundi Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bunjinga School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18617</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Byzantine Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23007</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Calukya Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23009</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cambridge group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117082</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Canada</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72318</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Canadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17179</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Catanian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23011</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Centre Artisanal Du Femmes</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x105065</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cera Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23013</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Chian pottery styles after Lemos 1991.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116591</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Chalice style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings created at the small court of Chamba in the Punjab Hills between the 17th and 19th centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x115798</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Chamba Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chertsey</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41164</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cheshire</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41018</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chieng Mai Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25021</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chilean</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17181</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17182</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese Export Painting</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117315</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x20418</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Clarendon</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41019</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Classical style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95680</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Classicist</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x110480</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to a wide range of drawings and paintings created by South Asian artists that were commissioned by European patrons, or intended for a European market. The subject matter is frequently descriptive of the ‘Indian Scene’ and prepared in sets or albums. Works can be attributed to a variety of sub-styles dependent on the artists’ regional training. The works often incorporate stylistic traits from both the South Asian and European traditions prevalent and popular in the region in the 18th and 19th centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x105946</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Company School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Coronation Gulf</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72340</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Costa Rican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17183</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cremonese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17184</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Croatian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17185</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cuban</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17187</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working after 1992; otherwise use CZECHOSLOVAKIAN.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17188</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Czech</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working between 1919 and 1992.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17189</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Czechoslovakian</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Damascus Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23027</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Damascus Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23028</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Danish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17190</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to paintings from Golconda, Bijapur, Ahmadnagar, Berar and Bidar, from the 16thC to the 18thC. The term 'Deccani School' should be entered in addition to any Narrower Terms where available.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23031</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Deccani School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Delhi Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23033</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to painting at the Mewari sub court between c. 1766–1850. The Devgarh style is an offshoot of the Udaipur court style and consists predominantly of portraits of the rulers (Rawats), genre scenes, and illustrations of the life of Krishna.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25028</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Devgarh Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Diagonally Decorated group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117072</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ding Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25597</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dingzhou Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23036</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dongqi Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25551</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working after 1579.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17191</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Dutch</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This applies to For Iron age objects which are decorated with La Tene motifs.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x104040</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Early Celtic Art</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term was coined by Robert Skelton (in his unpublished lecture at SOAS, London, in 1974) and is now fairly widely accepted as a valid descriptive term for painting emerging from Delhi, Uttar Pradesh, Malwa, Gujarat and the Rajasthani courts in the fifteenth and sixteenth centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x106602</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Early Rajput Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Effon-Alaiye</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72351</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118498</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Egyptian style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56905</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Eiland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x104875</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Emilian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17193</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Clazomenian pottery styles after Cook 1952.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116600</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Enman class</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Enmann class</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117322</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ephesus Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23045</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Etruria</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41172</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Euphrates Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25553</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>European</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x118491</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>European Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23046</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Faenza</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41173</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ferrarese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17194</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Finnish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17195</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working between 1579 and 1830.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17196</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Flemish</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Florence</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41175</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Florentine</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17197</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Folk Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23057</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Fordington</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41176</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>France</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41177</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17198</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Futuna Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x86259</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gandhara School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23061</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings created at the small court of Garhwal in the Punjab Hills between the 17th and 19th centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25032</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Garhwal Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gbongan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72361</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Genoese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17199</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>See also under AUSTRIAN.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17200</uri>
+			</binding>
+			<binding name='label'>
+				<literal>German</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ghaznavid Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23066</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Golconda Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23069</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gothic Revival</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56907</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Goto School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18796</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Chian pottery styles after Lemos 1991.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116589</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Grand style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17201</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25554</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95681</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Guan Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23074</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings from the court of Guler in the Punjab Hills. Paintings in this style tend to include elegant and undulating lines, prominent outlines, naturalistic landscape, and a soft colour palette.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25035</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Guler Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gupta Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23079</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gurjara-Pratihara Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23081</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Guyue xuan Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23082</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ha'apai Group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72370</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hanabusa School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x20320</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hebei Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25555</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hellenistic Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23085</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hellenistic Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25556</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Henan Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25557</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Herat School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23086</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hispano-Moresque style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23090</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hungarian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17203</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Icelandic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17204</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ichimonji School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116877</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ilobu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72385</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Inca</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x108304</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indo-Ionian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23099</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indo-Parthian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23100</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indo-Scythian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23103</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indo-Tibetan Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23104</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>School of painting in Shiraz from 1330s to 1350s.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x105235</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Inju School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Intha</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x45812</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Intha people Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25420</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Iranian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17206</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working after 1921.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17207</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Irish</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Isfahan School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x46456</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to either paintings from provincial centres in the style of the Isfahan School, or to copies or fakes of the Isfahan School.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23109</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Isfahan Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term covers Arab, Turkish, Persian and Islamic Indian painting from 1200 to circa 1925.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x107590</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Islamic Painting School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Islamic style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95693</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Israeli</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17208</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17209</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41191</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Iznik</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x103442</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Iznik Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23112</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to painting from the court of Jaipur in the eighteenth and early nineteenth century. The Kachhwaha clan of Jaipur were initially established at the nearby court of Amber, while Jaipur, a purpose-built city, was founded in 1728 by Raja Sawai Jai Singh II. The term can also be applied to earlier paintings from Amber, however the date should indicate if the work was painted before or after the move to Jaipur.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23115</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Jaipur Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jamaican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17210</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings created at the small court of Jammu in the Punjab Hills. The early works associated with Jammu are characterised by bold colour schemes, monochromatic backgrounds and exaggerated facial features. This vigorous bright style was retained until the early 18th century; later works include a more naturalistic landscape, and a softer colour palette.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25045</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Jammu Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72391</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17211</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term is restricted to three-dimensional objects, mainly in P&amp;E.  See Japanese and its Narrow Terms for two-dimensional objects.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56908</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Japanese style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jellinge style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95682</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23120</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jizhou Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41679</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings from the court of Jodhpur, capital of Marwar in the central desert region of Rajasthan. The earliest known painted works from Marwar is a Ragamala Series dated 1623. Stylistic traits often associated with Jodhpur include the sharply flaring skirt of the jama and thick mutton chop side-whiskers.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25048</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Jodhpur Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kabylie</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72394</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to porcelain of European manufacture, decorated to imitate Japanese Kakiemon porcelain (which was produced from the mid-17thC onwards).  See also Kakiemon Ware in Ware.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x101043</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Kakiemon Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a style of painting associated with the famous Kali temple in Calcutta known as the Kalighat temple. Sacred souvenirs in the form of paintings were produced here from the 1850s until the early decades of the 20th century.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x105189</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Kalighat Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kamasan School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116095</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings from Kangra. Little exists before the mid-18th century, however this relatively late flowering, created some astounding examples. The large state of Kangra extended from Nurpur and Chamba along its northern borders to Mandi in the east and the Punjab plains towards the south-west.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23132</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Kangra Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kangxi Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23133</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kano School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18869</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kashan Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23136</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kashmir School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23137</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kediri Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23140</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kent</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41195</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kentung</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x45795</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kerala Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23141</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Keswick</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41196</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Khleang Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25056</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an artistic style associated with the medieval inhabitants of Cambodia; also represented in adjacent parts of Thailand. The Material Culture or Period term 'Khmer' should also be entered.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23144</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Khmer Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a painting style produced in the late 16thC produced in North-eastern Iran.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23145</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Khurasan Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term is restricted to three-dimensional objects.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109326</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Khurasan Type</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>King Island</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72399</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings from the court of Kishangarh from the seventeenth to the late eighteenth century. The rulers of Kishangarh were devotees of Lord Vishnu and his worship was a defining influence on the arts – images of the love dalliance between Krishna and Radha were often produced. Patronage of painting probably began under Man Singh (r. 1658-1706) in the Mughal style of Aurangzeb and elongated figures, with a slight arching of back, and oversized eyes became the norm.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25058</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Kishangarh Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kishi School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18774</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Clazomenian pottery styles after Cook 1952.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116599</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Knipovitch group</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Chian pottery styles after Lemos 1991.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116594</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Komast group</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kona</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x82924</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kongu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95379</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kongunadu Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23149</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Korean Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18896</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to painting from the small court of Kota from the seventeenth century to the nineteenth century. The Mughals established Kota as an independent state from Bundi to be ruled by a branch of the family in 1631 and stylistically, the early art of Kota followed the Bundi model and concentrated on Ragamala and Baramasa painting. As it flourished in the eighteenth century there was a marked increase in the production of hunting scenes – tigers prowling dense jungles of tightly composed foliage, with hunters interspersed between the trees. The figures have a ruddier complexion in comparison to Bundi painting, with sculpturally modelled features.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25059</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Kota Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kubacha Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25061</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kulu Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25421</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kyaukka</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x45815</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lahore School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23158</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Late Ava period</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116053</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Letaba</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x104876</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Leti</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72404</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Limoges</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41201</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lion group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117073</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Liyu Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23163</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lombard</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17212</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Longshan Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23168</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lopburi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x103917</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lopburi Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23169</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Louvre group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117074</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lucknow Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23170</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Machacamarca</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72700</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Machacmarca</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72409</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Machang Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25558</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Machucmarca</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72410</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Madhubani Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25071</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72414</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>A style of sundress from Malmalkot in Vanuatu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72800</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Malmalkot Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maltese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17213</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malvern</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41039</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to works from central India dating to the late 16th and early 17th century.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23174</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Malwa Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mamluk Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23176</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mammen style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95683</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Term used for a style of sculpture first produced under the kings of Burma who ruled from Mandalay (c.1850-1885). This style is remains popular today especially for Buddha images. These Buddha figures are characterised by a wide headband between the hair and forehead, a rounded usnisha, and an ornately pleated and folded robe. The inclusion of coloured and mirrored glass is also a distinctive feature.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23177</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mandalay Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to painting from the small court of Mandi in the Punjab Hills.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x115813</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mandi Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Small court of the Pahari Hills. The ruling family of Mankot were closely associated with Jammu (claiming descent from a Jammu raja and belonging to the Jammu Riasi family) yet they remained independent. The painting style associated with the court flourished in the 18th century. Episodes from the life of Krishna, as told through the 10th book of the Bhagavata Purana, were often illustrated.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x115787</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mankot Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mantuan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17214</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Manu Tivaevae Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x101688</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>From the Marches</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17215</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Marchigian</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Marco Polo Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23179</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to the modern name given to the combined schools of painters Maruyama Okyo and Go Shun, which began in Kyoto in the late 18th century and spread to Osaka and Edo.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18937</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Maruyama-Shijo School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mashhad Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23182</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Matola</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x104874</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Meissen</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41205</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Meissen Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23184</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This is a broad term that that encompasses the courtly style of Udaipur, as well as the sub court styles of Devgarh, Nathdwara, etc. This term should be used when the painting is the work of an Udaipur-trained artist, yet the patron is unknown.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25077</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mewar Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mexican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17216</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mexico</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72424</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term covers all objects dated from the 20thC onwards, made in the Middle East and North Africa or by artists originating from that region.  North Africa includes Algeria, Morocco, Libya and Tunisia.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117837</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Middle East and North Africa Modern Art</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Milanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17217</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ming Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25559</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Type of Chinese ceramics.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x96095</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Minyao</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Style found in Mexico.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x107487</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mixteca-Puebla Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Modena</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17218</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Modernism</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x110471</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Monte Alban</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72901</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Monte Alban III</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72899</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Monte Alban IV</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72900</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Moroccan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41562</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This refers to a style of enamelling developed in centres in the Meuse Valley, but later adopted in workshops in the Middle Rhine, Champagne region, Ile de France and even England.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41575</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mosan</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Mount Hagen Style from the Mount Hagen region, Papua New Guinea</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72865</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mount Hagen</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to the Mughal style of painting, 1555-1800.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23193</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Mughal Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Murshidabad Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25080</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nagasaki School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18978</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Painting from the pilgrimage site of Nathdvara revolved around the temple of Srinathji. Artists from as far away as Mewar, Kota, Ajmer and Delhi migrated to the centre in the eighteenth century to create images for travelling pilgrims and visiting nobles.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116615</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Nathdvara Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nayak Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23199</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neapolitan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17219</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Near Eastern Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25560</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neo-Classicist</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x110433</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to the work of a group of Indian painters of the post independence period who drew inspiration from the texts known as Tantras.  Much of their work uses abstract and/or sexual imagery.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25082</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Neo-Tantric Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neolithic Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25561</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nestorian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25563</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working up to 1579.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17220</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Netherlandish</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Netherlands</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72445</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>New York group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117075</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>New Zealand</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17221</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Newar</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x101662</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a Central American style alluding to provenance from the  Nicoya Peninsula.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x107488</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Nicoya Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Niger</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72448</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a Japanese school of painting with traditional themes, style and technique since the late nineteenth century.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x18989</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Nihonga School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nishapur Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25564</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Niuafo'ou</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72450</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nolamba Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23204</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>North Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17222</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>North Syrian Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23206</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Northern Wei Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25565</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Northwest Iran</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23208</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Northwestern Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25083</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Norwegian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17223</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nottingham</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41042</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Noumea Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x86254</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ordos Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23209</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term and its Narrow Terms are restricted to three-dimensional objects.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95684</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Oriental style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Osaka School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x102576</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to paintings produced in the Ottoman Empire from the 16thC to the late 19thC.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109313</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Ottoman School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ottoman Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23210</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Owo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72460</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Paduan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17224</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pagan Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23212</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings created in the small Rajput courts of the Punjab Hills. While the Pahari region was occupied from the 7th century onwards, with dated architectural monuments and temples, there is no evidence of painting until the mid-16th century. The painting tradition really flourished from the 17th to the 19th centuries.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25085</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Pahari School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Paintings used in story-telling by itinerant bards.  Typical of the Andhra Pradesh/Karnataka border area and not - as was once thought - with the town of Paithan, further to the northwest.  Although incorrect, this terminology is still in use (the mistaken provenance originally came about because early collections of these paintings were acquired in the town of Paithan).  They are often double-sided, though in museum collections they have frequently been divided.  Subjects include the epics, frequently with local characters and scenes interpolated.  They are painted in a highly stylised manner and are clearly linked to the shadow-puppet tradition of Karnataka.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x110508</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Paithan Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pala</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41684</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pala Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25086</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pallava Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23218</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Parmese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17225</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Patna Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23220</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Penn</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41210</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pentecost Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x86163</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Permian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41668</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian School/Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x108156</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Peruvian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17226</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Clazomenian pottery styles after Cook 1952.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116597</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Petrie group</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Philippino</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17227</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a transitional style in Archaic South Ionian pottery between Wild Goat and Fikellura.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116588</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Plain Body group</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Polish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17228</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a gold-working style in Columbia.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72469</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Popoyan Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Port Clarence</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72470</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Portugal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72471</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Portuguese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17229</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Post-Samarra Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23224</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Post/sub-Raqqa Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25566</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Chian pottery styles after Lemos 1991.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116595</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Poultry group</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to paintings that reflect the Mughal Painting Style but were presumably produced at provincial centres.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x45601</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Provincial Mughal Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Puerto Rican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17230</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Punchong style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x105693</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to works produced in Qajar Iran of the late 18thC and 19thC..</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x46460</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Qajar School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to the court style of painting in Iran  c.1550-1598.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x103660</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Qazvin Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Quoit brooch style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95685</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Qurigua</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72486</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term 'Rajasthan School' should be entered in addition to any Narrower Terms where available.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23237</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Rajasthan School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ramallah</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72489</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Rangaku School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19099</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Renaissance Revival</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56910</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Renaissance style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x56911</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Rimpa School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19114</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ringerike style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95686</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Rococo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95711</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>District of Emilia-Romagna, south of Bologna: Faenza, Rimini, Forlì.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17231</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Romagna</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17232</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23243</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Romanian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17233</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Style of design on Iznik pottery, referring to traditional arabesque (Islamic) patterns.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x103434</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Rumi</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Runestone style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95687</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Russian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17234</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Russo-Armenia Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25567</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term is restricted to three-dimensional objects.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25568</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Safavid Type</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sahri Bahlol Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25573</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Salisbury</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41053</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Samarkand Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25570</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Samarra Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23247</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Samarra-C Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23248</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Samoa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72493</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sar Dheri Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25542</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Saracenic Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25572</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sarnath Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23250</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term is restricted to three-dimensional objects.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23251</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Sasanian Type</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sasanian-Islamic Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25574</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sawankhalok Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19141</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Scandinavian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17235</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>School of Fontainebleau</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x101494</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Seljuk Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x45821</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sevres Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25575</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shamalaji Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23254</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x45791</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shan States Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23256</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shang Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25576</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shanxi Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25577</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shaoxing Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25578</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shashthi Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23258</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shibayama type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19161</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a revival of traditional collaborative printmaking from the 1910s to the postwar period.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116849</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Shin hanga</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shiraz School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x107874</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Siberian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23265</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sichuan Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25579</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sicilian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17236</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sienese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17237</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sigillata Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25580</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sikh Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23266</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Silla Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23267</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sino-Tibetan Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23268</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sirohi Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117180</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Six Dynasties Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23269</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Six Dynasties Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25581</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working after 1992; see also CZECHOSLOVAKIAN.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17238</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Slovak</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Solomon Islands</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72501</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Somada type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19188</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Song Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23271</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Song Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25582</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a school of modern Japanese printmaking from about 1910, in which artists generally cut and print their own blocks in relatively small editions.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x108128</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Sosaku hanga</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>South African</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17239</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>South American</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17240</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For the Company, Pahari, Rajasthan Schools, these terms are entered as well as the Narrower terms for Styles.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17205</uri>
+			</binding>
+			<binding name='label'>
+				<literal>South Asian</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>South Chinese Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25583</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>South East Asian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109531</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>South Indian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25492</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>South Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17241</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>South and South East Asian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109476</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Southern India Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23275</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Southern Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25584</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Southwestern Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23276</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17242</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Chian pottery styles after Lemos 1991.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116592</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Sphinx and Lion style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sri Lankan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x45719</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Srivijaya Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23277</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Berhnard Salin's first early Germanic animal style.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95500</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Style I</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Berhnard Salin's second early Germanic animal style.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95501</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Style II</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Berhnard Salin's third early Germanic animal style.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95502</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Style III</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sub-Nishapur Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25585</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sub-Raqqa Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25586</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sub-Saʿd Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25587</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sukhothai Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23278</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sukhothai Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23279</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a style of painting from various centres in pre-Mughal India.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x101154</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Sultanate Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sumiyoshi School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19217</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Susa Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25588</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Suzhou Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23282</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Swat Valley Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25111</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Swedish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17243</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Swiss</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17244</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Switzerland</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41060</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17245</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syrian Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25589</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Table Bay Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x100908</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tabriz School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x109050</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tamil</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95396</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tang Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25590</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tanjore Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23290</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tassilo style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95688</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tataura tivaevae style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x101687</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Terra Sigillata Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25591</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Timúrid Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25592</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tingatinga School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x101950</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tinj Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x100909</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>Style of island dress, originating in Tongoa island, Vanuatu.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72796</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Tongoa style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tosa School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19271</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Trewhiddle style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x57052</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Trichinopoly Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25122</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tulunid Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25593</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Turkish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17246</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Turkman Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25124</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tuscan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17247</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tyler Hill</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41227</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Clazomenian pottery styles after Cook 1952.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116596</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Tübingen group</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>U Tong Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23296</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to painting at the main court of Udaipur in Mewar, Rajasthan. When this term is used, the presumed patron is the Maharana. The earliest documented Mewar royal patronage of painting occurred in 1605 and the painting atelier continued to be active until the 20th century.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23297</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Udaipur Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Udo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x72529</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to paintings from the sub-court of Ujjain , a fiefdom of Bundi. The painting style is linked to the main court of Bundi and the artists commissioned by the Ujjain patrons may have in fact trained in Bundi.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25125</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Ujjain Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ukiyo-e School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x19283</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Umbrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17248</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to an Archaic Clazomenian pottery styles after Cook 1952.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x116598</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Urla group</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Urnes style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95689</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Venetian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17249</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Veneto</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17250</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Veneto-Saracenic Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23300</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Venezuelan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17251</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Venice</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41229</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Veronese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17252</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Wales</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41233</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Wessex</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41070</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>This term refers to Jain painting dating to the mid to late sixteenth century. Jain merchants controlled the trade in this area of north India and were the predominant patrons of manuscripts between the twelfth and late fifteenth centuries. The majority of commissions were of illustrated religious texts, particularly the Kalpasutra. A conspicuous trait of Jain painting is the use of the further projecting eye; other defining traits include a thin and wiry line used to delineate figures shown most often in full profile, a complete lack of modelling, and architectural features used primarily as background motifs.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23308</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Western India Style</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Western Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23309</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Westminster</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x41071</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Winchester style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x95690</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Worcester Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x96097</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Wucai Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23310</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Xuande Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23313</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Yotkan Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25594</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>For artists working between 1919 and 1992.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x17253</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Yugoslav</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zenga School</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x20288</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='note'>
+				<literal>The term refers to a Ming dynasty School of painting.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x108496</uri>
+			</binding>
+			<binding name='label'>
+				<literal>Zhe School</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zhou Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25595</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zizhou Type</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x23320</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zone Decorated Oinochoai group</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x117078</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zopher Style</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/x25132</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>Annotation</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/annotation</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bell Maker's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/bell-maker-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Casemaker's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/casemaker-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Control Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/control-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Countermark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/countermark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Denominational Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/denominational-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dial Maker's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/dial-maker-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dust-Cap Maker's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/dust-cap-maker-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ebauche Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/ebauche-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hallmark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/hallmark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Inscription</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/inscription</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lettering</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/lettering</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maker's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/maker-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Merchant's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/merchant-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mintmark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/mintmark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Monogram</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/monogram</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Overstamp</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/overstamp</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Owner's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/owner-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pewter Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/pewter-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pottery Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/pottery-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Reign Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/reign-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Repair Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/repair-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Retailer's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/retailer-s-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sacred Monogram</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/sacred-monogram</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Seal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/seal</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Seal Impression</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/seal-impression</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Signature</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/signature</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Signature And Date</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/signature-and-date</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Signature/Monogram</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/signature/monogram</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tamgha</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/tamgha</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Trade Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/trade-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Vineyard Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/vineyard-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Watch Pendant Maker's Mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription/watch-pendant-maker-s-mark</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>Bequeathed</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/B</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Collected</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/find/C</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Donated</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/D</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Exchanged</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/E</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>From</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/F</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Funded</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/FU</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>In Honour</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/IH</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>In Memory</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/IM</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Loan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/L</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Purchased</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/P</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sponsored</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/S</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Transferred</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/T</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Treasure Act</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/TA</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Unclaimed Item</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/U</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>With Contribution</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/acquisition/C</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

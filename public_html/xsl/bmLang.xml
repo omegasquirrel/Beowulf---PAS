@@ -1,0 +1,6467 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type="text/xsl" href="bmThesaurus.xsl"?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>(?) Javanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/-javanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>-</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>200</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/200</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>5c</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/5c</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>?Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>?English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>?Gujarati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/-gujarati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>?Rajasthani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/-rajasthani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Africaans</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/africaans</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>African</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/african</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Afrikaans</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/afrikaans</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Afrikaans and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/afrikaans-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Afrikaans and English and Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/afrikaans-and-english-and-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Afrikaans and Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/afrikaans-and-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Afrikans</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/afrikans</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ahmaric</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ahmaric</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ajkkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ajkkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkadian (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkadian and Sumerian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian-and-sumerian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkadian or Semitic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian-or-semitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkadian, Aramaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian-aramaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkadian; Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkadian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Akkdian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkdian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Albanian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/albanian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Amharic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/amharic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Amharic/Ge'ez</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/amharic/ge-ez</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ammonite or Phoenican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ammonite-or-phoenican</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ancient Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ancient Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ancient Greek (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Anglo-Saxon</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/anglo-saxon</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic [?]</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and Chinese and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-chinese-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and English and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-english-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and English and Hebrew</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-english-and-hebrew</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and English and Hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-english-and-hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and English and Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-english-and-italian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and English date</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-english-date</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and Old Nubian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-old-nubian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and Russian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-russian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic and Turkish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-and-turkish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic numerals</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-numerals</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic(?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic/English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic/english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic/Old Nubian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic/old-nubian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic; Urdu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-urdu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic? Aramaic? Syrian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-aramaic-syrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabic? Persian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabic-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabjc</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabjc</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Arabuc</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/arabuc</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aramaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/aramaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aramaic and/or Phoenican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/aramaic-and/or-phoenican</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aramaic or Phoenican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/aramaic-or-phoenican</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aramaic or Phoenician</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/aramaic-or-phoenician</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Aramaic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/aramaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Armenian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/armenian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Assamese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/assamese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Assyrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/assyrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Assyrian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/assyrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Attic Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/attic-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Austrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/austrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>BABYLONIAN</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Babylonian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Babylonian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bactrain</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bactrain</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bactrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bactrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bcatrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bcatrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bengali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bengali</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bengali and English and Hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bengali-and-english-and-hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bengali and Hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bengali-and-hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bilingual: Sumerian Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bilingual:-sumerian-akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Blundered Bacrtiran</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/blundered-bacrtiran</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Blundered Bactrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/blundered-bactrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bohemian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bohemian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Brahmi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/brahmi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Brahmi (to the right) and kharosthi (to the left)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/brahmi-to-the-right-and-kharosthi-to-the-left</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Braille</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/braille</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Braj Bhasa or dialect</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/braj-bhasa-or-dialect</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Braj Bhasa or local dialect</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/braj-bhasa-or-local-dialect</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Braj bhasa or local dialect</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/braj-bhasa-or-local-dialect</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Brazilian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/brazilian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Brāhmī</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/br-hm</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bulgarian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bulgarian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Bundelkhandi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bundelkhandi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Burmese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/burmese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Burmese and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/burmese-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Burmese and Pali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/burmese-and-pali</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Burmese numerals</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/burmese-numerals</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Burmese/Pali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/burmese/pali</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Burmese: Mayanmar</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/burmese:-mayanmar</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cambodian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cambodian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cantonese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cantonese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Carian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/carian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Carian(?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/carian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Catalan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/catalan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Celtic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/celtic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chiinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chiinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese (classical)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-classical</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese (pinyin)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-pinyin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese (pinyin, anacronym)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-pinyin-anacronym</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese (probably)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-probably</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese (transliterated) and Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-transliterated-and-italian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese / Portuguese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-/-portuguese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese Characters (hanja) and Korean</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-characters-hanja-and-korean</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and "magic writing"</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-magic-writing</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Braille</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-braille</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and English (pinyin)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-english-pinyin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and English and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-english-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Khotanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-khotanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Manchu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-manchu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Manchurian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-manchurian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Mongolian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-mongolian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Portuguese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-portuguese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Thai</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-thai</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and Tibetan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-tibetan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese and pinyin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-and-pinyin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese or Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-or-japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese seal characters</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-seal-characters</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese, Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese-Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese/Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese/japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Chinese?English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Church Slavonic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/church-slavonic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Church slavonic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/church-slavonic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Classical Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/classical-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Classical Greek (koine)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/classical-greek-koine</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Coptic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/coptic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Coptic &amp; Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/coptic-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Coptic (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/coptic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Coptic and Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/coptic-and-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Coptic(?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/coptic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Corrupt Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/corrupt-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Corrupt sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/corrupt-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Croatian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/croatian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cuneiform</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cuneiform</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cypriot</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cypriot</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cypriot Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cypriot-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cypro-Minoan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cypro-minoan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cypro-Minoan (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cypro-minoan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Cyrillic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cyrillic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Czech</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/czech</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Czechoslovakian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/czechoslovakian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>D</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/d</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Danish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/danish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/dari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Demotic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/demotic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Devanagari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/devanagari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Devanagri</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/devanagri</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Devnagri</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/devnagri</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Does not seem to be Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/does-not-seem-to-be-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Doric</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/doric</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ductch</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ductch</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dunish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/dunish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dutch</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/dutch</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>E</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/e</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ENGLISH</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Eastern Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/eastern-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Eastern Arabic and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/eastern-arabic-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Egyptian Hieroglyphs</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/egyptian-hieroglyphs</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Egyptian; Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/egyptian-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Elamite</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/elamite</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Elamite?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/elamite</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Emesal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/emesal</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Emglish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/emglish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Endlish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/endlish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Engligh</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/engligh</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Chamorro</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-chamorro</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Finnish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-finnish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and French and German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-french-and-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and French and German, Russian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-french-and-german-russian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and French/German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-french/german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and French; Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-french-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Greek and Turkish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-greek-and-turkish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Hawaiian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-hawaiian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Hebrew</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-hebrew</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Hungarian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-hungarian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Irish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-irish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Kiswahili</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-kiswahili</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Korean</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-korean</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Malayan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-malayan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Ojibwa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-ojibwa</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Persian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Polish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-polish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Portuguese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-portuguese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Roman Letters</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-roman-letters</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Roman letters</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-roman-letters</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Russian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-russian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Samoan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-samoan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Sesotho</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-sesotho</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Spanish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-spanish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Swahili</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-swahili</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Tamil</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-tamil</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Telugu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-telugu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Vietnamese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-vietnamese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Welsh</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-welsh</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Xhosa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-xhosa</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Yoruba (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-yoruba</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and Zulu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-zulu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and pinyin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-pinyin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English and syllabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-and-syllabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English numerals</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-numerals</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English script</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english-script</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English/Hebrew</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english/hebrew</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English/Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>English?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Englsih</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/englsih</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Enlish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/enlish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Estonian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/estonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Estranghelo</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/estranghelo</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Eteo-Cypriot</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/eteo-cypriot</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Eteo-Cypriot (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/eteo-cypriot</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Eteo-Cypriot (?) or Greek (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/eteo-cypriot-or-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ethiopian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ethiopian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ethiopic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ethiopic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Etruscan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/etruscan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Etruscan?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/etruscan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>European</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/european</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>European &amp; Syllabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/european-syllabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>FORT RED</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/fort-red</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>FRENCH</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Farsi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/farsi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Farsi and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/farsi-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Finnish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/finnish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Flemish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/flemish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Flemish and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/flemish-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>France</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/france</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Franche</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/franche</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French (langue d'oc?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-langue-d-oc</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French and Ahmaric</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-and-ahmaric</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French and Flemish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-and-flemish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French, German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French; (Latin)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French; Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>French?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>GL[...]OMANORVM</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gl-...-omanorvm</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>GREEK</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gaelic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gaelic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gandhari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gandhari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gauarati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gauarati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ge'ez</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ge-ez</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ge'ez and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ge-ez-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Geman</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/geman</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Georgian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/georgian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German (low)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german-low</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German and Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german-and-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German, English, Spanish, Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german-english-spanish-italian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German, gothic letter</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german-gothic-letter</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>German; French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Germanic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/germanic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Germany</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/germany</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Geʿez</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ge-ez</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gnostic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gnostic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gnostic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gnostic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gothic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gothic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>GreeKGreek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greekgreek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greeek modern</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greeek-modern</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek &amp; Aramaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-aramaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek (?)/Eteo-Cypriot</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-/eteo-cypriot</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek (corrupt)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-corrupt</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek (corrupt}</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-corrupt</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek / Demotic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-/-demotic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek / Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-/-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek ?| Arabic ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek and Coptic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-and-coptic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek and Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-and-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek christian(?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-christian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek or Coptic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-or-coptic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek or Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-or-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek(?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek, late period</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-late-period</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek/Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek/Prakrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek/prakrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek; Persian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greek?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Greekl</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greekl</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Green</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/green</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Grek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/grek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gujarati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gujarati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gujarati ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gujarati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gujerati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gujerati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gujurati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gujurati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gurmuhki</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gurmuhki</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gurmukhi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gurmukhi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gurmukhi/Devnagri</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gurmukhi/devnagri</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gurumukhi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gurumukhi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Gurumukhti</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gurumukhti</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hadramitic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hadramitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hasaean</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hasaean</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hausa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hausa</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hebre</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hebre</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hebrew</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hebrew</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hebrew (Masonic)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hebrew-masonic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hebrew or Phoenican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hebrew-or-phoenican</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hebrew?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hebrew</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hieroglyphic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hieroglyphic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hindi or Bihari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hindi-or-bihari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hindi or perhaps Rajasthani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hindi-or-perhaps-rajasthani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hirogliphics</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hirogliphics</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hittite</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hittite</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hittite and Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hittite-and-akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hittite and hurrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hittite-and-hurrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hittite?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hittite</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Hungarian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hungarian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>INTER VTRVNQVE</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/inter-vtrvnqve</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Iberian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/iberian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Icelandic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/icelandic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Imitation Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/imitation-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ImitationGreek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/imitationgreek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/indian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indian Prakrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/indian-prakrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Indistinct</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/indistinct</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Iranian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/iranian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Irish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/irish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Irish Gaelic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/irish-gaelic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Islamic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/islamic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italian &amp; German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italian-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italian and German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italian-and-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italian; English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italian-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italian? Latin?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italian-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italians</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italians</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Italy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italy</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jamaican Creole</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/jamaican-creole</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japaense</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japaense</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japanese and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japanese-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japanese and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japanese-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japanese/Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japanese/chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japanese/Chjnese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japanese/chjnese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japanese?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Japaneses</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/japaneses</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Javanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/javanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Jemdet Nasr?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/jemdet-nasr</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kaithi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kaithi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kanarese (acc. to old draft register)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kanarese-acc.-to-old-draft-register</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kanbun</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kanbun</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kanbun, Japanese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kanbun-japanese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kannada</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kannada</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kazakh</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kazakh</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kharoshthi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kharoshthi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kharosthi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kharosthi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Khmer</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/khmer</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>KiSwahili</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kiswahili</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kinyarwanda</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kinyarwanda</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kiswahili</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kiswahili</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Korale</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/korale</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Korea</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/korea</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Korean</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/korean</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Korean?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/korean</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kufic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kufic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Kurdish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kurdish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>LATIN</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>LAtin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Laitn</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/laitn</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lao</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lao</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Larin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/larin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin &amp; Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin (but garbled / illiterate)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-but-garbled-/-illiterate</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin (but semi-literate)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-but-semi-literate</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin / Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-/-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin and French (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin and German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-and-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin and Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-and-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin and Low German ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-and-low-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin or Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-or-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin, Palmyrene</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-palmyrene</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin-</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin/German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin/german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin/Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin/greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin; Dutch</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-dutch</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin; English and French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-english-and-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin; French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin; German</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin? French?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin? Italian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-italian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latin? Other?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin-other</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latine</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latine</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lating</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lating</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latini</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latini</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latinr</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latinr</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Laton</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/laton</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Latvian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latvian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lithuanian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lithuanian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Local dialect, may be Rajasthani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/local-dialect-may-be-rajasthani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lombardic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lombardic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ltain</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ltain</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Luwian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/luwian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Luxembourgish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/luxembourgish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lybian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lybian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lycian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lycian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lycian &amp; Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lycian-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Lydian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/lydian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>MOLART.F.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/molart.f</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Macedonian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/macedonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maghrebi Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/maghrebi-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malagasy</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malagasy</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malay</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malay</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malay and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malay-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malay script</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malay-script</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malay, English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malay-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malayalam</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malayalam</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Malayan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malayan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maldivian Dhivehi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/maldivian-dhivehi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maltese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/maltese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Manchu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/manchu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Manchurian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/manchurian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mandaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mandaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mandaic (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mandaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mandarin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mandarin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maori</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/maori</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Marathi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/marathi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Marwari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/marwari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maya</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/maya</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Maya?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/maya</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Meroitic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/meroitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Meroitic(?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/meroitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mewari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mewari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mexican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mexican</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Middle Egptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/middle-egptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Middle Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/middle-egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Middle Phoenician</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/middle-phoenician</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Middle-Persian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Minaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/minaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Modern Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/modern-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Moldovan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/moldovan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mon?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mon</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mongol</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mongol</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mongolian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mongolian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mycenaean Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mycenaean-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>N/A</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/n/a</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nabataean</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/nabataean</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nabataean or Aramaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/nabataean-or-aramaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ndebele</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ndebele</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neo-Assyrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/neo-assyrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neo-Babylonian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/neo-babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neo-Babylonian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/neo-babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neo-Punic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/neo-punic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Neo-Punic; Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/neo-punic-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nepalese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/nepalese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Netherlandish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/netherlandish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>No legend visible.</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/no-legend-visible</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Norman French</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/norman-french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>North Arabian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/north-arabian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Northern Thai</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/northern-thai</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Norwegian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/norwegian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Norweigan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/norweigan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Numeral (used for Arabic &amp; Persian numbers)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/numeral-used-for-arabic-persian-numbers</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Numerical</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/numerical</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Numidian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/numidian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nuzi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/nuzi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Nuzi?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/nuzi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Akkadian? Old Babylonian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-akkadian-old-babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Akkadian? Sumerian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-akkadian-sumerian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Babylonian &amp; Neo-Babylonian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-babylonian-neo-babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Babylonian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Church Slavonic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-church-slavonic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old English ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Irish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-irish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Norse</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-norse</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Nubian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-nubian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Nubian and Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-nubian-and-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Persian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Persian, Elamite, Babylonian and Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-persian-elamite-babylonian-and-egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Old Slavonic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-slavonic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Oriya</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/oriya</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Oscan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/oscan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ottoman</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ottoman</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>PK</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pk</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahalvi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahalvi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahalvi (Middle Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahalvi-middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahalvi (Middle Persian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahalvi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (MIddle Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Midde Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-midde-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middel Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middel-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle  Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle  Persian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Perisan) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-perisan-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Perisna)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-perisna</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persia)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persia</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persia) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persia-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) amd Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-amd-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) and  Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) and Arabi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) and Arabic ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) and Kufic Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-kufic-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persian) and arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Persiana)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persiana</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle Presian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-presian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (Middle persian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi (middle Persian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlavi?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlavi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlevi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlevi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pahlvai (Middle Persian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pahlvai-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pali</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pali and Burmese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pali-and-burmese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pali and Thai</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pali-and-thai</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Palmyran</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/palmyran</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Palmyrene</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/palmyrene</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Palymrene</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/palymrene</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pamphylian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pamphylian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Parthian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/parthian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Parthian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/parthian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian &amp; Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian and Hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian-and-hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian and Turkish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian-and-turkish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian and sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian-and-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian. Hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian.-hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian; Elamite; Babylonian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian-elamite-babylonian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Persian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phalevi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phalevi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenican</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenican</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenican or Hebrew</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenican-or-hebrew</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenican?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenican</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenician</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenician</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenician ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenician</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenician and  Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenician-and-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenician or Hebrew</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenician-or-hebrew</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenician/Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenician/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Phoenician?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phoenician</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Polish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/polish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Portugal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/portugal</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Portuguesa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/portuguesa</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Portuguese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/portuguese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Portuguese and Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/portuguese-and-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Potuguese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/potuguese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Prakrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/prakrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Prakrit (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/prakrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Proto-Canaanite</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/proto-canaanite</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pseudo-Pahlavi (Middle Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pseudo-pahlavi-middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pseudo-Pahlavi (Middle Persian) and Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pseudo-pahlavi-middle-persian-and-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Punic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/punic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Punjabi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/punjabi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Pyu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pyu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Qatabanic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/qatabanic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Qatabanic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/qatabanic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>R Joly 51</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/r-joly-51</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Rajasthani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/rajasthani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman Numerals</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/roman-numerals</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman capitals</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/roman-capitals</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman letters</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/roman-letters</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman letters and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/roman-letters-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Roman letters and Englsih</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/roman-letters-and-englsih</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Romani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/romani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Romanian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/romanian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Romanised Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/romanised-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Romanised Chinese (non-standard)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/romanised-chinese-non-standard</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Runic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/runic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Russian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/russian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sabaean</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sabaean</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sabaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sabaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sabaic - Late Sabaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sabaic-late-sabaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sabaic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sabaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Safaitic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/safaitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Samoan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/samoan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanksrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanksrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanskrit &amp; local dialect</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit-local-dialect</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanskrit (corrupt)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit-corrupt</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanskrit (top), urdu (top), braj bhasa or local dialect (centre)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit-top-urdu-top-braj-bhasa-or-local-dialect-centre</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanskrit and Tibetan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit-and-tibetan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanskrit(?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sanskrit?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Scots</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/scots</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Seisei Kiitsu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/seisei-kiitsu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Semitic or Numidian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/semitic-or-numidian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Semitic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/semitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Serbian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/serbian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Serbo-Croatian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/serbo-croatian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Serbo-Croation</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/serbo-croation</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sesotho</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sesotho</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/shan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shiite</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/shiite</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Shukurin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/shukurin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>SiSwati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/siswati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sinaitic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sinaitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sinhala</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sinhala</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Slovak</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/slovak</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Slovakian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/slovakian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Slovenian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/slovenian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sogdian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sogdian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Somali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/somali</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sotho</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sotho</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/spanish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish &amp; English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/spanish-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish (Cuban)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/spanish-cuban</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/spanish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish, English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/spanish-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Spanish?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/spanish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sumerian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sumerian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sumerian or Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sumerian-or-akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sumerian-Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sumerian-akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sumerian?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sumerian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Sumero-Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sumero-akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Swahili</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/swahili</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Swedish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/swedish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Swiss</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/swiss</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syllabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/syllabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syllabic &amp; European</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/syllabic-european</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syllabic script</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/syllabic-script</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syllabics</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/syllabics</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Symbol</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/symbol</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syriac</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/syriac</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syriac?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/syriac</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Syrian, English, numeric</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/syrian-english-numeric</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>T (or X)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/t-or-x</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tahitian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tahitian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Takari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/takari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tamil</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tamil</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Telegu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/telegu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Telugu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/telugu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thai</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/thai</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thai and Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/thai-and-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thai and Khmer</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/thai-and-khmer</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thai and Pali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/thai-and-pali</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thai and Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/thai-and-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thai; Cambodian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/thai-cambodian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thamudic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/thamudic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan (?) and Sanskrit (?) or a mixture of both</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-and-sanskrit-or-a-mixture-of-both</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan (?) or Sanskrit (?) or a mixture of both</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-or-sanskrit-or-a-mixture-of-both</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan and ?Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-and-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan and Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-and-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan and/or Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-and/or-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan, Buddhist Hybrid Sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-buddhist-hybrid-sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan, Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tibetan; Chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tibetan-chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Transliteration in Roman letters and English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/transliteration-in-roman-letters-and-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tsonga</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tsonga</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tswana</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tswana</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Tughra</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/tughra</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Turkish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/turkish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Turkish/English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/turkish/english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Turkmen</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/turkmen</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Twi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/twi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Uighur</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/uighur</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ukraine</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ukraine</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ukrainian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ukrainian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ukranian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ukranian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ukrianian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ukrianian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Uncertain</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/uncertain</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Unclear</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/unclear</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Unknown</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/unknown</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Urartian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/urartian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Urdu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/urdu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Urdu and Bengali</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/urdu-and-bengali</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Urdu, Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/urdu-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Urdu?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/urdu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Uzbek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/uzbek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Venda</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/venda</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Vietname</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/vietname</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Vietnamese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/vietnamese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Vietnamese, Russian,Chinese,Spanish,English and French and German and Italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/vietnamese-russian-chinese-spanish-english-and-french-and-german-and-italian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Welsh</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/welsh</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Xhosa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/xhosa</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Yoruba</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/yoruba</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Yugoslavian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/yugoslavian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zulu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/zulu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Zulu/Swati</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/zulu/swati</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>africkaans</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/africkaans</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>altin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/altin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ancient Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ancient Egyptian (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ancient Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ancient Greek (?)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ancient Greek (Cypriot dialect)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-greek-cypriot-dialect</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ancient South Arabian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ancient-south-arabian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>and Latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/and-latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>and numeral</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/and-numeral</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>aramaic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/aramaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>aramaic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/aramaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>archaic?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/archaic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>bactrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bactrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>base</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/base</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>bilingual</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bilingual</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>bilingual, Sumerian and Akkadian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/bilingual-sumerian-and-akkadian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>braile</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/braile</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>braj bhasa</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/braj-bhasa</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>chinese</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/chinese</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>cuneiform</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/cuneiform</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>english</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>fake</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/fake</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>finnish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/finnish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>fractional mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/fractional-mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>french</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>french, spanish, german, italian, dutch, portuguese, hungarian, austrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/french-spanish-german-italian-dutch-portuguese-hungarian-austrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>gandhari</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/gandhari</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>ge'ez</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/ge-ez</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>german</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/german</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>greek and Charakteres</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-and-charakteres</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>greek and Charakteres (magical symbols)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/greek-and-charakteres-magical-symbols</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>grrek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/grrek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>hieroglyphic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hieroglyphic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>hindi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hindi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>hungarian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hungarian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>hurrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/hurrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>illegible</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/illegible</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>imitation Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/imitation-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>imitation? Sumerian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/imitation-sumerian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>inscription</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/inscription</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>italian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/italian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>kanbun</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kanbun</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>kayathi</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/kayathi</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>lATIN</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>language</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/language</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>late Greek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/late-greek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>late Indo-Aryan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/late-indo-aryan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>latin</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/latin</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>local dialect</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/local-dialect</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>local dialect, may be Rajasthani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/local-dialect-may-be-rajasthani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>local dialect, probably Rajasthani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/local-dialect-probably-rajasthani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>local dialect, probably rajasthani</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/local-dialect-probably-rajasthani</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>malayalam</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/malayalam</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>mark</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/mark</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>neo-Assyrian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/neo-assyrian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>neo-Punic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/neo-punic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>not applicable</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/not-applicable</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>numeral</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/numeral</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>numerical</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/numerical</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>obverse</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/obverse</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>old Irish</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/old-irish</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>oscan</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/oscan</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>persian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>phonetic Sumerian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/phonetic-sumerian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>prakrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/prakrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>probably English</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/probably-english</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>probably urdu</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/probably-urdu</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>proto Canaanite</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/proto-canaanite</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pseudo Egyptian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pseudo-egyptian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pseudo Kufic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pseudo-kufic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pseudo-Arabic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pseudo-arabic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>pseudo-Pahlavi (Middle Persian)</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/pseudo-pahlavi-middle-persian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>quadrilingual</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/quadrilingual</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>recto</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/recto</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>reek</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/reek</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>reverse</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/reverse</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>runic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/runic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>sanskrit</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>sanskrit (top), urdu (top) and braj bhasa (centre).</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit-top-urdu-top-and-braj-bhasa-centre-</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>sanskrit ?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>sanskrit?</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sanskrit</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>semitic</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/semitic</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>single stroke</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/single-stroke</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>sumerian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/sumerian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>symbol</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/symbol</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>transliteration in Roman letters</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/transliteration-in-roman-letters</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>uncertain</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/uncertain</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>unread</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/unread</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>y</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/y</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>|talian</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language/-talian</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>和藤内母</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/language</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

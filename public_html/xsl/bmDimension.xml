@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>Circumference</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/circumference</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Currency</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/currency</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Curvature</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/curvature</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Depth</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/depth</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Diameter</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/diameter</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Die-axis</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/die-axis</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Height</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/height</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Length</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/length</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Percentage</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/percentage</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Thickness</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/thickness</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Volume</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/volume</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Weight</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/weight</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Width</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/dimension/width</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

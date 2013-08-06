@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>Administrative</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/administrative</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Anra Motif</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/anra-motif</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Catalogue</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/catalogue</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Commemorative</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/commemorative</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Construction</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/construction</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Dedicatory</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/dedicatory</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Educational</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/educational</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Epistolary</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/epistolary</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Epitaph</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/epitaph</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Financial</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/financial</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Funerary</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/funerary</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Invocation</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/invocation</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Legal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/legal</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>List</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/list</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Literary</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/literary</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Magical</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/magical</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Mathematical</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/mathematical</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Medical</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/medical</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Motto</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/motto</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Offering Formula</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/offering-formula</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Omen</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/omen</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Private</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/private</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Religious</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/religious</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Ritual</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/ritual</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Royal</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/royal</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Scientific</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/inscription-subject/scientific</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>

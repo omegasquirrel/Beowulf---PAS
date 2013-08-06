@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='subject'/>
+		<variable name='label'/>
+		<variable name='note'/>
+	</head>
+	<results>
+		<result>
+			<binding name='label'>
+				<literal>(Made) For</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/F</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Allegory/Personification</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/PA</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Associated Title</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/IT</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Authorised/Patronised</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/PP</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Emblem</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/EE</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Illustration</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/AB</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Inscription From</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/TI</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Named in Inscription</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/PI</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Original</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/OF</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Portrait</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/IP</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Repaired</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/RP</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Representation</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/IR</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Subject Of</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/subjectof</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Title</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/EI</uri>
+			</binding>
+		</result>
+		<result>
+			<binding name='label'>
+				<literal>Topographical Representation</literal>
+			</binding>
+			<binding name='subject'>
+				<uri>http://collection.britishmuseum.org/id/thesauri/association/TR</uri>
+			</binding>
+		</result>
+	</results>
+</sparql>
