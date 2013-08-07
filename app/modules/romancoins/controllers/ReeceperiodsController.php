@@ -28,8 +28,8 @@ class RomanCoins_ReeceperiodsController extends Pas_Controller_Action_Admin {
 	/** Set up the index page
 	*/	
 	public function indexAction() {
-		$select = array( 'query' => 'reeceID:[* TO *]' );
-		$params = $this->_getAllParams();
+	$select = array( 'query' => 'reeceID:[* TO *]' );
+	$params = $this->_getAllParams();
 	$search = new Pas_Solr_Handler('beowulf');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
@@ -49,7 +49,10 @@ class RomanCoins_ReeceperiodsController extends Pas_Controller_Action_Admin {
 	ksort($stats);
 	$cleaned = array();
 	foreach($stats as $k => $v){
-    	$cleaned[] = array('period_name' => 'Reece period ' . $k, 'description' => $v);
+    	$cleaned[] = array(
+    		'period_name' => 'Reece period ' . $k, 
+    		'description' => $v, 
+    		'id' => $k);
     }
 	$this->view->reeces = $cleaned;
 	}
