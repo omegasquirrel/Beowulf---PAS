@@ -25,7 +25,6 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 		->addActionContext('index', array('xml','json','rss','atom'))
 		->initContext();
 	$this->_cache = Zend_Registry::get('rulercache');
-	$this->_config = Zend_Registry::get('config');
 	$this->_rallies = new Rallies();
     }
 	/** Set up the url for redirect
@@ -271,7 +270,6 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	/** Display a map of attended rallies
 	*/
 	public function mapAction() {
-	$this->view->apikey = $this->_config->webservice->googlemaps->apikey;
 	}
 
 	}

@@ -18,9 +18,7 @@ class Users_EventsController extends Pas_Controller_Action_Admin {
 	$this->view->jQuery()->addJavascriptFile($this->view->baseUrl()
 	. '/js/JQuery/ui.datepicker.js', $type='text/javascript');
 	$this->view->headLink()->appendStylesheet($this->view->baseUrl() . '/css/ui.datepicker.css');
-	$this->_config = Zend_Registry::get('config');
-	$this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-	$this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
+	$this->_geocoder = new Pas_Service_Geo_Coder();
     }
 	/** List a paginated events data set
 	*/

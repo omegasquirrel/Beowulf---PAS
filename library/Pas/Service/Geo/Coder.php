@@ -6,20 +6,18 @@
  * @package Pas_Service
  * @subpackage Geo
  * @category Pas
+ * @see https://developers.google.com/maps/documentation/geocoding/
+ * @todo extend for use of extra components and parameters (not needed at present, so 
+ * class is minimal.
  */
 class Pas_Service_Geo_Coder{
 
-	/** The google map key
+	/** Geocoder uri
 	 * 
-	 * @var string $api_key
+	 * @var unknown_type
 	 */
-    protected $_key;
-
-    const GEOCODEURI = 'http://maps.google.com/maps/geo';
+    const GEOCODEURI = 'https://maps.googleapis.com/maps/api/geocode/json';
     
-    public function __construct($api_key)  {
-        $this->_key = $api_key;
-    }
 
     /** Get the coordinates from an address string
      * @param string $address
@@ -27,10 +25,8 @@ class Pas_Service_Geo_Coder{
     public function _getGeocodedLatitudeAndLongitude($address) {
         $client = new Zend_Http_Client();
         $client->setUri(self::GEOCODEURI);
-        $client->setParameterGet('q', $address)
-               ->setParameterGet('output', 'json')
-               ->setParameterGet('sensor', 'false')
-               ->setParameterGet('key', (string)$this->_key);
+        $client->setParameterGet('address', $address)
+               ->setParameterGet('sensor', 'false');
         $result = $client->request('GET');
         $response = Zend_Json_Decoder::decode($result->getBody(),
                     Zend_Json::TYPE_OBJECT);
@@ -43,10 +39,10 @@ class Pas_Service_Geo_Coder{
      */
     public function getCoordinates($address)  {
         $response = $this->_getGeocodedLatitudeAndLongitude($address);
-        if(isset($response->Placemark[0]->Point->coordinates[1])){
+        if(isset($response->results[0]->geometry->location)){
              return array(
-                'lat' => $response->Placemark[0]->Point->coordinates[1],
-                'lon' => $response->Placemark[0]->Point->coordinates[0]
+                'lat' => $response->results[0]->geometry->location->lat,
+                'lon' => $response->results[0]->geometry->location->lng
             );
         } else {
 			return null;

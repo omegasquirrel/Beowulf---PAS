@@ -25,8 +25,7 @@ class Admin_EventsController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('admin',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
 	$this->_config = Zend_Registry::get('config');
-	$this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-	$this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
+	$this->_geocoder = new Pas_Service_Geo_Coder();
 	}
 	/** Set up index of events
 	*/

@@ -26,8 +26,8 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	$this->_helper->_acl->allow('fa',null);
 	$this->_helper->_acl->allow('admin',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->_geoPlanet = new Pas_Service_Geo_Geoplanet($this->_config->webservice->ydnkeys->appid);
-	$this->_geocoder =  new Pas_Service_Geo_Coder($this->_config->webservice->googlemaps->apikey);
+	$this->_geoPlanet = new Pas_Service_Geo_Geoplanet($this->_helper->config()->webservice->ydnkeys->appid);
+	$this->_geocoder =  new Pas_Service_Geo_Coder();
     }
 	/** Display the index page
 	*/

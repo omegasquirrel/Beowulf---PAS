@@ -9,9 +9,7 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	public function init() {
 	$this->_helper->_acl->allow('flos',null);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
-	$this->_config = Zend_Registry::get('config');
-	$this->_gmapskey = $this->_config->webservice->googlemaps->apikey;
-	$this->_geocoder = new Pas_Service_Geo_Coder($this->_gmapskey);
+	$this->_geocoder = new Pas_Service_Geo_Coder();
 	$this->_organisations = new Organisations();
     }
 
@@ -76,7 +74,6 @@ class Database_OrganisationsController extends Pas_Controller_Action_Admin {
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
-
 	$address = $form->getValue('address') . ',' . $form->getValue('town_city') . ','
 	. $form->getValue('county') . ',' . $form->getValue('postcode') . ','
 	. $form->getValue('country');
