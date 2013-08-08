@@ -285,7 +285,7 @@ class Users_AccountController extends Pas_Controller_Action_Admin {
 	$updateData['higherLevel'] = 1;
 	$update = $this->_users->update($updateData, $where);
 	$to = array(array('email' => $user->email, 'name' => $user->fullname));
-	$attachments = array('/home/beowulf/public_html/documents/tac.pdf');
+	$attachments = array( ROOT_PATH . '/public_html/documents/tac.pdf' );
 	$assignData = array_merge($to[0], $form->getValues());
 	$this->_helper->mailer($assignData, 'upgradeRequested', null, $to, $to, null, $attachments);
 	$this->_flashMessenger->addMessage('Thank you! We have received your request.');
