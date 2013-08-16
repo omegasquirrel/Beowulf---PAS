@@ -1,4 +1,4 @@
-    <div class="thumbnail well span2" about="thumbnail-<?php echo $this->id;?>">
+<div class="thumbnail well span2" about="thumbnail-<?php echo $this->id;?>">
 
 <?php
 	$name = substr($this->filename, 0, strrpos($this->filename, '.'));
@@ -14,7 +14,13 @@ list($w, $h, $type, $attr) = getimagesize( $thumbnail );
 <a href="/<?php echo $this->imagedir;?>medium/<?php echo $file;?>" rel="lightbox" title="<?php echo $this->label;?>">
 <img class="img-polaroid stelae" src="<?php echo $this->baseUrl().'/images/thumbnails/' . $this->thumbnail;?>.jpg"  width="<?php echo $w; ?>"
 height="<?php echo $h;?>" alt="PAS record number: <?php echo $this->old_findID;?>" /></a>
-          <div class="caption">
+          
+
+<?php } else {?>
+<img src="/assets/gravatar.png" width="80" height="80" class="img-circle" />
+            <p>Image unavailable<br />Error: 404</p>
+<?php }?>
+<div class="caption">
 <p>
 Record: <a href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts',
 'action'=>'record','id' => $this->id),null,true);?>" title="PAS record number: <?php echo $this->old_findID;?>"><?php echo $this->old_findID;?></a><br />
@@ -22,9 +28,4 @@ Object type: <?php echo $this->objecttype;?><br />
 Broadperiod: <?php echo $this->broadperiod;?><br />
 </p>
           </div>
-
-<?php } else {?>
-<p>Image unavailable</p>
-<?php }?>
-
 </div>

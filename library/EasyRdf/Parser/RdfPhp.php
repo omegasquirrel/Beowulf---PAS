@@ -5,7 +5,7 @@
  *
  * LICENSE
  *
- * Copyright (c) 2009-2010 Nicholas J Humfrey.  All rights reserved.
+ * Copyright (c) 2009-2013 Nicholas J Humfrey.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -31,9 +31,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    EasyRdf
- * @copyright  Copyright (c) 2009-2010 Nicholas J Humfrey
+ * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
- * @version    $Id$
  */
 
 /**
@@ -42,7 +41,7 @@
  * http://n2.talis.com/wiki/RDF_PHP_Specification
  *
  * @package    EasyRdf
- * @copyright  Copyright (c) 2009-2010 Nicholas J Humfrey
+ * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
  */
 class EasyRdf_Parser_RdfPhp extends EasyRdf_Parser
@@ -63,11 +62,11 @@ class EasyRdf_Parser_RdfPhp extends EasyRdf_Parser
       * @param string               $data    the RDF document data
       * @param string               $format  the format of the input data
       * @param string               $baseUri the base URI of the data being parsed
-      * @return boolean             true if parsing was successful
+      * @return integer             The number of triples added to the graph
       */
     public function parse($graph, $data, $format, $baseUri)
     {
-        parent::checkParseParams($graph, $data, $format, $baseUri);
+        $this->checkParseParams($graph, $data, $format, $baseUri);
 
         if ($format != 'php') {
             throw new EasyRdf_Exception(
@@ -75,27 +74,26 @@ class EasyRdf_Parser_RdfPhp extends EasyRdf_Parser
             );
         }
 
-        // Reset the bnode mapping
-        $this->resetBnodeMap();
-
-        # FIXME: validate the data (?)
-
         foreach ($data as $subject => $properties) {
             if (substr($subject, 0, 2) === '_:') {
-                $subject = $this->remapBnode($graph, $subject);
+                $subject = $this->remapBnode($subject);
+            } elseif (preg_match('/^\w+$/', $subject)) {
+                # Cope with invalid RDF/JSON serialisations that
+                # put the node name in, without the _: prefix
+                # (such as net.fortytwo.sesametools.rdfjson)
+                $subject = $this->remapBnode($subject);
             }
+
             foreach ($properties as $property => $objects) {
                 foreach ($objects as $object) {
                     if ($object['type'] === 'bnode') {
-                        $object['value'] = $this->remapBnode($graph, $object['value']);
+                        $object['value'] = $this->remapBnode($object['value']);
                     }
-                    $graph->add($subject, $property, $object);
+                    $this->addTriple($subject, $property, $object);
                 }
             }
         }
 
-        return true;
+        return $this->tripleCount;
     }
 }
-
-EasyRdf_Format::registerParser('php', 'EasyRdf_Parser_RdfPhp');

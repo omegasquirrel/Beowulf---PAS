@@ -36,15 +36,35 @@
  */
 
 /**
- * EasyRdf Exception class
- *
- * All exceptions thrown by EasyRdf are an instance of this class.
+ * Class that represents an RDF Literal of datatype rdf:HTML
  *
  * @package    EasyRdf
+ * @link       http://www.w3.org/TR/rdf11-concepts/#section-html
  * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
  */
-class EasyRdf_Exception extends Exception
+class EasyRdf_Literal_HTML extends EasyRdf_Literal
 {
-    // Comment to make PHP CodeSniffer happy
+    /** Constructor for creating a new rdf:HTML literal
+     *
+     * @param  mixed  $value     The HTML fragment
+     * @param  string $lang      Should be null (literals with a datatype can't have a language)
+     * @param  string $datatype  Optional datatype (default 'rdf:HTML')
+     * @return object EasyRdf_Literal_HTML
+     */
+    public function __construct($value, $lang = null, $datatype = null)
+    {
+        parent::__construct($value, null, $datatype);
+    }
+
+    /** Strip the HTML tags from the literal
+     *
+     * @link   http://php.net/manual/en/function.strip-tags.php
+     * @param  string $allowableTags  Optional allowed tag, not be be removed
+     * @return string The literal as plain text
+     */
+    public function stripTags($allowableTags = null)
+    {
+        return strip_tags($this->value, $allowableTags);
+    }
 }

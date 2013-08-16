@@ -5,7 +5,7 @@
  *
  * LICENSE
  *
- * Copyright (c) 2009-2011 Nicholas J Humfrey.  All rights reserved.
+ * Copyright (c) 2009-2013 Nicholas J Humfrey.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -31,9 +31,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    EasyRdf
- * @copyright  Copyright (c) 2009-2011 Nicholas J Humfrey
+ * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
- * @version    $Id$
  */
 
 /**
@@ -41,13 +40,14 @@
  * Implementation of the SPARQL 1.1 Graph Store HTTP Protocol.
  *
  * @package    EasyRdf
- * @copyright  Copyright (c) 2009-2011 Nicholas J Humfrey
+ * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
  */
 class EasyRdf_GraphStore
 {
     /** The address of the GraphStore endpoint */
-    private $_uri = null;
+    private $uri = null;
+    private $parsedUri = null;
 
 
     /** Create a new SPARQL Graph Store client
@@ -56,7 +56,8 @@ class EasyRdf_GraphStore
      */
     public function __construct($uri)
     {
-        $this->_uri = $uri;
+        $this->uri = $uri;
+        $this->parsedUri = new EasyRdf_ParsedUri($uri);
     }
 
     /** Get the URI of the graph store
@@ -65,7 +66,7 @@ class EasyRdf_GraphStore
      */
     public function getUri()
     {
-        return $this->_uri;
+        return $this->uri;
     }
 
     /** Fetch a named graph from the graph store
@@ -78,7 +79,7 @@ class EasyRdf_GraphStore
      */
     public function get($uriRef)
     {
-        $graphUri = EasyRdf_Utils::resolveUriReference($this->_uri, $uriRef);
+        $graphUri = $this->parsedUri->resolve($uriRef)->toString();
         $dataUrl = $this->urlForGraph($graphUri);
         $graph = new EasyRdf_Graph($graphUri);
         $graph->load($dataUrl);
@@ -94,8 +95,9 @@ class EasyRdf_GraphStore
     protected function sendGraph($method, $graph, $uriRef, $format)
     {
         if (is_object($graph) and $graph instanceof EasyRdf_Graph) {
-            if ($uriRef == null)
+            if ($uriRef == null) {
                 $uriRef = $graph->getUri();
+            }
             $data = $graph->serialise($format);
         } else {
             $data = $graph;
@@ -104,7 +106,7 @@ class EasyRdf_GraphStore
         $formatObj = EasyRdf_Format::getFormat($format);
         $mimeType = $formatObj->getDefaultMimeType();
 
-        $graphUri = EasyRdf_Utils::resolveUriReference($this->_uri, $uriRef);
+        $graphUri = $this->parsedUri->resolve($uriRef)->toString();
         $dataUrl = $this->urlForGraph($graphUri);
 
         $client = EasyRdf_Http::getDefaultHttpClient();
@@ -113,7 +115,6 @@ class EasyRdf_GraphStore
         $client->setMethod($method);
         $client->setRawData($data);
         $client->setHeaders('Content-Type', $mimeType);
-        $client->setHeaders('Content-Length', strlen($data));
         $response = $client->request();
         if (!$response->isSuccessful()) {
             throw new EasyRdf_Exception(
@@ -139,7 +140,7 @@ class EasyRdf_GraphStore
      * @param string $format The format of the data to send to the graph store
      * @return object EasyRdf_Http_Response The response from the graph store
      */
-    public function replace($graph, $uriRef=null, $format='ntriples')
+    public function replace($graph, $uriRef = null, $format = 'ntriples')
     {
         return $this->sendGraph('PUT', $graph, $uriRef, $format);
     }
@@ -160,7 +161,7 @@ class EasyRdf_GraphStore
      * @param string $format The format of the data to send to the graph store
      * @return object EasyRdf_Http_Response The response from the graph store
      */
-    public function insert($graph, $uriRef=null, $format='ntriples')
+    public function insert($graph, $uriRef = null, $format = 'ntriples')
     {
         return $this->sendGraph('POST', $graph, $uriRef, $format);
     }
@@ -175,7 +176,7 @@ class EasyRdf_GraphStore
      */
     public function delete($uriRef)
     {
-        $graphUri = EasyRdf_Utils::resolveUriReference($this->_uri, $uriRef);
+        $graphUri = $this->parsedUri->resolve($uriRef)->toString();
         $dataUrl = $this->urlForGraph($graphUri);
 
         $client = EasyRdf_Http::getDefaultHttpClient();
@@ -197,8 +198,8 @@ class EasyRdf_GraphStore
      */
     protected function urlForGraph($url)
     {
-        if (strpos($url, $this->_uri) === false) {
-            $url = $this->_uri."?graph=".urlencode($url);
+        if (strpos($url, $this->uri) === false) {
+            $url = $this->uri."?graph=".urlencode($url);
         }
         return $url;
     }
@@ -209,6 +210,6 @@ class EasyRdf_GraphStore
      */
     public function __toString()
     {
-        return $this->_uri == null ? '' : $this->_uri;
+        return empty($this->uri) ? '' : $this->uri;
     }
 }

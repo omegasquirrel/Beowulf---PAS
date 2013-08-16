@@ -109,8 +109,6 @@ set_time_limit(0);
         }
         $nullified[] = $dat;
         }
-//        Zend_Debug::dump($nullified,'CLEAN');
-//        exit;
     foreach ($nullified AS $null) {
 
  	foreach($null as $k => $v){
@@ -120,8 +118,8 @@ set_time_limit(0);
             $record['finder'] = 'Restricted info';
         }
         foreach($record as $k => $v){
-            if($v === ''){
-                $record[$k] = null;
+            if($v === '' || is_null($v)){
+                $record[$k] = NULL;
             }
         }
 
@@ -131,8 +129,6 @@ set_time_limit(0);
 
 	$finalData[] = $cleanSort;
  }
-// Zend_Debug::dump($finalData);
-// exit;
     return $finalData;
 	}
 }

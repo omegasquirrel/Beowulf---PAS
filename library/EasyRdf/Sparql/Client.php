@@ -5,7 +5,7 @@
  *
  * LICENSE
  *
- * Copyright (c) 2009-2011 Nicholas J Humfrey.  All rights reserved.
+ * Copyright (c) 2009-2013 Nicholas J Humfrey.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -31,25 +31,24 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    EasyRdf
- * @copyright  Copyright (c) 2009-2011 Nicholas J Humfrey
+ * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
- * @version    $Id$
  */
 
 /**
  * Class for making SPARQL queries using the SPARQL 1.1 Protocol
  *
  * @package    EasyRdf
- * @copyright  Copyright (c) 2009-2011 Nicholas J Humfrey
+ * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
  */
 class EasyRdf_Sparql_Client
 {
     /** The address of the SPARQL Endpoint */
-    private $_uri = null;
+    private $uri = null;
 
     /** Configuration settings */
-    private $_config = array();
+    private $config = array();
 
 
     /** Create a new SPARQL endpoint client
@@ -58,7 +57,7 @@ class EasyRdf_Sparql_Client
      */
     public function __construct($uri)
     {
-        $this->_uri = $uri;
+        $this->uri = $uri;
     }
 
     /** Get the URI of the SPARQL endpoint
@@ -67,7 +66,7 @@ class EasyRdf_Sparql_Client
      */
     public function getUri()
     {
-        return $this->_uri;
+        return $this->uri;
     }
 
     /** Make a query to the SPARQL endpoint
@@ -83,7 +82,7 @@ class EasyRdf_Sparql_Client
      */
     public function query($query)
     {
-        # Add namespaces to the queryString
+        // Check for undefined prefixes
         $prefixes = '';
         foreach (EasyRdf_Namespace::namespaces() as $prefix => $uri) {
             if (strpos($query, "$prefix:") !== false and
@@ -94,26 +93,39 @@ class EasyRdf_Sparql_Client
 
         $client = EasyRdf_Http::getDefaultHttpClient();
         $client->resetParameters();
-        $client->setUri($this->_uri);
-        $client->setMethod('GET');
 
+        // Tell the server which response formats we can parse
         $accept = EasyRdf_Format::getHttpAcceptHeader(
             array(
-              'application/json' => 1.0,
-              'application/sparql-results+json' => 0.8,
-              'application/sparql-results+xml' => 0.6
+              'application/sparql-results+json' => 1.0,
+              'application/sparql-results+xml' => 0.8
             )
         );
         $client->setHeaders('Accept', $accept);
-        $client->setParameterGet('query', $prefixes . $query);
+
+        // Use GET if the query is less than 2kB
+        // 2046 = 2kB minus 1 for '?' and 1 for NULL-terminated string on server
+        $encodedQuery = 'query='.urlencode($prefixes . $query);
+        if (strlen($encodedQuery) + strlen($this->uri) <= 2046) {
+            $client->setMethod('GET');
+            $client->setUri($this->uri.'?'.$encodedQuery);
+        } else {
+            // Fall back to POST instead (which is un-cacheable)
+            $client->setMethod('POST');
+            $client->setUri($this->uri);
+            $client->setRawData($encodedQuery);
+            $client->setHeaders('Content-Type', 'application/x-www-form-urlencoded');
+        }
 
         $response = $client->request();
         if ($response->isSuccessful()) {
-            $type = $response->getHeader('Content-Type');
+            list($type, $params) = EasyRdf_Utils::parseMimeType(
+                $response->getHeader('Content-Type')
+            );
             if (strpos($type, 'application/sparql-results') === 0) {
                 return new EasyRdf_Sparql_Result($response->getBody(), $type);
             } else {
-                return new EasyRdf_Graph($this->_uri, $response->getBody(), $type);
+                return new EasyRdf_Graph($this->uri, $response->getBody(), $type);
             }
         } else {
             throw new EasyRdf_Exception(
@@ -128,6 +140,6 @@ class EasyRdf_Sparql_Client
      */
     public function __toString()
     {
-        return $this->_uri == null ? '' : $this->_uri;
+        return $this->uri == null ? '' : $this->uri;
     }
 }

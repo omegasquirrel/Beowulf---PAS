@@ -108,19 +108,24 @@ class Pas_View_Helper_ImageToolbox
 	}
 
 	private function _performChecks(){
+		if($this->_getUser()){
+			$role = $this->_getUser()->role;
+		} else {
+			$role = NULL;
+		}
 	//If user's role is in the no access array, return false for creation
-	if(in_array($this->_getUser()->role, $this->_noaccess)) {
+	if(in_array($role, $this->_noaccess)) {
 		$this->_canCreate = false;
 	} 
 	//If user's role is in the higher level array, return true for creation
-	else if(in_array($this->_getUser()->role,$this->_higherLevel)){
+	else if(in_array($role,$this->_higherLevel)){
 		$this->_canCreate = true;
 	} 
 	//If user's role is in recorders group check for 
 	// a) user ID = creator of image
 	// b) institution is a public record 
 	// c) institution is theirs
-	else if(in_array($this->_getUser()->role,$this->_recorders)){
+	else if(in_array($role,$this->_recorders)){
 	if(
 	$this->_checkCreator() || 
 	$this->_institution === $this->_overRide ||
@@ -131,7 +136,7 @@ class Pas_View_Helper_ImageToolbox
 	} 
 	//If user's role is in restricted groups
 	// a) check if the user's institution is theirs and they are the creator
-	else if(in_array($this->_getUser()->role,$this->_restricted)){
+	else if(in_array($role,$this->_restricted)){
 	if(($this->_checkCreator() && $this->_checkInstitution())){
 		$this->_canCreate = true;	
 	}	

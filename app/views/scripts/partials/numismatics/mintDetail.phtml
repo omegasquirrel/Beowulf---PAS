@@ -26,13 +26,40 @@ Abbreviation: <?php echo $this->abbrev;?>
 <?php if(!is_null($this->description)):?>
 <span property="skos:definition"><?php echo $this->description;?></span>
 <?php endif;?>
-<h3>Geographical entities</h3>
-<?php if(!is_null($this->latitude)):?>
-<p>Geo location: <span property="gml:pos"><?php echo $this->escape($this->latitude);?>, <?php echo $this->escape($this->longitude);?></span></p>
-<?php endif;?>
+<h3>Related resources</h3>
+
+<ul>
 <?php if(!is_null($this->pleiadesID)):?>
-<p><a property="skos:related" resource="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>" href="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>">View on Pleiades</a></p>
-<?php echo $this->pleiadesFlickrImages($this->pleiadesID);?>
+<li><a property="skos:related" resource="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>" href="http://pleiades.stoa.org/places/<?php echo $this->pleiadesID;?>">Pleiades</a></li>
+<?php endif;?>
+<?php if(!is_null($this->nomismaID)):?>
+<li><a property="skos:related" resource="http://nomisma.org/id/<?php echo $this->nomismaID;?>" href="http://nomisma.org/id/<?php echo $this->nomismaID;?>">Nomisma</a></li>
+<?php endif;?>
+<?php if(!is_null($this->bmID)):?>
+<li><a property="skos:related" resource="http://collection.britishmuseum.org/id/place/x<?php echo $this->bmID;?>" href="http://collection.britishmuseum.org/id/place/x<?php echo $this->bmID;?>">British Museum</a></li>
+<?php endif;?>
+<?php if(!is_null($this->dbpediaID)):?>
+<li><a property="skos:related" resource="http://wikipedia.org/wiki/<?php echo $this->dbpediaID;?>" href="http://wikipedia.org/wiki/<?php echo $this->dbpediaID;?>">Wikipedia</a></li>
+<?php endif;?>
+<?php if(!is_null($this->geonamesID)):?>
+<li><a property="skos:related" resource="http://www.geonames.org/<?php echo $this->geonamesID;?>" href="http://www.geonames.org/<?php echo $this->geonamesID;?>">Geonames</a></li>
+<?php endif;?>
+</ul>
+<h3>Data from Nomisma</h3>
+<?php echo $this->nomismaRdf()->setUri("http://nomisma.org/id/" . $this->nomismaID);?>
+
+
+<?php 
+if($this->dbpediaID){
+	echo '<h3>Data from wikipedia</h3>';
+	echo $this->DbPediaMintRdf()->setUri("http://dbpedia.org/resource/" . $this->dbpediaID );
+}?>
+<?php if($this->pleiadesID):?>
+<h3>Data from Pleiades</h3>
+<?php echo $this->pleiadesMintRdf()->setUri($this->pleiadesID ); ?>
+<?php echo $this->pelagiosAnnotations()->setPleiadesPlace($this->pleiadesID);?>
+<?php echo $this->pleiadesFlickrImages($this->pleiadesID); ?>
+
 <?php endif;?>
 
 <?php if(!is_null($this->pasID)):?>

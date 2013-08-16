@@ -337,7 +337,7 @@ class Pas_Exif_Reader {
     protected $_errno = 0;
     protected $_errstr = '';
 	protected $_timeStart;
-    protected $_debug;
+    protected $_debugIt = false;
 
     // Caching ralated protectediables
     protected $_cacheDir = ""; /* Checkout constructor for default path. */
@@ -393,7 +393,7 @@ class Pas_Exif_Reader {
      *
      */
     function debug($str,$TYPE = 0,$file="",$line=0) {
-       if($this->debug) {
+       if($this->_debugIt) {
         echo "<br>[$file:$line:".($this->getDiffTime())."]$str";
         flush();
         if($TYPE == 1) {
@@ -443,7 +443,7 @@ class Pas_Exif_Reader {
                 }
 
         $marker = ord($marker);
-        $this->_sections[$this->currSection]["type"] = $marker;
+        $this->_sections[$this->_currSection]["type"] = $marker;
 
         // Read the length of the section.
         $lh = ord(fgetc($fp));
@@ -454,7 +454,7 @@ class Pas_Exif_Reader {
         if ($itemlen < 2){
                  throw new Pas_Exif_Exception('Invalid marker');
         }
-        $this->_sections[$this->currSection]["size"] = $itemlen;
+        $this->_sections[$this->_currSection]["size"] = $itemlen;
 
         $tmpDataArr = array();  /** Temporary Array */
 
@@ -602,7 +602,7 @@ class Pas_Exif_Reader {
 
         $data_precision = ord($data[2]);
 
-        if($this->debug) {
+        if($this->_debugIt) {
           print("Image Dimension Calculation:");
           print("((ord($data[3]) << 8) | ord($data[4]));");
         }
@@ -904,7 +904,7 @@ class Pas_Exif_Reader {
 
                 case self::TAG_THUMBNAIL_LENGTH:
                     $this->ThumbnailSize = $this->_convertAnyFormat($ValuePtr, $Format);
-                    $this->_imageInfo[TAG_THUMBNAIL_LENGTH] = $this->ThumbnailSize;
+                    $this->_imageInfo[self::TAG_THUMBNAIL_LENGTH] = $this->ThumbnailSize;
                     break;
 
                 //----------------------------------------------

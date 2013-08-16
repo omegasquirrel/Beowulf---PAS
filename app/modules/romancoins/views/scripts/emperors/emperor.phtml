@@ -3,8 +3,6 @@ $config = Zend_Registry::get('config');
 $apikey = $config->webservice->googlemaps->apikey;
 $this->inlineScript()->appendFile('http://maps.googleapis.com/maps/api/js?v=3.8&sensor=true&region=GB&key=' . $apikey,$type='text/javascript');
 $this->inlineScript()->appendFile($this->serverUrl() . '/js/markerclusterer.js',$type='text/javascript');
-$this->inlineScript()->appendFile('http://nls.tileserver.com/api-cluster.js',$type='text/javascript');
-$this->inlineScript()->appendFile('http://webplayer.yahooapis.com/player.js', $type='text/javascript');
 $this->headScript()->appendFile('http://isawnyu.github.com/awld-js/lib/requirejs/require.min.js',$type = 'text/javascript');
 $this->headScript()->appendFile('http://isawnyu.github.com/awld-js/awld.js?autoinit', $type = 'text/javascript');
 
@@ -13,16 +11,6 @@ $this->headScript()->appendFile('http://isawnyu.github.com/awld-js/awld.js?autoi
 <?php $this->inlineScript()->captureStart();?>
 $(document).ready(function() {
 
-
-    var nlsmap = new google.maps.ImageMapType({
-	   getTileUrl: function(tile, zoom) { return NLSTileUrlOS(tile.x, tile.y, zoom); },
-	   tileSize: new google.maps.Size(256, 256),
-	   isPng: false,
-	   maxZoom: 14,
-	   minZoom: 1,
-	   name: 'Historic',
-	   alt: "NLS Historic Map"
-	});
 
 
 
@@ -39,58 +27,6 @@ $(document).ready(function() {
         maxZoom: 18
     });
 
-   var soilMapType = new google.maps.ImageMapType({
-
-   getTileUrl: function(tile, zoom) {
-
-   var projection = map.getProjection();
-
-   var zpow = Math.pow(2, zoom);
-
-   var ul = new google.maps.Point(tile.x * 256.0 / zpow, (tile.y + 1) * 256.0 / zpow);
-
-   var lr = new google.maps.Point((tile.x + 1) * 256.0 / zpow, (tile.y) * 256.0 / zpow);
-
-   var ulw = projection.fromPointToLatLng(ul);
-
-   var lrw = projection.fromPointToLatLng(lr);
-
-   var baseURL ="http://geonetwork3.fao.org/ows/14116?LAYERS=world_soilmap&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&SRS=EPSG:4326";
-
-   var version = "1.1.1";
-
-   var request = "GetMap";
-
-   var format = "image/png"; //type of image returned  or image/jpeg
-
-
-   var layers = "world_soilmap";
-
-   var srs = "EPSG:4326";
-
-   var bbox = ulw.lng() + "," + ulw.lat() + "," + lrw.lng() + "," + lrw.lat();
-
-   var service = "WMS";
-
-   var width = "256";
-
-   var height = "256";
-
-
-   var styles = "default";
-
-   var url = baseURL +"&BBOX=" + bbox + "&WIDTH=" + width + "&HEIGHT=" + height;
-
-   return url;
-    },
-        tileSize: new google.maps.Size(256, 256),
-        isPng: true,
-        alt: "Soil layer",
-        name: "Soil types",
-        maxZoom: 18,
-        minZoom: 3,
-        opacity: 0.2,
-    });
 
 
     var myOptions = {
@@ -101,8 +37,6 @@ $(document).ready(function() {
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
           'OSM',
-          'SOIL',
-          'historic'
           ]
     	  },
     	  mapTypeControl: true,
@@ -115,8 +49,6 @@ $(document).ready(function() {
 
     var map = new google.maps.Map(document.getElementById("map"),myOptions);
         map.mapTypes.set('OSM',osmMapType);
-        map.mapTypes.set('SOIL',soilMapType);
-        map.mapTypes.set('historic',nlsmap);
 
 
 
@@ -189,11 +121,7 @@ function markerInfoWindow(marker, information){
 <div class="awld-scope">
 <?php echo $this->partialLoop('partials/numismatics/emperor.phtml',$this->emps);?>
 </div>
-<div class="row-fluid">
 
-<?php echo $this->latestRecords('ruler:' . $this->emps[0]['pasID']);?>
-
-</div>
 
 
 <div class="row-fluid">

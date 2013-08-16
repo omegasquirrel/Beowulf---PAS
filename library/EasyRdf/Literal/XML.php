@@ -36,15 +36,36 @@
  */
 
 /**
- * EasyRdf Exception class
- *
- * All exceptions thrown by EasyRdf are an instance of this class.
+ * Class that represents an RDF Literal of datatype rdf:XMLLiteral
  *
  * @package    EasyRdf
+ * @link       http://www.w3.org/TR/REC-rdf-syntax/#section-Syntax-XML-literals
  * @copyright  Copyright (c) 2009-2013 Nicholas J Humfrey
  * @license    http://www.opensource.org/licenses/bsd-license.php
  */
-class EasyRdf_Exception extends Exception
+class EasyRdf_Literal_XML extends EasyRdf_Literal
 {
-    // Comment to make PHP CodeSniffer happy
+    /** Constructor for creating a new rdf:XMLLiteral literal
+     *
+     * @param  mixed  $value     The XML fragment
+     * @param  string $lang      Should be null (literals with a datatype can't have a language)
+     * @param  string $datatype  Optional datatype (default 'rdf:XMLLiteral')
+     * @return object EasyRdf_Literal_XML
+     */
+    public function __construct($value, $lang = null, $datatype = null)
+    {
+        parent::__construct($value, null, $datatype);
+    }
+
+    /** Parse the XML literal into a DOMDocument
+     *
+     * @link   http://php.net/manual/en/domdocument.loadxml.php
+     * @return object DOMDocument
+     */
+    public function domParse()
+    {
+        $dom = new DOMDocument();
+        $dom->loadXML($this->value);
+        return $dom;
+    }
 }
