@@ -140,7 +140,11 @@ class Pas_Yql_Flickr {
 	'photo_id' => $photoID
 	);
 	$yql = 'Select * from xml where url ="' . self::FLICKRURI . $this->buildQuery($args) . '"';
+	if(array_key_exists('photo', $this->getData($yql)->query->results->rsp )){
 	return $this->getData($yql)->query->results->rsp->photo;
+	} else {
+		return false;
+	}
 	}
 	public function getSetsList( $userid, $page = 1, $per_page = 10){
 	$args = array(
