@@ -95,7 +95,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             ->addContext('midas', array('suffix' => 'midas', 'headers' => array('Content-Type' => 'application/xml')))
             ->addContext('qrcode',array('suffix' => 'qrcode'))
             ->addContext('geojson',array('suffix' => 'geojson', 'headers' => array('Content-Type' => 'application/json')))
-            ->addActionContext('record', array('qrcode', 'json', 'xml', 'geojson', 'rdf', 'midas'))
+            ->addActionContext('record', array('qrcode', 'json', 'xml', 'geojson', 'rdf'))
             ->initContext();
     $this->_finds = new Finds();
     $this->_auth = Zend_Registry::get('auth');
@@ -286,7 +286,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     unset($insertData['id2by']);
     unset($insertData['secondfinder']);
     $insert = $this->_finds->add($insertData);
-    $this->_helper->solrUpdater->update('objects', $insert);
+    $this->_helper->solrUpdater->update('beowulf', $insert);
     $this->_redirect(self::REDIRECT . 'record/id/' . $insert);
     $this->_flashMessenger->addMessage('Record created!');
     } else  {
@@ -335,7 +335,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $this->_finds->update($updateData, $where);
     $this->_helper->audit($updateData, $oldData, 'FindsAudit',  $this->_getParam('id'),
     	$this->_getParam('id'));
-    $this->_helper->solrUpdater->update('objects', $this->_getParam('id'));
+    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('id'));
     $this->_flashMessenger->addMessage('Artefact information updated and audited!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('id'));
     } else {
@@ -375,7 +375,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
             $findID);
     $this->_flashMessenger->addMessage('Record deleted!');
     $findspots->delete($whereFindspots);
-    $this->_helper->solrUpdater->deleteById('objects', $id);
+    $this->_helper->solrUpdater->deleteById('beowulf', $id);
     $this->_redirect(self::REDIRECT);
     }
     $this->_flashMessenger->addMessage('No changes made!');
@@ -397,8 +397,8 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $finds = $this->_finds->getRelevantAdviserFind($this->_getParam('id',0));
     $this->view->form = $form;
     $this->view->finds = $finds;
-    if ($this->getRequest()->isPost() === true) {
-    if($form->isValid($_POST) === true) {
+    if ($this->getRequest()->isPost()===true) {
+    if($form->isValid($_POST)===true) {
     $data = $form->getValues();
     if ($this->_helper->akismet($data)) {
     $data['comment_approved'] = 'spam';
@@ -491,7 +491,7 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
 	$this->_finds->update($updateData, $where);
     $this->_helper->audit($updateData, $findStatus->toArray(), 'FindsAudit',  $this->_getParam('findID'),
     	$this->_getParam('findID'));
-    $this->_helper->solrUpdater->update('objects', $this->_getParam('findID'));	
+    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));	
     $this->_flashMessenger->addMessage('Workflow status changed');
 	$this->_redirect('database/artefacts/record/id/' . $this->_getParam('findID'));
     $this->_request->setMethod('GET');
@@ -513,15 +513,24 @@ class Database_ArtefactsController extends Pas_Controller_Action_Admin {
     $responsible = $users->fetchRow('id = ' . $createdBy);
   
     $to = array(array('email' => $responsible->email, 'name' => $responsible->fullname));	
-    } else {
+    } elseif (in_array($institution, array('PAS', 'DCMS', 'RAH'))) {
+    $to = array(array('email' => 'info@finds.org.uk', 'name' => 'Central Unit'));	
+    }else {
     $responsible = new Contacts();
     $to = $responsible->getOwner($data['comment_findID']);
     }
   
     $cc = $this->_getAdviser($objecttype, $broadperiod);
+    if($this->_user){
     $from = array(array(
         'email' => $this->_user->email,
         'name' => $this->_user->fullname));
+    } else {
+    	$from = array(array(
+    	'email' => $data['comment_author_email'],
+    	'name' => $data['comment_author']
+    	));
+    }
     $assignData = array_merge($to['0'],$data);
   	$this->_helper->mailer($assignData,'errorSubmission', $to, $cc, $from);
 
