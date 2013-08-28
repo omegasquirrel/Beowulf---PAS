@@ -100,6 +100,8 @@ class Pas_View_Helper_MoreLikeThis extends Zend_View_Helper_Abstract {
    			 if(($document->thumbnail)){
 			$html .= '<img class="flow img-polaroid" src="/images/thumbnails/';
 			$html .= $document->thumbnail .'.jpg"/>';
+   			 } else {
+   			 	$html .= '<img class="flow img-circle" src="/assets/gravatar.png" />';
    			 }
 			$html .= '<div class="caption"><p>Find number: ';
 			$html .= '<a href="' . $this->view->serverUrl() . '/database/artefacts/record/id/'
