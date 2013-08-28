@@ -103,10 +103,9 @@ class Pas_View_Helper_SearchParams
 	}
 
 	$params = $this->cleanParams($params);
-	$html = '';
-	if(!is_null($params)) {
-	$html .= '<p>You searched for: </p>';
-	$html .= '<ul>';
+	$html = '<p>You searched for: ';
+	if(sizeof($params) > 0 ) {
+	$html .= '</p><ul>';
    	$searches = array();
 	foreach($params as $k => $v){
 		switch($k){
@@ -146,6 +145,8 @@ class Pas_View_Helper_SearchParams
         $this->view->headMeta(implode(' - ', $searches), 'description');
         $this->view->headMeta(implode(',', $searches), 'keywords');
 	$html .= '</ul>';
+	} else {
+		$html .= 'Everything we have</p>';
 	}
 	return $html;
 	}
