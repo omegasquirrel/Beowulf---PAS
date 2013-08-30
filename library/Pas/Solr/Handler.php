@@ -16,7 +16,7 @@
  *
  * @author Daniel Pett
  */
-define('SCHEMA_PATH', '/home/beowulf2/solr/solr/');
+define('SCHEMA_PATH', '/var/solr/');
 
 define('SCHEMA_FILE', '/conf/schema.xml' );
 
@@ -107,9 +107,13 @@ class Pas_Solr_Handler {
     $loadbalancer = $this->_solr->getPlugin('loadbalancer');
     
     $master = $this->_config->solr->master->toArray();
-    $slave  = $this->_config->solr->slave->toArray();
-    $loadbalancer->addServer('master', $master, 100);
-	$loadbalancer->addServer('slave', $slave, 200);
+    $asgard  = $this->_config->solr->asgard->toArray();
+    $valhalla = $this->_config->solr->valhalla->toArray();
+    
+    $loadbalancer->addServer('beowulf', $master, 100);
+	$loadbalancer->addServer('asgard', $asgard, 200);
+	$loadbalancer->addServer('valhalla', $valhalla, 150);
+	
 	$loadbalancer->setFailoverEnabled(true);
     $this->_loadbalancer = $loadbalancer;
 	$zendHttp = $this->_solr->getAdapter()->getZendHttp();
@@ -184,11 +188,9 @@ class Pas_Solr_Handler {
      * @return type
      */
     protected function _setSolrConfig($core){
-    $config = $this->_config->solr->toArray();
-    if($core){
+    $config = $this->_config->solr->master->toArray();
+    if(isset($core)){
     	$config['core'] = $core;
-    } else {
-    	$config['core'] = 'beowulf';
     }
     return $this->_solrConfig = array('adapteroptions' => $config);
     }
@@ -198,13 +200,13 @@ class Pas_Solr_Handler {
      * @return string
      */
     protected function _getRole(){
-	$user = new Pas_User_Details();
+    $user = new Pas_User_Details();
     $person = $user->getPerson();
-    if($person){
-    	return $person->role;
-    } else {
-    	return false;
-    }
+	if($person) {
+    return $person->role;
+	} else {
+return false;
+}
     }
 
 
@@ -435,7 +437,6 @@ class Pas_Solr_Handler {
      */
 	public function _processStats(){
     $stats = $this->_resultset->getStats();
-    if($stats){
     foreach($stats as $stat){
     $data = array(
 	    'stdDeviation' => $stat->getStddev(),
@@ -451,7 +452,6 @@ class Pas_Solr_Handler {
     );
     }
     return $data;
-    }
     }
     
     /** Process the facets
@@ -694,7 +694,6 @@ class Pas_Solr_Handler {
      * 
      */
     public function debugQuery(){
-    Zend_Debug::dump($this->_solrConfig, 'Configuration');
     Zend_Debug::dump($this->_params,'The params sent');
     Zend_Debug::dump($this->_query, 'The Query');
     Zend_Debug::dump($this->_fields, 'The field list');

@@ -39,7 +39,13 @@ class Pas_Controller_Action_Admin extends Zend_Controller_Action {
             Please check and resubmit.';
 	protected $_noChange = 'No changes have been implemented';
 	
-	
+	public function preDispatch(){
+		$disabled = $this->_helper->config()->disabled->toArray();
+		$module = $this->getRequest()->getModuleName();
+		if(in_array($module, $disabled)){
+		$this->_redirect('/error/downtime');
+		}
+	}
 	
 	public function postDispatch() {
         //$this->view->messages = $this->_flashMessenger->getMessages();

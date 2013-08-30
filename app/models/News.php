@@ -20,7 +20,7 @@ class News extends Pas_Db_Table_Abstract {
 
 	public function init(){
 	$this->_geoPlanet = new Pas_Service_Geo_Geoplanet($this->_config->webservice->ydnkeys->appid);
-	$this->_geocoder = new Pas_Service_Geo_Coder($this->_config->webservice->googlemaps->apikey);
+	$this->_geocoder = new Pas_Service_Geo_Coder();
 	}
 
 	/** get the user's id from their identity object

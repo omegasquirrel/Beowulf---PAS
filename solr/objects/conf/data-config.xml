@@ -10,15 +10,11 @@
         <entity name="node" transformer="HTMLStripTransformer"
 query="
 SELECT
-#Identifiers
 DISTINCT(finds.id) as id, CONCAT('finds-',finds.id) AS findIdentifier, finds.old_findID, finds.secuid,
-#geo metadata 
 findspots.county, findspots.district, findspots.parish, findspots.knownas, osRegions.label as regionName,
 findspots.gridref, findspots.fourFigure, findspots.geohash, findspots.declat AS latitude, findspots.declong AS longitude,
 findspots.easting, findspots.northing, findspots.elevation, findspots.fourFigureLat, findspots.fourFigureLon,
 findspots.gridlen AS 'precision', findspots.accuracy, maporigins.term AS gridSource, CONCAT(declat,',',declong) AS coordinates,
-
-#object metadata
 finds.institution, finds.objecttype, finds.notes, finds.description, finds.smr_ref AS smrRef, finds.other_ref AS otherRef,
 finds.culture, cultures.term AS cultureName, cultures.bmCultureID, finds.inscription, finds.classification,
 finds.subclass As subClassification, finds.treasureID AS TID, finds.treasure, finds.secwfstage AS workflow, 
@@ -31,17 +27,10 @@ discmethods.method AS discoveryMethod, EXTRACT(YEAR FROM datefound1) AS discover
 subsequentActions.action as subsequentActionTerm, finds.completeness, completeness.term AS completenessTerm,
 finds.findofnote AS note, findofnotereasons.term as reasonTerm, finds.findofnotereason AS reason, finds.width,
 finds.height, finds.thickness, finds.diameter, finds.weight, finds.length, finds.quantity, finds.hoard, finds.hoardID as hoardID, hoards.term AS hoardName,
-
-#Chronology   
 finds.broadperiod, finds.objdate1period AS periodFrom, p1.term AS periodFromName, finds.objdate2period AS periodTo, p2.term AS periodToName,
 finds.numdate1 AS fromdate, finds.numdate2 AS todate, finds.objdate1subperiod AS fromsubperiod, finds.objdate2subperiod AS tosubperiod,
 finds.datefound1, finds.datefound2, dq1.term as fromDateQualifier, dq2.term as toDateQualifier, sub1.term AS subperiodFrom, sub2.term AS subperiodTo,
-
-
-#Admin metadata
 finds.createdBy AS createdBy,  users.fullname AS creator, finds.created, finds.updated, finds.updatedBy, users2.fullname AS updater, finds.dbpediaSlug,
-
-#Numismatic metadata
 coins.ruler_id AS ruler, coins.ruler2_id AS ruler2, rulers.issuer AS rulerName, r2.issuer AS secondaryRulerName,
 coins.denomination, denominations.denomination AS denominationName, coins.mint_id AS mint, mints.mint_name AS mintName,
 coins.obverse_description AS obverseDescription, coins.obverse_inscription AS obverseLegend, coins.reverse_description AS reverseDescription, coins.reverse_inscription AS reverseLegend,
@@ -50,27 +39,16 @@ coins.reeceID AS reeceID, coins.moneyer, moneyers.name AS moneyerName, coins.tri
 coins.categoryID as category, medievalcategories.category AS categoryTerm, coins.typeID as type,  medievaltypes.type AS typeTerm,
 coins.die_axis_measurement AS axis, coins.revtypeID as reverse, revtypes.type AS reverseType, coins.status, statuses.term AS statusTerm,
 CONCAT(geographyironage.region,' ',geographyironage.area) AS geography, coins.geographyID, 
-
-#Image metadata
 slides.imageID AS thumbnail, slides.filename, users.imagedir, licenseType.url AS imageCopyright,
-
-#Personal metadata
 finds.finderID, finds.recorderID, finds.identifier1ID AS identifierID, finds.identifier2ID, finders.fullname AS finder,
 primaries.fullname AS identifier, secondaries.fullname AS secondaryIdentifier, recorders.fullname AS recorder,
-
-#Numismatics LOD
 rulers.nomismaID AS rulerNomisma, rulers.dbpedia AS rulerDbpedia, rulers.viaf as rulerViaf, rulers.bmID as rulerBM, 
 moneyers.dbpediaID AS moneyerDbpedia, moneyers.viaf AS moneyerViaf, moneyers.bmID AS moneyerBM, mints.nomismaID AS nomismaMintID,
 mints.woeid as mintWoeid, mints.geonamesID as mintGeonamesID, mints.bmID AS mintBM, mints.pleiadesID, 
 denominations.nomismaID as nomismaDenominationID, denominations.bmID as denominationBM, denominations.dbpediaID AS denominationDbpedia, 
-
-#period LOD
 p1.ehTerm AS periodFromEH, p2.term AS periodToEH,p3.ehTerm as broadperiodEH, p1.bmID AS periodFromBM, p2.bmID AS periodToBM, p3.bmID as broadperiodBM,
-
-#geo lod
 findspots.countyID, findspots.districtID, findspots.parishID, findspots.woeid, findspots.regionID,osCounties.type as countyType,
 osParishes.type as parishType, osDistricts.type as districtType, findspots.geonamesID
-
 FROM finds
 LEFT JOIN findspots ON finds.secuid = findspots.findID
 LEFT JOIN coins ON finds.secuid = coins.findID

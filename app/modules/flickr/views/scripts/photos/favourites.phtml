@@ -5,8 +5,9 @@ $this->MetaBase('A list of our favourite images that we have found on flickr fro
 'favourites,flickr,archaeology,creative commons,portable antiquities'
 );
 ?>
-<h2>Our favourite images from other users.</h2>
-<?php if($this->photos):?>
+<h2><?php echo $this->title();?></h2>
+<div class="row-fluid">
+<?php if($this->photos->photo):?>
 
 <?php
 $photos = array();
@@ -21,3 +22,4 @@ echo $this->partialLoop('partials/flickr/favourite.phtml',$photos);
 <?php else:?>
 <p>There are no favourites available at the moment</p>
 <?php endif;?>
+</div>

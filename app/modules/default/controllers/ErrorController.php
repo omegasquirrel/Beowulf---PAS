@@ -343,4 +343,7 @@ class ErrorController extends Pas_Controller_Action_Admin {
 	$this->sendEmail();	
 	}
 	
+	public function downtimeAction() {
+	}
+	
 }

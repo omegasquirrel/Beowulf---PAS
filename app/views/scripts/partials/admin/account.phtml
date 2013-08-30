@@ -60,7 +60,7 @@ Email address: <a href="mailto:<?php echo $this->email;?>"><?php echo $this->ema
 Assigned role: <?php echo $this->role;?><br />
 Recording institution prefix: <?php echo $this->institution;?><br />
 <?php if(!is_null($this->peopleID)):?>
-Attached to people profile id: <?php echo $this->peopleID;?><br />
+Attached to people profile id: <?php echo $this->personLookup()->setPerson($this->peopleID);?><br />
 <?php endif;?>
 Last login to the database: 
 <?php echo $this->timeagoinwords($this->escape($this->lastLogin));?><br />

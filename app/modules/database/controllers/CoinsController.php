@@ -46,7 +46,6 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     }
     }
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
     $user = new Pas_User_Details();
     $insertData  = $form->getValues();
     $insertData['findID'] = (string) $this->_getParam('findID');
@@ -58,11 +57,9 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $insert = $this->_coins->add($insertData);
     $this->_helper->solrUpdater->update('objects', $this->_getParam('returnID'));
     $this->_helper->flashMessenger->addMessage('Coin data saved.');
-    $this->_redirect(self::REDIRECT . 'record/id/' 
-            . $this->_getParam('returnID'));
+    $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('returnID'));
     } else {
     $form->populate($form->getValues());
-    }
     }
     } else {
     throw new Pas_Exception_Param($this->_missingParameter);
@@ -98,18 +95,14 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $this->_helper->flashMessenger->addMessage('Numismatic details updated.');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('returnID'));
     } else {
-//    	Zend_Debug::dump($this->_request->getPost());
     $form->populate($_POST);
     }
     } else {
-//    	Zend_Debug::dump($this->_request->getPost());
-    // find id is expected in $params['id']
     $id = (int)$this->_getParam('id', 0);
     if ($id > 0) {
     $coin = $this->_coins->getCoinToEdit($id);
     $form->populate($coin['0']);
-    $formLoader = $this->_helper->coinFormLoaderOptions($broadperiod, 
-            $coin);
+    $formLoader = $this->_helper->coinFormLoaderOptions($broadperiod,  $coin);
     }
     }
     } else {
@@ -137,7 +130,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     }
     }
     } else {
-            throw new Pas_Exception_Param($this->_missingParameter);
+		throw new Pas_Exception_Param($this->_missingParameter);
     }
     }
 

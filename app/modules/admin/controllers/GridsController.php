@@ -390,4 +390,67 @@ public function generatefindidAction()
 	}
 	}
 	
+	public function changesourceAction(){
+		$incorrect = new Findspots();
+		$rows = $incorrect->incorrectSource(1000);
+		foreach($rows as $r){
+		$rowid = $r['id'];
+		$oldData = $incorrect->fetchRow('id=' . $rowid)->toArray();
+    	$where = array();
+    	$where[] = $incorrect->getAdapter()->quoteInto('id = ?',$rowid);	
+    	$updateData = array(
+    	'updatedBy' => 56,
+		'updated' => Zend_Date::now()->toString('yyyy-MM-dd HH:mm'),
+    	'gridrefsrc' => 5,
+    	'comments' => 'Centred on parish by OAD, grid ref source had been incorrectly transposed.'
+		);
+		$update = $incorrect->update($updateData, $where);
+    	$this->_helper->audit($updateData, $oldData, 'FindSpotsAudit', $rowid, $r['recordID']);
+    	echo $r['recordID'] . '<br />';	
+		}
+		
+	}
+
+	public function elevationAction(){
+		$incorrect = new Findspots();
+		$rows = $incorrect->missingElevation(500);
+		foreach($rows as $r){
+		$rowid = $r['id'];
+		$oldData = $incorrect->fetchRow('id=' . $rowid)->toArray();
+    	$where = array();
+    	$where[] = $incorrect->getAdapter()->quoteInto('id = ?',$rowid);	
+    	$api = new Pas_Service_Geo_Elevation();
+		$elevation = $api->getElevation($r['declong'], $r['declat']);
+    	$updateData = array(
+    	'updatedBy' => 56,
+		'updated' => Zend_Date::now()->toString('yyyy-MM-dd HH:mm'),
+    	'elevation' => $elevation,
+		);
+		sleep(1);
+		$update = $incorrect->update($updateData, $where);
+    	$this->_helper->audit($updateData, $oldData, 'FindSpotsAudit', $rowid, $r['recordID']);
+    	echo $r['recordID'] . '<br />';	
+		}
+	}
+	
+		public function mergefinderAction(){
+		$incorrect = new Finds();
+		$rows = $incorrect->getFinder($this->_getParam('oldfinder'), 500);
+		foreach($rows as $r){
+		$rowid = $r['id'];
+		$oldData = $incorrect->fetchRow('id=' . $rowid)->toArray();
+    	$where = array();
+    	$where[] = $incorrect->getAdapter()->quoteInto('finderID = ?',$this->_getParam('oldfinder'));	
+    	$updateData = array(
+    	'updatedBy' => 56,
+		'updated' => Zend_Date::now()->toString('yyyy-MM-dd HH:mm'),
+    	'finderID' => $this->_getParam('newfinder'),
+		);
+		sleep(1);
+		$update = $incorrect->update($updateData, $where);
+    	$this->_helper->audit($updateData, $oldData, 'FindsAudit', $rowid, $r['recordID']);
+    	echo $r['recordID'] . '<br />';	
+		}
+	}
+	
 }

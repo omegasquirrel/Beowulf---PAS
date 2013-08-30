@@ -210,6 +210,7 @@ class Flickr_PhotosController
 	$paginator->setCurrentPageNumber($page)
 		->setPageRange(10)
 		->setCache($this->_cache);
+	$paginator->setItemCountPerPage(20);
 	$this->view->paginator = $paginator;
 	$this->view->photos = $flickr;
 	}

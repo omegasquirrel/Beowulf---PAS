@@ -4,7 +4,7 @@
     <?php if(isset($this->thumbnail)):?>
     
      <?php
-        $path = '/home/beowulf/public_html/images/thumbnails/';
+        $path = '/var/www/beowulf/public_html/images/thumbnails/';
         $ext = '.jpg';
         $file = $path . $this->thumbnail . $ext;
         if(file_exists($file)){

@@ -401,4 +401,27 @@ class Findspots extends Pas_Db_Table_Abstract {
 		$district = $districts->getDistrictUpdate( $county, $parish);
 		return $district[0]['district'];
 	}
+	
+	public function incorrectSource($limit = 1){
+	$findspots = $this->getAdapter();
+	$select = $findspots->select()
+			->from($this->_name)
+		   ->joinLeft('finds','finds.secuid = findspots.findID',array('recordID' => 'id'))
+		   ->where('gridrefsrc = ?', 4)
+		   ->where('created <= ?', '2003-04-01')
+			->limit($limit);
+	return $findspots->fetchAll($select);	
+	}
+	
+	public function missingElevation($limit = 1){
+	$findspots = $this->getAdapter();
+	$select = $findspots->select()
+			->from($this->_name)
+		   ->joinLeft('finds','finds.secuid = findspots.findID',array('recordID' => 'id'))
+		   ->where('declong IS NOT NULL')
+		   ->where('elevation IS NULL')
+			->limit($limit);
+	return $findspots->fetchAll($select);	
+	}
+	
 }

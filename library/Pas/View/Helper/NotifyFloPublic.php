@@ -48,7 +48,7 @@ class Pas_View_Helper_NotifyFloPublic
 	 *
 	 * @param int $id
 	 */
-	private function _buildHtml($id){
+	private function _buildHtml($id) {		
 		$html = '<div>';
 		$html .= '<p><a class="btn btn-large btn-info" href ="';
 		$html .= $this->view->serverUrl() . '/database/artefacts/notifyflo/id/' . $id;

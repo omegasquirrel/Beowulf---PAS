@@ -54,69 +54,6 @@ class Slides extends Pas_Db_Table_Abstract {
 	return  $thumbs->fetchAll($select);
 	}
 
-	/** Get last 10 thumbnails
-	* @param integer $limit
-	* @return array
-	*/
-	public function getLast10Thumbnails($limit=NULL) {
-	if (!$data = $this->_cache->load('frontimagesdb'.$this->getRole())){
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name,array('thumbnail'  => 'slides.imageID','created','label','f' => 'filename'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id', array('objecttype','id','old_findID','broadperiod'))
-		->joinLeft('users','users.id = slides.createdBy', array('imagedir','username'))
-		->order('slides.created DESC')
-		->limit($limit);
-	$data =   $thumbs->fetchAll($select);
-	$this->_cache->save($data, 'frontimagesdb'.$this->getRole());
-	}
-	return $data;
-	}
-
-	/** Get last 12 thumbnails for a staff member
-	* @param integer $limit
-	* @param integer $id
-	* @return array
-	* @todo add caching
-	*/
-	public function getLast12ThumbnailsFlo($limit=NULL,$id = NULL) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->distinct()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('objecttype','id','old_findID'))
-		->joinLeft('staff','staff.dbaseID = finds.createdBy',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->order($this->_name.'.imageID DESC')
-		->where('staff.id = ?', (int)$id)
-		->where('finds.id IS NOT NULL')
-		->limit($limit);
-	return  $thumbs->fetchAll($select);
-	}
-
-
-	/** Get last 12 thumbnails for a rally
-	* @param integer $limit
-	* @param integer $id
-	* @return array
-	* @todo add caching
-	*/
-	public function getLast12ThumbnailsRally($limit=NULL,$id = NULL) {
-		$thumbs = $this->getAdapter();
-		$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('objecttype','id','old_findID'))
-		->joinLeft('staff','staff.dbaseID = finds.createdBy',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->order($this->_name.'.imageID DESC')
-		->where('finds.rallyID = ?', (int)$id)
-		->where('finds.id IS NOT NULL')
-		->limit($limit);
-	return  $thumbs->fetchAll($select);
-	}
 
 	/** Get specific thumbnails
 	* @param integer $id
@@ -134,132 +71,6 @@ class Slides extends Pas_Db_Table_Abstract {
 	return  $thumbs->fetchAll($select);
 	}
 
-	/** Get coin examples
-	* @param integer $limit
-	* @param integer $rulerID
-	* @return array
-	* @todo add caching
-	*/
-	public function getExamplesCoins($rulerID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->where('coins.ruler_id = ?', (int)$rulerID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
-
-	/** Get a user's images paginated
-	* @param integer $id
-	* @param array $params
-	* @return array
-	* @todo add caching
-	*/
-	public function getMyImagesUser($id,$params) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id')
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'))
-		->joinLeft('users','users.id = slides.createdBy', array('imagedir'))
-		->where($this->_name . '.createdBy = ?', (int)$id)
-	->order($this->_name . '.created DESC');
-	$rowCount = $thumbs->select()->from($this->_name);
-	$rowCount->reset( Zend_Db_Select::COLUMNS )
-		->columns( new Zend_Db_Expr( 'COUNT(*) AS ' .
-	Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN ));
-	if(isset($params['old_findID']) && ($params['old_findID'] != "")) {
-	$findID = strip_tags($params['old_findID']);
-	$select->where('finds.old_findID = ?', (string)$findID);
-	$rowCount->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array())
-		->where('finds.old_findID = ?', (string)$findID);
-	}
-	if(isset($params['broadperiod']) && ($params['broadperiod'] != "")) {
-	$broadperiod = strip_tags($params['broadperiod']);
-	$select->where('slides.period = ?', (string)$broadperiod);
-	$rowCount->where('slides.period = ?', (string)$broadperiod);
-	}
-	if(isset($params['label']) && ($params['label'] != "")) {
-	$label = strip_tags($params['label']);
-	$select->where('slides.label = ?', (string)$label);
-	$rowCount->where('slides.label = ?', (string)$label);
-	}
-	if(isset($params['county']) && ($params['county'] != "")) {
-	$county = strip_tags($params['county']);
-	$select->where('slides.county = ?', (string)$county);
-	$rowCount->where('slides.county = ?', (string)$county);
-	}
-	$paginator = Zend_Paginator::factory($select);
-	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']);
-	}
-	$paginator->setItemCountPerPage(40)
-		->setPageRange(10);
-	return $paginator;
-	}
-
-	/** Get all images
-	* @param array $params
-	* @param integer $id
-	* @return array
-	* @todo add caching
-	*/
-	public function getAllImages($params) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','secuid'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id', array('id','old_findID','broadperiod'))
-		->joinLeft('users','users.id = slides.createdBy', array('imagedir'))
-		->joinLeft('findspots','finds.secuid = findspots.findID', array('county'));
-	$rowCount = $thumbs->select()->from($this->_name);
-	$rowCount->reset( Zend_Db_Select::COLUMNS )
-		->columns( new Zend_Db_Expr( 'COUNT(*) AS '. Zend_Paginator_Adapter_DbSelect::ROW_COUNT_COLUMN ));
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > 2');
-	}
-	if(isset($params['old_findID']) && ($params['old_findID'] != ""))  {
-	$findID = strip_tags($params['old_findID']);
-	$select->where('finds.old_findID = ?', $findID);
-	$rowCount->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array())
-		->where('finds.old_findID = ?', $findID);
-	}
-	if(isset($params['broadperiod']) && ($params['broadperiod'] != "")) {
-	$broadperiod = strip_tags($params['broadperiod']);
-	$select->where('slides.period = ?', $broadperiod);
-	$rowCount->where('slides.period = ?', $broadperiod);
-	}
-	if(isset($params['label']) && ($params['label'] != "")) {
-	$label = strip_tags($params['label']);
-	$select->where('slides.label LIKE ?', (string)'%'.$label . '%');
-	$rowCount->where('slides.label LIKE ?',(string)'%'.$label . '%');
-	}
-	if(isset($params['county']) && ($params['county'] != "")) {
-	$county = strip_tags($params['county']);
-	$select->where('slides.county = ?', (string)$county);
-	$rowCount->where('slides.county = ?', (string)$county);
-	}
-	$paginator = Zend_Paginator::factory($select);
-	$paginator->getAdapter()->setRowCount($rowCount);
-	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']);
-	}
-	$paginator->setItemCountPerPage(40)
-		->setPageRange(10);
-	return $paginator;
-	}
 
 	/** Get a specific image
 	* @param integer $id
@@ -310,30 +121,6 @@ class Slides extends Pas_Db_Table_Abstract {
 	return  $thumbs->fetchAll($select);
 	}
 
-	/** Get last 10 finds for a specific object type
-	* @param string $term
-	* @param integer $limit
-	* @return array
-	* @todo add caching
-	*/
-	public function getLast10ThumbnailsToObjectType($term,$limit=NULL){
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','created','f' => 'filename','i' => 'imageID','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id', array('objecttype','id','old_findID'))
-		->joinLeft('users','users.id = slides.createdBy', array('username', 'imagedir'))
-		->order($this->_name.'.imageID DESC')
-		->where('finds.objecttype = ?',(string)$term)
-		->where('finds.id IS NOT NULL')
-		->group('finds.id')
-		->limit($limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage NOT IN ( 1, 2 )');
-	}
-	return  $thumbs->fetchAll($select);
-	}
-
 	/** Get the filename for an image number
 	* @param integer $id
 	* @return array
@@ -365,242 +152,16 @@ class Slides extends Pas_Db_Table_Abstract {
 	return  $thumbs->fetchAll($select);
 	}
 
-	/** Get example images for a coin period
-	* @param integer $limit
-	* @param string $period
-	* @return array
-	*/
-	public function getExamplesCoinsPeriod($period,$limit) {
-	if (!$data = $this->_cache->load('coinsperiod'.str_replace(' ','',$period) . $this->getRole())) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name,array('thumbnail'  => 'slides.imageID','created','label','f' => 'filename'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id', array('objecttype','id','old_findID','broadperiod'))
-		->joinLeft('users','users.id = slides.createdBy', array('imagedir','username'))
-		->where('finds.broadperiod = ?', (string)$period)
-		->where('finds.objecttype = ?', (string)'coin')
-		->group('finds.id')
-		->order('slides.created DESC')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	$data =  $thumbs->fetchAll($select);
-	$this->_cache->save($data, 'coinsperiod' . str_replace(' ','',$period) . $this->getRole());
-	}
-	return $data;
-	}
-
-	/** Get example images for a tribe
-	* @param integer $limit
-	* @param integer $tribeID
-	* @return array
-	*/
-	public function getExamplesCoinsTribes($tribeID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','broadperiod','objecttype'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->where('coins.tribe = ?', (int)$tribeID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
 
-	/** Get example images for a denomination
-	* @param integer $limit
-	* @param integer $denomID
-	* @return array
-	*/
-	public function getExamplesCoinsDenominations($denomID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id', array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id', array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->where('coins.denomination = ?', (int)$denomID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
-	/** Get example images for a mint
-	* @param integer $limit
-	* @param integer $mintID
-	* @return array
-	*/
-	public function getExamplesCoinsMints($mintID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->where('coins.mint_id = ?', (int)$mintID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
-	/** Get example images for an emperor
-	* @param integer $limit
-	* @param integer $emperorID
-	* @return array
-	*/
-	public function getExamplesCoinsEmperors($emperorID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->joinLeft('emperors','emperors.pasID = coins.ruler_id',array())
-		->where('emperors.id = ?', (int)$emperorID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
-	/** Get example images for a reece period
-	* @param integer $limit
-	* @param integer $reeceID
-	* @return array
-	*/
-	public function getExamplesCoinsReeces($reeceID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->where('coins.reeceID = ?', (int)$reeceID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
-	/** Get example images for a medieval type
-	* @param integer $limit
-	* @param integer $typeID
-	* @return array
-	*/
-	public function getExamplesCoinsMedTypes($typeID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->where('coins.typeID = ?', (int)$typeID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
-	/** Get example images for a reverse type
-	* @param integer $limit
-	* @param integer $typeID
-	* @return array
-	*/
-	public function getExamplesCoinsReverseTypes($typeID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->where('coins.revtypeID = ?', (int)$typeID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
-	/** Get example images for a moneyer
-	* @param integer $limit
-	* @param integer $moneyerID
-	* @return array
-	*/
-	public function getExamplesCoinsMoneyers($moneyerID,$limit) {
-	$thumbs = $this->getAdapter();
-	$select = $thumbs->select()
-		->from($this->_name, array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('coins','coins.findID = finds.secuid',array())
-		->joinLeft('users','users.id = slides.createdBy',array('username'))
-		->where('coins.moneyer = ?', (int)$moneyerID)
-		->order('finds.id DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-	if(in_array($this->getRole(),$this->_restricted)) {
-	$select->where('finds.secwfstage > ?',(int)2);
-	}
-	return  $thumbs->fetchAll($select);
-	}
 
-	/** Get most recent finds
-	* @param integer $limit
-	* @param integer $username
-	* @return array
-	*/
-	public function recentFinds($username,$limit = 4) {
-	if (!$data = $this->_cache->load(md5($username))) {
-	$users = $this->getAdapter();
-	$select = $users->select()
-		->from($this->_name,array('thumbnail'  => 'slides.imageID','f' => 'filename','label'))
-		->joinLeft('finds_images','slides.secuid = finds_images.image_id',array())
-		->joinLeft('finds','finds.secuid = finds_images.find_id',array('id','old_findID','objecttype','broadperiod'))
-		->joinLeft('users','users.id = finds.createdBy',array('username'))
-		->where('users.username = ?', $username)
-		->where('finds.secwfstage > 2')
-		->order($this->_primary . ' DESC')
-		->group('finds.id')
-		->limit((int)$limit);
-    $data =  $users->fetchAll($select);
-	$this->_cache->save($data, md5($username));
-	}
-	return $data;
-	}
+
 
 	public function getSolrData($id){
 	$slides = $this->getAdapter();
@@ -623,6 +184,101 @@ class Slides extends Pas_Db_Table_Abstract {
 		'license' => 'flickrID'))
 		->where('slides.imageID = ?',(int)$id);
 	return $slides->fetchAll($select);
+	}
+	
+	public function add( $data ) {
+		
+	}
+	
+	public function updateAndProcess($data, $where){
+		if(isset($data['rotate'])){
+			
+		}
+		
+		if(isset($data['regenerate'])){
+			
+		}
+		
+	$rotate = $form->getValue('rotate');
+	$filename = $form->getValue('filename');
+	$imagedir = $form->getValue('imagedir');
+	$regenerate = $form->getValue('regenerate');
+	$path = './'.$imagedir.$filename;
+	$largepath = './'.$imagedir;
+	$mediumpath = './'.$imagedir.'medium/';
+	$smallpath = './'.$imagedir.'small/';
+	$displaypath = './'.$imagedir.'display/';
+	$thumbpath = self::PATH . 'thumbnails/';
+	$id = $this->_getParam('id');
+	$name = substr($filename, 0, strrpos($filename, '.'));
+	$ext = '.jpg';
+	if(isset($rotate)) {
+	//rotate original
+	$phMagickOriginal= new phMagick($largepath.$filename, $largepath.$filename);
+	$phMagickOriginal->rotate($rotate);
+	//rotate image for medium
+	if(file_exists($mediumpath.$name.$ext)) {
+	$phMagickMedium = new phMagick($mediumpath.$name.$ext, $mediumpath.$name.$ext);
+	$phMagickMedium->rotate($rotate);
+//	Zend_Debug::dump($phMagickMedium);
+
+	} else {
+	$phMagickMediumCreate = new phMagick($largepath.$filename, $mediumpath.$name.$ext);
+    $phMagickMediumCreate->resize(500,0);
+    $phMagickMediumCreate->rotate($rotate);
+	$phMagickMediumCreate->convert();
+//	Zend_Debug::dump($phMagickMediumCreate);
+
+	}
+	//rotate small image
+	if(file_exists($smallpath.$name.$ext)) {
+	$phMagickSmall = new phMagick($smallpath.$name.$ext, $smallpath.$name.$ext);
+	$phMagickSmall->rotate($rotate);
+	//Zend_Debug::dump($phMagickSmall);
+
+	} else {
+	$phMagickSmallCreate = new phMagick($largepath.$filename, $smallpath.$name.$ext);
+    $phMagickSmallCreate->resize(40,0);
+    $phMagickSmallCreate->rotate($rotate);
+	$phMagickSmallCreate->convert();
+	//Zend_Debug::dump($phMagickSmallCreate);
+
+	}
+	//rotate display image
+	if(file_exists($displaypath.$name.$ext)) {
+	$phMagickDisplay = new phMagick($displaypath.$name.$ext, $displaypath.$name.$ext);
+	$phMagickDisplay->rotate($rotate);
+//	Zend_Debug::dump($phMagickDisplay);
+
+	} else {
+	$phMagickDisplayCreate = new phMagick($largepath.$name.$ext, $displaypath.$name.$ext);
+    $phMagickDisplayCreate->resize(0,150);
+    $phMagickDisplayCreate->rotate($rotate);
+	$phMagickDisplayCreate->convert();
+	//Zend_Debug::dump($phMagickDisplayCreate);
+	}
+	//rotate thumbnail
+	if(file_exists($thumbpath.$id.'.jpg')) {
+	$phMagickThumb = new phMagick($thumbpath.$id.'.jpg', $thumbpath.$id.'.jpg');
+	$phMagickThumb->rotate($rotate);
+	//Zend_Debug::dump($phMagickThumb);
+	} else {
+	$thumbpath = self::PATH . 'thumbnails/';
+	$originalpath = $path;
+	$phMagickRegen = new phMagick($originalpath, $thumbpath.$id.'.jpg');
+	$phMagickRegen->resize(100,0);
+	$phMagickRegen->convert();
+
+	}
+	}
+
+	if(isset($regenerate)) {
+	$thumbpath = self::PATH . 'thumbnails/';
+	$originalpath = $path;
+	$phMagickRegen = new phMagick($originalpath, $thumbpath.$id.'.jpg');
+	$phMagickRegen->resize(100,0);
+	$phMagickRegen->convert();
+	}
 	}
 
 }

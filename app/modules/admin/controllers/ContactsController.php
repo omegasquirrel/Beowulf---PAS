@@ -163,13 +163,9 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	'updatedBy' => $this->getIdentityForForms(),
 	'latitude' => $lat,
 	'longitude' => $lon,
-	'woeid' => $woeid);
+	'woeid' => $woeid
+	);
 
-	foreach ($updateData as $key => $value) {
-	      if (is_null($value) || $value=="") {
-	        unset($updateData[$key]);
-	      }
-	    }
 	$contacts = new Contacts();
 	$where = array();
 	$where[] = $contacts->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));

@@ -611,7 +611,7 @@
 	<field name="reverse" type="int" indexed="true" stored="true" />
 	<field name="reverseType" type="text" indexed="true" stored="true" />
 	<field name="status" type="int" indexed="true" stored="true" />
-	<field name="statusTerm" type="int" indexed="true" stored="true" />
+	<field name="statusTerm" type="string" indexed="true" stored="true" />
 	
 	<!--  Image specific fields  -->
 	<field name="filename" type="string" indexed="true" stored="true" />
@@ -620,8 +620,6 @@
 	<field name="imageCopyright" type="string" indexed="true" stored="true" />
 	
 	<!--  Linked data identifiers -->
-	<field name="primaryMaterialBM" type="int" indexed="true" stored="true" />
-	<field name="secondaryMaterialBM" type="int" indexed="true" stored="true" />
 	<field name="bmCultureID" type="int" indexed="true" stored="true" />
        
 	<!--  Person specific details -->
@@ -643,7 +641,6 @@
 	<field name="denominationNomisma" type="string" indexed="true" stored="true" />
 	<field name="moneyerDbpedia" type="string" indexed="true" stored="true" />
 	<field name="moneyerViaf" type="int" indexed="true" stored="true" />
-	<field name="moneyerDbpedia" type="string" indexed="true" stored="true" />
 	<field name="moneyerBM" type="int" indexed="true" stored="true" />
 	<field name="bmTribeID" type="int" indexed="true" stored="true" />
 	<field name="nomismaMintID" type="string" indexed="true" stored="true" />
@@ -668,12 +665,6 @@
 	<field name="geonamesID" type="int" indexed="true" stored="true" />
 	
 	<!--  Period linked data -->
-	<field name="periodFromEH" type="int" indexed="true" stored="true" />
-	<field name="periodFromBM" type="int" indexed="true" stored="true" />
-	<field name="periodToEH" type="int" indexed="true" stored="true" />
-	<field name="periodToBM" type="int" indexed="true" stored="true" />
-	<field name="broadperiodEH" type="int" indexed="true" stored="true" />
-	<field name="broadperiodBM" type="int" indexed="true" stored="true" />
 	
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->

@@ -62,17 +62,15 @@ class Database_FindspotsController
 	$this->_helper->findspotFormOptions();
     }
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
     $updateData = $form->getValues();
     $updateData['findID'] = $this->_getParam('secuid');
     $updateData['institution'] = $this->_helper->identity->getPerson()->institution;
     $this->_findspots->addAndProcess($updateData);
-    $this->_helper->solrUpdater->update('objects', $returnID);
+    $this->_helper->solrUpdater->update('beowulf', $returnID);
     $this->_redirect(self::REDIRECT . 'record/id/' . $returnID);
     $this->_flashMessenger->addMessage('A new findspot has been created.');
     } else {
     $form->populate($form->getValues());
-    }
     }
     } else {
     throw new Pas_Exception_Param($this->_missingParameter);
@@ -89,7 +87,6 @@ class Database_FindspotsController
     $this->view->form = $form;
     if($this->getRequest()->isPost() 
             && $form->isValid($this->_request->getPost())){
-    if ($form->isValid($form->getValues())) {
     $updateData = $form->getValues();
     $oldData = $this->_findspots->fetchRow('id=' 
             . $this->_getParam('id'))->toArray();
@@ -101,22 +98,10 @@ class Database_FindspotsController
     $returnID = (int)$this->_findspots->getFindNumber($this->_getParam('id'));
     $this->_helper->audit($insertData, $oldData, 'FindSpotsAudit',
     $this->_getParam('id'), $returnID);
-    $this->_helper->solrUpdater->update('objects', $returnID);
+    $this->_helper->solrUpdater->update('beowulf', $returnID);
     $this->_flashMessenger->addMessage('Findspot updated!');
     $this->_redirect(self::REDIRECT . 'record/id/' . $returnID);
-    } else {
-    $id = (int)$this->_request->getParam('id', 0);
-    if ($id > 0) {
-    $where = array();
-    $where[] = $this->_findspots->getAdapter()->quoteInto('id = ?', 
-             $this->_getParam('id'));
-    $findspot = $this->_findspots->fetchRow($where);
-    $this->view->findspot = $findspot;
-	$fill = new Pas_Form_Findspot();
-	$fill->populate($findspot->toArray());
-
-    }
-    }
+  
     } else {
     $id = (int)$this->_getParam('id', 0);
     if ($id > 0) {
@@ -126,7 +111,6 @@ class Database_FindspotsController
         $this->view->findspot = $findspot;
 	$fill = new Pas_Form_Findspot();
 	$fill->populate($findspot->toArray());
-
     }
     }
     } else {
@@ -146,7 +130,7 @@ class Database_FindspotsController
     if ($del == 'Yes' && $id > 0) {
     $where = 'id = ' . $id;
     $this->_findspots->delete($where);
-	$this->_helper->solrUpdater->update('objects', $findID);
+	$this->_helper->solrUpdater->update('beowulf', $findID);
     $this->_flashMessenger->addMessage('Findspot deleted.');
     }
     $this->_redirect(self::REDIRECT . 'record/id/' . $findID);

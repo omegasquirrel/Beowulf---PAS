@@ -48,6 +48,7 @@ class Pas_View_Helper_FlickrTotalViews extends Zend_View_Helper_Abstract {
 	public function buildHtml($flickr){
 	$html = '<h3>Photo Statistics</h3>';
 	$html .= '<p>';
+	if(array_key_exists('stats' , $flickr)){
 	$stats = array();
 	foreach($flickr->stats as $k => $v) {
 		if($v->views > 0){
@@ -55,6 +56,9 @@ class Pas_View_Helper_FlickrTotalViews extends Zend_View_Helper_Abstract {
 		}
 	}
 	$html .= implode(' | ', $stats);
+	} else {
+		$html .= $flickr->message;
+	}
 	$html .= '</p>';
 	echo $html;
 	}

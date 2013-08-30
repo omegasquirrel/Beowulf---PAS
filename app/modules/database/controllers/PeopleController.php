@@ -44,43 +44,25 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $search->setFields(array('*')
     );
     $search->setFacets(array('county','organisation','activity'));
-
-
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())
             && !is_null($this->_getParam('submit'))){
-
-    if ($form->isValid($form->getValues())) {
     $params = $this->array_cleanup($form->getValues());
-
     $this->_helper->Redirector->gotoSimple('index','people','database',$params);
     } else {
-    $form->populate($form->getValues());
-    $params = $form->getValues();
-    }
-    } else {
-
     $params = $this->_getAllParams();
     $params['sort'] = 'surname';
     $params['direction'] = 'asc';
     $form->populate($this->_getAllParams());
-
-
     }
-
     if(!isset($params['q']) || $params['q'] == ''){
         $params['q'] = '*';
     }
-
     $search->setParams($params);
     $search->execute();
-
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
     $this->view->facets = $search->_processFacets();
-
     }
-
-
 
 
     private function array_cleanup( $array ) {
@@ -103,12 +85,8 @@ class Database_PeopleController extends Pas_Controller_Action_Admin {
     $person = $this->_peoples->getPersonDetails($this->_getParam('id'));
     if($this->_helper->contextSwitch()->getCurrentContext !== 'vcf'){
     $search = new Pas_Solr_Handler('objects');
-    $search->setFields(array(
-    	'id', 'identifier', 'objecttype',
-    	'title', 'broadperiod','imagedir',
-    	'filename','thumbnail','old_findID',
-    	'description', 'county', 'workflow')
-    );
+    $fields = new Pas_Solr_FieldGeneratorFinds($this->_helper->contextSwitch()->getCurrentContext);
+    $search->setFields($fields->getFields());
     $params['finderID'] = $person['0']['secuid'];
     $params['page'] = $this->_getParam('page');
     $search->setParams($params);
