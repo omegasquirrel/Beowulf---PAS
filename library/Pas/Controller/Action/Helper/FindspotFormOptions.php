@@ -49,32 +49,32 @@ class Pas_Controller_Action_Helper_FindspotFormOptions
     $this->_view->form->populate($data);
     Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')
     	->addMessage('Your last record data has been cloned');
-    if(!is_null($data['county'])) {
+    if(array_key_exists('county', $data)) {
     $districts = new Places();
     $district = $districts->getDistrictList($data['county']);
     if($district) {
-    $this->_view->form->district->addMultiOptions(array(NULL => 'Choose district',
+    $this->_view->form->districtID->addMultiOptions(array(NULL => 'Choose district',
     	'Available districts' => $district));
     }
-    if(!is_null($data['district'])) {
+    if(array_key_exists('district', $data)) {
     $parishes = $districts->getParishList($data['district']);
-    $this->_view->form->parish->addMultiOptions(array(NULL => 'Choose parish',
+    $this->_view->form->parishID->addMultiOptions(array(NULL => 'Choose parish',
     	'Available parishes' => $parishes));
     }
-     if(!is_null($data['county'])) {
+     if(array_key_exists('county' , $data)) {
     $cnts = new Counties();
     $region_list = $cnts->getRegionsList($data['county']);
     $this->_view->form->regionID->addMultiOptions(array(NULL => 'Choose region',
     	'Available regions' => $region_list));
     }
     }
-     if(!is_null($data['landusevalue'])) {
+     if(array_key_exists('landusevalue', $data)) {
     $landcodes = new Landuses();
     $landusecode_options = $landcodes->getLandusesChildList($data['landusevalue']);
     $this->_view->form->landusecode->addMultiOptions(array(NULL => 'Choose code',
     	'Available landuses' => $landusecode_options));
      }
-    if(!is_null($findspot['landowner'])) {
+    if(array_key_exists('landowner', $data)) {
     $finders = new Peoples();
     $finders = $finders->getName($findspot['landowner']);
     foreach($finders as $finder) {

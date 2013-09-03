@@ -47,12 +47,12 @@ class Pas_Form_Findspot {
     $districts = new Places();
     $district = $districts->getDistrictList($data['county']);
     if($district) {
-    $this->_view->form->district->addMultiOptions(array(NULL => 'Choose district',
+    $this->_view->form->districtID->addMultiOptions(array(NULL => 'Choose district',
     	'Available districts' => $district));
     }
     if(!is_null($data['district'])) {
     $parishes = $districts->getParishList($data['district']);
-    $this->_view->form->parish->addMultiOptions(array(NULL => 'Choose parish',
+    $this->_view->form->parishID->addMultiOptions(array(NULL => 'Choose parish',
     	'Available parishes' => $parishes));
     }
      if(!is_null($data['county'])) {

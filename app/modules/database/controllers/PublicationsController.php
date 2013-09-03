@@ -35,7 +35,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
         $this->view->form = $form;
 
         $params = $this->array_cleanup($this->_getAllParams());
-        $search = new Pas_Solr_Handler('publications');
+        $search = new Pas_Solr_Handler('beopublications');
         $search->setFields(array(
     	'*')
         );
@@ -46,7 +46,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 
         if ($form->isValid($form->getValues())) {
         $params = $this->array_cleanup($form->getValues());
-		
+
         $this->_helper->Redirector->gotoSimple('index','publications','database',$params);
         } else {
         $form->populate($form->getValues());
@@ -110,7 +110,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	$insertData['secuid'] = $secuid;
 	$publications = new Publications();
 	$insert = $publications->add($insertData);
-	$this->_helper->solrUpdater->update('publications', $insert);
+	$this->_helper->solrUpdater->update('beopublications', $insert);
 	$this->_redirect(self::REDIRECT . 'publication/id/' . $insert);
 	$this->_flashMessenger->addMessage('A new reference work has been created on the system!');
 	} else {
@@ -132,7 +132,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	$publications = new Publications();
 	$where =  $publications->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$update = $publications->update($updateData,$where);
-	$this->_helper->solrUpdater->update('publications', $this->_getParam('id'));
+	$this->_helper->solrUpdater->update('beopublications', $this->_getParam('id'));
 	$this->_flashMessenger->addMessage('Details for "' . $form->getValue('title') . '" updated!');
 	$this->_redirect(self::REDIRECT . 'publication/id/' . $this->_getParam('id'));
 	} else {
@@ -160,7 +160,7 @@ class Database_PublicationsController extends Pas_Controller_Action_Admin {
 	$where =  $publications->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
 	$this->_flashMessenger->addMessage('Record deleted!');
 	$publications->delete($where);
-	$this->_helper->solrUpdater->deleteById('publications', $id);
+	$this->_helper->solrUpdater->deleteById('beopublications', $id);
 	}
 	$this->_redirect(self::REDIRECT);
 	} else {

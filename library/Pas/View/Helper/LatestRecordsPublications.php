@@ -26,13 +26,18 @@ class Pas_View_Helper_LatestRecordsPublications extends Zend_View_Helper_Abstrac
 		$this->_cache = Zend_Registry::get('rulercache');
 		$this->_config = Zend_Registry::get('config');
 		$this->_solrConfig = $this->_config->solr->toArray();
-		$this->_solrConfig['core'] = 'bibliography';
+		$this->_solrConfig['core'] = 'beobiblio';
    		$this->_solr = new Solarium_Client(array('adapteroptions' => ($this->_solrConfig)));
 	}
 
 	public function getRole(){
 	$user = new Pas_User_Details();
-	return $user->getPerson()->role;
+	if($user->getPerson()){
+	$role = $user->getPerson()->role;
+	} else {
+		$role = NULL;
+	} 
+	return $role;
 	}
 	/**
 	 *
@@ -77,7 +82,7 @@ class Pas_View_Helper_LatestRecordsPublications extends Zend_View_Helper_Abstrac
 
 
 	public function buildHtml($data){
-	if($data['images']) {
+	if(array_key_exists( 'images', $data)) {
 	$html = '<h3>Referenced finds recorded with images</h3>';
 	$html .= '<p>We have recorded ' . $data['numberFound'] . ' examples.</p>';
 	$html .= '<div id="latest">';

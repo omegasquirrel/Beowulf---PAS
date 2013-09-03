@@ -80,8 +80,8 @@ class AdvancedSearchForm extends Pas_Form {
 	$county_options = $counties->getCountiesID();
 
 	//Get regions list
-	$regions = new Regions();
-	$region_options = $regions->getRegionName();
+	$regions = new OsRegions();
+	$region_options = $regions->getRegionsID();
 
 	//Set up year of discovery dropdown
 	$current_year = date('Y');
@@ -337,7 +337,7 @@ class AdvancedSearchForm extends Pas_Form {
 	->setAttribs(array('class' => 'span4 selectpicker show-menu-arrow'));
             
 
-	$county = new Zend_Form_Element_Select('county');
+	$county = new Zend_Form_Element_Select('countyID');
 	$county->setLabel('County: ')
 	->addValidators(array('NotEmpty'))
 	->addFilters(array('StringTrim','StripTags'))
@@ -347,7 +347,7 @@ class AdvancedSearchForm extends Pas_Form {
 	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
             
 
-	$district = new Zend_Form_Element_Select('district');
+	$district = new Zend_Form_Element_Select('districtID');
 	$district->setLabel('District: ')
 	->addMultiOptions(array(NULL => 'Choose district after county'))
 	->setRegisterInArrayValidator(false)
@@ -355,7 +355,7 @@ class AdvancedSearchForm extends Pas_Form {
 	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 	
 
-	$parish = new Zend_Form_Element_Select('parish');
+	$parish = new Zend_Form_Element_Select('parishID');
 	$parish->setLabel('Parish: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StringTrim','StripTags'))
@@ -518,8 +518,8 @@ class AdvancedSearchForm extends Pas_Form {
 	$this->Temporaldetails->setLegend('Dates and periods: ');
 
 	$this->addDisplayGroup(array(
-	'county', 'regionID', 'district',
-	'parish', 'fourFigure', 'elevation',
+	'countyID', 'regionID', 'districtID',
+	'parishID', 'fourFigure', 'elevation',
 	'woeid'), 'Spatial');
 
 

@@ -126,7 +126,7 @@ $counties = new Counties();
 	'type'),'details');
 
 
-	$this->addDisplayGroup(array('submit'), 'submit')->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('submit'), 'buttons')->removeDecorator('HtmlTag');
 	$this->details->setLegend('Attach an image');
 
 	parent::init();

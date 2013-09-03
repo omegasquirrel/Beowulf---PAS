@@ -41,9 +41,9 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$geog = new Geography();
 	$geog_options = $geog->getIronAgeGeographyDD();
 
-	$regions = new Regions();
-	$region_options = $regions->getRegionName();
-
+	$regions = new OsRegions();
+	$region_options = $regions->getRegionsID();
+	
 	$tribes = new Tribes();
 	$tribe_options = $tribes->getTribes();
 
@@ -130,7 +130,7 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 		->addValidator('inArray', false, array(array_keys($hoard_options)))
 		->addValidator('Int');
 
-	$county = new Zend_Form_Element_Select('county');
+	$county = new Zend_Form_Element_Select('countyID');
 	$county->setLabel('County: ')
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addFilters(array('StripTags', 'StringTrim'))
@@ -138,13 +138,13 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 		'Available counties' => $county_options))
 		->addValidator('inArray', false, array(array_keys($county_options)));
 
-	$district = new Zend_Form_Element_Select('district');
+	$district = new Zend_Form_Element_Select('districtID');
 	$district->setLabel('District: ')
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose district after county'));
 
-	$parish = new Zend_Form_Element_Select('parish');
+	$parish = new Zend_Form_Element_Select('parishID');
 	$parish->setLabel('Parish: ')
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addFilters(array('StripTags', 'StringTrim'))
@@ -377,17 +377,14 @@ class IronAgeNumismaticSearchForm extends Pas_Form {
 	$this->details->setLegend('Object details: ');
 
 	$this->addDisplayGroup(array(
-	'county', 'regionID', 'district',
-	'parish', 'gridref', 'fourFigure',
+	'countyID', 'regionID', 'districtID',
+	'parishID', 'gridref', 'fourFigure',
 	'institution'),
 	'spatial');
 
 	$this->spatial->setLegend('Spatial details: ');
 
-        $this->addDisplayGroup(array('submit'), 'buttons');
-
-
-
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
 	parent::init();
 	}

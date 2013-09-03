@@ -53,7 +53,6 @@ class Pas_Exporter_ArrayToCsv {
     foreach ($nullified AS $null) {
 
  	foreach($null as $k => $v){
-
 	$record[$k] = trim(strip_tags(str_replace('<br />',array( "\n", "\r"), utf8_decode( $v ))));
         if(in_array($this->_role,$remove)){
             $record['finder'] = 'Restricted info';

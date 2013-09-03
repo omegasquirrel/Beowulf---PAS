@@ -2,8 +2,13 @@
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/romanCoinSearch.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/select2.min.js', $type='text/javascript');
-$this->headLink()->appendStylesheet($this->baseUrl() . '/css/select2.css', $type='screen');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/objectType.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/treasureID.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/otherRef.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/findSpotLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/findSpotLinkedQuery.js',$type='text/javascript');
+
 
 $this->headTitle('Perform an advanced numismatic search on the database');
 ?>

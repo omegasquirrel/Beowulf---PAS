@@ -181,10 +181,10 @@ class EarlyMedievalCoinForm extends Pas_Form {
             'reverse_description', 'reverse_inscription', 'reverse_mintmark',
             'initial_mark', 'die_axis_measurement', 'die_axis_certainty') ,
                 'details');
-	
-	$this->addDisplayGroup(array('submit'),'submit');
 
-	
+	$this->addDisplayGroup(array('submit'),'buttons');
+
+
 	parent::init();
 	}
 }

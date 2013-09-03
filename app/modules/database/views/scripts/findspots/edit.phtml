@@ -1,11 +1,10 @@
 <?php
 $this->headTitle('Edit a findspot');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/iacoinslinkedinit.js',$type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/bootstrap-typeahead.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/landowner.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/findSpotLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/findSpotLinkedQuery.js',$type='text/javascript');
 ?>
 
 
@@ -16,7 +15,7 @@ $this->FindSpotEditCheck($this->findspot->old_findspotid,$this->findspot->create
 <h2><?php echo $this->title();?></h2>
 <?php $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');?>
 
-<p><a class="btn btn-success" href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts','action' => 'record', 'id' => $id),null,false);?>" title="return to the record">Return to record</a></p>
+<p><a class="btn btn-success" href="<?php echo $this->url(array('module' => 'database','controller' => 'artefacts','action' => 'record', 'id' => $this->returnID),null,false);?>" title="return to the record">Return to record</a></p>
 
 <?php 
 echo $this->form;

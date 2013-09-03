@@ -11,7 +11,7 @@
 * @todo add caching
 */
 class OsRegions extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'osRegions';
 
 	protected $_primary = 'id';
@@ -29,14 +29,14 @@ class OsRegions extends Pas_Db_Table_Abstract {
 	return $this->getAdapter()->fetchAll($select);
 	}
 
-	/** retrieve county list again as key pairs. 
+	/** retrieve county list again as key pairs.
 	* @return array
 	* @todo not sure why duplicate of first function. Fix it!(doofus Dan).
 	*/
 	public function getRegionsID() {
 	if (!$data = $this->_cache->load('regionIDs')) {
 	$select = $this->select()
-		->from($this->_name, array('osID', 'label' => 'CONCAT(label," (",type,")")'))
+		->from($this->_name, array('osID', 'CONCAT(label," (",type,")")'))
 		->order('label');
 	$data = $this->getAdapter()->fetchPairs($select);
 	$this->_cache->save($data, 'regionIDs');
@@ -44,5 +44,5 @@ class OsRegions extends Pas_Db_Table_Abstract {
 	return $data;
 	}
 
-	
+
 }

@@ -163,27 +163,18 @@ class Flickr_PhotosController
 	}
 	$photos = array();
 	if(!is_null($flickr)){
-	$total = $flickr->total;
-	$photos = array();
-	if($flickr->photo){
-	foreach($flickr->photo as $k => $v) {
-
-	$photos[$k] = $v;
-	}
-	}
 	$this->view->tagtitle = $tags;
 	$pagination = array(
 	'page'          => $page,
-	'results' 		=> $photos,
-	'per_page'      => 20,
-  	'total_results' => (int) $total
+	'per_page'      => (int)$flickr->perpage,
+  	'total_results' => (int) $flickr->total
 	);
 	$paginator = Zend_Paginator::factory($pagination['total_results']);
 	$paginator->setCurrentPageNumber($pagination['page']) ;
 	$paginator->setPageRange(10);
 	$paginator->setItemCountPerPage(20);
 	$this->view->paginator = $paginator;
-	$this->view->pictures = $photos;
+	$this->view->pictures = $flickr;
 	}
 //	} else {
 //		throw new Pas_Exception_Param($this->_missingParameter);

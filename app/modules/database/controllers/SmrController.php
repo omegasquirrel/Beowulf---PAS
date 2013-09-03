@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying the SMRs provided by NMR EH
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -33,7 +33,7 @@ class Database_SmrController extends Pas_Controller_Action_Admin {
 
     $params = $this->_getAllParams();
 
-    $search = new Pas_Solr_Handler('geodata');
+    $search = new Pas_Solr_Handler('beogeodata');
     $search->setFields(array('*')
     );
 	$search->setFacets(array('county', 'district'));
@@ -59,7 +59,7 @@ class Database_SmrController extends Pas_Controller_Action_Admin {
 
     if(!isset($params['q']) || $params['q'] == ''){
         $params['q'] = '*';
-    } 
+    }
     $params['source'] = 'smrdata';
     $params['sort'] = 'id';
     $params['direction'] = 'asc';
@@ -67,22 +67,22 @@ class Database_SmrController extends Pas_Controller_Action_Admin {
     $search->execute();
     $this->view->paginator = $search->_createPagination();
     $this->view->results = $search->_processResults();
-	$this->view->facets = $search->_processFacets();
+    $this->view->facets = $search->_processFacets();
     }
 
 	/** Set up the one to 50k entry page
-	*/		
+	*/
 	public function oneto50kAction(){
 	if($this->_getParam('id',false)){
 	$gazetteers = new Osdata();
-	$this->view->gazetteer = $gazetteers->getGazetteer($this->_getParam('id'));	
+	$this->view->gazetteer = $gazetteers->getGazetteer($this->_getParam('id'));
 	} else {
-		throw new Pas_Exception_Param($this->_missingParameter);	
+		throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	/** Individual SMR record
-	*/	
+	*/
 	public function recordAction() {
 	if($this->_getParam('id',false)) {
 	$smrs = new ScheduledMonuments();
@@ -92,7 +92,7 @@ class Database_SmrController extends Pas_Controller_Action_Admin {
 	}
 	}
 	/** SMR by WOEID
-	*/	
+	*/
 	public function bywoeidAction() {
 	if($this->_getParam('number',false)) {
 	$this->view->woeid = $this->_getParam('number');
@@ -102,8 +102,8 @@ class Database_SmrController extends Pas_Controller_Action_Admin {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	public function mapAction(){
-		
+
 	}
 }

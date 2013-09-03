@@ -163,7 +163,7 @@ class News_GuardianController extends Pas_Controller_Action_Admin {
 	$guardian = self::GUARDIANAPI_URL.$id.'?format=' 
 	. self::FORMAT 
 	. '&show-fields=all&show-tags=all&show-factboxes=all&show-references=all&show-related=true&show-editors-picks=true&order-by=newest&api-key=' 
-	. self::GUARDIANAPI_KEY;
+	. $this->_helper->config()->webservice->guardian->apikey;
 	
 	$articles = json_decode($this->get($guardian));
 	$this->_cache->save($articles);

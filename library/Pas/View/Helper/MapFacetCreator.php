@@ -105,14 +105,14 @@ class Pas_View_Helper_MapFacetCreator extends Zend_View_Helper_Abstract {
         if(isset($request['page'])){
             unset($request['page']);
         }
-
+        if(array_key_exists($facetName, $request)){
         $facet = $request[$facetName];
         if(isset($facet)){
             unset($request[$facetName]);
             $html .= '<p><i class="icon-remove-sign"></i> <a href="' . $this->view->url($request,'default',true)
                     . '" title="Clear the facet">Clear this facet</a></p>';
         }
-
+        }
         $html .= '</div>';
         return $html;
         	}

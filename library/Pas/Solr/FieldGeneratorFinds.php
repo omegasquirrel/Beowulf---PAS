@@ -46,7 +46,7 @@ class Pas_Solr_FieldGeneratorFinds {
 		'ruler2', 'cciNumber', 'moneyerName', 
 		'moneyer', 'reeceID', 'identifier',
 		'secondaryIdentifier', 'recorder', 'denomination',
-		'pleiadesID', 'mintNomisma', 'rulerNomisma',
+		'pleiadesID', 'nomismaMintID', 'rulerNomisma',
 		'rulerDbpedia', 'secuid', 'rulerViaf',
 		'axis', 'denominationDbpedia', 'mint',
 		'fourFigureLat', 'fourFigureLon', 'material',
@@ -55,7 +55,15 @@ class Pas_Solr_FieldGeneratorFinds {
 		'allenType', 'tribe', 'mint',
 		'periodFromName', 'periodFrom', 'periodTo',
 		'periodToName', 'decstyleTerm', 'manufacture',
-		'identifierID'
+		'identifierID', 'regionID', 'parishID', 
+		'countyID', 'districtID', 'broadperiodEH',
+		'broadperiodBM', 'periodFromEH',  'periodFromBM',
+		'periodToEH', 'periodFromBM', 'districtType',
+		'parishType', 'countyType', 'mintBM', 'bmTribeID',
+		'rulerDbpedia', 'rulerViaf', 'nomismaDenominationID',
+		'bmCultureID', 'primaryMaterialBM', 'secondaryMaterialBM',
+		'bmManufacture', 'bmTreatment', 'bmPreservation',
+		'rulerBM',  'denominationBM'
 		);
 //	}
 	return $fields;

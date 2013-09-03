@@ -6,12 +6,12 @@
 * @license    GNU General Public License
 */
 class ReferenceCoinForm extends Pas_Form {
-	
+
 public function __construct($options = null) {
-	
+
 	$refs = new Coinclassifications();
 	$ref_list = $refs->getClass();
-	
+
 	parent::__construct($options);
 	$this->setName('addcoinreference');
 
@@ -35,23 +35,23 @@ public function __construct($options = null) {
 		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 		->setAttrib('size', 15);
 
-	//Submit button 
+	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(4800);
-	
+
 	$this->addElements(array(
 	$classID, $volume, $reference,
 	$submit, $hash));
 
-	
+
 	$this->addDisplayGroup(array('classID','vol_no','reference'), 'details');
-	
+
 	$this->details->setLegend('Add a new reference');
-	
-	$this->addDisplayGroup(array('submit'),'submit');
-	
+
+	$this->addDisplayGroup(array('submit'),'buttons');
+
 	parent::init();
 	}
 }

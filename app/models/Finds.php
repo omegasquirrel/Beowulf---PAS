@@ -1666,6 +1666,9 @@ class Finds extends Pas_Db_Table_Abstract {
 		'createdBy'))
 		->joinLeft('findspots','finds.secuid = findspots.findID', array(
 		'regionID',
+		'countyID',
+		'parishID',
+		'districtID',
 		'county',
 		'district',
 		'parish',

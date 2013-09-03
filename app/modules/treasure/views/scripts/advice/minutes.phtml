@@ -15,7 +15,7 @@ for publication accordingly, and you can find those available by following the l
  
  <ul>
 <?php
-    foreach (new DirectoryIterator('/home/beowulf2/public_html/documents/treasureMinutes/') as $fileInfo) {
+    foreach (new DirectoryIterator(ROOT_PATH . '/public_html/documents/treasureMinutes/') as $fileInfo) {
     if($fileInfo->isDot()) continue;
   ?>
   <li>

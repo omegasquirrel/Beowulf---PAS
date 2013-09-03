@@ -1,8 +1,12 @@
 <?php
-	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/jquery.autocomplete.pack.js',$type='text/javascript');
-	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/autocompleteinitPeople.js',$type='text/javascript');
-	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
-	$this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css');
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-typeahead.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/objectType.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/finder.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/secondaryfinder.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/primaryID.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/secondaryID.js', $type='text/javascript');
+	$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/JQuery/typeaheads/recorder.js', $type='text/javascript');
 	$this->headTitle('Edit find details');?>
 <?php $this->jQuery()->javascriptCaptureStart() ?>
 $(document).ready(function() {

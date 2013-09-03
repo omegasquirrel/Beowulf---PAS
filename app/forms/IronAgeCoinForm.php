@@ -273,7 +273,7 @@ public function __construct($options = null) {
 	'context', 'phase_date_1','phase_date_2',
 	'depositionDate'), 'details');
 
-	$this->addDisplayGroup(array('submit'),'submit');
+	$this->addDisplayGroup(array('submit'),'buttons');
 
 	parent::init();
 	}

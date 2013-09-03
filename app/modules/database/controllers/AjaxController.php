@@ -58,7 +58,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     }
     }
 
-    
+
     /** Retrieve the nearest finds to a lat lon point
      *
      */
@@ -226,7 +226,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
         $params = $this->_getAllParams();
 	$params['show'] = 2000;
 	$params['format'] = 'json';
-	$search = new Pas_Solr_Handler('objects');
+	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',
 		'longitude', 'latitude', 'county', 'woeid',
@@ -242,7 +242,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$params['show'] = 2000;
     }
 	$params['format'] = 'kml';
-	$search = new Pas_Solr_Handler('objects');
+	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',
 		'longitude', 'latitude', 'county', 'woeid',
@@ -259,7 +259,7 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $params = $this->_getAllParams();
 	$params['show'] = 15000;
 	$params['format'] = 'json';
-	$search = new Pas_Solr_Handler('objects');
+	$search = new Pas_Solr_Handler('beowulf');
 	$search->setFields(array(
 		'id','old_findID','description', 'gridref','fourFigure',
 		'longitude', 'latitude', 'county', 'woeid',
@@ -356,25 +356,25 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$search->execute();
     $this->view->results =  $search->_processResults();
 	}
-   
+
    	public function facetAction(){
-   	$search = new Pas_Solr_Handler('objects');
+   	$search = new Pas_Solr_Handler('beowulf');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
 	$search->setFacets(array(
     'objectType','county', 'broadperiod',
-    'institution', 'rulerName', 'denominationName', 
+    'institution', 'rulerName', 'denominationName',
     'mintName', 'materialTerm', 'workflow'));
 	$search->setParams($this->_getAllParams());
 	$search->execute();
     $data = array('facets' => $search->_processFacets());
 	$this->view->data = $data;
 	$this->view->facetName = $this->_getParam('facetType');
-	} 
-   
+	}
+
 	public function peoplefacetAction(){
-   	$search = new Pas_Solr_Handler('people');
+   	$search = new Pas_Solr_Handler('beopeople');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
@@ -385,16 +385,16 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $data = array('facets' => $search->_processFacets());
 	$this->view->data = $data;
 	$this->view->facetName = $this->_getParam('facetType');
-	} 
-	
-	
+	}
+
+
 	public function imagefacetAction(){
-	$search = new Pas_Solr_Handler('images');
+	$search = new Pas_Solr_Handler('beoimages');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
 	$search->setFacets(array(
-	'licenseAcronym','broadperiod','county', 
+	'licenseAcronym','broadperiod','county',
     'objecttype','institution'));
 	$search->setParams($this->_getAllParams());
 	$search->execute();
@@ -403,15 +403,15 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$this->view->facetName = $this->_getParam('facetType');
 	$this->renderScript('ajax/imagesfacet.phtml');
 	}
-	
+
 	public function myfindsfacetAction(){
-	$search = new Pas_Solr_Handler('objects');
+	$search = new Pas_Solr_Handler('beowulf');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
 	$search->setFacets(array(
     'objectType','county', 'broadperiod',
-    'institution', 'rulerName', 'denominationName', 
+    'institution', 'rulerName', 'denominationName',
     'mintName', 'materialTerm', 'workflow'));
 	$params['createdBy'] = $this->_getDetails()->id;
 	$search->setParams($params);
@@ -419,16 +419,16 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $data = array('facets' => $search->_processFacets());
 	$this->view->data = $data;
 	$this->view->facetName = $this->_getParam('facetType');
-	} 
-   
+	}
+
 	public function myinstitutionfacetAction(){
-	$search = new Pas_Solr_Handler('objects');
+	$search = new Pas_Solr_Handler('beowulf');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
 	$search->setFacets(array(
 	'objectType','county', 'broadperiod',
-    'institution', 'rulerName', 'denominationName', 
+    'institution', 'rulerName', 'denominationName',
     'mintName', 'materialTerm', 'workflow'
     )
 	);
@@ -440,19 +440,19 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
 	$this->view->facetName = $this->_getParam('facetType');
 	$this->renderScript('ajax/facet.phtml');
 	}
-	
+
 	protected function _getDetails() {
     $user = new Pas_User_Details();
     return $user->getPerson();
     }
-   
+
 	public function myimagesfacetAction(){
-   	$search = new Pas_Solr_Handler('images');
+   	$search = new Pas_Solr_Handler('beoimages');
 	$context = $this->_helper->contextSwitch->getCurrentContext();
 	$fields = new Pas_Solr_FieldGeneratorFinds($context);
 	$search->setFields($fields->getFields());
 	$search->setFacets(array(
-	'licenseAcronym','broadperiod','county', 
+	'licenseAcronym','broadperiod','county',
     'objecttype','institution'));
 	$params = $this->_getAllParams();
 	$params['createdBy'] = $this->_getDetails()->id;
@@ -461,11 +461,11 @@ class Database_AjaxController extends Pas_Controller_Action_Ajax {
     $data = array('facets' => $search->_processFacets());
 	$this->view->data = $data;
 	$this->view->facetName = $this->_getParam('facetType');
-	} 
-   
+	}
+
    public function forceindexupdateAction(){
-	$this->_helper->solrUpdater->update('objects', $this->_getParam('findID'));	
+	$this->_helper->solrUpdater->update('beowulf', $this->_getParam('findID'));
    }
-   
-  
+
+
 }

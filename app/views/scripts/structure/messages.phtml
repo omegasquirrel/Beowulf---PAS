@@ -3,9 +3,9 @@ if (!empty($this->messages[0])) :?>
 <?php
 $this->jQuery()->javascriptCaptureStart();?>
 $(document).ready(function(){
-setTimeout(function(){ 
+setTimeout(function(){
 $('#flashmessenger').fadeOut('slow'); }, 8000);
-}); 
+});
 <?php $this->jQuery()->javascriptCaptureEnd();?>
 <div class="alert alert-info" id="flashmessenger">
 <a class="close" data-dismiss="alert"><i class="icon-eject"></i></a>
@@ -15,6 +15,6 @@ $('#flashmessenger').fadeOut('slow'); }, 8000);
 </div>
 <?php endif;?>
 <div class="alert alert-danger">
-  <strong>Server outage:</strong> The Scheme's servers are scheduled to be offline on Thursday and Friday whilst new hardware is installed and a move of server farm is implemented.<br />
-  Updates can be found via our <a href="http://twitter.com/findsorguk">Twitter</a> and <a href="http://facebook.com/portableantiquitiesscheme">Facebook</a> pages.
+  <h4>Server outage:</h4><p>The Scheme's principal server had an operating system failure following the move to a new facility. This version has been hastily bought online using a new server and has some experimental features. Some images may be missing whilst the backup copies images across from Amazon's S3 service.  <strong>You will need to reset your password the first time you login</strong>
+  Updates can be found via our <a href="http://twitter.com/findsorguk">Twitter</a> and <a href="http://facebook.com/portableantiquitiesscheme">Facebook</a> pages. I apologise that this downtime lasted for so long. - Dan</p>
 </div>

@@ -55,7 +55,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
 
     $params = $this->_getAllParams();
 
-    $search = new Pas_Solr_HandlerPersonal('objects');
+    $search = new Pas_Solr_HandlerPersonal('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
@@ -100,7 +100,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $params['finderID'] = $this->_getDetails()->peopleID;
 
     $params['-createdBy'] = $this->_getDetails()->id;
-    $search = new Pas_Solr_Handler('objects');
+    $search = new Pas_Solr_Handler('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
@@ -109,7 +109,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     	'knownas', 'fourFigure','updated',
     	'created')
     );
-	
+
     $search->setFacets(array('objectType','county','broadperiod','institution'));
     $search->setParams($params);
     $search->execute();
@@ -120,14 +120,14 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
         $this->_redirect('/error/accountproblem');
     }
     }
-    
-    
+
+
     public function mapAction(){
-    $this->view->id = $this->_getDetails()->id;	
+    $this->view->id = $this->_getDetails()->id;
     }
-   
+
 	public function institutionmapAction(){
-    $this->view->inst = $this->_getDetails()->institution;	
+    $this->view->inst = $this->_getDetails()->institution;
     }
     private function array_cleanup( $array ) {
     $todelete = array('submit','action','controller','module','csrf');
@@ -150,7 +150,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
 
     $params = $this->_getAllParams();
 
-    $search = new Pas_Solr_Handler('objects');
+    $search = new Pas_Solr_Handler('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',
@@ -198,7 +198,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $form->removeElement('thumbnail');
     $this->view->form = $form;
     $params = $this->_getAllParams();
-    $search = new Pas_Solr_Handler('images');
+    $search = new Pas_Solr_Handler('beoimages');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod', 'imagedir',
@@ -243,7 +243,7 @@ class Database_MyschemeController extends Pas_Controller_Action_Admin {
     $form = new SolrForm();
     $this->view->form = $form;
     $params = $this->_getAllParams();
-    $search = new Pas_Solr_Handler('objects');
+    $search = new Pas_Solr_Handler('beowulf');
     $search->setFields(array(
     	'id', 'identifier', 'objecttype',
     	'title', 'broadperiod','imagedir',

@@ -6,7 +6,7 @@ $this->jQuery()->addJavascriptFile($this->baseUrl()
         . '/js/JQuery/autocompleteinitpeople1.js',$type='text/javascript');
 $this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
 ?>
-<h2>People registered with the Scheme</h2>
+<h2><?echo $this->title();?></h2>
 <div class="row-fluid">
 <?php echo $this->peopleToolbox();?>
 
@@ -26,25 +26,23 @@ $this->headLink()->appendStylesheet($this->baseUrl() . '/css/autocomplete.css')
 	        <th>Actions</th>
 	    </tr>
 	</thead>
-	
+
 	<tbody>
-	<?php 
-	echo $this->partialLoop('partials/database/peopleTableList.phtml', $this->results);?>
 	</tbody>
 	</table>
-	
+
 </div>
 
 		<div class="span2">
         <?php echo $this->facetCreatorPeople($this->facets); ?>
-        
+
         </div>
 <?php else :?>
 <p>There are no people registered or available to you.</p>
 <?php endif; ?>
 </div>
 <?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
-<?php 
+<?php
 $this->inlineScript()->appendFile('/js/bootstrap-modal.js', $type='text/javascript');
 $this->inlineScript()->captureStart();
 ?>
@@ -66,5 +64,5 @@ $(document).ready(function() {
     }
 });
 
-	}); 
+	});
 <?php $this->inlineScript()->captureEnd();?>

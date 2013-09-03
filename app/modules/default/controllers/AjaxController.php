@@ -38,7 +38,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function placesAction() {
 	if($this->_getParam('term',false)){
 	$districts = $this->_places->getDistrict($this->_getParam('term'));
-	} 
+	}
 	echo Zend_Json::encode($districts);
 	}
 
@@ -48,7 +48,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function parishesAction() {
 	if($this->_getParam('term',false)) {
 	$parishes = $this->_places->getParish($this->_getParam('term'));
-	} else 
+	} else
 	echo Zend_Json::encode($parishes);
 	}
 
@@ -58,7 +58,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function parishesbycountyAction() {
 	if($this->_getParam('term',false)){
 	$parishes = $this->_places->getParishByCounty($this->_getParam('term'));
-	} 
+	}
 	echo Zend_Json::encode($parishes);
 	}
 
@@ -68,7 +68,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	public function districtbyparishAction() {
 	if($this->_getParam('term',false)){
 	$parishes = $this->_places->getDistrictByParish($this->_getParam('term'));
-	} 
+	}
 	echo Zend_Json::encode($parishes);
 	}
 
@@ -79,17 +79,17 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	if($this->_getParam('term',false)){
 	$regions = new Counties;
 	$response = $regions->getRegions($this->_getParam('term'));
-	} 
+	}
 	echo  Zend_Json::encode($response);
 	}
 
 	public function landusecodesAction(){
-	if($this->_getParam('landusevalue',false)){
+	if($this->_getParam('term',false)){
 	$landcodes = new Landuses();
-	$json = $landcodes->getLandusesChildAjax2($this->_getParam('landusevalue'));
+	$json = $landcodes->getLandusesChildAjax2($this->_getParam('term'));
 	} else {
 		$json = array(null => 'You must choose a landuse first');
-	} 
+	}
 	echo  Zend_Json::encode($json);
 	}
 
@@ -458,7 +458,7 @@ class AjaxController extends Pas_Controller_Action_Ajax
 	echo Zend_Json::encode($usersjson);
 	}
 
-		
+
 	public function deleteimagelinkAction() {
 	if($this->_getParam('id',false)) {
 	$links = new FindsImages();
@@ -577,62 +577,61 @@ class AjaxController extends Pas_Controller_Action_Ajax
     $this->view->replies = $replies->fetchRow('messageID=' . $this->_getParam('id'));
     $this->_helper->viewRenderer->setNoRender(false);
     }
-    
+
 	public function osparishesbycountyAction() {
-	if($this->_getParam('county',false)){
+	if($this->_getParam('term',false)){
 	$parishes = new OsParishes();
-	$json = $parishes->getParishesToCounty($this->_getParam('county'));
+	$json = $parishes->getParishesToCounty($this->_getParam('term'));
 	} else {
 		$json = array(null => 'You must choose a county first');
 	}
 	echo Zend_Json::encode($json);
 	}
-	
+
 	public function osdistrictsbycountyAction() {
-	if($this->_getParam('county',false)){
+	if($this->_getParam('term',false)){
 	$districts = new OsDistricts();
-	$json = $districts->getDistrictsToCounty($this->_getParam('county'));
-	$json = array('' => ' Available districts: Choose to reset list') + $json;
+	$json = $districts->getDistrictsToCounty($this->_getParam('term'));
 	} else {
 		$json = array(null => 'You must choose a county first');
 	}
 	echo Zend_Json::encode($json);
 	}
-	
+
 	public function osregionsbycountyAction() {
-	if($this->_getParam('county',false)){
+	if($this->_getParam('term',false)){
 	$parishes = new OsCounties();
-	$json = $parishes->getCountyToRegion($this->_getParam('county'));
+	$json = $parishes->getCountyToRegion($this->_getParam('term'));
 	} else {
 		$json = array(null => 'You must choose a county first');
 	}
 	echo Zend_Json::encode($json);
 	}
-	
+
 	public function osparishesbydistrictAction() {
-	if($this->_getParam('district',false)){
+	if($this->_getParam('term',false)){
 	$parishes = new OsParishes();
-	$json = $parishes->getParishesToDistrict($this->_getParam('district'));
-	$json = array('' => ' Available parishes: Choose to reset list') + $json;
+	$json = $parishes->getParishesToDistrict($this->_getParam('term'));
+
 	} else {
 		$json = array(null => 'You must choose a district first');
 	}
-	echo Zend_Json::encode($json);	
+	echo Zend_Json::encode($json);
 	}
-	
+
 	public function usernamesAction() {
 	if($this->_getParam('q', false)){
 	$users = new Users();
 	$json = $users->usernames($this->_getParam('q'));
-	echo Zend_Json::encode($json);	
+	echo Zend_Json::encode($json);
 	}
 	}
-	
+
 	public function usersfullnamesAction() {
 	if($this->_getParam('q', false)){
 	$users = new Users();
 	$json = $users->userFullNames($this->_getParam('q'));
-	echo Zend_Json::encode($json);	
+	echo Zend_Json::encode($json);
 	}
 	}
 }

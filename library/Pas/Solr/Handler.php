@@ -37,7 +37,7 @@ class Pas_Solr_Handler {
     protected $_facets;
 
     protected $_allowed = array('fa','flos','admin','treasure', 'research');
-    
+
     protected $_map = false;
 
     protected $_formats = array(
@@ -57,21 +57,21 @@ class Pas_Solr_Handler {
     protected $_facetSet;
 
     protected $_query;
-    
+
     protected $_stats = false;
-    
+
     protected $_statsFields = array('quantity');
-    
+
     protected $_loadbalancer;
-    
+
     public function setStats($value){
     	return $this->_stats = $value;
     }
-    
+
     public function getStats(){
     	return $this->_stats;
     }
-    
+
     public function setStatsFields($fields){
 		if(is_array($fields)){
     	return $this->_statsFields = $fields;
@@ -79,11 +79,11 @@ class Pas_Solr_Handler {
 			return $this->_statsFields;
 		}
     }
-    
+
     public function getStatsFields(){
     	return $this->_statsFields;
     }
-    
+
     public function setMap($map){
     	return $this->_map = $map;
     }
@@ -105,15 +105,15 @@ class Pas_Solr_Handler {
     $this->_solr = new Solarium_Client($this->_solrConfig);
     $this->_solr->setAdapter('Solarium_Client_Adapter_ZendHttp');
     $loadbalancer = $this->_solr->getPlugin('loadbalancer');
-    
+
     $master = $this->_config->solr->master->toArray();
     $asgard  = $this->_config->solr->asgard->toArray();
     $valhalla = $this->_config->solr->valhalla->toArray();
-    
+
     $loadbalancer->addServer('beowulf', $master, 100);
 	$loadbalancer->addServer('asgard', $asgard, 200);
 	$loadbalancer->addServer('valhalla', $valhalla, 150);
-	
+
 	$loadbalancer->setFailoverEnabled(true);
     $this->_loadbalancer = $loadbalancer;
 	$zendHttp = $this->_solr->getAdapter()->getZendHttp();
@@ -234,20 +234,20 @@ return false;
             $this->_params = $this->filterParams($params);
     	return $this->_params;
     	}
-    	
+
     }
 
     public function filterParams($params){
     	if(array_key_exists('created', $params)){
     		$created = $params['created'];
     		$queryDateA = $created . "T00:00:00.001Z";
-    		$queryDateB = $created . "T23:59:59.99Z";	
+    		$queryDateB = $created . "T23:59:59.99Z";
     		$params['created'] = $queryDateA . ' TO ' . $queryDateB ;
     	}
      	if(array_key_exists('updated', $params)){
     		$updated = $params['updated'];
     		$queryDateA = $updated . "T00:00:00.001Z";
-    		$queryDateB = $updated . "T23:59:59.99Z";	
+    		$queryDateB = $updated . "T23:59:59.99Z";
     		$params['updated'] = $queryDateA . ' TO ' . $queryDateB ;
     	}
     	if(array_key_exists('createdBefore', $params) && array_key_exists('createdAfter', $params)){
@@ -267,7 +267,7 @@ return false;
     		$params['created'] = $queryDate . ' TO * ';
     		unset($params['createdAfter']);
     	}
-    	
+
     	if(array_key_exists('updatedBefore', $params) && array_key_exists('updatedAfter', $params)){
     		$queryDateA = $params['updatedAfter'] . "T00:00:00.001Z";
     		$queryDateB = $params['updatedBefore'] . "T23:59:59.99Z";
@@ -290,11 +290,11 @@ return false;
     			unset($params[$k]);
     		}
     	}
-   
+
     	return $params;
-    	
+
     }
-    
+
     /** Set fields to highlight
      *
      * @param array $highlights
@@ -336,7 +336,7 @@ return false;
      */
     protected function _createFilters(array $params){
     if(is_array($params)){
-    if(array_key_exists('d', $params) && array_key_exists('lon',$params) && array_key_exists('lat',$params)){	
+    if(array_key_exists('d', $params) && array_key_exists('lon',$params) && array_key_exists('lat',$params)){
     if(!is_null($params['d']) && !is_null($params['lon']) && !is_null($params['lat'])){
     $helper = $this->_query->getHelper();
     $this->_query->createFilterQuery('geo')->setQuery(
@@ -348,7 +348,7 @@ return false;
             );
     }
     }
-	
+
 	if(($this->_map === true) && !in_array($this->_getRole(), $this->_allowed) && ($this->_core === 'beowulf')){
 		$this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
 		$this->_query->createFilterQuery('hascoords')->setQuery('gridref:["" TO *]');
@@ -423,16 +423,27 @@ return false;
             }
     	$data[] = $fields;
     }
+
     if($this->_format != 'kml'){
     $processor = new Pas_Solr_SensitiveFields();
     $clean = $processor->cleanData($data, $this->_getRole(), $this->_core);
     } else {
     	$clean = $data;
     }
-    return $clean;
+    $return = array();
+    foreach($clean as $d){
+        if(array_key_exists('_version_', $d)){
+            unset($d['_version_']);
+
+        }
+        $return[] = $d;
     }
 
-    /** 
+
+    return $return;
+    }
+
+    /**
      * Process statistics for the query
      */
 	public function _processStats(){
@@ -453,7 +464,7 @@ return false;
     }
     return $data;
     }
-    
+
     /** Process the facets
      *
      * @return boolean
@@ -538,16 +549,16 @@ return false;
 		$rows = $params['show'];
         if($rows > 100){
             $rows = 100;
-        } 
+        }
     } elseif($this->_format === 'kml'){
     	if(!isset($params['show'])){
     	$rows = 1200;
     	} else {
-    	$rows = $params['show'];	
+    	$rows = $params['show'];
     	}
     } elseif($this->_format === 'pdf'){
     	$rows = 500;
-    } elseif($this->_format === 'sitemap'){ 
+    } elseif($this->_format === 'sitemap'){
     	$rows = 1000;
     } else {
         $rows = 20;
@@ -608,32 +619,32 @@ return false;
     $select['query'] = $this->_params['q'];
             unset($this->_params['q']);
     }
-    
+
     // get a select query instance based on the config
     $this->_query = $this->_solr->createSelect($select);
-    
+
     if(array_key_exists('created', $this->_params)){
     $this->_query->createFilterQuery('created')->setQuery('created:[' . $this->_params['created'] .']');
-    unset($this->_params['created']);	
+    unset($this->_params['created']);
     }
-    
+
     if(array_key_exists('updated', $this->_params)){
     $this->_query->createFilterQuery('updated')->setQuery('updated:[' . $this->_params['updated'] . ']');
-    unset($this->_params['updated']);	
+    unset($this->_params['updated']);
     }
-    
+
     if(array_key_exists('todate', $this->_params) && array_key_exists('fromdate', $this->_params)){
     $this->_query->createFilterQuery('range')->setQuery('todate:[' . $this->_params['fromdate'] .  ' TO ' . $this->_params['todate'] . ']');
     $this->_query->createFilterQuery('rangedate')->setQuery('fromdate:[' . $this->_params['fromdate'] .  ' TO ' . $this->_params['todate'] . ']');
     unset($this->_params['todate']);
-	unset($this->_params['fromdate']);	
+	unset($this->_params['fromdate']);
     }
 
     if(array_key_exists('fromdate', $this->_params)){
     $this->_query->createFilterQuery('datefrom')->setQuery('fromdate:[' . $this->_params['fromdate'] . ' TO * ]');
     unset($this->_params['fromdate']);
     }
-    
+
     if(array_key_exists('todate', $this->_params)){
     $this->_query->createFilterQuery('todate')->setQuery('todate:[* TO ' . $this->_params['todate'] . ']');
     unset($this->_params['todate']);
@@ -652,12 +663,12 @@ return false;
     if((array_key_exists('parish', $this->_params) || array_key_exists('fourFigure', $this->_params)) && ($this->_core === 'beowulf')){
     $this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
 	}
-	
+
 	if($this->_format === 'kml' && ($this->_core === 'beowulf')){
     $this->_query->createFilterQuery('knownas')->setQuery('-knownas:["" TO *]');
     $this->_query->createFilterQuery('geopresent')->setQuery('gridref:[* TO *]');
 	}
-	
+
     }
 
     if(!is_null($this->_facets)){
@@ -678,9 +689,9 @@ return false;
     return $this->_resultset;
     }
 
-    
-    
-    /** 
+
+
+    /**
      * Create a facet query based on the key value pairs of an array
      * @param string $k
      * @param string $v
@@ -689,9 +700,9 @@ return false;
         return $this->_query->createFilterQuery($k)->setQuery(substr($k, 2) . ':"' . $v . '"');
     }
 
-    /** 
+    /**
      * Debug a query
-     * 
+     *
      */
     public function debugQuery(){
     Zend_Debug::dump($this->_params,'The params sent');
@@ -701,7 +712,7 @@ return false;
     Zend_Debug::dump($this->_formats, 'The format called');
     }
 
-    /** 
+    /**
      * Debug processing of a query
      */
     public function debugProcessing(){
@@ -711,8 +722,8 @@ return false;
     Zend_Debug::dump($this->_processStats(), 'The statistics associated');
     }
 
-  
-    /** 
+
+    /**
      * Create the facets
      *
      */

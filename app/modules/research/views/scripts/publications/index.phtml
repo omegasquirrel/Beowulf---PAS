@@ -4,7 +4,7 @@
 <h3>Britannia</h3>
  <ul>
 <?php
-    foreach (new DirectoryIterator('/home/beowulf2/public_html/documents/britannia/') as $fileInfo) {
+    foreach (new DirectoryIterator(ROOT_PATH . '/public_html/documents/britannia/') as $fileInfo) {
     if($fileInfo->isDot()) continue;
   ?>
   <li>
@@ -23,7 +23,7 @@
 <h3>Medieval Archaeology</h3>
  <ul>
 <?php
-    foreach (new DirectoryIterator('/home/beowulf2/public_html/documents/medieval/') as $fileInfo) {
+    foreach (new DirectoryIterator(ROOT_PATH . '/public_html/documents/medieval/') as $fileInfo) {
     if($fileInfo->isDot()) continue;
   ?>
   <li>
@@ -42,7 +42,7 @@
 <h3>Post Medieval Archaeology</h3>
  <ul>
 <?php
-    foreach (new DirectoryIterator('/home/beowulf2/public_html/documents/postmedieval/') as $fileInfo) {
+    foreach (new DirectoryIterator(ROOT_PATH . '/public_html/documents/postmedieval/') as $fileInfo) {
     if($fileInfo->isDot()) continue;
   ?>
   <li>

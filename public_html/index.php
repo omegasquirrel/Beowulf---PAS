@@ -1,11 +1,10 @@
 <?php
-//header('Location: http://finds.org.uk/downtime.html');
-//exit;
+
 // Define path to application directory
 
 defined('ROOT_PATH')
     || define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
-    
+
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../app/'));
@@ -21,19 +20,19 @@ defined('APPLICATION_ENV')
 
 // Define path to Solr
 defined('SOLR_PATH')
-    || define('SOLR_PATH', realpath(dirname(__FILE__) . '/../../solr/'));
+    || define('SOLR_PATH', realpath(dirname(__FILE__) . '/solr/'));
 
 //Define the logs path
 defined('LOGS_PATH')
-    || define('LOGS_PATH', realpath(dirname(__FILE__) . '/../logs/'));  
+    || define('LOGS_PATH', realpath(dirname(__FILE__) . '/../logs/'));
 
 defined('IMAGE_PATH')
     || define('IMAGE_PATH', realpath(dirname(__FILE__) . '/images/'));
 
 
-	
+
 ini_set('memory_limit', '64M');
-	
+
 // Ensure library/ is on include_path
 // directory setup and class loading
 set_include_path('.' . PATH_SEPARATOR . '../library/'

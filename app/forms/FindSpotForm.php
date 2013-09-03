@@ -32,23 +32,23 @@ public function __construct($options = null) {
 	$this->setName('findspots');
 
 	// Object specifics
-	$county = new Zend_Form_Element_Select('county');
-	$county->setLabel('County/Unitary Authority or Metropolitan District: ')
+	$countyID = new Zend_Form_Element_Select('countyID');
+	$countyID->setLabel('County/Unitary Authority or Metropolitan District: ')
 	->setRequired(true)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose county','Available counties' => $county_options))
 	->addValidator('InArray', false, array(array_keys($county_options)))
 	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
-	$district = new Zend_Form_Element_Select('district');
-	$district->setLabel('District: ')
+	$districtID = new Zend_Form_Element_Select('districtID');
+	$districtID->setLabel('District: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose district after county'))
 	->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'));
 
-	$parish = new Zend_Form_Element_Select('parish');
-	$parish->setLabel('Parish: ')
+	$parishID = new Zend_Form_Element_Select('parishID');
+	$parishID->setLabel('Parish: ')
 	->setRegisterInArrayValidator(false)
 	->addFilters(array('StripTags', 'StringTrim'))
 	->addMultiOptions(array(NULL => 'Choose parish after district'))
@@ -248,7 +248,7 @@ public function __construct($options = null) {
 
 	if($action === 'edit') {
 	$this->addElements(array(
-	$county, $district, $parish,
+	$countyID, $districtID, $parishID,
 	$knownas, $description, $comments,
 	$regionID, $gridref, $fourFigure,
 	$easting, $northing, $map10k,
@@ -261,7 +261,7 @@ public function __construct($options = null) {
 	));
 	} else {
 	$this->addElements(array(
-	$county, $district, $parish,
+	$countyID, $districtID, $parishID,
 	$knownas, $depthdiscovery, $description,
 	$comments, $regionID, $gridref,
 	$gridrefsrc, $gridrefcert,
@@ -272,8 +272,8 @@ public function __construct($options = null) {
 
 
 	$this->addDisplayGroup(array(
-	'county', 'regionID', 'district',
-	'parish', 'knownas',
+	'countyID', 'regionID', 'districtID',
+	'parishID', 'knownas',
 	'address', 'postcode', 'landownername',
 	'landowner'),
 	'details');
@@ -302,7 +302,7 @@ public function __construct($options = null) {
 	
 	$this->commentary->setLegend('Findspot comments');
 
-	$this->addDisplayGroup(array('submit'), 'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
 
     parent::init();
 	}

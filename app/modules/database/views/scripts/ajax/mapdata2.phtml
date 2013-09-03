@@ -8,7 +8,7 @@ $dom->appendChild($documentNode);
 
 
 foreach($this->results as $result){
-	
+
 //	Zend_Debug::dump($result);
     if(array_key_exists('longitude', $result)){
 		$description = '';
@@ -19,8 +19,9 @@ foreach($this->results as $result){
         $description .= '<h3>';
         $description .= $result['old_findID'];
         $description .= '</h3>';
+        if(array_key_exists('description', $result)){
         $description .= $this->ellipsisstring(strip_tags($result['description']));
-
+        }
         $description .= '<p>Record Url: <a href="' . $this->serverUrl() . '/database/artefacts/record/id/' . $result['id'] . '">';
         $description .= $this->serverUrl() . '/database/artefacts/record/id/' . $result['id'] . '</a></p>';
 		$marker = $dom->createElement('marker');

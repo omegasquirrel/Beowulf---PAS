@@ -85,6 +85,7 @@ class Database_FindspotsController
     $form = new FindSpotForm();
     $form->submit->setLabel('Update findspot');
     $this->view->form = $form;
+    $this->view->returnID = (int)$this->_findspots->getFindNumber($this->_getParam('id'));
     if($this->getRequest()->isPost() 
             && $form->isValid($this->_request->getPost())){
     $updateData = $form->getValues();

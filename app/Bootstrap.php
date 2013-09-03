@@ -58,7 +58,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	$frontController->registerPlugin(new Pas_Controller_Plugin_Errors);
 	}
 	protected function _initRoutes(){
-	
+
 	}
 
 	/** Initialise the various caches and save to registry
@@ -124,9 +124,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	$this->bootstrap('view');
 	$view = $this->getResource('view');
 	$view->jQuery()->enable()
-       ->setVersion('1.10.1')
-       ->setUiVersion('1.10.0')
-       ->uiEnable();
+            ->setVersion('2.0.3')
+            ->setUiVersion('1.10.3')
+            ->uiEnable();
 	}
 
 	/** Setup the authorisation
@@ -201,11 +201,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $mailer = new Pas_Controller_Action_Helper_Mailer();
         Zend_Controller_Action_HelperBroker::addHelper($mailer);
-        
+
         $segmenter = new Pas_Controller_Action_Helper_SegmentGa();
         Zend_Controller_Action_HelperBroker::addHelper($segmenter);
         }
-		
+
         public function _initRest(){
 		$frontController = Zend_Controller_Front::getInstance();
 	    $restRoute = new Zend_Rest_Route($frontController, array(), array('api' => array('objects', 'status')));

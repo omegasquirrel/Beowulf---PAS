@@ -3,7 +3,7 @@
 <p>Scanned editions of RIC.</p>
 <ul>
 <?php
-    foreach (new DirectoryIterator('/home/beowulf2/public_html/documents/RIC/') as $fileInfo) {
+    foreach (new DirectoryIterator(ROOT_PATH . '/public_html/documents/RIC/') as $fileInfo) {
     	
     if($fileInfo->isDot()) continue;
   ?>

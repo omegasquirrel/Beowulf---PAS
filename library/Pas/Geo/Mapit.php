@@ -54,7 +54,7 @@ class Pas_Geo_Mapit {
         'automatic_serialization' => true
         );
     $backendOptions = array(
-    		'cache_dir' => '../cache/mapit'
+    		'cache_dir' => CACHE_PATH . '/mapit'
     );
     $this->_cache = Zend_Cache::factory(
             'Output',

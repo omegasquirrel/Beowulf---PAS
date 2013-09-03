@@ -21,9 +21,9 @@
  */
 class Pas_View_Helper_FacetCreatorAjaxImages extends Zend_View_Helper_Abstract {
 
-	
+
 	protected $_action, $_controller;
-	
+
 	public function __construct(){
 		$this->_controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 		$this->_action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
@@ -72,7 +72,7 @@ class Pas_View_Helper_FacetCreatorAjaxImages extends Zend_View_Helper_Abstract {
 		$request['controller'] = 'images';
 		$request['action'] = 'index';
         $url = $this->view->url($request,'default',true);
-        
+
         $html .= '<li>';
         if($facetName !== 'workflow'){
         $html .= '<a href="' . $url . '" title="Facet query for ' . $this->view->facetContentSection($key);
@@ -100,12 +100,14 @@ class Pas_View_Helper_FacetCreatorAjaxImages extends Zend_View_Helper_Abstract {
 			$request['action'] = 'facet';
 			unset($request['facetType']);
 		}
+        if(array_key_exists($facetName,$request)){
         $facet = $request[$facetName];
+
         if(isset($facet)){
             unset($request[$facetName]);
             unset($request['facetType']);
         }
-
+        }
         $html .= '</div>';
         return $html;
         	}
@@ -150,7 +152,7 @@ class Pas_View_Helper_FacetCreatorAjaxImages extends Zend_View_Helper_Abstract {
             	break;
             case 'institution':
             	$clean = 'Institution';
-            	break;	
+            	break;
             default:
                 $clean = ucfirst($name);
                 break;

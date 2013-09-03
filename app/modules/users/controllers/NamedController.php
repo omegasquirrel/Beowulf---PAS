@@ -31,8 +31,7 @@ class Users_NamedController extends Pas_Controller_Action_Admin {
 	$id = $this->_getParam('as');
 	$this->view->accountdata = $this->_users->getUserAccountData($id);
 	$this->view->totals = $this->_users->getCountFinds($this->getIdentityForForms());
-	$slides = new Slides();
-	$this->view->images = $slides->recentFinds($id);
+	
 	} else {
             throw new Pas_Exception_Param($this->_missingParameter);
 	}

@@ -83,7 +83,7 @@ class ProfileForm extends Pas_Form
 
 	$submit = new Zend_Form_Element_Submit('submit');
 	$submit->setLabel('Save details');
-	
+
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(4800);
 	$this->addElements(array($hash,$submit));
@@ -94,7 +94,7 @@ class ProfileForm extends Pas_Form
 
 	$this->setLegend('Edit your account and profile details: ');
 
-	$this->addDisplayGroup(array('submit'),'submit');
+	$this->addDisplayGroup(array('submit'),'buttons');
 	parent::init();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying os opendata gazetteer
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -8,11 +8,11 @@
 * @license    GNU General Public License
 */
 class Database_OsdataController extends Pas_Controller_Action_Admin {
-	
+
 	protected $_contexts;
 
 	/** Set up the ACL and contexts
-	*/		
+	*/
 	public function init(){
 	$this->_helper->_acl->allow('public',NULL);
 	$this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -23,11 +23,11 @@ class Database_OsdataController extends Pas_Controller_Action_Admin {
 		->addActionContext('index',$this->_contexts)
 		->initContext();
 	}
-	
+
 	const REDIRECT = 'database/osdata/';
 
 	/** Display a paginated list of OS data points
-	*/		
+	*/
 	public function indexAction() {
 	$form = new SolrForm();
     $form->removeElement('thumbnail');
@@ -37,7 +37,7 @@ class Database_OsdataController extends Pas_Controller_Action_Admin {
 
     $params = $this->_getAllParams();
 
-    $search = new Pas_Solr_Handler('geodata');
+    $search = new Pas_Solr_Handler('beogeodata');
     $search->setFields(array('*')
     );
 	$search->setFacets(array('county'));
@@ -78,16 +78,16 @@ class Database_OsdataController extends Pas_Controller_Action_Admin {
     }
 
 	/** Set up the one to 50k entry page
-	*/		
+	*/
 	public function oneto50kAction(){
 	if($this->_getParam('id',false)){
 	$gazetteers = new Osdata();
-	$this->view->gazetteer = $gazetteers->getGazetteer($this->_getParam('id'));	
+	$this->view->gazetteer = $gazetteers->getGazetteer($this->_getParam('id'));
 	} else {
-		throw new Pas_Exception_Param($this->_missingParameter);	
+		throw new Pas_Exception_Param($this->_missingParameter);
 	}
 	}
-	
+
 	public function mapAction() {
 	}
 }

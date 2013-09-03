@@ -37,8 +37,8 @@ class ByzantineNumismaticSearchForm extends Pas_Form
     $axis = new Dieaxes();
 	$axis_options = $axis->getAxes();
 
-	$regions = new Regions();
-	$region_options = $regions->getRegionName();
+	$regions = new OsRegions();
+	$region_options = $regions->getRegionsID();
 
 	parent::__construct($options);
 
@@ -108,7 +108,7 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 		->addMultiOptions(array(NULL => 'Choose hoard name', 'Available hoards' => $hoard_options));
 
-	$county = new Zend_Form_Element_Select('county');
+	$county = new Zend_Form_Element_Select('countyID');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags','StringTrim'))
 		->addValidators(array('NotEmpty'))
@@ -116,14 +116,14 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 		->addMultiOptions(array(NULL => 'Choose county', 
 			'Available counties' => $county_options));
 
-	$district = new Zend_Form_Element_Select('district');
+	$district = new Zend_Form_Element_Select('districtID');
 	$district->setLabel('District: ')
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->setRegisterInArrayValidator(false)
 		->setAttribs(array('class' => 'span6 selectpicker show-menu-arrow'))
 		->disabled = true;
 
-	$parish = new Zend_Form_Element_Select('parish');
+	$parish = new Zend_Form_Element_Select('parishID');
 	$parish->setLabel('Parish: ')
 		->setRegisterInArrayValidator(false)
 		->addFilters(array('StripTags','StringTrim'))
@@ -256,8 +256,8 @@ class ByzantineNumismaticSearchForm extends Pas_Form
 	'rallyID', 'hoard', 'hID',
 	'workflow'), 'details');
 	$this->addDisplayGroup(array(
-	'county','regionID','district',
-	'parish','gridref','fourFigure',
+	'countyID','regionID','districtID',
+	'parishID','gridref','fourFigure',
 	'institution'), 'spatial');
 
 	$this->numismatics->setLegend('Numismatic details');

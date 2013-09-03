@@ -36,23 +36,23 @@ class Pas_Form_Findspot {
 	$this->_view->form->populate($data);
 
 	
-    if(array_key_exists('county', $data)) {
+    if(array_key_exists('countyID', $data)) {
     
-    $districts = new Places();
-    $district = $districts->getDistrictList($data['county']);
+    $districts = new OsDistricts();
+    $district = $districts->getDistrictsToCountyList($data['countyID']);
     if($district) {
-    $this->_view->form->district->addMultiOptions(array('Available districts' => $district));
+    $this->_view->form->districtID->addMultiOptions(array('Available districts' => $district));
     }
     
-    if(array_key_exists('district', $data)) {
+    if(array_key_exists('districtID', $data)) {
     $parishModel = new OsParishes();
-    $parishes = $parishModel->getParishesToDistrict($data['district']);
-    $this->_view->form->parish->addMultiOptions(array('Available parishes' => $parishes));
+    $parishes = $parishModel->getParishesToDistrictList($data['districtID']);
+    $this->_view->form->parishID->addMultiOptions(array('Available parishes' => $parishes));
     }
     
-    if(array_key_exists('county', $data)) {
+    if(array_key_exists('countyID', $data)) {
     $countyModel = new OsCounties();
-    $regions = $countyModel->getCountyToRegion($data['county']);
+    $regions = $countyModel->getCountyToRegionList($data['countyID']);
     $this->_view->form->regionID->addMultiOptions(array('Available regions' => $regions));
     }
     }
@@ -68,7 +68,7 @@ class Pas_Form_Findspot {
     $finders = new Peoples();
     $finders = $finders->getName($data['landowner']);
     foreach($finders as $finder) {
-    $form->landownername->setValue($finder['term']);
+    $this->_view->form->landownername->setValue($finder['term']);
     }
     }
     }

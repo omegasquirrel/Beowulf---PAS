@@ -514,7 +514,7 @@
 	<field name="manufacture" type="int" indexed="true" stored="true" />
 	<field name="manufactureTerm" type="string" indexed="true" stored="true" />
 	<field name="bmManufacture" type="int" indexed="true" stored="true" />
-	<field name="surface" type="int" indexed="true" stored="true" />
+	<field name="surface" type="string" indexed="true" stored="true" />
 	<field name="treatment" type="string" indexed="true" stored="true" />
 	<field name="treatmentTerm" type="string" indexed="true" stored="true" />
 	<field name="bmTreatment" type="int" indexed="true" stored="true" />

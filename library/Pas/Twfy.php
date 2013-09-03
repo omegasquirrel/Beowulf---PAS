@@ -53,7 +53,7 @@ class Pas_Twfy {
             'lifetime' => 31556926,
             'automatic_serialization' => true
             );
-	$backendOptions = array('cache_dir' => 'app/cache/twfy');
+	$backendOptions = array('cache_dir' => CACHE_PATH . '/twfy');
 	$this->_cache = Zend_Cache::factory(
                 'Output',
                 'File',

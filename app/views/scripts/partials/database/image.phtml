@@ -1,11 +1,11 @@
 <h2>Large image view and metadata</h2>
 
-<?php 
+<?php
 $file = $this->filename;
 $path = $this->imagedir;
 //Zend_Debug::dump($path);
 $location = './'.$this->baseUrl().$path.$file;
-$name = substr($file, 0, strrpos($file, '.')); 
+$name = substr($file, 0, strrpos($file, '.'));
 $ext = '.jpg';
 $smalldir = './'.$path.'small/';
 $mediumdir = './'.$path.'medium/';
@@ -29,7 +29,7 @@ $tempfilesmall = './'.$path.'small/'.$name.$ext;
 if(file_exists($location)) {
 ?>
 <?php
-if(file_exists($tempfile)) { 
+if(file_exists($tempfile)) {
 list($w, $h, $type, $attr) = getimagesize('./'.$this->baseUrl().'/'.$path.'medium/'.$name.$ext);
 echo '<img src="'.$this->baseUrl().'/'.$path.'medium/'.$name.$ext.'" height="'.$h.'" width="'.$w.'" alt="A resized image of '.$this->label.'" />';
 } else {
@@ -42,8 +42,8 @@ $this->metaBaseImage($this->label, $subject = 'archaeology', implode(',',array(
 $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$path.'medium/'.rawurlencode($name).$ext, $w, $h);
 
 ?>
-<p><a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax','action' => 'download','id' => $this->id),null,true);?>" title="Download image">Download original</a> 
-<a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'zoom','id' => $this->id),null,true);?>" title="Zoom this image">Zoom image</a> 
+<p><a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'ajax','action' => 'download','id' => $this->id),null,true);?>" title="Download image">Download original</a>
+<a class="btn" href="<?php echo $this->url(array('module' => 'database','controller' => 'images','action' => 'zoom','id' => $this->id),null,true);?>" title="Zoom this image">Zoom image</a>
 <?php echo $this->imagetoolbox()->setID($this->id)->setCreatedBy($this->createdBy)->setInstitution($this->institution);?></p>
 </div>
 
@@ -56,10 +56,10 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
         <li><a href="#others" data-toggle="tab">Other sizes</a></li>
 	</ul>
 	<!--  End of Tabs navigation -->
-	
+
 	<!-- Start of tabbed content div -->
 	<div id="myTabContent" class="tab-content">
-		
+
 		<div class="tab-pane fade in active" id="meta">
 		<h3>Image meta data</h3>
 		<ul>
@@ -71,10 +71,10 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
 		<li>License: <?php echo $this->license;?></li>
 		</ul>
 		</div>
-		
+
 		<div class="tab-pane fade " id="others">
 		<h4>Other sizes</h4>
-		<?php 
+		<?php
 		$thumb = './images/thumbnails/'.$this->id.'.jpg';
 		if(file_exists($thumb)) { ?>
 		<img src="<?php echo $this->baseUrl();?>/images/thumbnails/<?php echo $this->id;?>.jpg" alt="A resized image of <?php echo $this->label;?>"/>
@@ -85,12 +85,12 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
 		//Zend_Debug::dump($phMagick);
 		?>
 		<img src="<?php echo $this->baseUrl();?>/images/thumbnails/<?php echo $this->id;?>.jpg" alt="A resized image of <?php echo $this->label;?>"/>
-		<?php 
-		
+		<?php
+
 		}
 		?>
 		<?php
-		if(file_exists($tempfilesmall)) { 
+		if(file_exists($tempfilesmall)) {
 		echo '<img src="'.$this->baseUrl().'/'.$path.'small/'.$name.$ext.'" alt="A resized image of '.$this->label.'" />';
 		} else {
 		$phMagick = new phMagick($location, $tempfilesmall);
@@ -101,7 +101,7 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
 		}
 		?>
 		</div>
-        
+
         <div class="tab-pane fade" id="exif">
         <h3>Extracted data</h3>
 		<ul id="related">
@@ -121,7 +121,7 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
 		 //   Zend_Debug::dump($iptc);
 		}
 		if($img['mime'] == 'image/jpeg') {
-			
+
 		$data = new Pas_Exif_Reader($location);
 		//Zend_Debug::dump($data->getImageInfo());
 		//Zend_Debug::dump($data->getThumbnail());
@@ -136,7 +136,7 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
 		echo $this->partial('partials/database/exifDataComputed.phtml',$exif['COMPUTED']);
 		}
 		if(isset($exif['IFD0'])){
-		
+
 		echo $this->partial('partials/database/exifDataIFD0.phtml',$exif['IFD0']);
 		}
 		if(isset($exif['EXIF'])) {
@@ -148,14 +148,14 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
 		}
 		}
 		}
-		
+
 		 ?>
-		
+
 		</ul>
 		</div>
-		
-		
-		
+
+
+
 	</div>
 	<!--  End of tabbed content div -->
 
@@ -164,8 +164,12 @@ $this->broadperiod,$this->county, $this->objecttype)), $this->serverUrl().'/'.$p
 
 
 <?php
-} else {
-echo 'Image unavailable';
+} else {?>
+<img src="http://farm4.static.flickr.com/3407/3478660349_f8ed50f4d7.jpg" alt="The trip home" class="img img-circle" width="500" height="322" />
+<p>Image unavailable just now: <?php echo $this->filename;?></p>
+<p>The image above is a CC licenced image by <a href="http://www.flickr.com/photos/kwl/" >Kennymatic</a>.</p>
+
+<?php
 }
 ?>
 

@@ -101,7 +101,7 @@ class AccountForm extends Pas_Form
 
     $submit = new Zend_Form_Element_Submit('submit');
     $submit->setLabel('Set my account up on Beowulf');
-    
+
     $this->addElements(array($submit));
 
 
@@ -112,6 +112,7 @@ class AccountForm extends Pas_Form
         'reference_email'),
         'userdetails');
 
+    $this->addDisplayGroup(array('submit'), 'buttons');
 
     $this->setLegend('Edit account details: ');
     parent::init();

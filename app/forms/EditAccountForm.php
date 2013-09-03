@@ -58,7 +58,7 @@ class EditAccountForm extends Pas_Form
         $preferred_name->setRequired(true)
 		->addFilters(array('StripTags', 'StringTrim', 'Purifier'))
 		->addErrorMessage('You must enter your preferred name');
-		
+
         $fullname = $this->addElement('text', 'fullname',
 		array('label' => 'Full name: ', 'size' => '30'))
 		->fullname;
@@ -83,9 +83,9 @@ class EditAccountForm extends Pas_Form
             NULL => 'Choose institution',
             'Available institutions'=> $inst_options
             ))->setAttrib('class', 'span4 selectpicker show-menu-arrow');
-            
+
 		$canRecord = $this->addElement('checkbox', 'canRecord',array('label' => 'Allowed to record: '))->canRecord;
-		
+
         $role = $this->addElement('select', 'role',array('label' => 'Site role: '))->role;
         $role->addMultiOptions(array(NULL => 'Choose a role','Choose role' => $role_options))->setAttrib('class', 'span3 selectpicker show-menu-arrow');
 
@@ -93,8 +93,8 @@ class EditAccountForm extends Pas_Form
 
         $peopleID = $this->addElement('hidden', 'peopleID',array())->peopleID;
 
-        
-	
+
+
         $submit = new Zend_Form_Element_Submit('submit');
         $this->addElement($submit);
 
@@ -104,7 +104,7 @@ class EditAccountForm extends Pas_Form
             'fullname', 'preferred_name', 'email','institution',
             'role','password','person','peopleID', 'canRecord'), 'userdetails');
 
-	$this->addDisplayGroup(array('submit'),'submit');
+	$this->addDisplayGroup(array('submit'),'buttons');
 
 	$this->setLegend('Edit account details: ');
     parent::init();

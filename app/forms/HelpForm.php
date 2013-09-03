@@ -110,7 +110,7 @@ public function __construct($options = null) {
 	$this->addDisplayGroup(array('title','menuTitle','author','body','section','publishState','excerpt','metaKeywords','metaDescription','slug','frontPage'), 'details')->removeDecorator('HtmlTag');
 
 
-	$this->addDisplayGroup(array('submit'), 'submit')->removeDecorator('HtmlTag');
+	$this->addDisplayGroup(array('submit'), 'buttons')->removeDecorator('HtmlTag');
 
 	$this->details->setLegend('Add new site content');
 	parent::init();

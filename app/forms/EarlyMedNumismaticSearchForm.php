@@ -47,8 +47,8 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	$cats = new CategoriesCoins();
 	$cat_options = $cats->getPeriodEarlyMed();
 
-	$regions = new Regions();
-	$region_options = $regions->getRegionName();
+	$regions = new OsRegions();
+	$region_options = $regions->getRegionsID();
 
 	parent::__construct($options);
 
@@ -121,7 +121,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	            'Choose a hoard' => $hoard_options));
 
 
-	$county = new Zend_Form_Element_Select('county');
+	$county = new Zend_Form_Element_Select('countyID');
 	$county->setLabel('County: ')
 		->addValidators(array('NotEmpty'))
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
@@ -130,7 +130,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 	            NULL => 'Choose county',
 	            'Available counties' => $county_options));
 
-	$district = new Zend_Form_Element_Select('district');
+	$district = new Zend_Form_Element_Select('districtID');
 	$district->setLabel('District: ')
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
@@ -138,7 +138,7 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 		->addFilters(array('StringTrim','StripTags'))
 		->setDisableTranslator(true);
 
-	$parish = new Zend_Form_Element_Select('parish');
+	$parish = new Zend_Form_Element_Select('parishID');
 	$parish->setLabel('Parish: ')
 		->setRegisterInArrayValidator(false)
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
@@ -312,8 +312,8 @@ class EarlyMedNumismaticSearchForm extends Pas_Form {
 
 	$this->details->setLegend('Object details: ');
 	$this->addDisplayGroup(array(
-            'county','regionID','district',
-            'parish','gridref','fourFigure',
+            'countyID','regionID','districtID',
+            'parishID','gridref','fourFigure',
             'institution'), 'spatial');
 	$this->spatial->setLegend('Spatial details: ');
 

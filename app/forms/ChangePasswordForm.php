@@ -53,7 +53,7 @@ class ChangePasswordForm extends Pas_Form
 	$this->addDisplayGroup(array('oldpassword','password','password2'), 'userdetails');
 
 
-	$this->addDisplayGroup(array('submit'),'submit');
+	$this->addDisplayGroup(array('submit'),'buttons');
 
 	$this->setLegend('Edit account details: ');
 

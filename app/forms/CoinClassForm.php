@@ -49,8 +49,8 @@ public function __construct($options = null)
 	$this->addDisplayGroup(array('referenceName','period','valid'), 'details');
 
 	$this->details->setLegend('Mint details: ');
-	
-	$this->addDisplayGroup(array('submit'),'submit');
+
+	$this->addDisplayGroup(array('submit'),'buttons');
 
 	parent::init();
 	}

@@ -180,12 +180,12 @@ class Pas_View_Helper_SearchParams
 	$key = md5($name . $field . $value . $idField);
 	if (!($this->_cache->test($key))) {
 	$model = new $name();
-	$data = $model->fetchRow($model->select()->where($idField . ' = ?', $value))->$field;
+	$data = $model->fetchRow($model->select()->where($idField . ' = ?', $value));
 	$this->_cache->save($data);
 	} else {
 	$data = $this->_cache->load($key);
 	}
-	return $data;
+	return $data->$field;
 	}
 
 	/** Clean up the parameters submitted
@@ -213,6 +213,18 @@ class Pas_View_Helper_SearchParams
 			break;
 		case 'hID':
 			$params[$key] = $this->getData('Hoards','term', $value);
+			break;
+		case 'countyID':
+			$params[$key] = $this->getData('OsCounties', 'label', $value, 'osID');
+			break;
+		case 'regionID':
+			$params[$key] = $this->getData('OsRegions', 'label', $value, 'osID');
+			break;
+		case 'parishID':
+			$params[$key] = $this->getData('OsParishes', 'label', $value, 'osID');
+			break;
+		case 'districtID':
+			$params[$key] = $this->getData('OsDistricts', 'label', $value, 'osID');
 			break;
 		case 'treasure' :
 			$params[$key] = 'yes';
@@ -285,9 +297,6 @@ class Pas_View_Helper_SearchParams
 			break;
 		case 'reeceID':
 			$params[$key] = 'Period ' . $value . ': ' . $this->getData('Reeces','description', $value);
-			break;
-		case 'county': 
-			$params[$key] = $this->getData('OsCounties','label', $value, 'osID');
 			break;
 		case 'regionID':
 			$params[$key] = $this->getData('OsRegions','label', $value, 'osID');

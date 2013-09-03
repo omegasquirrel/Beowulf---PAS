@@ -10,11 +10,22 @@ $this->MetaBase('A list of photos retrieved from the flickr api using creative c
 <?php else:?>
 <h2>All our tagged photos</h2>
 <?php endif;?>
-<?php if(count($this->pictures)):?>
-<?php echo $this->partialLoop('partials/flickr/set.phtml',$this->pictures);?>
+<div class="row-fluid">
+<?php 
+$photos = array();
+if(is_array($this->pictures->photo)){
+foreach($this->pictures->photo as $photo){
+	$photos[] = (array)$photo;
+}
+} else {
+	$photos[] = (array)$this->pictures->photo;
+}
+if(count($photos)):?>
+<?php echo $this->partialLoop('partials/flickr/set.phtml',$photos);?>
 <div class="row span16">
-<?php echo $this->paginationControl($this->$paginator, 'Sliding', 'structure/pagination.phtml'); ?>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'structure/pagination.phtml'); ?>
 </div>
 <?php else:?>
 <p>There are no photos available with that tag.</p>
 <?php endif;?>
+</div>

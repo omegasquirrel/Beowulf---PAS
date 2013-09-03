@@ -16,7 +16,7 @@
  *
  * @author Daniel Pett
  */
-define('SCHEMA_PATH', SOLR_PATH);
+define('SCHEMA_PATH', SOLR_PATH . '/');
 
 define('SCHEMA_FILE', '/conf/schema.xml' );
 

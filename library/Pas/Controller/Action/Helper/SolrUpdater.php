@@ -10,35 +10,35 @@
  *
  * @author Katiebear
  */
-class Pas_Controller_Action_Helper_SolrUpdater 
+class Pas_Controller_Action_Helper_SolrUpdater
     extends Zend_Controller_Action_Helper_Abstract {
-    
+
     protected $_cores = array(
-    'objects', 'people', 'images',
-    'publications','bibliography','content');
-  
+    'beowulf', 'beopeople', 'beoimages',
+    'beopublications','beobiblio','beocontent');
+
     protected $_solr;
-    
+
     protected $_config;
-    
+
     public function __construct(){
-    $this->_config = Zend_Registry::get('config')->solr->toArray();    
+    $this->_config = Zend_Registry::get('config')->solr->toArray();
     }
-    
+
     public function getSolrConfig($core){
     if(in_array($core, $this->_cores)){
     $solrAdapter = $this->_config;
     $solrAdapter['core'] = $core;
     $solr = new Solarium_Client(array(
-    'adapteroptions' => 
+    'adapteroptions' =>
     $solrAdapter
     ));
     return $solr;
     } else {
-    	throw new Exception('That core does not exist', 500);	
+    	throw new Exception('That core does not exist', 500);
     }
     }
-    
+
     public function update($core, $id, $type = NULL){
     $data = $this->getUpdateData($core, $id, $type);
 
@@ -52,7 +52,7 @@ class Pas_Controller_Action_Helper_SolrUpdater
     $update->addCommit();
     return $this->_solr->update($update);
     }
-    
+
     public function deleteById($core,$id){
     $this->_solr = $this->getSolrConfig($core);
     $update = $this->_solr->createUpdate();
@@ -61,58 +61,58 @@ class Pas_Controller_Action_Helper_SolrUpdater
     $update->addOptimize(true, false, 5);
     return  $this->_solr->update($update);
     }
-    
+
     protected function _getIdentifier($core){
 	if(in_array($core, $this->_cores)){
 		switch($core) {
-			case 'objects':
+			case 'beowulf':
                 $identifier = 'finds-';
                 break;
-            case 'people':
+            case 'beopeople':
             	$identifier = 'people-';
                 break;
-            case 'content':
+            case 'beocontent':
             	$identifier = 'content-';
                 break;
-            case 'bibliography':
+            case 'beobiblio':
             	$identifier = 'biblio-';
                 break;
-            case 'images':
+            case 'beoimages':
             	$identifier = 'images-';
             	break;
-            case 'publications':
+            case 'beopublications':
             	$identifier = 'publications-';
             	break;
             default:
                 throw new Exception('Your core does not exist',500);
-                break;	
-		}   
+                break;
+		}
 		return $identifier;
 	} else {
 		throw new Exception('That core does not exist', 500);
-	}    
+	}
     }
-    
+
     public function getUpdateData($core, $id, $type = NULL){
 	if(in_array($core, $this->_cores)){
     	switch($core){
-            case 'objects':
+            case 'beowulf':
                 $model = new Finds();
                 break;
-            case 'people':
+            case 'beopeople':
             	$model = new Peoples();
                 break;
-            case 'content':
+            case 'beocontent':
             	$type = ucfirst($type);
             	$model = new $type;
             	break;
-            case 'bibliography':
+            case 'beobiblio':
             	$model = new Bibliography();
                 break;
-            case 'images':
+            case 'beoimages':
             	$model = new Slides();
             	break;
-            case 'publications':
+            case 'beopublications':
             	$model = new Publications();
             	break;
             default:
@@ -121,9 +121,9 @@ class Pas_Controller_Action_Helper_SolrUpdater
         }
         $data = $model->getSolrData($id);
         $cleanData = $this->cleanData($data[0]);
-        
+
         return $cleanData;
-         
+
 	} else {
 		throw new Exception('That core does not exist',500);
 	}
@@ -135,7 +135,7 @@ class Pas_Controller_Action_Helper_SolrUpdater
 		$df1 = $data['datefound1'] . 'T00:00:00Z';
 		$data['datefound1'] = $df1;
 		} else {
-		$data['datefound1'] = NULL;	
+		$data['datefound1'] = NULL;
 		}
 	}
 	if(array_key_exists('datefound2',$data)){
@@ -143,15 +143,15 @@ class Pas_Controller_Action_Helper_SolrUpdater
 		$df2 = $data['datefound2'] . 'T00:00:00Z';
 		$data['datefound2'] = $df2;
 		} else {
-		$data['datefound2'] = NULL;	
+		$data['datefound2'] = NULL;
 		}
 	}
 	if(array_key_exists('created',$data)){
-		if(!is_null($data['created'])) {		
+		if(!is_null($data['created'])) {
 		$created = $this->todatestamp($data['created']);
 		$data['created'] = $created;
 		} else {
-		$data['created'] = NULL;	
+		$data['created'] = NULL;
 		}
 	}
 	if(array_key_exists('updated',$data)){
@@ -159,7 +159,7 @@ class Pas_Controller_Action_Helper_SolrUpdater
 		$updated = $this->todatestamp($data['updated']);
 		$data['updated'] = $updated;
 		} else {
-		$data['updated'] = NULL;	
+		$data['updated'] = NULL;
 		}
 	}
 	foreach($data as $k => $v){
@@ -169,12 +169,12 @@ class Pas_Controller_Action_Helper_SolrUpdater
 		  }
 	}
 	return $data;
-	
+
     }
-    
+
 
     /** Format the date and return as unix stamp
-	* 
+	*
 	* @param string $date_string
 	*/
 	public function todatestamp($date) {

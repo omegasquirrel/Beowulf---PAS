@@ -57,6 +57,6 @@ echo '<img src="/'. $imagedir .'display/' . strtolower($name).$ext.'" alt="A res
 
 </div>
 <?php else:?>
-<p>Image unavailable</p>
+<p><img src="/assets/gravatar.png" class="img img-circle"/><br />That image (filename: <?php echo $this->f;?>) is unavailable.</p>
 <?php endif; ?>
 

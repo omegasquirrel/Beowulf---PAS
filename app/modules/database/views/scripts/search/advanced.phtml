@@ -1,9 +1,12 @@
 <?php 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.chained.remote.min.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/objectType.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/treasureID.js', $type='text/javascript');
 $this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/typeaheads/otherRef.js', $type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript'); 
+$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/findSpotLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/findSpotLinkedQuery.js',$type='text/javascript');
+
 $this->headTitle('Advanced search the database');
 ?>
 
@@ -15,20 +18,6 @@ $("#createdBefore").datepicker({ maxDate: '+1y'});
 $("#createdAfter").datepicker({ maxDate: '+1y' });
 $("#updatedBefore").datepicker({ maxDate: '+1y'});
 $("#updatedAfter").datepicker({ maxDate: '+1y' });
-$("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
-       
-		//Chain the region to county
-		$("#regionID").remoteChained("#county", "/ajax/osregionsbycounty/");
-       
-		//Chain district to county	
-		$("#district").remoteChained("#county", "/ajax/osdistrictsbycounty/");
-       
-		//Chain parish to district
-		$("#parish").remoteChained("#district", "/ajax/osparishesbydistrict/");
-      
-      	//Chain landuse to specific landuse
-		$("#landusecode").remoteChained("#landusevalue", "/ajax/landusecodes/");
-      	
 });
 <?php $this->jQuery()->javascriptCaptureEnd() ?>
 <h2><?php echo $this->title();?></h2>

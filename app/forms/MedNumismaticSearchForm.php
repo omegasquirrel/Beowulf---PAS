@@ -43,8 +43,8 @@ class MedNumismaticSearchForm extends Pas_Form {
 	$types = new MedievalTypes();
 	$type_options = $types->getMedievalTypesForm(29);
 	
-	$regions = new Regions();
-	$region_options = $regions->getRegionName();
+	$regions = new OsRegions();
+	$region_options = $regions->getRegionsID();
 
 	$institutions = new Institutions();
 	$inst_options = $institutions->getInsts();
@@ -116,20 +116,20 @@ class MedNumismaticSearchForm extends Pas_Form {
 		->addMultiOptions(array(NULL => 'Choose hoard name', 'Available hoards' => $hoard_options))
 		->addValidator('InArray', false, array(array_keys($hoard_options)));
 
-	$county = new Zend_Form_Element_Select('county');
+	$county = new Zend_Form_Element_Select('countyID');
 	$county->setLabel('County: ')
 		->addFilters(array('StripTags', 'StringTrim'))
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Choose county', 'Available counties' => $county_options))
 		->addValidator('InArray', false, array(array_keys($county_options)));
 
-	$district = new Zend_Form_Element_Select('district');
+	$district = new Zend_Form_Element_Select('districtID');
 	$district->setLabel('District: ')
 		->addMultiOptions(array(NULL => 'Choose district after county'))
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->setRegisterInArrayValidator(false);
 
-	$parish = new Zend_Form_Element_Select('parish');
+	$parish = new Zend_Form_Element_Select('parishID');
 	$parish->setLabel('Parish: ')
 		->setRegisterInArrayValidator(false)
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
@@ -290,7 +290,7 @@ class MedNumismaticSearchForm extends Pas_Form {
 	
 	$this->details->setLegend('Object details:');
 
-	$this->addDisplayGroup(array('county','regionID','district','parish','gridref','fourFigure', 'institution'), 'spatial');
+	$this->addDisplayGroup(array('countyID','regionID','districtID','parishID','gridref','fourFigure', 'institution'), 'spatial');
 	
 	$this->spatial->setLegend('Spatial details: ');
 

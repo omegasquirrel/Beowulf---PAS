@@ -15,7 +15,7 @@ class Pas_View_Helper_ExpiredJob extends Zend_View_Helper_Abstract {
 	 * 
 	 * @param date $date
 	 */
-	public function expiredjob($date) {
+	public function expiredJob($date) {
 	$today = new Zend_Date(NULL,'YYYY-MM-dd');
 	$difference = $today->isLater(new Zend_Date($date,'YYYY-MM-dd'));
 	return $difference;

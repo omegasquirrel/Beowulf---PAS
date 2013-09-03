@@ -11,7 +11,7 @@
 * @todo add caching
 */
 class OsParishes extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'osParishes';
 
 	protected $_primary = 'id';
@@ -29,7 +29,7 @@ class OsParishes extends Pas_Db_Table_Abstract {
 	return $this->getAdapter()->fetchAll($select);
 	}
 
-	/** retrieve county list again as key pairs. 
+	/** retrieve county list again as key pairs.
 	* @return array
 	* @todo not sure why duplicate of first function. Fix it!(doofus Dan).
 	*/
@@ -37,16 +37,35 @@ class OsParishes extends Pas_Db_Table_Abstract {
 	$key = md5('parishes' . $district);
 	if (!$data = $this->_cache->load( $key )) {
 	$select = $this->select()
-		->from($this->_name, array('osID', 'label' => 'CONCAT(label," (",type,")")'))
+		->from($this->_name, array('id' => 'osID', 'term' => 'CONCAT(label," (",type,")")'))
 		->order('label')
 		->where('districtID =?', (int) $district);
+
+	$data = $this->getAdapter()->fetchAll($select);
+	$this->_cache->save($data, $key);
+	}
+	return $data;
+	}
+
+/** retrieve county list again as key pairs.
+	* @return array
+	* @todo not sure why duplicate of first function. Fix it!(doofus Dan).
+	*/
+	public function getParishesToDistrictList( $district ) {
+	$key = md5('parishesList' . $district);
+	if (!$data = $this->_cache->load( $key )) {
+	$select = $this->select()
+		->from($this->_name, array('osID', 'CONCAT(label," (",type,")")'))
+		->order('label')
+		->where('districtID =?', (int) $district);
+
 	$data = $this->getAdapter()->fetchPairs($select);
 	$this->_cache->save($data, $key);
 	}
 	return $data;
 	}
 	
-	/** retrieve county list again as key pairs. 
+	/** retrieve county list again as key pairs.
 	* @return array
 	* @todo not sure why duplicate of first function. Fix it!(doofus Dan).
 	*/
@@ -63,7 +82,7 @@ class OsParishes extends Pas_Db_Table_Abstract {
 	return $data;
 	}
 
-	/** retrieve county list again as key pairs. 
+	/** retrieve county list again as key pairs.
 	* @return array
 	* @todo not sure why duplicate of first function. Fix it!(doofus Dan).
 	*/
@@ -79,5 +98,5 @@ class OsParishes extends Pas_Db_Table_Abstract {
 	}
 	return $data;
 	}
-	
+
 }

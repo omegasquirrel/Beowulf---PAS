@@ -233,14 +233,105 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$form = new ImageEditForm();
 	$form->submit->setLabel('Update image..');
 	$this->view->form = $form;
-	if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
-		$where =  $this->_images->getAdapter()->quoteInto('imageID = ?', $this->_getParam('id'));
-		//Update and process image
-		$update = $this->_images->updateAndProcess($this->_request->getPost(), $where);
-	
+	if ($this->_request->isPost()) {
+	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
-	
-	//Update Solr
+	$updateData = array();
+	$updateData['label'] = $form->getValue('label');
+	$updateData['imagerights'] = $form->getValue('imagerights');
+	$updateData['county'] = $form->getValue('county');
+	$updateData['period'] = $form->getValue('period');
+	$updateData['updated'] = $this->getTimeForForms();
+	$updateData['updatedBy'] = $this->getIdentityForForms();
+	foreach ($updateData as $key => $value) {
+      if (is_null($value) || $value=="") {
+        unset($updateData[$key]);
+      }
+    }
+	$where =  $this->_images->getAdapter()->quoteInto('imageID = ?', $this->_getParam('id'));
+	$rotate = $form->getValue('rotate');
+	$filename = $form->getValue('filename');
+	$imagedir = $form->getValue('imagedir');
+	$regenerate = $form->getValue('regenerate');
+	$path = './'.$imagedir.$filename;
+	$largepath = './'.$imagedir;
+	$mediumpath = './'.$imagedir.'medium/';
+	$smallpath = './'.$imagedir.'small/';
+	$displaypath = './'.$imagedir.'display/';
+	$thumbpath = self::PATH . 'thumbnails/';
+	$id = $this->_getParam('id');
+	$name = substr($filename, 0, strrpos($filename, '.'));
+	$ext = '.jpg';
+	if(isset($rotate)) {
+	//rotate original
+	$phMagickOriginal= new phMagick($largepath.$filename, $largepath.$filename);
+	$phMagickOriginal->rotate($rotate);
+	//rotate image for medium
+	if(file_exists($mediumpath.$name.$ext)) {
+	$phMagickMedium = new phMagick($mediumpath.$name.$ext, $mediumpath.$name.$ext);
+	$phMagickMedium->rotate($rotate);
+//	Zend_Debug::dump($phMagickMedium);
+
+	} else {
+	$phMagickMediumCreate = new phMagick($largepath.$filename, $mediumpath.$name.$ext);
+    $phMagickMediumCreate->resize(500,0);
+    $phMagickMediumCreate->rotate($rotate);
+	$phMagickMediumCreate->convert();
+//	Zend_Debug::dump($phMagickMediumCreate);
+
+	}
+	//rotate small image
+	if(file_exists($smallpath.$name.$ext)) {
+	$phMagickSmall = new phMagick($smallpath.$name.$ext, $smallpath.$name.$ext);
+	$phMagickSmall->rotate($rotate);
+	//Zend_Debug::dump($phMagickSmall);
+
+	} else {
+	$phMagickSmallCreate = new phMagick($largepath.$filename, $smallpath.$name.$ext);
+    $phMagickSmallCreate->resize(40,0);
+    $phMagickSmallCreate->rotate($rotate);
+	$phMagickSmallCreate->convert();
+	//Zend_Debug::dump($phMagickSmallCreate);
+
+	}
+	//rotate display image
+	if(file_exists($displaypath.$name.$ext)) {
+	$phMagickDisplay = new phMagick($displaypath.$name.$ext, $displaypath.$name.$ext);
+	$phMagickDisplay->rotate($rotate);
+//	Zend_Debug::dump($phMagickDisplay);
+
+	} else {
+	$phMagickDisplayCreate = new phMagick($largepath.$name.$ext, $displaypath.$name.$ext);
+    $phMagickDisplayCreate->resize(0,150);
+    $phMagickDisplayCreate->rotate($rotate);
+	$phMagickDisplayCreate->convert();
+	//Zend_Debug::dump($phMagickDisplayCreate);
+	}
+	//rotate thumbnail
+	if(file_exists($thumbpath.$id.'.jpg')) {
+	$phMagickThumb = new phMagick($thumbpath.$id.'.jpg', $thumbpath.$id.'.jpg');
+	$phMagickThumb->rotate($rotate);
+	//Zend_Debug::dump($phMagickThumb);
+	} else {
+	$thumbpath = self::PATH . 'thumbnails/';
+	$originalpath = $path;
+	$phMagickRegen = new phMagick($originalpath, $thumbpath.$id.'.jpg');
+	$phMagickRegen->resize(100,0);
+	$phMagickRegen->convert();
+
+	}
+	}
+
+	if(isset($regenerate)) {
+	$thumbpath = self::PATH . 'thumbnails/';
+	$originalpath = $path;
+	$phMagickRegen = new phMagick($originalpath, $thumbpath.$id.'.jpg');
+	$phMagickRegen->resize(100,0);
+	$phMagickRegen->convert();
+	}
+
+	$update = $this->_images->update($updateData, $where);
+		//Update the solr instance
 	$this->_helper->solrUpdater->update('beoimages', $this->_getParam('id'));
 	
 	$this->_flashMessenger->addMessage('Image and metadata updated!');
@@ -283,7 +374,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$original = './'.$imagedir.$filename;
 	$where = 'imageID = ' . $id;
 	$this->_images->delete($where);
-	$this->_helper->solrUpdater->deleteById('beoimages', $id);
+	$this->_helper->solrUpdater->deleteById('images', $id);
 	$linked = new FindsImages();
 	$wherelinks = array();
 	$wherelinks[] = $linked->getAdapter()->quoteInto('image_id = ?', $imagedata['0']['secuid']);
@@ -334,7 +425,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$findID = $form->getValue('findID');
 	$finds = new Finds();
 	$returns = $finds->fetchRow($finds->select()->where('secuid = ?',$findID));
-//	$this->_helper->solrUpdater->update('beoimages', $this->_getParam('imageID'));
+//	$this->_helper->solrUpdater->update('images', $this->_getParam('imageID'));
 	$this->_helper->solrUpdater->update('beowulf', $findID);
 	$returnID = $returns->id;
 	$this->_flashMessenger->addMessage('You just linked an image to this record');
@@ -366,7 +457,7 @@ class Database_ImagesController extends Pas_Controller_Action_Admin
 	$where[] = $linked->getAdapter()->quoteInto('find_id = ?', $findID);
 	
 	$linked->delete($where);
-//	$this->_helper->solrUpdater->update('beoimages', $imageID);
+//	$this->_helper->solrUpdater->update('images', $imageID);
 	$this->_helper->solrUpdater->update('beowulf', $findID);
 	$this->_flashMessenger->addMessage('Links deleted!');
 	$this->_redirect('/database/artefacts/record/id/' . $this->_getParam('returnID'));

@@ -16,25 +16,25 @@ class Findspots extends Pas_Db_Table_Abstract {
 
 	protected $_primary = 'id';
 
-	protected $_higherlevel = array('admin','flos','fa'); 
+	protected $_higherlevel = array('admin','flos','fa');
 
 	protected $_restricted = array(null, 'public','member','research','hero');
 
 	protected $_edittest = array('flos','member');
-	
+
 	/** The Yahoo! appid variable for placemaker
-     * 
+     *
      * @var string $_appid;
      */
     protected $_appid;
-    
+
     protected $_gmaps;
-    
+
     public function init(){
     	$this->_appid = $this->_config->webservice->ydnkeys->placemakerkey;
     	$this->_gmaps = $this->_config->webservice->google->apikey;
     }
-	
+
 	/** Determine role of the user
 	* @return string $role
 	*/
@@ -48,7 +48,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 		return $role;
 		}
 	}
-	
+
 	/** Determine user institution
 	* @return string $institution
 	*/
@@ -73,8 +73,8 @@ class Findspots extends Pas_Db_Table_Abstract {
        return $data = $findspotdata->fetchAll($select);
 	}
 
-	/** 
-	 * 
+	/**
+	 *
 	 */
 	public function getFindNumber($id){
 		$findspotdata = $this->getAdapter();
@@ -87,7 +87,7 @@ class Findspots extends Pas_Db_Table_Abstract {
        return $data[0]['id'];
 	}
 	/** Retrieval of findspot row for display (not all columns)
-	* @param integer $id 
+	* @param integer $id
 	* @return array $data
 	* @todo add caching
 	*/
@@ -100,7 +100,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 									   'knownas', 'smrref', 'map25k',
 									   'map10k', 'landusecode', 'landusevalue',
 									   'id', 'old_findspotid', 'createdBy',
-									   'description', 'comments', 'address', 
+									   'description', 'comments', 'address',
 									   'woeid', 'elevation', 'postcode',
 									   'landowner', 'fourFigureLat', 'fourFigureLon',
 									   'gridlen', 'woeid', 'geonamesID'))
@@ -117,10 +117,10 @@ class Findspots extends Pas_Db_Table_Abstract {
        return $findspotdata->fetchAll($select);
 	}
 
-			
+
 	/** Retrieval of findspots data for finds and findspots
 	* @param string $secuid
-	* @param integer $id 
+	* @param integer $id
 	* @return array $data
 	* @todo add caching
 	*/
@@ -133,9 +133,9 @@ class Findspots extends Pas_Db_Table_Abstract {
 			->where('finds.secuid = ?',(string)$secuid);
        return $finds->fetchAll($select);
 	}
-	
+
 	/** Retrieval of findspots data row for deletion
-	* @param integer $id 
+	* @param integer $id
 	* @return array $data
 	* @todo add caching
 	*/
@@ -149,7 +149,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 	}
 
 	/** Retrieval of findspots data row for cloning record
-	* @param integer $userid 
+	* @param integer $userid
 	* @return array $data
 	* @todo add caching
 	*/
@@ -165,7 +165,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 	return $finds->fetchAll($select);
 	}
 
-	
+
 	/** Retrieval of findspots with missing districts to harangue the crew
 	* @return array $data
 	*/
@@ -179,50 +179,81 @@ class Findspots extends Pas_Db_Table_Abstract {
 		->limit(5000);
 	return $findspots->fetchAll($select);
 	}
-	
+
 	/** Function for adding and processing the findspot data
 	 * @access public
 	 * @param array $data
 	 */
 	public function addAndProcess($data){
 	if(is_array($data)){
-	foreach($data as $k => $v) {
+	//Set null values
+        foreach($data as $k => $v) {
 	if ( $v == "") {
 	$data[$k] = NULL;
 	}
 	}
+
 	if(!is_null($data['gridref'])) {
 	$data = $this->_processFindspot($data);
 	}
-	if(!is_null($data['county'])){
-		$data['regionID'] = $this->_getRegion($data['county']);
-	}
-	if(!is_null($data['county']) && !is_null($data['parish'])){
-		$data['district'] = $this->_getDistrict($data['county'], $data['parish']);
-	}
+
+//	if(!is_null($data['county'])){
+//		$data['regionID'] = $this->_getRegion($data['county']);
+//	}
+//
+//	if(!is_null($data['county']) && !is_null($data['parish'])){
+//		$data['district'] = $this->_getDistrict($data['county'], $data['parish']);
+//	}
+
 	$findid = new Pas_Generator_FindID();
 	$data['old_findspotid'] = $findid->generate();
 	$secuid = new Pas_Generator_SecuID();
-	$data['secuid'] = $secuid->secuid(); 
-	if(array_key_exists('landownername', $data)){
+	$data['secuid'] = $secuid->secuid();
+
+	if(array_key_exists('parishID', $data) &&!is_null($data['parishID'])){
+		$parishes = new OsParishes();
+		$data['parish'] = $parishes->fetchRow($parishes->select()->where('osID = ?', $data['parishID']))->label;
+	}
+	
+	if(array_key_exists('countyID', $data) && !is_null($data['countyID'])){
+		$counties = new OsCounties();
+		$data['county'] = $counties->fetchRow($counties->select()->where('osID = ?', $data['countyID']))->label;
+	}
+	
+	if(array_key_exists('districtID', $data) && !is_null($data['districtID'])){
+		$district = new OsDistricts();
+		
+		$data['district'] = $district->fetchRow($district->select()->where('osID = ?', $data['districtID']))->label;
+	}
+	
+	
+        if(array_key_exists('landownername', $data)){
 		unset($data['landownername']);
 	}
-	if(array_key_exists('csrf', $data)){
+
+        if(array_key_exists('csrf', $data)){
  		unset($data['csrf']);
   	}
-	if(empty($data['created'])){
+
+        if(empty($data['created'])){
 		$data['created'] = $this->timeCreation();
 	}
-	if(empty($data['createdBy'])){
+
+        if(empty($data['createdBy'])){
 		$data['createdBy'] = $this->userNumber();
-	
-	return parent::insert($data);		
+        }
+        
+//        Zend_Debug::dump($data);
+//        exit;
+         return parent::insert($data);
+
 	} else {
 		throw new Exception('The data submitted is not an array',500);
 	}
+
 	}
-	}
-	
+
+
 	/** Function for updating findspots with processing of geodata
 	 * @access public
 	 * @param array $data
@@ -237,7 +268,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 	}
 	if(!is_null($data['gridref'])) {
 	$data = $this->_processFindspot($data);
-	}   
+	}
 	}
 	if(!is_null($data['county'])){
 		$data['regionID'] = $this->_getRegion($data['county']);
@@ -250,19 +281,35 @@ class Findspots extends Pas_Db_Table_Abstract {
 	}
 	if(array_key_exists('landownername', $data)){
 	unset($data['landownername']);
-	}   
-
-	return $data;
+	}
+	if(array_key_exists('parishID', $data)){
+		$parishes = new OsParishes();
+		$data['parish'] = $parishes->fetchRow($parishes->select()->where('osID = ?', $data['parishID']))->label;
 	}
 	
+	if(array_key_exists('countyID', $data)){
+		$counties = new OsCounties();
+		$data['county'] = $counties->fetchRow($counties->select()->where('osID = ?', $data['countyID']))->label;
+	}
+	
+	if(array_key_exists('districtID', $data)){
+		$district = new OsDistricts();
+		
+		$data['district'] = $district->fetchRow($district->select()->where('osID = ?', $data['districtID']))->label;
+	}
+//	Zend_Debug::dump($data);
+//	exit;
+	return $data;
+	}
+
 	/** Function for processing findspot
-	 * 
+	 *
 	 * @param array $data
 	 */
 	protected function _processFindspot($data){
 	if(is_array($data)) {
 	$conversion = new Pas_Geo_Gridcalc($data['gridref']);
-	
+
 	$results = $conversion->convert();
 	$fourFigure = new Pas_Geo_Gridcalc($results['fourFigureGridRef']);
 	$fourFigureData = $fourFigure->convert();
@@ -273,7 +320,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$data['declong'] = $results['decimalLatLon']['decimalLongitude'];
 	$data['declat'] = $results['decimalLatLon']['decimalLatitude'];
 	$data['easting'] = $results['easting'];
-	$data['northing'] = $results['northing'];	  
+	$data['northing'] = $results['northing'];
 	$data['map10k'] = $results['10kmap'];
 	$data['map25k'] = $results['25kmap'];
 	$data['fourFigure'] = $results['fourFigureGridRef'];
@@ -283,17 +330,17 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$data['fourFigureLat'] = $fourFigureData['decimalLatLon']['decimalLatitude'];
 	$data['fourFigureLon'] = $fourFigureData['decimalLatLon']['decimalLongitude'];
 	$yahoo = $place->reverseGeoCode($results['decimalLatLon']['decimalLatitude'],
-		$results['decimalLatLon']['decimalLongitude']);	
+		$results['decimalLatLon']['decimalLongitude']);
         $data['woeid'] = $yahoo['woeid'];
     $elevate = new Pas_Service_Geo_Elevation($this->_gmaps);
-    $data['elevation'] = $elevate->getElevation($data['declong'], $data['declat']);    
+    $data['elevation'] = $elevate->getElevation($data['declong'], $data['declat']);
     return $data;
 	} else {
 	return $data;
 	}
 	}
-	
-	
+
+
 	/** Function for updating findspots with processing of geodata
 	 * @access public
 	 * @param array $data
@@ -308,26 +355,26 @@ class Findspots extends Pas_Db_Table_Abstract {
 	}
 	if(!is_null($data['gridref'])) {
 	$data = $this->_processFindspot($data);
-	}   
+	}
 	}
 	if(array_key_exists('csrf', $data)){
 	unset($data['csrf']);
 	}
 	if(array_key_exists('landownername', $data)){
 	unset($data['landownername']);
-	}   
+	}
 
 	return $data;
 	}
-	
+
 	/** Function for processing findspot
-	 * 
+	 *
 	 * @param array $data
 	 */
 	protected function _processFindspot2($data){
 	if(is_array($data)) {
 	$conversion = new Pas_Geo_Gridcalc($data['gridref']);
-	
+
 	$results = $conversion->convert();
 	$fourFigure = new Pas_Geo_Gridcalc($results['fourFigureGridRef']);
 	$fourFigureData = $fourFigure->convert();
@@ -338,7 +385,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$data['declong'] = $results['decimalLatLon']['decimalLongitude'];
 	$data['declat'] = $results['decimalLatLon']['decimalLatitude'];
 	$data['easting'] = $results['easting'];
-	$data['northing'] = $results['northing'];	  
+	$data['northing'] = $results['northing'];
 	$data['map10k'] = $results['10kmap'];
 	$data['map25k'] = $results['25kmap'];
 	$data['fourFigure'] = $results['fourFigureGridRef'];
@@ -348,15 +395,15 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$data['fourFigureLat'] = $fourFigureData['decimalLatLon']['decimalLatitude'];
 	$data['fourFigureLon'] = $fourFigureData['decimalLatLon']['decimalLongitude'];
 //	$yahoo = $place->reverseGeoCode($results['decimalLatLon']['decimalLatitude'],
-//		$results['decimalLatLon']['decimalLongitude']);	
+//		$results['decimalLatLon']['decimalLongitude']);
 //        $data['woeid'] = $yahoo['woeid'];
-//        
+//
     return $data;
 	} else {
 	return $data;
 	}
 	}
-	
+
 	public function missingGrids($limit = 1){
 	$findspots = $this->getAdapter();
 	$select = $findspots->select()
@@ -367,7 +414,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 		->limit($limit);
 	return $findspots->fetchAll($select);
 	}
-	
+
 	public function missingfour($limit = 1){
 	$findspots = $this->getAdapter();
 	$select = $findspots->select()
@@ -378,7 +425,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 		->limit($limit);
 	return $findspots->fetchAll($select);
 	}
-	
+
 	public function missingEastings($limit = 1){
 	$findspots = $this->getAdapter();
 	$select = $findspots->select()
@@ -389,19 +436,19 @@ class Findspots extends Pas_Db_Table_Abstract {
 		->limit($limit);
 	return $findspots->fetchAll($select);
 	}
-	
+
 	protected function _getRegion( $county ){
 		$regions  = new Counties();
 		$regionID = $regions->getRegions($county);
 		return $regionID[0]['term'];
 	}
-	
+
 	protected function _getDistrict( $county, $parish ){
 		$districts = new Places();
 		$district = $districts->getDistrictUpdate( $county, $parish);
 		return $district[0]['district'];
 	}
-	
+
 	public function incorrectSource($limit = 1){
 	$findspots = $this->getAdapter();
 	$select = $findspots->select()
@@ -410,9 +457,9 @@ class Findspots extends Pas_Db_Table_Abstract {
 		   ->where('gridrefsrc = ?', 4)
 		   ->where('created <= ?', '2003-04-01')
 			->limit($limit);
-	return $findspots->fetchAll($select);	
+	return $findspots->fetchAll($select);
 	}
-	
+
 	public function missingElevation($limit = 1){
 	$findspots = $this->getAdapter();
 	$select = $findspots->select()
@@ -421,7 +468,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 		   ->where('declong IS NOT NULL')
 		   ->where('elevation IS NULL')
 			->limit($limit);
-	return $findspots->fetchAll($select);	
+	return $findspots->fetchAll($select);
 	}
-	
+
 }

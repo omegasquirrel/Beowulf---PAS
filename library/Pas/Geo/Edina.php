@@ -72,7 +72,7 @@ class Pas_Geo_Edina {
         );
 
     $backendOptions = array(
-        'cache_dir' => 'app/cache/edina'
+        'cache_dir' => CACHE_PATH . '/edina'
         );
 
     $this->_cache = Zend_Cache::factory(

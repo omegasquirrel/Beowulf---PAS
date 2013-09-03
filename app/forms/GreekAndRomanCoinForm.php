@@ -153,7 +153,7 @@ public function __construct($options = null) {
 	'status', 'status_qualifier', 'degree_of_wear','obverse_description',
 	'obverse_inscription', 'reverse_description', 'reverse_inscription',
 	'die_axis_measurement', 'die_axis_certainty'), 'details');
-	$this->addDisplayGroup(array('submit'),'submit');
+	$this->addDisplayGroup(array('submit'),'buttons');
 	parent::init();
 	}
 }

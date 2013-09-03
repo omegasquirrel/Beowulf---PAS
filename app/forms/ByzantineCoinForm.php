@@ -160,7 +160,7 @@ public function __construct($options = null)
 	'reverse_inscription', 'die_axis_measurement', 'die_axis_certainty'), 'details');
 
 
-	$this->addDisplayGroup(array('submit'),'submit');
+	$this->addDisplayGroup(array('submit'), 'buttons');
         parent::init();
 	}
 

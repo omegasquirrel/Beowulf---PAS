@@ -87,7 +87,7 @@ class Pas_GoogChart
 
 		// Return chart
 		return $this->img(
-					GoogChart::BASE.http_build_query($this->query),
+					self::BASE.http_build_query($this->query),
 					$this->title
 				);
 	}

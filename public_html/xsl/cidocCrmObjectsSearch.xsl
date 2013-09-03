@@ -714,7 +714,7 @@
 			      	<pas:accuracy>
 						<rdf:Description>
 							<rdf:value rdf:datatype="xsd:integer"><xsl:value-of select="accuracy"/></rdf:value>
-							<rdfs:label rdf:datatype="xsd:string">Coordinates place object within a <xsl:value-of select="precision"/> metre square</rdfs:label>
+							<rdfs:label rdf:datatype="xsd:string">Coordinates place object within a <xsl:value-of select="accuracy"/> metre square</rdfs:label>
 						</rdf:Description>
 					</pas:accuracy>
 					</xsl:if>
@@ -1573,7 +1573,7 @@
 						<pas:accuracy>
 							<rdf:Description>
 								<rdf:value rdf:datatype="xsd:decimal"><xsl:value-of select="accuracy"/></rdf:value>
-								<rdfs:label rdf:datatype="xsd:string">Coordinates place object within a <xsl:value-of select="precision"/> metre square</rdfs:label>
+								<rdfs:label rdf:datatype="xsd:string">Coordinates place object within a <xsl:value-of select="accuracy"/> metre square</rdfs:label>
 							</rdf:Description>
 						</pas:accuracy>
 						</xsl:if>

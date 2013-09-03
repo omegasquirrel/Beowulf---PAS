@@ -26,7 +26,7 @@ class Pas_View_Helper_ActivitySolrSearch extends Zend_View_Helper_Abstract{
 		$this->_config = Zend_Registry::get('config');
 		$config = $this->_config->solr->toArray();
 		$config['path'] = '/solr/';
-		$config['core'] = 'people';
+		$config['core'] = 'beopeople';
 		$this->_solrConfig = array('adapteroptions' => $config );
    		$this->_solr = new Solarium_Client($this->_solrConfig);
 	}
@@ -67,7 +67,7 @@ class Pas_View_Helper_ActivitySolrSearch extends Zend_View_Helper_Abstract{
 	
 	
 	public function buildHtml($data){
-	if($data['images']) {
+	if(array_key_exists('images', $data)) {
 	$html = '<h3>Number of people assigned</h3>';
 	$html .= '<p>We have recorded ' . $data['numberFound'] . ' people.</p>';
 	return $html;

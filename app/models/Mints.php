@@ -426,12 +426,12 @@ class Mints extends Pas_Db_Table_Abstract {
     }
     
     public function getPleiadesID($mint){
-    if (!$data = $this->_cache->load('pleiades' . $mint)) {
+//    if (!$data = $this->_cache->load('pleiades' . $mint)) {
 	$mints = $this->getAdapter();
-	$mint = $mints->fetchRow('id =' . $mint);
+	$mint = $mints->fetchRow($this->select()->where('id =' . $mint));
 	$data = $mint->pleiadesID;
-	$this->_cache->save($data, 'pleiades' . $mint);
-	}
+//	$this->_cache->save($data, 'pleiades' . $mint);
+//	}
 	return $data;	
     }
 }
