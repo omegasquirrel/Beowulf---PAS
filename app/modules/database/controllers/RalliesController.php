@@ -9,7 +9,7 @@
 */
 class Database_RalliesController extends Pas_Controller_Action_Admin {
 
-	protected $_cache, $_config, $_rallies;
+	protected $_cache, $_config, $_rallies, $_parishes, $_districts;
 	/** Initialise the ACL and contexts
 	*/
 	public function init() {
@@ -17,7 +17,7 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$this->_helper->_acl->allow('public',array('index','rally','map'));
 	$this->_helper->_acl->deny('public',array('addflo','delete','deleteflo'));
 	$this->_helper->_acl->allow('flos',null);
-    $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
+        $this->_helper->contextSwitch()->setAutoJsonSerialization(false);
 	$this->_helper->contextSwitch()->setAutoDisableLayout(true)
 		->addContext('rss',array('suffix' => 'rss'))
 		->addContext('atom',array('suffix' => 'atom'))
@@ -26,6 +26,8 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 		->initContext();
 	$this->_cache = Zend_Registry::get('rulercache');
 	$this->_rallies = new Rallies();
+        $this->_districts = new OsDistricts();
+        $this->_parishes = new OsParishes();
     }
 	/** Set up the url for redirect
 	*/
@@ -77,36 +79,22 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
-	$geo = new Pas_Geo_Gridcalc($form->getValue('gridref'));
-	$results = $geo->convert();
-	$insertData = array(
-	'rally_name' => $form->getValue('rally_name'),
-	'organiser' => $form->getValue('organiser'),
-	'county' => $form->getValue('county'),
-	'district' => $form->getValue('district'),
-	'parish' => $form->getValue('parish'),
-	'gridref' => $form->getValue('gridref'),
-	'easting' => $results['easting'],
-	'northing' => $results['northing'],
-	'latitude' => $results['decimalLatLon']['decimalLatitude'],
-	'longitude' => $results['decimalLatLon']['decimalLongitude'],
-	'map10k' => $results['10kmap'],
-	'map25k' => $results['25kmap'],
-	'fourFigure' => $results['fourFigureGridRef'],
-	'comments' => $form->getValue('comments'),
-	'record_method' => $form->getValue('record_method'),
-	'date_from' => $form->getValue('date_from'),
-	'date_to' => $form->getValue('date_to'),
-	'created' => $this->getTimeForForms(),
-	'createdBy' => $this->getIdentityForForms()
-	);
-	$insert = $this->_rallies->insert($insertData);
+	$insert = $this->_rallies->addAndProcess($insertData);
 	$this->_cache->remove('rallydds');
 	$this->_redirect(self::URL . 'rally/id/' . $insert);
 	$this->_flashMessenger->addMessage('Details for ' . $form->getValue('rally_name')
 	. ' have been created!');
 	} else  {
-	$form->populate($formData);
+        $data = $this->_request->getPost();
+	$form->populate($data);
+        if(array_key_exists('countyID', $data)){
+        $district_list = $this->_districts->getDistrictsToCountyList($data['countyID']);
+	$form->districtID->addMultiOptions(array(NULL => NULL,'Choose district' => $district_list));
+        }
+        if(array_key_exists('districtID', $data)){
+	$parish_list = $this->_parishes->getParishesToDistrictList($data['districtID']);
+	$form->parishID->addMultiOptions(array(NULL => NULL,'Choose parish' => $parish_list));
+        }
 	}
 	}
 	}
@@ -120,42 +108,20 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	if ($this->_request->isPost()) {
 	$formData = $this->_request->getPost();
 	if ($form->isValid($formData)) {
-	$geo = new Pas_Geo_Gridcalc($form->getValue('gridref'));
-	$results = $geo->convert();
-	$updateData = array(
-	'rally_name' => $form->getValue('rally_name'),
-	'organiser' => $form->getValue('organiser'),
-	'county' => $form->getValue('county'),
-	'district' => $form->getValue('district'),
-	'parish' => $form->getValue('parish'),
-	'gridref' => $form->getValue('gridref'),
-	'easting' => $results['easting'],
-	'northing' => $results['northing'],
-	'latitude' => $results['decimalLatLon']['decimalLatitude'],
-	'longitude' => $results['decimalLatLon']['decimalLongitude'],
-	'map10k' => $results['10kmap'],
-	'map25k' => $results['25kmap'],
-	'fourFigure' => $results['fourFigureGridRef'],
-	'comments' => $form->getValue('comments'),
-	'record_method' => $form->getValue('record_method'),
-	'date_from' => $form->getValue('date_from'),
-	'date_to' => $form->getValue('date_to'),
-	'updated' => $this->getTimeForForms(),
-	'updatedBy' => $this->getIdentityForForms()
-	);
+	$updateData = $this->_rallies->updateAndProcess($formData);
 	$where = array();
 	$where[] = $this->_rallies->getAdapter()->quoteInto('id = ?', $this->_getParam('id'));
-	$update = $this->_rallies->update($updateData,$where);
+  
+	$update = $this->_rallies->updateRecord($updateData, $where);
 	$this->_cache->remove('rallydds');
 	$this->_flashMessenger->addMessage('Rally information updated!');
 	$this->_redirect(self::URL . 'rally/id/' . $this->_getParam('id'));
 	} else {
-	if(!is_null($formData['district'])) {
-	$districts = new Places();
-	$district_list = $districts->getDistrictList($formData['county']);
-	$form->district->addMultiOptions(array(NULL => NULL,'Choose district' => $district_list));
-	$parish_list = $districts->getParishList($formData['district']);
-	$form->parish->addMultiOptions(array(NULL => NULL,'Choose parish' => $parish_list));
+	if(!is_null($formData['districtID'])) {
+	$district_list = $this->_districts->getDistrictsToCountyList($formData['countyID']);
+	$form->districtID->addMultiOptions(array(NULL => NULL,'Choose district' => $district_list));
+	$parish_list = $this->_parishes->getParishesToDistrictList($formData['districtID']);
+	$form->parishID->addMultiOptions(array(NULL => NULL,'Choose parish' => $parish_list));
 	}
 	$form->populate($formData);
 	}
@@ -164,19 +130,16 @@ class Database_RalliesController extends Pas_Controller_Action_Admin {
 	$id = (int)$this->_request->getParam('id', 0);
 	if ($id > 0) {
 	$rally = $this->_rallies->fetchRow('id='.$id);
-	if(count($rally)) {
+	if($rally) {
 	$form->populate($rally->toArray());
 	} else {
 	throw new Exception($this->_nothingFound);
 	}
 
-	if(!is_null($rally['district'])) {
-	$districts = new Places();
-	$district_list = $districts->getDistrictList($rally['county']);
-	$form->district->addMultiOptions(array(NULL => NULL,'Choose district' => $district_list));
-	$parish_list = $districts->getParishList($rally['district']);
-	$form->parish->addMultiOptions(array(NULL => NULL,'Choose parish' => $parish_list));
-	}
+	$district_list = $this->_districts->getDistrictsToCountyList($rally['countyID']);
+	$form->districtID->addMultiOptions(array(NULL => NULL,'Choose district' => $district_list));
+	$parish_list = $this->_parishes->getParishesToDistrictList($rally['districtID']);
+	$form->parishID->addMultiOptions(array(NULL => NULL,'Choose parish' => $parish_list));
 	if(!is_null($rally['organiser'])) {
 	$organisers = new Peoples();
 	$organisers = $organisers->getName($rally['organiser']);

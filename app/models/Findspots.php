@@ -214,19 +214,19 @@ class Findspots extends Pas_Db_Table_Abstract {
 		$parishes = new OsParishes();
 		$data['parish'] = $parishes->fetchRow($parishes->select()->where('osID = ?', $data['parishID']))->label;
 	}
-	
+
 	if(array_key_exists('countyID', $data) && !is_null($data['countyID'])){
 		$counties = new OsCounties();
 		$data['county'] = $counties->fetchRow($counties->select()->where('osID = ?', $data['countyID']))->label;
 	}
-	
+
 	if(array_key_exists('districtID', $data) && !is_null($data['districtID'])){
 		$district = new OsDistricts();
-		
+
 		$data['district'] = $district->fetchRow($district->select()->where('osID = ?', $data['districtID']))->label;
 	}
-	
-	
+
+
         if(array_key_exists('landownername', $data)){
 		unset($data['landownername']);
 	}
@@ -242,7 +242,7 @@ class Findspots extends Pas_Db_Table_Abstract {
         if(empty($data['createdBy'])){
 		$data['createdBy'] = $this->userNumber();
         }
-        
+
 //        Zend_Debug::dump($data);
 //        exit;
          return parent::insert($data);
@@ -286,15 +286,15 @@ class Findspots extends Pas_Db_Table_Abstract {
 		$parishes = new OsParishes();
 		$data['parish'] = $parishes->fetchRow($parishes->select()->where('osID = ?', $data['parishID']))->label;
 	}
-	
+
 	if(array_key_exists('countyID', $data)){
 		$counties = new OsCounties();
 		$data['county'] = $counties->fetchRow($counties->select()->where('osID = ?', $data['countyID']))->label;
 	}
-	
+
 	if(array_key_exists('districtID', $data)){
 		$district = new OsDistricts();
-		
+
 		$data['district'] = $district->fetchRow($district->select()->where('osID = ?', $data['districtID']))->label;
 	}
 //	Zend_Debug::dump($data);
@@ -332,9 +332,9 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$yahoo = $place->reverseGeoCode($results['decimalLatLon']['decimalLatitude'],
 		$results['decimalLatLon']['decimalLongitude']);
         $data['woeid'] = $yahoo['woeid'];
-    $elevate = new Pas_Service_Geo_Elevation($this->_gmaps);
-    $data['elevation'] = $elevate->getElevation($data['declong'], $data['declat']);
-    return $data;
+        $elevate = new Pas_Service_Geo_Elevation($this->_gmaps);
+        $data['elevation'] = $elevate->getElevation($data['declong'], $data['declat']);
+        return $data;
 	} else {
 	return $data;
 	}

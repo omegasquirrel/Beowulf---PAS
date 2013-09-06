@@ -34,7 +34,7 @@ class Pas_Db_Table_Abstract
 	$user =  new Pas_User_Details();
 	return $user->getPerson();
 	}
-	
+
 	/** Get the user number for updating
 	 * @access 	public
 	 * @uses 	Pas_UserDetails
@@ -127,5 +127,5 @@ class Pas_Db_Table_Abstract
     }
 
 
-    
+
 }

@@ -135,6 +135,133 @@ class Rallies extends Pas_Db_Table_Abstract {
 	return $rallies->fetchAll($select);
     }
 
+
+    /** Function for processing findspot
+	 *
+	 * @param array $data
+	 */
+	protected function _processFindspot($data){
+	if(is_array($data)) {
+	$conversion = new Pas_Geo_Gridcalc($data['gridref']);
+	$results = $conversion->convert();
+	$data['longitude'] = $results['decimalLatLon']['decimalLongitude'];
+	$data['latitude'] = $results['decimalLatLon']['decimalLatitude'];
+	$data['easting'] = $results['easting'];
+	$data['northing'] = $results['northing'];
+	$data['map10k'] = $results['10kmap'];
+	$data['map25k'] = $results['25kmap'];
+	$data['fourFigure'] = $results['fourFigureGridRef'];
+	return $data;
+	} else {
+	return $data;
+	}
+	}
+
+        /** Function for adding and processing the findspot data
+	 * @access public
+	 * @param array $data
+	 */
+	public function addAndProcess($data){
+	if(is_array($data)){
+	//Set null values
+        foreach($data as $k => $v) {
+	if ( $v == "") {
+	$data[$k] = NULL;
+	}
+	}
+
+	if(!is_null($data['gridref'])) {
+	$data = $this->_processFindspot($data);
+	}
+
+	if(array_key_exists('parishID', $data) &&!is_null($data['parishID'])){
+		$parishes = new OsParishes();
+		$data['parish'] = $parishes->fetchRow($parishes->select()->where('osID = ?', $data['parishID']))->label;
+	}
+
+	if(array_key_exists('countyID', $data) && !is_null($data['countyID'])){
+		$counties = new OsCounties();
+		$data['county'] = $counties->fetchRow($counties->select()->where('osID = ?', $data['countyID']))->label;
+	}
+
+	if(array_key_exists('districtID', $data) && !is_null($data['districtID'])){
+		$district = new OsDistricts();
+
+		$data['district'] = $district->fetchRow($district->select()->where('osID = ?', $data['districtID']))->label;
+	}
+
+
+        if(array_key_exists('organisername', $data)){
+		unset($data['organisername']);
+	}
+
+        if(array_key_exists('csrf', $data)){
+ 		unset($data['csrf']);
+  	}
+        if(array_key_exists('submit', $data)){
+            unset($data['submit']);
+        }
+
+        if(empty($data['created'])){
+		$data['created'] = $this->timeCreation();
+	}
+
+        if(empty($data['createdBy'])){
+		$data['createdBy'] = $this->userNumber();
+        }
+        return parent::insert($data);
+
+	} else {
+		throw new Exception('The data submitted is not an array',500);
+	}
+	}
+
+
+	/** Function for updating findspots with processing of geodata
+	 * @access public
+	 * @param array $data
+	 * @param array $where
+	 */
+	public function updateAndProcess($data){
+	if(is_array($data)){
+	foreach($data as $k => $v) {
+	if ( $v == "") {
+	$data[$k] = NULL;
+	}
+	}
+	if(!is_null($data['gridref'])) {
+	$data = $this->_processFindspot($data);
+	}
+	}
+
+	if(array_key_exists('csrf', $data)){
+            unset($data['csrf']);
+	}
+        if(array_key_exists('submit', $data)){
+            unset($data['submit']);
+        }
+	if(array_key_exists('organisername', $data)){
+            unset($data['organisername']);
+	}
+	if(array_key_exists('parishID', $data) && !is_null($data['parishID'])){
+		$parishes = new OsParishes();
+		$data['parish'] = $parishes->fetchRow($parishes->select()->where('osID = ?', $data['parishID']))->label;
+	}
+
+	if(array_key_exists('countyID', $data) && !is_null($data['countyID'])){
+		$counties = new OsCounties();
+		$data['county'] = $counties->fetchRow($counties->select()->where('osID = ?', $data['countyID']))->label;
+	}
+
+	if(array_key_exists('districtID', $data) && !is_null($data['districtID'])){
+		$district = new OsDistricts();
+
+		$data['district'] = $district->fetchRow($district->select()->where('osID = ?', $data['districtID']))->label;
+	}
+
+	return $data;
+	}
+
 }
 
 

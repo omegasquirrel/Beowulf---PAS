@@ -163,3 +163,5 @@ pip-log.txt
 .DS_Store
 config.ini
 webservices.ini
+/nbproject/private/
+*nbproject/*

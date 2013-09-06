@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->headTitle('Add a rally');
 $this->jQuery()->javascriptCaptureStart() ?>
 $(document).ready(function() {
@@ -8,14 +8,21 @@ $("#date_to").datepicker({ maxDate: '+1y'});
 
 });
 <?php $this->jQuery()->javascriptCaptureEnd();
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jQueryLinkedSelect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/coinslinkedselect.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/linkedinit.js',$type='text/javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/jquery.autocomplete.pack.js',$type='javascript');
-$this->jQuery()->addJavascriptFile($this->baseUrl().'/js/JQuery/autocompleteinitPeople.js',$type='text/javascript'); 
-$this->jQuery()->addJavascriptFile($this->baseUrl() . '/js/bootstrap-datepicker.js',$type='text/javascript'); 
-$this->headLink()->appendStylesheet($this->baseUrl().'/css/autocomplete.css');
 
+$this->jQuery()->addJavascriptFile($this->baseUrl()
+        . '/js/bootstrap-datepicker.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl()
+        . '/js/JQuery/jQueryLinkedSelect.js', $type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl()
+        . '/js/JQuery/findSpotLinkedSelect.js',$type='text/javascript');
+$this->jQuery()->addJavascriptFile($this->baseUrl()
+        . '/js/JQuery/findSpotLinkedQuery.js',$type='text/javascript');
+
+$this->jQuery()->addJavascriptFile($this->baseUrl()
+        . '/js/bootstrap-typeahead.js', $type='text/javascript');
+
+$this->jQuery()->addJavascriptFile($this->baseUrl()
+        .'/js/JQuery/typeaheads/organiser.js', $type='text/javascript');
 ?>
 
 <h2><?php echo $this->title();?></h2>
