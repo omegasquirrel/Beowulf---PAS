@@ -12,11 +12,11 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	const LOGOPATH = './images/logos/';
 
 	const STAFFPATH = './images/staffphotos/';
-	
+
 	protected $_geoPlanet;
-	
+
 	protected $_geocoder;
-	
+
 	protected $_redirectUrl = 'admin/contacts/';
 	/** Set up the ACL and contexts
 	*/
@@ -33,12 +33,12 @@ class Admin_ContactsController extends Pas_Controller_Action_Admin
 	*/
 	public function indexAction(){
 	$contacts = new Contacts();
-	$this->view->contacts = $contacts->getContacts($this->_getParam('page'));
+	$this->view->contacts = $contacts->getContacts($this->_getAllParams());
 	}
-	
+
 	public function alumniAction(){
 	$contacts = new Contacts();
-	$this->view->contacts = $contacts->getAlumni($this->_getParam('page'));	
+	$this->view->contacts = $contacts->getAlumni($this->_getAllParams());
 	}
 	/** View a contact's details
 	*/

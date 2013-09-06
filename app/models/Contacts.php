@@ -110,6 +110,7 @@ class Contacts extends Pas_Db_Table_Abstract {
 	* @todo add caching
 	*/
 	public function getContacts($params) {
+
 	$persons = $this->getAdapter();
 	$select = $persons->select()
 		->from($this->_name,array(#
@@ -127,13 +128,14 @@ class Contacts extends Pas_Db_Table_Abstract {
 		->where('alumni = ?', 1);
 	$paginator = Zend_Paginator::factory($select);
 	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber((int)$params['page']);
+	$paginator->setCurrentPageNumber($params['page']);
 	}
 	$paginator->setItemCountPerPage(20)
 		->setPageRange(10);
+        
 	return $paginator;
 	}
-	
+
 	/** Get a list of old staff to display on the map of contacts
 	* @param integer $params['page']
 	* @return array
