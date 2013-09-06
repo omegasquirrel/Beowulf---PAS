@@ -1,7 +1,7 @@
 <?php
 /**
 * A model to manipulate data for the Counties of England and Wales. Scotland may be added
-* in the future 
+* in the future
 * @category Pas
 * @package Pas_Db_Table
 * @subpackage Abstract
@@ -13,7 +13,7 @@
 */
 
 class CopyFindSpot extends Pas_Db_Table_Abstract {
-	
+
 	protected $_name = 'copyFindSpot';
 	protected $_primary = 'id';
 
@@ -22,9 +22,10 @@ class CopyFindSpot extends Pas_Db_Table_Abstract {
 		'knownas', 'regionID', 'knownas',
 		'gridref', 'gridrefsrc', 'gridrefcert',
 		'description', 'comments', 'landusecode',
-		'landusevalue', 'depthdiscovery'
+		'landusevalue', 'depthdiscovery', 'countyID',
+                'parishID', 'districtID'
 	);
-	
+
 	public function getConfig(){
 		$copy = $this->getAdapter();
 		$select = $copy->select()
@@ -47,13 +48,13 @@ class CopyFindSpot extends Pas_Db_Table_Abstract {
 			if(is_null($value) || $value === '' || $value === '0'){
 				unset($data[$key]);
 			}
-		} 
+		}
 		$newFields = array_keys($data);
 		$updateData['fields'] = serialize($newFields);
 		$updateData['created'] = $this->timeCreation();
 		$updateData['createdBy'] = $this->userNumber();
 		$updateData['userID'] = $this->userNumber();
 		parent::delete('userID =' . $this->userNumber());
-		return parent::insert($updateData);	
+		return parent::insert($updateData);
 }
 }

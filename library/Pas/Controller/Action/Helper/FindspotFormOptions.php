@@ -43,31 +43,36 @@ class Pas_Controller_Action_Helper_FindspotFormOptions
 
 
     public function optionsAddClone(){
-  	$findspots = new Findspots();
+    $findspots = new Findspots();
     $findspot = $findspots->getLastRecord($this->_getIdentity());
     $data = $findspot[0];
     $this->_view->form->populate($data);
     Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')
     	->addMessage('Your last record data has been cloned');
-    if(array_key_exists('county', $data)) {
-    $districts = new Places();
-    $district = $districts->getDistrictList($data['county']);
+//    Zend_Debug::dump($data);
+    if(array_key_exists('countyID', $data) && !is_null($data['countyID'])) {
+    $districts = new OsDistricts();
+    $district = $districts->getDistrictsToCountyList($data['countyID']);
     if($district) {
     $this->_view->form->districtID->addMultiOptions(array(NULL => 'Choose district',
     	'Available districts' => $district));
     }
-    if(array_key_exists('district', $data)) {
-    $parishes = $districts->getParishList($data['district']);
+//    Zend_Debug::dump($district);
+    if(array_key_exists('districtID', $data) && !is_null($data['districtID'])) {
+    $parishes = new OsParishes();
+    $parishes = $parishes->getParishesToDistrictList($data['districtID']);
     $this->_view->form->parishID->addMultiOptions(array(NULL => 'Choose parish',
     	'Available parishes' => $parishes));
     }
-     if(array_key_exists('county' , $data)) {
-    $cnts = new Counties();
-    $region_list = $cnts->getRegionsList($data['county']);
+//    Zend_Debug::dump($parishes);
+     if(array_key_exists('countyID' , $data) && !is_null($data['countyID'])) {
+    $cnts = new OsCounties();
+    $region_list = $cnts->getCountyToRegionList($data['countyID']);
     $this->_view->form->regionID->addMultiOptions(array(NULL => 'Choose region',
     	'Available regions' => $region_list));
     }
     }
+//    Zend_Debug::dump($region_list);
      if(array_key_exists('landusevalue', $data)) {
     $landcodes = new Landuses();
     $landusecode_options = $landcodes->getLandusesChildList($data['landusevalue']);
