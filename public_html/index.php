@@ -32,6 +32,7 @@ defined('IMAGE_PATH')
 
 
 ini_set('memory_limit', '64M');
+ini_set('upload_max_filesize', '16M');
 
 // Ensure library/ is on include_path
 // directory setup and class loading
