@@ -47,7 +47,7 @@ public function __construct($options = null) {
 
 	$denomination_qualifier = new Zend_Form_Element_Radio('denomination_qualifier');
 	$denomination_qualifier->setLabel('Denomination qualifier: ')
-		->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
+                ->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 		->addFilters(array('StripTags', 'StringTrim'))
 		->setOptions(array('separator' => ''));
 
