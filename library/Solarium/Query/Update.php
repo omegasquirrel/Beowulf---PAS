@@ -353,11 +353,11 @@ class Solarium_Query_Update extends Solarium_Query
      * @param boolean $expungeDeletes
      * @return Solarium_Query_Update Provides fluent interface
      */
-    public function addCommit($waitFlush = null, $waitSearcher = null,
+    public function addCommit( $waitSearcher = null,
                               $expungeDeletes = null)
     {
         $commit = new Solarium_Query_Update_Command_Commit();
-        if (null !== $waitFlush) $commit->setWaitFlush($waitFlush);
+//        if (null !== $waitFlush) $commit->setWaitFlush($waitFlush);
         if (null !== $waitSearcher) $commit->setWaitSearcher($waitSearcher);
         if (null !== $expungeDeletes)
             $commit->setExpungeDeletes($expungeDeletes);
@@ -376,11 +376,11 @@ class Solarium_Query_Update extends Solarium_Query
      * @param int $maxSegments
      * @return Solarium_Query_Update Provides fluent interface
      */
-   public function addOptimize($waitFlush = null, $waitSearcher = null,
+   public function addOptimize($waitSearcher = null,
                                $maxSegments = null)
    {
        $optimize = new Solarium_Query_Update_Command_Optimize();
-       if (null !== $waitFlush) $optimize->setWaitFlush($waitFlush);
+//       if (null !== $waitFlush) $optimize->setWaitFlush($waitFlush);
        if (null !== $waitSearcher) $optimize->setWaitSearcher($waitSearcher);
        if (null !== $maxSegments) $optimize->setMaxSegments($maxSegments);
 

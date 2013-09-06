@@ -1,6 +1,6 @@
 <?php
 /** Controller for displaying information about coins
-* 
+*
 * @category   Pas
 * @package    Pas_Controller
 * @subpackage ActionAdmin
@@ -11,15 +11,15 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
 
     protected $_coins;
     /** Setup the contexts by action and the ACL.
-    */	
-    public function init() {	
+    */
+    public function init() {
     $this->_helper->_acl->allow('member',array(
     'add', 'edit', 'delete',
     'coinref', 'editcoinref', 'deletecoinref'));
     $this->_helper->_acl->allow('flos',null);
     $this->_coins = new Coins();
     }
-    
+
     const REDIRECT = '/database/artefacts/';
     /** Redirect as no direct access to the coins index page
     */
@@ -33,7 +33,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     if( ($this->_getParam('broadperiod',false)) && ($this->_getParam('findID',false) )){
     $exist = $this->_coins->checkCoinData($this->_getParam('findID'));
     $broadperiod = (string)$this->_getParam('broadperiod');
-    $form = $this->_helper->coinFormLoader($broadperiod);	
+    $form = $this->_helper->coinFormLoader($broadperiod);
     $this->view->form = $form;
     $last = $this->_getParam('copy');
     if($last == 'last') {
@@ -41,7 +41,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $coindata = $this->_coins->getLastRecord($this->getIdentityForForms());
     foreach($coindata as $coindataflat){
     $form->populate($coindataflat);
-    $this->_helper->coinFormLoaderOptions($broadperiod, 
+    $this->_helper->coinFormLoaderOptions($broadperiod,
             $coindataflat);
     }
     }
@@ -51,11 +51,11 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $insertData['findID'] = (string) $this->_getParam('findID');
     $insertData['secuid'] = (string) $this->secuid();
     $insertData['institution'] = $user->getPerson()->institution;
-    $mints = new Mints();
-    $pleiadesID = $mints->getPleiadesID($form->getValue('mint_id'));
+//    $mints = new Mints();
+//    $pleiadesID = $mints->getPleiadesID($form->getValue('mint_id'));
     $insertData['pleiadesID'] = $pleiadesID;
     $insert = $this->_coins->add($insertData);
-    $this->_helper->solrUpdater->update('objects', $this->_getParam('returnID'));
+    $this->_helper->solrUpdater->update('beowulf', $this->_getParam('returnID'));
     $this->_helper->flashMessenger->addMessage('Coin data saved.');
     $this->_redirect(self::REDIRECT . 'record/id/' . $this->_getParam('returnID'));
     } else {
@@ -68,7 +68,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
 
     /** Edit coin data
      * @throws Pas_Exception_Param
-    */	
+    */
     public function editAction() {
     if($this->_getParam('id',false)){
     $finds = new Finds();
@@ -79,16 +79,16 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     if($this->getRequest()->isPost() && $form->isValid($this->_request->getPost())) 	 {
     if ($form->isValid($form->getValues())) {
     $updateData = $form->getValues();
-    $mints = new Mints();
-    $pleiadesID = $mints->getPleiadesID($form->getValue('mint_id'));
+//    $mints = new Mints();
+//    $pleiadesID = $mints->getPleiadesID($form->getValue('mint_id'));
     $updateData['pleiadesID'] = $pleiadesID;
     $oldData = $this->_coins->fetchRow('id=' . $this->_getParam('id'))->toArray();
-    $where =  $this->_coins->getAdapter()->quoteInto('id = ?', 
+    $where =  $this->_coins->getAdapter()->quoteInto('id = ?',
             $this->_getParam('id'));
 	//Update the coins table
     $update = $this->_coins->update($updateData, $where);
     //Audit the changes
-    $this->_helper->audit($updateData, $oldData, 'CoinsAudit', 
+    $this->_helper->audit($updateData, $oldData, 'CoinsAudit',
             $this->_getParam('id'), $this->_getParam('returnID'));
     //Update solr index
     $this->_helper->solrUpdater->update('beowulf', $this->_getParam('returnID'));
@@ -171,7 +171,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     }
 
     /** Edit a coin reference to object
-    */	
+    */
     public function editcoinrefAction()	{
     $form = new ReferenceCoinForm();
     $form->submit->setLabel('Edit reference');
@@ -217,7 +217,7 @@ class Database_CoinsController extends Pas_Controller_Action_Admin {
     $where = $coins->getAdapter()->quoteInto('id = ?', $id);
     $this->_helper->solrUpdater->update('beowulf', $returnID);
     $this->_helper->flashMessenger->addMessage('Record deleted!');
-    $coins->delete($where);	
+    $coins->delete($where);
     $this->_redirect(self::REDIRECT . 'record/id/' . $returnID);
     }
     $this->_redirect('database/artefacts/record/id/' . $returnID);
