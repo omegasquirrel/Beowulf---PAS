@@ -21,9 +21,9 @@ $role = $identity->role;
 if(in_array($role,$allowed)):
 ?>
 <div id="radius">
-	<?php $url = $this->url(array('module' => 'database','controller' => 'search','action' => 'results', 
+	<?php $url = $this->url(array('module' => 'database','controller' => 'search','action' => 'results',
 	'lat' => $this->declat, 'lon' => $this->declong,'d' => '2'),null,true);?>
-	<p><a class="btn btn-small btn-success" href="<?php echo $url;?>" title="Use the Haversine formula to find adjacent objects">Find objects within 2km 
+	<p><a class="btn btn-small btn-success" href="<?php echo $url;?>" title="Use the Haversine formula to find adjacent objects">Find objects within 2km
 	radius of this artefact</a></p>
 </div>
 <?php endif;?>
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
 	var max = <?php echo $maxzoom;?>;
 	var min = <?php echo $minzoom;?>;
-	
+
 	var imperium = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             return "http://finds.org.uk/imperium/" +
@@ -63,7 +63,7 @@ $(document).ready(function() {
         maxZoom: 11,
 		minZoom:3
     });
-	
+
 	var osmMapType = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             return "http://tile.openstreetmap.org/" +
@@ -76,7 +76,7 @@ $(document).ready(function() {
         name: "OSM",
         maxZoom: max
     });
-    
+
     var nlsmap = new google.maps.ImageMapType({
 	   getTileUrl: function(tile, zoom) { return NLSTileUrlOS(tile.x, tile.y, zoom); },
 	   tileSize: new google.maps.Size(256, 256),
@@ -91,7 +91,7 @@ $(document).ready(function() {
           zoom: 12,
 		  mapTypeControlOptions: {
           mapTypeIds: [
-          google.maps.MapTypeId.ROADMAP, 
+          google.maps.MapTypeId.ROADMAP,
           google.maps.MapTypeId.HYBRID,
           google.maps.MapTypeId.TERRAIN,
           google.maps.MapTypeId.SATELLITE,
@@ -111,7 +111,7 @@ $(document).ready(function() {
         };
         var map = new google.maps.Map(document.getElementById("map"),
             myOptions);
-            map.mapTypes.set('OSM',osmMapType); 
+            map.mapTypes.set('OSM',osmMapType);
         	map.mapTypes.set('Historic',nlsmap);
         	map.mapTypes.set('Imperium',imperium);
         	map.mapTypes.set('Watercolor', new google.maps.StamenMapType("watercolor"));
@@ -122,9 +122,9 @@ $(document).ready(function() {
       		map: map,
       		animation: google.maps.Animation.DROP,
       		title:"Findspot location",
-      		icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png" 
+      		icon: "<?php echo $this->serverUrl();?>/images/logos/museum_archeological.png"
   		});
-  		
+
   		var myTitle = document.createElement('h1');
 		myTitle.style.color = '#444444';
 		myTitle.style.font = "10px sans-serif";
@@ -134,24 +134,24 @@ $(document).ready(function() {
 		myTextDiv.appendChild(myTitle);
 
 		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
-  		
+
   		var region = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/regions/<?php echo strtoupper(str_replace(' ','',$this->region));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		region.setMap(map);
-  		
+
   		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(array(' ', ')','(','\'\''),'',$this->parish));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		parish.setMap(map);
-		
+
 		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/counties/<?php echo strtoupper(str_replace(' ','',$this->county));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		county.setMap(map);
-		
-		var district = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/districts/<?php echo strtoupper(str_replace(' ','',$this->district));?>.kmz',
+
+		var district = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/districts/<?php echo strtoupper(str_replace(array(" ", "'"),array('',''),$this->district));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		district.setMap(map);
 
-<?php 
+<?php
 	$bbox = new Pas_Geo_BoundBox();
 	$d = 5;  // distance
     $path_top_right = $bbox->createPoint($this->declat ,  $this->declong, 45, $d);
@@ -159,14 +159,14 @@ $(document).ready(function() {
     $path_bottom_left = $bbox->createPoint($this->declat ,  $this->declong, 225, $d);
     $path_top_left = $bbox->createPoint($this->declat ,  $this->declong, 315, $d);
 ?>
-  		
+
   		 var latLngBounds = new google.maps.LatLngBounds(
           new google.maps.LatLng(<?php echo $path_bottom_left;?>),
           new google.maps.LatLng(<?php echo $path_top_right;?>)
         );
     	map.fitBounds(latLngBounds);
   		google.maps.event.addListener(marker, 'click', toggleBounce);
-	
+
 	function toggleBounce() {
 		if (marker.getAnimation() != null) {
     		marker.setAnimation(null);
@@ -227,8 +227,8 @@ Elevation: <?php echo $this->elevation;?> metres<br />
 </div>
 
 <div class="span4 noprint">
-<?php 
-//echo $this->domesdayNear($this->declat,$this->declong, 2);
+<?php
+echo $this->domesdayNear($this->declat,$this->declong, 2);
 ?>
 </div>
 

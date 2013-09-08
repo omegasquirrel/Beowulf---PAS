@@ -108,7 +108,7 @@ class Findspots extends Pas_Db_Table_Abstract {
 			->joinLeft(array('land1' => 'landuses'),'land1.id = findspots.landusecode',array('landuse' => 'term'))
 			->joinLeft(array('land2' =>'landuses'),'land2.id = findspots.landusevalue',array('landvalue' => 'term'))
 			->joinLeft('maporigins','maporigins.id = findspots.gridrefsrc',array('source' => 'term'))
-			->joinLeft('regions','findspots.regionID = regions.id',array('region'))
+			->joinLeft('osRegions','findspots.regionID = osRegions.osID',array('region' => 'label'))
 			->joinLeft('people',$this->_name.'.landowner = people.secuid', array('landownername' => 'fullname'))
 			->joinLeft('discmethods','finds.discmethod = discmethods.id',array('method'))
 			->where('finds.id = ?', (int)$id)

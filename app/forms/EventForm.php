@@ -79,7 +79,7 @@ public function __construct($options = null) {
 	->setJQueryParam('dateFormat', 'yy-mm-dd')
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Datetime')
-	->addErrorMessage('Come on it\'s not that hard, enter a title!')
+	->addErrorMessage('You need a start date')
 	->setAttrib('size', 20);
 
 	$eventEndDate = new ZendX_JQuery_Form_Element_DatePicker('eventEndDate');
@@ -88,7 +88,7 @@ public function __construct($options = null) {
 	->setJQueryParam('dateFormat', 'yy-mm-dd')
 	->addFilters(array('StripTags','StringTrim'))
 	->addValidator('Datetime')
-	->addErrorMessage('Come on it\'s not that hard, enter a title!')
+	->addErrorMessage('You need an end date')
 	->setAttrib('size', 20);
 
 	$eventRegion = new Zend_Form_Element_Select('eventRegion');
@@ -135,7 +135,7 @@ public function __construct($options = null) {
 
 	$hash = new Zend_Form_Element_Hash('csrf');
 	$hash->setValue($this->_salt)->setTimeout(4800);
-	
+
 	$submit = new Zend_Form_Element_Submit('submit');
 
 	$this->addElements(array(

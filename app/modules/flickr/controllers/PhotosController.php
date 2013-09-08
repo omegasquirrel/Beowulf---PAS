@@ -123,7 +123,7 @@ class Flickr_PhotosController
 	$paginator->setPageRange(10);
 	$this->view->paginator = $paginator;
 	$this->view->pictures = $flickr;
-	
+
 	} else {
 		throw new Pas_Exception_Param($this->_missingParameter);
 	}
@@ -161,7 +161,6 @@ class Flickr_PhotosController
 	} else {
 	$flickr = $this->_cache->load($key);
 	}
-	$photos = array();
 	if(!is_null($flickr)){
 	$this->view->tagtitle = $tags;
 	$pagination = array(
