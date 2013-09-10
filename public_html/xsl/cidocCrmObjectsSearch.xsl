@@ -67,7 +67,7 @@
 	</xsl:param>
 	
 	<xsl:param name="osUri">
-		<xsl:value-of select="'http://data.ordnancesurvey.co.uk/id/70000000000'" />
+		<xsl:value-of select="'http://data.ordnancesurvey.co.uk/doc/7000000000'" />
 	</xsl:param>
 	
 	<xsl:param name="pleiadesUri">
@@ -720,23 +720,23 @@
 					</xsl:if>
 					<xsl:if test="regionID">
 				      	<osAdminGeo:inEuropeanRegion>
-					    <xsl:attribute name="rdf:about"><xsl:value-of select="regionID"/></xsl:attribute>
+					    <xsl:attribute name="rdf:about"><xsl:value-of select="format-number(regionID,'000000')"/></xsl:attribute>
 					    </osAdminGeo:inEuropeanRegion>
 					    </xsl:if>
 					    <xsl:if test="countyID">
 					    <osSpatialRel:within>
-					    <xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="countyID"/></xsl:attribute>
+					    <xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="format-number(countyID,'000000')"/></xsl:attribute>
 					    </osSpatialRel:within>
 					    </xsl:if>
 					    <xsl:if test="districtID">
 					    <osAdminGeo:inDistrict>
-					    <xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="districtID"/></xsl:attribute>
+					    <xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="format-number(districtID,'000000')"/></xsl:attribute>
 					    </osAdminGeo:inDistrict>
 					    </xsl:if>
 					    <xsl:if test="county">
 					    <osAdminGeo:county>
 					      	<rdf:Description>
-					      	<xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="countyID"/></xsl:attribute>
+					      	<xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="format-number(countyID,'000000')"/></xsl:attribute>
 					  			<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="county"/></rdfs:label>
 					    	</rdf:Description>
 					    </osAdminGeo:county>
@@ -744,7 +744,7 @@
 					    <xsl:if test="district">
 						<osAdminGeo:district>
 							<rdf:Description>
-						      	<xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="districtID"/></xsl:attribute>
+						      	<xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="format-number(districtID,'000000')"/></xsl:attribute>
 						  			<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="district"/></rdfs:label>
 						  	</rdf:Description>
 						</osAdminGeo:district>
@@ -752,7 +752,7 @@
 						<xsl:if test="parish">
 						<osAdminGeo:parish>
 							<rdf:Description>
-						      	<xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="parishID"/></xsl:attribute>
+						      	<xsl:attribute name="rdf:about"><xsl:value-of select="$osUri"/><xsl:value-of select="format-number(parishID,'000000')"/></xsl:attribute>
 						  			<rdfs:label rdf:datatype="xsd:string"><xsl:value-of select="parish"/></rdfs:label>
 						  	</rdf:Description>
 						</osAdminGeo:parish>
