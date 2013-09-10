@@ -270,29 +270,29 @@ class Findspots extends Pas_Db_Table_Abstract {
 	$data = $this->_processFindspot($data);
 	}
 	}
-	if(!is_null($data['county'])){
-		$data['regionID'] = $this->_getRegion($data['county']);
-	}
-	if(!is_null($data['county']) && !is_null($data['parish'])){
-		$data['district'] = $this->_getDistrict($data['county'], $data['parish']);
-	}
+//	if(!is_null($data['county'])){
+//		$data['regionID'] = $this->_getRegion($data['county']);
+//	}
+//	if(!is_null($data['county']) && !is_null($data['parish'])){
+//		$data['district'] = $this->_getDistrict($data['county'], $data['parish']);
+//	}
 	if(array_key_exists('csrf', $data)){
 	unset($data['csrf']);
 	}
 	if(array_key_exists('landownername', $data)){
 	unset($data['landownername']);
 	}
-	if(array_key_exists('parishID', $data)){
+	if(array_key_exists('parishID', $data) && !is_null($data['parishID'])){
 		$parishes = new OsParishes();
 		$data['parish'] = $parishes->fetchRow($parishes->select()->where('osID = ?', $data['parishID']))->label;
 	}
 
-	if(array_key_exists('countyID', $data)){
+	if(array_key_exists('countyID', $data) && !is_null($data['countyID'])){
 		$counties = new OsCounties();
 		$data['county'] = $counties->fetchRow($counties->select()->where('osID = ?', $data['countyID']))->label;
 	}
 
-	if(array_key_exists('districtID', $data)){
+	if(array_key_exists('districtID', $data) && !is_null($data['districtID'])){
 		$district = new OsDistricts();
 
 		$data['district'] = $district->fetchRow($district->select()->where('osID = ?', $data['districtID']))->label;

@@ -40,7 +40,7 @@ class Yahoo extends Pas_Db_Table_Abstract {
 	 *
 	 * @var string
 	 */
-	const SITEYAHOOCALLBACK = 'http://asgard.finds.org.uk/admin/oauth/yahooaccess/';
+	const SITEYAHOOCALLBACK = 'http://finds.org.uk/admin/oauth/yahooaccess/';
 
 	protected $_consumerKey;
 
