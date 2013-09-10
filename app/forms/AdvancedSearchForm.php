@@ -382,7 +382,7 @@ class AdvancedSearchForm extends Pas_Form {
 	->addValidators(array('NotEmpty'))
 	->addFilters(array('StringTrim','StripTags'));
 
-	$idBy = new Zend_Form_Element_Text('idby');
+	$idBy = new Zend_Form_Element_Text('idBy');
 	$idBy->setLabel('Primary identifier: ')
 	->addValidators(array('NotEmpty'))
 	->addFilters(array('StringTrim','StripTags'));
@@ -418,7 +418,7 @@ class AdvancedSearchForm extends Pas_Form {
 	$finderID->addFilters(array('StringTrim','StripTags'));
 
 
-	$recordby = new Zend_Form_Element_Text('recordby');
+	$recordby = new Zend_Form_Element_Text('recordername');
 	$recordby->setLabel('Recorded by: ')
 	->addValidators(array('NotEmpty'))
 	->addFilters(array('StringTrim','StripTags'))
@@ -532,8 +532,8 @@ class AdvancedSearchForm extends Pas_Form {
 	} else {
 	$this->addDisplayGroup(array(
 	'institution',
-	'finder', 'idby', 'identifierID',
-	'recordby', 'recorderID', 'createdAfter',
+	'finder', 'idBy', 'identifierID',
+	'recordername', 'recorderID', 'createdAfter',
 	'createdBefore','updatedAfter', 'updatedBefore', 'discovered'), 'Discovery');
     }
 

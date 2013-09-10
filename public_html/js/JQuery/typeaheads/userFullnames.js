@@ -9,7 +9,6 @@ $(document).ready(function() {
             dataType: "json",
             type: "POST",
             success: function(data) {
-                console.log(data);
                 $.map(data, function(data){
                     var group;
                     group = {

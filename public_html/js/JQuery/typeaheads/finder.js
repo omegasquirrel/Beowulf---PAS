@@ -9,7 +9,6 @@ $(document).ready(function() {
             dataType: "json",
             type: "POST",
             success: function(data) {
-                console.log(data);
                 $.map(data, function(data){
                     var group;
                     group = {
@@ -48,7 +47,6 @@ $(document).ready(function() {
     minLength: 3,
     updater: function (item) {
         var item = JSON.parse(item);
-        console.log(item.term); 
         $('#finderID').val(item.id);       
         return item.name;
     }

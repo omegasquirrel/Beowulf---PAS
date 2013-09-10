@@ -67,7 +67,8 @@ class Database_SearchController extends Pas_Controller_Action_Admin {
       $todelete = array(
         	'submit','action','controller',
         	'module','page','csrf',
-        	'finder', 'idby', 'recordby');
+        	'finder', 'idby', 'recordby', 
+      		'idBy', 'recordername');
 	foreach( $array as $key => $value ) {
         foreach($todelete as $match){
     	if($key == $match){

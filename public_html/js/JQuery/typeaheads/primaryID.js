@@ -1,5 +1,5 @@
 $(document).ready(function() {
- 		$('#idby').typeahead({
+ 		$('#idBy').typeahead({
     	source: function(query, process) {
         var $url = '/ajax/people/?term=' + query ;
         var $items = new Array;
@@ -9,12 +9,11 @@ $(document).ready(function() {
             dataType: "json",
             type: "POST",
             success: function(data) {
-                console.log(data);
                 $.map(data, function(data){
                     var group;
                     group = {
                         id: data.id,
-                        name: data.term,
+                        name: data.term,                            
                         toString: function () {
                             return JSON.stringify(this);
                             //return this.app;
@@ -48,10 +47,10 @@ $(document).ready(function() {
     minLength: 3,
     updater: function (item) {
         var item = JSON.parse(item);
-        console.log(item.term);
-        $('#identifierID').val(item.id);
+        $('#identifier1ID').val(item.id);  
+        $('#identifierID').val(item.id);   
         return item.name;
     }
 });
-
-    });
+ 		
+});
