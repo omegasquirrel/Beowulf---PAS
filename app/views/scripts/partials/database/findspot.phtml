@@ -1,6 +1,5 @@
 <?php
 $this->googleDynamicMap(null,null,true);
-$this->inlineScript()->appendFile('http://maps.stamen.com/js/tile.stamen.js',$type = 'text/javascript');
 ?>
 <h3>Spatial data</h3>
 <?php echo $this->FindSpotEditDeleteLink($this->old_findspotid,$this->id,$this->createdBy);?>
@@ -98,8 +97,6 @@ $(document).ready(function() {
           'OSM',
           'Imperium',
           'Historic',
-          'Watercolor',
-          'Toner'
           ]
     	  },
     	  mapTypeControl: true,
@@ -114,8 +111,6 @@ $(document).ready(function() {
             map.mapTypes.set('OSM',osmMapType);
         	map.mapTypes.set('Historic',nlsmap);
         	map.mapTypes.set('Imperium',imperium);
-        	map.mapTypes.set('Watercolor', new google.maps.StamenMapType("watercolor"));
-			map.mapTypes.set('Toner', new google.maps.StamenMapType("toner"));
             map.setTilt(45);
         var marker = new google.maps.Marker({
       		position: new google.maps.LatLng(<?php echo $this->declat;?>, <?php echo $this->declong;?>),
@@ -135,19 +130,19 @@ $(document).ready(function() {
 
 		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
 
-  		var region = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/regions/<?php echo strtoupper(str_replace(' ','',$this->region));?>.kmz',
+  		var region = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/regions/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('', '', ''),$this->region));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		region.setMap(map);
 
-  		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(array(' ', ')','(','\'\''),'',$this->parish));?>.kmz',
+  		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('', '', ''),$this->parish));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		parish.setMap(map);
 
-		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/counties/<?php echo strtoupper(str_replace(' ','',$this->county));?>.kmz',
+		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/counties/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('', '', ''),$this->county));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		county.setMap(map);
 
-		var district = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/districts/<?php echo strtoupper(str_replace(array(" ", "'"),array('',''),$this->district));?>.kmz',
+		var district = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/districts/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('','', ''),$this->district));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		district.setMap(map);
 
