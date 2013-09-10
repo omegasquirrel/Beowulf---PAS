@@ -31,7 +31,7 @@ class Pas_View_Helper_FindSpotEditDeleteLink
 	/** Array of higher level users
 	 * @var array $_higherLevel
 	 */
-	protected $_higherLevel = array('admin','fa','treasure');
+	protected $_higherLevel = array('admin','fa','treasure', 'flos');
 
 
 	/** Message for missing group exception
