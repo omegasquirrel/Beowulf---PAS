@@ -16,6 +16,16 @@ class TokenJettonForm extends Pas_Form {
 	$die_options = $dies->getAxes();
 	$wears = new Weartypes;
 	$wear_options = $wears->getWears();
+	
+	$categories = new JettonClasses();
+	$cat_options = $categories->getClasses();
+	
+	$groups = new JettonGroups();
+	$group_options = $groups->getGroups();
+
+	$types = new JettonTypes();
+	$type_options = $types->getTypes();
+	
 	parent::__construct($options);
 
 	$this->setName('jettontoken');
@@ -63,7 +73,12 @@ class TokenJettonForm extends Pas_Form {
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->setRegisterInArrayValidator(true)
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addMultiOptions(array(NULL => 'Choose a mint', 'Available mints' => array('286' => 'Nuremberg')));
+		->addMultiOptions(array(NULL => 'Choose a mint', 'Available mints' => array(
+		286 => 'Nuremberg',
+		1530 => 'Paris',
+		291 => 'Tournai',
+		1531 => 'Unknown'
+		)));
 
 	$mint_qualifier = new Zend_Form_Element_Radio('mint_qualifier');
 	$mint_qualifier->setLabel('Mint qualifier: ')
@@ -89,18 +104,18 @@ class TokenJettonForm extends Pas_Form {
 
 	$obverse_description = new Zend_Form_Element_Textarea('obverse_description');
 	$obverse_description->setLabel('Obverse description: ')
-		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'expanding'))
+		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'span6'))
 		->addFilters(array('StripTags', 'StringTrim'));
 
 	$reverse_description = new Zend_Form_Element_Textarea('reverse_description');
 	$reverse_description->setLabel('Reverse description: ')
 		->addFilters(array('StripTags', 'StringTrim'))
-		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'expanding'));
+		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'span6'));
 
 	$reverse_mintmark = new Zend_Form_Element_Textarea('reverse_mintmark');
 	$reverse_mintmark->setLabel('Reverse mintmark: ')
 		->addValidators(array('NotEmpty'))
-		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'expanding'))
+		->setAttribs(array('rows' => 3, 'cols' => 80, 'class' => 'span6'))
 		->addFilters(array('StripTags', 'StringTrim'));
 
 
@@ -117,8 +132,30 @@ class TokenJettonForm extends Pas_Form {
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->setOptions(array('separator' => ''));
+	
+	$categoryID = new Zend_Form_Element_Select('jettonClass');
+	$categoryID->setLabel('Class of token: ')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addValidators(array('NotEmpty','Digits'))
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose class', 'Available classes' => $cat_options))
+		->addValidator('InArray', false, array(array_keys($cat_options)));
 
-
+	$jettonGroupID = new Zend_Form_Element_Select('jettonGroup');
+	$jettonGroupID->setLabel('Group of token: ')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addValidators(array('NotEmpty','Digits'))
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose group', 'Available groups' => $group_options))
+		->addValidator('InArray', false, array(array_keys($group_options)));
+		
+	$jettonTypeID = new Zend_Form_Element_Select('jettonType');
+	$jettonTypeID->setLabel('Type of token: ')
+		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
+		->addValidators(array('NotEmpty','Digits'))
+		->addFilters(array('StripTags', 'StringTrim'))
+		->addMultiOptions(array(NULL => 'Choose type', 'Available types' => $type_options))
+		->addValidator('InArray', false, array(array_keys($type_options)));
 	//Submit button
 	$submit = new Zend_Form_Element_Submit('submit');
 
@@ -127,14 +164,17 @@ class TokenJettonForm extends Pas_Form {
 	$obverse_description, $obverse_inscription,	$reverse_description,
 	$reverse_inscription, $die_axis_measurement, $die_axis_certainty,
 	$mint_id, $mint_qualifier, $ruler_qualifier,
-	$denomination_qualifier,  $submit));
+	$denomination_qualifier, $categoryID,
+	$jettonGroupID, $jettonTypeID, $submit));
 
-	$this->addDisplayGroup(array(
+	$this->addDisplayGroup(array( 
+	'jettonClass', 'jettonGroup', 'jettonType',
 	'denomination','denomination_qualifier', 'ruler_id',
 	'ruler_qualifier', 'mint_id','mint_qualifier',
 	'status', 'status_qualifier', 'degree_of_wear',
 	'obverse_description', 'obverse_inscription','reverse_description',
-	'reverse_inscription', 'die_axis_measurement','die_axis_certainty'), 'details');
+	'reverse_inscription', 'die_axis_measurement','die_axis_certainty',
+	), 'details');
 
 	$this->addDisplayGroup(array('submit'),'buttons');
 
