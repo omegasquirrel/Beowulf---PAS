@@ -54,7 +54,8 @@ class Pas_View_Helper_AddCoinLink
 	
 	protected function _checkCreator( )
 	{
-		if($this->_createdBy === $this->_getUser()->id){
+		$userid = (int)$this->_getUser()->id;
+		if($this->_createdBy === $userid){
 			return true;
 		} else {
 			return false;

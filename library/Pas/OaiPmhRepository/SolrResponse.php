@@ -22,7 +22,7 @@ class Pas_OaiPmhRepository_SolrResponse {
 
     protected $_cache;
 
-    protected $_allowed =  array('fa','flos','admin','treasure');
+    protected $_allowed =  array('fa','flos','admin','treasure', 'hero');
 
     public function __construct(){
     $this->_cache = Zend_Registry::get('cache');
@@ -32,15 +32,15 @@ class Pas_OaiPmhRepository_SolrResponse {
     }
 
     protected function getRole(){
-	$user = new Pas_User_Details();
+    $user = new Pas_User_Details();
     $person = $user->getPerson();
     if($person){
     	return $person->role;
     } else {
     	return 'public';
     }
-    }	
-    
+    }
+
 
     public function getRecord($id){
     $fields = array(
