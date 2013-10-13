@@ -98,23 +98,14 @@ public function __construct($options = null) {
 
 
 	//Object description
-	$description = new Pas_Form_Element_RTE('description');
+	$description = new Pas_Form_Element_CKEditor('description');
 	$description->setLabel('Object description: ')
 	->setRequired(false)
-	->setAttrib('rows',10)
-	->setAttrib('cols',40)
-	->setAttrib('Height',400)
-	->setAttrib('ToolbarSet','Finds')
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
-
 	//Object notes
-	$notes = new Pas_Form_Element_RTE('notes');
+	$notes = new Pas_Form_Element_CKEditor('notes');
 	$notes->setLabel('Notes: ')
 	->setRequired(false)
-	->setAttrib('rows',5)
-	->setAttrib('cols',60)
-	->setAttrib('ToolbarSet','Finds')
-	->setAttrib('Height',250)
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 

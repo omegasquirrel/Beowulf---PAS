@@ -229,16 +229,14 @@ public function __construct($options = null) {
 	$landowner = new Zend_Form_Element_Hidden('landowner');
 	$landowner->addFilters(array('StripTags', 'StringTrim'));;
 
-	$description = new Pas_Form_Element_RTE('description');
+	$description = new Pas_Form_Element_CKEditor('description');
 	$description->setLabel('Findspot description: ')
 	->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400, 'class' => 'privatedata span6'))
-	->setAttrib('ToolbarSet','Basic')
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
-	$comments = new Pas_Form_Element_RTE('comments');
+	$comments = new Pas_Form_Element_CKEditor('comments');
 	$comments->setLabel('Findspot comments: ')
 	->setAttribs(array('rows' => 10, 'cols' => 40, 'Height' => 400, 'class' => 'privatedata span6'))
-	->setAttrib('ToolbarSet','Basic')
 	->addFilters(array('StringTrim', 'BasicHtml', 'EmptyParagraph', 'WordChars'));
 
 
