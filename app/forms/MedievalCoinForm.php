@@ -47,7 +47,7 @@ public function __construct($options = null) {
 
 	$denomination_qualifier = new Zend_Form_Element_Radio('denomination_qualifier');
 	$denomination_qualifier->setLabel('Denomination qualifier: ')
-                ->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
+		->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 		->addFilters(array('StripTags', 'StringTrim'))
 		->setOptions(array('separator' => ''));
 
@@ -57,7 +57,6 @@ public function __construct($options = null) {
 		->addValidators(array('NotEmpty','Digits'))
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addMultiOptions(array(NULL => 'Choose category', 'Available categories' => $cat_options))
-		->setAttribs(array('class' => 'span6'))
 		->addValidator('InArray', false, array(array_keys($cat_options)));
 
 	$ruler= new Zend_Form_Element_Select('ruler_id');
@@ -65,7 +64,6 @@ public function __construct($options = null) {
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addValidators(array('NotEmpty','Digits'))
 		->addFilters(array('StripTags', 'StringTrim'))
-		->setAttribs(array('class' => 'span6'))
 		->addMultiOptions(array(NULL => 'Choose a ruler', 'Available rulers' => $ro))
 		->addValidator('InArray', false, array(array_keys($ro)));
 
@@ -160,7 +158,6 @@ public function __construct($options = null) {
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->setRegisterInArrayValidator(false)
 		->setRequired(false)
-		->setAttribs(array('class' => 'span6'))
 		->addFilters(array('StripTags', 'StringTrim'));
 
 

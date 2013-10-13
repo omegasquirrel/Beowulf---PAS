@@ -379,7 +379,7 @@ class Users extends Pas_Db_Table_Abstract {
 	* @param integer $params['page'] page number
 	* @return array
 	*/
-	public function getUpgrades($params) {
+	public function getUpgrades($page) {
 	$users = $this->getAdapter();
 	$select = $users->select()
 	->from($this->_name)
@@ -388,8 +388,8 @@ class Users extends Pas_Db_Table_Abstract {
 	$paginator = Zend_Paginator::factory($select);
 	$paginator->setItemCountPerPage(20) 
 	->setPageRange(10) ;
-	if(isset($params['page']) && ($params['page'] != "")) {
-	$paginator->setCurrentPageNumber($params['page']); 
+	if(isset($page) && ($page != "")) {
+	$paginator->setCurrentPageNumber($page); 
 	}
 	return $paginator;	
 	}

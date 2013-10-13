@@ -58,6 +58,7 @@ class Pas_View_Helper_FindspotGeo
 	if(is_null($woeid)){
 	$place = $this->_geoplanet->reverseGeocode($lat,$lon);
 	$placeData = $this->_geoplanet->getPlace($place['woeid']);
+//	Zend_Debug::dump($placeData);
 //	$elevation = $this->_geoplanet->getElevation(NULL, $lat, $lon);
 	} else {
 	$placeData = $this->_geoplanet->getPlace($woeid);

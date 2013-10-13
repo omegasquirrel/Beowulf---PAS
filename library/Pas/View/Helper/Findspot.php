@@ -125,16 +125,16 @@ class Pas_View_Helper_Findspot extends Zend_View_Helper_Abstract {
 	$byID = $this->checkAccessbyUserID($findspots['0']['createdBy']);
 	if(in_array($this->getRole(),$this->restricted)) {
 	if($byID == TRUE) {
-	return $this->view->partialLoop('partials/database/findspot.phtml', $findspots);
+	return $this->view->partial('partials/database/findspot.phtml', $findspots[0]);
 	} else {
-	return $this->view->partialLoop('partials/database/unauthorisedfindspot.phtml', $findspots);	
+	return $this->view->partial('partials/database/unauthorisedfindspot.phtml', $findspots[0]);	
 	}
 	} else if(in_array($this->getRole(),$this->higherLevel)) {
-	return $this->view->partialLoop('partials/database/findspot.phtml', $findspots);
+	return $this->view->partial('partials/database/findspot.phtml', $findspots[0]);
 	} else if (in_array($this->getRole(),$this->recorders)){
-	return $this->view->partialLoop('partials/database/findspot.phtml', $findspots);
+	return $this->view->partial('partials/database/findspot.phtml', $findspots[0]);
 	} else {
-	return $this->view->partialLoop('partials/database/unauthorisedfindspot.phtml', $findspots);
+	return $this->view->partial('partials/database/unauthorisedfindspot.phtml', $findspots[0]);
 	}	
 	}
 	

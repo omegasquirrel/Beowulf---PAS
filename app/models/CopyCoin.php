@@ -21,7 +21,7 @@ class CopyCoin extends Pas_Db_Table_Abstract {
 	
 	public function init(){
 		$this->_cache = Zend_Registry::get('cache');
-		$this->_key = md5('coinConfig' . $this->userNumber);
+		$this->_key = md5('coinConfig' . $this->userNumber());
 	}
 
 	protected $_default = array(

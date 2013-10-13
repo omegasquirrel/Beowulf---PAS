@@ -53,6 +53,9 @@ class Coins extends Pas_Db_Table_Abstract {
 		->joinLeft('romanmints','romanmints.pasID = mints.id', array('mintid' => 'id', 'pleiadesID'))
 		->joinLeft('revtypes','coins.revtypeID = revtypes.id',array('revname' => 'type'))
 		->joinLeft('statuses','coins.status = statuses.id', array('status' => 'term'))
+		->joinLeft('jettonClasses', 'coins.jettonClass = jettonClasses.id', array('jettonClass' => 'className'))
+		->joinLeft('jettonGroup', 'coins.jettonGroup = jettonGroup.id', array('jettonGroup' => 'groupName'))
+		->joinLeft('jettonTypes','coins.jettonType = jettonTypes.id', array('jettonType' => 'typeName'))
 		->where('finds.id = ?', $id)
 		->group('finds.id');
 	return  $coins->fetchAll($select);

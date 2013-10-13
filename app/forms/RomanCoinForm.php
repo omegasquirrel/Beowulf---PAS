@@ -101,8 +101,7 @@ public function __construct($options = null)
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Choose a moneyer', 'Valid moneyers' => $moneyers))
 		->addValidator('InArray', false, array(array_keys($moneyers)))
-		->addFilters(array('StripTags', 'StringTrim'))
-		->setAttribs(array('class' => 'span6'));
+		->addFilters(array('StripTags', 'StringTrim'));
 
 	$moneyer_qualifier = new Zend_Form_Element_Radio('moneyer_qualifier');
 	$moneyer_qualifier->setLabel('Republican Moneyer qualifier: ')
@@ -115,8 +114,7 @@ public function __construct($options = null)
 		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array(NULL => 'Choose a reverse type', 'Valid reverses' => $reverses))
 		->addFilters(array('StripTags', 'StringTrim'))
-		->addValidator('InArray', false, array(array_keys($reverses)))
-		->setAttribs(array('class' => 'span6'));
+		->addValidator('InArray', false, array(array_keys($reverses)));
 
 	$revTypeID_qualifier = new Zend_Form_Element_Radio('revTypeID_qualifier');
 	$revTypeID_qualifier->setLabel('Reverse type qualifier: ')

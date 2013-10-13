@@ -199,8 +199,7 @@ class Pas_View_Helper_GoogleAnalytics
         $xhtml[] = 'var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");';
         $xhtml[] = 'document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));';
         $xhtml[] = '</script>';
-
-        $xhtml[] = '<script type="text/plain" class="cc-onconsent-analytics">';
+	$xhtml[] = '<script type="text/javascript">';
         $xhtml[] = 'try {';
 
         $i = 0;

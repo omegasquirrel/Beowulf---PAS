@@ -20,13 +20,10 @@ class MackTypes extends Pas_Db_Table_Abstract {
 	* @return array $paginator
 	*/
 	public function getMackTypesDD(){
-    if (!$options = $this->_cache->load('macktypedd')) {
 	    $select = $this->select()
                        ->from($this->_name, array('type', 'type'))
                        ->order('type');
         $options = $this->getAdapter()->fetchPairs($select);
-		$this->_cache->save($options, 'macktypedd');
-		}
         return $options;
     }
 

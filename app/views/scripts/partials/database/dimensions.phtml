@@ -1,5 +1,5 @@
 <h4>Dimensions and weight</h4>
-
+<div id="dims">
 <p>
 <?php if($this->length > 0) : ?>
 Length: <span property="pas:length" datatype="units:mm"><?php echo $this->escape($this->length);?></span> mm<br />
@@ -27,3 +27,4 @@ Diameter:  <span property="pas:diameter" datatype="units:mm"><?php echo $this->e
 
 Quantity: <span property="pas:quantity" datatype="xsd:decimal"><?php echo $this->escape($this->quantity);?></span>
 </p>
+</div>

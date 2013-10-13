@@ -4,7 +4,7 @@
 $file = $this->f;
 $path = $this->username;
 $imagedir = $this->imagedir;
-$location = ROOT_PATH . '/public_html/' . $imagedir . $file;
+$location = './' . $imagedir . $file;
 ?>
 
 <?php if(file_exists($location)):?>
@@ -13,10 +13,10 @@ $location = ROOT_PATH . '/public_html/' . $imagedir . $file;
 
 $name = substr($file, 0, strrpos($file, '.'));
 $ext = '.jpg';
-$dir = ROOT_PATH .  '/public_html/'.  $imagedir .'display/';
+$dir = './' . $imagedir .'display/';
 ?>
 <?php
-$mediumfile = ROOT_PATH .  '/public_html/' .  $imagedir. 'medium/'.strtolower($name).$ext;
+$mediumfile = './' . $imagedir. 'medium/'.strtolower($name).$ext;
 if(file_exists($mediumfile)) {
 ?>
 <a href="/<?php echo $imagedir . 'medium/' . strtolower($this->f);?>" rel="lightbox" title="<?php echo $this->old_findID;?>: <?php echo $this->label;?>">
@@ -25,7 +25,7 @@ if(file_exists($mediumfile)) {
 $phMagick = new phMagick($location, $mediumfile);
 $phMagick->resize(0,500);
 $phMagick->convert();
-echo '<a href="/'.$imagedir . 'medium/' . strtolower($this->f).'" rel="lightbox" class="img img-polaroid" title="'. $this->old_findID.' : '.$this->label.'">';
+echo '<a href="/'.$imagedir . 'medium/' . strtolower($this->f).'" rel="lightbox" class="imgdisplay"title="'. $this->old_findID.' : '.$this->label.'">';
 
 
 
@@ -36,11 +36,11 @@ $create_mode = 0777;
 if (!is_dir($dir) ) {
 	mkdir($dir, $create_mode, true);
 	}
-$tempfile = ROOT_PATH .  '/public_html/' . $imagedir . 'medium/'. strtolower($name).$ext;
+$tempfile = './' . $imagedir . 'medium/'. strtolower($name).$ext;
 if(file_exists($tempfile)) {
 list($w, $h) = getimagesize($tempfile);
 
-echo '<img class="img img-polaroid" src="/'. $imagedir .'medium/'.strtolower($name).$ext.'" alt="A resized image of '.$this->label.'" width="'.$w.'" height="'.$h.'" />';
+echo '<img class="imgdisplay" src="/'. $imagedir .'medium/'.strtolower($name).$ext.'" alt="A resized image of '.$this->label.'" width="'.$w.'" height="'.$h.'" />';
 } else {
 $phMagick = new phMagick($location, $tempfile);
 $phMagick->resize(0,150);

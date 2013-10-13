@@ -94,21 +94,28 @@ class Findspots extends Pas_Db_Table_Abstract {
 	public function getFindSpotData($id)  {
 		$findspotdata = $this->getAdapter();
 		$select = $findspotdata->select()
-			->from($this->_name, array('county', 'district', 'parish',
-									   'easting', 'northing', 'gridref',
-									   'declat', 'declong', 'fourFigure',
-									   'knownas', 'smrref', 'map25k',
-									   'map10k', 'landusecode', 'landusevalue',
-									   'id', 'old_findspotid', 'createdBy',
-									   'description', 'comments', 'address',
-									   'woeid', 'elevation', 'postcode',
-									   'landowner', 'fourFigureLat', 'fourFigureLon',
-									   'gridlen', 'woeid', 'geonamesID'))
+			->from($this->_name, array(
+			'county', 'district', 'parish',
+			'easting', 'northing', 'gridref',
+			'declat', 'declong', 'fourFigure',
+			'knownas', 'smrref', 'map25k',
+			'map10k', 'landusecode', 'landusevalue',
+			'id', 'old_findspotid', 'createdBy',
+			'description', 'comments', 'address',
+			'woeid', 'elevation', 'postcode',
+			'landowner', 'fourFigureLat', 'fourFigureLon',
+			'gridlen', 'woeid', 'geonamesID',
+			'districtID', 'countyID', 'regionID',
+			'parishID'
+			))
 			->joinLeft('finds','finds.secuid = findspots.findID',array('discmethod'))
 			->joinLeft(array('land1' => 'landuses'),'land1.id = findspots.landusecode',array('landuse' => 'term'))
 			->joinLeft(array('land2' =>'landuses'),'land2.id = findspots.landusevalue',array('landvalue' => 'term'))
 			->joinLeft('maporigins','maporigins.id = findspots.gridrefsrc',array('source' => 'term'))
 			->joinLeft('osRegions','findspots.regionID = osRegions.osID',array('region' => 'label'))
+			->joinLeft('osCounties', 'findspots.countyID = osCounties.osID', array('countyType' => 'type'))
+			->joinLeft('osDistricts', 'findspots.districtID = osDistricts.osID', array('districtType' => 'type'))
+			->joinLeft('osParishes', 'findspots.parishID = osParishes.osID', array('parishType' => 'type', 'centreLat' => 'lat', 'centreLon' => 'lon'))
 			->joinLeft('people',$this->_name.'.landowner = people.secuid', array('landownername' => 'fullname'))
 			->joinLeft('discmethods','finds.discmethod = discmethods.id',array('method'))
 			->where('finds.id = ?', (int)$id)

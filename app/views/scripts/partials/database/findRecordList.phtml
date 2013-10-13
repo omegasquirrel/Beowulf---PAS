@@ -1,4 +1,4 @@
-<div typeof="pas:record" about="[<?php echo $this->old_findID;?>]" class="well">
+<div typeof="crm:E22_Man-Made_Object" about="<?php echo $this->serverUrl();?>/database/artefacts/record/id/<?php echo $this->id;?>" class="well">
     
    	<div id="preview"> 
     <?php if(isset($this->thumbnail)):?>
@@ -12,8 +12,8 @@
         ?>
     <ul class="thumbnails pull-right">
         <li>
-            <div >
-            <a href="<?php echo $this->serverUrl() . '/' . $this->imagedir?>medium/<?php echo urlencode(strtolower($this->filename));?>" rel="lightbox" title="View larger image of <?php echo $this->old_findID;?>"><img src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
+            <div property="crm:P138i_has_representation">
+            <a href="<?php echo $this->serverUrl() . '/' . $this->imagedir?>medium/<?php echo rawurlencode(strtolower($this->filename));?>" rel="lightbox" title="View larger image of <?php echo $this->old_findID;?>"><img property="crm:E38_Image" about="<?php $this->serverUrl()?>/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"  src="/images/thumbnails/<?php echo $this->thumbnail;?>.jpg"
                     alt="Thumbnail image of <?php echo $this->old_findID;?>"
                      class="img-polaroid" height="<?php echo $h;?>"/></a>
             </div>
@@ -67,11 +67,11 @@
         <?php echo $this->workflow($this->workflow);?><br />
         <?php endif;?>
         <?php if(!is_null($this->description)):?>
-        <?php echo $this->ellipsisstring($this->description,600);?><br />
+        <span property="skos:definition"><?php echo $this->ellipsisstring($this->description,600);?></span><br />
 		<?php endif;?>
-		Created on: <?php echo $this->niceshortdate($this->created);?><br />
+		Created on: <span property="dcterms:created"><?php echo $this->niceshortdate($this->created);?></span><br />
 		<?php if(!is_null($this->updated)):?>
-		Last updated: <?php echo $this->niceshortdate($this->updated);?><br />
+		Last updated: <span property="dcterms:updated"><?php echo $this->niceshortdate($this->updated);?></span><br />
 		<?php endif;?>
 		<?php 
 		if($this->fourFigure):?>

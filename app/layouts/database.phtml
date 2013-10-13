@@ -24,6 +24,7 @@
 	xmlns:units="http://qudt.org/"
 	xmlns:og="http://ogp.me/ns#"
 	xmlns:fb="http://www.facebook.com/2008/fbml"
+	xmlns:crm="http://erlangen-crm.org/current/"
 	xml:lang="en"
 >
 <head>
@@ -88,7 +89,7 @@
 
                 <?php echo $this->layout()->messages;?>
 
-                <?php echo $this->acronyms($this->layout()->content); ?>
+                <?php echo $this->layout()->content; ?>
 
                 <?php echo $this->layout()->contexts; ?>
 

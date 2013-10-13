@@ -96,7 +96,6 @@ $(document).ready(function() {
           google.maps.MapTypeId.SATELLITE,
           'OSM',
           'Imperium',
-          'Historic',
           ]
     	  },
     	  mapTypeControl: true,
@@ -109,7 +108,6 @@ $(document).ready(function() {
         var map = new google.maps.Map(document.getElementById("map"),
             myOptions);
             map.mapTypes.set('OSM',osmMapType);
-        	map.mapTypes.set('Historic',nlsmap);
         	map.mapTypes.set('Imperium',imperium);
             map.setTilt(45);
         var marker = new google.maps.Marker({
@@ -130,19 +128,19 @@ $(document).ready(function() {
 
 		map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(myTextDiv);
 
-  		var region = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/regions/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('', '', ''),$this->region));?>.kmz',
+  		var region = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/regions/<?php echo strtoupper(str_replace(array(' ', ')','(', '.' ,"'", '-'),array('', '', '', ''),$this->region));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		region.setMap(map);
 
-  		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('', '', ''),$this->parish));?>.kmz',
+  		var parish = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/parishes/<?php echo strtoupper(str_replace(array(' ', ')','(', '.' ,"'", '-', ','),array('', '', '', '',''),$this->parish));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		parish.setMap(map);
 
-		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/counties/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('', '', ''),$this->county));?>.kmz',
+		var county = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/counties/<?php echo strtoupper(str_replace(array(' ', ')','(', '.' ,"'", '-'),array('', '', '', ''),$this->county));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		county.setMap(map);
 
-		var district = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/districts/<?php echo strtoupper(str_replace(array(' ', ')','(',"'"),array('','', ''),$this->district));?>.kmz',
+		var district = new google.maps.KmlLayer('<?php echo $this->serverUrl();?>/kml/districts/<?php echo strtoupper(str_replace(array(' ', ')','(', '.' ,"'", '-'),array('', '', '', ''),$this->district));?>.kmz',
                                                  {preserveViewport: true, suppressInfoWindows: false });
 		district.setMap(map);
 
@@ -178,21 +176,37 @@ $(document).ready(function() {
 <h3>Spatial metadata</h3>
 <p>
 <?php if(!is_null($this->region)) :?>
-Region: <?php echo $this->escape(ucwords(strtolower($this->region)));?><br />
+Region: <a href="http://data.ordnancesurvey.co.uk/doc/7000000000<?php echo str_pad($this->regionID, 6 , '0', STR_PAD_LEFT);?>"><?php echo $this->region;?></a><br />
 <?php endif;?>
 <?php if(!is_null($this->county)) :?>
-County: <?php echo $this->escape(ucwords(strtolower($this->county)));?><br />
+County: <a href="http://data.ordnancesurvey.co.uk/doc/7000000000<?php echo str_pad($this->countyID, 6 , '0', STR_PAD_LEFT);?>"><?php echo $this->county;?></a> <?php if(!is_null($this->countyType)):?>
+ (<?php echo $this->countyType;?>)
+<?php endif;?><br />
 <?php endif;?>
 <?php if(!is_null($this->district)) :?>
-District: <?php echo $this->escape(ucwords(strtolower($this->district)));?><br />
+District: <a href="http://data.ordnancesurvey.co.uk/doc/7000000000<?php echo str_pad($this->districtID, 6 , '0', STR_PAD_LEFT);?>"><?php echo $this->district;?></a> 
+<?php if(!is_null($this->districtType)):?>
+ (<?php echo $this->districtType;?>)
+<?php endif;?>
+
 <?php endif;?>
 <?php if(!is_null($this->parish)) :?>
-Parish: <?php echo $this->escape(ucwords(strtolower($this->parish)));?>
+<br />
+Parish: <a href="http://data.ordnancesurvey.co.uk/doc/7000000000<?php echo str_pad($this->parishID, 6 , '0', STR_PAD_LEFT);?>"><?php echo $this->parish;?></a> <?php if(!is_null($this->parishType)):?>
+ (<?php echo $this->parishType;?>)
+<?php endif;?>
 <?php endif;?>
 <?php if(!is_null($this->knownas)) :?>
 <br /><span class="knownas">To be known as: <?php echo $this->escape($this->knownas);?></span>
 <?php endif;?>
+<?php if($this->centreLat):?>
+<br />Centre of parish as LatLon pair: <?php echo $this->centreLat;?>,<?php echo $this->centreLon;?><br />
+Centre of parish as Grid ref: <?php echo $this->gridRef($this->centreLat,$this->centreLon);?>
+<?php endif;?>
 </p>
+<?php 
+//echo $this->osTouchesRdf()->setUri($this->parishID);
+?>
 </div>
 
 <div class="span4">
@@ -208,7 +222,7 @@ Grid reference accurate to a <?php echo $this->GetAccuracy($this->gridref);?> me
 Grid reference length: <?php echo $this->gridlen;?><br />
 Easting: <?php echo $this->easting;?>  Northing: <?php echo $this->northing;?><br />
 Latitude: <?php echo $this->declat;?> Longitude: <?php echo $this->declong;?><br />
-Four figure Latitude: <?php echo $this->fourFigureLat; ?> Four figure longitude: <?php echo $this->fourFigureLon; ?><br />
+Four figure Latitude: <?php echo $this->fourFigureLat; ?><br /> Four figure longitude: <?php echo $this->fourFigureLon; ?><br />
 1:25K map: <?php echo $this->map25k;?><br />
 1:10K map: <?php echo $this->map10k;?><br />
 <?php if((!is_null($this->woeid)) && is_null($this->knownas)):?>
@@ -230,7 +244,9 @@ echo $this->domesdayNear($this->declat,$this->declong, 2);
 </div>
 
 <div class="row-fluid">
-<?php echo $this->findSmrs($this->declat,$this->declong);?>
+<?php 
+//echo $this->findSmrs($this->declat,$this->declong);
+?>
 </div>
 
 <div class="row-fluid">
@@ -242,7 +258,9 @@ echo $this->findspotGeo($this->woeid,$this->declat,$this->declong);
 </div>
 
 <div class="span4 noprint">
-<?php echo $this->yahooGeoAdjacent($this->woeid);?>
+<?php
+echo $this->yahooGeoAdjacent($this->woeid);
+?>
 </div>
 
 <div class="span4">

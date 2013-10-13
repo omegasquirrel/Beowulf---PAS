@@ -75,7 +75,6 @@ public function __construct($options = null) {
 		->addMultiOptions(array(NULL => 'Choose geography', 'Available options' => $ia_geog))
 		->addValidator('InArray', false, array(array_keys($ia_geog)))
 		->addFilters(array('StripTags', 'StringTrim'))
-		->setAttribs(array('class' => 'span6'))
 		->addValidator('Digits');
 
 	$geography_qualifier = new Zend_Form_Element_Radio('geography_qualifier');
@@ -94,7 +93,6 @@ public function __construct($options = null) {
 
 	$ruler_qualifier = new Zend_Form_Element_Radio('ruler_qualifier');
 	$ruler_qualifier->setLabel('Issuer qualifier: ')
-		->setAttrib('class', 'span6 selectpicker show-menu-arrow')
 		->addMultiOptions(array('1' => 'Certain','2' => 'Probably','3' => 'Possibly'))
 		->addFilters(array('StripTags', 'StringTrim'))
 		->addValidator('Int')

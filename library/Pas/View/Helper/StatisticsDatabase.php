@@ -25,7 +25,6 @@ class Pas_View_Helper_StatisticsDatabase {
     protected $_solrConfig;
 
     public function __construct(){
-    $this->_cache = Zend_Registry::get('cache');
     $this->_config = Zend_Registry::get('config');
     $this->_solrConfig = array('adapteroptions' => $this->_config->solr->toArray());
     $this->_solr = new Solarium_Client($this->_solrConfig);
@@ -36,7 +35,6 @@ class Pas_View_Helper_StatisticsDatabase {
 	}
 	
 	private function getSolrResults() {
-	if (!($this->_cache->test('stats'))) {
 	$query = $this->_solr->createSelect();
 	$query->setRows(0);
 	$stats = $query->getStats();
@@ -48,10 +46,6 @@ class Pas_View_Helper_StatisticsDatabase {
 	$stats['total']=  $result->getSum();
 	$stats['records'] = $result->getCount();
 	} 
-	$this->_cache->save($stats);
-	} else {
-	$stats = $this->_cache->load('stats');
-	}
 	return $stats;
 	}
 	

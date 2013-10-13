@@ -43,8 +43,8 @@ class Pas_View_Helper_NomismaRdf extends Zend_View_Helper_Abstract {
 		$key = md5($this->_uri);
 		if (!($this->_cache->test($key))) {
 		$graph = new EasyRdf_Graph( $this->_uri );
-        $graph->load();
-        $data = $graph->resource($this->_uri);
+	        $graph->load();
+        	$data = $graph->resource($this->_uri);
 		$this->_cache->save($data);
 		} else {
 		$data = $this->_cache->load($key);

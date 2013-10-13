@@ -24,7 +24,7 @@ class Geography extends Pas_Db_Table_Abstract {
 	public function getIronAgeGeography($term){
 		$regions = $this->getAdapter();
 		$select = $regions->select()
-			->from($this->_name, array('id', 'term' =>'CONCAT(region," - ",area," - ",tribe)'))
+			->from($this->_name, array('id', 'term' => 'CONCAT(region,"  ",IFNULL(area,""),"  ",IFNULL(tribe,""))'))
 			->joinLeft('ironagedenomxregion','ironagedenomxregion.regionID = geographyironage.id',array())
 			->joinLeft('denominations','ironagedenomxregion.denomID = denominations.id',array())  
 			->where('denominations.id = ?',$term)
@@ -40,7 +40,7 @@ class Geography extends Pas_Db_Table_Abstract {
 	public function getIronAgeGeographyDD() {
 		$regions = $this->getAdapter();
 		$select = $regions->select()
-			->from($this->_name, array('id', 'term' =>'CONCAT(region," - ",area," - ",tribe)'))
+			->from($this->_name, array('id', 'term' => 'CONCAT(region,"  ",IFNULL(area,""),"  ",IFNULL(tribe,""))'))
 			->where('valid = ?', (int)1)
 			->order('region');
 		$options = $this->getAdapter()->fetchPairs($select);

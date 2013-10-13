@@ -24,7 +24,8 @@ class Moneyers extends Pas_Db_Table_Abstract {
 	public function getMoneyers() {
 	$moneyers = $this->getAdapter();
 	$select = $moneyers->select()
-		->from($this->_name, array('id','term' => 'CONCAT(name,"(",date_1," ",date_2,")")'));
+		->from($this->_name, array('id','term' => 'CONCAT(name,"(", IFNULL(date_1,""), " " , IFNULL(date_2, ""), ")")'))
+		->order('name ASC');
 	return $moneyers->fetchAll($select);
     }
 
@@ -35,7 +36,8 @@ class Moneyers extends Pas_Db_Table_Abstract {
 	public function getRepublicMoneyers() {
 	$moneyers = $this->getAdapter();
 	$select = $moneyers->select()
-		->from($this->_name, array('id','term' => 'CONCAT(name,"(",date_1," ",date_2,")")'));
+		->from($this->_name, array('id','term' => 'CONCAT(name,"(", IFNULL(date_1,""), " " , IFNULL(date_2, ""), ")")'))
+		->order('name ASC');
 	return $moneyers->fetchPairs($select);
     }
 
